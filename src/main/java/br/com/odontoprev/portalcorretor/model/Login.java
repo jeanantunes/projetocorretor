@@ -1,8 +1,8 @@
 package br.com.odontoprev.portalcorretor.model;
 
-public class login {
+public class Login {
 
-    public login() {
+    public Login() {
     }
 
     private String login ;

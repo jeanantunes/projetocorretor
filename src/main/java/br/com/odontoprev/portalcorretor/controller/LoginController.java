@@ -6,18 +6,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.odontoprev.portalcorretor.model.Login;
+
 @Controller
 public class LoginController {
 
     @RequestMapping("/")
     public ModelAndView index() {
-        return new ModelAndView("index");
+    	  
+        ModelAndView modelAndView = new ModelAndView("index","login",new Login());        
+		return modelAndView;
     }
     @RequestMapping(value="/autenticar",method= RequestMethod.POST)
-    public String autenticar(@ModelAttribute("login") br.com.odontoprev.portalcorretor.model.login login) {
+    public ModelAndView autenticar(@ModelAttribute("login") br.com.odontoprev.portalcorretor.model.Login login) {
       	System.out.println(login.getLogin());
     	System.out.println(login.getSenha());
-    	return "autenticado";
+    	return new ModelAndView("/corretor/vendas_pme/home");
     }
 
 }
