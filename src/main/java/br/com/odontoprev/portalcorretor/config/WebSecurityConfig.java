@@ -23,7 +23,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     	//TODO: Quas as URL protegidas e as não protegidas
         http
             .authorizeRequests()
-                .antMatchers("/cadastro").permitAll()
+                .antMatchers("/cadastro","/img/**", "/css/**", "/js/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
             .formLogin()

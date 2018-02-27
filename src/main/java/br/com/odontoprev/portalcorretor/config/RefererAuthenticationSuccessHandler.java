@@ -16,8 +16,13 @@ public class RefererAuthenticationSuccessHandler implements AuthenticationSucces
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest req, HttpServletResponse resp, Authentication auth)
 			throws IOException, ServletException {
-		//TODO: Implemenar Redirect
-		resp.sendRedirect("home");
-	}
+		//TODO: Implementar Redirect
 
+			if (auth.getPrincipal().toString().length() ==11) {
+				resp.sendRedirect("corretor/vendas_pf/home");
+			}
+			else{
+				resp.sendRedirect("corretor/vendas_pme/home");
+			}
+	}
 }

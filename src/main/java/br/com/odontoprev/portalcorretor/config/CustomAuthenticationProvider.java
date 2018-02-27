@@ -6,6 +6,7 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -13,23 +14,23 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-		String name = authentication.getName();
+		String name = authentication.getPrincipal().toString().replaceAll("^[0-9]","");
 		String password = authentication.getCredentials().toString();
 
-		if (autenticarServico(name, password)) {	
-			return new UsernamePasswordAuthenticationToken(name, password, new ArrayList<>());
-		} else
+		if (autenticarServico(name, password)) {
+            return new UsernamePasswordAuthenticationToken(name, password);
+        }
+		 else
 			return null;
 	}
 
-	private boolean autenticarServico(String name, String password) {
-		//TODO: Implementar login de autenticação
+    private Boolean autenticarServico(String name, String password) {
 		return true;
+		//TODO: Implementar login de autenticação
 	}
 
 	@Override
-	public boolean supports(Class<?> authentication) {		
+	public boolean supports(Class<?> authentication) {
 		return authentication.equals(UsernamePasswordAuthenticationToken.class);
 	}
-
 }

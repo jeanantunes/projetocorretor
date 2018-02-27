@@ -29,7 +29,9 @@
 
 </head>
 <body>
-<form action="#" th:action="@{/login}"  method="POST">
+
+    <form method="post"  th:action="@{/login}">
+
 			<div class="container-cadastro">
 				<img th:src="@{/img/logo-mobile.png}" class="img-logo-odonto logoOdonto">
 				<div class="ajuste-forme">
@@ -41,16 +43,16 @@
 						<p>ao sistema de venda odontoPrev</p>
 					</div>
 
-					<div class="form-group width-form space-top-50">
-						<label class="label-cpfcnpj uppercase">cpf/cnpj </label>
-						<input name="username" type="text" id="cpfcnpj" class="cpfcnpj form-control"  />
-					</div>
-				
-					<div class="form-group width-form space-top-30">
-						<label class="label-password">SENHA</label>
-						<a href="#"><img th:src="@{/img/senha-1@2x.png}" class="img-senha" align="right"></a>
-						<input name="password" type="password" id="senha-index" class="password form-control"  />
-					</div>
+                    <div class="form-group width-form space-top-50">
+                        <label class="label-cpf">CPF/CNPJ</label>
+                        <input type="text" id="cpfcnpj" name="username" class="cpfcnpj form-control" style="border-top: transparent; border-left: transparent; border-right: transparent; box-shadow: 0px 0px 0px 0px; border-radius: 0px; border-bottom: 2px solid rgb(203, 201, 198);">
+                    </div>
+
+                    <div class="form-group width-form space-top-30">
+                        <label class="label-password">SENHA</label>
+                        <a href="#"><img th:src="@{/img/senha-1@2x.png}" class="img-senha" align="right"/></a>
+                        <input type="password" id="senha-index" class="password form-control" name="password" />
+                    </div>
 
 					<div class="space-top-50">
 						<button type="submit" class="btn btn-entrar-index r-medium">ENTRAR</button>
