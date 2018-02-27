@@ -21,7 +21,7 @@ public class LoginController {
     public ModelAndView autenticar(@ModelAttribute("login") br.com.odontoprev.portalcorretor.model.Login login) {
       	System.out.println(login.getLogin());
     	System.out.println(login.getSenha());
-    	return new ModelAndView("/corretor/cadastro/editarCadastroForcaDeVenda");
+    	return new ModelAndView("/corretor/others/lista_de_pospostas_forca_vendas");
     }
 
 }
