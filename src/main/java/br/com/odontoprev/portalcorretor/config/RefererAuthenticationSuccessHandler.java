@@ -19,10 +19,10 @@ public class RefererAuthenticationSuccessHandler implements AuthenticationSucces
 		//TODO: Implementar Redirect
 
 			if (auth.getPrincipal().toString().length() ==11) {
-				resp.sendRedirect("corretor/vendas_pf/home");
+				resp.sendRedirect("/corretor/homeCorretora");
 			}
 			else{
-				resp.sendRedirect("corretor/vendas_pme/home");
+				resp.sendRedirect("/corretor/homeCorretor");
 			}
 	}
 }
