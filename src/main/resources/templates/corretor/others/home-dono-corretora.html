@@ -1,20 +1,20 @@
 <!DOCTYPE html>
  <html>
  <head>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
  </head>
  <body style="min-width: 100% !important;">    
- 	 <!-- Links Scripts -->
-     <script type="text/javascript" th:src="@{js/jquery-3.2.1.min.js}"></script>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
      <script type="text/javascript" th:src="@{js/bootstrap.min.js}"></script>
-     <script type="text/javascript" th:src="@{js/jquery.mask.min.js}"></script>
-     <script type="text/javascript" th:src="@{js/odonto-Valida.js}"></script> 
-     <script type="text/javascript" th:src="@{js/menu.js}"></script>
+     <script type="text/javascript" src="../../../assets/js/jquery.mask.min.js"></script>
+     <script type="text/javascript" src="../../../assets/js/odonto-Valida.js"></script> 
      
-    <!-- Links Bootstrap -->
      <link href="css/bootstrap.min.css" rel="stylesheet">
      <link href="css/main.css" rel="stylesheet">
-     
+     <script type="text/javascript" src="../../../assets/js/menu.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
     <script>
      $(function(){
          $(".button-collapse").sideNav();
@@ -50,14 +50,14 @@
 
  <nav class="nav-odonto">
      <div class="nav-wrapper">
-         <a href="#" class="brand-logo" style="color: silver; padding: 35px"><img th:src="@{/img/logo.png}"></a>
+         <a href="#" class="brand-logo" style="color: silver; padding: 35px"><img src="../../../assets/img/logo.png"></a>
          <ul class="hide-on-med-and-down">
-             <li class="nav-cel nav-active"><a href="home-dono-corretora.html"><img th:src="@{/img/menu-home.png}" ><span>home</span></a></li>
-             <li class="nav-cel"><a href="#"><img th:src="@{/img/menu-meus-dados.png}" ><span>dados da corretora</span></a></li>
-             <li class="nav-cel"><a href="forca-de-vendas.html"><img th:src="@{/img/menu-listas.png}" ><span>equipe</span></a></li>
-             <li class="nav-cel"><a href="lista_de_pospostas.html"><img th:src="@{/img/menu-listas.png}" ><span>lista de propostas</span></a></li>
-             <li class="nav-cel"><a href="busca-rede-credenciadas.html"><img th:src="@{/img/menu-rede-credenciada.png}" ><span>rede credenciada</span></a></li>
-             <li class="nav-cel"><a href="fale-conosco.html"><img th:src="@{/img/menu-contato.png}" ><span>fale conosco</span></a></li>
+             <li class="nav-cel nav-active"><a href="home-dono-corretora.html"><img src="../../../assets/img/menu-home.png" ><span>home</span></a></li>
+             <li class="nav-cel"><a href="#"><img src="../../../assets/img/menu-meus-dados.png" ><span>dados da corretora</span></a></li>
+             <li class="nav-cel"><a href="forca-de-vendas.html"><img src="../../../assets/img/menu-listas.png" ><span>equipe</span></a></li>
+             <li class="nav-cel"><a href="lista_de_pospostas.html"><img src="../../../assets/img/menu-listas.png" ><span>lista de propostas</span></a></li>
+             <li class="nav-cel"><a href="busca-rede-credenciadas.html"><img src="../../../assets/img/menu-rede-credenciada.png" ><span>rede credenciada</span></a></li>
+             <li class="nav-cel"><a href="fale-conosco.html"><img src="../../../assets/img/menu-contato.png" ><span>fale conosco</span></a></li>
          </ul> 
     </div>
  </nav>
@@ -74,20 +74,20 @@
                   </div>
             </div>
          </li>
-             <li class="nav-cel nav-active"><a href="home-dono-corretora.html"><img th:src="@{/img/menu-home.png}" ><span>home</span></a></li>
-             <li class="nav-cel"><a href="#"><img th:src="@{/img/menu-meus-dados.png}" ><span>dados da corretora</span></a></li>
-             <li class="nav-cel"><a href="forca-de-vendas.html"><img th:src="@{/img/menu-listas.png}" ><span>equipe</span></a></li>
-             <li class="nav-cel"><a href="lista_de_pospostas.html"><img th:src="@{/img/menu-listas.png}" ><span>lista de propostas</span></a></li>
-             <li class="nav-cel"><a href="busca-rede-credenciadas.html"><img th:src="@{/img/menu-rede-credenciada.png}" ><span>rede credenciada</span></a></li>
-             <li class="nav-cel"><a href="fale-conosco.html"><img th:src="@{/img/menu-contato.png}" ><span>fale conosco</span></a></li>
+             <li class="nav-cel nav-active"><a href="home-dono-corretora.html"><img src="../../../assets/img/menu-home.png" ><span>home</span></a></li>
+             <li class="nav-cel"><a href="#"><img src="../../../assets/img/menu-meus-dados.png" ><span>dados da corretora</span></a></li>
+             <li class="nav-cel"><a href="forca-de-vendas.html"><img src="../../../assets/img/menu-listas.png" ><span>equipe</span></a></li>
+             <li class="nav-cel"><a href="lista_de_pospostas.html"><img src="../../../assets/img/menu-listas.png" ><span>lista de propostas</span></a></li>
+             <li class="nav-cel"><a href="busca-rede-credenciadas.html"><img src="../../../assets/img/menu-rede-credenciada.png" ><span>rede credenciada</span></a></li>
+             <li class="nav-cel"><a href="fale-conosco.html"><img src="../../../assets/img/menu-contato.png" ><span>fale conosco</span></a></li>
      </ul>
  </div>
 
   <div class="header-logado">
       <a href="#" data-activates="menu-mobile" class="button-collapse pull-right">
-          <img th:src="@{/img/menu.png}" class="icon-menu">
+          <img src="../../../assets/img/menu.png" class="icon-menu">
       </a>
-      <img th:src="@{/img/logo-mobile.png}" class="logo-ondonto-mobile" style="position: relative;top:30px">
+      <img src="../../../assets/img/logo-mobile.png" class="logo-ondonto-mobile" style="position: relative;top:30px">
 
        <div class="perfil-web">
           <div class="circle-perfil">
@@ -311,7 +311,7 @@
           <p>Av. Marcos Penteado de Ulhoa Rodrigues, 939-14 andar-Edifício Jatoba Torre 2-Barueri-SP CEP- 06460-040</p>
           <p>OdontoPrev - CRO/SP n° 19009</p>
       </div>
-      <div class="pull-right footer-img"><img th:src="@{/img/ans.png}" ></div>
+      <div class="pull-right footer-img"><img src="../../../assets/img/ans.png" ></div>
     </div>
 
 </div>
