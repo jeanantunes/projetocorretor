@@ -45,22 +45,22 @@ label {font-weight: initial !important;}
 
 @font-face {
 	 font-family: Roboto-Regular;
-     src: url('../fonts/Roboto-Regular.ttf');
+     src: th:src="@{/fonts/Roboto-Regular.ttf)";
 }
 
 @font-face {
 	 font-family: Roboto-Bold;
-     src: url('../fonts/Roboto-Bold.ttf');
+     src: th:src="@{/fonts/Roboto-Bold.ttf)";
 }
 
 @font-face {
 	 font-family: Roboto-Light;
-     src: url('../fonts/Roboto-Light.ttf');
+     src: th:src="@{/fonts/Roboto-Light.ttf)";
 }
 
 @font-face {
 	 font-family: Roboto-Medium;
-     src: url('../fonts/Roboto-Medium.ttf');
+     src: th:src="@{/fonts/Roboto-Medium.ttf)"";
 }
 
 .h1Index{
