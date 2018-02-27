@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Bem vindo | OdontoPrev</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="../img/odpv.PNG" type="image/png">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/main.css" rel="stylesheet">
+    <script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.mask.min.js"></script>
+    <script type="text/javascript" src="../js/odonto-Valida.js"></script>
+</head>
+<body>
+<div class="container-fluid nomargin container-odonto" style="padding-left: 0px">
+    <div class="space-top-60">
+        <div class="confirmacao-proposta">
+            <div class="titulo">
+                <h2 class="uppercase title-donto nomargin font-blue space-top-30 text-center">bem vindo</h2>
+            </div>
+            <div class="space-top-30">
+                <p class="text-center subtitle-odonto nomargin r-light">Seu cadastro foi concluído com sucesso!</p>
+
+                <p class="text-center font-gray space-top-60 r-light" th:text="*{dono}? 'O cadastro de sua corretora foi efetuado':  'Seu cadastro foi efetuado e seu usuário está associado à corretora' "></p>
+
+                <!--<div th:object="${dono }">-->
+
+                <!--<p class="text-center font-gray space-top-60 r-light"> </p>-->
+                <!--</div>-->
+            </div>
+            <div class="text-center space-top-60">
+                <span class="numero-proposta" th:text="*{razaoSocial} ">XPTO</span>
+            </div>
+            <div class="space-top-60  text-center">
+                <a href="../../login.html" type="button" class="btn btnBlue btn-width-custom space-top-10 uppercase">COMEÇAR
+                    A USAR</a>
+            </div>
+
+        </div>
+    </div>
+    <div class="footer-odonto">
+        <span><img class="img-logo-odonto" src="../img/logo-mobile.png"></span>
+    </div>
+</div>
+</body>
+</html>
