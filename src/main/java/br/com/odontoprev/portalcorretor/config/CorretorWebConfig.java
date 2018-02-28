@@ -104,9 +104,9 @@ public class CorretorWebConfig extends WebMvcConfigurerAdapter implements Applic
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(localeChangeInterceptor());
     }
-
+    
     @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
+    public void addViewControllers(ViewControllerRegistry registry) {        
         registry.addViewController("/login").setViewName("login");
     }
 }
