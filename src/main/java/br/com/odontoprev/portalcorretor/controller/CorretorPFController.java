@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class CorretorPF {
+public class CorretorPFController {
 
     @RequestMapping(value = "/corretor/homeCorretor", method = RequestMethod.GET)
     public ModelAndView home() {

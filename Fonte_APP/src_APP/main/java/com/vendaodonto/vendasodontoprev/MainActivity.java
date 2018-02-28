@@ -233,7 +233,7 @@ public class MainActivity extends AppCompatActivity {
         StringBuilder sql = new StringBuilder();
 
         sql.append("SELECT * ");
-        sql.append("FROM Login ");
+        sql.append("FROM Usuario ");
         sql.append("WHERE IdLogin = " + codigo);
 
         SQLiteDatabase dbs = db.getReadableDatabase();

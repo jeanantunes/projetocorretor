@@ -31,7 +31,7 @@ public class SairDaConta {
 
         SQLiteDatabase dbs = db.getReadableDatabase();
 
-        dbs.delete("Login", "IdLogin = ?", parametros);
+        dbs.delete("Usuario", "IdLogin = ?", parametros);
 
         dbs.close();
 
