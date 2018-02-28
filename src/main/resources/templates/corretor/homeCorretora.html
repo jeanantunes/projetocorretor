@@ -91,7 +91,7 @@
                 <div class="perfil-mobile">
                     <div class="circle-perfil">
                         <div class="data-perfil">
-                            <p class="font-gray name-mobile"><strong>Corretora XPTO</strong></p>
+                            <p class="font-gray name-mobile" ><strong>${#session.getAttribute('mySessionAttribute')}</strong></p>
                             <p class="font-pink">Sair</p>
                         </div>
                     </div>
@@ -121,7 +121,7 @@
         <div class="perfil-web">
             <div class="circle-perfil">
                 <div class="data-perfil">
-                    <p class="user-name"><strong>Corretora XPTO</strong></p>
+                    <p class="user-name" th:text="${session.mySessionAttribute}"><strong></strong></p>
                     <a href="#" class="link-odonto">Sair</a>
                 </div>
             </div>
