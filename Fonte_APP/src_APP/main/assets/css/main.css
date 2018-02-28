@@ -45,22 +45,22 @@ label {font-weight: initial !important;}
 
 @font-face {
 	 font-family: Roboto-Regular;
-     th:src="@{/fonts/Roboto-Regular.ttf}";
+     src: url('../fonts/Roboto-Regular.ttf');
 }
 
 @font-face {
 	 font-family: Roboto-Bold;
-     th:src="@{/fonts/Roboto-Bold.ttf}";
+     src: url('../fonts/Roboto-Bold.ttf');
 }
 
 @font-face {
 	 font-family: Roboto-Light;
-     th:src="@{fonts/Roboto-Light.ttf}";
+     src: url('../fonts/Roboto-Light.ttf');
 }
 
 @font-face {
 	 font-family: Roboto-Medium;
-     th:src="@{fonts/Roboto-Medium.ttf}";
+     src: url('../fonts/Roboto-Medium.ttf');
 }
 
 .h1Index{
@@ -595,7 +595,7 @@ Remover cones arredondados*/
 		border-color: transparent;
 	}
 
-	/* Adicione espaÃ§o ao navegador e ao Windows direito.*/
+	/* Adicione espaço ao navegador e ao Windows direito.*/
 	.main{
 		padding: 10px 10px 0 10px;
 	}
@@ -603,7 +603,7 @@ Remover cones arredondados*/
 	
 
 	
-/* exibiÃ§Ã£o do lado pequeno / mÃ©dio */
+/* exibição do lado pequeno / médio */
 	@media (min-width: 768px) {
 
 
@@ -611,12 +611,12 @@ Remover cones arredondados*/
 		/*Permitir que o principal seja ao lado de Nav*/
 		.main{
 			position: absolute;
-			width: calc(100% - 40px); /*mantÃ©m 100% menos o tamanho do nav*/
+			width: calc(100% - 40px); /*mantém 100% menos o tamanho do nav*/
 			margin-left: 40px;
 			float: right;
 		}
 
-		/*Permite que a barra de navegaÃ§Ã£o seja mostrada no mouseover*/
+		/*Permite que a barra de navegação seja mostrada no mouseover*/
 		nav.sidebar:hover + .main{
 			margin-left: 200px;
 
@@ -637,17 +637,17 @@ Remover cones arredondados*/
 			margin-left: 0px;
 		}
 
-		/*Ã�cones do centro*/
+		/*Ícones do centro*/
 		nav.sidebar a{
 			padding-right: 13px;
 		}
 
-		/*adiciona top de borda Ã  primeira caixa de navegaÃ§Ã£o */
+		/*adiciona top de borda à primeira caixa de navegação */
 		nav.sidebar .navbar-nav > li:first-child{
 			border-top: 1px #2D6FCE solid;
 		}
 
-		/*adiciona borda para caixas de navegaÃ§Ã£o inferiores*/
+		/*adiciona borda para caixas de navegação inferiores*/
 		nav.sidebar .navbar-nav > li{
 			border-bottom: 1px #3A94FB solid;
 		}
@@ -939,7 +939,7 @@ Remover cones arredondados*/
 	color: white;
 	border-radius: 25px;
 }
-/*=================================================RODAPÃ‰================================================================*/
+/*=================================================RODAPÉ================================================================*/
 .title-vender-botao{
 	color:#2D6FCE;
 	margin-left:16%;
@@ -952,7 +952,7 @@ Remover cones arredondados*/
 	  margin-left: 14%;
 	  color: #656565;
 }
-/*=================================================RODAPÃ‰================================================================*/
+/*=================================================RODAPÉ================================================================*/
 
 
 
@@ -2055,7 +2055,7 @@ label {
 
 }
 
-/* link que ainda nÃ£o foi visitado */
+/* link que ainda não foi visitado */
 a:link {
 	color:#fff;
  }
@@ -3202,7 +3202,7 @@ background-color: #D9487F!important;
 }
 
 .vendas-label {
-    width: 20%;
+    width: 40%;
 }
 
 .vendas-drop{
