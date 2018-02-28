@@ -20,7 +20,7 @@ public class LoginController {
     public ModelAndView autenticar(@ModelAttribute("login") br.com.odontoprev.portalcorretor.model.Login login) {
       	System.out.println(login.getLogin());
     	System.out.println(login.getSenha());
-    	return new ModelAndView("/corretor/vendas_pf/home-forca-vendas");
+    	return new ModelAndView("/corretor/others/lista_de_pospostas_forca_vendas");
     }
 
 
