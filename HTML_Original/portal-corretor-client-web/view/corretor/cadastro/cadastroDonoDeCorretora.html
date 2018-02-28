@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+          <head>
+            <title>Cadastro | OdontoPrev</title>
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+
+            <link rel="shortcut icon" href="../../../assets/img/odpv.PNG" type="image/png">
+            <link href="../../../assets/css/bootstrap.min.css" rel="stylesheet">
+            <link href="../../../assets/css/main.css" rel="stylesheet">
+
+            <script type="text/javascript" src="../../../assets/js/jquery-3.2.1.min.js"></script>
+            <script type="text/javascript" src="../../../assets/js/bootstrap.min.js"></script>
+            <script type="text/javascript" src="../../../assets/js/jquery.mask.min.js"></script>
+            <script type="text/javascript" src="../../../assets/js/odonto-Valida.js"></script>
+            
+            <script type="text/javascript">
+              $(document).ready(function () {
+                $("#souDono").show();
+                $("#naoSouDono").hide();
+
+                $("#yes").click(function () {
+                  $(".label-yes").css("color", "#1974CE");
+                  $(".label-yes").css("font-weight", "bold");
+                  $(".label-no").css("color", "#CBC9C6");
+                  $("#souDono").show();
+                  $("#naoSouDono").hide();
+
+                });
+
+                $("#no").click(function () {
+                  $(".label-no").css("color", "#1974CE");
+                  $(".label-no").css("font-weight", "bold");
+                  $(".label-yes").css("color", "#CBC9C6");
+                  $("#naoSouDono").show();
+                  $("#souDono").hide();
+                });
+
+              });
+            </script>
+          </head>
+
+          <body>
+              <div class="container-fluid nomargin container-odonto"  style="padding-left: 0px">
+                <div class="row header-odonto" style="background:#F5F5F4;">
+                  <div class="col-xs-12 padding-header">
+                    <h2 class="text-center font-blue title-odonto">VAMOS COMEÇAR</h2>
+                    <p class="text-center text-silver sub-title space-top-30">Para acessar, insira os dados abaixo
+                    </p>
+                  </div>
+                </div>
+
+                <!--cadastro-->
+
+                <div class="content-odonto" style="margin-bottom: 200px">
+
+                <div class="col-xs-12">
+                  <form>
+                    <div class="inline space-right space-top-30">
+                      <input type="radio" id="no" name="radio-group">
+                      <label for="no" class="label-no text form-group">Não sou dono de corretora</label>
+                    </div>
+                    <div class="inline">
+                      <input type="radio" id="yes" name="radio-group" checked>
+                      <label for="yes" class="label-yes form-group">Sou dono de corretora</label>
+                    </div>
+                  </form>
+               </div>
+
+                  <div class="row" id="naoSouDono" >
+                   <div class="col-xs-12">
+                    <form class="space-top-60">
+                     <div class="col-xs-12">
+                      <div class="form-group width-form2 ">
+                        <label class="label-cpfCadastroNaoSouDono">CPF</label>
+                        <input type="text" id="cpfCadastroNaoSouDono" class="cpfCadastroNaoSouDono form-control ">
+                      </div>
+                     </div>
+                     <div class="col-xs-12">
+                        <div class="form-group inline width-form1 space-right space-top-30">
+                          <label class="label-nomeCadastroNaoSouDono">Confirme seu nome </label>
+                          <input type="text" id="ConfirmeNomeCadastroNaoSouDono" class="nomeCadastroNaoSouDono form-control">
+                        </div>
+                        <div class="form-group inline width-form2 space-right">
+                          <label class="label-celularCadastroNaoSouDono">Confirme o número do seu celular</label>
+                          <input type="text" id="ConfirmecelularCadastroNaoSouDono" class="celularCadastroNaoSouDono form-control">
+                        </div>
+                        <div class="form-group inline width-form2">
+                          <label class="label-emailCadastroNaoSouDono">Confirme seu e-mail</label>
+                          <input type="text" id="ConfirmeEmailCadastroNaoSouDono" class="emailCadastroNaoSouDono form-control">
+                        </div>
+                     </div>
+                        <div class="col-xs-12 ">
+                          <h4 class="labelCadastroDeSenhaDonoDeCorretora sub-title"> SENHA </h4>
+                          <div class="form-group width-form3 space-top-40">
+                            <label class="label-senhaCadastroNaoSouDono">Crie uma senha</label>
+                            <input type="password" id="senhaCadastroNaoSouDono" class=" senhaCadastroNaoSouDono form-control">
+                            <img src="../../../assets/img/senha-1@2x.png" id="icone-revelar" class="icone-revelar-senha" align="right">
+                            <div class="row">
+                              <div class="col-xs-12 space-top-10">
+                              <p class="font-blue r-bold">Sua senha deve ter no mínimo 8 dígitos.</p>
+                              </div>
+                            </div>
+                            <a type="button" href="termosCondicoes.html" class="btn btnBlue btn-width-custom space-top-60 uppercase">CONTINUAR</a>
+                          </div>
+                        </div>
+                    </form>
+                    </div>
+                  </div>
+
+                <div class="row" id="souDono">
+                  <div class="col-xs-12">
+                    <form class="space-top-60">
+                      <div class="col-xs-12">
+                        <div class="form-group inline space-right width-form3 ">
+                          <label class="label-cnpjCadastroSouDono">CNPJ</label>
+                          <input type="text" id="cnpjCadastroSouDono" class="cnpjCadastroSouDono  form-control ">
+                        </div>
+
+                        <div class="form-group inline space-right width-form3 ">
+                        <a href="#" type="submit" class="btn btn-blue">BUSCAR</a>
+                        </div>
+                      </div>
+
+                      <div class="col-xs-12">
+                        <div class="form-group inline space-right width-form3 space-top-30">
+                          <label class="label-razao-social">RAZÃO SOCIAL</label>
+                          <input type="text" id="razaoSocialCadastroSouDono" class="razao-social form-control" disabled>
+                        </div>
+                        <div class="form-group inline space-right width-form3">
+                          <label class="label-cnae">CNAE</label>
+                          <input type="text" id="cnaeCadastroSouDono" class="cnae form-control" disabled>
+                        </div>
+                        <div class="form-group inline space-right width-form3">
+                          <label class="label-simplesNacional">SIMPLES NACIONAL </label>
+                          <input type="text" id="simplesNacionalCadastroSouDono" class="simplesNacional form-control" disabled>
+                        </div>
+                      </div>
+
+                      <div class="col-xs-12 ">
+                        <div class="form-group inline inline space-right width-form3 space-top-30">
+                          <label class="label-dataAbertura">DATA DE ABERTURA</label>
+                          <input type="text" id="dataAberturaCadastroSouDono" class=" dataAbertura form-control" disabled>
+                        </div>
+                        <div class="form-group inline width-form3">
+                          <label class="label-statusCnpjCadastroSouDono">STATUS CNPJ</label>
+                          <input type="text" id="statusCnpjCadastroSouDono" class="statusCnpjCadastroSouDono form-control " disabled>
+                        </div>
+                      </div>
+
+                      <div class="col-xs-12">
+                        <div class="form-group inline space-right width-form1 space-top-30">
+                          <label class="label-nomeRepresentanteCadastroSouDono uppercase">NOME DO REPRESENTAnTE LEGAL</label>
+                          <input type="text" id="nomeRepresentanteCadastroSouDono" class=" nomeRepresentanteCadastroSouDono form-control" disabled>
+                        </div>
+                        <div class="form-group inline width-form3">
+                          <label class="label-cpfCadastroSouDono">CPF</label>
+                          <input type="text" id="cpfCadastroSouDono" class="cpfCadastroSouDono form-control " disabled>
+                        </div>
+                      </div>
+                      <div class="col-xs-12">
+                        <div class="form-group inline space-right width-form1 space-top-30">
+                          <label class="label-nomeSubCadastroSouDono uppercase">NOME DO REPRESENTAnTE LEGAL</label>
+                          <input type="text" id="nomeSubCadastroSouDono" class=" nomeSubCadastroSouDono form-control" disabled>
+                        </div>
+                        <div class="form-group inline width-form3">
+                          <label class="label-cpfSubCadastroSouDono">CPF</label>
+                          <input type="text" id="cpfCadastroSouDono" class="cpfSubCadastroSouDono form-control " disabled>
+                        </div>
+                      </div>
+
+                      <div class="col-xs-12">
+                        <div class="form-group inline space-right width-form3 space-top-30">
+                          <label class="label-telefone">TELEFONE</label>
+                          <input type="text" id="telefoneCadastroSouDono" class="telefone form-control">
+                        </div>
+                        <div class="form-group inline space-right width-form3">
+                          <label class="label-celularCadastroSouDono">CELULAR</label>
+                          <input type="text" id="celularCadastroSouDono" class="celularCadastroSouDono form-control">
+                        </div>
+                        <div class="form-group inline space-right width-form3">
+                          <label class="label-email">E-MAIL </label>
+                          <input type="text" id="emailCadastroSouDono" class="email form-control">
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-xs-12">
+                          <h4 class="labelEndCorretoraDonoDeCorretora sub-title space-top-60">
+                            ENDEREÇO DA CORRETORA
+                          </h4>
+                          <div class="form-group space-right width-form3 space-top-40">
+                            <label class="label-cep">CEP</label>
+                            <input type="text" id="cepCadastroSouDono" class=" cep form-control">
+                            <a href=" ">
+                              <img src="../../../assets/img/magnifie.png" class="icone-revelar-senha" align="right">
+                            </a>
+                          </div>
+                          <div class="form-group inline space-right width-form1 space-top-30">
+                            <label class="label-endereco">ENDEREÇO</label>
+                            <input type="text" id="enderecoCadastroSouDono" class="endereco form-control ">
+                          </div>
+                          <div class="form-group inline space-right width-form3">
+                            <label class="label-numero">NÚMERO</label>
+                            <input type="text" id="numeroCadastroSouDono" class="numero form-control ">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-xs-12">
+                          <div class="form-group inline space-right width-form3 space-top-30">
+                            <label form="complemento" class="label-complemento">COMPLEMENTO</label>
+                            <input type="text" id="complementoCadastroSouDono" class="complemento form-control">
+                          </div>
+
+                          <div class="form-group inline space-right width-form3">
+                            <label form="bairro" class="label-bairro">BAIRRO</label>
+                            <input type="text" id="bairroCadastroSouDono" class=" bairro form-control ">
+                          </div>
+
+                          <div class="form-group inline space-right width-form2">
+                            <label form="cidade" class="label-cidade">CIDADE</label>
+                            <input type="text" id="cidadeCadastroSouDono" class="cidade form-control">
+                          </div>
+
+                          <div class="form-group inline space-right">
+                            <label class="label-estado">ESTADO</label>
+                            <select class="form-control form-control-custom" id="estado estadoCadastroSouDono">
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-xs-12">
+                          <h4 class="labelCadastroDeSenhaDonoDeCorretora sub-title space-top-60">
+                            DADOS BANCÁRIOS
+                          </h4>
+                          <div class="row">
+                            <div class="col-xs-12">
+
+                              <div class="form-group inline space-right width-form3 space-top-30">
+                                <label form="complemento" class="label-banco">Banco</label>
+                                <input type="text" id="bancoCadastroSouDono" class="banco form-control" disabled>
+                                <a href=" ">
+                                  <img src="../../../assets/img/magnifie.png" class="icone-revelar-senha" align="right">
+                                </a>
+                              </div>
+                              <div class="form-group inline space-right width-form3">
+                                <label form="bairro" class="label-agencia">Agência</label>
+                                <input type="text" id="agenciaCadastroSouDono" class="agencia form-control ">
+                              </div>
+
+                              <div class="form-group inline space-right width-form2">
+                                <label form="cidade" class="label-conta">Conta</label>
+                                <input type="text" id="contaCadastroSouDono" class=" conta form-control">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-xs-12">
+                          <h4 class="labelCadastroDeSenhaDonoDeCorretora sub-title space-top-60">
+                            CADASTRO DE SENHA
+                          </h4>
+                          <div class="form-group width-form3 space-top-40">
+                            <label class="label-sennhaCadastroSouDono">Crie uma senha</label>
+                            <input type="password" id="senhaCadastroSouDono" class=" sennhaCadastroSouDono form-control">                
+                            <img src="../../../assets/img/senha-1@2x.png" id="icone-revelarSouDono" class="icone-revelar-senha" align="right">
+                            
+                            <div class="row">
+                              <div class="col-xs-12 space-top-10">
+                              <p class="font-blue r-bold">Sua senha deve ter no mínimo 8 dígitos.</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div>
+                        <a type="button" href="termosCondicoes.html" class="btn btnBlue btn-width-custom space-top-10 uppercase" style="color:#fff;">cadastrar</a>
+                      </div>
+                    </form>
+                    </div>
+                  </div>
+                </div>
+                <div class="footer-odonto">
+                    <span class="footerLogo">
+                      <img src="../../../assets/img/logo-mobile.png" class="img-logo-odonto">
+                    </span>
+                </div>
+              </div>
+            </body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" th:href="@{/img/odpv.PNG}" type="image/png">
+    <!-- As 3 meta tags acima * devem * vir primeiro na cabeça; qualquer outro conteúdo principal deve vir * após * estas tags -->
+    <title>OdontoPrev</title>
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+
+    <script type="text/javascript" th:src="@{js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{js/jquery-2.1.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{js/jquery.mask.min.js}"></script>
+    <script type="text/javascript" th:src="@{js/odonto-Valida.js}"></script>
+    <script type="text/javascript" th:src="@{js/menu.js}"></script>
+
+    <script type="text/JavaScript">
+        $(document).ready(function(){
+            $('#bago').mask('000.000.000-00', {reverse: true});
+            $('#cpf').mask("999.999.999-99");
+        });
+    </script>
+
+</head>
+<body>
+<form action="#" th:action="@{/autenticar}" th:object="${login}"  method="POST">					
+			<div class="container-cadastro">
+				<img th:src="@{/img/logo-mobile.png}" class="img-logo-odonto logoOdonto">
+				<div class="ajuste-forme">
+					<h1 class="font-blue text-center">
+						<strong>Bem-vindo</strong>
+					</h1>
+
+					<div class="sub-title-index font-silver-index text-center">
+						<p>ao sistema de venda odontoPrev</p>
+					</div>
+
+					<div class="form-group width-form space-top-50">
+						<label class="label-cpfcnpj uppercase">cpf/cnpj </label>
+						<input type="text" id="cpfcnpj" class="cpfcnpj form-control" th:field="*{login}" />
+					</div>
+				
+					<div class="form-group width-form space-top-30">
+						<label class="label-password">SENHA</label>
+						<a href="#"><img th:src="@{/img/senha-1@2x.png}" class="img-senha" align="right"></a>
+						<input type="password" id="senha-index" class="password form-control" th:field="*{senha}" />
+					</div>
+
+					<div class="space-top-50">
+						<button type="submit" class="btn btn-entrar-index r-medium">ENTRAR</button>
+					</div>
+
+					<div class="space-top-20">
+						<a type="button" class="btn btn-meCadastrar-index r-medium" href="cadastroDonoDeCorretora.html"> ME CADASTRAR</a>
+					</div>
+				</div>
+			</div>
+		</form>
+
+</body>
+</html>

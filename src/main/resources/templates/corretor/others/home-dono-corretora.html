@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+ <html>
+ <head>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+ </head>
+ <body style="min-width: 100% !important;">    
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+     <script type="text/javascript" th:src="@{js/bootstrap.min.js}"></script>
+     <script type="text/javascript" src="../../../assets/js/jquery.mask.min.js"></script>
+     <script type="text/javascript" src="../../../assets/js/odonto-Valida.js"></script> 
+     
+     <link href="css/bootstrap.min.css" rel="stylesheet">
+     <link href="css/main.css" rel="stylesheet">
+     <script type="text/javascript" src="../../../assets/js/menu.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+    <script>
+     $(function(){
+         $(".button-collapse").sideNav();
+     });
+
+     </script>
+
+     <script type="text/javascript">
+          $(document).ready(function() {
+             $('.table-odonto tr:odd').css('background-color', '#EDEDED');
+
+             $('.table-odonto tr:even').css('background-color', '#fff');  
+          });
+     </script>
+
+
+     <script type="text/javascript">
+        $(document).ready(function() {
+
+          $('.barras').each(function() {
+             var dataWidth = $(this).data('value');
+             $(this).css("width", dataWidth + "%");
+             $(this).css("max-width", "100%");
+            if (dataWidth <=25) { $(this).css("border-color", "transparent"); }
+            else if (dataWidth >25 && dataWidth<=50){ $(this).css("border-color", "transparent"); }
+            else if (dataWidth >50 && dataWidth<=75) { $(this).css("border-color", "transparent"); }
+            else if (dataWidth >75 && dataWidth<=100) { $(this).css("border-color", "transparent"); } 
+          });
+        });
+     </script>
+
+<div class="container-fluid nopadding">
+
+ <nav class="nav-odonto">
+     <div class="nav-wrapper">
+         <a href="#" class="brand-logo" style="color: silver; padding: 35px"><img src="../../../assets/img/logo.png"></a>
+         <ul class="hide-on-med-and-down">
+             <li class="nav-cel nav-active"><a href="home-dono-corretora.html"><img src="../../../assets/img/menu-home.png" ><span>home</span></a></li>
+             <li class="nav-cel"><a href="#"><img src="../../../assets/img/menu-meus-dados.png" ><span>dados da corretora</span></a></li>
+             <li class="nav-cel"><a href="forca-de-vendas.html"><img src="../../../assets/img/menu-listas.png" ><span>equipe</span></a></li>
+             <li class="nav-cel"><a href="lista_de_pospostas.html"><img src="../../../assets/img/menu-listas.png" ><span>lista de propostas</span></a></li>
+             <li class="nav-cel"><a href="busca-rede-credenciadas.html"><img src="../../../assets/img/menu-rede-credenciada.png" ><span>rede credenciada</span></a></li>
+             <li class="nav-cel"><a href="fale-conosco.html"><img src="../../../assets/img/menu-contato.png" ><span>fale conosco</span></a></li>
+         </ul> 
+    </div>
+ </nav>
+
+<div class="nav-mobile">
+    <ul class="side-nav" id="menu-mobile">
+         <li class="" style="background-color: #fff; padding: 30px">
+            <div class="perfil-mobile"> 
+                  <div class="circle-perfil">
+                      <div class="data-perfil">
+                          <p class="font-gray name-mobile"><strong>Corretora XPTO</strong></p> 
+                          <p class="font-pink">Sair</p>
+                      </div>
+                  </div>
+            </div>
+         </li>
+             <li class="nav-cel nav-active"><a href="home-dono-corretora.html"><img src="../../../assets/img/menu-home.png" ><span>home</span></a></li>
+             <li class="nav-cel"><a href="#"><img src="../../../assets/img/menu-meus-dados.png" ><span>dados da corretora</span></a></li>
+             <li class="nav-cel"><a href="forca-de-vendas.html"><img src="../../../assets/img/menu-listas.png" ><span>equipe</span></a></li>
+             <li class="nav-cel"><a href="lista_de_pospostas.html"><img src="../../../assets/img/menu-listas.png" ><span>lista de propostas</span></a></li>
+             <li class="nav-cel"><a href="busca-rede-credenciadas.html"><img src="../../../assets/img/menu-rede-credenciada.png" ><span>rede credenciada</span></a></li>
+             <li class="nav-cel"><a href="fale-conosco.html"><img src="../../../assets/img/menu-contato.png" ><span>fale conosco</span></a></li>
+     </ul>
+ </div>
+
+  <div class="header-logado">
+      <a href="#" data-activates="menu-mobile" class="button-collapse pull-right">
+          <img src="../../../assets/img/menu.png" class="icon-menu">
+      </a>
+      <img src="../../../assets/img/logo-mobile.png" class="logo-ondonto-mobile" style="position: relative;top:30px">
+
+       <div class="perfil-web">
+          <div class="circle-perfil">
+            <div class="data-perfil">
+                <p class="user-name"><strong>Corretora XPTO</strong></p> 
+                <a href="#" class="link-odonto">Sair</a>
+            </div>
+          </div> 
+        </div> 
+        
+  </div> 
+
+    <div class="container-logado padding-logado">
+      <div class="row">
+          <div class="col-xs-12">
+               <div class="row">
+                  <div class="col-xs-12">
+                       <h4 class="uppercase font-blue title-section-odonto pull-left">alertas<h4>               
+                  </div>
+               </div>
+
+                <div class="box-alerta-content">
+                <div class="alerta-1 pull-left">
+
+                   <div class="box-alerta bg-gold pull-left space-top-30 space-right-30">
+                       <h3 class="text-center uppercase nomargin "><strong>2</strong></h3>
+                       <p class="text-center text-odonto nomargin">Corretores para</p><p class="text-center text-odonto nomargin">aprovação</p>
+                   </div>
+
+                   <div class="box-alerta bg-green pull-left space-top-30 space-right-30">
+                       <h3 class="text-center uppercase nomargin "><strong>8</strong></h3>
+                       <p class="text-center text-odonto nomargin">Propostas finalizadas</p><p class="text-center text-odonto nomargin">com sucesso</p>
+                   </div>
+
+                   <div class="box-alerta bg-red pull-left space-top-30 space-right-30">
+                       <h3 class="text-center uppercase nomargin "><strong>4</strong></h3>
+                       <p class="text-center text-odonto nomargin">Propostas</p><p class="text-center text-odonto nomargin">criticadas</p>
+                   </div>
+
+                   
+
+                </div>
+
+
+
+              <div class="alerta-2 pull-left">
+                
+              </div>
+</div>
+
+
+          </div>  
+        </div>
+
+        <div class="row space-top-30">
+          <div class="col-xs-12">
+
+              <div class="vendas pull-left space-top-30">
+                 <div class="row space-top-30">
+                  <div class="col-xs-12">
+                  <h4 class="uppercase font-blue title-section-odonto pull-left">Propostas da sua corretora</h4> 
+                  
+                  
+
+                  <div class="dropdown pull-right">
+                        <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary btn-odonto" data-target="#" href="/page.html">
+                             Vidas/mês <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                          <li><a href="#">Some action</a></li>
+                          <li><a href="#">Some other action</a></li>
+                      </ul>
+                  </div>
+
+                  <div class="dropdown pull-right space-right">
+                        <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary btn-odonto" data-target="#" href="/page.html">
+                             Valor R$/mês <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                          <li><a href="#">Some action</a></li>
+                          <li><a href="#">Some other action</a></li>
+                      </ul>
+                  </div>
+                  
+
+
+                  </div>
+                 </div>  
+
+
+            <div class="row space-top-30">
+               <div class="col-xs-12">
+
+             <section class="grafico-barras">
+                    <ul>
+                         <span class="barra-fondo">
+                            <div class="uppercase text-odonto">Pessoa física</div>
+                            <li class="space-top-5 barras" data-value="35" style="border:1px solid red; background-color: cyan"><span class="valor-vendar">R$ 350,00</span></li>
+                         </span>
+
+                         <span class="barra-fondo">
+                            <div class="uppercase text-odonto">pme</div>
+                            <li class="space-top-5 barras" data-value="70"  style="border:1px solid red; background-color: #C3EB3B"><span class="valor-vendar">R$ 100,00</span></li>
+                         </span>
+                    </ul>
+              </section>
+
+         </div>
+       </div>
+       </div>
+     
+    </div>
+  </div>
+        <div class="row space-top-30">
+          <div class="col-xs-12">
+
+             <div class="vendas-label pull-left">
+                 <div class="row">
+
+                  <div class="col-xs-12">
+                      <h4 class="uppercase font-blue title-section-odonto pull-left">Propostas da sua equipe de vendas</h4> 
+                  </div>
+
+                 </div>  
+             </div>
+
+              <div class="vendas-drop pull-left">
+                 <div class="row">
+                  <div class="col-xs-12 norap">
+
+                  <div class="dropdown pull-left space-right">
+                        <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary btn-odonto" data-target="#" href="/page.html">
+                            Período <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                          <li><a href="#">Março</a></li>
+                      </ul>
+                   </div>
+                  <div class="dropdown pull-left space-r">
+                        <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary btn-odonto" data-target="#" href="/page.html">
+                            Vendedor <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                          <li><a href="#">Rosario Lopes</a></li>
+                          <li><a href="#">Maria Angela da Silva</a></li>
+                          <li><a href="#">Marcos Palmas </a></li>
+                      </ul>
+                   </div>
+
+                   <div class="dropdown pull-left space-r">
+                        <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary btn-odonto" data-target="#" href="/page.html">
+                            Tipo de plano <span class="caret"></span>
+                        </a>
+                        <ul class="uppercase dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                          <li><a href="#">pme</a></li>
+                          <li><a href="#">pf</a></li>
+                      </ul>
+                   </div>
+
+                  
+
+                  </div>
+                 </div>  
+             </div>
+
+          </div>
+        </div>
+
+<div class="row space-top-30">
+
+  <div class="col-xs-12">
+
+    <table class="table-odonto">
+
+    <thead>
+        <tr>
+          <th><span>Vendedor</span></th>
+          <th><span>Tipo de plano</span></th>
+          <th><span>Data da venda</span></th>
+          <th><span>Valor da proposta</span></th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="line-table">
+          <td><span>Rosario Lopes</span></td>
+          <td><span>PME</span></td>
+          <td><span>12/11/2017</span></td>
+          <td><span>R$ 100,00</span></td>
+        </tr>
+        <tr class="line-table">
+          <td><span>Rosario Lopes</span></td>
+          <td><span>PME</span></td>
+          <td><span>12/11/2017</span></td>
+          <td><span>R$ 100,00</span></td>
+        </tr>
+        <tr class="line-table">
+          <td><span>Rosario Lopes</span></td>
+          <td><span>PME</span></td>
+          <td><span>12/11/2017</span></td>
+          <td><span>R$ 100,00</span></td>
+        </tr>
+        
+      </tbody>
+    </table>
+              
+ </div>        
+</div>
+
+<div class="row space-top-30">
+  <div class="col-xs-12">
+    <p class="text-odonto r-bold pull-right">Veja mais<span class="font-pink"> <strong>></strong></span></p>
+  </div>
+</div>
+
+      </div>
+
+    <div class="footer-logado">
+      <div class="pull-left box-footer">
+          <p>© OdontoPrev. S/A - CNPJ: 119.199/0001-51</p>
+          <p>Av. Marcos Penteado de Ulhoa Rodrigues, 939-14 andar-Edifício Jatoba Torre 2-Barueri-SP CEP- 06460-040</p>
+          <p>OdontoPrev - CRO/SP n° 19009</p>
+      </div>
+      <div class="pull-right footer-img"><img src="../../../assets/img/ans.png" ></div>
+    </div>
+
+</div>
+
+</body>
+</html>
+
+
+
