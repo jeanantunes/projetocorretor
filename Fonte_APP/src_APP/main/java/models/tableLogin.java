@@ -29,7 +29,7 @@ public class tableLogin
 
     public static String getTableLogin()
     {
-        String tableLogin = "CREATE TABLE IF NOT EXISTS [Login] ( [IdLogin] integer NOT NULL, [cargo] varchar(20) NOT NULL, " +
+        String tableLogin = "CREATE TABLE IF NOT EXISTS [Usuario] ( [IdLogin] integer NOT NULL, [cargo] varchar(20) NOT NULL, " +
                 "[cpf] varchar(11) NOT NULL, [email] varchar (80) NOT NULL, [login] varchar(11) NOT NULL, [FotoPerfilB64] BLOB, " +
                 "[nome] varchar(255) NOT NULL, [nomeEmpresa] varchar(255) NOT NULL, [nomeGerente] varchar(255) NOT NULL, " +
                 "[responsavel] varchar(255) NOT NULL, [rg] varchar(10) NOT NULL, [logado] int NOT NULL, PRIMARY KEY ([IdLogin]))";
@@ -57,7 +57,7 @@ public class tableLogin
         values.put(COLUNA_CARGO, forcaVenda.cargo);
         values.put(COLUNA_LOGADO, 1);
 
-        dbs.insert("Login", null, values);
+        dbs.insert("Usuario", null, values);
 
         Log.i("MeuLog", "Executou metodo insertLogin");
 
@@ -83,7 +83,7 @@ public class tableLogin
         values.put(COLUNA_CARGO, "Dev");
         values.put(COLUNA_LOGADO, 1);
 
-        dbs.insert("Login", null, values);
+        dbs.insert("Usuario", null, values);
 
         Log.i("MeuLog", "Executou metodo insertLogin de Teste");
 

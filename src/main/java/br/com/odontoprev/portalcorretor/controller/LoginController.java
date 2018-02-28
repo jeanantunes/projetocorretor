@@ -14,7 +14,7 @@ public class LoginController {
     }
 /*
     @RequestMapping(value = "/autenticar", method = RequestMethod.POST)
-    public ModelAndView autenticar(@ModelAttribute("login") br.com.odontoprev.portalcorretor.model.Login login) {
+    public ModelAndView autenticar(@ModelAttribute("login") br.com.odontoprev.portalcorretor.model.Usuario login) {
         System.out.println(login.getLogin());
         System.out.println(login.getSenha());
         return new ModelAndView("/corretor/vendas_pme/home");
