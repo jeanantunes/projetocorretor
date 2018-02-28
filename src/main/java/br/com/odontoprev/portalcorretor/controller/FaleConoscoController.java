@@ -17,12 +17,4 @@ public class FaleConoscoController {
         ModelAndView modelAndView = new ModelAndView("/corretor/others/fale-conosco","faleConoscoModel",new faleConoscoModel());        
 		return modelAndView;
     }
-    
-    @RequestMapping(value="/corretor/others/fale-conosco/salvar",method= RequestMethod.POST)
-    public ModelAndView autenticar(@ModelAttribute("login") br.com.odontoprev.portalcorretor.model.Login login) {
-      	System.out.println(login.getLogin());
-    	System.out.println(login.getSenha());
-    	return new ModelAndView("/corretor/others/fale-conosco");
-    }
-
 }

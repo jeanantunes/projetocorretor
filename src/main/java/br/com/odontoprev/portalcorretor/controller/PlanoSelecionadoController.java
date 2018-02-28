@@ -17,12 +17,4 @@ public class PlanoSelecionadoController {
         ModelAndView modelAndView = new ModelAndView("/corretor/vendas_pme/Plano_selecionado","EscolhaUmPlanoModel",new faleConoscoModel());        
 		return modelAndView;
     }
-    
-    @RequestMapping(value="/corretor/vendas_pme/Plano_selecionado/salvar",method= RequestMethod.POST)
-    public ModelAndView autenticar(@ModelAttribute("login") br.com.odontoprev.portalcorretor.model.Login login) {
-      	System.out.println(login.getLogin());
-    	System.out.println(login.getSenha());
-    	return new ModelAndView("/corretor/vendas_pme/Plano_selecionado");
-    }
-
 }

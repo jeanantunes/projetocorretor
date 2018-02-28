@@ -17,12 +17,5 @@ public class ConfirmacaoPropostaPmeController {
         ModelAndView modelAndView = new ModelAndView("/corretor/vendas_pme/confirmacao_proposta_pme","EscolhaUmPlanoModel",new faleConoscoModel());        
 		return modelAndView;
     }
-    
-    @RequestMapping(value="/corretor/vendas_pme/confirmacao_proposta_pme/salvar",method= RequestMethod.POST)
-    public ModelAndView autenticar(@ModelAttribute("login") br.com.odontoprev.portalcorretor.model.Login login) {
-      	System.out.println(login.getLogin());
-    	System.out.println(login.getSenha());
-    	return new ModelAndView("/corretor/vendas_pme/confirmacao_proposta_pme");
-    }
 
 }
