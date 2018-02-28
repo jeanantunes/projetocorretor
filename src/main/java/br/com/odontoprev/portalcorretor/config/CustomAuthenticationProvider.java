@@ -9,7 +9,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import br.com.odontoprev.portalcorretor.Service.dto.LoginResponse;
-import br.com.odontoprev.portalcorretor.controller.Usuario;
+import br.com.odontoprev.portalcorretor.controller.UsuarioSession;
 
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
@@ -27,7 +27,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         String name = authentication.getPrincipal().toString().replaceAll("^[0-9]", "");
         String password = authentication.getCredentials().toString();
         
-        Usuario usuario = autenticarServico(name, password);
+        UsuarioSession usuario = autenticarServico(name, password);
 		if (usuario!=null) {
             UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(name, password, Collections.singletonList(new SimpleGrantedAuthority(name.length() == 11? "CORRETOR": "CORRETORA")));
             usernamePasswordAuthenticationToken.setDetails(usuario);
@@ -36,7 +36,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
             return null;
     }
 
-    private Usuario autenticarServico(String name, String password) {
+    private UsuarioSession autenticarServico(String name, String password) {
 
 
         LoginResponse response = new LoginResponse();
@@ -48,7 +48,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         response.setDocumento("30555386848");
          
 
-        return new Usuario().setDados(response);        
+        return new UsuarioSession().setDados(response);        
     }
 
     @Override

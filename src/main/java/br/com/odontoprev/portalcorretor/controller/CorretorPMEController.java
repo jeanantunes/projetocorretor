@@ -1,25 +1,27 @@
 package br.com.odontoprev.portalcorretor.controller;
 
-import br.com.odontoprev.portalcorretor.model.DashboardCorretora;
-import br.com.odontoprev.portalcorretor.model.Proposta;
-import br.com.odontoprev.portalcorretor.model.Usuario;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
+import br.com.odontoprev.portalcorretor.model.DashboardCorretora;
+import br.com.odontoprev.portalcorretor.model.Proposta;
 
 @Controller
 public class CorretorPMEController {
 
     @RequestMapping(value = "/corretor/homeCorretora", method = RequestMethod.GET)
     public ModelAndView home(HttpSession session) {
-        Usuario usuario = (Usuario) session.getAttribute("perfil");
 
 
         DashboardCorretora corretora = new DashboardCorretora();
@@ -37,7 +39,10 @@ public class CorretorPMEController {
         corretora.setValorPessoaFisica(propostas.stream().filter(a -> a.getTipoPlano().equals("PF")).mapToDouble(Proposta::getValor).sum());
         corretora.setValorPME(propostas.stream().filter(a -> a.getTipoPlano().equals("PME")).mapToDouble(Proposta::getValor).sum());
 
-        return new ModelAndView("/corretor/homeCorretora", "corretora", corretora);
+        Map<String,Object> models = new HashMap<>();
+        models.put("corretora", corretora);
+       // models.put("usuario", usuario);
+        return new ModelAndView("/corretor/homeCorretora", models);
     }
 
 }

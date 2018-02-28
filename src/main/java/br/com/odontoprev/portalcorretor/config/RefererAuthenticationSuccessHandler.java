@@ -11,7 +11,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
-import br.com.odontoprev.portalcorretor.controller.Usuario;
+import br.com.odontoprev.portalcorretor.controller.UsuarioSession;
 
 @Component
 public class RefererAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
@@ -19,7 +19,7 @@ public class RefererAuthenticationSuccessHandler implements AuthenticationSucces
     @Override
     public void onAuthenticationSuccess(HttpServletRequest req, HttpServletResponse resp, Authentication auth)
             throws IOException, ServletException {    	
-    	Usuario usuario = (Usuario) auth.getDetails();
+    	UsuarioSession usuario = (UsuarioSession) auth.getDetails();
     	req.getSession().setAttribute("usuario", usuario);
         if (auth.getAuthorities()
                 .stream()

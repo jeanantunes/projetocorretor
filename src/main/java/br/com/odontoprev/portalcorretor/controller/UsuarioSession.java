@@ -2,14 +2,10 @@ package br.com.odontoprev.portalcorretor.controller;
 
 import java.io.Serializable;
 
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-
 import br.com.odontoprev.portalcorretor.Service.dto.LoginResponse;
 
-@Component
-@Scope("session")
-public class Usuario implements Serializable {
+
+public class UsuarioSession implements Serializable {
 
 	/**
 	 * 
@@ -24,7 +20,7 @@ public class Usuario implements Serializable {
 	private String documento;
 	
 	
-	public Usuario setDados(LoginResponse response) {
+	public UsuarioSession setDados(LoginResponse response) {
 		this.setCodigo(response.getCodigo());
 		this.setCodigoCorretora(response.getCodigoCorretora());
 		this.setDocumento(response.getDocumento());
