@@ -91,7 +91,7 @@
                 <div class="perfil-mobile">
                     <div class="circle-perfil">
                         <div class="data-perfil">
-                            <p class="font-gray name-mobile" ><strong>${usuario.nomeCorretora}</strong></p>
+                            <p class="font-gray name-mobile" th:text="${session.usuario.nomeCorretora}" ><strong></strong></p>
                             <p class="font-pink">Sair</p>
                         </div>
                     </div>
@@ -121,7 +121,7 @@
         <div class="perfil-web">
             <div class="circle-perfil">
                 <div class="data-perfil">
-                    <p class="user-name" th:text="${session.usuario.nome}"><strong></strong></p>
+                    <p class="user-name" th:text="${session.usuario.nomeCorretora}"><strong></strong></p>
                     <a href="#" class="link-odonto">Sair</a>
                 </div>
             </div>
