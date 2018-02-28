@@ -4,10 +4,20 @@ import java.util.Date;
 
 public class Proposta {
 
-    String vendedor;
-    String tipoPlano;
-    Date dataVenda;
-    Double valor;
+    private String vendedor;
+    private String tipoPlano;
+    private Date dataVenda;
+    private Double valor;
+
+    public Proposta() {
+    }
+
+    public Proposta(String vendedor, String tipoPlano, Date dataVenda, Double valor) {
+        this.vendedor = vendedor;
+        this.tipoPlano = tipoPlano;
+        this.dataVenda = dataVenda;
+        this.valor = valor;
+    }
 
     public String getVendedor() {
         return vendedor;
