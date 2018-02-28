@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
@@ -24,11 +25,7 @@ import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 
-import nz.net.ultraq.thymeleaf.LayoutDialect;
-import nz.net.ultraq.thymeleaf.decorators.strategies.GroupingStrategy;
-
 @Configuration
-@ComponentScan(basePackages = {"br.com.portal.corretor.service"})
 @EnableWebMvc
 public class CorretorWebConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware {
 	
@@ -107,4 +104,10 @@ public class CorretorWebConfig extends WebMvcConfigurerAdapter implements Applic
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(localeChangeInterceptor());
     }
+    
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {        
+        registry.addViewController("/login").setViewName("login");
+    }
 }
+>>>>>>> develop
