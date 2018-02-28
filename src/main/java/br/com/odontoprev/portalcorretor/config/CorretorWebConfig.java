@@ -110,4 +110,3 @@ public class CorretorWebConfig extends WebMvcConfigurerAdapter implements Applic
         registry.addViewController("/login").setViewName("login");
     }
 }
->>>>>>> develop
