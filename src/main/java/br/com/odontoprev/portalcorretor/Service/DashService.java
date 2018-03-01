@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,8 +28,8 @@ public class DashService {
     //@Value("${odontoprev.service.propostaPME}")
     private String metodoPropostaPMEList = "dashboardPropostaPME/";
 
-    public DashResponse ObterPorDocumento(Date dataInicio,
-                                          Date dataFim,
+    public DashResponse ObterPorDocumento(LocalDate dataInicio,
+                                          LocalDate dataFim,
                                           String cnpjCPF) {
 
         RestTemplate restTemplate = new RestTemplate();

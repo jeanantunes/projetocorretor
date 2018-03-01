@@ -46,8 +46,9 @@ public class CorretorController {
         corretora.setTotalCriticadas(criticadas.intValue());
 
 
-        double totalValorPF = 666D;
-        double totalValorPME = 999D;
+        double totalValorPF = propostaPF.getPropostasPF().stream().mapToDouble(Proposta::getValor).sum();
+        double totalValorPME = propostaPF.getPropostasPME().stream().mapToDouble(Proposta::getValor).sum();
+
 
         corretora.setTotalValorPF(totalValorPF);
         corretora.setPercenteValorPF( totalValorPF> totalValorPME ? 100:  totalValorPF == 0 ? 0 : 50 );

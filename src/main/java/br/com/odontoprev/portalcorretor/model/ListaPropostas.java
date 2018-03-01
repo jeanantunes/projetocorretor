@@ -6,7 +6,7 @@ import java.util.List;
 
 public class ListaPropostas {
 
-
+    private List<Proposta> propostas;
     private List<Proposta> propostaPF;
     private List<Proposta> propostaPME;
     private Integer totalVidas;
@@ -19,6 +19,23 @@ public class ListaPropostas {
     private Integer total;
     private Double totalValorPME;
     private Double totalValorPF;
+    private Integer countCorretoresAprovacao;
+
+    public Integer getCountCorretoresAprovacao() {
+        return countCorretoresAprovacao;
+    }
+
+    public void setCountCorretoresAprovacao(Integer countCorretoresAprovacao) {
+        this.countCorretoresAprovacao = countCorretoresAprovacao;
+    }
+
+    public List<Proposta> getPropostas() {
+        return propostas;
+    }
+
+    public void setPropostas(List<Proposta> propostas) {
+        this.propostas = propostas;
+    }
 
     public List<Proposta> getPropostaPF() {
         return propostaPF;

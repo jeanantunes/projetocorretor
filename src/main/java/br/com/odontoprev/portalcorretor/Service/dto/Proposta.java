@@ -8,6 +8,32 @@ public class Proposta {
     private String statusVenda;
     private Date dataVenda;
     private String cnpj;
+    private String tipoPlano;
+    private Double valor;
+
+    public Double getValor() {
+        return valor;
+    }
+
+    public void setValor(Double valor) {
+        this.valor = valor;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getTipoPlano() {
+        return tipoPlano;
+    }
+
+    public void setTipoPlano(String tipoPlano) {
+        this.tipoPlano = tipoPlano;
+    }
 
     public long getCdEmpresa() {
         return cdEmpresa;
@@ -48,5 +74,4 @@ public class Proposta {
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
-
 }

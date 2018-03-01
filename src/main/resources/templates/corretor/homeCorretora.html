@@ -84,14 +84,14 @@
 
                         <div class="box-alerta bg-green pull-left space-top-30 space-right-30">
                             <h3 class="text-center uppercase nomargin "><strong
-                                    th:text="${corretora.countCorretoresSucesso}">8</strong></h3>
+                                    th:text="${corretora.totalSucesso}">8</strong></h3>
                             <p class="text-center text-odonto nomargin">Propostas finalizadas</p>
                             <p class="text-center text-odonto nomargin">com sucesso</p>
                         </div>
 
                         <div class="box-alerta bg-red pull-left space-top-30 space-right-30">
                             <h3 class="text-center uppercase nomargin "><strong
-                                    th:text="${corretora.countCorretoresCriticadas}">4</strong></h3>
+                                    th:text="${corretora.totalCriticadas}">4</strong></h3>
                             <p class="text-center text-odonto nomargin">Propostas</p>
                             <p class="text-center text-odonto nomargin">criticadas</p>
                         </div>
@@ -152,16 +152,16 @@
                                 <ul>
                          <span class="barra-fondo">
                             <div class="uppercase text-odonto">Pessoa física</div>
-                            <li class="space-top-5 barras" data-value="35"
-                                style="border:1px solid red; background-color: cyan"><span class="valor-vendar"
-                                                                                           th:text="${corretora.valorPessoaFisica}">R$ 350,00</span></li>
+                            <li class="space-top-5 barras" th:data-value="${corretora.percenteValorPF}" style="border:1px solid red; background-color: cyan">
+                                <span class="valor-vendar" th:text="${corretora.totalValorPF}">R$ 350,00</span>
+                            </li>
                          </span>
 
                                     <span class="barra-fondo">
                             <div class="uppercase text-odonto">pme</div>
-                            <li class="space-top-5 barras" data-value="70"
-                                style="border:1px solid red; background-color: #C3EB3B"><span class="valor-vendar"
-                                                                                              th:text="${corretora.valorPME}">R$ 100,00</span></li>
+                            <li class="space-top-5 barras"  th:data-value="${corretora.percenteValorPME}"
+                                style="border:1px solid red; background-color: #C3EB3B">
+                                <span class="valor-vendar" th:text="${corretora.totalValorPME}">R$ 100,00</span></li>
                          </span>
                                 </ul>
                             </section>
