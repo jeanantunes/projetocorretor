@@ -51,12 +51,14 @@ public class CorretorWebConfig extends WebMvcConfigurerAdapter implements Applic
                 "/webjars/**",
                 "/img/**",
                 "/css/**",
-                "/js/**")
+                "/js/**",
+                "fragments/**")
                 .addResourceLocations(
                         "classpath:/META-INF/resources/webjars/",
                         "classpath:/static/img/",
                         "classpath:/static/css/",
-                        "classpath:/static/js/");
+                        "classpath:/static/js/",
+                        "classpath:fragments/");
     }
         
     private TemplateEngine templateEngine(ITemplateResolver templateResolver) {

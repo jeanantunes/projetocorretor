@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<script>
+    $(function () {
+        $(".button-collapse").sideNav();
+    });
+</script>
+
+<div th:fragment="menuCorretora">
+
+    <nav class="nav-odonto">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo" style="color: silver; padding: 35px"><img src="../../../img/logo.png"></a>
+            <ul class="hide-on-med-and-down">
+                <li class="nav-cel"><a href="home-dono-corretora.html"><img
+                        src="../../../img/menu-home.png"><span>home</span></a></li>
+                <li class="nav-cel"><a href="#"><img
+                        src="../../../img/menu-meus-dados.png"><span>dados da corretora</span></a></li>
+                <li class="nav-cel"><a href="forca-de-vendas.html"><img
+                        src="../../../img/menu-listas.png"><span>equipe</span></a></li>
+                <li class="nav-cel"><a href="lista_de_pospostas.html"><img src="../../img/menu-listas.png"><span>lista de propostas</span></a>
+                </li>
+                <li class="nav-cel"><a href="busca-rede-credenciadas.html"><img
+                        src="../../../img/menu-rede-credenciada.png"><span>rede credenciada</span></a></li>
+                <li class="nav-cel"><a href="fale-conosco.html"><img
+                        src="../../../img/menu-contato.png"><span>fale conosco</span></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="nav-mobile">
+        <ul class="side-nav" id="menu-mobile">
+            <li class="" style="background-color: #fff; padding: 30px">
+                <div class="perfil-mobile">
+                    <div class="circle-perfil">
+                        <div class="data-perfil">
+                            <p class="font-gray name-mobile"><strong>Corretora XPTO</strong></p>
+                            <p class="font-pink">Sair</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-cel"><a href="home-dono-corretora.html"><img
+                    src="../../../img/menu-home.png"><span>home</span></a></li>
+            <li class="nav-cel"><a href="#"><img src="../../../img/menu-meus-dados.png"><span>dados da corretora</span></a>
+            </li>
+            <li class="nav-cel"><a href="forca-de-vendas.html"><img
+                    src="../../../img/menu-listas.png"><span>equipe</span></a></li>
+            <li class="nav-cel"><a href="lista_de_pospostas.html"><img src="../../img/menu-listas.png"><span>lista de propostas</span></a>
+            </li>
+            <li class="nav-cel"><a href="busca-rede-credenciadas.html"><img
+                    src="../../../img/menu-rede-credenciada.png"><span>rede credenciada</span></a></li>
+            <li class="nav-cel"><a href="fale-conosco.html"><img src="../../../img/menu-contato.png"><span>fale conosco</span></a>
+            </li>
+        </ul>
+    </div>
+
+</div>
+</body>
+</html>
