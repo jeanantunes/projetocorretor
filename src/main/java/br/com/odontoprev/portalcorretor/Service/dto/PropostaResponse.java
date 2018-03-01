@@ -4,18 +4,18 @@ import java.util.Date;
 
 public class PropostaResponse {
 
-    private long codigoCorretora;
+    private long cdEmpresa;
     private String nomeCorretora;
     private String statusVenda;
     private Date dataVenda;
-    private String documentoCorretora;
+    private String cnpj;
 
-    public long getCodigoCorretora() {
-        return codigoCorretora;
+    public long getCdEmpresa() {
+        return cdEmpresa;
     }
 
-    public void setCodigoCorretora(long codigoCorretora) {
-        this.codigoCorretora = codigoCorretora;
+    public void setCdEmpresa(long cdEmpresa) {
+        this.cdEmpresa = cdEmpresa;
     }
 
     public String getNomeCorretora() {
@@ -42,11 +42,11 @@ public class PropostaResponse {
         this.dataVenda = dataVenda;
     }
 
-    public String getDocumentoCorretora() {
-        return documentoCorretora;
+    public String getCnpj() {
+        return cnpj;
     }
 
-    public void setDocumentoCorretora(String documentoCorretora) {
-        this.documentoCorretora = documentoCorretora;
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
     }
 }
