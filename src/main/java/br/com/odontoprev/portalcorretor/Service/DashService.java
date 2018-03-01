@@ -19,7 +19,7 @@ public class DashService {
     private String requesBasetUrl = "http://172.16.20.30:7001/portal-corretor-servico-0.0.1-SNAPSHOT/";
 
     //@Value("${odontoprev.service.dash}")
-    private String metodoDash;
+    private String metodoDash = "propostasDashBoard";
 
     //@Value("${odontoprev.service.propostaPF}")
     private String metodoPropostaPFList = "dashboardPropostaPF";
@@ -29,25 +29,23 @@ public class DashService {
 
     public DashResponse ObterPorDocumento(Date dataInicio,
                                           Date dataFim,
-                                          String nomeVendedor,
-                                          String tipoPlano,
                                           String cnpjCPF) {
 
         RestTemplate restTemplate = new RestTemplate();
         Map<String, String> resquestMap = new HashMap<>();
         String url = requesBasetUrl + metodoDash;
 
-        resquestMap.put("", cnpjCPF);
-        resquestMap.put("", dataInicio.toString());
-        resquestMap.put("", dataFim.toString());
-        resquestMap.put("", nomeVendedor);
-        resquestMap.put("", tipoPlano);
+        resquestMap.put("dtInicio", dataInicio.toString());
+        resquestMap.put("dtFim", dataFim.toString());
+        resquestMap.put("cpf", cnpjCPF);
 
         try {
             ResponseEntity<DashResponse> retorno = restTemplate.postForEntity(url, resquestMap, DashResponse.class);
-            //return new LoginResponse(login.getUsuario(), "Corretor", Long.parseLong(loginRetorno.getBody().getCodigo()));
-
-            return null;
+            if(retorno.getStatusCode() == HttpStatus.OK)
+            {
+                return retorno.getBody();
+            }
+            return new DashResponse();
 
         } catch (Exception e) {
             return null;
