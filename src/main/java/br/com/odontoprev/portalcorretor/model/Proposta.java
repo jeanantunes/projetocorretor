@@ -8,15 +8,35 @@ public class Proposta {
     private String tipoPlano;
     private Date dataVenda;
     private Double valor;
+    private Integer vidas;
+    private PropostaStatus status;
 
     public Proposta() {
     }
 
-    public Proposta(String vendedor, String tipoPlano, Date dataVenda, Double valor) {
+    public Proposta(String vendedor, String tipoPlano, Date dataVenda, Double valor, Integer vidas, PropostaStatus status) {
         this.vendedor = vendedor;
         this.tipoPlano = tipoPlano;
         this.dataVenda = dataVenda;
         this.valor = valor;
+        this.vidas = vidas;
+        this.status = status;
+    }
+
+    public PropostaStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(PropostaStatus status) {
+        this.status = status;
+    }
+
+    public Integer getVidas() {
+        return vidas;
+    }
+
+    public void setVidas(Integer vidas) {
+        this.vidas = vidas;
     }
 
     public String getVendedor() {

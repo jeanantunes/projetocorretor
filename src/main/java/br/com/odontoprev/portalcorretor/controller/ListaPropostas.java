@@ -2,24 +2,23 @@ package br.com.odontoprev.portalcorretor.controller;
 
 import br.com.odontoprev.portalcorretor.model.DashboardCorretora;
 import br.com.odontoprev.portalcorretor.model.Proposta;
-import br.com.odontoprev.portalcorretor.model.PropostaStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.stream.Collectors;
 
-import static br.com.odontoprev.portalcorretor.model.PropostaStatus.APROVACAO;
-import static br.com.odontoprev.portalcorretor.model.PropostaStatus.CRITICADAS;
-import static br.com.odontoprev.portalcorretor.model.PropostaStatus.SUCESSO;
+import static br.com.odontoprev.portalcorretor.model.PropostaStatus.*;
 
 @Controller
-public class CorretorPMEController {
+public class ListaPropostas {
 
-    @RequestMapping(value = "/corretor/homeCorretora", method = RequestMethod.GET)
+    @RequestMapping(value = "/others/listaPropostas", method = RequestMethod.GET)
     public ModelAndView home(HttpSession session) {
         UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
 
@@ -34,7 +33,7 @@ public class CorretorPMEController {
         propostas.add(new Proposta("Vendedor 3", "PME", new Date(), 440d, 3,SUCESSO));
 
 
-        corretora.setCountCorretoresAprovacao(propostas.stream().filter(a -> a.getStatus() == APROVACAO ).count());
+        corretora.setCountCorretoresAprovacao(1l);
         corretora.setCountCorretoresCriticadas(propostas.stream().filter(a -> a.getStatus() == CRITICADAS ).count());
         corretora.setCountCorretoresSucesso(propostas.stream().filter(a -> a.getStatus() == SUCESSO ).count());
         corretora.setPropostas(propostas);
@@ -46,7 +45,7 @@ public class CorretorPMEController {
 //        Map<String, Object> models = new HashMap<>();
 //        models.put("corretora", corretora);
         // models.put("usuario", usuario);
-        return new ModelAndView("/corretor/homeCorretora", "corretora", corretora);
+        return new ModelAndView("/corretor/others/listaPropostas", "corretora", corretora);
     }
 
 }

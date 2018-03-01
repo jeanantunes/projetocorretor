@@ -4,38 +4,50 @@ import java.util.List;
 
 public class DashboardCorretora {
 
-    private int countCorretoresAprovacao;
-    private int countCorretoresSucesso;
-    private int countCorretoresCriticadas;
-
+    private List<String> vendedores;
+    private List<String> tipoPlano;
+    private List<Proposta> propostas;
+    private Long countCorretoresAprovacao;
+    private Long countCorretoresSucesso;
+    private Long countCorretoresCriticadas;
     private Double valorPessoaFisica;
     private Double valorPME;
 
-    List<String> vendedores;
-    List<String> tipoPlano;
-    List<Proposta> propostas;
+    public DashboardCorretora() {
+    }
 
-    public int getCountCorretoresAprovacao() {
+    public DashboardCorretora(Long countCorretoresAprovacao, Long countCorretoresSucesso, Long countCorretoresCriticadas, Double valorPessoaFisica, Double valorPME, List<String> vendedores, List<String> tipoPlano, List<Proposta> propostas) {
+        this.countCorretoresAprovacao = countCorretoresAprovacao;
+        this.countCorretoresSucesso = countCorretoresSucesso;
+        this.countCorretoresCriticadas = countCorretoresCriticadas;
+        this.valorPessoaFisica = valorPessoaFisica;
+        this.valorPME = valorPME;
+        this.vendedores = vendedores;
+        this.tipoPlano = tipoPlano;
+        this.propostas = propostas;
+    }
+
+    public Long getCountCorretoresAprovacao() {
         return countCorretoresAprovacao;
     }
 
-    public void setCountCorretoresAprovacao(int countCorretoresAprovacao) {
+    public void setCountCorretoresAprovacao(Long countCorretoresAprovacao) {
         this.countCorretoresAprovacao = countCorretoresAprovacao;
     }
 
-    public int getCountCorretoresSucesso() {
+    public Long getCountCorretoresSucesso() {
         return countCorretoresSucesso;
     }
 
-    public void setCountCorretoresSucesso(int countCorretoresSucesso) {
+    public void setCountCorretoresSucesso(Long countCorretoresSucesso) {
         this.countCorretoresSucesso = countCorretoresSucesso;
     }
 
-    public int getCountCorretoresCriticadas() {
+    public Long getCountCorretoresCriticadas() {
         return countCorretoresCriticadas;
     }
 
-    public void setCountCorretoresCriticadas(int countCorretoresCriticadas) {
+    public void setCountCorretoresCriticadas(Long countCorretoresCriticadas) {
         this.countCorretoresCriticadas = countCorretoresCriticadas;
     }
 
@@ -78,5 +90,4 @@ public class DashboardCorretora {
     public void setPropostas(List<Proposta> propostas) {
         this.propostas = propostas;
     }
-
 }
