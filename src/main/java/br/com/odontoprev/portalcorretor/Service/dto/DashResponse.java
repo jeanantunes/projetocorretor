@@ -2,29 +2,6 @@ package br.com.odontoprev.portalcorretor.Service.dto;
 
 public class DashResponse {
 
-    int codigoEmpresa;
-
-    //esse codigo sera filtro para soma dos finalizados / para a barra na tela utilizar só os finalizados
-    int codigoDcms;
-
-    int countTotalVidas;
-
-    Double valueTotalVidas;
-
-    int codigoCorretor;
-
-    String nomeCorretor;
-
-    String cpfCorretor;
-
-    int codigoCorretora;
-
-    String nomeCorretora;
-
-    String cnpjCorretora;
-
-    String tipoVenda;
-
     public int getCodigoEmpresa() {
         return codigoEmpresa;
     }
@@ -33,52 +10,52 @@ public class DashResponse {
         this.codigoEmpresa = codigoEmpresa;
     }
 
-    public int getCodigoDcms() {
-        return codigoDcms;
+    public int getEmpresaDCMS() {
+        return empresaDCMS;
     }
 
-    public void setCodigoDcms(int codigoDcms) {
-        this.codigoDcms = codigoDcms;
+    public void setEmpresaDCMS(int empresaDCMS) {
+        this.empresaDCMS = empresaDCMS;
     }
 
-    public int getCountTotalVidas() {
-        return countTotalVidas;
+    public int getTotalVidas() {
+        return totalVidas;
     }
 
-    public void setCountTotalVidas(int countTotalVidas) {
-        this.countTotalVidas = countTotalVidas;
+    public void setTotalVidas(int totalVidas) {
+        this.totalVidas = totalVidas;
     }
 
-    public Double getValueTotalVidas() {
-        return valueTotalVidas;
+    public Double getValorTotal() {
+        return valorTotal;
     }
 
-    public void setValueTotalVidas(Double valueTotalVidas) {
-        this.valueTotalVidas = valueTotalVidas;
+    public void setValorTotal(Double valorTotal) {
+        this.valorTotal = valorTotal;
     }
 
-    public int getCodigoCorretor() {
-        return codigoCorretor;
+    public int getCodigoForcaVenda() {
+        return codigoForcaVenda;
     }
 
-    public void setCodigoCorretor(int codigoCorretor) {
-        this.codigoCorretor = codigoCorretor;
+    public void setCodigoForcaVenda(int codigoForcaVenda) {
+        this.codigoForcaVenda = codigoForcaVenda;
     }
 
-    public String getNomeCorretor() {
-        return nomeCorretor;
+    public String getNomeForca() {
+        return nomeForca;
     }
 
-    public void setNomeCorretor(String nomeCorretor) {
-        this.nomeCorretor = nomeCorretor;
+    public void setNomeForca(String nomeForca) {
+        this.nomeForca = nomeForca;
     }
 
-    public String getCpfCorretor() {
-        return cpfCorretor;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setCpfCorretor(String cpfCorretor) {
-        this.cpfCorretor = cpfCorretor;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public int getCodigoCorretora() {
@@ -97,12 +74,12 @@ public class DashResponse {
         this.nomeCorretora = nomeCorretora;
     }
 
-    public String getCnpjCorretora() {
-        return cnpjCorretora;
+    public String getCnpj() {
+        return cnpj;
     }
 
-    public void setCnpjCorretora(String cnpjCorretora) {
-        this.cnpjCorretora = cnpjCorretora;
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
     }
 
     public String getTipoVenda() {
@@ -112,4 +89,29 @@ public class DashResponse {
     public void setTipoVenda(String tipoVenda) {
         this.tipoVenda = tipoVenda;
     }
+
+    int codigoEmpresa;
+
+    //esse codigo sera filtro para soma dos finalizados / para a barra na tela utilizar só os finalizados
+    int empresaDCMS;
+
+    int totalVidas;
+
+    Double valorTotal;
+
+    int codigoForcaVenda;
+
+    String nomeForca;
+
+    String cpf;
+
+    int codigoCorretora;
+
+    String nomeCorretora;
+
+    String cnpj;
+
+    String tipoVenda;
+
+
 }
