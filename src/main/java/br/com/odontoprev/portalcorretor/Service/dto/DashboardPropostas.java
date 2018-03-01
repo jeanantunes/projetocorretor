@@ -17,11 +17,11 @@ public class DashboardPropostas {
         this.propostasPF = propostasPF;
     }
 
-    public List<Proposta> getDashboardPropostasPME() {
+    public List<Proposta> getPropostasPME() {
         return propostasPME;
     }
 
-    public void setDashboardPropostasPME(List<Proposta> propostasPME) {
+    public void setPropostasPME(List<Proposta> propostasPME) {
         this.propostasPME = propostasPME;
     }
 }

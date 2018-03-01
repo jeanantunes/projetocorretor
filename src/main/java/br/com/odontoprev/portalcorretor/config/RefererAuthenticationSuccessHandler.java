@@ -24,7 +24,7 @@ public class RefererAuthenticationSuccessHandler implements AuthenticationSucces
         if (auth.getAuthorities()
                 .stream()
                 .map(GrantedAuthority::getAuthority)
-                .anyMatch(aut -> aut.equals("CORRETORA"))) {
+                .anyMatch(aut -> aut.equals("Corretora"))) {
             resp.sendRedirect("/corretor/homeCorretora");
         } else {
             resp.sendRedirect("/corretor/homeCorretor");

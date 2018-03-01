@@ -23,17 +23,18 @@ public class ListaPropostasController {
     public ModelAndView home(HttpSession session) {
         UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
 
+        ListaPropostas listaPropostas = new ListaPropostas();
 
         DashboardPropostas propostaPME = dashService.ObterListaPropostaPME(FiltroStatusProposta.TODOS, usuario.getDocumento());
+        listaPropostas.setPropostaPME(propostaPME.getPropostasPME());
+        listaPropostas.setTotalPME(propostaPME.getPropostasPME().size());
+
+
         DashboardPropostas propostaPF = dashService.ObterListaPropostaPF(FiltroStatusProposta.TODOS, usuario.getDocumento());
+        listaPropostas.setPropostaPF(propostaPF.getPropostasPF());
+        listaPropostas.setTotalPF(propostaPF.getPropostasPF().size());
 
-        ListaPropostas listaPropostas = new ListaPropostas();
-        listaPropostas.setPropostaPF(propostaPF.getDashboardPropostasPME());
-        listaPropostas.setPropostaPME(propostaPME.getDashboardPropostasPME());
-
-        listaPropostas.setTotalPF(propostaPF.getDashboardPropostasPME().size());
-        listaPropostas.setTotalPME(propostaPME.getDashboardPropostasPME().size());
-        listaPropostas.setTotalVidas(propostaPME.getDashboardPropostasPME().size() + propostaPF.getDashboardPropostasPME().size());
+        listaPropostas.setTotal( propostaPME.getPropostasPF().size() + propostaPF.getPropostasPME().size() );
 
 
         return new ModelAndView("/corretor/others/listaPropostas", "listaPropostas", listaPropostas);

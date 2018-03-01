@@ -17,7 +17,7 @@ import static br.com.odontoprev.portalcorretor.model.PropostaStatus.CRITICADAS;
 import static br.com.odontoprev.portalcorretor.model.PropostaStatus.SUCESSO;
 
 @Controller
-public class CorretorPMEController {
+public class CorretoraController {
 
     @RequestMapping(value = "/corretor/homeCorretora", method = RequestMethod.GET)
     public ModelAndView home(HttpSession session) {

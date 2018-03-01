@@ -1,7 +1,7 @@
 package br.com.odontoprev.portalcorretor.Service;
 
 import br.com.odontoprev.portalcorretor.Service.dto.LoginResponse;
-import org.springframework.beans.factory.annotation.Value;
+import br.com.odontoprev.portalcorretor.controller.UsuarioSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -18,7 +18,7 @@ public class LoginService {
     //@Value("${odontoprev.service.login}")
     private String metodo = "login";
 
-    public LoginResponse Autenticar(String usuario, String senha) {
+    public UsuarioSession Autenticar(String usuario, String senha) {
 
         RestTemplate restTemplate = new RestTemplate();
         Map<String, String> loginMap = new HashMap<>();
@@ -28,7 +28,7 @@ public class LoginService {
         try {
             ResponseEntity<LoginResponse> loginRetorno = restTemplate.postForEntity((requesBasetUrl + metodo), loginMap, LoginResponse.class);
             if (loginRetorno.getStatusCode() == HttpStatus.OK) {
-                return loginRetorno.getBody();
+                return new UsuarioSession().setDados(loginRetorno.getBody());
             }
 
             return null;

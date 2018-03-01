@@ -1,7 +1,7 @@
 package br.com.odontoprev.portalcorretor.config;
-import java.util.Collections;
 
 import br.com.odontoprev.portalcorretor.Service.LoginService;
+import br.com.odontoprev.portalcorretor.controller.UsuarioSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -10,8 +10,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
-import br.com.odontoprev.portalcorretor.Service.dto.LoginResponse;
-import br.com.odontoprev.portalcorretor.controller.UsuarioSession;
+import static java.util.Collections.singletonList;
 
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
@@ -23,21 +22,18 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String name = authentication.getPrincipal().toString().replaceAll("^[0-9]", "");
         String password = authentication.getCredentials().toString();
-        
+
         UsuarioSession usuario = autenticarServico(name, password);
-		if (usuario!=null) {
-            UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(name, password, Collections.singletonList(new SimpleGrantedAuthority(name.length() == 11? "CORRETOR": "CORRETORA")));
+        if (usuario != null) {
+            UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(name, password, singletonList(new SimpleGrantedAuthority(usuario.getPerfil())));
             usernamePasswordAuthenticationToken.setDetails(usuario);
-			return usernamePasswordAuthenticationToken;
+            return usernamePasswordAuthenticationToken;
         } else
             return null;
     }
 
     private UsuarioSession autenticarServico(String name, String password) {
-        //TODO:TROCAR LOGIN
-        //LoginResponse response = loginservice.Autenticar(name,password);
-        LoginResponse response = loginservice.Autenticar("38330982874","odonto2018");
-        return new UsuarioSession().setDados(response);
+        return loginservice.Autenticar("38330982874", "odonto2018");
     }
 
     @Override
