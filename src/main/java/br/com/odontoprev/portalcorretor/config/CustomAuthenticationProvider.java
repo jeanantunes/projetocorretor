@@ -33,7 +33,9 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
     }
 
     private UsuarioSession autenticarServico(String name, String password) {
-        return loginservice.Autenticar("38330982874", "odonto2018");
+        return loginservice.Autenticar(name, password);
+        //TODO: Facilita dev de corretor
+        //return loginservice.Autenticar("38330982874", "odonto2018");
     }
 
     @Override
