@@ -5,10 +5,21 @@ import java.util.Date;
 public class PropostaResponse {
 
     private long cdEmpresa;
-    private String nomeCorretora;
+    private String nome;
     private String statusVenda;
     private Date dataVenda;
     private String cnpj;
+
+
+    public PropostaResponse(){}
+
+    public PropostaResponse(long cdEmpresa, String nome, String statusVenda, Date dataVenda, String cnpj) {
+        this.cdEmpresa = cdEmpresa;
+        this.nome = nome;
+        this.statusVenda = statusVenda;
+        this.dataVenda = dataVenda;
+        this.cnpj = cnpj;
+    }
 
     public long getCdEmpresa() {
         return cdEmpresa;
@@ -18,12 +29,12 @@ public class PropostaResponse {
         this.cdEmpresa = cdEmpresa;
     }
 
-    public String getNomeCorretora() {
-        return nomeCorretora;
+    public String getNome() {
+        return nome;
     }
 
-    public void setNomeCorretora(String nomeCorretora) {
-        this.nomeCorretora = nomeCorretora;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getStatusVenda() {
