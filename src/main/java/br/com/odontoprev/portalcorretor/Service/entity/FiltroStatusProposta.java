@@ -2,13 +2,13 @@ package br.com.odontoprev.portalcorretor.Service.entity;
 
 import groovy.transform.ToString;
 
-public enum FiltroProposta {
+public enum FiltroStatusProposta {
     TODOS(0),
-    PME(1),
-    FORCAVENDAS(2);
+    APROVADO(1),
+    CRITICADO(2);
 
     private final int value;
-    private FiltroProposta(int value) {
+    private FiltroStatusProposta(int value) {
         this.value = value;
     }
 

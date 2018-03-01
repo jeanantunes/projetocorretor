@@ -2,16 +2,16 @@ package br.com.odontoprev.portalcorretor.Service;
 
 import br.com.odontoprev.portalcorretor.Service.dto.DashResponse;
 import br.com.odontoprev.portalcorretor.Service.dto.PropostaResponse;
-import br.com.odontoprev.portalcorretor.Service.entity.FiltroProposta;
-import org.springframework.http.HttpMethod;
+import br.com.odontoprev.portalcorretor.Service.entity.FiltroStatusProposta;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+
 @Service
 public class DashService {
 
@@ -22,9 +22,9 @@ public class DashService {
     private String metodoDash;
 
     //@Value("${odontoprev.service.propostaPF}")
-    private String metodoPropostaPFList;
+    private String metodoPropostaPFList = "dashboardPropostaPF";
 
-    //@Value("${odontoprev.service.propostaPJ}")
+    //@Value("${odontoprev.service.propostaPME}")
     private String metodoPropostaPMEList = "dashboardPropostaPME/";
 
 
@@ -56,45 +56,29 @@ public class DashService {
     }
 
 
-    public List<PropostaResponse> ObterPropostaList(FiltroProposta listaProposta, String metodo, String documento) {
+    public PropostaResponse ObterListaPropostaPME(FiltroStatusProposta statusProposta, String documento) {
+        return ObterLista(metodoPropostaPMEList, statusProposta, documento);
+    }
 
+    public PropostaResponse ObterListaPropostaPF(FiltroStatusProposta statusProposta, String documento) {
+        return ObterLista(metodoPropostaPFList, statusProposta, documento);
+    }
+
+    private PropostaResponse ObterLista(String metodo, FiltroStatusProposta statusProposta, String documento) {
         RestTemplate restTemplate = new RestTemplate();
-        String url = requesBasetUrl + metodo + listaProposta.getValue() + "/" + documento;
+        String url = requesBasetUrl + metodo + statusProposta.getValue() + "/" + documento;
 
         try {
-            ResponseEntity<List<PropostaResponse>> retorno = restTemplate.postForEntity(url, HttpMethod.GET, null, PropostaResponse[].class);
+            ResponseEntity<PropostaResponse> retorno = restTemplate.getForEntity(url, PropostaResponse.class);
 
-            return retorno.getBody();
+            if (retorno.getStatusCode() == HttpStatus.OK) {
+                return retorno.getBody();
+            }
+            return null;
 
         } catch (Exception e) {
             return null;
         }
-
-//        {
-//            "dashboardPropostasPME": [
-//            {
-//                "cdEmpresa": 323,
-//                    "nome": "SETAI NOME FANTASIA",
-//                    "statusVenda": "Aprovado",
-//                    "dataVenda": "26/02/2018",
-//                    "cnpj": "12311200003"
-//            },
-//            {
-//                "cdEmpresa": 281,
-//                    "nome": "SETAI NOME FANTASIA",
-//                    "statusVenda": "Aprovado",
-//                    "dataVenda": "25/02/2018",
-//                    "cnpj": "12311200003"
-//            },
-//            {
-//                "cdEmpresa": 223,
-//                    "nome": "SETAI NOME FANTASIA",
-//                    "statusVenda": "Aprovado",
-//                    "dataVenda": "25/02/2018",
-//                    "cnpj": "12311200003"
-//            }]
- //   }
-
     }
-    
+
 }
