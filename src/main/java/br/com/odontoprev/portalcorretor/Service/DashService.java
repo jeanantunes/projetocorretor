@@ -1,17 +1,21 @@
 package br.com.odontoprev.portalcorretor.Service;
 
-import br.com.odontoprev.portalcorretor.Service.dto.DashResponse;
-import br.com.odontoprev.portalcorretor.Service.dto.DashboardPropostas;
-import br.com.odontoprev.portalcorretor.Service.entity.FiltroStatusProposta;
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import br.com.odontoprev.portalcorretor.Service.dto.DashResponse;
+import br.com.odontoprev.portalcorretor.Service.dto.DashboardPropostas;
+import br.com.odontoprev.portalcorretor.Service.entity.FiltroStatusProposta;
 
 @Service
 public class DashService {
@@ -27,6 +31,9 @@ public class DashService {
 
     //@Value("${odontoprev.service.propostaPME}")
     private String metodoPropostaPMEList = "dashboardPropostaPME/";
+    
+    @Autowired
+    private ApiManagerTokenService apiManagerTokenService;
 
     public DashResponse ObterPorDocumento(LocalDate dataInicio,
                                           LocalDate dataFim,
@@ -67,7 +74,10 @@ public class DashService {
         String url = requesBasetUrl + metodoPropostaPFList + "/" + statusProposta.getValue() + "/" + documento;
         RestTemplate restTemplate = new RestTemplate();
         try {
-            ResponseEntity<DashboardPropostas> retorno = restTemplate.getForEntity(url, DashboardPropostas.class);
+        	HttpHeaders headers = new HttpHeaders();
+        	headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
+            HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
+            ResponseEntity<DashboardPropostas> retorno = restTemplate.exchange(url,HttpMethod.POST, entity, DashboardPropostas.class);
 
             if (retorno.getStatusCode() == HttpStatus.OK) {
                 return retorno.getBody();

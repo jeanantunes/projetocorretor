@@ -1,14 +1,19 @@
 package br.com.odontoprev.portalcorretor.Service;
 
-import br.com.odontoprev.portalcorretor.Service.dto.LoginResponse;
-import br.com.odontoprev.portalcorretor.controller.UsuarioSession;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.HashMap;
-import java.util.Map;
+import br.com.odontoprev.portalcorretor.Service.dto.LoginResponse;
+import br.com.odontoprev.portalcorretor.controller.UsuarioSession;
 
 @Service
 public class LoginService {
@@ -17,6 +22,9 @@ public class LoginService {
     private String requesBasetUrl = "http://172.16.20.30:7001/portal-corretor-servico-0.0.1-SNAPSHOT/";
     //@Value("${odontoprev.service.login}")
     private String metodo = "login";
+    
+    @Autowired
+    private ApiManagerTokenService apiManagerTokenService;
 
     public UsuarioSession Autenticar(String usuario, String senha) {
 
@@ -26,7 +34,12 @@ public class LoginService {
         loginMap.put("senha", senha);
 
         try {
-            ResponseEntity<LoginResponse> loginRetorno = restTemplate.postForEntity((requesBasetUrl + metodo), loginMap, LoginResponse.class);
+        	HttpHeaders headers = new HttpHeaders();
+        	headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());            
+            
+            HttpEntity<Map<String,String>> entityReq = new HttpEntity<>(loginMap, headers);
+            
+            ResponseEntity<LoginResponse> loginRetorno = restTemplate.exchange((requesBasetUrl + metodo),HttpMethod.POST, entityReq, LoginResponse.class);
             if (loginRetorno.getStatusCode() == HttpStatus.OK) {
                 return new UsuarioSession().setDados(loginRetorno.getBody());
             }
