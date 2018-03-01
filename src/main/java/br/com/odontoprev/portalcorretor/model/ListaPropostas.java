@@ -1,56 +1,55 @@
 package br.com.odontoprev.portalcorretor.model;
 
+import br.com.odontoprev.portalcorretor.Service.dto.PropostaResponse;
+
 import java.util.List;
 
 public class ListaPropostas {
 
 
-    private List<Proposta> propostaPF;
-    private List<Proposta> propostaPME;
-    private Long totalVidas;
-    private Long totalPF;
-    private Long totalPME;
+    private List<PropostaResponse> propostaPF;
+    private List<PropostaResponse> propostaPME;
+    private Integer totalVidas;
+    private Integer totalPF;
+    private Integer totalPME;
 
-    public Long getTotalPF() {
-        return totalPF;
-    }
-
-    public void setTotalPF(Long totalPF) {
-        this.totalPF = totalPF;
-    }
-
-    public Long getTotalPME() {
-        return totalPME;
-    }
-
-    public void setTotalPME(Long totalPME) {
-        this.totalPME = totalPME;
-    }
-
-    public ListaPropostas() {
-    }
-
-    public List<Proposta> getPropostaPF() {
+    public List<PropostaResponse> getPropostaPF() {
         return propostaPF;
     }
 
-    public void setPropostaPF(List<Proposta> propostaPF) {
+    public void setPropostaPF(List<PropostaResponse> propostaPF) {
         this.propostaPF = propostaPF;
     }
 
-    public List<Proposta> getPropostaPME() {
+    public List<PropostaResponse> getPropostaPME() {
         return propostaPME;
     }
 
-    public void setPropostaPME(List<Proposta> propostaPME) {
+    public void setPropostaPME(List<PropostaResponse> propostaPME) {
         this.propostaPME = propostaPME;
     }
 
-    public Long getTotalVidas() {
+    public Integer getTotalVidas() {
         return totalVidas;
     }
 
-    public void setTotalVidas(Long totalVidas) {
+    public void setTotalVidas(Integer totalVidas) {
         this.totalVidas = totalVidas;
+    }
+
+    public Integer getTotalPF() {
+        return totalPF;
+    }
+
+    public void setTotalPF(Integer totalPF) {
+        this.totalPF = totalPF;
+    }
+
+    public Integer getTotalPME() {
+        return totalPME;
+    }
+
+    public void setTotalPME(Integer totalPME) {
+        this.totalPME = totalPME;
     }
 }

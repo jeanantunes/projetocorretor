@@ -1,5 +1,6 @@
 package br.com.odontoprev.portalcorretor.controller;
 
+import br.com.odontoprev.portalcorretor.Service.dto.PropostaResponse;
 import br.com.odontoprev.portalcorretor.model.ListaPropostas;
 import br.com.odontoprev.portalcorretor.model.Proposta;
 import org.springframework.stereotype.Controller;
@@ -25,19 +26,24 @@ public class ListaPropostasController {
 
         ListaPropostas listaPropostas = new ListaPropostas();
 
-        List<Proposta> propostas = new ArrayList<>();
-        propostas.add(new Proposta("Vendedor 1", "PF", new Date(), 120d, 1, APROVACAO));
-        propostas.add(new Proposta("Vendedor 2", "PME", new Date(), 140d, 2, SUCESSO));
-        propostas.add(new Proposta("Vendedor 3", "PME", new Date(), 440d, 3, SUCESSO));
-        propostas.add(new Proposta("Vendedor 1", "PF", new Date(), 120d, 1, CRITICADAS));
-        propostas.add(new Proposta("Vendedor 3", "PME", new Date(), 440d, 3, SUCESSO));
+        List<PropostaResponse> propostasPF = new ArrayList<>();
+        propostasPF.add(new PropostaResponse(1,"Fulado de PF  1", "xuxu" , new Date(),"123123123123"));
+        propostasPF.add(new PropostaResponse(1,"Fulado de PF 2", "Aprovado" , new Date(),"123123123123"));
+        propostasPF.add(new PropostaResponse(1,"Fulado de PF 1", "ajsaj" , new Date(),"123123123123"));
 
 
-        listaPropostas.setPropostaPF(propostas.stream().filter(a -> a.getTipoPlano().equals("PF")).collect(Collectors.toList()));
-        listaPropostas.setPropostaPME(propostas.stream().filter(a -> a.getTipoPlano().equals("PME")).collect(Collectors.toList()));
-        listaPropostas.setTotalPF(propostas.stream().filter(a -> a.getTipoPlano().equals("PF")).mapToLong(Proposta::getVidas).sum());
-        listaPropostas.setTotalPME(propostas.stream().filter(a -> a.getTipoPlano().equals("PME")).mapToLong(Proposta::getVidas).sum());
-        listaPropostas.setTotalVidas(propostas.stream().mapToLong(Proposta::getVidas).sum());
+        List<PropostaResponse> propostasPME = new ArrayList<>();
+        propostasPME.add(new PropostaResponse(1,"Fulado de PME 1", "Aprovado" , new Date(),"123123123123"));
+        propostasPME.add(new PropostaResponse(1,"Fulado de PME 2", "Aprovado" , new Date(),"123123123123"));
+        propostasPME.add(new PropostaResponse(1,"Fulado de PME 3", "Aprovado" , new Date(),"123123123123"));
+        propostasPME.add(new PropostaResponse(1,"Fulado de PME 1", "Aprovado" , new Date(),"123123123123"));
+        propostasPME.add(new PropostaResponse(1,"Fulado de PME 3", "Aprovado" , new Date(),"123123123123"));
+
+        listaPropostas.setPropostaPF(propostasPF);
+        listaPropostas.setPropostaPME(propostasPME);
+        listaPropostas.setTotalPF(propostasPF.size() );
+        listaPropostas.setTotalPME(propostasPME.size() );
+        listaPropostas.setTotalVidas(propostasPF.size() + propostasPME.size() );
 
 
         return new ModelAndView("/corretor/others/listaPropostas", "listaPropostas", listaPropostas);
