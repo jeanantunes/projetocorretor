@@ -27,7 +27,6 @@ public class DashService {
     //@Value("${odontoprev.service.propostaPME}")
     private String metodoPropostaPMEList = "dashboardPropostaPME/";
 
-
     public DashResponse ObterPorDocumento(Date dataInicio,
                                           Date dataFim,
                                           String nomeVendedor,
