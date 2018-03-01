@@ -12,34 +12,33 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
-	@Autowired
-	private CustomAuthenticationProvider provider;
-	
-	@Autowired
-	private RefererAuthenticationSuccessHandler successHandler;
+    @Autowired
+    private CustomAuthenticationProvider provider;
+
+    @Autowired
+    private RefererAuthenticationSuccessHandler successHandler;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-    	//TODO: Quas as URL protegidas e as não protegidas
         http
-            .authorizeRequests()
-                .antMatchers("/cadastro","/img/**", "/css/**", "/js/**").permitAll()
+                .authorizeRequests()
+                .antMatchers("/cadastro", "/img/**", "/css/**", "/js/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
-            .formLogin()
+                .formLogin()
                 .loginPage("/login")
                 .successHandler(this.successHandler)
                 .permitAll()
                 .and()
-            .logout()
+                .logout()
                 .permitAll();
     }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-    	auth.authenticationProvider(this.provider);
+        auth.authenticationProvider(this.provider);
 
     }
 
-  
+
 }

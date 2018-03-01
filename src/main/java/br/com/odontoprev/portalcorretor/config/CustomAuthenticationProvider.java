@@ -1,6 +1,8 @@
 package br.com.odontoprev.portalcorretor.config;
 import java.util.Collections;
 
+import br.com.odontoprev.portalcorretor.Service.LoginService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -14,13 +16,8 @@ import br.com.odontoprev.portalcorretor.controller.UsuarioSession;
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
-
-
- /*   public CustomAuthenticationProvider(HttpSession session)
-    {
-        this.session = session;
-    }*/
-
+    @Autowired
+    private LoginService loginservice;
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
@@ -37,18 +34,10 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
     }
 
     private UsuarioSession autenticarServico(String name, String password) {
-
-
-        LoginResponse response = new LoginResponse();
-        response.setCodigo(123);
-        response.setNome("Rafael Berlezi");
-        response.setCodigoCorretora(567);
-        response.setNomeCorretora("Odontoprev");
-        response.setPerfil("Corretor");
-        response.setDocumento("30555386848");
-         
-
-        return new UsuarioSession().setDados(response);        
+        //TODO:TROCAR LOGIN
+        //LoginResponse response = loginservice.Autenticar(name,password);
+        LoginResponse response = loginservice.Autenticar("38330982874","odonto2018");
+        return new UsuarioSession().setDados(response);
     }
 
     @Override

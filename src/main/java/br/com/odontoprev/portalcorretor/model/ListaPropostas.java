@@ -1,31 +1,31 @@
 package br.com.odontoprev.portalcorretor.model;
 
-import br.com.odontoprev.portalcorretor.Service.dto.PropostaResponse;
+import br.com.odontoprev.portalcorretor.Service.dto.dashboardPropostasPF;
 
 import java.util.List;
 
 public class ListaPropostas {
 
 
-    private List<PropostaResponse> propostaPF;
-    private List<PropostaResponse> propostaPME;
+    private List<dashboardPropostasPF> propostaPF;
+    private List<dashboardPropostasPF> propostaPME;
     private Integer totalVidas;
     private Integer totalPF;
     private Integer totalPME;
 
-    public List<PropostaResponse> getPropostaPF() {
+    public List<dashboardPropostasPF> getPropostaPF() {
         return propostaPF;
     }
 
-    public void setPropostaPF(List<PropostaResponse> propostaPF) {
+    public void setPropostaPF(List<dashboardPropostasPF> propostaPF) {
         this.propostaPF = propostaPF;
     }
 
-    public List<PropostaResponse> getPropostaPME() {
+    public List<dashboardPropostasPF> getPropostaPME() {
         return propostaPME;
     }
 
-    public void setPropostaPME(List<PropostaResponse> propostaPME) {
+    public void setPropostaPME(List<dashboardPropostasPF> propostaPME) {
         this.propostaPME = propostaPME;
     }
 
