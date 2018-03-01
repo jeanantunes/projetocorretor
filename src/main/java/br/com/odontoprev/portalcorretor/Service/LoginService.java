@@ -2,18 +2,21 @@ package br.com.odontoprev.portalcorretor.Service;
 
 import br.com.odontoprev.portalcorretor.Service.dto.LoginResponse;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Service
 public class LoginService {
 
     //@Value("${odontoprev.servicebase.url}")
-    private String requesBasetUrl = "https://api-it1.odontoprev.com.br:8243/";
+    private String requesBasetUrl = "http://172.16.20.30:7001/portal-corretor-servico-0.0.1-SNAPSHOT/";
     //@Value("${odontoprev.service.login}")
-    private String metodo = "dcss/login/1.0";
+    private String metodo = "login";
 
     public LoginResponse Autenticar(String usuario, String senha) {
 
@@ -24,9 +27,9 @@ public class LoginService {
 
         try {
             ResponseEntity<LoginResponse> loginRetorno = restTemplate.postForEntity((requesBasetUrl + metodo), loginMap, LoginResponse.class);
-            //return new LoginResponse(login.getUsuario(), "Corretor", Long.parseLong(loginRetorno.getBody().getCodigo()));
-
-            System.out.print(loginRetorno);
+            if (loginRetorno.getStatusCode() == HttpStatus.OK) {
+                return loginRetorno.getBody();
+            }
 
             return null;
 

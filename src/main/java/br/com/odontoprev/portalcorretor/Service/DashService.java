@@ -59,16 +59,41 @@ public class DashService {
     public List<PropostaResponse> ObterPropostaList(FiltroProposta listaProposta, String metodo, String documento) {
 
         RestTemplate restTemplate = new RestTemplate();
-        String url = requesBasetUrl + metodo + listaProposta.getValue() + "/"+ documento;
+        String url = requesBasetUrl + metodo + listaProposta.getValue() + "/" + documento;
 
         try {
-            ResponseEntity<List<PropostaResponse>> retorno = restTemplate.postForEntity(url, HttpMethod.GET ,null, PropostaResponse[].class );
+            ResponseEntity<List<PropostaResponse>> retorno = restTemplate.postForEntity(url, HttpMethod.GET, null, PropostaResponse[].class);
 
             return retorno.getBody();
 
         } catch (Exception e) {
             return null;
         }
+
+//        {
+//            "dashboardPropostasPME": [
+//            {
+//                "cdEmpresa": 323,
+//                    "nome": "SETAI NOME FANTASIA",
+//                    "statusVenda": "Aprovado",
+//                    "dataVenda": "26/02/2018",
+//                    "cnpj": "12311200003"
+//            },
+//            {
+//                "cdEmpresa": 281,
+//                    "nome": "SETAI NOME FANTASIA",
+//                    "statusVenda": "Aprovado",
+//                    "dataVenda": "25/02/2018",
+//                    "cnpj": "12311200003"
+//            },
+//            {
+//                "cdEmpresa": 223,
+//                    "nome": "SETAI NOME FANTASIA",
+//                    "statusVenda": "Aprovado",
+//                    "dataVenda": "25/02/2018",
+//                    "cnpj": "12311200003"
+//            }]
+ //   }
 
     }
     
