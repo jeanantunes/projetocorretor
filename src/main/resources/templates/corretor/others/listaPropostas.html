@@ -227,7 +227,9 @@
 			<div class="row">
 				<div class="col-xs-12">
 					<div class="box-numero-historico text-center">
-						<span class="Numero-proposta"><strong>380</strong></span> <span
+
+
+						<span class="Numero-proposta"><strong th:text="${listaPropostas.totalVidas}" >380</strong></span> <span
 							class="uppercase title-odonto">clientes em sua carteira</span>
 					</div>
 				</div>
@@ -247,7 +249,7 @@
 								<div class="row">
 									<div class="col-xs-12">
 										<h3 class="title-odonto font-pink text-center">
-											<strong>238</strong>
+											<strong th:text="${listaPropostas.totalPF}">238</strong>
 										</h3>
 										<p class="text-odonto uppercase font-pink text-center">clientes
 											pf em sua carteira</p>
@@ -357,7 +359,7 @@
 								<div class="row">
 									<div class="col-xs-12">
 										<h3 class="title-odonto font-blue text-center">
-											<strong>142</strong>
+											<strong  th:text="${listaPropostas.totalPME}">142</strong>
 										</h3>
 										<p class="text-odonto uppercase font-blue text-center">clientes
 											pme em sua carteira</p>

@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Proposta {
 
+    private String cliente;
     private String vendedor;
     private String tipoPlano;
     private Date dataVenda;
@@ -21,6 +22,14 @@ public class Proposta {
         this.valor = valor;
         this.vidas = vidas;
         this.status = status;
+    }
+
+    public String getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(String cliente) {
+        this.cliente = cliente;
     }
 
     public PropostaStatus getStatus() {
