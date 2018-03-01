@@ -1,21 +1,22 @@
 package br.com.odontoprev.portalcorretor.Service;
 
 import br.com.odontoprev.portalcorretor.Service.dto.DashResponse;
-import br.com.odontoprev.portalcorretor.Service.dto.LoginResponse;
 import br.com.odontoprev.portalcorretor.Service.dto.PropostaResponse;
-import org.springframework.core.ParameterizedTypeReference;
+import br.com.odontoprev.portalcorretor.Service.entity.FiltroProposta;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+@Service
 public class DashService {
 
     //@Value("${odontoprev.servicebase.url}")
-    private String requesBasetUrl;
+    private String requesBasetUrl = "http://172.16.20.30:7001/portal-corretor-servico-0.0.1-SNAPSHOT/";
 
     //@Value("${odontoprev.service.dash}")
     private String metodoDash;
@@ -24,7 +25,7 @@ public class DashService {
     private String metodoPropostaPFList;
 
     //@Value("${odontoprev.service.propostaPJ}")
-    private String metodoPropostaPJList;
+    private String metodoPropostaPMEList = "dashboardPropostaPME/";
 
 
     public DashResponse ObterPorDocumento(Date dataInicio,
@@ -54,29 +55,21 @@ public class DashService {
         }
     }
 
-    public List<PropostaResponse> ObterListaPropostaPME(String documento)
-    {
-        return ObterPropostaList(metodoPropostaPJList, documento);
-    }
 
-
-    private List<PropostaResponse> ObterPropostaList(String metodo,String documento) {
+    public List<PropostaResponse> ObterPropostaList(FiltroProposta listaProposta, String metodo, String documento) {
 
         RestTemplate restTemplate = new RestTemplate();
-        Map<String, String> resquestMap = new HashMap<>();
-        String url = requesBasetUrl + metodo;
+        String url = requesBasetUrl + metodo + listaProposta.getValue() + "/"+ documento;
 
         try {
-            ResponseEntity<PropostaResponse[]> retorno = restTemplate.postForEntity(url, resquestMap, PropostaResponse[].class );
-            //return new LoginResponse(login.getUsuario(), "Corretor", Long.parseLong(loginRetorno.getBody().getCodigo()));
+            ResponseEntity<List<PropostaResponse>> retorno = restTemplate.postForEntity(url, HttpMethod.GET ,null, PropostaResponse[].class );
 
-            return null;
+            return retorno.getBody();
 
         } catch (Exception e) {
             return null;
         }
 
     }
-
-
+    
 }
