@@ -1,8 +1,7 @@
 package br.com.odontoprev.portalcorretor.Service;
 
 import br.com.odontoprev.portalcorretor.Service.dto.DashResponse;
-import br.com.odontoprev.portalcorretor.Service.dto.dashboardPropostasPF;
-import br.com.odontoprev.portalcorretor.Service.dto.dashboardPropostasPME;
+import br.com.odontoprev.portalcorretor.Service.dto.DashboardPropostas;
 import br.com.odontoprev.portalcorretor.Service.entity.FiltroStatusProposta;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -56,40 +55,32 @@ public class DashService {
     }
 
 
-    public dashboardPropostasPME ObterListaPropostaPME(FiltroStatusProposta statusProposta, String documento) {
-        RestTemplate restTemplate = new RestTemplate();
-        String url = requesBasetUrl + metodoPropostaPFList + statusProposta.getValue() + "/" + documento;
+    public DashboardPropostas ObterListaPropostaPME(FiltroStatusProposta statusProposta, String documento) {
+        return getDashboardPropostas(statusProposta, documento, metodoPropostaPFList);
+    }
 
+    public DashboardPropostas ObterListaPropostaPF(FiltroStatusProposta statusProposta, String documento) {
+        return getDashboardPropostas(statusProposta, documento, metodoPropostaPFList);
+    }
+
+
+    private DashboardPropostas getDashboardPropostas(FiltroStatusProposta statusProposta, String documento, String metodoPropostaPFList) {
+        String url = requesBasetUrl + metodoPropostaPFList + "/" + statusProposta.getValue() + "/" + documento;
+        RestTemplate restTemplate = new RestTemplate();
         try {
-            ResponseEntity<dashboardPropostasPME> retorno = restTemplate.getForEntity(url, dashboardPropostasPME.class);
+            ResponseEntity<DashboardPropostas> retorno = restTemplate.getForEntity(url, DashboardPropostas.class);
 
             if (retorno.getStatusCode() == HttpStatus.OK) {
                 return retorno.getBody();
+            } else {
+                return new DashboardPropostas();
+
             }
-            return new dashboardPropostasPME();
 
         } catch (Exception e) {
             return null;
         }
     }
-
-    public dashboardPropostasPF ObterListaPropostaPF(FiltroStatusProposta statusProposta, String documento) {
-        RestTemplate restTemplate = new RestTemplate();
-        String url = requesBasetUrl + metodoPropostaPFList + statusProposta.getValue() + "/" + documento;
-
-        try {
-            ResponseEntity<dashboardPropostasPF> retorno = restTemplate.getForEntity(url, dashboardPropostasPF.class);
-
-            if (retorno.getStatusCode() == HttpStatus.OK) {
-                return retorno.getBody();
-            }
-            return new dashboardPropostasPF();
-
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
 
 
 }

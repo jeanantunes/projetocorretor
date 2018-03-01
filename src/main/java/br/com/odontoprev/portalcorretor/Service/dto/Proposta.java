@@ -2,7 +2,7 @@ package br.com.odontoprev.portalcorretor.Service.dto;
 
 import java.util.Date;
 
-public class dashboardPropostas {
+public class Proposta {
     private long cdEmpresa;
     private String nome;
     private String statusVenda;
