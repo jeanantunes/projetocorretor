@@ -14,21 +14,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Controller
-public class CorretoraController {
+public class ForcaVendaController {
 
     @Autowired
     DashService dashService;
 
-
-    @RequestMapping(value = "/corretora/home", method = RequestMethod.GET)
+    @RequestMapping(value = "/forcavenda/home", method = RequestMethod.GET)
     public ModelAndView home(HttpSession session) {
         UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
-
-        //TODO retornar valores nas propostas
 
 
         DashboardPropostas propostaPME = dashService.ObterListaPropostaPME(FiltroStatusProposta.TODOS, usuario.getDocumento());
@@ -38,49 +34,32 @@ public class CorretoraController {
         ListaPropostas corretora = new ListaPropostas();
         List<Proposta> propostasPME = propostaPF.getPropostasPME();
         List<Proposta> propostasPF = propostaPME.getPropostasPF();
+        Stream<Proposta> concat = Stream.concat(propostasPF.stream(), propostasPME.stream());
 
-
-        //TODO retornar numero de corretores para aprovação
-        corretora.setCountCorretoresAprovacao(2);
-
-
-        Stream<Proposta> concat = Stream.concat(propostasPF.stream().peek(i -> i.setTipoPlano("PF")), propostasPME.stream().peek(i -> i.setTipoPlano("PME")));
-
-        List<Proposta> propostas = concat.collect(Collectors.toList());
-        corretora.setPropostas(propostas);
-        Long aprovada = propostas.stream().filter(p -> p.getStatusVenda().equals("Aprovada")).count();
+        Long aprovada = concat.filter(p -> p.getStatusVenda().equals("Aprovada")).count();
         Long criticadas = propostasPF.size() + propostasPME.size() - aprovada;
 
         corretora.setPropostaPF(propostasPME);
         corretora.setPropostaPME(propostasPF);
 
 
-        corretora.setTotalSucesso(aprovada.intValue());
+        corretora.setTotalSucesso(aprovada.intValue() );
         corretora.setTotalCriticadas(criticadas.intValue());
 
 
         double totalValorPF = propostaPF.getPropostasPF().stream().mapToDouble(Proposta::getValor).sum();
         double totalValorPME = propostaPF.getPropostasPME().stream().mapToDouble(Proposta::getValor).sum();
 
+
         corretora.setTotalValorPF(totalValorPF);
-        corretora.setPercenteValorPF(totalValorPF > totalValorPME ? 100 : totalValorPF == 0 ? 0 : 50);
+        corretora.setPercenteValorPF( totalValorPF> totalValorPME ? 100:  totalValorPF == 0 ? 0 : 50 );
 
         corretora.setTotalValorPME(totalValorPME);
-        corretora.setPercenteValorPME(totalValorPME > totalValorPF ? 100 : totalValorPME == 0 ? 0 : 50);
+        corretora.setPercenteValorPME(  totalValorPME > totalValorPF ? 100:  totalValorPME  == 0 ? 0 : 50 );
+
+        return new ModelAndView("/corretor/homeCorretor", "corretor", corretora);
 
 
-        return new ModelAndView("/corretora/home", "corretora", corretora);
     }
-
-    @RequestMapping(value = "/corretora/cadastro/editar", method = RequestMethod.GET)
-    public ModelAndView Editar() {
-        return new ModelAndView("/corretora/cadastro/editar");
-    }
-
-    @RequestMapping(value = "/corretora/equipe/home", method = RequestMethod.GET)
-    public ModelAndView Equipe() {
-        return new ModelAndView("/corretora/equipe/home");
-    }
-
 
 }

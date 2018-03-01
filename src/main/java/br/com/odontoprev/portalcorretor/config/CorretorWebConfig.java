@@ -65,8 +65,6 @@ public class CorretorWebConfig extends WebMvcConfigurerAdapter implements Applic
         
     private TemplateEngine templateEngine(ITemplateResolver templateResolver) {
 		SpringTemplateEngine engine = new SpringTemplateEngine();
-	//	engine.addDialect(new LayoutDialect(new GroupingStrategy()));
-//		engine.addDialect(new Java8TimeDialect());
 		engine.setTemplateResolver(templateResolver);
 		engine.setTemplateEngineMessageSource(messageSource());
 		return engine;

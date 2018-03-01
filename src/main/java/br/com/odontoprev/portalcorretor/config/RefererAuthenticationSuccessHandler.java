@@ -11,7 +11,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
-import br.com.odontoprev.portalcorretor.controller.UsuarioSession;
+import br.com.odontoprev.portalcorretor.model.UsuarioSession;
 
 @Component
 public class RefererAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
@@ -25,7 +25,7 @@ public class RefererAuthenticationSuccessHandler implements AuthenticationSucces
                 .stream()
                 .map(GrantedAuthority::getAuthority)
                 .anyMatch(aut -> aut.equals("Corretora"))) {
-            resp.sendRedirect("/corretor/homeCorretora");
+            resp.sendRedirect("/corretora/home");
         } else {
             resp.sendRedirect("/corretor/homeCorretor");
         }

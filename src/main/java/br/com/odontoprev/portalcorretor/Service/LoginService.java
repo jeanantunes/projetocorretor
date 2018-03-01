@@ -3,6 +3,7 @@ package br.com.odontoprev.portalcorretor.Service;
 import java.util.HashMap;
 import java.util.Map;
 
+import br.com.odontoprev.portalcorretor.model.UsuarioSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import br.com.odontoprev.portalcorretor.Service.dto.LoginResponse;
-import br.com.odontoprev.portalcorretor.controller.UsuarioSession;
+
 
 @Service
 public class LoginService {

@@ -116,11 +116,11 @@
 			<scope>test</scope>
 		</dependency>
 
-		<dependency>
+	<!--	<dependency>
 			<groupId>br.com.odontoprev</groupId>
 			<artifactId>api-manager-client-token</artifactId>
 			<version>1.0.1-SNAPSHOT</version>
-		</dependency>
+		</dependency>-->
 	</dependencies>
 
 

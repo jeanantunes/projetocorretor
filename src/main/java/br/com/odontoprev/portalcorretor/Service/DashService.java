@@ -32,8 +32,8 @@ public class DashService {
     //@Value("${odontoprev.service.propostaPME}")
     private String metodoPropostaPMEList = "dashboardPropostaPME/";
     
-    @Autowired
-    private ApiManagerTokenService apiManagerTokenService;
+    //@Autowired
+    //private ApiManagerTokenService apiManagerTokenService;
 
     public DashResponse ObterPorDocumento(LocalDate dataInicio,
                                           LocalDate dataFim,
@@ -75,7 +75,7 @@ public class DashService {
         RestTemplate restTemplate = new RestTemplate();
         try {
         	HttpHeaders headers = new HttpHeaders();
-        	headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
+        	//headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
             HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
             ResponseEntity<DashboardPropostas> retorno = restTemplate.exchange(url,HttpMethod.POST, entity, DashboardPropostas.class);
 
