@@ -37,7 +37,7 @@ public class ForcaVendaController {
 
         Stream<Proposta> concat = Stream.concat(propostasPF.stream(), propostasPME.stream());
 
-        Long aprovada = concat.filter(p -> p.getStatusVenda().equals("Aprovada")).count();
+        Long aprovada = concat.filter(p -> p.getStatusVenda().equals("Aprovado")).count();
         Long criticadas = propostasPF.size() + propostasPME.size() - aprovada;
 
         corretora.setPropostaPF(propostasPME);
