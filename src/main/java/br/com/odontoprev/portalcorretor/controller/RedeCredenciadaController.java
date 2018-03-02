@@ -9,7 +9,7 @@ public class RedeCredenciadaController {
 
     @RequestMapping("/rede-credenciada")
     public ModelAndView index() {
-        ModelAndView modelAndView = new ModelAndView("/rede-credenciadas");
+        ModelAndView modelAndView = new ModelAndView("/rede-credenciada");
         return modelAndView;
     }
 
