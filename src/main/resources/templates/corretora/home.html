@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="pt-br"
-      xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
@@ -20,15 +19,16 @@
     <script type="text/javascript" th:src="@{/js/menu.js}"></script>
     <script type="text/javascript"
             th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js}"></script>
+
+    <script>
+        $(function () {
+            $(".button-collapse").sideNav();
+        });
+    </script>
+
 </head>
+
 <body style="min-width: 100% !important;">
-
-<script>
-    $(function () {
-        $(".button-collapse").sideNav();
-    });
-
-</script>
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -64,6 +64,7 @@
 <div class="container-fluid nopadding">
 
     <div th:replace="fragments/menu-corretora :: menu-corretora">&nbsp;</div>
+
     <div th:replace="fragments/header-corretora :: header-corretora">&nbsp;</div>
 
     <div class="container-logado padding-logado">

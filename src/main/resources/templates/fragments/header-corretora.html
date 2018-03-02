@@ -14,7 +14,8 @@
     <div class="perfil-web">
         <div class="circle-perfil">
             <div class="data-perfil">
-                <p class="user-name" th:text="${session.usuario.nomeCorretora}"><strong></strong></p>
+                <strong><p class="user-name" th:text="${session.usuario.nomeCorretora}"></strong></p>
+                <strong><p class="user-name" th:text="${session.usuario.perfil}"></strong></p>
                 <a href="#" class="link-odonto">Sair</a>
             </div>
         </div>
