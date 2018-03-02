@@ -95,16 +95,9 @@
 
 <div class="container-fluid nopadding">
 
+    <div th:replace="fragments/menu-corretora :: ${session.usuario.perfil == 'Corretor'}  ? 'menu-corretor' : 'menu-corretora'">&nbsp;</div>
 
-
-    <div th:replace="fragments/menu-corretora :: ${session.usuario.perfil} ? 'Corretora': 'menu-corretora'">&nbsp;</div>
-
-    <div th:replace="fragments/header-corretora :: ${session.usuario.perfil} ? 'Corretora': 'header-corretora'">&nbsp;</div>
-
-    <div th:replace="fragments/menu-corretora :: ${session.usuario.perfil} ? 'Corretor': 'menu-corretor'">&nbsp;</div>
-
-    <div th:replace="fragments/header-corretora :: ${session.usuario.perfil} ? 'Corretor': 'header-corretor'">&nbsp;</div>
-
+    <div th:replace="fragments/header-corretora :: ${session.usuario.perfil== 'Corretor'} ? 'header-corretor': 'header-corretora'">&nbsp;</div>
 
     <div class="container-logado padding-logado">
 
