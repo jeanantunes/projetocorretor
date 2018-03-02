@@ -32,8 +32,9 @@ public class ForcaVendaController {
 
 
         ListaPropostas corretora = new ListaPropostas();
-        List<Proposta> propostasPME = propostaPF.getDashboardPropostasPME();
-        List<Proposta> propostasPF = propostaPME.getDashboardPropostasPF();
+        List<Proposta> propostasPME = propostaPME.getDashboardPropostasPME();
+        List<Proposta> propostasPF = propostaPF.getDashboardPropostasPF();
+
         Stream<Proposta> concat = Stream.concat(propostasPF.stream(), propostasPME.stream());
 
         Long aprovada = concat.filter(p -> p.getStatusVenda().equals("Aprovada")).count();
