@@ -33,8 +33,8 @@ public class CorretoraController {
         DashboardPropostas propostaPF = dashService.ObterListaPropostaPF(FiltroStatusProposta.TODOS, usuario.getDocumento());
 
         ListaPropostas corretora = new ListaPropostas();
-        List<Proposta> propostasPME = propostaPF.getPropostasPME();
-        List<Proposta> propostasPF = propostaPME.getPropostasPF();
+        List<Proposta> propostasPME = propostaPF.getDashboardPropostasPME();
+        List<Proposta> propostasPF = propostaPME.getDashboardPropostasPF();
 
         //TODO retornar numero de corretores para aprovação
         corretora.setCountCorretoresAprovacao(2);
@@ -52,8 +52,8 @@ public class CorretoraController {
         corretora.setTotalSucesso(aprovada.intValue());
         corretora.setTotalCriticadas(criticadas.intValue());
 
-        double totalValorPF = propostaPF.getPropostasPF().stream().mapToDouble(Proposta::getValor).sum();
-        double totalValorPME = propostaPF.getPropostasPME().stream().mapToDouble(Proposta::getValor).sum();
+        double totalValorPF = propostaPF.getDashboardPropostasPF().stream().mapToDouble(Proposta::getValor).sum();
+        double totalValorPME = propostaPF.getDashboardPropostasPME().stream().mapToDouble(Proposta::getValor).sum();
 
         corretora.setTotalValorPF(totalValorPF);
         corretora.setPercenteValorPF(totalValorPF > totalValorPME ? 100 : totalValorPF == 0 ? 0 : 50);

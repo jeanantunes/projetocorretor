@@ -18,10 +18,10 @@ public class DashService {
     private String requesBasetUrl = "http://172.16.20.30:7001/portal-corretor-servico-0.0.1-SNAPSHOT/";
 
     //@Value("${odontoprev.service.dash}")
-    private String metodoDash = "propostasDashBoard";
+    private String metodoDash = "propostasDashBoard/";
 
     //@Value("${odontoprev.service.propostaPF}")
-    private String metodoPropostaPFList = "dashboardPropostaPF";
+    private String metodoPropostaPFList = "dashboardPropostaPF/";
 
     //@Value("${odontoprev.service.propostaPME}")
     private String metodoPropostaPMEList = "dashboardPropostaPME/";
@@ -58,12 +58,12 @@ public class DashService {
     }
 
     public DashboardPropostas ObterListaPropostaPME(FiltroStatusProposta statusProposta, String documento) {
-        return getDashboardPropostas(statusProposta, "12311200003", metodoPropostaPMEList);
+        return getDashboardPropostas(statusProposta, documento, metodoPropostaPMEList);
         //return getDashboardPropostas(statusProposta, documento, metodoPropostaPFList);
     }
 
     public DashboardPropostas ObterListaPropostaPF(FiltroStatusProposta statusProposta, String documento) {
-        return getDashboardPropostas(statusProposta, "12311200003", metodoPropostaPFList);
+        return getDashboardPropostas(statusProposta, documento, metodoPropostaPFList);
         //return getDashboardPropostas(statusProposta, documento, metodoPropostaPFList);
     }
 

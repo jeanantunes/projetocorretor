@@ -5,23 +5,23 @@ import java.util.List;
 
 public class DashboardPropostas {
 
-    private List<Proposta> propostasPF = new ArrayList<>();
+    private List<Proposta> dashboardPropostasPF = new ArrayList<>();
 
-    private List<Proposta> propostasPME = new ArrayList<>();
+    private List<Proposta> dashboardPropostasPME = new ArrayList<>();
 
-    public List<Proposta> getPropostasPF() {
-        return propostasPF;
+    public List<Proposta> getDashboardPropostasPF() {
+        return dashboardPropostasPF;
     }
 
-    public void setPropostasPF(List<Proposta> propostasPF) {
-        this.propostasPF = propostasPF;
+    public void setDashboardPropostasPF(List<Proposta> dashboardPropostasPF) {
+        this.dashboardPropostasPF = dashboardPropostasPF;
     }
 
-    public List<Proposta> getPropostasPME() {
-        return propostasPME;
+    public List<Proposta> getDashboardPropostasPME() {
+        return dashboardPropostasPME;
     }
 
-    public void setPropostasPME(List<Proposta> propostasPME) {
-        this.propostasPME = propostasPME;
+    public void setDashboardPropostasPME(List<Proposta> dashboardPropostasPME) {
+        this.dashboardPropostasPME = dashboardPropostasPME;
     }
 }

@@ -22,8 +22,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/cadastro", "/img/**", "/css/**", "/js/**", "/fonts/**").permitAll()
-                .anyRequest().authenticated()
+                .antMatchers("login","index", "/cadastro/**", "/img/**", "/css/**", "/js/**", "/fonts/**").permitAll()
+                .antMatchers("/corretora/**").hasAuthority("Corretora")
+                .antMatchers("/forcavenda/**").hasAuthority("Corretor")
+                .anyRequest()
+                .authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")

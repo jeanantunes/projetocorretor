@@ -36,10 +36,9 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         UsuarioSession a =  new UsuarioSession();
         a.setNomeCorretora("TESTE CORRETORA");
         a.setPerfil("Corretora");
+        a.setDocumento("12311200003");
         return a;
         //return loginservice.Autenticar(name, password);
-        //TODO: Facilita dev de corretor
-        //return loginservice.Autenticar("38330982874", "odonto2018");
     }
 
     @Override

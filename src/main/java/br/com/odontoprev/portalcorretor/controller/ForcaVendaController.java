@@ -32,8 +32,8 @@ public class ForcaVendaController {
 
 
         ListaPropostas corretora = new ListaPropostas();
-        List<Proposta> propostasPME = propostaPF.getPropostasPME();
-        List<Proposta> propostasPF = propostaPME.getPropostasPF();
+        List<Proposta> propostasPME = propostaPF.getDashboardPropostasPME();
+        List<Proposta> propostasPF = propostaPME.getDashboardPropostasPF();
         Stream<Proposta> concat = Stream.concat(propostasPF.stream(), propostasPME.stream());
 
         Long aprovada = concat.filter(p -> p.getStatusVenda().equals("Aprovada")).count();
@@ -47,8 +47,8 @@ public class ForcaVendaController {
         corretora.setTotalCriticadas(criticadas.intValue());
 
 
-        double totalValorPF = propostaPF.getPropostasPF().stream().mapToDouble(Proposta::getValor).sum();
-        double totalValorPME = propostaPF.getPropostasPME().stream().mapToDouble(Proposta::getValor).sum();
+        double totalValorPF = propostaPF.getDashboardPropostasPF().stream().mapToDouble(Proposta::getValor).sum();
+        double totalValorPME = propostaPF.getDashboardPropostasPME().stream().mapToDouble(Proposta::getValor).sum();
 
 
         corretora.setTotalValorPF(totalValorPF);

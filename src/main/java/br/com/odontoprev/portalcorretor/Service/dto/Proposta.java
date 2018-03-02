@@ -6,7 +6,7 @@ public class Proposta {
     private long cdEmpresa;
     private String nome;
     private String statusVenda;
-    private Date dataVenda;
+    private String dataVenda;
     private String cnpj;
     private String tipoPlano;
     private Double valor;
@@ -59,11 +59,11 @@ public class Proposta {
         this.statusVenda = statusVenda;
     }
 
-    public Date getDataVenda() {
+    public String getDataVenda() {
         return dataVenda;
     }
 
-    public void setDataVenda(Date dataVenda) {
+    public void setDataVenda(String dataVenda) {
         this.dataVenda = dataVenda;
     }
 
