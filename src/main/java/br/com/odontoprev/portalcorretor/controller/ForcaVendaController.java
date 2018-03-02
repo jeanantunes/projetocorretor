@@ -57,7 +57,7 @@ public class ForcaVendaController {
         corretora.setTotalValorPME(totalValorPME);
         corretora.setPercenteValorPME(  totalValorPME > totalValorPF ? 100:  totalValorPME  == 0 ? 0 : 50 );
 
-        return new ModelAndView("/corretor/homeCorretor", "corretor", corretora);
+        return new ModelAndView("/forcavenda/home", "corretor", corretora);
 
 
     }

@@ -27,7 +27,7 @@ public class RefererAuthenticationSuccessHandler implements AuthenticationSucces
                 .anyMatch(aut -> aut.equals("Corretora"))) {
             resp.sendRedirect("/corretora/home");
         } else {
-            resp.sendRedirect("/corretor/homeCorretor");
+            resp.sendRedirect("/forcavenda/home");
         }
     }
 }

@@ -10,7 +10,7 @@ public class LoginController {
 
     @RequestMapping("/")
     public String index(Principal principal) {
-        return "".equals(principal.getName()) ? "login" : principal.getName().length() == 11 ? "corretor/homeCorretor" : "corretor/homeCorretora";
+        return "".equals(principal.getName()) ? "login" : principal.getName().length() == 11 ? "forcavenda/home" : "corretora/home";
     }
 
     @RequestMapping("/logout")
