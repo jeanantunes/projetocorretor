@@ -33,8 +33,8 @@ public class CorretoraController {
         DashboardPropostas propostaPF = dashService.ObterListaPropostaPF(FiltroStatusProposta.TODOS, usuario.getDocumento());
 
         ListaPropostas corretora = new ListaPropostas();
-        List<Proposta> propostasPME = propostaPF.getDashboardPropostasPME();
-        List<Proposta> propostasPF = propostaPME.getDashboardPropostasPF();
+        List<Proposta> propostasPME = propostaPME.getDashboardPropostasPME();
+        List<Proposta> propostasPF = propostaPF.getDashboardPropostasPF();
 
         //TODO retornar numero de corretores para aprovação
         corretora.setCountCorretoresAprovacao(2);
@@ -43,7 +43,7 @@ public class CorretoraController {
 
         List<Proposta> propostas = concat.collect(Collectors.toList());
         corretora.setPropostas(propostas);
-        Long aprovada = propostas.stream().filter(p -> p.getStatusVenda().equals("Aprovada")).count();
+        Long aprovada = propostas.stream().filter(p -> p.getStatusVenda().equals("Aprovado")).count();
         Long criticadas = propostasPF.size() + propostasPME.size() - aprovada;
 
         corretora.setPropostaPF(propostasPME);

@@ -1,7 +1,5 @@
 package br.com.odontoprev.portalcorretor.Service.dto;
 
-import java.util.Date;
-
 public class Proposta {
     private long cdEmpresa;
     private String nome;
@@ -9,7 +7,19 @@ public class Proposta {
     private String dataVenda;
     private String cnpj;
     private String tipoPlano;
+
+    private String forca;
+
     private Double valor;
+
+
+    public String getForca() {
+        return forca;
+    }
+
+    public void setForca(String forca) {
+        this.forca = forca;
+    }
 
     public Double getValor() {
         return valor;

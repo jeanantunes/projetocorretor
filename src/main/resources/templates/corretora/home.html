@@ -249,9 +249,9 @@
                     </thead>
                     <tbody>
                     <tr th:each="proposta : ${corretora.propostas}" class="line-table">
-                        <td><span th:text="${proposta.vendedor}">Lopes</span></td>
+                        <td><span th:text="${proposta.forca}">Lopes</span></td>
                         <td><span th:text="${proposta.tipoPlano}">PME</span></td>
-                        <td><span th:text="${#dates.format(proposta.dataVenda, 'dd/MM/yyyy')}">12/11/2017</span></td>
+                        <td><span th:text="${proposta.dataVenda}">12/11/2017</span></td>
                         <td><span
                                 th:text="${#numbers.formatDecimal(proposta.valor, 0, 'COMMA', 2, 'POINT')}">R$ 100,00</span>
                         </td>
