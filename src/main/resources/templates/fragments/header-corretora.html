@@ -16,7 +16,7 @@
             <div class="data-perfil">
                 <strong><p class="user-name" th:text="${session.usuario.nomeCorretora}"></strong></p>
                 <strong><p class="user-name" th:text="${session.usuario.perfil}"></strong></p>
-                <a href="#" class="link-odonto">Sair</a>
+                <a th:href="@{/logout}" class="link-odonto">Sair</a>
             </div>
         </div>
     </div>

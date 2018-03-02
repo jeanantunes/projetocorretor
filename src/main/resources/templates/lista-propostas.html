@@ -260,7 +260,7 @@
                                 <div class="col-xs-12">
 
                                     <div class="box-proposta" th:each="proposta : ${listaPropostas.propostaPF}">
-                                        <div th:class="${#strings.equals()}?  point-green : point-yellow "></div>
+                                        <div  th:class="${#strings.equals(proposta.statusVenda,'Aprovado')}?  point-green : point-yellow "></div>
                                         <p class="title-name text-odonto pull-left">
                                             <strong th:text="${proposta.nome}">Maria Angela da Silva</strong>
                                         </p>
@@ -302,7 +302,7 @@
 
 
                                     <div class="box-proposta" th:each="proposta : ${listaPropostas.propostaPME}">
-                                        <div class="point-yellow"></div>
+                                        <div  th:class="${#strings.equals(proposta.statusVenda,'Aprovado')}?  point-green : point-yellow "></div>
                                         <p class="title-name text-odonto pull-left">
                                             <strong th:text="${proposta.nome}">Maria Angela da Silva</strong>
                                         </p>
