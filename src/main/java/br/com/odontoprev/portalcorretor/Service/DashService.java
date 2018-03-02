@@ -41,9 +41,9 @@ public class DashService {
 
         resquestMap.put("dtInicio", dataInicio.toString());
         resquestMap.put("dtFim", dataFim.toString());
-        //resquestMap.put("cpf", cnpjCPF);
+        resquestMap.put("cpf", cnpjCPF);
 
-        resquestMap.put("cpf", "38330982874");
+        //resquestMap.put("cpf", "38330982874");
 
         try {
             ResponseEntity<DashResponse> retorno = restTemplate.postForEntity(url, resquestMap, DashResponse.class);
@@ -59,12 +59,10 @@ public class DashService {
 
     public DashboardPropostas ObterListaPropostaPME(FiltroStatusProposta statusProposta, String documento) {
         return getDashboardPropostas(statusProposta, documento, metodoPropostaPMEList);
-        //return getDashboardPropostas(statusProposta, documento, metodoPropostaPFList);
     }
 
     public DashboardPropostas ObterListaPropostaPF(FiltroStatusProposta statusProposta, String documento) {
         return getDashboardPropostas(statusProposta, documento, metodoPropostaPFList);
-        //return getDashboardPropostas(statusProposta, documento, metodoPropostaPFList);
     }
 
     private DashboardPropostas getDashboardPropostas(FiltroStatusProposta statusProposta, String documento, String metodoPropostaPFList) {
