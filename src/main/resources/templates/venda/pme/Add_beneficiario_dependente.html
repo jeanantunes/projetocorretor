@@ -1,6 +1,6 @@
-<!DOCTYPE html>
- <html>
- <head>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
  
     <title>Adicionar beneficiarios e dependentes | OdontoPrev</title>
  
@@ -150,29 +150,29 @@
                 <a href="" class="pull-right link-odonto uppercase">excluir beneficiÃ¡rio</a>
             </div>
             </div>
-                <form class="space-top-20">
+                <form class="space-top-20" th:action="@{/cadastrarBeneficiario}" th:object="${beneficiario}">
 
                 <div> 
                     <div class="form-group inline space-right width-form3">
                        <label class="label-cpf">CPF</label> 
-                        <input type="text" id="telefone"  class="cpf form-control">
+                        <input th:field="*{cpf}" type="text" id="cpf"  class="cpf form-control">
                     </div> 
                     
                     <div class="form-group maxl inline width-form3">
                           <label>Sexo</label><br>
                           <label class="radio inline radio-sexo"> 
-                              <input type="radio" name="sex" value="male" checked>
+                              <input th:field="*{sexo}" type="radio" name="sex" value="M" checked>
                               <span> Masculino </span> 
                            </label>
                           <label class="radio inline radio-sexo"> 
-                              <input type="radio" name="sex" value="female">
+                              <input th:field="*{sexo}" type="radio" name="sex" value="F">
                               <span>Feminino </span> 
                           </label>
                      </div>
 
                     <div class="form-group inline space-right width-form3">
                       <label class="label-nascimento">Data de nascimento</label>
-                      <input type="text" class="nascimento form-control" >
+                      <input th:field="*{dataNascimento}" type="text" class="nascimento form-control" >
                     </div>
                 </div>
 
@@ -180,12 +180,12 @@
 
                 <div class="form-group inline space-right width-form1">
                    <label class="label-nome">Nome</label> 
-                    <input type="text" id="telefone"  class="nome form-control">
+                    <input th:field="*{nome}" type="text" id="nome"  class="nome form-control">
                 </div> 
 
                 <div class="form-group inline space-right width-form3">
                       <label class="font-blue">Plano</label>
-                      <select class="form-control form-control-custom" id="">
+                      <select th:field="*{plano}" class="form-control form-control-custom" id="">
                          <option>Integral DOC LE</option>
                          <option>Master LALE</option>
                        
@@ -196,7 +196,7 @@
                <div>
                 <div class="form-group inline width-form6 space-right">   
                   <label  class="label-nome-mae">Nome da mÃ£e</label>
-                   <input type="text" class="nome-mae form-control">
+                   <input th:field="*{nomeDaMae}" type="text" class="nome-mae form-control">
                 </div>
                </div>
 
@@ -246,27 +246,27 @@
                 <a href="" class="pull-right link-odonto uppercase">excluir beneficiariÃ¡rio</a>
             </div>
             </div>
-                <form class="space-top-20">
+                <form class="space-top-20" th:action="@{/cadastrarDependente}" th:object="${dependente}">
 
                 <div> 
                     <div class="form-group inline space-right width-form3">
                        <label class="label-cpf">CPF</label> 
-                        <input type="text" id="telefone"  class="cpf form-control">
+                        <input th:field="*{cpf}" type="text" id="telefone"  class="cpf form-control">
                     </div> 
                     <div class="form-group maxl inline width-form3">
                           <label>Sexo</label><br>
                           <label class="radio inline radio-sexo"> 
-                              <input type="radio" name="sex" value="male" checked>
+                              <input th:field="*{sexo}" type="radio" name="sex" value="male" checked>
                               <span> Masculino </span> 
                            </label>
                           <label class="radio inline radio-sexo"> 
-                              <input type="radio" name="sex" value="female">
+                              <input th:field="*{sexo}" type="radio" name="sex" value="female">
                               <span>Feminino </span> 
                           </label>
                      </div>
                     <div class="form-group inline space-right width-form3">
                       <label class="">Data de nascimento</label>
-                      <input type="text" class="form-control" >
+                      <input th:field="*{dataNascimento}" type="text" class="form-control" >
                     </div>
                 </div>
 
@@ -274,12 +274,12 @@
 
                 <div class="form-group inline space-right width-form1">
                    <label class="label-nome">Nome</label> 
-                    <input type="text" id="telefone"  class="nome form-control">
+                    <input th:field="*{nome}" type="text" id="telefone"  class="nome form-control">
                 </div> 
 
                 <div class="form-group inline space-right width-form3">
                       <label class="font-blue">Plano</label>
-                      <select class="form-control form-control-custom" id="">
+                      <select th:field="*{plano}" class="form-control form-control-custom" id="">
                         <option>Integral DOC LE</option>
                         <option>Master LALE</option>
                        
@@ -291,7 +291,7 @@
                <div>
                 <div class="form-group inline width-form6 space-right">   
                   <label  class="label-nome-mae">Nome da mÃ£e</label>
-                   <input type="text" class="nome-mae form-control">
+                   <input th:field="*{nomeDaMae}" type="text" class="nome-mae form-control">
                 </div>
                </div>
 
