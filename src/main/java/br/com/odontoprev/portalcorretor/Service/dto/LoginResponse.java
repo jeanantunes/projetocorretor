@@ -1,12 +1,38 @@
 package br.com.odontoprev.portalcorretor.Service.dto;
 
 public class LoginResponse {
-    int codigo;
-    String nome;
+
+    long codigoDcss;
+    long codigoUsuario;
+    String nomeUsuario;
+    String documento;
     int codigoCorretora;
     String nomeCorretora;
     String perfil;
-    String documento;
+
+    public long getCodigoDcss() {
+        return codigoDcss;
+    }
+
+    public void setCodigoDcss(long codigoDcss) {
+        this.codigoDcss = codigoDcss;
+    }
+
+    public long getCodigoUsuario() {
+        return codigoUsuario;
+    }
+
+    public void setCodigoUsuario(long codigoUsuario) {
+        this.codigoUsuario = codigoUsuario;
+    }
+
+    public String getNomeUsuario() {
+        return nomeUsuario;
+    }
+
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
+    }
 
     public String getDocumento() {
         return documento;
@@ -14,22 +40,6 @@ public class LoginResponse {
 
     public void setDocumento(String documento) {
         this.documento = documento;
-    }
-
-    public int getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public int getCodigoCorretora() {

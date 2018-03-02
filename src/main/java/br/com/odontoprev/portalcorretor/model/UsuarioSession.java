@@ -11,85 +11,85 @@ public class UsuarioSession implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	private  int codigo;
-	private String nome;
+
+	private String nomeUsuario;
+	private String documento;
+	private long codigoDcss;
+	private long codigoUsuario;
 	private int codigoCorretora;
 	private String nomeCorretora;
 	private String perfil;
-	private String documento;
-	
-	
+
 	public UsuarioSession setDados(LoginResponse response) {
-		this.setCodigo(response.getCodigo());
-		this.setCodigoCorretora(response.getCodigoCorretora());
+		this.setNomeUsuario(response.getNomeUsuario());
 		this.setDocumento(response.getDocumento());
-		this.setNome(response.getNome());
+		this.setCodigoDcss(response.getCodigoDcss());
+		this.setCodigoUsuario(response.getCodigoUsuario());
+		this.setCodigoCorretora(response.getCodigoCorretora());
 		this.setNomeCorretora(response.getNomeCorretora());
 		this.setPerfil(response.getPerfil());
+
 		return this;
 	}
 
 
-	public int getCodigo() {
-		return codigo;
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
 	}
 
-
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
+	public String getNomeUsuario() {
+		return nomeUsuario;
 	}
 
-
-	public String getNome() {
-		return nome;
+	public void setNomeUsuario(String nomeUsuario) {
+		this.nomeUsuario = nomeUsuario;
 	}
-
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-
-	public int getCodigoCorretora() {
-		return codigoCorretora;
-	}
-
-
-	public void setCodigoCorretora(int codigoCorretora) {
-		this.codigoCorretora = codigoCorretora;
-	}
-
-
-	public String getNomeCorretora() {
-		return nomeCorretora;
-	}
-
-
-	public void setNomeCorretora(String nomeCorretora) {
-		this.nomeCorretora = nomeCorretora;
-	}
-
-
-	public String getPerfil() {
-		return perfil;
-	}
-
-
-	public void setPerfil(String perfil) {
-		this.perfil = perfil;
-	}
-
 
 	public String getDocumento() {
 		return documento;
 	}
 
-
 	public void setDocumento(String documento) {
 		this.documento = documento;
 	}
-	
-	
 
+	public long getCodigoDcss() {
+		return codigoDcss;
+	}
+
+	public void setCodigoDcss(long codigoDcss) {
+		this.codigoDcss = codigoDcss;
+	}
+
+	public long getCodigoUsuario() {
+		return codigoUsuario;
+	}
+
+	public void setCodigoUsuario(long codigoUsuario) {
+		this.codigoUsuario = codigoUsuario;
+	}
+
+	public int getCodigoCorretora() {
+		return codigoCorretora;
+	}
+
+	public void setCodigoCorretora(int codigoCorretora) {
+		this.codigoCorretora = codigoCorretora;
+	}
+
+	public String getNomeCorretora() {
+		return nomeCorretora;
+	}
+
+	public void setNomeCorretora(String nomeCorretora) {
+		this.nomeCorretora = nomeCorretora;
+	}
+
+	public String getPerfil() {
+		return perfil;
+	}
+
+	public void setPerfil(String perfil) {
+		this.perfil = perfil;
+	}
 }

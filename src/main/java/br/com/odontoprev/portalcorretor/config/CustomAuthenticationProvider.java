@@ -20,7 +20,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        String name = authentication.getPrincipal().toString().replaceAll("^[0-9]", "");
+        String name = authentication.getPrincipal().toString().replaceAll("\\W*", "");
         String password = authentication.getCredentials().toString();
 
         UsuarioSession usuario = autenticarServico(name, password);

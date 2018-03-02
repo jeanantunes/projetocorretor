@@ -63,4 +63,10 @@ public class ForcaVendaController {
 
     }
 
+    @RequestMapping("/forcavenda/cadastro/editar")
+    public ModelAndView index() {
+        ModelAndView modelAndView = new ModelAndView("/forcavenda/cadastro/editar");
+        return modelAndView;
+    }
+
 }

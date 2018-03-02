@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class VendaPmeController {
-    @RequestMapping(value = "/vendapme/cnpj", method = RequestMethod.GET)
+    @RequestMapping(value = "venda/pme/Escolha_um_plano", method = RequestMethod.GET)
     public ResponseEntity<VendaPme> cnpj(@RequestParam("cnpj") String cnpj) {
 
         VendaPme vendaPme = new VendaPme();

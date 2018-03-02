@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class VendaPfController {
 
-    @RequestMapping(value = "/venda/pf", method = RequestMethod.GET)
+    @RequestMapping(value = "venda/pf/escolhaPlanoPF", method = RequestMethod.GET)
     public ModelAndView home() {
         
     	VendaPf vendaPf = new VendaPf();
@@ -32,11 +32,42 @@ public class VendaPfController {
         return new ModelAndView("/venda/pf/titularDoPlanoPF", "vendaPf", vendaPf);
     }
 
-	@RequestMapping(value = "/cadastrarVendaPf", method = RequestMethod.POST)
-	public ModelAndView cadastrarVendaPf(@ModelAttribute("vendaPf") VendaPf vendaPf) {
-		return new ModelAndView("venda/pf/compraRealizadaPF", "vendaPf", vendaPf);
-	}
+    @RequestMapping(value = "/venda/pf/cnpj", method = RequestMethod.GET)
+    public ResponseEntity<Cadastro> cnpj(@RequestParam("cnpj") String cnpj) {
 
+        Cadastro cadastro = new Cadastro();
+        cadastro.setCnpj(cnpj);
+        cadastro.setRazaoSocial("OdontoPrev");
+        cadastro.setCnae("123-12");
+        cadastro.setSimplesNacional("Não");
+        cadastro.setDataAbertura("01/01/2001");
+        cadastro.setStatusCnpj("VÁLIDO");
+        cadastro.setNomeRepresentanteLegal("Representante Legal");
+        cadastro.setCpfRepresentanteLegal("123.123.123-34");
+        cadastro.setTelefone("(11)2222-1234");
+        cadastro.setCelular("(11)98765-1234");
+        cadastro.setEmail("teste@odontoprev.com.br");
+        return cnpj.equals("23.423.423/423") ? ResponseEntity.ok(cadastro) : ResponseEntity.notFound().build();
+    }
 
+    @RequestMapping(value = "/venda/pf/cep", method = RequestMethod.GET)
+    public ModelAndView cep(@ModelAttribute("cadastro") Cadastro cadastro) {
+        return new ModelAndView("cadastro/home", "cadastro", cadastro);
+    }
+
+    @RequestMapping(value = "/venda/pf/cadastrar", method = RequestMethod.POST)
+    public ModelAndView cadastrar(@ModelAttribute("cadastro") Cadastro cadastro) {
+        return new ModelAndView("/venda/pf/cadastrar/termosCondicoes", "cadastro", cadastro);
+    }
+
+    @RequestMapping(value = "/venda/pf/termosCondicoes", method = RequestMethod.POST)
+    public ModelAndView termosCondicoes(@ModelAttribute("cadastro") Cadastro cadastro) {
+        return new ModelAndView("/venda/pf/bemvindo", "cadastro", cadastro);
+    }
+
+    @RequestMapping(value = "/venda/pf/bemvindo", method = RequestMethod.POST)
+    public ModelAndView bemvindo(@ModelAttribute("cadastro") Cadastro cadastro) {
+        return new ModelAndView("/venda/pf/bemvindo", "cadastro", cadastro);
+    }
 
 }
