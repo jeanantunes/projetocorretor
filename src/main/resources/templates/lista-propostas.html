@@ -102,115 +102,9 @@
 
 <div class="container-fluid nopadding">
 
-    <nav class="nav-odonto">
-        <div class="nav-wrapper">
-            <a href="#" class="brand-logo" style="color: silver; padding: 35px"><img
-                    th:src="@{/img/logo.png}"></a>
-            <ul class="hide-on-med-and-down">
-                <li class="nav-cel"><a th:href="@{home-forca-vendas.html}"><img
-                        th:src="@{/img/menu-home.png}"><span>home</span></a></li>
-                <li class="nav-cel"><a th:href="@{#}"><img
-                        th:src="@{/img/menu-meus-dados.png}"><span>meus
-								dados</span></a></li>
-                <li class="nav-cel"><a
-                        th:href="@{venda/pf/escolhaPlanoPF.html}"><img
-                        th:src="@{/img/menu-vender-pf.png}"><span>vender
-								pessoa física</span></a></li>
-                <li class="nav-cel"><a
-                        th:href="@{venda/pme/Escolha_um_plano.html}"><img
-                        th:src="@{/img/menu-vender-pme.png}"><span>vender
-								pme</span></a></li>
-                <li class="nav-cel"><a th:href="@{#}"><img
-                        th:src="@{/img/menu-listas.png}"><span>informações
-								dos planos</span></a></li>
-                <li class="nav-cel  nav-active"><a
-                        th:href="@{lista_de_pospostas_forca_vendas.html}"><img
-                        th:src="@{/img/menu-listas.png}"><span>lista de
-								propostas</span></a></li>
-                <li class="nav-cel"><a
-                        th:href="@{busca-rede-credenciadas.html}"><img
-                        th:src="@{/img/menu-rede-credenciada.png}"><span>rede
-								credenciada</span></a></li>
-                <li class="nav-cel"><a
-                        th:href="@{fale-conosco-forca-vendas.html}"><img
-                        th:src="@{/img/menu-contato.png}"><span>fale
-								conosco</span></a></li>
-            </ul>
-        </div>
-    </nav>
+    <div th:replace="fragments/menu-corretora :: ${session.usuario.perfil == 'Corretor'}  ? 'menu-corretor' : 'menu-corretora'">&nbsp;</div>
 
-    <div class="nav-mobile">
-        <ul class="side-nav" id="menu-mobile">
-            <li class="" style="background-color: #fff; padding: 30px">
-                <div class="perfil-mobile">
-                    <div class="circle-perfil">
-                        <div class="data-perfil">
-                            <p class="user-name">
-                                <strong>Marcos Palmas</strong>
-                            </p>
-                            <p class="font-gray">Corretora XPTO</p>
-                            <a href="#" class="link-odonto">Sair</a>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="nav-cel  nav-active"><a
-                    th:href="@{home-dono-forca-vendas.html}"><img
-                    th:src="@{/img/menu-home.png}"><span>home</span></a></li>
-            <li class="nav-cel"><a th:href="@{#}"><img
-                    th:src="@{/img/menu-meus-dados.png}"><span>meus
-							dados</span></a></li>
-            <li class="nav-cel"><a
-                    th:href="@{venda/pf/escolhaPlanoPF.html}"><img
-                    th:src="@{/img/menu-vender-pf.png}"><span>vender
-							pessoa fÃ­sica</span></a></li>
-            <li class="nav-cel"><a
-                    th:href="@{venda/pme/Escolha_um_plano.html}"><img
-                    th:src="@{/img/menu-vender-pme.png}"><span>vender
-							pme</span></a></li>
-            <li class="nav-cel"><a th:href="@{#}"><img
-                    th:src="@{/img/menu-listas.png}"><span>informações
-							dos planos</span></a></li>
-            <li class="nav-cel  nav-active"><a
-                    th:href="@{lista_de_pospostas_forca_vendas.html}"><img
-                    th:src="@{/img/menu-listas.png}"><span>lista de
-							propostas</span></a></li>
-            <li class="nav-cel"><a
-                    th:href="@{rede-credenciada.html}"><img
-                    th:src="@{/img/menu-rede-credenciada.png}"><span>rede
-							credenciada</span></a></li>
-            <li class="nav-cel"><a
-                    th:href="@{fale-conosco-forca-vendas.html}"><img
-                    th:src="@{/img/menu-contato.png}"><span>fale conosco</span></a></li>
-        </ul>
-    </div>
-
-    <div class="header-logado">
-        <a href="#" data-activates="menu-mobile"
-           class="button-collapse pull-right"> <img
-                th:src="@{/img/menu.png}" class="icon-menu">
-        </a> <img th:src="@{/img/logo-mobile.png}" class="logo-ondonto-mobile"
-                  style="position: relative; top: 30px">
-
-        <div class="perfil-web">
-            <div class="circle-perfil">
-                <div class="data-perfil">
-                    <p class="user-name">
-                        <strong th:text="${session.usuario.nome}"></strong>
-                    </p>
-                    <p class="font-gray" th:text="${session.usuario.nomeCorretora}"></p>
-                    <a href="#" class="link-odonto">Sair</a>
-                </div>
-            </div>
-        </div>
-        <div class="pull-right space-top-30 btn-header-web">
-            <a th:href="@{venda/pf/escolhaPlanoPF.html}" type="button"
-               class="btn btnPink btn-width-custom text-right">VENDER PARA
-                PESSOA FÍSICA</a><br> <a
-                href="@{../vendas_pme/Escolha_um_plano.html}" type="button"
-                class="btn btnBlue btn-width-custom space-top-10">VENDER PME</a>
-        </div>
-    </div>
+    <div th:replace="fragments/header-corretora :: ${session.usuario.perfil== 'Corretor'} ? 'header-corretor': 'header-corretora'">&nbsp;</div>
 
     <div class="container-logado padding-logado">
 
@@ -329,17 +223,7 @@
 
     </div>
 
-    <div class="footer-logado">
-        <div class="pull-left box-footer">
-            <p>© OdontoPrev. S/A - CNPJ: 119.199/0001-51</p>
-            <p>Av. Marcos Penteado de Ulhoa Rodrigues, 939-14 andar-
-                Edifício Jatoba Torre 2-Barueri-SP CEP- 06460-040</p>
-            <p>OdontoPrev - CRO/SP n° 19009</p>
-        </div>
-        <div class="pull-right footer-img">
-            <img th:src="@{/img/ans.png}">
-        </div>
-    </div>
+    <div th:replace="fragments/footer :: footer">&nbsp;</div>
 </div>
 
 </body>
