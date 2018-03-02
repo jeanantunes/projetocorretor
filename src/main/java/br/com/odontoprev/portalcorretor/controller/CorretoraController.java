@@ -29,20 +29,15 @@ public class CorretoraController {
         UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
 
         //TODO retornar valores nas propostas
-
-
         DashboardPropostas propostaPME = dashService.ObterListaPropostaPME(FiltroStatusProposta.TODOS, usuario.getDocumento());
         DashboardPropostas propostaPF = dashService.ObterListaPropostaPF(FiltroStatusProposta.TODOS, usuario.getDocumento());
-
 
         ListaPropostas corretora = new ListaPropostas();
         List<Proposta> propostasPME = propostaPF.getPropostasPME();
         List<Proposta> propostasPF = propostaPME.getPropostasPF();
 
-
         //TODO retornar numero de corretores para aprovação
         corretora.setCountCorretoresAprovacao(2);
-
 
         Stream<Proposta> concat = Stream.concat(propostasPF.stream().peek(i -> i.setTipoPlano("PF")), propostasPME.stream().peek(i -> i.setTipoPlano("PME")));
 
@@ -54,10 +49,8 @@ public class CorretoraController {
         corretora.setPropostaPF(propostasPME);
         corretora.setPropostaPME(propostasPF);
 
-
         corretora.setTotalSucesso(aprovada.intValue());
         corretora.setTotalCriticadas(criticadas.intValue());
-
 
         double totalValorPF = propostaPF.getPropostasPF().stream().mapToDouble(Proposta::getValor).sum();
         double totalValorPME = propostaPF.getPropostasPME().stream().mapToDouble(Proposta::getValor).sum();

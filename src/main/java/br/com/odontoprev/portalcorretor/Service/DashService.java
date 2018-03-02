@@ -29,6 +29,8 @@ public class DashService {
     //@Autowired
     //private ApiManagerTokenService apiManagerTokenService;
 
+    //TODO: valores fixos para teste
+
     public DashResponse ObterPorDocumento(LocalDate dataInicio,
                                           LocalDate dataFim,
                                           String cnpjCPF) {
@@ -39,7 +41,9 @@ public class DashService {
 
         resquestMap.put("dtInicio", dataInicio.toString());
         resquestMap.put("dtFim", dataFim.toString());
-        resquestMap.put("cpf", cnpjCPF);
+        //resquestMap.put("cpf", cnpjCPF);
+
+        resquestMap.put("cpf", "38330982874");
 
         try {
             ResponseEntity<DashResponse> retorno = restTemplate.postForEntity(url, resquestMap, DashResponse.class);
@@ -53,15 +57,15 @@ public class DashService {
         }
     }
 
-
     public DashboardPropostas ObterListaPropostaPME(FiltroStatusProposta statusProposta, String documento) {
-        return getDashboardPropostas(statusProposta, documento, metodoPropostaPFList);
+        return getDashboardPropostas(statusProposta, "12311200003", metodoPropostaPMEList);
+        //return getDashboardPropostas(statusProposta, documento, metodoPropostaPFList);
     }
 
     public DashboardPropostas ObterListaPropostaPF(FiltroStatusProposta statusProposta, String documento) {
-        return getDashboardPropostas(statusProposta, documento, metodoPropostaPFList);
+        return getDashboardPropostas(statusProposta, "12311200003", metodoPropostaPFList);
+        //return getDashboardPropostas(statusProposta, documento, metodoPropostaPFList);
     }
-
 
     private DashboardPropostas getDashboardPropostas(FiltroStatusProposta statusProposta, String documento, String metodoPropostaPFList) {
         String url = requesBasetUrl + metodoPropostaPFList + "/" + statusProposta.getValue() + "/" + documento;
@@ -78,12 +82,9 @@ public class DashService {
                 return new DashboardPropostas();
 
             }
-
         } catch (Exception e) {
             e.printStackTrace();
             return new DashboardPropostas();
         }
     }
-
-
 }
