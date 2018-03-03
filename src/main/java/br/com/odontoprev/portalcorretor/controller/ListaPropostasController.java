@@ -21,7 +21,7 @@ public class ListaPropostasController {
     @Autowired
     DashService dashService;
 
-    @RequestMapping(value = "/lista-propostas", method = RequestMethod.GET)
+    @RequestMapping(value = "lista-propostas", method = RequestMethod.GET)
     public ModelAndView home(HttpSession session) {
         UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
 
@@ -41,7 +41,7 @@ public class ListaPropostasController {
         listaPropostas.setTotal(dashboardPropostasPF.size() + dashboardPropostasPME.size());
 
 
-        return new ModelAndView("/lista-propostas", "listaPropostas", listaPropostas);
+        return new ModelAndView("lista-propostas", "listaPropostas", listaPropostas);
     }
 
 }

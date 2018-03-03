@@ -6,7 +6,7 @@
 	<groupId>br.com.odontoprev</groupId>
 	<artifactId>est-portalcorretor-web</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<name>Portal Corretor</name>
 	<description>Portal Corretores</description>

@@ -22,7 +22,7 @@ public class ForcaVendaController {
     @Autowired
     DashService dashService;
 
-    @RequestMapping(value = "/forcavenda/home", method = RequestMethod.GET)
+    @RequestMapping(value = "forcavenda/home", method = RequestMethod.GET)
     public ModelAndView home(HttpSession session) {
         UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
 
@@ -58,14 +58,14 @@ public class ForcaVendaController {
         corretora.setTotalValorPME(totalValorPME);
         corretora.setPercenteValorPME(  totalValorPME > totalValorPF ? 100:  totalValorPME  == 0 ? 0 : 50 );
 
-        return new ModelAndView("/forcavenda/home", "corretor", corretora);
+        return new ModelAndView("forcavenda/home", "corretor", corretora);
 
 
     }
 
-    @RequestMapping("/forcavenda/cadastro/editar")
+    @RequestMapping("forcavenda/cadastro/editar")
     public ModelAndView index() {
-        ModelAndView modelAndView = new ModelAndView("/forcavenda/cadastro/editar");
+        ModelAndView modelAndView = new ModelAndView("forcavenda/cadastro/editar");
         return modelAndView;
     }
 

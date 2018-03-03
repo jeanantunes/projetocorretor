@@ -2,7 +2,6 @@ package br.com.odontoprev.portalcorretor.controller;
 
 import br.com.odontoprev.portalcorretor.model.Cadastro;
 import br.com.odontoprev.portalcorretor.model.VendaPf;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -29,10 +28,10 @@ public class VendaPfController {
     	vendaPf.setNumeroTitularPlano("12312313");
     	vendaPf.setSexo("male");
     	
-        return new ModelAndView("/venda/pf/titularDoPlanoPF", "vendaPf", vendaPf);
+        return new ModelAndView("venda/pf/titularDoPlanoPF", "vendaPf", vendaPf);
     }
 
-    @RequestMapping(value = "/venda/pf/cnpj", method = RequestMethod.GET)
+    @RequestMapping(value = "venda/pf/cnpj", method = RequestMethod.GET)
     public ResponseEntity<Cadastro> cnpj(@RequestParam("cnpj") String cnpj) {
 
         Cadastro cadastro = new Cadastro();
@@ -50,24 +49,24 @@ public class VendaPfController {
         return cnpj.equals("23.423.423/423") ? ResponseEntity.ok(cadastro) : ResponseEntity.notFound().build();
     }
 
-    @RequestMapping(value = "/venda/pf/cep", method = RequestMethod.GET)
+    @RequestMapping(value = "venda/pf/cep", method = RequestMethod.GET)
     public ModelAndView cep(@ModelAttribute("cadastro") Cadastro cadastro) {
         return new ModelAndView("cadastro/home", "cadastro", cadastro);
     }
 
-    @RequestMapping(value = "/venda/pf/cadastrar", method = RequestMethod.POST)
+    @RequestMapping(value = "venda/pf/cadastrar", method = RequestMethod.POST)
     public ModelAndView cadastrar(@ModelAttribute("cadastro") Cadastro cadastro) {
-        return new ModelAndView("/venda/pf/cadastrar/termosCondicoes", "cadastro", cadastro);
+        return new ModelAndView("venda/pf/cadastrar/termosCondicoes", "cadastro", cadastro);
     }
 
-    @RequestMapping(value = "/venda/pf/termosCondicoes", method = RequestMethod.POST)
+    @RequestMapping(value = "venda/pf/termosCondicoes", method = RequestMethod.POST)
     public ModelAndView termosCondicoes(@ModelAttribute("cadastro") Cadastro cadastro) {
-        return new ModelAndView("/venda/pf/bemvindo", "cadastro", cadastro);
+        return new ModelAndView("venda/pf/bemvindo", "cadastro", cadastro);
     }
 
-    @RequestMapping(value = "/venda/pf/bemvindo", method = RequestMethod.POST)
+    @RequestMapping(value = "venda/pf/bemvindo", method = RequestMethod.POST)
     public ModelAndView bemvindo(@ModelAttribute("cadastro") Cadastro cadastro) {
-        return new ModelAndView("/venda/pf/bemvindo", "cadastro", cadastro);
+        return new ModelAndView("venda/pf/bemvindo", "cadastro", cadastro);
     }
 
 }

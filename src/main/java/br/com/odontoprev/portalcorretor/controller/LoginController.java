@@ -11,21 +11,21 @@ import java.io.IOException;
 @Controller
 public class LoginController {
 
-    @RequestMapping("/")
+    @RequestMapping("")
     public void home(HttpSession session, HttpServletResponse resp) throws IOException {
         UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
         if (usuario == null) {
-            resp.sendRedirect("/login");
+            resp.sendRedirect("login");
         } else if (usuario.getPerfil().equals("Corretor")) {
-            resp.sendRedirect("/forcavenda/home");
+            resp.sendRedirect("forcavenda/home");
         } else {
-            resp.sendRedirect("/corretora/home");
+            resp.sendRedirect("corretora/home");
         }
     }
 
-    @RequestMapping("/logout")
+    @RequestMapping("logout")
     public String logout(HttpSession session) {
         session.invalidate();
-        return "/login";
+        return "login";
     }
 }

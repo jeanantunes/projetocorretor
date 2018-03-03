@@ -7,9 +7,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class RedeCredenciadaController {
 
-    @RequestMapping("/rede-credenciada")
+    @RequestMapping("rede-credenciada")
     public ModelAndView index() {
-        ModelAndView modelAndView = new ModelAndView("/rede-credenciada");
+        ModelAndView modelAndView = new ModelAndView("rede-credenciada");
         return modelAndView;
     }
 

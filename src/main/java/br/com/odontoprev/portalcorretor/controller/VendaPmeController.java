@@ -41,12 +41,12 @@ public class VendaPmeController {
         return cnpj.equals("23.423.423/423") ? ResponseEntity.ok(vendaPme) : ResponseEntity.notFound().build();
     }
 
-    @RequestMapping(value = "/cadastrarVendaPme", method = RequestMethod.POST)
+    @RequestMapping(value = "cadastrarVendaPme", method = RequestMethod.POST)
     public ModelAndView cadastrarVendaPme(@ModelAttribute("vendaPme") VendaPme vendaPme) {
         return new ModelAndView("venda/pme/Add_beneficiario_dependente", "vendaPme", vendaPme);
     }
 
-    @RequestMapping(value = "/cadastrarBeneficiario", method = RequestMethod.POST)
+    @RequestMapping(value = "cadastrarBeneficiario", method = RequestMethod.POST)
     public ModelAndView cadastrarBeneficiario(@ModelAttribute("beneficiario") Beneficiario beneficiario) {
         return new ModelAndView("venda/pme/confirmacao_proposta_pme", "beneficiario", beneficiario);
         //TODO Confirmar retorno

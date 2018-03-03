@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class CadastroController {
 
-    @RequestMapping(value = "/cadastro", method = RequestMethod.GET)
+    @RequestMapping(value = "cadastro", method = RequestMethod.GET)
     public ModelAndView home() {
         Cadastro cadastro = new Cadastro();
         cadastro.setDono(true);
@@ -21,7 +21,7 @@ public class CadastroController {
     }
 
 
-    @RequestMapping(value = "/cnpj", method = RequestMethod.GET)
+    @RequestMapping(value = "cnpj", method = RequestMethod.GET)
     public ResponseEntity<Cadastro> cnpj(@RequestParam("cnpj") String cnpj) {
 
         Cadastro cadastro = new Cadastro();
@@ -39,7 +39,7 @@ public class CadastroController {
         return cnpj.equals("23.423.423/423") ? ResponseEntity.ok(cadastro) : ResponseEntity.notFound().build();
     }
 
-    @RequestMapping(value = "/cep", method = RequestMethod.GET)
+    @RequestMapping(value = "cep", method = RequestMethod.GET)
     public ModelAndView cep(@ModelAttribute("cadastro") Cadastro cadastro) {
 
 
@@ -47,18 +47,18 @@ public class CadastroController {
     }
 
 
-    @RequestMapping(value = "/cadastrar", method = RequestMethod.POST)
+    @RequestMapping(value = "cadastrar", method = RequestMethod.POST)
     public ModelAndView cadastrar(@ModelAttribute("cadastro") Cadastro cadastro) {
         return new ModelAndView("cadastro/termosCondicoes", "cadastro", cadastro);
     }
 
 
-    @RequestMapping(value = "/termosCondicoes", method = RequestMethod.POST)
+    @RequestMapping(value = "termosCondicoes", method = RequestMethod.POST)
     public ModelAndView termosCondicoes(@ModelAttribute("cadastro") Cadastro cadastro) {
         return new ModelAndView("cadastro/bemvindo", "cadastro", cadastro);
     }
 
-    @RequestMapping(value = "/bemvindo", method = RequestMethod.POST)
+    @RequestMapping(value = "bemvindo", method = RequestMethod.POST)
     public ModelAndView bemvindo(@ModelAttribute("cadastro") Cadastro cadastro) {
         return new ModelAndView("cadastro/bemvindo", "cadastro", cadastro);
     }

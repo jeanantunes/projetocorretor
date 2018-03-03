@@ -24,7 +24,7 @@ public class CorretoraController {
     DashService dashService;
 
 
-    @RequestMapping(value = "/corretora/home", method = RequestMethod.GET)
+    @RequestMapping(value = "corretora/home", method = RequestMethod.GET)
     public ModelAndView home(HttpSession session) {
         UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
 
@@ -62,17 +62,17 @@ public class CorretoraController {
         corretora.setPercenteValorPME(totalValorPME > totalValorPF ? 100 : totalValorPME == 0 ? 0 : 50);
 
 
-        return new ModelAndView("/corretora/home", "corretora", corretora);
+        return new ModelAndView("corretora/home", "corretora", corretora);
     }
 
-    @RequestMapping(value = "/corretora/cadastro/editar", method = RequestMethod.GET)
+    @RequestMapping(value = "corretora/cadastro/editar", method = RequestMethod.GET)
     public ModelAndView Editar() {
-        return new ModelAndView("/corretora/cadastro/editar");
+        return new ModelAndView("corretora/cadastro/editar");
     }
 
-    @RequestMapping(value = "/corretora/equipe/home", method = RequestMethod.GET)
+    @RequestMapping(value = "corretora/equipe/home", method = RequestMethod.GET)
     public ModelAndView Equipe() {
-        return new ModelAndView("/corretora/equipe/home");
+        return new ModelAndView("corretora/equipe/home");
     }
 
 
