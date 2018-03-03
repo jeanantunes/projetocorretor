@@ -597,7 +597,7 @@ Remover cones arredondados*/
 	}
 
 
-	/* Adicione espaço ao navegador e ao Windows direito.*/
+	/* Adicione espaï¿½o ao navegador e ao Windows direito.*/
 	.main{
 		padding: 10px 10px 0 10px;
 	}
@@ -606,7 +606,7 @@ Remover cones arredondados*/
 
 	
 
-/* exibição do lado pequeno / médio */
+/* exibiï¿½ï¿½o do lado pequeno / mï¿½dio */
 	@media (min-width: 768px) {
 
 
@@ -614,13 +614,13 @@ Remover cones arredondados*/
 		/*Permitir que o principal seja ao lado de Nav*/
 		.main{
 			position: absolute;
-			width: calc(100% - 40px); /*mantém 100% menos o tamanho do nav*/
+			width: calc(100% - 40px); /*mantï¿½m 100% menos o tamanho do nav*/
 			margin-left: 40px;
 			float: right
 		}
 
 
-		/*Permite que a barra de navegação seja mostrada no mouseover*/
+		/*Permite que a barra de navegaï¿½ï¿½o seja mostrada no mouseover*/
 
 		nav.sidebar:hover + .main{
 			margin-left: 200px;
@@ -642,14 +642,14 @@ Remover cones arredondados*/
 			margin-left: 0px;
 		}
 
-		/*Ícones do centro*/
+		/*ï¿½cones do centro*/
 
 		nav.sidebar a{
 			padding-right: 13px;
 		}
 
 
-		/*adiciona top de borda à primeira caixa de navegação */
+		/*adiciona top de borda ï¿½ primeira caixa de navegaï¿½ï¿½o */
 
 		nav.sidebar .navbar-nav > li:first-child{
 			border-top: 1px #2D6FCE solid;
@@ -949,7 +949,7 @@ Remover cones arredondados*/
 	color: white;
 	border-radius: 25px;
 }
-/*=================================================RODAPÉ================================================================*/
+/*=================================================RODAPï¿½================================================================*/
 
 .title-vender-botao{
 	color:#2D6FCE;
@@ -963,7 +963,7 @@ Remover cones arredondados*/
 	  margin-left: 14%;
 	  color: #656565;
 }
-/*=================================================RODAPÉ================================================================*/
+/*=================================================RODAPï¿½================================================================*/
 
 
 
@@ -2067,7 +2067,7 @@ label {
 }
 
 
-/* link que ainda não foi visitado */
+/* link que ainda nï¿½o foi visitado */
 
 a:link {
 	color:#fff;
@@ -2428,7 +2428,7 @@ button.picker__today:focus,button.picker__clear:focus,button.picker__close:focus
 .data-perfil {
     left: 80px !important;
     top: 17px!important;
-    width: 140px!important;
+    width: 400px!important;
 }
 
  }
