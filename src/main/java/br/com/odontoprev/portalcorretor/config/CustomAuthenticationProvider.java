@@ -1,6 +1,6 @@
 package br.com.odontoprev.portalcorretor.config;
 
-import br.com.odontoprev.portalcorretor.Service.LoginService;
+import br.com.odontoprev.portalcorretor.service.LoginService;
 import br.com.odontoprev.portalcorretor.model.UsuarioSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -33,12 +33,16 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
     }
 
     private UsuarioSession autenticarServico(String name, String password) {
-        UsuarioSession a =  new UsuarioSession();
-        a.setNomeCorretora("TESTE CORRETORA");
-        a.setPerfil("Corretora");
-        a.setDocumento("12311200003");
-        return a;
-        //return loginservice.Autenticar(name, password);
+        name="03136742000137";
+        password="odonto2018";
+
+        //UsuarioSession a =  new UsuarioSession();
+        //a.setNomeCorretora("TESTE CORRETOR!!!!");
+        //a.setPerfil("Corretor");
+        //a.setDocumento("03136742000137");
+        //return a;
+
+        return loginservice.Autenticar(name, password);
     }
 
     @Override

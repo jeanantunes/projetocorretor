@@ -1,4 +1,4 @@
-package br.com.odontoprev.portalcorretor.Service.dto;
+package br.com.odontoprev.portalcorretor.service.dto;
 
 public class LoginResponse {
 
