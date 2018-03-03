@@ -12,15 +12,11 @@ import br.com.odontoprev.portalcorretor.sendmail.SendMail;
 
 @Controller
 public class FaleConoscoController {
-<<<<<<< HEAD
 
 	@Autowired
 	SendMail sendMail;
 
     @RequestMapping("/fale-conosco")
-=======
-    @RequestMapping("fale-conosco")
->>>>>>> a74a8382ca2688aa4c30eff604818e1b2b872190
     public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView("fale-conosco");
         return modelAndView;
