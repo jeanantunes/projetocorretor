@@ -8,6 +8,7 @@ import br.com.odontoprev.portalcorretor.model.ListaPropostas;
 import br.com.odontoprev.portalcorretor.model.UsuarioSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -73,6 +74,36 @@ public class CorretoraController {
     @RequestMapping(value = "corretora/equipe/home", method = RequestMethod.GET)
     public ModelAndView Equipe() {
         return new ModelAndView("corretora/equipe/home");
+    }
+    
+    @RequestMapping(value = "alertas/{statusProposta}", method = RequestMethod.GET)
+    public ModelAndView Proposta(@PathVariable String statusProposta, HttpSession session) {
+    	    	
+    	 UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
+
+         ListaPropostas listaPropostas = new ListaPropostas();
+         
+         DashboardPropostas propostaPME = null;
+         
+         if(statusProposta.toUpperCase().equals("APROVADO")) {
+        	 propostaPME = dashService.ObterListaPropostaPME(FiltroStatusProposta.APROVADO, usuario.getDocumento());
+         } else if(statusProposta.toUpperCase().equals("CRITICADO")) {
+        	 propostaPME = dashService.ObterListaPropostaPME(FiltroStatusProposta.CRITICADO, usuario.getDocumento());
+         }
+         
+         List<Proposta> dashboardPropostasPME = propostaPME.getDashboardPropostasPME();
+         listaPropostas.setPropostaPME(dashboardPropostasPME);
+         listaPropostas.setTotalPME(dashboardPropostasPME.size());
+
+         DashboardPropostas propostaPF = dashService.ObterListaPropostaPF(FiltroStatusProposta.APROVADO, usuario.getDocumento());
+         List<Proposta> dashboardPropostasPF = propostaPF.getDashboardPropostasPF();
+         listaPropostas.setPropostaPF(dashboardPropostasPF);
+         listaPropostas.setTotalPF(dashboardPropostasPF.size());
+
+         listaPropostas.setTotal(dashboardPropostasPF.size() + dashboardPropostasPME.size());
+
+         return new ModelAndView("lista-propostas", "listaPropostas", listaPropostas);
+    	
     }
 
 
