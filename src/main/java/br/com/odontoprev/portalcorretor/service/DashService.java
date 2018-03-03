@@ -1,15 +1,25 @@
 package br.com.odontoprev.portalcorretor.service;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
 import br.com.odontoprev.portalcorretor.service.dto.DashResponse;
 import br.com.odontoprev.portalcorretor.service.dto.DashboardPropostas;
 import br.com.odontoprev.portalcorretor.service.dto.Equipe;
 import br.com.odontoprev.portalcorretor.service.entity.FiltroStatusProposta;
-import org.springframework.http.*;
-import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
-
-import java.time.LocalDate;
-import java.util.*;
 
 @Service
 public class DashService {
@@ -35,8 +45,8 @@ public class DashService {
 
     private String metodoPropostasCriticadas = "dashboardPropostaPME/buscaPorCriticaPME_CPF/";
 
-    //@Autowired
-    //private ApiManagerTokenService apiManagerTokenService;
+    @Autowired
+    private ApiManagerTokenService apiManagerTokenService;
 
     //TODO: valores fixos para teste
 
@@ -76,7 +86,7 @@ public class DashService {
         RestTemplate restTemplate = new RestTemplate();
         try {
             HttpHeaders headers = new HttpHeaders();
-            //headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
+            headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
             HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
             ResponseEntity<DashboardPropostas> retorno = restTemplate.exchange(url, HttpMethod.GET, entity, DashboardPropostas.class);
 
