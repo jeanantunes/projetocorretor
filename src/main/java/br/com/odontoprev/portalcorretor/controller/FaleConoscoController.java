@@ -6,7 +6,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class FaleConoscoController {
-    @RequestMapping("/fale-conosco")
+    @RequestMapping("fale-conosco")
     public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView("fale-conosco");
         return modelAndView;

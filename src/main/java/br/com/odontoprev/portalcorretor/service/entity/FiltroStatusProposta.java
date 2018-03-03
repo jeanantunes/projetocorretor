@@ -1,6 +1,4 @@
-package br.com.odontoprev.portalcorretor.Service.entity;
-
-import groovy.transform.ToString;
+package br.com.odontoprev.portalcorretor.service.entity;
 
 public enum FiltroStatusProposta {
     TODOS(0),

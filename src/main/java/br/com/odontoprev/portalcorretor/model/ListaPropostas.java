@@ -1,6 +1,6 @@
 package br.com.odontoprev.portalcorretor.model;
 
-import br.com.odontoprev.portalcorretor.Service.dto.Proposta;
+import br.com.odontoprev.portalcorretor.service.dto.Proposta;
 
 import java.util.List;
 

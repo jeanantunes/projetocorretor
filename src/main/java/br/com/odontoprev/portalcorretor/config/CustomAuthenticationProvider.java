@@ -1,6 +1,6 @@
 package br.com.odontoprev.portalcorretor.config;
 
-import br.com.odontoprev.portalcorretor.Service.LoginService;
+import br.com.odontoprev.portalcorretor.service.LoginService;
 import br.com.odontoprev.portalcorretor.model.UsuarioSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
