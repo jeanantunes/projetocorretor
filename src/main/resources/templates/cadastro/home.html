@@ -18,8 +18,8 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#souDono").show();
-            $("#naoSouDono").hide();
+            $("#souDono").hide();
+            $("#naoSouDono").show();
 
             $("#yes").click(function () {
                 $(".label-yes").css("color", "#1974CE");
@@ -78,11 +78,11 @@
             <div class="col-xs-12">
                 <div>
                     <div class="inline space-right space-top-30">
-                        <input type="radio" id="no" name="radio-group" th:field="*{dono}" th:value="${false}">
+                        <input type="radio" id="no" name="radio-group" checked th:field="*{dono}" th:value="${true}">
                         <label for="no" class="label-no text form-group">Não sou dono de corretora</label>
                     </div>
                     <div class="inline">
-                        <input type="radio" id="yes" name="radio-group" checked th:field="*{dono}" th:value="${true}" >
+                        <input type="radio"  id="yes" name="radio-group"  disabled="disabled" th:field="*{dono}" th:value="${false}"  >
                         <label for="yes" class="label-yes form-group">Sou dono de corretora</label>
                     </div>
                 </div>
@@ -99,7 +99,7 @@
                             </div>
                         </div>
                         <div class="col-xs-12">
-                            <div class="form-group inline width-form1 space-right space-top-30">
+                            <div class="form-group inline width-form2 space-right space-top-30">
                                 <label class="label-nomeCadastroNaoSouDono">Confirme seu nome </label>
                                 <input type="text" id="ConfirmeNomeCadastroNaoSouDono"
                                        class="nomeCadastroNaoSouDono form-control">
@@ -109,26 +109,54 @@
                                 <input type="text" id="ConfirmecelularCadastroNaoSouDono"
                                        class="celularCadastroNaoSouDono form-control">
                             </div>
-                            <div class="form-group inline width-form2">
+                            <div class="form-group inline width-form2 space-right">
                                 <label class="label-emailCadastroNaoSouDono">Confirme seu e-mail</label>
                                 <input type="text" id="ConfirmeEmailCadastroNaoSouDono"
                                        class="emailCadastroNaoSouDono form-control">
                             </div>
                         </div>
+                             <div class="col-xs-12">
+                            <div class="form-group inline width-form2 space-right space-top-30">
+                                <label class="label-cnpjCorretoraNaoSouDono">CNPJ da Corretora </label>
+                                <input type="text" id="cnpjCorretoraCadastroNaoSouDono"
+                                       class="cnpjCorretoraNaoSouDono form-control">
+                            </div>
+                            <div class="form-group inline width-form2 space-right">
+                                <label class="label-corretoraNaoSouDono">Corretora</label>
+                                <input type="text" id="corretoraCadastroNaoSouDono"
+                                       class="corretoraCadastroNaoSouDono form-control">
+                            </div>
+                            
+                        </div>
                         <div class="col-xs-12 ">
                             <h4 class="labelCadastroDeSenhaDonoDeCorretora sub-title"> SENHA </h4>
-                            <div class="form-group width-form3 space-top-40">
+                            <div class="form-group inline width-form3">
+                            		
                                 <label class="label-senhaCadastroNaoSouDono">Crie uma senha</label>
                                 <input type="password" id="senhaCadastroNaoSouDono"
                                        class=" senhaCadastroNaoSouDono form-control">
                                 <img src="./img/senha-1@2x.png" id="icone-revelar" class="icone-revelar-senha"
                                      align="right">
                                 <div class="row">
-                                    <div class="col-xs-12 space-top-10">
+                                    <!-- <div class="col-xs-12 space-top-10">
                                         <p class="font-blue r-bold">Sua senha deve ter no mínimo 8 dígitos.</p>
-                                    </div>
+                                    </div> -->
                                 </div>
-
+							</div>
+							<div class="form-group inline  width-form3">
+                            		
+                                <label class="label-senhaConfirmaCadastroNaoSouDono">Confirme sua senha</label>
+                                <input type="password" id="senhaConfirmeCadastroNaoSouDono"
+                                       class=" senhaConfirmeCadastroNaoSouDono form-control">
+                                <img src="./img/senha-1@2x.png" id="icone-revelar" class="icone-revelar-senha"
+                                     align="right">
+                                <div class="row">
+                                    <!-- <div class="col-xs-12 space-top-10">
+                                        <p class="font-blue r-bold">Sua senha deve ter no mínimo 8 dígitos.</p>
+                                    </div> -->
+                                </div>
+							</div>
+							<div class="form-group inline width-form1 space-top-40">
                                 <input type="submit" value="CONTINUAR"
                                        class="btn btnBlue btn-width-custom space-top-60 uppercase"
                                        style="color:#fff;"/>
