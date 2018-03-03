@@ -1,9 +1,9 @@
 package br.com.odontoprev.portalcorretor.controller;
 
-import br.com.odontoprev.portalcorretor.Service.DashService;
-import br.com.odontoprev.portalcorretor.Service.dto.DashboardPropostas;
-import br.com.odontoprev.portalcorretor.Service.dto.Proposta;
-import br.com.odontoprev.portalcorretor.Service.entity.FiltroStatusProposta;
+import br.com.odontoprev.portalcorretor.service.DashService;
+import br.com.odontoprev.portalcorretor.service.dto.DashboardPropostas;
+import br.com.odontoprev.portalcorretor.service.dto.Proposta;
+import br.com.odontoprev.portalcorretor.service.entity.FiltroStatusProposta;
 import br.com.odontoprev.portalcorretor.model.ListaPropostas;
 import br.com.odontoprev.portalcorretor.model.UsuarioSession;
 import org.springframework.beans.factory.annotation.Autowired;

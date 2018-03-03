@@ -1,4 +1,4 @@
-package br.com.odontoprev.portalcorretor.Service;
+package br.com.odontoprev.portalcorretor.service;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import br.com.odontoprev.portalcorretor.Service.dto.LoginResponse;
+import br.com.odontoprev.portalcorretor.service.dto.LoginResponse;
 
 
 @Service

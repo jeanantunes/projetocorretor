@@ -2,7 +2,7 @@ package br.com.odontoprev.portalcorretor.model;
 
 import java.io.Serializable;
 
-import br.com.odontoprev.portalcorretor.Service.dto.LoginResponse;
+import br.com.odontoprev.portalcorretor.service.dto.LoginResponse;
 
 
 public class UsuarioSession implements Serializable {

@@ -1,9 +1,9 @@
-package br.com.odontoprev.portalcorretor.Service;
+package br.com.odontoprev.portalcorretor.service;
 
-import br.com.odontoprev.portalcorretor.Service.dto.DashResponse;
-import br.com.odontoprev.portalcorretor.Service.dto.DashboardPropostas;
-import br.com.odontoprev.portalcorretor.Service.dto.Equipe;
-import br.com.odontoprev.portalcorretor.Service.entity.FiltroStatusProposta;
+import br.com.odontoprev.portalcorretor.service.dto.DashResponse;
+import br.com.odontoprev.portalcorretor.service.dto.DashboardPropostas;
+import br.com.odontoprev.portalcorretor.service.dto.Equipe;
+import br.com.odontoprev.portalcorretor.service.entity.FiltroStatusProposta;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -32,6 +32,8 @@ public class DashService {
     private String metodoSuaEquipe_1 = "forcavendastatus/";
 
     private String metodoSuaEquipe_2 = "/corretora/";
+
+    private String metodoPropostasCriticadas = "dashboardPropostaPME/buscaPorCriticaPME_CPF/";
 
     //@Autowired
     //private ApiManagerTokenService apiManagerTokenService;
@@ -112,7 +114,7 @@ public class DashService {
 
         RestTemplate restTemplate = new RestTemplate();
         Map<String, String> resquestMap = new HashMap<>();
-        String url = requesBasetUrl + metodoSuaEquipe_1 + status  + metodoSuaEquipe_2 + codigoEmpresa;
+        String url = requesBasetUrl + metodoSuaEquipe_1 + status + metodoSuaEquipe_2 + codigoEmpresa;
         List<Equipe> result = new ArrayList<>();
         try {
             HttpHeaders headers = new HttpHeaders();
@@ -132,7 +134,27 @@ public class DashService {
         }
     }
 
+    public void ObterPropostasCriticadas(String documento) {
+
+        String url = requesBasetUrl + metodoPropostasCriticadas + documento;
+        RestTemplate restTemplate = new RestTemplate();
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            //headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
+            HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
+            ResponseEntity<DashboardPropostas> retorno = restTemplate.exchange(url, HttpMethod.GET, entity, DashboardPropostas.class);
+
+            if (retorno.getStatusCode() == HttpStatus.OK) {
+                //return retorno.getBody();
+            } else {
+                //
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            //return new DashboardPropostas();
+        }
 
 
-
+    }
 }
