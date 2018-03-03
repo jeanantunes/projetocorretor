@@ -36,7 +36,7 @@ public class LoginService {
 
         try {
         	HttpHeaders headers = new HttpHeaders();
-        	headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());            
+        	headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
             
             HttpEntity<Map<String,String>> entityReq = new HttpEntity<>(loginMap, headers);
             
