@@ -33,16 +33,16 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
     }
 
     private UsuarioSession autenticarServico(String name, String password) {
-        name="03136742000137";
-        password="odonto2018";
+//        name="03136742000137";
+//        password="odonto2018";
 
-        //UsuarioSession a =  new UsuarioSession();
-        //a.setNomeCorretora("TESTE CORRETOR!!!!");
-        //a.setPerfil("Corretor");
-        //a.setDocumento("03136742000137");
-        //return a;
+        UsuarioSession a =  new UsuarioSession();
+        a.setNomeCorretora("TESTE CORRETORA!!!!");
+        a.setPerfil("Corretora");
+        a.setDocumento("03136742000137");
+        return a;
 
-        return loginservice.Autenticar(name, password);
+        //return loginservice.Autenticar(name, password);
     }
 
     @Override
