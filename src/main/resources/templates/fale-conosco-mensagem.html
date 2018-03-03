@@ -56,37 +56,35 @@
         });
     </script>
 
-    <script type="text/javascript">
+ <script type="text/javascript">
 
-        $(document).ready(function () {
+ $(document).ready(function() {
 
-            $(".btn-odonto-pink-primary").css("background-color", "#D9487F");
-            $(".btn-odonto-pink-primary").css("border-color", "#D9487F");
-            $(".btn-odonto-pink-primary").css("color", "#fff");
+   $(".btn-odonto-pink-primary").css("background-color", "#D9487F");
+      $(".btn-odonto-pink-primary").css("border-color", "#D9487F");
+             $(".btn-odonto-pink-primary").css("color", "#fff");
 
-            $('.btn-odonto-pink-primary').click(function () {
-                $(".btn-odonto-pink-primary").css("background-color", "#D9487F");
-                $(".btn-odonto-pink-primary").css("border-color", "#D9487F");
-                $(".btn-odonto-pink-primary").css("color", "#fff");
-                $(".btn-odonto-blue-primary").css("background-color", "#fff");
-                $(".btn-odonto-blue-primary").css("color", "#2D6FCE");
+        $('.btn-odonto-pink-primary').click(function(){
+             $(".btn-odonto-pink-primary").css("background-color", "#D9487F");
+             $(".btn-odonto-pink-primary").css("border-color", "#D9487F");
+             $(".btn-odonto-pink-primary").css("color", "#fff");
+             $(".btn-odonto-blue-primary").css("background-color", "#fff");
+             $(".btn-odonto-blue-primary").css("color", "#2D6FCE");
 
-            });
+          });
 
+        $('.btn-odonto-blue-primary').click(function(){
+             $(".btn-odonto-blue-primary").css("background-color", "#2D6FCE");
+             $(".btn-odonto-blue-primary").css("border-color", "#2D6FCE");
+             $(".btn-odonto-blue-primary").css("color", "#fff");
+             $(".btn-odonto-pink-primary").css("background-color", "#fff");
+             $(".btn-odonto-pink-primary").css("color", "#D9487F");
 
-            $('.btn-odonto-blue-primary').click(function () {
-                $(".btn-odonto-blue-primary").css("background-color", "#2D6FCE");
-                $(".btn-odonto-blue-primary").css("border-color", "#2D6FCE");
-                $(".btn-odonto-blue-primary").css("color", "#fff");
-                $(".btn-odonto-pink-primary").css("background-color", "#fff");
-                $(".btn-odonto-pink-primary").css("color", "#D9487F");
+          });
 
-            });
+          });
 
-
-        });
-
-    </script>
+ </script>
 
 </head>
 
@@ -100,38 +98,40 @@
 
     <div class="container-logado padding-logado">
 
-        <div class="row">
-            <div class="col-xs-12">
-                <h4 class="uppercase font-blue title-section-odonto">fale conosco
-                    <h4>
-                        <p class="subtitle-odonto nomargin">Escolha um assunto</p>
+           <div class="row">
+              <div class="col-xs-12">
+                 <h4 class="uppercase font-blue title-section-odonto">fale conosco 1941<h4> 
+                 <p class="subtitle-odonto nomargin"></p>              
+              </div>
             </div>
-        </div>
 
-        <div class="row space-top-30">
-            <div class="col-xs-12">
-                <a href="/fale-conosco-duvidas" type="button"
-                   class="uppercase btn btnBlue btn-width-custom space-top-10">D&uacute;vidas</a>
-            </div>
-        </div>
-
-        <div class="row space-top-10">
-            <div class="col-xs-12">
-                <a href="/fale-conosco-sugestoes" type="button"
-                   class="uppercase btn btnBlue btn-width-custom space-top-10">Sugest&otilde;es</a>
-            </div>
-        </div>
-
-        <div class="row space-top-10">
-            <div class="col-xs-12">
-                <a href="/fale-conosco-suporte" type="button"
-                   class="uppercase btn btnBlue btn-width-custom space-top-10">Suporte</a>
-            </div>
-        </div>
+			<form action="#" th:action="@{/fale-conosco-mensagem}"  th:object="${faleConoscoForcaVendasModel}"  method="POST">
+	            <div class="row space-top-30">
+	                <div class="col-xs-12">
+		                  <div class="form-group width-form1">
+		                      <p>Tipo da Mensagem: <label class="label-mensagem" th:text="*{tipoMensagem}"></label></p>
+		                      <p>Mensagem:: <textarea th:field="*{mensagem}" class="textarea-odonto form-control mensagem" id="" rows="6" style="resize: none !important;"></textarea></p>
+		                  </div>
+	                </div>
+	            </div>
+	
+	            <div class="row space-top-10">
+	                <div class="col-xs-12">
+	                    <button type="submit" class="uppercase btn btnBlue btn-width-custom space-top-10">enviar</button>  
+	                </div>  
+	            </div>
+			</form>
 
     </div>
 
-    <div th:replace="fragments/footer :: footer">&nbsp;</div>
+   <div class="footer-logado">
+      <div class="pull-left box-footer">
+          <p>© OdontoPrev. S/A - CNPJ: 119.199/0001-51</p>
+          <p>Av. Marcos Penteado de Ulhoa Rodrigues, 939-14 andar-Edifício Jatoba Torre 2-Barueri-SP CEP- 06460-040</p>
+          <p>OdontoPrev - CRO/SP n° 19009</p>
+      </div>
+      <div class="pull-right footer-img"><img src="../../../img/ans.png" ></div>
+    </div>
 </div>
 
 </body>
