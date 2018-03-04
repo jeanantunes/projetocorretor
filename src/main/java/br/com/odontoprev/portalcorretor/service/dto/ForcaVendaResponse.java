@@ -10,6 +10,7 @@ public class ForcaVendaResponse implements Serializable {
     private long id;
     private String mensagem;
 
+    public ForcaVendaResponse(){}
     public ForcaVendaResponse(long id) {
         this.id = id;
     }

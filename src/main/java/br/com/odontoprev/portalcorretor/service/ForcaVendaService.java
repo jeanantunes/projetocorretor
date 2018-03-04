@@ -2,6 +2,7 @@ package br.com.odontoprev.portalcorretor.service;
 
 import br.com.odontoprev.portalcorretor.service.dto.ForcaVenda;
 import br.com.odontoprev.portalcorretor.service.dto.ForcaVendaResponse;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
@@ -9,7 +10,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ForcaVendaService {
@@ -31,8 +34,14 @@ public class ForcaVendaService {
         try {
             HttpHeaders headers = new HttpHeaders();
             headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
-            HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
-            ResponseEntity<ForcaVendaResponse> retorno = restTemplate.exchange(url, HttpMethod.POST, entity, ForcaVendaResponse.class);
+            headers.setContentType(MediaType.APPLICATION_JSON);
+
+            ObjectMapper mapper = new ObjectMapper();
+            String object = mapper.writeValueAsString(forcaVenda);
+
+            HttpEntity<String> entityReq = new HttpEntity<>(object, headers);
+
+            ResponseEntity<ForcaVendaResponse> retorno = restTemplate.exchange(url, HttpMethod.POST, entityReq, ForcaVendaResponse.class);
 
             if (retorno.getStatusCode() == HttpStatus.OK) {
                 result = retorno.getBody();

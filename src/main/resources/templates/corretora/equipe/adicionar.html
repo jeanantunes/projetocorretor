@@ -105,8 +105,8 @@
                 <h3 class="uppercase title-odonto font-blue nomargin uppercase">ADICIONAR NOVA PESSOA na EQUIPE</h3>
 
                 <p class="text-silver space-top-15">
-                    Infome os dados abaixo, quando a força de venda cadastrar no sistema de venda OdontoPrev ele serÃ¡
-                    automÃ¡ticamente adicionado a sua corretora. </p>
+                    Infome os dados abaixo, quando a força de venda cadastrar no sistema de venda OdontoPrev ele serão
+                    automáticamente adicionado a sua corretora. </p>
 
             </div>
 
@@ -121,7 +121,7 @@
                 </div>
                 <div class="form-group inline space-right width-form3 ">
                     <label class="label-cpf">CPF</label>
-                    <input type="text" id="cpfAddPessoaEquipe" class="cpf form-control ">
+                    <input type="text" id="cpfAddPessoaEquipe"  th:field="*{cpf}" class="cpf form-control ">
                 </div>
             </div>
 
@@ -129,15 +129,15 @@
             <div>
                 <div class="form-group inline space-right width-form3 space-top-30">
                     <label class="label-dataNascimento">Data de nascimento</label>
-                    <input type="text" id="dataNascimentoAddPessoaEquipe" class="dataNascimento form-control">
+                    <input type="text" id="dataNascimentoAddPessoaEquipe"  th:field="*{dataNascimento}" class="dataNascimento form-control">
                 </div>
                 <div class="form-group inline space-right width-form3">
                     <label class="label-celular">Celular</label>
-                    <input type="text" id="celularAddPessoaEquipe" class="celular form-control">
+                    <input type="text" id="celularAddPessoaEquipe" th:field="*{celular}" class="celular form-control">
                 </div>
                 <div class="form-group inline space-right width-form3">
                     <label class="label-email">E-mail </label>
-                    <input type="text" id="emailAddPessoaEquipe" class="email form-control">
+                    <input type="text" id="emailAddPessoaEquipe" th:field="*{email}" class="email form-control">
                 </div>
 
             </div>
@@ -146,11 +146,11 @@
 
                 <div class="form-group inline space-right width-form3 space-top-30">
                     <label class="label-departamento">Departamento</label>
-                    <input type="text" id="departamentoAddPessoaEquipe" class="departamento form-control">
+                    <input type="text" id="departamentoAddPessoaEquipe" th:field="*{departamento}" class="departamento form-control">
                 </div>
                 <div class="form-group inline space-right width-form3">
                     <label class="label-cargo">Cargo</label>
-                    <input type="text" id="cargoAddPessoaEquipe" class="cargo form-control">
+                    <input type="text" id="cargoAddPessoaEquipe" th:field="*{cargo}" class="cargo form-control">
                 </div>
                 <div class="space-top-30">
                     <input type="submit" class="btn btnBlue btn-width-custom space-top-10 uppercase"

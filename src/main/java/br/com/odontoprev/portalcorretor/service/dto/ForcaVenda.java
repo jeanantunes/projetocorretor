@@ -11,10 +11,7 @@ public class ForcaVenda implements Serializable {
     private String error;
     private Long cdForcaVenda;
 
-    @NotNull
-    @Size(min=2, max=255)
     private String nome;
-
     private String celular;
     private String email;
     private Corretora corretora;

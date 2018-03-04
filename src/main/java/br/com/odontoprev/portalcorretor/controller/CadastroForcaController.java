@@ -79,6 +79,8 @@ public class CadastroForcaController {
         } else {
             forcaVenda.setCorretora(new Corretora(usuario.getCodigoCorretora()));
             forcaVenda.setAtivo(true);
+            forcaVenda.setCpf(forcaVenda.getCpf().replaceAll("\\D+",""));
+            forcaVenda.setCelular(forcaVenda.getCelular().replaceAll("\\D+",""));
             forcaVendaService.Criar(forcaVenda);
 
             ListaForca listaForca = getListaForca(usuario.getDocumento());
