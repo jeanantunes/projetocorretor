@@ -2,8 +2,10 @@ package br.com.odontoprev.portalcorretor.service;
 
 import br.com.odontoprev.portalcorretor.service.dto.DashboardPropostas;
 import org.springframework.http.*;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+@Service
 public class RedeCredenciadaService {
 
     //@Value("${odontoprev.servicebase.url}")
@@ -11,10 +13,6 @@ public class RedeCredenciadaService {
 
     //@Value("${odontoprev.service.dash}")
     private String metodoDash = "/dcms/redecredenciada/1.0";
-
-
-
-
 
 
     public void ObterRedeCredenciada() {

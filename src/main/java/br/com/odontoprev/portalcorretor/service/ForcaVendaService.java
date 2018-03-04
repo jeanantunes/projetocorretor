@@ -1,20 +1,21 @@
 package br.com.odontoprev.portalcorretor.service;
 
-import br.com.odontoprev.portalcorretor.service.dto.DashboardPropostas;
-import br.com.odontoprev.portalcorretor.service.dto.Equipe;
 import br.com.odontoprev.portalcorretor.service.dto.ForcaVenda;
 import br.com.odontoprev.portalcorretor.service.dto.ForcaVendaResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.sql.Array;
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
 
+@Service
 public class ForcaVendaService {
 
-    //@Value("${odontoprev.servicebase.url}")
-    private String requesBasetUrl = "http://172.16.20.30:7001/portal-corretor-servico-0.0.1-SNAPSHOT/";
+    @Value("${odontoprev.servicebase.url}")
+    private String requesBasetUrl;// = "http://172.16.20.30:7001/portal-corretor-servico-0.0.1-SNAPSHOT/";
 
     private String metodoGetPorDocuemnto_Post_Put = "forcavenda/";
 
@@ -90,8 +91,7 @@ public class ForcaVendaService {
         }
     }
 
-    public ForcaVenda ObterPorDocumento(String documento)
-    {
+    public ForcaVenda ObterPorDocumento(String documento) {
         String url = requesBasetUrl + metodoGetPorDocuemnto_Post_Put + documento;
         RestTemplate restTemplate = new RestTemplate();
         ForcaVendaResponse result = null;
@@ -104,12 +104,12 @@ public class ForcaVendaService {
             if (retorno.getStatusCode() == HttpStatus.OK) {
                 return retorno.getBody();
             } else {
-                return  new ForcaVenda();
+                return new ForcaVenda();
             }
 
         } catch (Exception e) {
             e.printStackTrace();
-            return  new ForcaVenda();
+            return new ForcaVenda();
         }
     }
 }

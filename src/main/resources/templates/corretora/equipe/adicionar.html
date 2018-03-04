@@ -110,11 +110,14 @@
 
             </div>
 
+            <div th:if="*{error}" style="padding-top: 10px" >
+                <span th:text="*{error}" class="alert alert-danger"></span>
+            </div>
 
             <div>
                 <div class="form-group inline width-form1 space-right space-top-30">
                     <label class="label-nome">Nome </label>
-                    <input type="text" id="confirmeNomeAddPessoaEquipe"  th:field="*{nome}" class="nome form-control">
+                    <input type="text" id="confirmeNomeAddPessoaEquipe" th:field="*{nome}" class="nome form-control">
                 </div>
                 <div class="form-group inline space-right width-form3 ">
                     <label class="label-cpf">CPF</label>
@@ -150,7 +153,8 @@
                     <input type="text" id="cargoAddPessoaEquipe" class="cargo form-control">
                 </div>
                 <div class="space-top-30">
-                    <input type="submit" class="btn btnBlue btn-width-custom space-top-10 uppercase" value="salvar"></input>
+                    <input type="submit" class="btn btnBlue btn-width-custom space-top-10 uppercase"
+                           value="salvar"></input>
 
                 </div>
             </div>

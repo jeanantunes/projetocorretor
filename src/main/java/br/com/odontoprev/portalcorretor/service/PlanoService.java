@@ -2,8 +2,10 @@ package br.com.odontoprev.portalcorretor.service;
 
 import br.com.odontoprev.portalcorretor.service.dto.DashboardPropostas;
 import org.springframework.http.*;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+@Service
 public class PlanoService {
 
     //@Value("${odontoprev.PlanosBasePME.url}")

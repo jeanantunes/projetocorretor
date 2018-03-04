@@ -1,13 +1,20 @@
 package br.com.odontoprev.portalcorretor.service.dto;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 public class ForcaVenda implements Serializable {
 
     private static final long serialVersionUID = 3665956677976317178L;
 
+    private String error;
     private Long cdForcaVenda;
+
+    @NotNull
+    @Size(min=2, max=255)
     private String nome;
+
     private String celular;
     private String email;
     private Corretora corretora;
@@ -23,6 +30,15 @@ public class ForcaVenda implements Serializable {
     private String rg;
     private String senha;
     private String canalVenda;
+
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
 
     public Long getCdForcaVenda() {
         return cdForcaVenda;

@@ -4,6 +4,25 @@ import java.util.Date;
 
 public class Corretora {
 
+    private int cdCorretora;
+    private String cnpj;
+    private String razaoSocial;
+    private String cnae;
+    private String telefone;
+    private String celular;
+    private String email;
+    private Boolean statusCnpj;
+    private Boolean simplesNacional;
+    private Date dataAbertura;
+    private Endereco enderecoCorretora;
+
+    public Corretora() {
+    }
+
+    public Corretora(Integer cdCorretora) {
+        this.cdCorretora = cdCorretora;
+    }
+
     public int getCdCorretora() {
         return cdCorretora;
     }
@@ -91,18 +110,6 @@ public class Corretora {
     public void setEnderecoCorretora(Endereco enderecoCorretora) {
         this.enderecoCorretora = enderecoCorretora;
     }
-
-    private int cdCorretora;
-    private String cnpj;
-    private String razaoSocial;
-    private String cnae;
-    private String telefone;
-    private String celular;
-    private String email;
-    private Boolean statusCnpj;
-    private Boolean simplesNacional;
-    private Date dataAbertura;
-    private Endereco enderecoCorretora;
 
 
 }
