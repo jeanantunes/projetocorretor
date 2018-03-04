@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-theme.min.css}"/>
@@ -17,8 +17,8 @@
     <script type="text/javascript" th:src="@{/js/odonto-Valida.js}"></script>
 
     <script type="text/javascript" th:src="@{/js/menu.js}"></script>
-    <script type="text/javascript"
-            th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js}"></script>
+    <!--<script type="text/javascript"-->
+            <!--th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js}"></script>-->
 
     <script>
         $(function () {
@@ -100,25 +100,23 @@
 
         <div class="row">
             <div class="col-xs-12">
-                <h4 class="uppercase font-blue title-section-odonto pull-left">Sua equipe<h4>
+                <h4 class="uppercase font-blue title-section-odonto pull-left">Sua equipe</h4>
             </div>
         </div>
 
         <div class="row">
             <div class="col-xs-2">
                 <div class="box-alerta pull-left space-top-30 space-right-30" style="background-color: #4ED6FF">
-                    <h3 class="text-center uppercase nomargin "><strong>2</strong></h3>
-                    <p class="text-center text-odonto nomargin">Proposta</p>
-                    <p class="text-center text-odonto nomargin"> inclompleta</p>
+                    <h3 class="text-center uppercase nomargin "><strong th:text="${listaForca.totalForca}">2</strong></h3>
+                    <p class="text-center text-odonto nomargin">Corretores aguardando</p>
+                    <p class="text-center text-odonto nomargin">sua aprovação</p>
                 </div>
             </div>
 
             <div class="col-xs-10">
                 <div class="space-top-30 text-box-odonto">
-                    <p class="text-odonto font-silver">Os usuÃ¡rios abaixo foram adicionados Ã  sua equipe. VocÃª pode
-                        consultar as propostas enviadas por cada corretor. Caso o corretor saia de sua empresa Ã© sÃ³
-                        desativar o seu perfil. se necessÃ¡rio tambÃ©m Ã© possÃ­vel editar os dados de cada corretor da
-                        sua equipe.</p>
+                    <p class="text-odonto font-silver">Agora você poderá gerenciar a produção de cada pessoa da sua equipe bem como de todo seu negócio! Você pode incluir novos usuários, excluir ou editar seus dados. A lista abaixo mostra os corretores já incluídos.
+                        Abaixo do “Aguardando aprovação”: Os usuários abaixo pediram permissão para trabalhar no seu time. Aprove para autorizar o acesso ou Exclua caso não conheça.</p>
                 </div>
             </div>
         </div>
@@ -134,21 +132,15 @@
                     <tr>
                         <th><span>Nome</span></th>
                         <th class="col-xs-3"><span>Status</span></th>
-                        <th><span>AÃ§Ãµes</span></th>
+                        <th><span>Ações</span></th>
                         <th><span></span></th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="line-table">
-                        <td><span>Rosario Lopes</span></td>
-                        <td><span>Ativo</span></td>
-                        <td><span><img src="../../../img/visualizar.png"> Ver proposta</span></td>
-                        <td><span>Desativar</span></td>
-                    </tr>
-                    <tr class="line-table">
-                        <td><span>Rosario Lopes</span></td>
-                        <td><span>Ativo</span></td>
-                        <td><span><img src="../../../img/visualizar.png"> Ver proposta</span></td>
+                    <tr th:each="forca : ${listaForca.lista}" class="line-table">
+                        <td><span th:text="${forca.nome}">Lopes</span></td>
+                        <td><span th:text="${forca.statusForcaVenda}">PME</span></td>
+
                         <td><span>Desativar</span></td>
                     </tr>
 
@@ -159,21 +151,19 @@
         </div>
 
         <div class=" space-top-30 btn-header-web">
-            <a href="adicionar.html" type="button" class="btn uppercase btnBlue btn-width-custom space-top-10">adicionar
-                novo</a>
+            <a th:href="@{/corretora/equipe/adicionar}" type="button" class="btn uppercase btnBlue btn-width-custom space-top-10">Adicionar nova pessoa na equipe</a>
         </div>
 
         <div class="row space-top-30">
             <div class="col-xs-12">
-                <h4 class="uppercase font-blue title-section-odonto pull-left">Aguardando aprovaÃ§Ã£o<h4>
+                <h4 class="uppercase font-blue title-section-odonto pull-left">Aguardando aprovação<h4>
             </div>
         </div>
 
         <div class="row">
             <div class="col-xs-12">
-                <p class="text-odonto font-silver">Os usuarios abaixo informaram fazer parte da sua equipe de sua
-                    corretora. Para autorizar o acesso, vocÃª precisa aprovar o ingresso em sua equipe. Caso vocÃª nÃ£o
-                    conheÃ§a este usuÃ¡rio, clique em excluir.</p>
+                <p class="text-odonto font-silver">Os usuários abaixo pediram permissão para trabalhar no seu time.
+                    Aprove para autorizar o acesso ou Exclua caso não conheça.</p>
             </div>
         </div>
 
@@ -188,11 +178,15 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="line-table">
-                        <td><span>Michele da Silva </span></td>
-                        <td><span><img src="../../../img/visualizar.png"> Ver proposta</span></td>
+
+                    <tr th:each="forca : ${listaForca.aguardandoAprovacao}" class="line-table">
+                        <td><span th:text="${forca.nome}">Lopes</span></td>
+                        <td><span th:text="${forca.statusForcaVenda}">PME</span></td>
+
                         <td><span>Desativar</span></td>
                     </tr>
+
+
                     </tbody>
                 </table>
             </div>
