@@ -5,6 +5,7 @@ import java.util.Map;
 
 import br.com.odontoprev.portalcorretor.model.UsuarioSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -19,8 +20,8 @@ import br.com.odontoprev.portalcorretor.service.dto.LoginResponse;
 @Service
 public class LoginService {
 
-    //@Value("${odontoprev.servicebase.url}")
-    private String requesBasetUrl = "http://172.16.20.30:7001/portal-corretor-servico-0.0.1-SNAPSHOT/";
+    @Value("${odontoprev.servicebase.url}")
+    private String requesBasetUrl ; //= "http://172.16.20.30:7001/portal-corretor-servico-0.0.1-SNAPSHOT/";
     //@Value("${odontoprev.service.login}")
     private String metodo = "login";
     
@@ -37,7 +38,7 @@ public class LoginService {
         try {
         	HttpHeaders headers = new HttpHeaders();
         	headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
-            
+
             HttpEntity<Map<String,String>> entityReq = new HttpEntity<>(loginMap, headers);
             
             ResponseEntity<LoginResponse> loginRetorno = restTemplate.exchange((requesBasetUrl + metodo),HttpMethod.POST, entityReq, LoginResponse.class);

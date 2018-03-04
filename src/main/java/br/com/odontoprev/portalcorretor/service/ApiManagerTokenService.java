@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+
 import br.com.odontoprev.api.manager.client.token.ApiManagerToken;
 import br.com.odontoprev.api.manager.client.token.ApiManagerTokenFactory;
 import br.com.odontoprev.api.manager.client.token.ApiToken;
