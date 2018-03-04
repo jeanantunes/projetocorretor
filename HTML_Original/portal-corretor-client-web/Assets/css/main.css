@@ -2415,7 +2415,7 @@ button.picker__today:focus,button.picker__clear:focus,button.picker__close:focus
 .data-perfil {
     left: 80px !important;
     top: 17px!important;
-    width: 400px!important;
+    width: 140px!important;
 }
 
  }
@@ -2531,7 +2531,7 @@ button.picker__today:focus,button.picker__clear:focus,button.picker__close:focus
     position: relative;
     left: 160px;
     top: 41px;
-    width: 400px;
+    width: 140px;
 }
 
 .perfil-web .data-perfil{ 

@@ -23,7 +23,7 @@ import br.com.odontoprev.portalcorretor.service.entity.FiltroStatusProposta;
 
 @Service
 public class DashService {
-
+//Alterar Silas Gato
     //@Value("${odontoprev.servicebase.url}")
     private String requesBasetUrl = "http://172.16.20.30:7001/portal-corretor-servico-0.0.1-SNAPSHOT/";
 
