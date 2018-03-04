@@ -1,54 +1,100 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <title>Adicionar pessoa a equipe| OdontoPrev</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="@{/img/odpv.PNG}" type="image/png">
+    <meta charset="UTF-8">
+    <!--<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-theme.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
 
-    <script type="text/javascript" src="../../../js/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="../../../js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../../../js/jquery.mask.min.js"></script>
-    <script type="text/javascript" src="../../../js/odonto-Valida.js"></script>
-    <link href="../../../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../../css/main.css" rel="stylesheet">
-    <script type="text/javascript" src="../../../js/menu.js"></script>
+    <!-- 		<link href="css/estiloOdontoPrev.css" rel="stylesheet"> -->
+    <script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.mask.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/odonto-Valida.js}"></script>
 
+    <script type="text/javascript" th:src="@{/js/menu.js}"></script>
+    <!--<script type="text/javascript"-->
+    <!--th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js}"></script>-->
+
+    <script>
+        $(function () {
+            $(".button-collapse").sideNav();
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.table-odonto .line-table:odd').css('background-color', '#fff');
+
+            $('.table-odonto .line-table:even').css('background-color', '#EDEDED');
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.barras').each(function () {
+                var dataWidth = $(this).data('value');
+                $(this).css("width", dataWidth + "%");
+                $(this).css("max-width", "100%");
+                if (dataWidth <= 25) {
+                    $(this).css("background-color", "red");
+                }
+                else if (dataWidth > 25 && dataWidth <= 50) {
+                    $(this).css("background-color", "orange");
+                }
+                else if (dataWidth > 50 && dataWidth <= 75) {
+                    $(this).css("background-color", "yellow");
+                }
+                else if (dataWidth > 75 && dataWidth <= 100) {
+                    $(this).css("background-color", "green");
+                }
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $(".btn-odonto-pink-primary").css("background-color", "#D9487F");
+            $(".btn-odonto-pink-primary").css("border-color", "#D9487F");
+            $(".btn-odonto-pink-primary").css("color", "#fff");
+
+            $('.btn-odonto-pink-primary').click(function () {
+                $(".btn-odonto-pink-primary").css("background-color", "#D9487F");
+                $(".btn-odonto-pink-primary").css("border-color", "#D9487F");
+                $(".btn-odonto-pink-primary").css("color", "#fff");
+                $(".btn-odonto-blue-primary").css("background-color", "#fff");
+                $(".btn-odonto-blue-primary").css("color", "#2D6FCE");
+
+            });
+
+
+            $('.btn-odonto-blue-primary').click(function () {
+                $(".btn-odonto-blue-primary").css("background-color", "#2D6FCE");
+                $(".btn-odonto-blue-primary").css("border-color", "#2D6FCE");
+                $(".btn-odonto-blue-primary").css("color", "#fff");
+                $(".btn-odonto-pink-primary").css("background-color", "#fff");
+                $(".btn-odonto-pink-primary").css("color", "#D9487F");
+
+            });
+
+
+        });
+
+    </script>
 </head>
-
-<body>
-
-
-<script>
-    $(function () {
-        $(".button-collapse").sideNav();
-    });
-
-</script>
-
+<body style="min-width: 100% !important;">
 
 <div class="container-fluid nopadding">
 
+    <div th:replace="fragments/menu-corretora :: menu-corretora">&nbsp;</div>
 
-
-    <div class="header-logado">
-        <a href="#" data-activates="menu-mobile" class="button-collapse pull-right">
-            <img src="../../../img/menu.png" class="icon-menu">
-        </a>
-        <img src="../../../img/logo-mobile.png" class="logo-ondonto-mobile" style="position: relative;top:30px">
-
-        <div class="perfil-web">
-            <div class="circle-perfil">
-                <div class="data-perfil">
-                    <p class="user-name"><strong>Corretora XPTO</strong></p>
-                    <a href="#" class="link-odonto">Sair</a>
-                </div>
-            </div>
-        </div>
-
-    </div>
+    <div th:replace="fragments/header-corretora :: header-corretora">&nbsp;</div>
 
     <div class="container-logado padding-logado">
 

@@ -71,10 +71,7 @@ public class CorretoraController {
         return new ModelAndView("corretora/cadastro/editar");
     }
 
-    @RequestMapping(value = "corretora/equipe/home", method = RequestMethod.GET)
-    public ModelAndView Equipe() {
-        return new ModelAndView("corretora/equipe/home");
-    }
+
     
     @RequestMapping(value = "alertas/{statusProposta}", method = RequestMethod.GET)
     public ModelAndView Proposta(@PathVariable String statusProposta, HttpSession session) {

@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -24,8 +25,8 @@ import br.com.odontoprev.portalcorretor.service.entity.FiltroStatusProposta;
 @Service
 public class DashService {
 
-    //@Value("${odontoprev.servicebase.url}")
-    private String requesBasetUrl = "http://172.16.20.30:7001/portal-corretor-servico-0.0.1-SNAPSHOT/";
+    @Value("${odontoprev.servicebase.url}")
+    private String requesBasetUrl;// = "http://172.16.20.30:7001/portal-corretor-servico-0.0.1-SNAPSHOT/";
 
     //@Value("${odontoprev.service.dash}")
     private String metodoDash = "propostasDashBoard/";
