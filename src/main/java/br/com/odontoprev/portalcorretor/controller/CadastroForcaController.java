@@ -1,10 +1,13 @@
 package br.com.odontoprev.portalcorretor.controller;
 
+import br.com.odontoprev.portalcorretor.model.Cadastro;
 import br.com.odontoprev.portalcorretor.model.ListaForca;
 import br.com.odontoprev.portalcorretor.service.dto.ForcaVenda;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
@@ -14,34 +17,61 @@ import java.util.List;
 public class CadastroForcaController {
 
     @RequestMapping(value = "corretora/equipe/adicionar", method = RequestMethod.GET)
-    public String home() {
+    public ModelAndView adicionar() {
+        return new ModelAndView("corretora/equipe/adicionar", "forca", new ForcaVenda ());
+    }
+    @RequestMapping(value = "corretora/equipe/adicionar", method = RequestMethod.POST)
+    public ModelAndView salvarForca(@ModelAttribute("cadastro") ForcaVenda forcaVenda) {
 
-        return "corretora/equipe/adicionar";
+
+        ListaForca listaForca = getListaForca();
+        return new ModelAndView("corretora/equipe/home", "listaForca", listaForca);
     }
 
 
+    @RequestMapping(value = "corretora/equipe/desativar", method = RequestMethod.GET)
+    public ModelAndView desativar(@RequestParam("id") String id) {
+        ListaForca listaForca = getListaForca();
+
+
+        return new ModelAndView("corretora/equipe/home", "listaForca", listaForca);
+    }
+
+
+    @RequestMapping(value = "corretora/equipe/editar", method = RequestMethod.GET)
+    public ModelAndView editar(@RequestParam("id") String id) {
+        ForcaVenda forca = (getForcaVenda("joao", "ativo"));
+
+
+        return new ModelAndView("corretora/equipe/adicionar", "forca", forca);
+    }
+
     @RequestMapping(value = "corretora/equipe/home", method = RequestMethod.GET)
-    public ModelAndView Equipe() {
+    public ModelAndView home() {
+        ListaForca listaForca = getListaForca();
 
+        return new ModelAndView("corretora/equipe/home", "listaForca", listaForca);
+    }
 
+    private ListaForca getListaForca() {
         List<ForcaVenda> lista = new ArrayList<>();
         lista.add(getForcaVenda("joao", "ativo"));
         lista.add(getForcaVenda("maria", "aguardando aprovaçao"));
         lista.add(getForcaVenda("maria", "aguardando aprovaçao"));
 
 
-        ListaForca  listaForca = new ListaForca();
+        ListaForca listaForca = new ListaForca();
 
         listaForca.setTotalForca(lista.size());
         listaForca.setLista(lista);
         listaForca.setAguardandoAprovacao(lista);
-
-        return new ModelAndView("corretora/equipe/home", "listaForca", listaForca);
+        return listaForca;
     }
 
     private ForcaVenda getForcaVenda(String nome, String status) {
         ForcaVenda forca = new ForcaVenda();
         forca.setStatusForcaVenda(status);
+        forca.setCdForcaVenda(Double.valueOf(Math.random()*1000).longValue());
         forca.setNome(nome);
         //1 aguardando aprovaçao
         //2 ativo

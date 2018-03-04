@@ -18,7 +18,7 @@
 
     <script type="text/javascript" th:src="@{/js/menu.js}"></script>
     <!--<script type="text/javascript"-->
-            <!--th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js}"></script>-->
+    <!--th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js}"></script>-->
 
     <script>
         $(function () {
@@ -107,7 +107,8 @@
         <div class="row">
             <div class="col-xs-2">
                 <div class="box-alerta pull-left space-top-30 space-right-30" style="background-color: #4ED6FF">
-                    <h3 class="text-center uppercase nomargin "><strong th:text="${listaForca.totalForca}">2</strong></h3>
+                    <h3 class="text-center uppercase nomargin "><strong th:text="${listaForca.totalForca}">2</strong>
+                    </h3>
                     <p class="text-center text-odonto nomargin">Usuários em</p>
                     <p class="text-center text-odonto nomargin">sua equipe</p>
                 </div>
@@ -115,8 +116,10 @@
 
             <div class="col-xs-10">
                 <div class="space-top-30 text-box-odonto">
-                    <p class="text-odonto font-silver">Os usuários abaixo foram adicionados a sua equipe. Você pode ver a comissão pendente para pagamento e as propostas enviadas por cada usuário.
-                        Caso o usário saia de sua corretora, é só excluir, ou se precisar, pode editar os dados de cada usuário</p>
+                    <p class="text-odonto font-silver">Os usuários abaixo foram adicionados a sua equipe. Você pode ver
+                        a comissão pendente para pagamento e as propostas enviadas por cada usuário.
+                        Caso o usário saia de sua corretora, é só excluir, ou se precisar, pode editar os dados de cada
+                        usuário</p>
                 </div>
             </div>
         </div>
@@ -141,7 +144,8 @@
                         <td><span th:text="${forca.nome}">Lopes</span></td>
                         <td><span th:text="${forca.statusForcaVenda}">PME</span></td>
 
-                        <td><span>Desativar</span></td>
+                        <td><span>  <a th:href="@{/corretora/equipe/desativar(id=${forca.cdForcaVenda})}" > Desativar </a></span>
+                        </td>
                     </tr>
 
                     </tbody>
@@ -151,13 +155,14 @@
         </div>
 
         <div class=" space-top-30 btn-header-web">
-            <a th:href="@{/corretora/equipe/adicionar}" type="button" class="btn uppercase btnBlue btn-width-custom space-top-10">adicionar
+            <a th:href="@{/corretora/equipe/adicionar}" type="button"
+               class="btn uppercase btnBlue btn-width-custom space-top-10">adicionar
                 novo</a>
         </div>
 
         <div class="row space-top-30">
             <div class="col-xs-12">
-                <h4 class="uppercase font-blue title-section-odonto pull-left">Aguardando aprovação<h4>
+                <h4 class="uppercase font-blue title-section-odonto pull-left">Aguardando aprovação</h4>
             </div>
         </div>
 
@@ -185,7 +190,8 @@
                         <td><span th:text="${forca.nome}">Lopes</span></td>
                         <td><span th:text="${forca.statusForcaVenda}">PME</span></td>
 
-                        <td><span>Desativar</span></td>
+                        <td><span>  <a th:href="@{/corretora/equipe/desativar(id=${forca.cdForcaVenda})}" > Desativar </a></span>
+                        </td>
                     </tr>
 
 
