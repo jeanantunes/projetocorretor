@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+ <html>
+ <head>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+     <link rel="shortcut icon" href="../../../assets/img/odpv.PNG" type="image/png">
+
+     <title>Informação dos Planos | OdontoPrev</title>
+ </head>
+ <body style="min-width: 100% !important;">    
+     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+     <script type="text/javascript" src="../../../assets/js/bootstrap.min.js"></script>
+     <script type="text/javascript" src="../../../assets/js/jquery.mask.min.js"></script>
+     <script type="text/javascript" src="../../../assets/js/odonto-Valida.js"></script> 
+     <link href="../../../assets/css/bootstrap.min.css" rel="stylesheet">
+     <link href="../../../assets/css/main.css" rel="stylesheet">
+     <script type="text/javascript" src="../../../assets/js/menu.js"></script>
+
+       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+    <script>
+     $(function(){
+         $(".button-collapse").sideNav();
+     });
+
+     </script>
+
+     <script type="text/javascript">
+          $(document).ready(function() {
+             $('.table-odonto tr:odd').css('background-color', '#EDEDED');
+
+             $('.table-odonto tr:even').css('background-color', '#fff');  
+          });
+     </script>
+
+     <script type="text/javascript">
+        $(document).ready(function() {
+          $('.barras').each(function() {
+             var dataWidth = $(this).data('value');
+             $(this).css("width", dataWidth + "%");
+             $(this).css("max-width", "100%");
+            if (dataWidth <=25) { $(this).css("background-color", "red"); }
+            else if (dataWidth >25 && dataWidth <=50){ $(this).css("background-color", "orange"); }
+            else if (dataWidth >50 && dataWidth<=75) { $(this).css("background-color", "yellow"); }
+            else if (dataWidth >75 && dataWidth<=100) { $(this).css("background-color", "green"); } 
+          });
+        });
+     </script>
+
+ <script type="text/javascript">
+
+ $(document).ready(function() {
+
+   $(".btn-odonto-pink-primary").css("background-color", "#D9487F");
+      $(".btn-odonto-pink-primary").css("border-color", "#D9487F");
+             $(".btn-odonto-pink-primary").css("color", "#fff");
+
+        $('.btn-odonto-pink-primary').click(function(){
+             $(".btn-odonto-pink-primary").css("background-color", "#D9487F");
+             $(".btn-odonto-pink-primary").css("border-color", "#D9487F");
+             $(".btn-odonto-pink-primary").css("color", "#fff");
+             $(".btn-odonto-blue-primary").css("background-color", "#fff");
+             $(".btn-odonto-blue-primary").css("color", "#2D6FCE");
+
+          });
+
+
+        $('.btn-odonto-blue-primary').click(function(){
+             $(".btn-odonto-blue-primary").css("background-color", "#2D6FCE");
+             $(".btn-odonto-blue-primary").css("border-color", "#2D6FCE");
+             $(".btn-odonto-blue-primary").css("color", "#fff");
+             $(".btn-odonto-pink-primary").css("background-color", "#fff");
+             $(".btn-odonto-pink-primary").css("color", "#D9487F");
+
+          });
+
+
+          });
+
+ </script>
+
+
+
+<div class="container-fluid nopadding">
+
+ <nav class="nav-odonto">
+     <div class="nav-wrapper">
+         <a href="#" class="brand-logo" style="color: silver; padding: 35px"><img src="../../../assets/img/logo.png"></a>
+         <ul class="hide-on-med-and-down">
+             <li class="nav-cel"><a href="home-dono-corretora.html"><img src="../../../assets/img/menu-home.png" ><span>home</span></a></li>
+             <li class="nav-cel"><a href="#"><img src="../../../assets/img/menu-meus-dados.png" ><span>dados da corretora</span></a></li>
+             <li class="nav-cel"><a href="forca-de-vendas.html"><img src="../../../assets/img/menu-listas.png" ><span>equipe</span></a></li>
+             <li class="nav-cel"><a href="lista_de_pospostas.html"><img src="../../../assets/img/menu-listas.png" ><span>lista de propostas</span></a></li>
+             <li class="nav-cel nav-active"><a href="informacao_dos_planos.html"><img src="../../../assets/img/menu-listas.png" ><span>Informação dos Planos</span></a></li>
+             <li class="nav-cel"><a href="busca-rede-credenciadas.html"><img src="../../../assets/img/menu-rede-credenciada.png" ><span>rede credenciada</span></a></li>
+             <li class="nav-cel"><a href="fale-conosco.html"><img src="../../../assets/img/menu-contato.png" ><span>fale conosco</span></a></li>
+         </ul> 
+    </div>
+ </nav>
+
+<div class="nav-mobile">
+    <ul class="side-nav" id="menu-mobile">
+         <li class="" style="background-color: #fff; padding: 30px">
+            <div class="perfil-mobile"> 
+                  <div class="circle-perfil">
+                      <div class="data-perfil">
+                          <p class="font-gray name-mobile"><strong>Corretora XPTO</strong></p> 
+                          <p class="font-pink">Sair</p>
+                      </div>
+                  </div>
+            </div>
+         </li>
+             <li class="nav-cel"><a href="home-dono-corretora.html"><img src="../../../assets/img/menu-home.png" ><span>home</span></a></li>
+             <li class="nav-cel"><a href="#"><img src="../../../assets/img/menu-meus-dados.png" ><span>dados da corretora</span></a></li>
+             <li class="nav-cel"><a href="forca-de-vendas.html"><img src="../../../assets/img/menu-listas.png" ><span>equipe</span></a></li>
+             <li class="nav-cel"><a href="lista_de_pospostas.html"><img src="../../../assets/img/menu-listas.png" ><span>lista de propostas</span></a></li>
+             <li class="nav-cel"><a href="busca-rede-credenciadas.html"><img src="../../../assets/img/menu-rede-credenciada.png" ><span>rede credenciada</span></a></li>
+             <li class="nav-cel nav-active"><a href="fale-conosco.html"><img src="../../../assets/img/menu-contato.png" ><span>fale conosco</span></a></li>
+     </ul>
+ </div>
+
+  <div class="header-logado">
+      <a href="#" data-activates="menu-mobile" class="button-collapse pull-right">
+          <img src="../../../assets/img/menu.png" class="icon-menu">
+      </a>
+      <img src="../../../assets/img/logo-mobile.png" class="logo-ondonto-mobile" style="position: relative;top:30px">
+
+       <div class="perfil-web">
+          <div class="circle-perfil">
+            <div class="data-perfil">
+                <p class="user-name"><strong>Corretora XPTO</strong></p> 
+                <a href="#" class="link-odonto">Sair</a>
+            </div>
+          </div> 
+        </div> 
+        
+  </div> 
+
+   <div class="container-logado padding-logado">
+
+           <div class="row">
+              <div class="col-xs-12">
+                 <h4 class="uppercase font-blue title-section-odonto">Informação dos Planos<h4> 
+                             
+              </div>
+            </div>
+
+            <div class="row space-top-30"> 
+                <div class="col-xs-12">
+                    <p class="subtitle-odonto nomargin"><bold>Plano Integral Doc LE</bold></p>
+                     
+                    <strong>Cirurgia</strong>	<br />
+                    Cirurgia odontológica com aplicação de aloenxertos<br />
+                    Consulta de Especialista em Estomatologia<br />
+                    Reduçao de Tuberosidade<br />
+                    Remoção de corpo estranho no seio maxilar<br />
+                    Tracionamento cirúrgico com finalidade ortodôntica<br /><br />
+                    
+                    <strong>Dentística</strong><br />
+                    Consulta para Técnica de Clareamento Dentário Caseio<br />
+                    Núcleo de preenchimento para restauração<br />
+                    Restauração de pino<br /><br />
+                    
+                    <strong>Emergência</strong><br />
+                    Tratamento conservador de luxução de articulação têmpero-mandibular-ATM<br /><br />
+                    
+                    <strong>Endodotia</strong><br />
+                    Clareamento de dente desvitalizado<br /><br />
+                    
+                    <strong>Odontologia Legal</strong><br />
+                    Consulta odontológica para avaliação técnica de auditoria<br /><br />
+                    
+                    <strong>Odontopediatria</strong><br />
+                    Adequação de meio bucal <br />
+                    Mantenedor de espaço fixo<br />
+                    Mantenedor de espaço removível<br /><br />
+                    
+                    <strong>Periodontia</strong><br />
+                    Consulta de Especialista em Periodontia<br />
+                    Enxerto conjuntivo subepitelial<br />
+                    Manutenção Periodontal<br />
+                    Sepultamento radicular<br /><br />
+                    
+                    <strong>Prevenção</strong><br />
+                    Teste de capacidade tampão da saliva<br />
+                    Teste de contagem microbiótica<br /><br />
+
+                    <strong>Prótese Dentária</strong><br />
+                    Coroa total acrílica prensada<br /><br />
+                    
+                    <strong>Radiologia</strong><br />
+                    Discrepância de modelos<br />
+                    Documentação ortodôntica básica: radiografia panorâmica básica, tele com traçado e modelos ortodônticos<br />
+                    Documentação ortodôntica completa: radiografia panorâmica, tele com traçado, modelos ortodônticos, 7 fotos ou slides e anealise cefalométrica extra<br />
+                    Documentação ortodôntica de controle: panorâmica com 5 fotos (1 extra bucais, 3 intra-bucais)<br />
+                    Documentação ortodôntica Especial: documentação ortodônica completa mais tele frontal, traçado frontal e análise de erupção de 3o molares)<br />
+                    Documentação ortodôntica ortopédica: panorâmica, telerradiografia, análise e traçado cefalométrico, modelos de estudo, modelos de trabalho, análise de modelos, caixa p/ modelos, pasta, mão e punho (índice carpal), fotos (1 extra, 3 intra bucais, perfil e lateralidade) ou slides (máximo 9)<br />
+                    Documentação periodontal (panorâmica com traçado, levantamento periapical, interproximais, fotos -2 extra e 3 intra bucais, modelos, caixa para modelos e pasta)<br />
+                    Fotografia<br />
+                    Modelos de trabalho<br />
+                    Modelos orodônticos<br />
+                    Panorâmica + modelos ortodônticos<br />
+                    Panorâmica Especial para ATM<br />
+                    Radiografia da ATM<br />
+                    Radiografia da mão e punho-carpal<br />
+                    Radiografia panorâmica de mandibula/maxila (ortopantomografia) com traçado cefalométrico<br />
+                    Slide<br />
+                    Ténica de localização radiográfica<br />
+                    Telerradiografia<br />
+                    Telerradiografia com traçado cefalométrico<br />
+                    Traçado cefalométrico<br /><br />
+                    
+
+
+                    
+                            
+
+                    <div class="row space-top-30"> 
+                            <div class="col-xs-12">
+                                <p class="subtitle-odonto nomargin">Rol Mínimo</p> 
+                                <a href="rol-minimo.html" type="button" class="uppercase btn btnBlue btn-width-custom space-top-10">Rol Mínimo</a> 
+                            </div>
+                        </div>
+            
+                        <div class="row space-top-30"> 
+                            <div class="col-xs-12">
+                                <p class="subtitle-odonto nomargin">Planos PME</p> 
+                                <a href="plano-integral-doc-le.html" type="button" class="uppercase btn btnBlue btn-width-custom space-top-10">Plano Integral DOC LE</a> 
+                            </div>
+                        </div>
+            
+                        <div class="row space-top-10">
+                            <div class="col-xs-12"> 
+                                <a href="plano-master-le.html" type="button" class="uppercase btn btnBlue btn-width-custom space-top-10">Plano Master LE</a>
+                            </div>
+                        </div>
+                     
+                </div>
+            </div>
+
+
+    </div>
+
+   <div class="footer-logado">
+      <div class="pull-left box-footer">
+          <p>© OdontoPrev. S/A - CNPJ: 119.199/0001-51</p>
+          <p>Av. Marcos Penteado de Ulhoa Rodrigues, 939-14 andar-Edifício Jatoba Torre 2-Barueri-SP CEP- 06460-040</p>
+          <p>OdontoPrev - CRO/SP n° 19009</p>
+      </div>
+      <div class="pull-right footer-img"><img src="../../../assets/img/ans.png" ></div>
+    </div>
+</div>
+
+</body>
+</html>

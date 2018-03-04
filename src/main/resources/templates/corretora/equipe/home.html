@@ -107,19 +107,16 @@
         <div class="row">
             <div class="col-xs-2">
                 <div class="box-alerta pull-left space-top-30 space-right-30" style="background-color: #4ED6FF">
-                    <h3 class="text-center uppercase nomargin "><strong th:text="${listaForca.totalForca}">2</strong>
-                    </h3>
-                    <p class="text-center text-odonto nomargin">Usuários em</p>
-                    <p class="text-center text-odonto nomargin">sua equipe</p>
+                    <h3 class="text-center uppercase nomargin "><strong th:text="${listaForca.totalForca}">2</strong></h3>
+                    <p class="text-center text-odonto nomargin">Corretores aguardando</p>
+                    <p class="text-center text-odonto nomargin">sua aprovação</p>
                 </div>
             </div>
 
             <div class="col-xs-10">
                 <div class="space-top-30 text-box-odonto">
-                    <p class="text-odonto font-silver">Os usuários abaixo foram adicionados a sua equipe. Você pode ver
-                        a comissão pendente para pagamento e as propostas enviadas por cada usuário.
-                        Caso o usário saia de sua corretora, é só excluir, ou se precisar, pode editar os dados de cada
-                        usuário</p>
+                    <p class="text-odonto font-silver">Agora você poderá gerenciar a produção de cada pessoa da sua equipe bem como de todo seu negócio! Você pode incluir novos usuários, excluir ou editar seus dados. A lista abaixo mostra os corretores já incluídos.
+                        Abaixo do “Aguardando aprovação”: Os usuários abaixo pediram permissão para trabalhar no seu time. Aprove para autorizar o acesso ou Exclua caso não conheça.</p>
                 </div>
             </div>
         </div>
@@ -155,9 +152,7 @@
         </div>
 
         <div class=" space-top-30 btn-header-web">
-            <a th:href="@{/corretora/equipe/adicionar}" type="button"
-               class="btn uppercase btnBlue btn-width-custom space-top-10">adicionar
-                novo</a>
+            <a th:href="@{/corretora/equipe/adicionar}" type="button" class="btn uppercase btnBlue btn-width-custom space-top-10">Adicionar nova pessoa na equipe</a>
         </div>
 
         <div class="row space-top-30">
@@ -168,9 +163,8 @@
 
         <div class="row">
             <div class="col-xs-12">
-                <p class="text-odonto font-silver">Os usuarios abaixo informaram fazer parte da sua equipe de sua
-                    corretora. Para autorizar o acesso, você precisa aprovar o ingresso em sua equipe. Caso você não
-                    conheça este usuário, clique em excluir.</p>
+                <p class="text-odonto font-silver">Os usuários abaixo pediram permissão para trabalhar no seu time.
+                    Aprove para autorizar o acesso ou Exclua caso não conheça.</p>
             </div>
         </div>
 
