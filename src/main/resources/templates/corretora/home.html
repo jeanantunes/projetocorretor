@@ -15,7 +15,8 @@
     <script type="text/javascript" th:src="@{/js/jquery.mask.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/odonto-Valida.js}"></script>
     <script type="text/javascript" th:src="@{/js/menu.js}"></script>
-    <script type="text/javascript" th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js}"></script>
+    <script type="text/javascript"
+            th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js}"></script>
 
     <script>
         $(function () {
@@ -77,23 +78,27 @@
                     <div class="alerta-1 pull-left">
 
                         <div class="box-alerta bg-gold pull-left space-top-30 space-right-30">
-                            <h3 class="text-center uppercase nomargin "><strong                                     
-                            		th:text="${corretora.countCorretoresAprovacao}">2</strong></h3>
+                            <h3 class="text-center uppercase nomargin "><strong
+                                    th:text="${corretora.countCorretoresAprovacao}">2</strong></h3>
                             <p class="text-center text-odonto nomargin">Corretores para</p>
                             <p class="text-center text-odonto nomargin">aprovação</p>
                         </div>
-
-                        <div class="box-alerta bg-green pull-left space-top-30 space-right-30">
-                            <h3 class="text-center uppercase nomargin "><strong
-                                    th:text="${corretora.totalSucesso}">8</strong></h3>                                                                                 
-                            <a class="text-center text-odonto nomargin"  href="lista-propostas.html" th:href="@{/alertas/aprovado}">Propostas finalizadas com sucesso </a>
-                        </div>
-
-                        <div class="box-alerta bg-red pull-left space-top-30 space-right-30">
-                            <h3 class="text-center uppercase nomargin "><strong
-                                    th:text="${corretora.totalCriticadas}">4</strong></h3>
-                            <a class="text-center text-odonto nomargin"  href="lista-propostas.html" th:href="@{/alertas/criticado}">Propostas criticadas </a>
-                        </div>
+                        <a class="text-center text-odonto nomargin" href="lista-propostas.html"
+                           th:href="@{/alertas/aprovado}">
+                            <div class="box-alerta bg-green pull-left space-top-30 space-right-30">
+                                <h3 class="text-center uppercase nomargin "><strong
+                                        th:text="${corretora.totalSucesso}">8</strong></h3>
+                                Propostas finalizadas com sucesso
+                            </div>
+                        </a>
+                        <a class="text-center text-odonto nomargin" href="lista-propostas.html"
+                           th:href="@{/alertas/criticado}">
+                            <div class="box-alerta bg-red pull-left space-top-30 space-right-30">
+                                <h3 class="text-center uppercase nomargin "><strong
+                                        th:text="${corretora.totalCriticadas}">4</strong></h3>
+                                Propostas criticadas
+                            </div>
+                        </a>
                     </div>
 
 
@@ -177,7 +182,8 @@
                     <div class="row">
 
                         <div class="col-xs-12">
-                            <h4 class="uppercase font-blue title-section-odonto pull-left">Propostas da sua equipe de vendas</h4>
+                            <h4 class="uppercase font-blue title-section-odonto pull-left">Propostas da sua equipe de
+                                vendas</h4>
                         </div>
 
                     </div>
