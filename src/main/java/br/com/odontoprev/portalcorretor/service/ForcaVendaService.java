@@ -38,7 +38,7 @@ public class ForcaVendaService {
     private ApiManagerTokenService apiManagerTokenService;
 
     public long Criar(ForcaVenda forcaVenda) {
-        String url = requesBasetUrl + metodoGetPorDocuemnto_Post_Put;
+        String url = requesBasetUrl + "/" + metodoGetPorDocuemnto_Post_Put;
         RestTemplate restTemplate = new RestTemplate();
         ForcaVendaResponse result = null;
         try {
@@ -64,7 +64,7 @@ public class ForcaVendaService {
 
         } catch (Exception e) {
             e.printStackTrace();
-            log.info("Deu ruim ao cadastrar Forca " );
+            log.info("Deu ruim ao cadastrar Forca ");
             return 0;
         }
 
