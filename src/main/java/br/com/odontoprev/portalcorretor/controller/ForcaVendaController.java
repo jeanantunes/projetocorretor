@@ -1,18 +1,25 @@
 package br.com.odontoprev.portalcorretor.controller;
 
 import br.com.odontoprev.portalcorretor.service.DashService;
+import br.com.odontoprev.portalcorretor.service.ForcaVendaService;
 import br.com.odontoprev.portalcorretor.service.dto.DashboardPropostas;
+import br.com.odontoprev.portalcorretor.service.dto.ForcaVenda;
 import br.com.odontoprev.portalcorretor.service.dto.Proposta;
 import br.com.odontoprev.portalcorretor.service.entity.FiltroStatusProposta;
 import br.com.odontoprev.portalcorretor.model.ListaPropostas;
 import br.com.odontoprev.portalcorretor.model.UsuarioSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -20,16 +27,18 @@ import java.util.stream.Stream;
 public class ForcaVendaController {
 
     @Autowired
-    DashService dashService;
+    private DashService dashService;
+    
+    @Autowired
+    private ForcaVendaService forcaVendaService;
 
     @RequestMapping(value = "forcavenda/home", method = RequestMethod.GET)
     public ModelAndView home(HttpSession session) {
-        UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
 
+        UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
 
         DashboardPropostas propostaPME = dashService.ObterListaPropostaPME(FiltroStatusProposta.TODOS, usuario.getDocumento());
         DashboardPropostas propostaPF = dashService.ObterListaPropostaPF(FiltroStatusProposta.TODOS, usuario.getDocumento());
-
 
         ListaPropostas corretora = new ListaPropostas();
         List<Proposta> propostasPME = propostaPME.getDashboardPropostasPME();
@@ -42,31 +51,51 @@ public class ForcaVendaController {
 
         corretora.setPropostaPF(propostasPME);
         corretora.setPropostaPME(propostasPF);
-
-
         corretora.setTotalSucesso(aprovada.intValue() );
         corretora.setTotalCriticadas(criticadas.intValue());
-
 
         double totalValorPF = propostaPF.getDashboardPropostasPF().stream().mapToDouble(Proposta::getValor).sum();
         double totalValorPME = propostaPF.getDashboardPropostasPME().stream().mapToDouble(Proposta::getValor).sum();
 
-
         corretora.setTotalValorPF(totalValorPF);
         corretora.setPercenteValorPF( totalValorPF> totalValorPME ? 100:  totalValorPF == 0 ? 0 : 50 );
-
         corretora.setTotalValorPME(totalValorPME);
         corretora.setPercenteValorPME(  totalValorPME > totalValorPF ? 100:  totalValorPME  == 0 ? 0 : 50 );
 
         return new ModelAndView("forcavenda/home", "corretor", corretora);
-
-
     }
 
     @RequestMapping("forcavenda/cadastro/editar")
-    public ModelAndView index() {
-        ModelAndView modelAndView = new ModelAndView("forcavenda/cadastro/editar");
-        return modelAndView;
+    public ModelAndView index(HttpSession session) {
+
+    	UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
+
+        ForcaVenda forcaVenda = forcaVendaService.ObterPorDocumento(usuario.getDocumento());
+
+        return new ModelAndView("forcavenda/cadastro/editar", "forcaVenda", forcaVenda);
     }
 
+    @RequestMapping(value = "forcavenda/cadastro/salvar", method = RequestMethod.POST)
+    public ModelAndView salvar(HttpSession session, @Valid @ModelAttribute("forcaVenda") ForcaVenda forcaVendaParam, BindingResult result) {
+
+    	if (result.hasErrors()) {
+    		return new ModelAndView("forcavenda/cadastro/editar", "forcaVenda", forcaVendaParam);
+
+    	} else {
+/*    		if (!forcaVendaParam.getSenha().equals(forcaVendaParam.getConfirmaSenha())) {
+    			return new ModelAndView("forcavenda/cadastro/editar", "forcaVenda", forcaVendaParam);
+    		}*/
+
+        	UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
+
+            ForcaVenda forcaVenda = forcaVendaService.ObterPorDocumento(usuario.getDocumento());
+            forcaVenda.setCelular(forcaVendaParam.getCelular());
+            forcaVenda.setEmail(forcaVendaParam.getEmail());
+            //forcaVenda.setSenha(forcaVendaParam.getSenha());
+
+            forcaVendaService.Alterar(forcaVenda);
+
+            return new ModelAndView("forcavenda/home");
+    	}
+    }
 }
