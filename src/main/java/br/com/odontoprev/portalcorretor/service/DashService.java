@@ -26,25 +26,23 @@ import br.com.odontoprev.portalcorretor.service.entity.FiltroStatusProposta;
 public class DashService {
 
     @Value("${odontoprev.servicebase.url}")
-    private String requesBasetUrl;// = "http://172.16.20.30:7001/portal-corretor-servico-0.0.1-SNAPSHOT/";
+    private String requesBasetUrl;
 
-    //@Value("${odontoprev.service.dash}")
-    private String metodoDash = "propostasDashBoard/";
+    @Value("${odontoprev.service.dash}")
+    private String metodoDash;
 
-    //@Value("${odontoprev.service.propostaPF}")
-    private String metodoPropostaPFList = "dashboardPropostaPF/";
+    @Value("${odontoprev.service.dash_propostaPF}")
+    private String metodoPropostaPFList;
 
-    //@Value("${odontoprev.service.propostaPME}")
-    private String metodoPropostaPMEList = "dashboardPropostaPME/";
+    @Value("${odontoprev.service.dash_propostaPME}")
+    private String metodoPropostaPMEList;
 
-    //@Value("${odontoprev.service.propostaPME}")
-    private String metodoPropostasCriticadas = "dashboardPropostaPME/buscaPorCriticaPME_CPF/";
+    @Value("${odontoprev.service.dash_propostaCriticadas}")
+    private String metodoPropostasCriticadas;
 
 
     @Autowired
     private ApiManagerTokenService apiManagerTokenService;
-
-    //TODO: valores fixos para teste
 
     // Obtem dash por numero de documento
     public DashResponse ObterPorDocumento(LocalDate dataInicio, LocalDate dataFim, String cnpjCPF) {
@@ -58,15 +56,22 @@ public class DashService {
         resquestMap.put("cpf", cnpjCPF);
 
         try {
-            ResponseEntity<DashResponse> retorno = restTemplate.postForEntity(url, resquestMap, DashResponse.class);
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
+            HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
+            ResponseEntity<DashResponse> retorno = restTemplate.exchange(url, HttpMethod.POST, entity, DashResponse.class);
+
             if (retorno.getStatusCode() == HttpStatus.OK) {
                 return retorno.getBody();
+            } else {
+                return new DashResponse();
             }
-            return new DashResponse();
 
         } catch (Exception e) {
-            return null;
+            e.printStackTrace();
+            return new DashResponse();
         }
+
     }
 
     public DashboardPropostas ObterListaPropostaPME(FiltroStatusProposta statusProposta, String documento) {
@@ -98,27 +103,27 @@ public class DashService {
         }
     }
 
-    public void ObterPropostasCriticadas(String documento) {
-
-        String url = requesBasetUrl + metodoPropostasCriticadas + documento;
-        RestTemplate restTemplate = new RestTemplate();
-        try {
-            HttpHeaders headers = new HttpHeaders();
-            //headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
-            HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
-            ResponseEntity<DashboardPropostas> retorno = restTemplate.exchange(url, HttpMethod.GET, entity, DashboardPropostas.class);
-
-            if (retorno.getStatusCode() == HttpStatus.OK) {
-                //return retorno.getBody();
-            } else {
-                //
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            //return new DashboardPropostas();
-        }
-
-
-    }
+//    public void ObterPropostasCriticadas(String documento) {
+//
+//        String url = requesBasetUrl + metodoPropostasCriticadas + documento;
+//        RestTemplate restTemplate = new RestTemplate();
+//        try {
+//            HttpHeaders headers = new HttpHeaders();
+//            headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
+//            HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
+//            ResponseEntity<DashboardPropostas> retorno = restTemplate.exchange(url, HttpMethod.GET, entity, DashboardPropostas.class);
+//
+//            if (retorno.getStatusCode() == HttpStatus.OK) {
+//                return retorno.getBody();
+//            } else {
+//                //
+//            }
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            //return new DashboardPropostas();
+//        }
+//
+//
+//    }
 }

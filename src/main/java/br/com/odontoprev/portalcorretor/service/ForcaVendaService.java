@@ -24,12 +24,15 @@ public class ForcaVendaService {
     private static final Log log = LogFactory.getLog(ForcaVendaService.class);
 
     @Value("${odontoprev.servicebase.url}")
-    private String requesBasetUrl;// = "http://172.16.20.30:7001/portal-corretor-servico-0.0.1-SNAPSHOT/";
+    private String requesBasetUrl;
 
-    private String metodoGetPorDocuemnto_Post_Put = "forcavenda/";
+    @Value("${odontoprev.forcavenda.metodo}")
+    private String metodoGetPorDocuemnto_Post_Put;
+
     private String ativar = "forcavenda/status-ativo";
 
-    private String metodoListaPorCorretora = "forcavenda/corretora/";
+    @Value("${odontoprev.forcavenda.ListaPorCorretora}")
+    private String metodoListaPorCorretora;
 
     @Autowired
     private ApiManagerTokenService apiManagerTokenService;
