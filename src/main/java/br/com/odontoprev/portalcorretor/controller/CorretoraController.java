@@ -1,11 +1,13 @@
 package br.com.odontoprev.portalcorretor.controller;
 
-import br.com.odontoprev.portalcorretor.service.DashService;
-import br.com.odontoprev.portalcorretor.service.dto.DashboardPropostas;
-import br.com.odontoprev.portalcorretor.service.dto.Proposta;
-import br.com.odontoprev.portalcorretor.service.entity.FiltroStatusProposta;
 import br.com.odontoprev.portalcorretor.model.ListaPropostas;
 import br.com.odontoprev.portalcorretor.model.UsuarioSession;
+import br.com.odontoprev.portalcorretor.service.DashService;
+import br.com.odontoprev.portalcorretor.service.ForcaVendaService;
+import br.com.odontoprev.portalcorretor.service.dto.DashboardPropostas;
+import br.com.odontoprev.portalcorretor.service.dto.ForcaVenda;
+import br.com.odontoprev.portalcorretor.service.dto.Proposta;
+import br.com.odontoprev.portalcorretor.service.entity.FiltroStatusProposta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +26,9 @@ public class CorretoraController {
     @Autowired
     DashService dashService;
 
+    @Autowired
+    ForcaVendaService forcaVendaService;
+
 
     @RequestMapping(value = "corretora/home", method = RequestMethod.GET)
     public ModelAndView home(HttpSession session) {
@@ -37,8 +42,14 @@ public class CorretoraController {
         List<Proposta> propostasPME = propostaPME.getDashboardPropostasPME();
         List<Proposta> propostasPF = propostaPF.getDashboardPropostasPF();
 
-        //TODO retornar numero de corretores para aprovação
-        corretora.setCountCorretoresAprovacao(2);
+
+        List<ForcaVenda> forcaVendas = forcaVendaService.ObterListaPorCorretora(usuario.getCodigoCorretora());
+
+        Long aguardando = forcaVendas
+                .stream()
+                .filter(i -> i.getStatusForcaVenda().equals("Aguardando Aprovação"))
+                .count();
+        corretora.setCountCorretoresAprovacao(aguardando.intValue());
 
         Stream<Proposta> concat = Stream.concat(propostasPF.stream().peek(i -> i.setTipoPlano("PF")), propostasPME.stream().peek(i -> i.setTipoPlano("PME")));
 
@@ -72,31 +83,30 @@ public class CorretoraController {
     }
 
 
-    
     @RequestMapping(value = "lista-propostas/{statusProposta}", method = RequestMethod.GET)
     public ModelAndView Proposta(@PathVariable String statusProposta, HttpSession session) {
-    	    	
-    	 UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
 
-         ListaPropostas listaPropostas = new ListaPropostas();
-                           
-         System.out.println(statusProposta.toUpperCase().equals("APROVADO") ? FiltroStatusProposta.APROVADO : FiltroStatusProposta.CRITICADO);
-         
-         DashboardPropostas propostaPME = dashService.ObterListaPropostaPME(statusProposta.toUpperCase().equals("APROVADO") ? FiltroStatusProposta.APROVADO : FiltroStatusProposta.CRITICADO, usuario.getDocumento());
-                 
-         List<Proposta> dashboardPropostasPME = propostaPME.getDashboardPropostasPME();
-         listaPropostas.setPropostaPME(dashboardPropostasPME);
-         listaPropostas.setTotalPME(dashboardPropostasPME.size());
+        UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
 
-         DashboardPropostas propostaPF = dashService.ObterListaPropostaPF(statusProposta.toUpperCase().equals("APROVADO") ? FiltroStatusProposta.APROVADO : FiltroStatusProposta.CRITICADO, usuario.getDocumento());
-         List<Proposta> dashboardPropostasPF = propostaPF.getDashboardPropostasPF();
-         listaPropostas.setPropostaPF(dashboardPropostasPF);
-         listaPropostas.setTotalPF(dashboardPropostasPF.size());
+        ListaPropostas listaPropostas = new ListaPropostas();
 
-         listaPropostas.setTotal(dashboardPropostasPF.size() + dashboardPropostasPME.size());
+        System.out.println(statusProposta.toUpperCase().equals("APROVADO") ? FiltroStatusProposta.APROVADO : FiltroStatusProposta.CRITICADO);
 
-         return new ModelAndView("lista-propostas", "listaPropostas", listaPropostas);
-    	
+        DashboardPropostas propostaPME = dashService.ObterListaPropostaPME(statusProposta.toUpperCase().equals("APROVADO") ? FiltroStatusProposta.APROVADO : FiltroStatusProposta.CRITICADO, usuario.getDocumento());
+
+        List<Proposta> dashboardPropostasPME = propostaPME.getDashboardPropostasPME();
+        listaPropostas.setPropostaPME(dashboardPropostasPME);
+        listaPropostas.setTotalPME(dashboardPropostasPME.size());
+
+        DashboardPropostas propostaPF = dashService.ObterListaPropostaPF(statusProposta.toUpperCase().equals("APROVADO") ? FiltroStatusProposta.APROVADO : FiltroStatusProposta.CRITICADO, usuario.getDocumento());
+        List<Proposta> dashboardPropostasPF = propostaPF.getDashboardPropostasPF();
+        listaPropostas.setPropostaPF(dashboardPropostasPF);
+        listaPropostas.setTotalPF(dashboardPropostasPF.size());
+
+        listaPropostas.setTotal(dashboardPropostasPF.size() + dashboardPropostasPME.size());
+
+        return new ModelAndView("lista-propostas", "listaPropostas", listaPropostas);
+
     }
 
 
