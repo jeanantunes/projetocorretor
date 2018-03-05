@@ -132,7 +132,7 @@
                     <tr>
                         <th><span>Nome</span></th>
                         <th class="col-xs-3"><span>Status</span></th>
-                        <th><span>Ações</span></th>
+                        <!--<th><span>Ações</span></th>-->
                         <th><span></span></th>
                     </tr>
                     </thead>
@@ -141,7 +141,7 @@
                         <td><span th:text="${forca.nome}">Lopes</span></td>
                         <td><span th:text="${forca.statusForcaVenda}">PME</span></td>
 
-                        <td><span>  <a th:href="@{/corretora/equipe/desativar(id=${forca.cdForcaVenda})}" > Desativar </a></span>
+                        <!--<td><span>  <a th:href="@{/corretora/equipe/desativar(id=${forca.cdForcaVenda})}" > Desativar </a></span>-->
                         </td>
                     </tr>
 
@@ -168,14 +168,18 @@
             </div>
         </div>
 
+        <div th:if="*{listaForca.erro}" style="padding-top: 10px" >
+            <span th:text="*{listaForca.message}" class="alert alert-danger"></span>
+        </div>
+
         <div class="row space-top-30">
             <div class="col-xs-12">
                 <table class="table-odonto">
                     <thead>
                     <tr>
                         <th class="col-xs-7"><span>Nome</span></th>
-                        <th><span>Ações</span></th>
                         <th><span></span></th>
+                        <th><span>Ações</span></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -184,7 +188,8 @@
                         <td><span th:text="${forca.nome}">Lopes</span></td>
                         <td><span th:text="${forca.statusForcaVenda}">PME</span></td>
 
-                        <td><span>  <a th:href="@{/corretora/equipe/desativar(id=${forca.cdForcaVenda})}" > Desativar </a></span>
+                        <td><span>  <a th:href="@{/corretora/equipe/ativar(id=${forca.cpf})}" > Ativar </a></span>
+                        <!--<td><span>  <a th:href="@{/corretora/equipe/desativar(id=${forca.cpf})}" > Desativar </a></span>-->
                         </td>
                     </tr>
 

@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Corretora {
 
-    private int cdCorretora;
+    private Integer cdCorretora;
     private String cnpj;
     private String razaoSocial;
     private String cnae;
@@ -23,7 +23,7 @@ public class Corretora {
         this.cdCorretora = cdCorretora;
     }
 
-    public int getCdCorretora() {
+    public Integer getCdCorretora() {
         return cdCorretora;
     }
 

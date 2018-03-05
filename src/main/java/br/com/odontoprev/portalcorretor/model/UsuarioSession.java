@@ -16,7 +16,7 @@ public class UsuarioSession implements Serializable {
 	private String documento;
 	private long codigoDcss;
 	private long codigoUsuario;
-	private int codigoCorretora;
+	private Integer codigoCorretora;
 	private String nomeCorretora;
 	private String perfil;
 
@@ -69,7 +69,7 @@ public class UsuarioSession implements Serializable {
 		this.codigoUsuario = codigoUsuario;
 	}
 
-	public int getCodigoCorretora() {
+	public Integer getCodigoCorretora() {
 		return codigoCorretora;
 	}
 

@@ -8,6 +8,8 @@ public class ListaForca {
     private List<ForcaVenda> aguardandoAprovacao;
     private List<ForcaVenda> lista;
     private Integer totalForca;
+    private String message;
+    private Boolean erro;
 
 
     public List<ForcaVenda> getAguardandoAprovacao() {
@@ -32,5 +34,22 @@ public class ListaForca {
 
     public void setTotalForca(Integer totalForca) {
         this.totalForca = totalForca;
+    }
+
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public void setErro(Boolean erro) {
+        this.erro = erro;
+    }
+
+    public Boolean isErro() {
+        return erro;
     }
 }
