@@ -63,9 +63,16 @@
 
 <div class="container-fluid nopadding">
 
-    <div th:replace="fragments/menu-corretor :: menu-corretor">&nbsp;</div>
-
-    <div th:replace="fragments/header-corretor :: header-corretor">&nbsp;</div>
+    <div th:switch="${session.usuario.perfil}">
+	  <div th:case="'Corretor'">
+  			<div th:replace="fragments/menu-corretor :: menu-corretor">&nbsp;</div>
+			<div th:replace="fragments/header-corretor :: header-corretor">&nbsp;</div>
+	  </div>
+	  <div th:case="'Corretora'">
+  			<div th:replace="fragments/menu-corretora :: menu-corretora">&nbsp;</div>
+			<div th:replace="fragments/header-corretora :: header-corretora">&nbsp;</div>
+	  </div>  
+	</div>
 
     <div class="container-logado padding-logado">
         <div class="row">
@@ -79,19 +86,21 @@
                 <div class="box-alerta-content">
                     <div class="alerta-1 pull-left">
 
-                        <div class="box-alerta bg-green pull-left space-top-30 space-right-30">
-                            <h3 class="text-center uppercase nomargin "><strong
-                                    th:text="${corretor.totalSucesso}">8</strong></h3>
-                            <p class="text-center text-odonto nomargin">Propostas finalizadas</p>
-                            <p class="text-center text-odonto nomargin">com sucesso</p>
-                        </div>
-
-                        <div class="box-alerta bg-red pull-left space-top-30 space-right-30">
-                            <h3 class="text-center uppercase nomargin "><strong
-                                    th:text="${corretor.totalCriticadas}">4</strong></h3>
-                            <p class="text-center text-odonto nomargin">Propostas</p>
-                            <p class="text-center text-odonto nomargin">criticadas</p>
-                        </div>
+                         <a class="text-center text-odonto nomargin" th:href="@{/alertas/aprovado}">
+                            <div class="box-alerta bg-green pull-left space-top-30 space-right-30">
+                                <h3 class="text-center uppercase nomargin "><strong
+                                        th:text="${corretor.totalSucesso}">8</strong></h3>
+                                Propostas finalizadas com sucesso
+                            </div>
+                        </a>
+                        <a class="text-center text-odonto nomargin" href="lista-propostas.html"
+                           th:href="@{/alertas/criticado}">
+                            <div class="box-alerta bg-red pull-left space-top-30 space-right-30">
+                                <h3 class="text-center uppercase nomargin "><strong
+                                        th:text="${corretor.totalCriticadas}">4</strong></h3>
+                                Propostas criticadas
+                            </div>
+                        </a>
 
                     </div>
 

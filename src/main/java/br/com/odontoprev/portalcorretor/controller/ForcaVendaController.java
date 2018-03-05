@@ -1,27 +1,28 @@
 package br.com.odontoprev.portalcorretor.controller;
 
+import java.util.List;
+import java.util.stream.Stream;
+
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import br.com.odontoprev.portalcorretor.model.ListaPropostas;
+import br.com.odontoprev.portalcorretor.model.UsuarioSession;
 import br.com.odontoprev.portalcorretor.service.DashService;
 import br.com.odontoprev.portalcorretor.service.ForcaVendaService;
 import br.com.odontoprev.portalcorretor.service.dto.DashboardPropostas;
 import br.com.odontoprev.portalcorretor.service.dto.ForcaVenda;
 import br.com.odontoprev.portalcorretor.service.dto.Proposta;
 import br.com.odontoprev.portalcorretor.service.entity.FiltroStatusProposta;
-import br.com.odontoprev.portalcorretor.model.ListaPropostas;
-import br.com.odontoprev.portalcorretor.model.UsuarioSession;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
-
-import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
-
-import java.util.List;
-import java.util.stream.Stream;
 
 @Controller
 public class ForcaVendaController {
@@ -97,5 +98,28 @@ public class ForcaVendaController {
 
             return new ModelAndView("forcavenda/home");
     	}
+    }
+    
+    @RequestMapping(value = "alertas/{statusProposta}", method = RequestMethod.GET)
+    public ModelAndView Proposta(@PathVariable String statusProposta, HttpSession session) {
+    	    	
+    	 UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
+
+         ListaPropostas listaPropostas = new ListaPropostas();
+         
+         DashboardPropostas propostaPME = dashService.ObterListaPropostaPME(statusProposta.toUpperCase().equals("APROVADO") ? FiltroStatusProposta.APROVADO : FiltroStatusProposta.CRITICADO, usuario.getDocumento());
+         
+         List<Proposta> dashboardPropostasPME = propostaPME.getDashboardPropostasPME();
+         listaPropostas.setPropostaPME(dashboardPropostasPME);
+         listaPropostas.setTotalPME(dashboardPropostasPME.size());
+
+         DashboardPropostas propostaPF = dashService.ObterListaPropostaPF(statusProposta.toUpperCase().equals("APROVADO") ? FiltroStatusProposta.APROVADO : FiltroStatusProposta.CRITICADO, usuario.getDocumento());
+         List<Proposta> dashboardPropostasPF = propostaPF.getDashboardPropostasPF();
+         listaPropostas.setPropostaPF(dashboardPropostasPF);
+         listaPropostas.setTotalPF(dashboardPropostasPF.size());
+
+         listaPropostas.setTotal(dashboardPropostasPF.size() + dashboardPropostasPME.size());
+         
+         return new ModelAndView("lista-propostas", "listaPropostas", listaPropostas);    	
     }
 }
