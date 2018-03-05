@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+<html lang="pt-br" xmlns:teste="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
@@ -18,7 +18,7 @@
 
     <script type="text/javascript" th:src="@{/js/menu.js}"></script>
     <!--<script type="text/javascript"-->
-            <!--th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js}"></script>-->
+    <!--th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js}"></script>-->
 
 </head>
 <body style="min-width: 100% !important;">
@@ -85,42 +85,48 @@
 
         <div class="row space-top-30">
             <div class="col-xs-12">
-                <p class="subtitle-odonto nomargin">Rol Mínimo</p>
-                <a th:href="@{/info-planos-rol-min}" type="button" class="uppercase btn btnBlue btn-width-custom space-top-10">Rol Mínimo</a>
+                <p class="subtitle-odonto nomargin"><bold>Dental Orto</bold></p>
+
+                Aplicação de Flúor e Selantes<br />
+                Próteses (Completa)<br />
+                Próteses Simples (unitária)<br />
+                Cirurgia e Radiografias<br />
+                Colocação + Manutenção de Aparelho<br />
+                Consultas com Especialistas em Odontopediatria<br />
+                Documentação e Radiografias Ortodônticas<br />
+                Emergência 24h<br />
+                Extração de Dentes do Siso<br />
+                Limpezas Periódicas<br />
+                Placa de Clareamento + Gel<br />
+                Restaurações<br />
+                Tratamento de Canal e Gengiva<br /><br /><br />
+
+
+
+
+
+                <div class="row space-top-30">
+                    <div class="col-xs-12">
+
+
+                        <p class="subtitle-odonto nomargin">Planos PF</p>
+                        <a th:href="@{/info-planos-rol-min}"  type="button" class="uppercase btn btnBlue btn-width-custom space-top-10">Rol Mínimo</a></br>
+                        <a th:href="@{/info-planos-dental-bem-estar}"  type="button" class="uppercase btn btnBlue btn-width-custom space-top-10">Dental Bem Estar</a> <br />
+                        <a th:href="@{/info-planos-dental-estetica}"  type="button" class="uppercase btn btnBlue btn-width-custom space-top-10">Dental Estética</a> <br />
+                        <a th:href="@{/info-planos-dental-vip}" type="button" class="uppercase btn btnBlue btn-width-custom space-top-10">Dental Vip</a> <br />
+                    </div>
+                </div>
+
             </div>
         </div>
-
-        <div class="row space-top-30">
-            <div class="col-xs-12">
-                <p class="subtitle-odonto nomargin">Planos PME</p>
-                <a th:href="@{/info-planos-integral-doc-le}" type="button" class="uppercase btn btnBlue btn-width-custom space-top-10">Plano Integral DOC LE</a>
-            </div>
-        </div>
-
-        <div class="row space-top-10">
-            <div class="col-xs-12">
-                <a th:href="@{/info-planos-master-le}" type="button" class="uppercase btn btnBlue btn-width-custom space-top-10">Plano Master LE</a>
-            </div>
-        </div>
-
-
-        <div class="row space-top-30">
-            <div class="col-xs-12">
-
-                <p class="subtitle-odonto nomargin">Planos PF</p>
-                <a th:href="@{/info-planos-dental-bem-estar}" type="button" class="uppercase btn btnBlue btn-width-custom space-top-10">Dental Bem-Estar</a> <br />
-                <a th:href="@{/info-planos-dental-estetica}"  type="button" class="uppercase btn btnBlue btn-width-custom space-top-10">Dental Estética</a> <br />
-                <a th:href="@{/info-planos-dental-orto}" type="button" class="uppercase btn btnBlue btn-width-custom space-top-10">Dental Orto</a> <br />
-                <a th:href="@{/info-planos-dental-vip}" type="button" class="uppercase btn btnBlue btn-width-custom space-top-10">Dental Vip</a> <br />
-            </div>
-        </div>
-
 
     </div>
 
 
-    <div th:replace="fragments/footer :: footer">&nbsp;</div>
+
+<div th:replace="fragments/footer :: footer">&nbsp;</div>
 </div>
+
 
 </body>
 </html>

@@ -30,4 +30,26 @@ public class InfoPlanosController {
     }
 
 
+    @RequestMapping("/info-planos-dental-bem-estar")
+    public String indexInfoPlanoDentalBemEstar() {
+        return "info-planos-dental-bem-estar";
+
+    }
+
+    @RequestMapping("/info-planos-dental-vip")
+    public String indexInfoPlanoDentalVip() {
+        return "info-planos-dental-vip";
+
+    }
+    @RequestMapping("/info-planos-dental-orto")
+    public String indexInfoPlanoDentalOrto() {
+        return "info-planos-dental-orto";
+
+    }
+
+    @RequestMapping("/info-planos-dental-estetica")
+    public String indexInfoPlanoDentalEstetica() {
+        return "info-planos-dental-estetica";
+
+    }
 }
