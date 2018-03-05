@@ -82,8 +82,8 @@ public class DashService {
         return getDashboardPropostas(statusProposta, documento, metodoPropostaPFList);
     }
 
-    private DashboardPropostas getDashboardPropostas(FiltroStatusProposta statusProposta, String documento, String metodoPropostaPFList) {
-        String url = requesBasetUrl + metodoPropostaPFList + "/" + statusProposta.getValue() + "/" + documento;
+    private DashboardPropostas getDashboardPropostas(FiltroStatusProposta statusProposta, String documento, String metodoProposta) {
+        String url = requesBasetUrl + metodoProposta + "/" + statusProposta.getValue() + "/" + documento;
         RestTemplate restTemplate = new RestTemplate();
         try {
             HttpHeaders headers = new HttpHeaders();
@@ -92,12 +92,13 @@ public class DashService {
             ResponseEntity<DashboardPropostas> retorno = restTemplate.exchange(url, HttpMethod.GET, entity, DashboardPropostas.class);
 
             if (retorno.getStatusCode() == HttpStatus.OK) {
-                return retorno.getBody();
-            } else {
-                return new DashboardPropostas();
+                if (retorno.getBody().getDashboardPropostasPF() != null && retorno.getBody().getDashboardPropostasPME() != null) {
+                    return retorno.getBody();
+                }
             }
-
-        } catch (Exception e) {
+            return new DashboardPropostas();
+        } catch (Exception e)
+        {
             e.printStackTrace();
             return new DashboardPropostas();
         }
