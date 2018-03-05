@@ -14,10 +14,16 @@
 
     <div class="perfil-web">
         <div class="circle-perfil">
+
             <div class="data-perfil">
                 <p class="user-name"><strong th:text="${session.usuario.getNomeCorretora()}"></strong></p>
                 <a th:href="@{/logout}" class="link-odonto">Sair</a>
             </div>
+        </div>
+
+        <div class="circle-perfil_corretora">
+        <img src="/img/empresa.png" width="100px" height="100px" style="margin-left: 10px; margin-top: 10px"/>
+
         </div>
     </div>
 </div>

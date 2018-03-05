@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:teste="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-theme.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+
+    <!-- 		<link href="css/estiloOdontoPrev.css" rel="stylesheet"> -->
+    <script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.mask.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/odonto-Valida.js}"></script>
+
+    <script type="text/javascript" th:src="@{/js/menu.js}"></script>
+    <!--<script type="text/javascript"-->
+    <!--th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js}"></script>-->
+
+</head>
+<body style="min-width: 100% !important;">
+
+<script>
+    $(function () {
+        $(".button-collapse").sideNav();
+    });
+
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.table-odonto tr:odd').css('background-color', '#EDEDED');
+
+        $('.table-odonto tr:even').css('background-color', '#fff');
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('.barras').each(function () {
+            var dataWidth = $(this).data('value');
+            $(this).css("width", dataWidth + "%");
+            $(this).css("max-width", "100%");
+            if (dataWidth <= 25) {
+                $(this).css("border-color", "transparent");
+            }
+            else if (dataWidth > 25 && dataWidth <= 50) {
+                $(this).css("border-color", "transparent");
+            }
+            else if (dataWidth > 50 && dataWidth <= 75) {
+                $(this).css("border-color", "transparent");
+            }
+            else if (dataWidth > 75 && dataWidth <= 100) {
+                $(this).css("border-color", "transparent");
+            }
+        });
+    });
+</script>
+
+<div class="container-fluid nopadding">
+
+    <div th:switch="${session.usuario.perfil}">
+        <div th:case="'Corretor'">
+            <div th:replace="fragments/menu-corretor :: menu-corretor">&nbsp;</div>
+            <div th:replace="fragments/header-corretor :: header-corretor">&nbsp;</div>
+        </div>
+        <div th:case="'Corretora'">
+            <div th:replace="fragments/menu-corretora :: menu-corretora">&nbsp;</div>
+            <div th:replace="fragments/header-corretora :: header-corretora">&nbsp;</div>
+        </div>
+    </div>
+
+    <div class="container-logado padding-logado">
+
+        <div class="row">
+            <div class="col-xs-12">
+                <h4 class="uppercase font-blue title-section-odonto">Informação dos Planos<h4>
+
+            </div>
+        </div>
+
+        <div class="row space-top-30">
+            <div class="col-xs-12">
+                <p class="subtitle-odonto nomargin"><bold>Rol Mínimo</bold></p>
+                <strong>Cirurgia</strong><br />
+                Alveolo plastia<br />
+                Amputação radicular com obturação retrógrada<br />
+                Amputação birradiculares com obturação retrógrada<br />
+                Amputação birradiculares sem obturação retrógrada<br />
+                Apicetomia multirradiculares com obturação retrógrada<br />
+                Apicetomia multirradiculares sem obturação retrógrada<br />
+                Apicetomia unirradiculares com obturação retrógrada<br />
+                Apicetomia unirradiculares sem obturação retrógrada<br />
+                Aprofundamento de vestibulo<br />
+                Biópsia de boca<br />
+                Biópsia de glândula salivar<br />
+                Biópsia de lábio<br />
+                Biópsia de língua<br />
+                Biópsia de mandibula<br />
+                Biópsia de maxila<br />
+                Bridectomia <br />
+                Bridotomia<br />
+                Cirurgia para exostose maxilar<br />
+                Cirurgia para torus mandibular - bilateral<br />
+                Cirurgia para torus mandibular - unilateral<br />
+                Cirurgia para torus palatino<br />
+                Coleta de raspado em lesões ou sitios especificos da região buci-maxilo-facial<br />
+                Cunha proximal<br />
+                Diagnóstico e tratamento de estomatite herpética<br />
+                Diagnóstico e tratamento de estomatite por candidose<br />
+                Diagnóstico e tratamento de halitose<br />
+                Diagnóstico e tratamento de xerostomia<br />
+                Exérese de lipoma na região buco-maxilo-facial<br />
+                Exérese ou excisão de cálculo salivar<br />
+                Exérese ou excisão de cistos odontológicos<br />
+                Exérese ou excisão de mucocele<br />
+                Exérese ou excisão de rânula<br />
+                Exodontia a retalho<br />
+                Exodontia de permanente por indicação ortodôntica/protética<br />
+                Exodontia de raiz residual<br />
+                Exosontia simples de permanente <br />
+                Frenulectomia labial<br />
+                Frenulectomia lingual<br />
+                Frenulotomia labial<br />
+                Frenulotomia lingual<br />
+                Odonto-secção<br />
+                Punção aspirativa na região buco-maxilo-facial<br />
+                Reconstrução de sulco gengivo-labial<br />
+                Redução cruenta de fratura alvéolo dentária<br />
+                Redução incruenta de fratura alvéolo dentária<br />
+                Remoção de dentes inclusos/impactados<br />
+                Remoção de dentes semi-inclusos/impactados<br />
+                Remoção de odontoma<br />
+                Tratamento cirúrgico das fístulas buco nasal<br />
+                Tratamento cirúrgico das fístulas buco sinusal<br />
+                Tratamento cirúegico de bridas constritivas da região buco-maxilo-facial<br />
+                Tratamento cirúrgico de hiperplasias de tecidos moles na região buco-maxilo-facial<br />
+                Tratamento cirúrgico de hiperplasias de tecidos ósseos/cartilaginosos na região buco-maxilo-facial<br />
+                Tratamento cirúrgico de tumores benignos de tecidos ósseos/cartilaginosos na região buco-maxilo-facial<br />
+                Tratamento cirúrgico dos tumores benignos de tecidos moles na região buco-maxilo-facial<br />
+                Tratamento cirúrgico para tumores odontogênicos benignos - sem reconstrução<br />
+                Ulectomia<br />
+                Ulotomia<br /><br />
+
+                <strong>Dentística</strong><br />
+                Ajuste oclusal por acréscimo<br />
+                Ajuste oclusal por desgaste seletivo<br />
+                Capeamento pulpar direto<br />
+                Faceta direta em resina fotopolimerizável<br />
+                Remoção de trabalho protético<br />
+                Restauração de amálgama - 1 face<br />
+                Restauração de amálgama - 2 faces<br />
+                Restauração de amálgama - 3 faces<br />
+                Restauração de amálgama - 4 faces<br />
+                Restauração em ionômero de vidro - 1 face<br />
+                Restauração em ionômero de vidro - 2 faces<br />
+                Restauração em ionômero de vidro - 3 faces<br />
+                Restauração em ionômero de vidro - 4 faces<br />
+                Restauração em resina fotopolimerizável - 1 face<br />
+                Restauração em resina fotopolimerizável - 2 faces<br />
+                Restauração em resina fotopolimerizável - 3 faces<br />
+                Restauração em resina fotopolimerizável - 4 faces<br /><br />
+
+                <strong>Diagnóstico</strong><br />
+                Consulta odontológica<br />
+                Consulta odontológica inicial<br />
+                Controle pós operatório em odontologia<br />
+                Diagnóstico anatomopatológico em citologia esfoliativa na região buco-maxilo-facial<br />
+                Diagnóstico anatomopatológico em material de biópsia na região buco-maxilo-facial<br />
+                Diagnóstico anatomopatológico em peça cirúrgica na região buco-maxilo-facial<br />
+                Diagnóstico anatomopatológico em punção na região buco-maxilo-facial<br />
+                Diagnóstico e planejamento para tratamento odontológico<br /><br />
+
+                <strong> Emergência</strong> <br />
+                Colagem de fragmentos dentários<br />
+                Consulta odontológica de urgência<br />
+                Consulta odontológica de urgência 24hs<br />
+                Controle de hemorragia com aplicação de agente hemostático em região buco-maxilo-facial <br />
+                Controle de hemorragia sem aplicação de agente hemostático em região buco-maxilo-facial<br />
+                Incisão e drenagem extra-oral de abscesso, hematoma e/ou flegmão da região buco-maxilo-facial<br />
+                Incisão e drenagem intra-oral de abscesso, hematoma e/ou flegmão da região buco-maxilo-facial<br />
+                Pulpectomia<br />
+                Recimentação de trabalhos protéticos<br />
+                Redução simples de luxação de articulação témporo-mandibular (ATM)<br />
+                Reembasamento de coroa provisória<br />
+                Reimplante dentário com contenção <br />
+                Remoção de dreno intra-oral<br />
+                Restauração temporária / tratamento expectante<br />
+                Sutura de ferida em região buco-maxilo-facial<br />
+                Tratamento de alveolite<br />
+                Tratamento de pericoronarite <br /><br />
+
+                <strong> Endodontia</strong><br />
+                Curativo de demora em endodontia<br />
+                Preparo para núcleo intrarradicular <br />
+                Pulpotomia<br />
+                Remoção de corpo estranho intracanal<br />
+                Remoção de material obturador intracanal para retratamento endodôntico<br />
+                Remoção de núcleo intrarradicular<br />
+                Retratamento endodôntico burradicular<br />
+                Retratamento endodôntico multirradicular<br />
+                Retratamento endodôntico unirradicular<br />
+                Tratamento de perfuração enfofôntica<br />
+                Tratamento de perfuração endodôntica<br />
+                Tratamento endodôntico de dente com rizogênese incompleta<br />
+                Tratamento endodôntico birradicular<br />
+                Tratamento endodôntico multirradicular<br />
+                Tratamento endodôntico unirradicular <br /><br />
+
+                <strong>Odontopediatria</strong><br />
+                Aplicação de cariostático<br />
+                Aplicação de selante - técnica invasiva<br />
+                Aplicação de selante de fóssulas e fissuras<br />
+                Aplicação tópica de verniz fluoretado<br />
+                Condicionamento em odontologia<br />
+                Condicionamento em odontologia para pacientes com necessidades especiais<br />
+                Controle de cárie incipiente<br />
+                Coroa de acetato em dente decíduo<br />
+                Coroa de acetato em dente permanente<br />
+                Coroa de aço em dente decíduo<br />
+                Coroa de aço em dente permanente<br />
+                Estabilização de paciente por meio de contenção física e/ou mecânica<br />
+                Estabilização por meio de contenção física e/ou mecânica em pacientes com necessidades especiais em odontologia<br />
+                Exodontia simples de decíduo<br />
+                Pulpotomia em dente decíduo<br />
+                Remineralização dentária<br />
+                Restauração atraumática em dente decíduo<br />
+                Restauração atraumática em dente permanente<br />
+                Tratamento endodôntico em dente decíduo<br />
+                Periodontia<br />
+                Acompanhamento de tratamento/procedimento cirúrgico em odontologia<br />
+                Aument ode coroa clínica<br />
+                Cirurgia odontológica a retalho<br />
+                Cirurgia periodontal a retalho<br />
+                Dessensibilização dentária<br />
+                Enxerto gengival livre<br />
+                Enxerto pediculado<br />
+                Gengivectomia<br />
+                Gengivoplastia<br />
+                Imobilização dentária em dentes decíduos<br />
+                Imobilização dentária em dentes permanentes<br />
+                Raspagem sub-gengival.alisamento radicular<br />
+                Raspagem supra-gengival<br />
+                Remoção dos fatores de retenção do biofilme dental (placa bacteriana)<br />
+                Tratamento de abscesso periodontal agudo<br />
+                Tratamento de gengivite necrosante aguda - GUNA<br />
+                Tunelização<br /><br />
+
+                <strong> Prevenção</strong><br />
+                Aplicação tópica de fluor<br />
+                Atividade educativa em odontologia para pais e/ou cuidadores de pacientes com necessidades especiais<br />
+                Atividade educativa em saúde bucal<br />
+                Atividade educativa para pais e /ou cuidadores<br />
+                Controle de biogilme (placa bacteriana)<br />
+                Profilaxia: polimento coronário<br />
+                Teste de fluxo salivar<br />
+                Teste de PH salivar<br /><br />
+
+                <strong> Prótese dentária</strong><br />
+                Coroa provisória com pino<br />
+                Coroa provisória sem pino<br />
+                Coroa total em cerômero (Conforme diretriz da ANS (somente para dentes anteriores)<br />
+                Coroa total metálica<br />
+                Núcleo de preenchimento<br />
+                Núcleo metálico fundido<br />
+                Pino pré fabricado<br />
+                Provisório para restauração metálica fundida<br />
+                Restauração metálica fundida<br /><br />
+
+                <strong>Radiologia</strong><br />
+                Levantamento Radiográfico (exame radiotôntico)<br />
+                Radiografia interproximal-bite-wing<br />
+                Radiografia oclusal<br />
+                Radiografia panorâmica de mandibula/maxila (ortopantomografia)<br />
+                Radiografia periapical<br /><br />
+
+                <strong>Periodontia</strong><br />
+                Acompanhamento de tratamento/procedimento cirúrgico em odontologia<br />
+                Aument ode coroa clínica<br />
+                Cirurgia odontológica a retalho<br />
+                Cirurgia periodontal a retalho<br />
+                Dessensibilização dentária<br />
+                Enxerto gengival livre<br />
+                Enxerto pediculado<br />
+                Gengivectomia<br />
+                Gengivoplastia<br />
+                Imobilização dentária em dentes decíduos<br />
+                Imobilização dentária em dentes permanentes<br />
+                Raspagem sub-gengival.alisamento radicular<br />
+                Raspagem supra-gengival<br />
+                Remoção dos fatores de retenção do biofilme dental (placa bacteriana)<br />
+                Tratamento de abscesso periodontal agudo<br />
+                Tratamento de gengivite necrosante aguda - GUNA<br />
+                Tunelização<br /><br />
+
+                <strong> Prevenção</strong><br />
+                Aplicação tópica de fluor<br />
+                Atividade educativa em odontologia para pais e/ou cuidadores de pacientes com necessidades especiais<br />
+                Atividade educativa em saúde bucal<br />
+                Atividade educativa para pais e /ou cuidadores<br />
+                Controle de biogilme (placa bacteriana)<br />
+                Profilaxia: polimento coronário<br />
+                Teste de fluxo salivar<br />
+                Teste de PH salivar<br /><br />
+
+                <strong> Prótese dentária</strong><br />
+                Coroa provisória com pino<br />
+                Coroa provisória sem pino<br />
+                Coroa total em cerômero (Conforme diretriz da ANS (somente para dentes anteriores)<br />
+                Coroa total metálica<br />
+                Núcleo de preenchimento<br />
+                Núcleo metálico fundido<br />
+                Pino pré fabricado<br />
+                Provisório para restauração metálica fundida<br />
+                Restauração metálica fundida<br /><br />
+
+                <strong>Radiologia</strong><br />
+                Levantamento Radiográfico (exame radiotôntico)<br />
+                Radiografia interproximal-bite-wing<br />
+                Radiografia oclusal<br />
+                Radiografia panorâmica de mandibula/maxila (ortopantomografia)<br />
+                Radiografia periapical<br /><br />
+
+
+
+
+
+                <div class="row space-top-30">
+                    <div class="col-xs-12">
+                        <p class="subtitle-odonto nomargin">Planos PME</p>
+                        <a href="rol-minimo.html" type="button" class="uppercase btn btnBlue btn-width-custom space-top-10">Rol Mínimo</a> <br />
+                        <a href="plano-integral-doc-le.html" type="button" class="uppercase btn btnBlue btn-width-custom space-top-10">Plano Integral DOC LE</a> <br />
+                        <a href="plano-master-le.html" type="button" class="uppercase btn btnBlue btn-width-custom space-top-10">Plano Master LE</a> <br /><br /><br />
+
+
+                        <p class="subtitle-odonto nomargin">Planos PF</p>
+                        <a href="dente-de-leite.html" type="button" class="uppercase btn btnBlue btn-width-custom space-top-10">Dente de Leite</a> <br />
+                        <a href="dental-bem-estar.html" type="button" class="uppercase btn btnBlue btn-width-custom space-top-10">Dental Bem-Estar</a> <br />
+                        <a href="dental-estetica.html" type="button" class="uppercase btn btnBlue btn-width-custom space-top-10">Dental Estética</a> <br />
+                        <a href="dental-orto.html" type="button" class="uppercase btn btnBlue btn-width-custom space-top-10">Dental Orto</a> <br />
+                        <a href="dental-vip.html" type="button" class="uppercase btn btnBlue btn-width-custom space-top-10">Dental Vip</a> <br />
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+<div th:replace="fragments/footer :: footer">&nbsp;</div>
+</div>
+
+
+</body>
+</html>

@@ -23,5 +23,11 @@ public class InfoPlanosController {
 
     }
 
+    @RequestMapping("/info-planos-rol-min")
+    public String indexInfoPlanoRolMin() {
+        return "info-planos-rol-min";
+
+    }
+
 
 }

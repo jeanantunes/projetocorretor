@@ -2395,6 +2395,7 @@ button.picker__today:focus,button.picker__clear:focus,button.picker__close:focus
 		position: relative !important;
 		left: -10px !important;
 		top: -1px !important;
+
 	}
 
 	#souDono{
@@ -2514,6 +2515,19 @@ button.picker__today:focus,button.picker__clear:focus,button.picker__close:focus
 	position: absolute;
 	left: 283px;
 	top: 31px;
+
+}
+
+.circle-perfil_corretora{
+	height: 150px;
+	width: 150px;
+	border-radius:100px;
+	border:15px solid #EDEDED;
+	background-color: white;
+	position: absolute;
+	left: 283px;
+	top: 31px;
+
 }
 
 .icon-menu{
