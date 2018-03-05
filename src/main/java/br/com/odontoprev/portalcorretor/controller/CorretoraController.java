@@ -73,26 +73,22 @@ public class CorretoraController {
 
 
     
-    @RequestMapping(value = "alertas/{statusProposta}", method = RequestMethod.GET)
+    @RequestMapping(value = "lista-propostas/{statusProposta}", method = RequestMethod.GET)
     public ModelAndView Proposta(@PathVariable String statusProposta, HttpSession session) {
     	    	
     	 UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
 
          ListaPropostas listaPropostas = new ListaPropostas();
+                           
+         System.out.println(statusProposta.toUpperCase().equals("APROVADO") ? FiltroStatusProposta.APROVADO : FiltroStatusProposta.CRITICADO);
          
-         DashboardPropostas propostaPME = null;
-         
-         if(statusProposta.toUpperCase().equals("APROVADO")) {
-        	 propostaPME = dashService.ObterListaPropostaPME(FiltroStatusProposta.APROVADO, usuario.getDocumento());
-         } else if(statusProposta.toUpperCase().equals("CRITICADO")) {
-        	 propostaPME = dashService.ObterListaPropostaPME(FiltroStatusProposta.CRITICADO, usuario.getDocumento());
-         }
-         
+         DashboardPropostas propostaPME = dashService.ObterListaPropostaPME(statusProposta.toUpperCase().equals("APROVADO") ? FiltroStatusProposta.APROVADO : FiltroStatusProposta.CRITICADO, usuario.getDocumento());
+                 
          List<Proposta> dashboardPropostasPME = propostaPME.getDashboardPropostasPME();
          listaPropostas.setPropostaPME(dashboardPropostasPME);
          listaPropostas.setTotalPME(dashboardPropostasPME.size());
 
-         DashboardPropostas propostaPF = dashService.ObterListaPropostaPF(FiltroStatusProposta.APROVADO, usuario.getDocumento());
+         DashboardPropostas propostaPF = dashService.ObterListaPropostaPF(statusProposta.toUpperCase().equals("APROVADO") ? FiltroStatusProposta.APROVADO : FiltroStatusProposta.CRITICADO, usuario.getDocumento());
          List<Proposta> dashboardPropostasPF = propostaPF.getDashboardPropostasPF();
          listaPropostas.setPropostaPF(dashboardPropostasPF);
          listaPropostas.setTotalPF(dashboardPropostasPF.size());

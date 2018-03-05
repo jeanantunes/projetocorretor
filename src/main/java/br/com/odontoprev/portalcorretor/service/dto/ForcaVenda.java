@@ -4,6 +4,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class ForcaVenda implements Serializable {
 
     private static final long serialVersionUID = 3665956677976317178L;
@@ -12,8 +15,15 @@ public class ForcaVenda implements Serializable {
     private Long cdForcaVenda;
 
     private String nome;
+    
+    @NotBlank
+    @NotEmpty
     private String celular;
+    
+    @NotBlank
+    @NotEmpty
     private String email;
+    
     private Corretora corretora;
     private String statusForcaVenda;
     private String cpf;
@@ -25,7 +35,15 @@ public class ForcaVenda implements Serializable {
     private String nomeGerente;
     private String responsavel;
     private String rg;
+    
+//    @NotBlank
+//    @NotEmpty
     private String senha;
+
+//    @NotBlank
+//    @NotEmpty
+    private String confirmaSenha;
+   
     private String canalVenda;
 
 
@@ -173,15 +191,23 @@ public class ForcaVenda implements Serializable {
         this.canalVenda = canalVenda;
     }
 
-    @Override
-    public String toString() {
-        return "ForcaVenda [cdForcaVenda=" + cdForcaVenda + ", nome=" + nome + ", celular=" + celular + ", email="
-                + email + ", corretora=" + corretora + ", statusForcaVenda=" + statusForcaVenda + ", cpf=" + cpf
-                + ", ativo=" + ativo + ", departamento=" + departamento + ", cargo=" + cargo + ", dataNascimento="
-                + dataNascimento + ", nomeEmpresa=" + nomeEmpresa + ", nomeGerente=" + nomeGerente + ", responsavel="
-                + responsavel + ", rg=" + rg + ", senha=" + senha + "]";
-    }
+    public String getConfirmaSenha() {
+		return confirmaSenha;
+	}
 
+	public void setConfirmaSenha(String confirmaSenha) {
+		this.confirmaSenha = confirmaSenha;
+	}
+
+	@Override
+	public String toString() {
+		return "ForcaVenda [cdForcaVenda=" + cdForcaVenda + ", nome=" + nome + ", celular=" + celular + ", email="
+				+ email + ", corretora=" + corretora + ", statusForcaVenda=" + statusForcaVenda + ", cpf=" + cpf
+				+ ", ativo=" + ativo + ", departamento=" + departamento + ", cargo=" + cargo + ", dataNascimento="
+				+ dataNascimento + ", nomeEmpresa=" + nomeEmpresa + ", nomeGerente=" + nomeGerente + ", responsavel="
+				+ responsavel + ", rg=" + rg + ", senha=" + senha + ", confirmaSenha=" + confirmaSenha + ", canalVenda="
+				+ canalVenda + "]";
+	}
 }
 
 

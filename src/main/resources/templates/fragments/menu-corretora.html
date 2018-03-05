@@ -76,10 +76,12 @@
             <li class="" style="background-color: #fff; padding: 30px">
                 <div class="perfil-mobile">
                     <div class="circle-perfil">
+
                         <div class="data-perfil">
-                            <p class="font-gray name-mobile"><strong>th:text="${session.usuario.nomeCorretora}"</strong></p>
-                            <p class="font-pink">Sair</p>
+                            <p class="font-gray name-mobile"><strong>th:text="${session.usuario.getNomeCorretora()}"</strong></p>
+                            <a th:href="@{/logout}" class="link-odonto">Sair</a>
                         </div>
+
                     </div>
                 </div>
             </li>
