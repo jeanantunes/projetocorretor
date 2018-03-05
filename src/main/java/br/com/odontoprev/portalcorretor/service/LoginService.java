@@ -21,10 +21,11 @@ import br.com.odontoprev.portalcorretor.service.dto.LoginResponse;
 public class LoginService {
 
     @Value("${odontoprev.servicebase.url}")
-    private String requesBasetUrl ; //= "http://172.16.20.30:7001/portal-corretor-servico-0.0.1-SNAPSHOT/";
-    //@Value("${odontoprev.service.login}")
-    private String metodo = "login";
-    
+    private String requesBasetUrl;
+
+    @Value("${odontoprev.service.login}")
+    private String metodo;
+
     @Autowired
     private ApiManagerTokenService apiManagerTokenService;
 
@@ -35,13 +36,14 @@ public class LoginService {
         loginMap.put("usuario", usuario);
         loginMap.put("senha", senha);
 
-        try {
-        	HttpHeaders headers = new HttpHeaders();
-        	headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
+        String url = requesBasetUrl + metodo;
 
-            HttpEntity<Map<String,String>> entityReq = new HttpEntity<>(loginMap, headers);
-            
-            ResponseEntity<LoginResponse> loginRetorno = restTemplate.exchange((requesBasetUrl + metodo),HttpMethod.POST, entityReq, LoginResponse.class);
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
+            HttpEntity<Map<String, String>> entityReq = new HttpEntity<>(loginMap, headers);
+
+            ResponseEntity<LoginResponse> loginRetorno = restTemplate.exchange(url, HttpMethod.POST, entityReq, LoginResponse.class);
             if (loginRetorno.getStatusCode() == HttpStatus.OK) {
                 return new UsuarioSession().setDados(loginRetorno.getBody());
             }
