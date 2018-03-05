@@ -5,6 +5,8 @@ import br.com.odontoprev.portalcorretor.service.dto.ForcaVenda;
 import br.com.odontoprev.portalcorretor.service.dto.ForcaVendaResponse;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
@@ -18,6 +20,8 @@ import java.util.Map;
 
 @Service
 public class ForcaVendaService {
+
+    private static final Log log = LogFactory.getLog(ForcaVendaService.class);
 
     @Value("${odontoprev.servicebase.url}")
     private String requesBasetUrl;// = "http://172.16.20.30:7001/portal-corretor-servico-0.0.1-SNAPSHOT/";
@@ -48,13 +52,16 @@ public class ForcaVendaService {
 
             if (retorno.getStatusCode() == HttpStatus.OK) {
                 result = retorno.getBody();
+                log.info("Forca cadastrado " + result.getId());
                 return result.getId();
             } else {
+                log.info("Erro ao cadastrar Forca " + result.getMensagem());
                 return 0;
             }
 
         } catch (Exception e) {
             e.printStackTrace();
+            log.info("Deu ruim ao cadastrar Forca " );
             return 0;
         }
 
@@ -79,12 +86,12 @@ public class ForcaVendaService {
             if (retorno.getStatusCode() == HttpStatus.OK) {
                 return retorno.getBody();
             } else {
-                return new AtivarResponse("0", "Falha ao ativar cpf" );
+                return new AtivarResponse("0", "Falha ao ativar cpf");
             }
 
         } catch (Exception e) {
             e.printStackTrace();
-            return new AtivarResponse("0", "Falha ao ativar cpf" );
+            return new AtivarResponse("0", "Falha ao ativar cpf");
         }
 
     }
