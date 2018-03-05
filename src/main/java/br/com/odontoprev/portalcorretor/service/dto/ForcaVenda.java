@@ -1,5 +1,7 @@
 package br.com.odontoprev.portalcorretor.service.dto;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -9,7 +11,9 @@ public class ForcaVenda implements Serializable {
 
     private static final long serialVersionUID = 3665956677976317178L;
 
+    private String error;
     private Long cdForcaVenda;
+
     private String nome;
     
     @NotBlank
@@ -41,6 +45,15 @@ public class ForcaVenda implements Serializable {
     private String confirmaSenha;
    
     private String canalVenda;
+
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
 
     public Long getCdForcaVenda() {
         return cdForcaVenda;
