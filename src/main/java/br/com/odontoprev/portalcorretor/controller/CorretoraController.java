@@ -101,8 +101,7 @@ public class CorretoraController {
 
         return new ModelAndView("corretora/home", "corretora", corretora);
     }
-
-    @SuppressWarnings("unused")
+   
 	@RequestMapping(value = "corretora/cadastro/editar", method = RequestMethod.GET)
     public ModelAndView Editar(HttpSession session) {
     	
@@ -110,7 +109,7 @@ public class CorretoraController {
     	    	
     	Corretora corretora = corretoraService.ObterDadosCorretora(usuario.getDocumento());
     	
-    	return new ModelAndView("corretora/cadastro/editar");
+    	return new ModelAndView("corretora/cadastro/editar", "corretora", corretora);    	
     }
   
     @RequestMapping(value = "lista-propostas/{statusProposta}", method = RequestMethod.GET)
@@ -119,8 +118,6 @@ public class CorretoraController {
         UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
 
         ListaPropostas listaPropostas = new ListaPropostas();
-
-        System.out.println(statusProposta.toUpperCase().equals("APROVADO") ? FiltroStatusProposta.APROVADO : FiltroStatusProposta.CRITICADO);
 
         DashboardPropostas propostaPME = dashService.ObterListaPropostaPME(statusProposta.toUpperCase().equals("APROVADO") ? FiltroStatusProposta.APROVADO : FiltroStatusProposta.CRITICADO, usuario.getDocumento());
 

@@ -39,85 +39,67 @@
 			<div class="row">
 				<div class="col-xs-12">
 
-					<form class="space-top-30">
+					<!-- <form class="space-top-30"> -->
+					<form action="#" th:action="@{/cadastrar}" th:object="${corretora}" method="POST">
 						<div class="col-xs-12">
 							<div class="form-group inline space-right width-form3 ">
-								<label class="label-cnpj">CNPJ</label> <input type="text"
-									id="cnpjEditarCadastroSouDono" class="cnpj  form-control ">
+								<label class="label-cnpj">CNPJ</label> 
+								<input type="text" id="cnpjEditarCadastroSouDono" class="cnpj  form-control " th:field="*{cnpj}">
 							</div>
 						</div>
 
 						<div class="col-xs-12">
-							<div
-								class="form-group inline space-right width-form3 space-top-30">
-								<label class="label-razao-social">RAZÃO SOCIAL</label> <input
-									type="text" id="razaoSocialEditarCadastroSouDono"
-									class="razao-social form-control">
+							<div class="form-group inline space-right width-form3 space-top-30">
+								<label class="label-razao-social">RAZÃO SOCIAL</label> 
+								<input type="text" id="razaoSocialEditarCadastroSouDono" class="razao-social form-control" th:field="*{razaoSocial}">
 							</div>
 							<div class="form-group inline space-right width-form3">
-								<label class="label-cnae">CNAE</label> <input type="text"
-									id="cnaeEditarCadastroSouDono" class="cnae form-control">
+								<label class="label-cnae">CNAE</label> 
+								<input type="text" id="cnaeEditarCadastroSouDono" class="cnae form-control" th:field="*{cnae}">
 							</div>
 							<div class="form-group inline space-right width-form3">
-								<label class="label-simplesNacional">SIMPLES NACIONAL </label> <input
-									type="text" id="simplesNacionalEditarCadastroSouDono"
-									class="simplesNacional form-control">
+								<label class="label-simplesNacional">SIMPLES NACIONAL </label> 
+								<input type="text" id="simplesNacionalEditarCadastroSouDono" class="simplesNacional form-control" th:field="*{simplesNacional}">
 							</div>
 						</div>
 
 						<div class="col-xs-12">
-							<div
-								class="form-group inline inline space-right width-form3 space-top-30">
-								<label class="label-dataAbertura">DATA DE ABERTURA</label> <input
-									type="text" id="dataAberturaEditarCadastroSouDono"
-									class=" dataAbertura form-control">
+							<div class="form-group inline inline space-right width-form3 space-top-30">
+								<label class="label-dataAbertura">DATA DE ABERTURA</label> 
+								<input type="text" id="dataAberturaEditarCadastroSouDono" class=" dataAbertura form-control">
 							</div>
 							<div class="form-group inline width-form3">
-								<label class="label-statusCnpjCadastroSouDono">STATUS
-									CNPJ</label> <input type="text" id="statusCnpjEditarCadastroSouDono"
-									class="statusCnpjCadastroSouDono form-control ">
+								<label class="label-statusCnpjCadastroSouDono">STATUS CNPJ</label> 
+								<input type="text" id="statusCnpjEditarCadastroSouDono" class="statusCnpjCadastroSouDono form-control " th:field="*{statusCnpj}">
 							</div>
 						</div>
 
 						<div class="col-xs-12">
-
-							<div
-								class="form-group inline space-right width-form1 space-top-30">
-								<label class="label-nomeCadastroSouDono">NOME DO
-									REPRESENTATE LEGAL</label> <input type="text" id="nomeCadastroSouDono"
-									class=" nomeCadastroSouDono form-control">
+							<div class="form-group inline space-right width-form1 space-top-30">
+								<label class="label-nomeCadastroSouDono">NOME DO REPRESENTATE LEGAL</label> 
+								<input type="text" id="nomeCadastroSouDono" class=" nomeCadastroSouDono form-control" >
 							</div>
 							<div class="form-group inline width-form3">
-								<label class="label-cpf">CPF</label> <input type="text"
-									id="cpEditarCadastroSouDono" class="cpf form-control ">
+								<label class="label-cpf">CPF</label> 
+								<input type="text" id="cpEditarCadastroSouDono" class="cpf form-control " >
 							</div>
-
 						</div>
 
 						<div class="col-xs-12">
-
-							<div
-								class="form-group inline space-right width-form1 space-top-30">
-								<label class="label-nomeSubCadastroSouDono">NOME DO
-									REPRESENTATE LEGAL</label> <input type="text"
-									id="nomeSubEditarCadastroSouDono"
-									class=" nomeSubCadastroSouDono form-control">
+							<div class="form-group inline space-right width-form1 space-top-30">
+								<label class="label-nomeSubCadastroSouDono">NOME DO REPRESENTATE LEGAL</label> 
+								<input type="text" id="nomeSubEditarCadastroSouDono" class=" nomeSubCadastroSouDono form-control">
 							</div>
 							<div class="form-group inline width-form3">
-								<label class="label-cpfCadastroSouDono">CPF</label> <input
-									type="text" id="cpfEditarCadastroSouDono"
-									class="cpfCadastroSouDono form-control ">
+								<label class="label-cpfCadastroSouDono">CPF</label> 
+								<input type="text" id="cpfEditarCadastroSouDono" class="cpfCadastroSouDono form-control ">
 							</div>
-
 						</div>
 
 						<div class="col-xs-12">
-
-							<div
-								class="form-group inline space-right width-form3 space-top-30">
-								<label class="label-telefone">TELEFONE</label> <input
-									type="text" id="telefoneEditarCadastroSouDono"
-									class="telefone form-control">
+							<div class="form-group inline space-right width-form3 space-top-30">
+								<label class="label-telefone">TELEFONE</label> 
+								<input type="text" id="telefoneEditarCadastroSouDono" class="telefone form-control" th:field="*{telefone}">
 							</div>
 							<div class="form-group inline space-right width-form3">
 								<label class="label-celularCadastroSouDono">CELULAR</label> <input
@@ -125,57 +107,46 @@
 									class="celularCadastroSouDono form-control">
 							</div>
 							<div class="form-group inline space-right width-form3">
-								<label class="label-email">E-MAIL </label> <input type="text"
-									id="emailEditarCadastroSouDono" class="email form-control">
+								<label class="label-email">E-MAIL </label> 
+								<input type="text" id="emailEditarCadastroSouDono" class="email form-control" th:field="*{email}">
 							</div>
-
 						</div>
 
 						<div class="col-xs-12">
-							<h4
-								class="labelEndCorretoraDonoDeCorretora sub-title space-top-60">
-								ENDEREÇO DA CORRETORA</h4>
+							<h4 class="labelEndCorretoraDonoDeCorretora sub-title space-top-60"> ENDEREÇO DA CORRETORA</h4>
 
 							<div class="form-group space-right width-form3 space-top-40">
-								<label class="label-cep space-top-40">CEP</label> <input
-									type="text" id="cepEditarCadastroSouDono"
-									class=" cep form-control"> <a href=" "> <img
-									th:src="@{/img/magnifie.png}" class="icone-revelar-senha"
-									align="right">
+								<label class="label-cep space-top-40">CEP</label> 
+								<input type="text" id="cepEditarCadastroSouDono" class=" cep form-control" th:field="*{enderecoCorretora.cep}"> <a href=" "> 
+								<img th:src="@{/img/magnifie.png}" class="icone-revelar-senha" align="right">
 								</a>
 							</div>
 
-							<div
-								class="form-group inline space-right width-form1 space-top-30">
-								<label class="label-endereco">ENDEREÇO</label> <input
-									type="text" id="enderecoEditarCadastroSouDono"
-									class="endereco form-control ">
+							<div class="form-group inline space-right width-form1 space-top-30">
+								<label class="label-endereco">ENDEREÇO</label> 
+								<input type="text" id="enderecoEditarCadastroSouDono" class="endereco form-control " th:field="*{enderecoCorretora.logradouro}">
 							</div>
 
 							<div class="form-group inline space-right width-form3">
-								<label class="label-numero">NÚMERO</label> <input type="text"
-									id="numeroEditarCadastroSouDono" class="numero form-control ">
+								<label class="label-numero">NÚMERO</label> 
+								<input type="text" id="numeroEditarCadastroSouDono" class="numero form-control " th:field="*{enderecoCorretora.numero}">
 							</div>
 						</div>
 
 						<div class="col-xs-12">
-							<div
-								class="form-group inline space-right width-form3 space-top-30">
+							<div class="form-group inline space-right width-form3 space-top-30">
 								<label form="complemento" class="label-complemento">COMPLEMENTO</label>
-								<input type="text" id="complementoEditarCadastroSouDono"
-									class="complemento form-control">
+								<input type="text" id="complementoEditarCadastroSouDono" class="complemento form-control" th:field="*{enderecoCorretora.complemento}">
 							</div>
 
 							<div class="form-group inline space-right width-form3">
-								<label form="bairro" class="label-bairro">BAIRRO</label> <input
-									type="text" id="bairroEditarCadastroSouDono"
-									class=" bairro form-control ">
+								<label form="bairro" class="label-bairro">BAIRRO</label> 
+								<input type="text" id="bairroEditarCadastroSouDono" class=" bairro form-control " th:field="*{enderecoCorretora.bairro}">
 							</div>
 
 							<div class="form-group inline space-right width-form2">
-								<label form="cidade" class="label-cidade">CIDADE</label> <input
-									type="text" id="cidadeEditarCadastroSouDono"
-									class="cidade form-control">
+								<label form="cidade" class="label-cidade">CIDADE</label> 
+								<input type="text" id="cidadeEditarCadastroSouDono" class="cidade form-control" th:field="*{enderecoCorretora.cidade}">
 							</div>
 
 							<div class="form-group inline space-right">
