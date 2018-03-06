@@ -72,7 +72,7 @@ public class ForcaVendaService {
     }
 
     public AtivarResponse ativar(String cpf) {
-        String url = requesBasetUrl + ativar;
+        String url = requesBasetUrl + "/" + ativar;
         RestTemplate restTemplate = new RestTemplate();
         ForcaVendaResponse result = null;
         try {
@@ -151,7 +151,7 @@ public class ForcaVendaService {
     }
 
     public ForcaVenda ObterPorDocumento(String documento) {
-        String url = requesBasetUrl + metodoGetPorDocuemnto_Post_Put + documento;
+        String url = requesBasetUrl + "/"+ metodoGetPorDocuemnto_Post_Put + documento;
         RestTemplate restTemplate = new RestTemplate();
         ForcaVendaResponse result = null;
         try {
