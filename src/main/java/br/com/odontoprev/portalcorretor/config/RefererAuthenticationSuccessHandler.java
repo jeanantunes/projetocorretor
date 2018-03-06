@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -20,7 +21,13 @@ public class RefererAuthenticationSuccessHandler implements AuthenticationSucces
     public void onAuthenticationSuccess(HttpServletRequest req, HttpServletResponse resp, Authentication auth)
             throws IOException, ServletException {    	
     	UsuarioSession usuario = (UsuarioSession) auth.getDetails();
-    	req.getSession().setAttribute("usuario", usuario);
+
+        if (req.getSession(false) != null) {
+            req.getSession().invalidate();
+        }
+
+        req.getSession().setAttribute("usuario", usuario);
+
         if (auth.getAuthorities()
                 .stream()
                 .map(GrantedAuthority::getAuthority)
