@@ -19,7 +19,6 @@ import org.springframework.web.client.RestTemplate;
 
 import br.com.odontoprev.portalcorretor.service.dto.DashResponse;
 import br.com.odontoprev.portalcorretor.service.dto.DashboardPropostas;
-import br.com.odontoprev.portalcorretor.service.dto.ListaDash;
 import br.com.odontoprev.portalcorretor.service.entity.FiltroStatusProposta;
 
 @Service
