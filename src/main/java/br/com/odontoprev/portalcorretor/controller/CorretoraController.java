@@ -1,14 +1,14 @@
 package br.com.odontoprev.portalcorretor.controller;
 
-import java.math.BigDecimal;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import javax.servlet.http.HttpSession;
-
+import br.com.odontoprev.portalcorretor.model.ListaPropostas;
+import br.com.odontoprev.portalcorretor.model.UsuarioSession;
+import br.com.odontoprev.portalcorretor.service.DashService;
+import br.com.odontoprev.portalcorretor.service.ForcaVendaService;
+import br.com.odontoprev.portalcorretor.service.dto.DashResponse;
+import br.com.odontoprev.portalcorretor.service.dto.DashboardPropostas;
+import br.com.odontoprev.portalcorretor.service.dto.ForcaVenda;
+import br.com.odontoprev.portalcorretor.service.dto.Proposta;
+import br.com.odontoprev.portalcorretor.service.entity.FiltroStatusProposta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,17 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.odontoprev.portalcorretor.model.ListaPropostas;
-import br.com.odontoprev.portalcorretor.model.UsuarioSession;
-import br.com.odontoprev.portalcorretor.service.CorretoraService;
-import br.com.odontoprev.portalcorretor.service.DashService;
-import br.com.odontoprev.portalcorretor.service.ForcaVendaService;
-import br.com.odontoprev.portalcorretor.service.dto.Corretora;
-import br.com.odontoprev.portalcorretor.service.dto.DashResponse;
-import br.com.odontoprev.portalcorretor.service.dto.DashboardPropostas;
-import br.com.odontoprev.portalcorretor.service.dto.ForcaVenda;
-import br.com.odontoprev.portalcorretor.service.dto.Proposta;
-import br.com.odontoprev.portalcorretor.service.entity.FiltroStatusProposta;
+import javax.servlet.http.HttpSession;
+import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Controller
 public class CorretoraController {
@@ -37,8 +33,8 @@ public class CorretoraController {
     @Autowired
     ForcaVendaService forcaVendaService;
     
-    @Autowired
-    CorretoraService corretoraService;
+//    @Autowired
+//    CorretoraService corretoraService;
 
 
     @RequestMapping(value = "corretora/home", method = RequestMethod.GET)
@@ -102,15 +98,15 @@ public class CorretoraController {
         return new ModelAndView("corretora/home", "corretora", corretora);
     }
    
-	@RequestMapping(value = "corretora/cadastro/editar", method = RequestMethod.GET)
-    public ModelAndView Editar(HttpSession session) {
-    	
-    	UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
-    	    	
-    	Corretora corretora = corretoraService.ObterDadosCorretora(usuario.getDocumento());
-    	
-    	return new ModelAndView("corretora/cadastro/editar", "corretora", corretora);    	
-    }
+//	@RequestMapping(value = "corretora/cadastro/editar", method = RequestMethod.GET)
+//    public ModelAndView Editar(HttpSession session) {
+//
+//    	UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
+//
+//    	Corretora corretora = corretoraService.ObterDadosCorretora(usuario.getDocumento());
+//
+//    	return new ModelAndView("corretora/cadastro/editar", "corretora", corretora);
+//    }
   
     @RequestMapping(value = "lista-propostas/{statusProposta}", method = RequestMethod.GET)
     public ModelAndView Proposta(@PathVariable String statusProposta, HttpSession session) {
