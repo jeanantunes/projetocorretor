@@ -2,8 +2,10 @@ package br.com.odontoprev.portalcorretor.controller;
 
 import br.com.odontoprev.portalcorretor.model.ListaPropostas;
 import br.com.odontoprev.portalcorretor.model.UsuarioSession;
+import br.com.odontoprev.portalcorretor.service.CorretoraService;
 import br.com.odontoprev.portalcorretor.service.DashService;
 import br.com.odontoprev.portalcorretor.service.ForcaVendaService;
+import br.com.odontoprev.portalcorretor.service.dto.Corretora;
 import br.com.odontoprev.portalcorretor.service.dto.DashResponse;
 import br.com.odontoprev.portalcorretor.service.dto.DashboardPropostas;
 import br.com.odontoprev.portalcorretor.service.dto.ForcaVenda;
@@ -33,8 +35,8 @@ public class CorretoraController {
     @Autowired
     ForcaVendaService forcaVendaService;
     
-//    @Autowired
-//    CorretoraService corretoraService;
+    @Autowired
+    CorretoraService corretoraService;
 
 
     @RequestMapping(value = "corretora/home", method = RequestMethod.GET)
@@ -98,15 +100,15 @@ public class CorretoraController {
         return new ModelAndView("corretora/home", "corretora", corretora);
     }
    
-//	@RequestMapping(value = "corretora/cadastro/editar", method = RequestMethod.GET)
-//    public ModelAndView Editar(HttpSession session) {
-//
-//    	UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
-//
-//    	Corretora corretora = corretoraService.ObterDadosCorretora(usuario.getDocumento());
-//
-//    	return new ModelAndView("corretora/cadastro/editar", "corretora", corretora);
-//    }
+	@RequestMapping(value = "corretora/cadastro/editar", method = RequestMethod.GET)
+    public ModelAndView Editar(HttpSession session) {
+
+    	UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
+
+    	Corretora corretora = corretoraService.ObterDadosCorretora(usuario.getDocumento());
+
+    	return new ModelAndView("corretora/cadastro/editar", "corretora", corretora);
+    }
   
     @RequestMapping(value = "lista-propostas/{statusProposta}", method = RequestMethod.GET)
     public ModelAndView Proposta(@PathVariable String statusProposta, HttpSession session) {
