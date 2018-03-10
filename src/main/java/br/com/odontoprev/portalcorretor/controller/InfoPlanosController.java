@@ -65,6 +65,12 @@ public class InfoPlanosController {
 
     }
     
+    @RequestMapping("/email")
+    public String email() {
+        return "email";
+
+    }
+    
     
     
 }
