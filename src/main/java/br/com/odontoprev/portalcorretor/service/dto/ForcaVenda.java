@@ -1,7 +1,5 @@
 package br.com.odontoprev.portalcorretor.service.dto;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -36,12 +34,12 @@ public class ForcaVenda implements Serializable {
     private String responsavel;
     private String rg;
     
-//    @NotBlank
-//    @NotEmpty
+    @NotBlank
+    @NotEmpty
     private String senha;
 
-//    @NotBlank
-//    @NotEmpty
+    @NotBlank
+    @NotEmpty
     private String confirmaSenha;
    
     private String canalVenda;

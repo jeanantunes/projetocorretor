@@ -1,16 +1,14 @@
 package br.com.odontoprev.portalcorretor.controller;
 
-import br.com.odontoprev.portalcorretor.model.ListaPropostas;
-import br.com.odontoprev.portalcorretor.model.UsuarioSession;
-import br.com.odontoprev.portalcorretor.service.CorretoraService;
-import br.com.odontoprev.portalcorretor.service.DashService;
-import br.com.odontoprev.portalcorretor.service.ForcaVendaService;
-import br.com.odontoprev.portalcorretor.service.dto.Corretora;
-import br.com.odontoprev.portalcorretor.service.dto.DashResponse;
-import br.com.odontoprev.portalcorretor.service.dto.DashboardPropostas;
-import br.com.odontoprev.portalcorretor.service.dto.ForcaVenda;
-import br.com.odontoprev.portalcorretor.service.dto.Proposta;
-import br.com.odontoprev.portalcorretor.service.entity.FiltroStatusProposta;
+import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,13 +16,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpSession;
-import java.math.BigDecimal;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import br.com.odontoprev.portalcorretor.model.ListaPropostas;
+import br.com.odontoprev.portalcorretor.model.UsuarioSession;
+import br.com.odontoprev.portalcorretor.service.CorretoraService;
+import br.com.odontoprev.portalcorretor.service.DashService;
+import br.com.odontoprev.portalcorretor.service.EnderecoService;
+import br.com.odontoprev.portalcorretor.service.ForcaVendaService;
+import br.com.odontoprev.portalcorretor.service.dto.Corretora;
+import br.com.odontoprev.portalcorretor.service.dto.DashResponse;
+import br.com.odontoprev.portalcorretor.service.dto.DashboardPropostas;
+import br.com.odontoprev.portalcorretor.service.dto.EnderecoResponse;
+import br.com.odontoprev.portalcorretor.service.dto.ForcaVenda;
+import br.com.odontoprev.portalcorretor.service.dto.Proposta;
+import br.com.odontoprev.portalcorretor.service.entity.FiltroStatusProposta;
 
 @Controller
 public class CorretoraController {
@@ -37,10 +41,14 @@ public class CorretoraController {
     
     @Autowired
     CorretoraService corretoraService;
+    
+    @Autowired
+    EnderecoService enderecoService;
 
 
     @RequestMapping(value = "corretora/home", method = RequestMethod.GET)
-    public ModelAndView home(HttpSession session) {
+    public ModelAndView home(HttpSession session) {    	
+    	
         UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
 
         //TODO retornar valores nas propostas
@@ -106,6 +114,8 @@ public class CorretoraController {
     	UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
 
     	Corretora corretora = corretoraService.ObterDadosCorretora(usuario.getDocumento());
+    	
+    	//EnderecoResponse enderecoResponse = enderecoService.ObterEnderecoCorretora("03803030");
 
     	return new ModelAndView("corretora/cadastro/editar", "corretora", corretora);
     }

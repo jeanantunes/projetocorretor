@@ -83,6 +83,7 @@ public class ForcaVendaController {
     		return new ModelAndView("forcavenda/cadastro/editar", "forcaVenda", forcaVendaParam);
 
     	} else {
+    		
     		if (!forcaVendaParam.getSenha().equals(forcaVendaParam.getConfirmaSenha())) {
     			return new ModelAndView("forcavenda/cadastro/editar", "forcaVenda", forcaVendaParam);
     		}
