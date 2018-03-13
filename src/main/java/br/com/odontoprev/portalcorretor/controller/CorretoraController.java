@@ -25,7 +25,6 @@ import br.com.odontoprev.portalcorretor.service.ForcaVendaService;
 import br.com.odontoprev.portalcorretor.service.dto.Corretora;
 import br.com.odontoprev.portalcorretor.service.dto.DashResponse;
 import br.com.odontoprev.portalcorretor.service.dto.DashboardPropostas;
-import br.com.odontoprev.portalcorretor.service.dto.EnderecoResponse;
 import br.com.odontoprev.portalcorretor.service.dto.ForcaVenda;
 import br.com.odontoprev.portalcorretor.service.dto.Proposta;
 import br.com.odontoprev.portalcorretor.service.entity.FiltroStatusProposta;
@@ -115,8 +114,6 @@ public class CorretoraController {
 
     	Corretora corretora = corretoraService.ObterDadosCorretora(usuario.getDocumento());
     	
-    	//EnderecoResponse enderecoResponse = enderecoService.ObterEnderecoCorretora("03803030");
-
     	return new ModelAndView("corretora/cadastro/editar", "corretora", corretora);
     }
   
