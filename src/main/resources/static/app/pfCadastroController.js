@@ -10,36 +10,43 @@ function addDependente() {
 
     if ($("#cpf").val() == "") {
         swal("Ops!", "Preencha o CPF", "error");
+        $("#nomeBeneficiario").focus();
         return;
     }
     
     if (!ValidaNome($(".nome").val())) {
         swal("Ops!", "Nome inválido", "error");
+        $("#nomeBeneficiario").focus();
         return false;
     }
 
     if (!TestaCPF($("#cpf").val())) {
         swal("Ops!", "CPF inválido", "error");
+        $("#nomeBeneficiario").focus();
         return;
     }
 
     if ($(".nome").val() == "") {
         swal("Ops!", "Preencha o Nome", "error");
+        $("#nomeBeneficiario").focus();
         return;
     }
 
     if ($(".email").val() == "") {
         swal("Ops!", "Preencha o E-mail", "error");
+        $("#nomeBeneficiario").focus();
         return;
     }
 
     if (!validateEmail($(".email").val())) {
         swal("Ops!", "Preencha um E-mail válido", "error");
+        $("#nomeBeneficiario").focus();
         return;
     }
     
     if ($(".celular").val() == "") {
         swal("Ops!", "Preencha o celular", "error");
+        $("#nomeBeneficiario").focus();
         return;
     }
 
@@ -47,16 +54,19 @@ function addDependente() {
 
         $("#cpf").focus();
         swal("Ops!", "Preencha o CPF", "error");
+        $("#nomeBeneficiario").focus();
         return;
     }
 
     if (!validarData($(".nascimento").val())) {
         swal("Ops!", "Preencha uma data de nascimento correta", "error");
+        $("#nomeBeneficiario").focus();
         return;
     }
 
     if ($(".nascimento").val() == "") {
         swal("Ops!", "Preencha a Data de Nascimento", "error");
+        $("#nomeBeneficiario").focus();
         return;
     }
 
@@ -65,44 +75,52 @@ function addDependente() {
         $(".dependentes").val(0);
         return;
     }
-
+    
     if ($(".nome-mae").val() == "") {
         swal("Ops!", "Preencha Nome da Mãe", "error");
+        $("#nomeBeneficiario").focus();
         return;
     }
 
     if (!ValidaNome($("#nomeMae").val())) {
         swal("Ops!", "Nome da mãe inválido", "error");
+        $("#nomeBeneficiario").focus();
         return false;
     }
 
     if ($(".cep").val() == "") {
         swal("Ops!", "Preencha o cep", "error");
+        $("#nomeBeneficiario").focus();
         return;
     }
 
     if ($(".rua").val() == "") {
         swal("Ops!", "Preencha o endereço", "error");
+        $("#nomeBeneficiario").focus();
         return;
     }
 
     if ($(".numeroEndereco").val() == "") {
         swal("Ops!", "Preencha o número do endereço", "error");
+        $("#nomeBeneficiario").focus();
         return;
     }
 
     if ($(".bairro").val() == "") {
         swal("Ops!", "Preencha o bairro", "error");
+        $("#nomeBeneficiario").focus();
         return;
     }
 
     if ($(".cidade").val() == "") {
         swal("Ops!", "Preencha o cidade", "error");
+        $("#nomeBeneficiario").focus();
         return;
     }
 
     if ($(".estado").val() == "") {
         swal("Ops!", "Preencha o estado", "error");
+        $("#nomeBeneficiario").focus();
         return;
     }
 
@@ -189,21 +207,25 @@ function salvarRascunho() {
 
     if ($(".nome").val() == "") {
         swal("Ops!", "Preencha o Nome", "error");
+        $("#nomeBeneficiario").focus();
         return;
     }
 
     if (!ValidaNome($(".nome").val())) {
         swal("Ops!", "Nome inválido", "error");
+        $("#nomeBeneficiario").focus();
         return false;
     }
 
     if ($(".email").val() == "") {
         swal("Ops!", "Preencha o E-mail", "error");
+        $("#nomeBeneficiario").focus();
         return;
     }
 
     if ($(".celular").val() == "") {
         swal("Ops!", "Preencha o celular", "error");
+        $("#nomeBeneficiario").focus();
         return;
     }
 
@@ -211,17 +233,20 @@ function salvarRascunho() {
 
         $("#cpf").focus();
         swal("Ops!", "Preencha o CPF", "error");
+        $("#nomeBeneficiario").focus();
         return;
     }
 
     if ( !validarData($(".nascimento").val() ) ) {
         swal("Ops!", "Preencha uma data de nascimento correta", "error");
+        $("#nomeBeneficiario").focus();
         return;
     }
 
 
     if ($(".nascimento").val() == "") {
         swal("Ops!", "Preencha a Data de Nascimento", "error");
+        $("#nomeBeneficiario").focus();
         return;
     }
 
@@ -233,41 +258,49 @@ function salvarRascunho() {
 
     if ($(".nome-mae").val() == "") {
         swal("Ops!", "Preencha Nome da Mãe", "error");
+        $("#nomeBeneficiario").focus();
         return;
     }
 
     if (!ValidaNome($("#nomeMae").val())) {
         swal("Ops!", "Nome da mãe inválido", "error");
+        $("#nomeBeneficiario").focus();
         return false;
     }
 
     if ($(".cep").val() == "") {
         swal("Ops!", "Preencha o cep", "error");
+        $("#nomeBeneficiario").focus();
         return;
     }
 
     if ($(".rua").val() == "") {
         swal("Ops!", "Preencha o endereço", "error");
+        $("#nomeBeneficiario").focus();
         return;
     }
 
     if ($(".numeroEndereco").val() == "") {
         swal("Ops!", "Preencha o número do endereço", "error");
+        $("#nomeBeneficiario").focus();
         return;
     }
 
     if ($(".bairro").val() == "") {
         swal("Ops!", "Preencha o bairro", "error");
+        $("#nomeBeneficiario").focus();
         return;
     }
 
     if ($(".cidade").val() == "") {
         swal("Ops!", "Preencha o cidade", "error");
+        $("#nomeBeneficiario").focus();
         return;
     }
 
     if ($(".estado").val() == "") {
         swal("Ops!", "Preencha o estado", "error");
+        $("#nomeBeneficiario").focus();
         return;
     }
 

@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Odontoprev</title>
-	<frame-options policy="ALLOW"/>
+	
 
     <link rel="stylesheet" type="text/css" href="slick/slick.css">
     <link rel="stylesheet" type="text/css" href="slick/slick-theme.css">
@@ -22,7 +22,7 @@
 
     <!-- Bloco 1 -->
     <div class="container-fluid">
-        <div class="col-md-12 odontBoxCenter">
+        <div class="col-sm-12 odontBoxCenter">
             <div class="row">
                 <div class="text-center">
                     <div>
@@ -36,8 +36,8 @@
                 </div>
             </div>
             <div class="row">
-                <div class="single-item">
-                    <div class="col-md-12 boxPlanos item">
+                <div class="col-sm-12 single-item">
+                    <div class="col-sm-6 boxPlanos item">
                         <h1 class="titleBoxVendas colorSlick3">Integral DOC LE</h1>
                         <h5 class="h5SubTitlePlano colorSlick3">(Compulsório)</h5>
                         <div class="row pVPlanoVendaPME">
@@ -54,7 +54,7 @@
                             <p>Emergência 24H</p>
                         </div>
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-sm-offset-2 col-sm-8">
                                 <a id="btnIntegral"class="btn btn-lg btn-block btnOdontPlano btnSlick3" onclick="iniciarProposta($(this).attr('data-id'))" role="button" data-id=""><!--TROCAR PARA ACAO DINAMICA-->
                                     <div class="spanInlineLeft">
                                         <span>Mensal</span>
@@ -67,7 +67,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-12 boxPlanos item">
+                    <div class="col-sm-6 boxPlanos item">
                         <h1 class="titleBoxVendas titleSlick2">Master LE</h1>
                         <h5 class="h5SubTitlePlano colorSlick2">(Compulsório)</h5>
                         <div class="row pVPlanoVendaPME">
@@ -78,8 +78,8 @@
                             <p>+ Documentação e radiografias ortodônticas</p>
                             <p>+ Colocação e manutenção de aparelho</p>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12">
+                        <div class="row ">
+                            <div class="col-sm-offset-2 col-sm-8">
                                 <a id="btnMaster" class="btn btn-lg btn-block btnOdontPlano btnSlick2" onclick="iniciarProposta($(this).attr('data-id'))" role="button" data-id="">
                                     <div class="spanInlineLeft">
                                         <span>Mensal</span>
@@ -93,13 +93,15 @@
                     </div>
                 </div>
             </div>
+            
+            
         </div>
     </div>
 
     <!-- End Bloco 1 -->
 
     <script src="js/jquery-2.2.0.min.js"></script>
-    <script src="slick/slick.js" type="text/javascript" charset="utf-8"></script>
+    <!-- <script src="slick/slick.js" type="text/javascript" charset="utf-8"></script> -->
     <script src="js/bootstrap.min.js"></script>
     <script src="js/scripts.js"></script>
     <script src="js/odontoprev.js"></script>

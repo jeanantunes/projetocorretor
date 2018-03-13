@@ -10,7 +10,7 @@ function addBenef() {
     if ($(".cnpj").val() == "")
     {
         swal("Ops!", "Preencha o cnpj", "error");
-
+        $("#cnpjEmpresa").focus();
         return;
     }
     salvarRascunhoMemoria();
@@ -109,6 +109,7 @@ function callSerasaPme(callback, tokenSerasa, cnpj) {
 
             if (existe.length > 0 && $("#cnpjEmpresa").val() != proposta.cnpj) {
                 swal("Ops!", "CNPJ já cadastrado, por favor verifique.", "error");
+                $("#cnpjEmpresa").focus();
                 $("#cnpjEmpresa").val("");
                 return;
             }
@@ -255,51 +256,61 @@ function salvarRascunho() {
 
     if ($("#cnpjEmpresa").val() == "") {
         swal("Ops!", "Preencha o CNPJ", "error");
+        $("#cnpjEmpresa").focus();
         return;
     }
     
     if ($("#telefone").val() == "") {
         swal("Ops!", "Preencha o telefone", "error");
+        $("#cnpjEmpresa").focus();
         return;
     }
 
     if ($("#celular").val() == "") {
         swal("Ops!", "Preencha o celular", "error");
+        $("#cnpjEmpresa").focus();
         return;
     }
 
     if ($("#email").val() == "") {
         swal("Ops!", "Preencha o email", "error");
+        $("#cnpjEmpresa").focus();
         return;
     }
 
     if (!validateEmail($(".email").val())) {
         swal("Ops!", "Preencha um E-mail válido", "error");
+        $("#cnpjEmpresa").focus();
         return;
     }
 
     if ($("#cep").val() == "") {
         swal("Ops!", "Preencha o cep", "error");
+        $("#cnpjEmpresa").focus();
         return;
     }
 
     if ($("#rua").val() == "") {
         swal("Ops!", "Preencha o endereço", "error");
+        $("#cnpjEmpresa").focus();
         return;
     }
 
     if ($("#bairro").val() == "") {
         swal("Ops!", "Preencha o bairro", "error");
+        $("#cnpjEmpresa").focus();
         return;
     }
 
     if ($("#cidade").val() == "") {
         swal("Ops!", "Preencha o cidade", "error");
+        $("#cnpjEmpresa").focus();
         return;
     }
 
     if ($("#estado").val() == "") {
         swal("Ops!", "Preencha o estado", "error");
+        $("#cnpjEmpresa").focus();
         return;
     }
 
@@ -313,11 +324,13 @@ function salvarEContinuar() {
 
     if ($("#cnpjEmpresa").val() == "") {
         swal("Ops!", "Preencha o CNPJ", "error");
+        $("#cnpjEmpresa").focus();
         return;
     }
 
     if (!validaCnpj($("#cnpjEmpresa").val())) {
         swal("Ops!", "Preencha um CNPJ válido", "error");
+        $("#cnpjEmpresa").focus();
         return;
     }
 
@@ -423,67 +436,80 @@ function validarProposta() {
 
     if ((qtdBenef + qtdDependente) < 3) {
         swal("Ops!", "Proposta deve possuir no mínimo 3 vidas", "error");
+        $("#cnpjEmpresa").focus();
         return;
     }
 
     if ($(".cnpj").val() == "") {
         swal("Ops!", "Preencha o cnpj", "error");
+        $("#cnpjEmpresa").focus();
         return;
     }
 
     if ($("#razao-social").val() == "") {
         swal("Ops!", "Preencha a razäo social", "error");
+        $("#cnpjEmpresa").focus();
         return;
     }
 
     if ($("#nome-fantasia").val() == "") {
         swal("Ops!", "Preencha o nome fantasia", "error");
+        $("#cnpjEmpresa").focus();
         return;
     }
 
     if ($("#ramo-atividade").val() == "") {
         swal("Ops!", "Preencha o ramo de atividade", "error");
+        $("#cnpjEmpresa").focus();
         return;
     }
 
     if ($("#representante-legal").val() == "") {
         swal("Ops!", "Preencha o nome do representante legal", "error");
+        $("#cnpjEmpresa").focus();
         return;
     }
 
     if (!ValidaNome($("#representante-legal").val())) {
         swal("Ops!", "Nome do representante legal inválido", "error");
+        $("#cnpjEmpresa").focus();
         return;
     }
 
     if ($("#cpf-representante").val() == "") {
         swal("Ops!", "Preencha o cpf do representante legal", "error");
+        $("#cnpjEmpresa").focus();
         return;
     }
 
     if (!TestaCPF($("#cpf-representante").val().replace(/\D/g, ''))) {
        
         swal("Ops!", "CPF do representante legal inválido", "error");
+        $("#cnpjEmpresa").focus();
         return;
     }
 
     if ($(".telefone").val() == "") {
         swal("Ops!", "Preencha o telefone", "error");
+        $("#cnpjEmpresa").focus();
         return;
     }
 
     if ($(".celular").val() == "") {
         swal("Ops!", "Preencha o celular", "error");
+        $("#cnpjEmpresa").focus();
         return;
     }
 
     if ($(".email").val() == "") {
         swal("Ops!", "Preencha o email", "error");
+        $("#cnpjEmpresa").focus();
         return;
     }
 
     if (!validateEmail($(".email").val())) {
         swal("Ops!", "Preencha um E-mail válido", "error");
+        $("#cnpjEmpresa").focus();
         return;
     }
 
@@ -494,31 +520,37 @@ function validarProposta() {
 
     if ($(".cep").val() == "") {
         swal("Ops!", "Preencha o cep", "error");
+        $("#cnpjEmpresa").focus();
         return;
     }
 
     if ($(".endereco").val() == "") {
         swal("Ops!", "Preencha o endereço", "error");
+        $("#cnpjEmpresa").focus();
         return;
     }
 
     if ($(".numero").val() == "") {
         swal("Ops!", "Preencha o número do endereço", "error");
+        $("#cnpjEmpresa").focus();
         return;
     }
 
     if ($(".bairro").val() == "") {
         swal("Ops!", "Preencha o bairro", "error");
+        $("#cnpjEmpresa").focus();
         return;
     }
 
     if ($(".cidade").val() == "") {
         swal("Ops!", "Preencha o cidade", "error");
+        $("#cnpjEmpresa").focus();
         return;
     }
 
     if ($(".estado").val() == "") {
         swal("Ops!", "Preencha o estado", "error");
+        $("#cnpjEmpresa").focus();
         return;
     }
 

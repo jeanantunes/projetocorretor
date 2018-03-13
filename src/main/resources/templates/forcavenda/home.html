@@ -157,7 +157,7 @@
                             <div class="uppercase text-odonto">Pessoa física</div>
                             <li class="space-top-5 barras" th:data-value="${corretor.percenteValorPF}"
                                 style="border:1px solid red; background-color: cyan"><span class="valor-vendar"
-                                                                                           th:text="${corretor.totalValorPF}">R$ 350,00</span></li>
+                                                                                           th:text="${#numbers.formatDecimal(corretor.totalValorPF, 0, 'POINT' , 2 ,'COMMA')}">R$ 350,00</span></li>
                          </span>
 
                                     <span class="barra-fondo">
