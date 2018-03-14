@@ -11,11 +11,8 @@ public class Proposta {
     private String tipoPlano;
 
     private String forca;
-
     private Double valor;
 
-
-    
     
     public Proposta() {
 		super();
