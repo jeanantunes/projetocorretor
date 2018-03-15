@@ -1,5 +1,6 @@
 <!DOCTYPE html>
- <html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
+
  <head>
      <title>Escolha um plano PME | OdontoPrev</title>
  
@@ -27,45 +28,18 @@
      
 <div class="container-fluid nopadding">
 
- <nav class="nav-odonto">
-     <div class="nav-wrapper">
-         <a href="#" class="brand-logo" style="color: silver; padding: 35px"><img src="../../../img/logo.png"></a>
-         <ul class="hide-on-med-and-down">
-             <li class="nav-cel"><a href="../others/home-dono-corretora.html"><img th:src="@{/img/menu-home.png}" ><span>home</span></a></li>
-             <li class="nav-cel"><a href="#"><img th:src="@{/img/menu-meus-dados.png}" ><span>meus dados</span></a></li>
-             <li class="nav-cel"><a href="../../vendas_pf/escolhaPlanoPF.html"><img th:src="@{/img/menu-vender-pf.png}" ><span>vender pessoa fÃ­sica</span></a></li>
-             <li class="nav-cel nav-active"><a href="Escolha_um_plano.html"><img th:src="@{/img/menu-vender-pme.png}" ><span>vender pme</span></a></li>
-             <li class="nav-cel"><a href="#"><img th:src="@{/img/menu-listas.png}" ><span>informações dos planos</span></a></li>
-             <li class="nav-cel"><a href="../others/lista_de_pospostas.html"><img th:src="@{/img/menu-listas.png}" ><span>lista de propostas</span></a></li>
-             <li class="nav-cel"><a href="../others/busca-rede-credenciadas.html"><img th:src="@{/img/menu-rede-credenciada.png}" ><span>rede credenciada</span></a></li>
-             <li class="nav-cel"><a href="../others/fale-conosco-forca-vendas.html"><img th:src="@{/img/menu-contato.png}" ><span>fale conosco</span></a></li>
-         </ul> 
+    <div th:switch="${session.usuario.perfil}">
+        <div th:case="'Corretor'">
+            <div th:replace="fragments/menu-corretor :: menu-corretor">&nbsp;</div>
+            <div th:replace="fragments/header-corretor :: header-corretor">&nbsp;</div>
+        </div>
+        <div th:case="'Corretora'">
+            <div th:replace="fragments/menu-corretora :: menu-corretora">&nbsp;</div>
+            <div th:replace="fragments/header-corretora :: header-corretora">&nbsp;</div>
+        </div>
     </div>
- </nav>
 
-<div class="nav-mobile">
-    <ul class="side-nav" id="menu-mobile">
-         <li class="" style="background-color: #fff; padding: 30px">
-            <div class="perfil-mobile"> 
-                  <div class="circle-perfil">
-                      <div class="data-perfil">
-                          <p class="font-gray name-mobile"><strong>Marcos Palmas</strong></p> 
-                          <p class="font-gray">Corretora XPTO</p>
-                          <p class="font-pink">Sair</p>
-                      </div>
-                  </div>
-            </div>
-         </li>
-            <li class="nav-cel"><a href="../others/home-dono-corretora.html"><img src="../../../img/menu-home.png" ><span>home</span></a></li>
-             <li class="nav-cel"><a href="#"><img th:src="@{/img/menu-meus-dados.png}" ><span>meus dados</span></a></li>
-             <li class="nav-cel"><a href="../../vendas_pf/escolhaPlanoPF.html"><img th:src="@{/img/menu-vender-pf.png}" ><span>vender pessoa fÃ­sica</span></a></li>
-             <li class="nav-cel nav-active"><a href="Escolha_um_plano.html"><img th:src="@{/img/menu-vender-pme.png}" ><span>vender pme</span></a></li>
-             <li class="nav-cel"><a href="#"><img th:src="@{/img/menu-listas.png}" ><span>informaÃ§Ãµes dos planos</span></a></li>
-             <li class="nav-cel"><a href="../others/lista_de_pospostas.html"><img th:src="@{/img/menu-listas.png}" ><span>lista de propostas</span></a></li>
-             <li class="nav-cel"><a href="../others/busca-rede-credenciadas.html"><img th:src="@{/img/menu-rede-credenciada.png}" ><span>rede credenciada</span></a></li>
-             <li class="nav-cel"><a href="../others/fale-conosco-forca-vendas.html"><img th:src="@{/img/menu-contato.png}" ><span>fale conosco</span></a></li>
-         </ul>
-     </div>
+
 
   <div class="header-logado">
       <a href="#" data-activates="menu-mobile" class="button-collapse pull-right">
@@ -73,15 +47,15 @@
       </a>
       <img src="../../../img/logo-mobile.png" class="logo-ondonto-mobile" style="position: relative;top:30px">
 
-       <div class="perfil-web">
-          <div class="circle-perfil">
-            <div class="data-perfil">
-                <p class="user-name"><strong>Marcos Palmas</strong></p> 
-                <p class="font-gray">Corretora XPTO</p>
-                <a href="#" class="link-odonto nomargin">Sair</a>
-            </div>
-          </div> 
-        </div> 
+       <!--<div class="perfil-web">-->
+          <!--<div class="circle-perfil">-->
+            <!--<div class="data-perfil">-->
+                <!--<p class="user-name"><strong>Marcos Palmas</strong></p> -->
+                <!--<p class="font-gray">Corretora XPTO</p>-->
+                <!--<a href="#" class="link-odonto nomargin">Sair</a>-->
+            <!--</div>-->
+          <!--</div> -->
+        <!--</div> -->
         <div class="pull-right space-top-30 btn-header-web">
             <a href="../../vendas_pf/escolhaPlanoPF.html" type="button" class="btn btnPink btn-width-custom text-right">VENDER PARA PESSOA FÃ�SICA</a><br>
             <a href="Escolha_um_plano.html" type="button" class="btn btnBlue btn-width-custom space-top-10">VENDER PME</a>  
@@ -98,7 +72,7 @@
                 <h3 class="uppercase title-odonto font-blue nomargin">Escolha um plano</h3>
               </div>
                
-               <a href="Plano_selecionado.html">
+               <a th:href="@{/planoSelecionadoPme/Integral-DOC-LALE}">
                  <div class="box-plano box-pme pull-left space-top-30 space-right-30">
                      <h3 class="text-center uppercase font-pink nomargin "><strong>bem-estar</strong> <strong>+</strong> <strong>doc</strong></h3>
                      <p class="text-center font-pink"><strong>(<span>Integral</span> <span class="uppercase">doc</span> <span class="uppercase">lale</span>)</strong></p>
@@ -114,7 +88,7 @@
                       <p class="text-center text-silver nomargin">Tratamento de mau hÃ¡lito</p>
                       <p class="text-center text-silver nomargin">DocumentaÃ§Ã£o ortodÃ´ntica</p>
                       <p class="text-center text-silver nomargin"></p>
-                      
+
                       <div class="valor-plano bg-pink"> 
                           <div class="row">
                              <div class="col-xs-6">
@@ -125,12 +99,12 @@
                              </div>
                            </div>
                       </div>
-                      
+
                  </div> 
                </a>
 
 
-               <a href="Plano_selecionado.html">
+              <a th:href="@{/planoSelecionadoPme/Master-LALE}">
                  <div class="box-plano box-pme pull-left space-top-30">
                      <h3 class="text-center uppercase font-gold nomargin"><strong>orto</strong> <strong>+</strong> <strong>prÃ³tese</strong></h3>
                      <p class="text-center font-gold"><strong>(<span>Master</span> <span class="uppercase">lale</span>)</strong></p>

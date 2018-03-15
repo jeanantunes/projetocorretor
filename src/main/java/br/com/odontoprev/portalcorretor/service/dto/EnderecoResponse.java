@@ -14,7 +14,9 @@ public class EnderecoResponse implements Serializable {
 	private String bairroAbreviado;
 	private String logradouro;
 	private String cep;
-	private String complemento;	
+	private String complemento;
+	private String grandeUsuario;
+
 	
 	public String getEstado() {
 		return estado;
@@ -70,4 +72,6 @@ public class EnderecoResponse implements Serializable {
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
 	}
+	public String getGrandeUsuario() { return grandeUsuario; }
+	public void setGrandeUsuario(String grandeUsuario) { this.grandeUsuario = grandeUsuario; }
 }
