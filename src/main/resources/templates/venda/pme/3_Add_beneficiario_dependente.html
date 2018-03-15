@@ -1,28 +1,28 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="pt-br"
       xmlns="http://www.w3.org/1999/xhtml">
 <head>
- 
+
     <title>Adicionar beneficiarios e dependentes | OdontoPrev</title>
- 
-     <meta charset="utf-8">
-     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-     <meta name="viewport" content="width=device-width, initial-scale=1">
-     <link rel="shortcut icon" href="@{/img/odpv.PNG}" type="image/png">
-     
-     <script type="text/javascript" src="../../../js/jquery-3.2.1.min.js"></script>
-     <script type="text/javascript" src="../../../js/bootstrap.min.js"></script>
-     <script type="text/javascript" src="../../../js/jquery.mask.min.js"></script>
-     <script type="text/javascript" src="../../../js/odonto-Valida.js"></script> 
-     <link href="../../../css/bootstrap.min.css" rel="stylesheet">
-     <link href="../../../css/main.css" rel="stylesheet">
-     <script type="text/javascript" src="../../../js/menu.js"></script>
 
-     
- </head>
- <body style="min-width: 100% !important;">    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="@{/img/odpv.PNG}" type="image/png">
+
+    <script type="text/javascript" src="../../../js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="../../../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../js/jquery.mask.min.js"></script>
+    <script type="text/javascript" src="../../../js/odonto-Valida.js"></script>
+    <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../css/main.css" rel="stylesheet">
+    <script type="text/javascript" src="../../../js/menu.js"></script>
 
 
-    <script>
+</head>
+<body style="min-width: 100% !important;">
+
+
+<script>
      $(function(){
 
 
@@ -39,8 +39,9 @@
      });
 
 
-     </script>
 
+
+</script>
 <script type="text/javascript">
 
   $('select').on('change', function () {
@@ -48,6 +49,8 @@
    $('#AddDependenteModal').modal('show');
 }
 });
+
+
 
 </script>
 
@@ -64,333 +67,352 @@
         </div>
     </div>
 
-  <div class="header-logado">
-      <a href="#" data-activates="menu-mobile" class="button-collapse pull-right">
-          <img src="../../../img/menu.png" class="icon-menu">
-      </a>
-      <img src="../../../img/logo-mobile.png" class="logo-ondonto-mobile" style="position: relative;top:30px">
+    <div class="header-logado">
+        <a href="#" data-activates="menu-mobile" class="button-collapse pull-right">
+            <img src="../../../img/menu.png" class="icon-menu">
+        </a>
+        <img src="../../../img/logo-mobile.png" class="logo-ondonto-mobile" style="position: relative;top:30px">
 
-       <!--<div class="perfil-web">-->
-          <!--<div class="circle-perfil">-->
-            <!--<div class="data-perfil">-->
-                <!--<p class="user-name"><strong>Marcos Palmas</strong></p> -->
-                <!--<p class="font-gray">Corretora XPTO</p>-->
-                <!--<a href="#" class="link-odonto nomargin">Sair</a>-->
-            <!--</div>-->
-          <!--</div> -->
+        <!--<div class="perfil-web">-->
+        <!--<div class="circle-perfil">-->
+        <!--<div class="data-perfil">-->
+        <!--<p class="user-name"><strong>Marcos Palmas</strong></p> -->
+        <!--<p class="font-gray">Corretora XPTO</p>-->
+        <!--<a href="#" class="link-odonto nomargin">Sair</a>-->
+        <!--</div>-->
+        <!--</div> -->
         <!--</div> -->
         <div class="pull-right space-top-30 btn-header-web">
-            <a href="../../vendas_pf/escolhaPlanoPF.html" type="button" class="btn btnPink btn-width-custom text-right">VENDER PARA PESSOA FÃ�SICA</a><br>
-            <a href="Escolha_um_plano.html" type="button" class="btn btnBlue btn-width-custom space-top-10">VENDER PME</a>  
+            <a href="../../vendas_pf/escolhaPlanoPF.html" type="button" class="btn btnPink btn-width-custom text-right">VENDER
+                PARA PESSOA FÃ�SICA</a><br>
+            <a href="Escolha_um_plano.html" type="button" class="btn btnBlue btn-width-custom space-top-10">VENDER
+                PME</a>
         </div>
-  </div> 
+    </div>
 
     <div class="container-logado padding-logado">
-      
-      <div class="titulo">
-        <h4 class="uppercase font-blue nomargin">Venda PME</h4> 
-        <h3 class="uppercase nomargin title-odonto font-blue">Adicionar beneficiÃ¡rios e dependentes</h3>
-      </div>
 
-      <div class="row">
-           <div class="col-xs-12">
-             <div class="box-name-empresa box-pme pull-left space-top-30">
-                     <div class="row">
-                         <div class="col-xs-12">
-                            <p class="title-section-odonto font-blue space-bottom-0 space-left-10">Toca da Raposa ME</p>
+        <div class="titulo">
+            <h4 class="uppercase font-blue nomargin">Venda PME</h4>
+            <h3 class="uppercase nomargin title-odonto font-blue">Adicionar beneficiÃ¡rios e dependentes</h3>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box-name-empresa box-pme pull-left space-top-30">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <form th:object="${vendaPme}">
+                            <output th:field="*{razaoSocial}" type="text" id="razaoSocial"></output>
+                            <p class="title-section-odonto font-blue space-bottom-0 space-left-10" th:value="${vendaPme.razaoSocial}">Toca da Raposa ME</p>
                             <p class="subtitle-odonto space-left-10">CNPJ: <span>04.690.274.0001-00</span></p>
-                         </div>
+                            </form>
+                        </div>
                     </div>
-               </div>
-          
+                </div>
+
                 <div class="space-top-30 box-button pull-left">
                     <a type="button" class="btn btn-white text-silver uppercase">download modelo excel</a><br>
-                    <a type="button" class="btn btnBlue space-top-10 uppercase">Enviar planilha em excel </a>  
+                    <a type="button" class="btn btnBlue space-top-10 uppercase">Enviar planilha em excel </a>
                 </div>
-                             
-              </div>
-       </div>
 
-         <div class="row space-top-30">
-           <div class="col-xs-12">
-
-            <div class="box-beneficiario">
-            <div class="row"> 
-            <div class="col-xs-12"> 
-               <h4 class="uppercase title-section-odonto font-blue pull-left">BeneficiÃ¡rio 1</h4> 
-                <a href="" class="pull-right link-odonto uppercase">excluir beneficiÃ¡rio</a>
             </div>
-            </div>
-                <form class="space-top-20" th:action="@{/cadastrarBeneficiario}" th:object="${beneficiario}">
+        </div>
 
-                <div> 
-                    <div class="form-group inline space-right width-form3">
-                       <label class="label-cpf">CPF</label> 
-                        <input th:field="*{cpf}" type="text" id="cpf"  class="cpf form-control">
-                    </div> 
-                    
-                    <div class="form-group maxl inline width-form3">
-                          <label>Sexo</label><br>
-                          <label class="radio inline radio-sexo"> 
-                              <input th:field="*{sexo}" type="radio" name="sex" value="M" checked>
-                              <span> Masculino </span> 
-                           </label>
-                          <label class="radio inline radio-sexo"> 
-                              <input th:field="*{sexo}" type="radio" name="sex" value="F">
-                              <span>Feminino </span> 
-                          </label>
-                     </div>
+        <div class="row space-top-30">
+            <div class="col-xs-12">
 
-                    <div class="form-group inline space-right width-form3">
-                      <label class="label-nascimento">Data de nascimento</label>
-                      <input th:field="*{dataNascimento}" type="text" class="nascimento form-control" >
+                <div class="box-beneficiario">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h4 class="uppercase title-section-odonto font-blue pull-left">BeneficiÃ¡rio 1</h4>
+                            <a href="" class="pull-right link-odonto uppercase">excluir beneficiÃ¡rio</a>
+                        </div>
                     </div>
+                    <form class="space-top-20" th:action="@{/confirmacaoProposta}" th:object="${beneficiario}">
+
+                        <div>
+                            <div class="form-group inline space-right width-form3">
+                                <label class="label-cpf">CPF</label>
+                                <input th:field="*{cpf}" type="text" id="cpf" class="cpf form-control">
+                            </div>
+
+                            <div class="form-group maxl inline width-form3">
+                                <label>Sexo</label><br>
+                                <label class="radio inline radio-sexo">
+                                    <input th:field="*{sexo}" type="radio" name="sex" value="M" checked>
+                                    <span> Masculino </span>
+                                </label>
+                                <label class="radio inline radio-sexo">
+                                    <input th:field="*{sexo}" type="radio" name="sex" value="F">
+                                    <span>Feminino </span>
+                                </label>
+                            </div>
+
+                            <div class="form-group inline space-right width-form3">
+                                <label class="label-nascimento">Data de nascimento</label>
+                                <input th:field="*{dataNascimento}" type="text" class="nascimento form-control">
+                            </div>
+                        </div>
+
+                        <div>
+
+                            <div class="form-group inline space-right width-form1">
+                                <label class="label-nome">Nome</label>
+                                <input th:field="*{nome}" type="text" class="nome form-control">
+                            </div>
+
+                            <div class="form-group inline space-right width-form3">
+                                <label class="font-blue">Plano</label>
+                                <select th:field="*{plano}" class="form-control form-control-custom" id="plano">
+                                    <option th:value="*{plano}">Integral DOC LE</option>
+                                    <option th:value="*{plano}">Master LALE</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="form-group inline width-form6 space-right">
+                                <label class="label-nome-mae">Nome da mÃ£e</label>
+                                <input th:field="*{nomeDaMae}" type="text" class="nome-mae form-control">
+                            </div>
+                        </div>
+
+
+                        <!--  <div>
+                             <div class="form-group inline space-right width-form3">
+                                 <label class="label-dependente">Despendentes</label>
+                                 <select class="dependente form-control" id="">
+                                   <option>0</option>
+                                   <option value="dependente1">1</option>
+                                   <option>2</option>
+                                   <option>3</option>
+                                   <option>4</option>
+                                   <option>5</option>
+                                   <option>6</option>
+                                   <option>7</option>
+                                   <option>8</option>
+                                   <option>9</option>
+
+                                 </select>
+                             </div>
+                           </div> -->
+
+
+                        <div>
+                            <div class="space-top-30">
+                                <a type="button" class="btn btnBlue btn-width-custom space-top-10 uppercase"
+                                   data-toggle="modal" data-target="#AddDependenteModal">Dependentes</a>
+                            </div>
+                        </div>
+
+                        <div class="space-top-30">
+                            <input type="submit" value="finalizar"
+                                   class="btn btnBlue btn-width-custom space-top-10 uppercase"/>
+                        </div>
+
+                    </form>
+                    <!--<div>-->
+                    <!--<div class="space-top-30">-->
+                    <!--<a href="confirmacao_proposta_pme.html" type="button"-->
+                    <!--class="btn btnBlue btn-width-custom space-top-10 uppercase">Continuar</a>-->
+                    <!--</div>-->
+                    <!--</div>-->
+
+
                 </div>
 
-                <div>
 
-                <div class="form-group inline space-right width-form1">
-                   <label class="label-nome">Nome</label> 
-                    <input th:field="*{nome}" type="text" id="nome"  class="nome form-control">
-                </div> 
-
-                <div class="form-group inline space-right width-form3">
-                      <label class="font-blue">Plano</label>
-                      <select th:field="*{plano}" class="form-control form-control-custom" id="plano">
-                         <option th:value="*{plano}">Integral DOC LE</option>
-                         <option th:value="*{plano}">Master LALE</option>
-                       
-                      </select>
-                  </div>
-                </div>
-
-               <div>
-                <div class="form-group inline width-form6 space-right">   
-                  <label  class="label-nome-mae">Nome da mÃ£e</label>
-                   <input th:field="*{nomeDaMae}" type="text" class="nome-mae form-control">
-                </div>
-               </div>
-
-
-             <!--  <div>
-                  <div class="form-group inline space-right width-form3">
-                      <label class="label-dependente">Despendentes</label>
-                      <select class="dependente form-control" id="">  
-                        <option>0</option>
-                        <option value="dependente1">1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        <option>6</option>
-                        <option>7</option>
-                        <option>8</option>
-                        <option>9</option>
-
-                      </select>
-                  </div>
-                </div> -->
-
-
-          <div>
-            <div class="space-top-30">
-                <a type="button" class="btn btnBlue btn-width-custom space-top-10 uppercase"  data-toggle="modal" data-target="#AddDependenteModal">Dependentes</a>  
-            </div>
-          </div>
-
-
-          <div>
-            <div class="space-top-30">
-                <a href="confirmacao_proposta_pme.html" type="button" class="btn btnBlue btn-width-custom space-top-10 uppercase">Continuar</a>  
-            </div>
-          </div>
-          
-
-    </form>
-     </div> 
-
-
-      <div class="add-box-beneficiario space-top-30">
-            <div class="row"> 
-            <div class="col-xs-12"> 
-               <h4 class="uppercase font-blue title-section-odonto pull-left">Beneficiario 2</h4> 
-                <a href="" class="pull-right link-odonto uppercase">excluir beneficiariÃ¡rio</a>
-            </div>
-            </div>
-                <form class="space-top-20" th:action="@{/cadastrarDependente}" th:object="${dependente}">
-
-                <div> 
-                    <div class="form-group inline space-right width-form3">
-                       <label class="label-cpf">CPF</label> 
-                        <input th:field="*{cpf}" type="text" id="telefone"  class="cpf form-control">
-                    </div> 
-                    <div class="form-group maxl inline width-form3">
-                          <label>Sexo</label><br>
-                          <label class="radio inline radio-sexo"> 
-                              <input th:field="*{sexo}" type="radio" name="sex" value="male" checked>
-                              <span> Masculino </span> 
-                           </label>
-                          <label class="radio inline radio-sexo"> 
-                              <input th:field="*{sexo}" type="radio" name="sex" value="female">
-                              <span>Feminino </span> 
-                          </label>
-                     </div>
-                    <div class="form-group inline space-right width-form3">
-                      <label class="">Data de nascimento</label>
-                      <input th:field="*{dataNascimento}" type="text" class="form-control" >
+                <div class="add-box-beneficiario space-top-30">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h4 class="uppercase font-blue title-section-odonto pull-left">Beneficiario 2</h4>
+                            <a href="" class="pull-right link-odonto uppercase">excluir beneficiariÃ¡rio</a>
+                        </div>
                     </div>
+                    <form class="space-top-20" th:action="@{/cadastrarDependente}" th:object="${dependente}">
+
+                        <div>
+                            <div class="form-group inline space-right width-form3">
+                                <label class="label-cpf">CPF</label>
+                                <input th:field="*{cpf}" type="text" id="cpfDependente" class="cpf form-control">
+                            </div>
+                            <div class="form-group maxl inline width-form3">
+                                <label>Sexo</label><br>
+                                <label class="radio inline radio-sexo">
+                                    <input th:field="*{sexo}" type="radio" name="sex" value="male" checked>
+                                    <span> Masculino </span>
+                                </label>
+                                <label class="radio inline radio-sexo">
+                                    <input th:field="*{sexo}" type="radio" name="sex" value="female">
+                                    <span>Feminino </span>
+                                </label>
+                            </div>
+                            <div class="form-group inline space-right width-form3">
+                                <label class="">Data de nascimento</label>
+                                <input th:field="*{dataNascimento}" type="text" class="form-control">
+                            </div>
+                        </div>
+
+                        <div>
+
+                            <div class="form-group inline space-right width-form1">
+                                <label class="label-nome">Nome</label>
+                                <input th:field="*{nome}" type="text" id="telefone" class="nome form-control">
+                            </div>
+
+                            <div class="form-group inline space-right width-form3">
+                                <label class="font-blue">Plano</label>
+                                <select th:field="*{plano}" class="form-control form-control-custom"
+                                        id="planoDependente">
+                                    <option th:value="*{plano}">Integral DOC LE</option>
+                                    <option th:value="*{plano}">Master LALE</option>
+
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="form-group inline width-form6 space-right">
+                                <label class="label-nome-mae">Nome da mÃ£e</label>
+                                <input th:field="*{nomeDaMae}" type="text" class="nome-mae form-control">
+                            </div>
+                        </div>
+
+
+                        <!-- <div>
+                            <div class="form-group inline space-right width-form3">
+                                <label class="">Dependentes</label>
+                                <select class="form-control" id="" data-toggle="modal" data-target="#AddDependenteModal">
+                                  <option>1</option>
+                                  <option value="volvo">2</option>
+                                  <option>3</option>
+                                  <option>4</option>
+                                  <option>5</option>
+                                </select>
+                            </div>
+                          </div> -->
+
+                        <div>
+                            <div class="space-top-30">
+                                <a type="button" class="btn btnBlue btn-width-custom space-top-10 uppercase"
+                                   data-toggle="modal" data-target="#AddDependenteModal">Dependentes</a>
+                            </div>
+                        </div>
+
+
+                        <div>
+                            <div class="space-top-30">
+                                <a href="confirmacao_proposta_pme.html" type="button"
+                                   class="btn btnBlue btn-width-custom space-top-10 uppercase">Continuar</a>
+                            </div>
+                        </div>
+                    </form>
                 </div>
 
-                <div>
-
-                <div class="form-group inline space-right width-form1">
-                   <label class="label-nome">Nome</label> 
-                    <input th:field="*{nome}" type="text" id="telefone"  class="nome form-control">
-                </div> 
-
-                <div class="form-group inline space-right width-form3">
-                      <label class="font-blue">Plano</label>
-                      <select th:field="*{plano}" class="form-control form-control-custom" id="planoDependente">
-                          <option th:value="*{plano}">Integral DOC LE</option>
-                          <option th:value="*{plano}">Master LALE</option>
-                       
-                       
-                      </select>
-                  </div>
-                </div>
-
-               <div>
-                <div class="form-group inline width-form6 space-right">   
-                  <label  class="label-nome-mae">Nome da mÃ£e</label>
-                   <input th:field="*{nomeDaMae}" type="text" class="nome-mae form-control">
-                </div>
-               </div>
-
-
-              <!-- <div>
-                  <div class="form-group inline space-right width-form3">
-                      <label class="">Dependentes</label>
-                      <select class="form-control" id="" data-toggle="modal" data-target="#AddDependenteModal">
-                        <option>1</option>
-                        <option value="volvo">2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                      </select>
-                  </div>
-                </div> -->
-
-                 <div>
-                  <div class="space-top-30">
-                      <a type="button" class="btn btnBlue btn-width-custom space-top-10 uppercase"  data-toggle="modal" data-target="#AddDependenteModal">Dependentes</a>  
-                  </div>
-                </div>
-
-
-                <div>
-                  <div class="space-top-30">
-                      <a href="confirmacao_proposta_pme.html" type="button" class="btn btnBlue btn-width-custom space-top-10 uppercase">Continuar</a>  
-                  </div>
-                </div>
-    </form>
-     </div> 
-
-     <div class="row space-top-30 space-bottom-30">
-       <div class="col-xs-12"> 
-                <a type="button" class="btn btnBlue btn-width-custom uppercase" id="AddBeneficiario">adicionar novo beneficiÃ¡rio</a>  
-       </div>
-
-     </div>
-
-           </div>
-         </div>
-
-<!-- Modal -->
-<div class="modal fade" id="AddDependenteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-custom" role="document">
-    <div class="modal-content">
-
-   
-           <img src="../../../assets/img/close.png" class="close-blue"  data-dismiss="modal" >
-  
-
-      <div class="modal-body">
-         <div class="form-modal">
-             <div class="row">
-                 <div class="col-xs-12">
-                   <h4 class="uppercase font-blue title-section-odonto pull-left">dependente 1</h4> 
-                   <a href="" class="space-top-10 link-odonto pull-right uppercase" style="padding-left: 20px">excluir dependente</a>
-                 </div>
-              </div>
-                <form class="space-top-20 formAddDependente">
-
-                <div> 
-                    <div class="form-group inline space-right width-form3">
-                       <label class="label-cpf">CPF</label> 
-                        <input type="text" id="telefone"  class="cpf form-control">
-                    </div> 
-                     <div class="form-group maxl inline width-form3">
-                          <label>Sexo</label><br>
-                          <label class="radio inline radio-sexo"> 
-                              <input type="radio" name="sex" value="male" checked>
-                              <span> Masculino </span> 
-                           </label>
-                          <label class="radio inline radio-sexo"> 
-                              <input type="radio" name="sex" value="female">
-                              <span>Feminino </span> 
-                          </label>
-                     </div>
-                    <div class="form-group inline space-right width-form3">
-                      <label class="label-nascimento">Data de nascimento</label>
-                      <input type="text" class="nascimento form-control" >
+                <div class="row space-top-30 space-bottom-30">
+                    <div class="col-xs-12">
+                        <a type="button" class="btn btnBlue btn-width-custom uppercase" id="AddBeneficiario">adicionar
+                            novo beneficiÃ¡rio</a>
                     </div>
+
                 </div>
 
-                <div>
-
-                <div class="form-group inline space-right width-form1">
-                   <label class="label-nome">Nome</label> 
-                    <input type="text" id="telefone"  class="nome form-control">
-                </div> 
-
-                <div class="form-group inline space-right width-form3">
-                      <label class="font-blue">Plano</label>
-                      <select class="form-control form-control-custom" id="">
-                        <option></option>
-                      </select>
-                  </div>
-                </div>
-
-               <div>
-                <div class="form-group inline width-form6 space-right">   
-                  <label  class="label-nome-mae">Nome da mÃ£e</label>
-                   <input type="text" class="nome-mae form-control">
-                </div>
-               </div>
-
-          <div>
-            <div class="space-top-30">
-                <a href="confirmacao_proposta_pme.html" type="button" class="btn btnBlue btn-width-custom space-top-10 uppercase">Continuar</a>  
             </div>
-          </div>
-    </form>
-     </div> 
+        </div>
 
-      </div>
+        <!-- Modal -->
+        <div class="modal fade" id="AddDependenteModal" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-custom" role="document">
+                <div class="modal-content">
 
-    </div>
-  </div>
-</div>
+
+                    <img src="../../../assets/img/close.png" class="close-blue" data-dismiss="modal">
+
+
+                    <div class="modal-body">
+                        <div class="form-modal">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <h4 class="uppercase font-blue title-section-odonto pull-left">dependente 1</h4>
+                                    <a href="" class="space-top-10 link-odonto pull-right uppercase"
+                                       style="padding-left: 20px">excluir dependente</a>
+                                </div>
+                            </div>
+                            <form class="space-top-20 formAddDependente">
+
+                                <div>
+                                    <div class="form-group inline space-right width-form3">
+                                        <label class="label-cpf">CPF</label>
+                                        <input type="text" id="cpfDependentex" class="cpf form-control">
+                                    </div>
+                                    <div class="form-group maxl inline width-form3">
+                                        <label>Sexo</label><br>
+                                        <label class="radio inline radio-sexo">
+                                            <input type="radio" name="sex" value="male" checked>
+                                            <span> Masculino </span>
+                                        </label>
+                                        <label class="radio inline radio-sexo">
+                                            <input type="radio" name="sex" value="female">
+                                            <span>Feminino </span>
+                                        </label>
+                                    </div>
+                                    <div class="form-group inline space-right width-form3">
+                                        <label class="label-nascimento">Data de nascimento</label>
+                                        <input type="text" class="nascimento form-control">
+                                    </div>
+                                </div>
+
+                                <div>
+
+                                    <div class="form-group inline space-right width-form1">
+                                        <label class="label-nome">Nome</label>
+                                        <input type="text" id="nomeDependente" class="nome form-control">
+                                    </div>
+
+                                    <div class="form-group inline space-right width-form3">
+                                        <label class="font-blue">Plano</label>
+                                        <select class="form-control form-control-custom" id="">
+                                            <option></option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="form-group inline width-form6 space-right">
+                                        <label class="label-nome-mae">Nome da mÃ£e</label>
+                                        <input type="text" class="nome-mae form-control">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="space-top-30">
+                                        <a href="confirmacao_proposta_pme.html" type="button"
+                                           class="btn btnBlue btn-width-custom space-top-10 uppercase">Continuar</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
 
     </div>
 
     <div class="footer-logado">
-      <div class="pull-left box-footer">
-          <p>Â© OdontoPrev. S/A - CNPJ: 119.199/0001-51</p>
-          <p>Av. Marcos Penteado de Ulhoa Rodrigues, 939-14 andar-EdifÃ­cio Jatoba Torre 2-Barueri-SP CEP- 06460-040</p>
-          <p>OdontoPrev - CRO/SP nÂ° 19009</p>
-      </div>
-      <div class="pull-right footer-img"><img src="../../../img/ans.png" ></div>
+        <div class="pull-left box-footer">
+            <p>Â© OdontoPrev. S/A - CNPJ: 119.199/0001-51</p>
+            <p>Av. Marcos Penteado de Ulhoa Rodrigues, 939-14 andar-EdifÃ­cio Jatoba Torre 2-Barueri-SP CEP-
+                06460-040</p>
+            <p>OdontoPrev - CRO/SP nÂ° 19009</p>
+        </div>
+        <div class="pull-right footer-img"><img src="../../../img/ans.png"></div>
     </div>
 </div>
 

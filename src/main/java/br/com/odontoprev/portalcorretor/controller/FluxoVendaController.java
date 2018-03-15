@@ -3,15 +3,12 @@ package br.com.odontoprev.portalcorretor.controller;
 import br.com.odontoprev.portalcorretor.model.UsuarioSession;
 import br.com.odontoprev.portalcorretor.model.VendaPf;
 import br.com.odontoprev.portalcorretor.model.VendaPme;
-import org.springframework.context.annotation.Scope;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import br.com.odontoprev.portalcorretor.service.dto.Empresa;
+import br.com.odontoprev.portalcorretor.service.dto.Plano;
+import br.com.odontoprev.portalcorretor.service.dto.Titulare;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
@@ -19,22 +16,38 @@ import java.io.IOException;
 @SessionScope
 public class FluxoVendaController {
 
-    VendaPme vendaPme = new VendaPme();
-    VendaPf vendaPf = new VendaPf();
+private Empresa empresa = new Empresa();
+private Titulare titular = new Titulare();
+
     UsuarioSession usuario = new UsuarioSession();
-    HttpSession session;
+    HttpSession sessionfluxoVenda;
 
     public void inicioFluxoVenda(HttpSession session) throws IOException {
-        this.session = session;
+        sessionfluxoVenda = session;
     }
 
     public void add(String nomeObjeto, Object objeto){
-        session.setAttribute(nomeObjeto,objeto);
+        sessionfluxoVenda.setAttribute(nomeObjeto,objeto);
     }
 
-    public void finalizaSessao(){
-        session.invalidate();
+    public void finalizaSessaoFluxoVenda(){
+        //sessionfluxoVenda.setAttribute();
     }
 
 
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
+
+    public Titulare getTitular() {
+        return titular;
+    }
+
+    public void setTitular(Titulare titular) {
+        this.titular = titular;
+    }
 }

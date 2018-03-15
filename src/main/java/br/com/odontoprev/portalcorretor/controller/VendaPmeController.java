@@ -11,16 +11,17 @@ import br.com.odontoprev.portalcorretor.model.Beneficiario;
 import br.com.odontoprev.portalcorretor.model.Dependente;
 import br.com.odontoprev.portalcorretor.model.Token;
 import br.com.odontoprev.portalcorretor.model.VendaPme;
-import br.com.odontoprev.portalcorretor.service.CNPJService;
-import br.com.odontoprev.portalcorretor.service.EnderecoService;
-import br.com.odontoprev.portalcorretor.service.dto.Endereco;
+import br.com.odontoprev.portalcorretor.service.VendaPMEService;
+import br.com.odontoprev.portalcorretor.service.dto.ConverterModelVendaPmeRequest;
+import br.com.odontoprev.portalcorretor.service.dto.Empresa;
+import br.com.odontoprev.portalcorretor.service.dto.Plano;
+import br.com.odontoprev.portalcorretor.service.dto.VendaPMERequest;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.squareup.okhttp.*;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -41,49 +42,71 @@ public class VendaPmeController {
     @Autowired
     FluxoVendaController fluxoVendaController = new FluxoVendaController();
 
+
+    // Inicio -> Metodos de Fluxo de Tela
     @RequestMapping(value = "escolhaUmPlanoPme")
     public ModelAndView escolhaPlanoPme(HttpSession session) throws IOException {
         fluxoVendaController.inicioFluxoVenda(session);
-
-        EnderecoService enderecoService = new EnderecoService();
-        enderecoService.ObterEnderecoCorretora("13575120");
-
-//        CNPJService cnpjService = new CNPJService();
-//        cnpjService.obterConsultaCNPJ("03136742000137");
         return new ModelAndView("venda/pme/1_Escolha_um_plano");
-    }
-
-
-//    @RequestMapping(value = "cadastrarVendaPme")
-//    public ModelAndView cadastrarVendaPme() {
-//
-//        return new ModelAndView("venda/pme/3_Plano_selecionado","vendaPme", vendaPme);
-//    }
-
-    @RequestMapping(value = "AddBeneficiarioDependente")
-    public ModelAndView addPlanoBeneficiarioDependente() {
-        ModelAndView modelAndView = new ModelAndView("venda/pme/3_Add_beneficiario_dependente");
-
-        Beneficiario beneficiario = mockDadosBeneficiario();
-        Dependente dependente = mockDadosDependente();
-
-        modelAndView.addObject("beneficiario", beneficiario);
-        modelAndView.addObject("dependente", dependente);
-        return modelAndView;
     }
 
     @RequestMapping(value = "planoSelecionadoPme/{nomePlano}")
     public ModelAndView planoSelecionadoPme(@PathVariable("nomePlano") String nomePlano) {
+        ModelAndView modelAndView = new ModelAndView("venda/pme/2_Plano_selecionado");
+
+        Plano plano = new Plano();
+        if (nomePlano.equals("Master-LALE")) {
+            plano.setNome("Master-LALE");
+            plano.setValor("119");
+            plano.setCentavo("48");
+            plano.setDesc("Modalidade Compulsoria");
+        } else if (nomePlano.equals("Integral-DOC-LALE")) {
+            plano.setNome("Integral-DOC-LALE");
+            plano.setValor("37");
+            plano.setCentavo("82");
+            plano.setDesc("Modalidade Compulsoria");
+        }
         VendaPme vendaPme = new VendaPme();
-        vendaPme = mockDados();
-        return new ModelAndView("venda/pme/2_Plano_selecionado", "vendaPme", vendaPme);
+        //     fluxoVendaController.add("planoSelecionado",plano);
+
+        modelAndView.addObject("vendaPme", vendaPme);
+        modelAndView.addObject("planoSelecionado", plano);
+
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "AddBeneficiarioDependente")
+    public ModelAndView addPlanoBeneficiarioDependente(VendaPme vendaPme) {
+        ModelAndView modelAndView = new ModelAndView("venda/pme/3_Add_beneficiario_dependente");
+
+        Beneficiario beneficiario = new Beneficiario();
+        Dependente dependente = new Dependente();
+
+        modelAndView.addObject("vendaPme", vendaPme);
+        modelAndView.addObject("beneficiario", beneficiario);
+        modelAndView.addObject("dependente", dependente);
+        fluxoVendaController.add("beneficiario", beneficiario);
+        fluxoVendaController.add("dependente", dependente);
+
+        return modelAndView;
     }
 
     @RequestMapping(value = "confirmacaoProposta")
-    public ModelAndView confirmacaoProposta() {
+    public ModelAndView confirmacaoProposta(Dependente dependente) {
+        VendaPMERequest vendaPMERequest = new VendaPMERequest();
+        ConverterModelVendaPmeRequest converterModelVendaPmeRequest = new ConverterModelVendaPmeRequest();
 
+        //vendaPMERequest = converterModelVendaPmeRequest.converter(vendaPme);
+        //TODO Servico retornarndo URL Null dentro de VendaPMEService, Alterar parametro confirmacaoProposta
+        VendaPMEService vendaPMEService = new VendaPMEService();
+
+
+
+       vendaPMEService.Vender(vendaPMERequest);
         return new ModelAndView("venda/pme/4_confirmacao_proposta_pme");
     }
+    // Fim -> Metodos de Fluxo de Tela
+
 
     @RequestMapping(value = "buscaCnpjPme")
     public ModelAndView buscaCnpjPme(@RequestParam("cnpj") String cnpj) {
@@ -91,6 +114,7 @@ public class VendaPmeController {
         VendaPme vendaPme = new VendaPme();
         vendaPme = mockDados();
         vendaPme.setNomeFantasia("ALOOOU");
+        fluxoVendaController.add("vendaPme", vendaPme);
         return new ModelAndView("venda/pme/2_Plano_selecionado", "vendaPme", vendaPme);
     }
 
@@ -234,9 +258,8 @@ public class VendaPmeController {
         vendaPme.setComplemento("Bloco 2");
         vendaPme.setBairro("AlphaVille");
         vendaPme.setCidade("Barueri");
-        vendaPme.setEstado("SP");
         vendaPme.setEnderecoEhoMesmo(true);
-        vendaPme.setDataVencimento("15");
+
         return vendaPme;
     }
 }
