@@ -8,6 +8,9 @@ public class Beneficiario {
     private String plano;
     private String nomeDaMae;
 
+    public Beneficiario(String plano) {
+        this.plano = plano;
+    }
 
     public String getCpf() {
         return cpf;

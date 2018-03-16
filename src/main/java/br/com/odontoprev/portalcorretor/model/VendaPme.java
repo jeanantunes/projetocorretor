@@ -24,7 +24,6 @@ public class VendaPme {
     private String dataVencimento;
 
 
-
     public String getCnpj() {
         return cnpj;
     }

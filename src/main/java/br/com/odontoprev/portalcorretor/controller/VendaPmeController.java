@@ -7,20 +7,14 @@ import br.com.odontoprev.api.manager.client.token.enumerator.ApiManagerTokenEnum
 import br.com.odontoprev.api.manager.client.token.exception.ConnectionApiException;
 import br.com.odontoprev.api.manager.client.token.exception.CredentialsInvalidException;
 import br.com.odontoprev.api.manager.client.token.exception.URLEndpointNotFound;
-import br.com.odontoprev.portalcorretor.model.Beneficiario;
-import br.com.odontoprev.portalcorretor.model.Dependente;
-import br.com.odontoprev.portalcorretor.model.Token;
-import br.com.odontoprev.portalcorretor.model.VendaPme;
+import br.com.odontoprev.portalcorretor.model.*;
 import br.com.odontoprev.portalcorretor.service.VendaPMEService;
 import br.com.odontoprev.portalcorretor.service.dto.ConverterModelVendaPmeRequest;
-import br.com.odontoprev.portalcorretor.service.dto.Empresa;
-import br.com.odontoprev.portalcorretor.service.dto.Plano;
 import br.com.odontoprev.portalcorretor.service.dto.VendaPMERequest;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.squareup.okhttp.*;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,62 +27,69 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static br.com.odontoprev.portalcorretor.service.dto.Plano.Integral_DOC_LE;
+import static br.com.odontoprev.portalcorretor.service.dto.Plano.Master_LALE;
 
 @Controller
 public class VendaPmeController {
     private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(VendaPmeController.class);
     private static final String URL_CEP = "https://api.odontoprev.com.br:8243/cep/1.1/por/cep/";
 
-    @Autowired
-    FluxoVendaController fluxoVendaController = new FluxoVendaController();
+    //        UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
 
 
-    // Inicio -> Metodos de Fluxo de Tela
-    @RequestMapping(value = "escolhaUmPlanoPme")
+    @RequestMapping(value = "venda/pme/Escolha_um_plano")
     public ModelAndView escolhaPlanoPme(HttpSession session) throws IOException {
-        fluxoVendaController.inicioFluxoVenda(session);
-        return new ModelAndView("venda/pme/1_Escolha_um_plano");
+        Carrinho carrinho = new Carrinho();
+        session.setAttribute("carrinho", carrinho);
+        return new ModelAndView("venda/pme/1_Escolha_um_plano", "carrinho", carrinho);
     }
 
-    @RequestMapping(value = "planoSelecionadoPme/{nomePlano}")
-    public ModelAndView planoSelecionadoPme(@PathVariable("nomePlano") String nomePlano) {
-        ModelAndView modelAndView = new ModelAndView("venda/pme/2_Plano_selecionado");
+    @RequestMapping(value = "venda/pme/Escolha_um_plano/addPlanoSelecionadoPme/{nomePlano}")
+    public ModelAndView planoSelecionadoPme(@PathVariable("nomePlano") String nomePlano, HttpSession session) {
+        Carrinho carrinho = (Carrinho) session.getAttribute("carrinho");
 
-        Plano plano = new Plano();
         if (nomePlano.equals("Master-LALE")) {
-            plano.setNome("Master-LALE");
-            plano.setValor("119");
-            plano.setCentavo("48");
-            plano.setDesc("Modalidade Compulsoria");
+            carrinho.getPlanos().add(Master_LALE);
+
         } else if (nomePlano.equals("Integral-DOC-LALE")) {
-            plano.setNome("Integral-DOC-LALE");
-            plano.setValor("37");
-            plano.setCentavo("82");
-            plano.setDesc("Modalidade Compulsoria");
+            carrinho.getPlanos().add(Integral_DOC_LE);
         }
-        VendaPme vendaPme = new VendaPme();
-        //     fluxoVendaController.add("planoSelecionado",plano);
-
-        modelAndView.addObject("vendaPme", vendaPme);
-        modelAndView.addObject("planoSelecionado", plano);
-
-        return modelAndView;
+        return new ModelAndView("venda/pme/2_Plano_selecionado", "carrinho", carrinho);
     }
 
-    @RequestMapping(value = "AddBeneficiarioDependente")
-    public ModelAndView addPlanoBeneficiarioDependente(VendaPme vendaPme) {
-        ModelAndView modelAndView = new ModelAndView("venda/pme/3_Add_beneficiario_dependente");
+    @RequestMapping(value = "venda/pme/Escolha_um_plano/addPlanoSelecionadoPme")
+    public ModelAndView planoSelecionadoPme(HttpSession session) {
+        Carrinho carrinho = (Carrinho) session.getAttribute("carrinho");
 
-        Beneficiario beneficiario = new Beneficiario();
-        Dependente dependente = new Dependente();
+        if (carrinho.getPlanos().contains(Integral_DOC_LE)) {
+            carrinho.getPlanos().add(Master_LALE);
+        } else {
+            carrinho.getPlanos().add(Integral_DOC_LE);
+        }
+        return new ModelAndView("venda/pme/2_Plano_selecionado", "carrinho", carrinho);
+    }
 
-        modelAndView.addObject("vendaPme", vendaPme);
-        modelAndView.addObject("beneficiario", beneficiario);
-        modelAndView.addObject("dependente", dependente);
-        fluxoVendaController.add("beneficiario", beneficiario);
-        fluxoVendaController.add("dependente", dependente);
 
-        return modelAndView;
+    @RequestMapping(value = "venda/pme/Escolha_um_plano/deletePlanoSelecionadoPme")
+    public ModelAndView removePlano(@PathVariable("nomePlano") String nomePlano, HttpSession session) {
+        Carrinho carrinho = (Carrinho) session.getAttribute("carrinho");
+
+
+        carrinho.getPlanos().remove(carrinho.getPlanos().size() - 1);
+
+        return new ModelAndView("venda/pme/2_Plano_selecionado", "vendaPme", new VendaPme());
+    }
+
+    @RequestMapping(value = "venda/pme/Escolha_um_plano/AddBeneficiarioDependente")
+    public ModelAndView addPlanoBeneficiarioDependente(Carrinho carrinhoForm, HttpSession session) {
+        Carrinho carrinho = (Carrinho) session.getAttribute("carrinho");
+        carrinho.setVendaPme(carrinhoForm.getVendaPme());
+
+        carrinho.setBeneficiarios(carrinho.getPlanos().stream().map(plano-> new Beneficiario(plano.getCdPlano()) ).collect(Collectors.toList()));
+        return new ModelAndView("venda/pme/3_Add_beneficiario_dependente", "carrinho", carrinho);
     }
 
     @RequestMapping(value = "confirmacaoProposta")
@@ -101,8 +102,7 @@ public class VendaPmeController {
         VendaPMEService vendaPMEService = new VendaPMEService();
 
 
-
-       vendaPMEService.Vender(vendaPMERequest);
+        vendaPMEService.Vender(vendaPMERequest);
         return new ModelAndView("venda/pme/4_confirmacao_proposta_pme");
     }
     // Fim -> Metodos de Fluxo de Tela
@@ -114,7 +114,7 @@ public class VendaPmeController {
         VendaPme vendaPme = new VendaPme();
         vendaPme = mockDados();
         vendaPme.setNomeFantasia("ALOOOU");
-        fluxoVendaController.add("vendaPme", vendaPme);
+//        fluxoVendaController.add("vendaPme", vendaPme);
         return new ModelAndView("venda/pme/2_Plano_selecionado", "vendaPme", vendaPme);
     }
 
