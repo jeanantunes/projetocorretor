@@ -118,13 +118,13 @@
             </div>
         </div>
         <form class="space-top-20" th:action="@{/confirmacaoProposta}" th:object="${carrinho}">
-            <div class="row space-top-30" th:each="plano : ${carrinho.planos}" >
+            <div class="row space-top-30" th:each="beneficiario, i : *{beneficiarios}">
                 <div class="col-xs-12">
 
                     <div class="box-beneficiario">
                         <div class="row">
                             <div class="col-xs-12">
-                                <h4 class="uppercase title-section-odonto font-blue pull-left">Beneficiário 1</h4>
+                                <h4 class="uppercase title-section-odonto font-blue pull-left">Beneficiário </h4>
                                 <a href="" class="pull-right link-odonto uppercase">excluir beneficiário</a>
                             </div>
                         </div>
@@ -133,46 +133,56 @@
                         <div>
                             <div class="form-group inline space-right width-form3">
                                 <label class="label-cpf">CPF</label>
-                                <input th:field="*{cpf}" type="text" id="cpf" class="cpf form-control">
-                            </div>
+                                <input type="text" th:field="*{beneficiarios[__${i.index}__].cpf}" class="cpf form-control">
 
-                            <div class="form-group maxl inline width-form3">
-                                <label>Sexo</label><br>
-                                <label class="radio inline radio-sexo">
-                                    <input th:field="*{sexo}" type="radio" name="sex" value="M" checked>
-                                    <span> Masculino </span>
-                                </label>
-                                <label class="radio inline radio-sexo">
-                                    <input th:field="*{sexo}" type="radio" name="sex" value="F">
-                                    <span>Feminino </span>
-                                </label>
-                            </div>
-
-                            <div class="form-group inline space-right width-form3">
-                                <label class="label-nascimento">Data de nascimento</label>
-                                <input th:field="*{dataNascimento}" type="text" class="nascimento form-control">
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+                            <!--<div class="form-group maxl inline width-form3">-->
+                                <!--<label>Sexo</label><br>-->
+                                <!--<label class="radio inline radio-sexo">-->
+                                    <!--<input th:field="*{carrinho.beneficiarios[__${i.index}__].sexo}" type="radio" name="sex"-->
+                                           <!--value="M" checked>-->
+                                    <!--<span> Masculino </span>-->
+                                <!--</label>-->
+                                <!--<label class="radio inline radio-sexo">-->
+                                    <!--<input th:field="*{carrinho.beneficiarios[__${i.index}__].sexo}" type="radio" name="sex"-->
+                                           <!--value="F">-->
+                                    <!--<span>Feminino </span>-->
+                                <!--</label>-->
+                            <!--</div>-->
 
-                        <div>
+                            <!--<div class="form-group inline space-right width-form3">-->
+                                <!--<label class="label-nascimento">Data de nascimento</label>-->
+                                <!--<input th:field="*{carrinho.beneficiarios[__${i.index}__].dataNascimento}" type="text"-->
+                                       <!--class="nascimento form-control">-->
+                            <!--</div>-->
+                        <!--</div>-->
 
-                            <div class="form-group inline space-right width-form1">
-                                <label class="label-nome">Nome</label>
-                                <input th:field="*{nome}" type="text" class="nome form-control">
-                            </div>
+                        <!--<div>-->
 
-                            <div class="form-group inline space-right width-form3">
-                                <label class="font-blue">Plano</label>
-                                <input th:field="${plano.nome}" type="text" class="nome form-control">
-                            </div>
-                        </div>
+                            <!--<div class="form-group inline space-right width-form1">-->
+                                <!--<label class="label-nome">Nome</label>-->
+                                <!--<input th:field="*{carrinho.beneficiarios[__${i.index}__].nome}" type="text"-->
+                                       <!--class="nome form-control">-->
+                            <!--</div>-->
 
-                        <div>
-                            <div class="form-group inline width-form6 space-right">
-                                <label class="label-nome-mae">Nome da mÃ£e</label>
-                                <input th:field="*{nomeDaMae}" type="text" class="nome-mae form-control">
-                            </div>
-                        </div>
+                            <!--<div class="form-group inline space-right width-form3">-->
+                                <!--<label class="font-blue">Plano</label>-->
+                                <!--<input th:field="*{carrinho.beneficiarios[__${i.index}__].plano}" type="text"-->
+                                       <!--class="nome form-control">-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+                        <!--<div>-->
+                            <!--<div class="form-group inline width-form6 space-right">-->
+                                <!--<label class="label-nome-mae">Nome da mÃ£e</label>-->
+                                <!--<input th:field="*{carrinho.beneficiarios[__${i.index}__].nomeDaMae}" type="text"-->
+                                       <!--class="nome-mae form-control">-->
+                            <!--</div>-->
+                        <!--</div>-->
 
 
                         <!--  <div>
@@ -195,128 +205,128 @@
                            </div> -->
 
 
-                        <div>
-                            <div class="space-top-30">
-                                <a type="button" class="btn btnBlue btn-width-custom space-top-10 uppercase"
-                                   data-toggle="modal" data-target="#AddDependenteModal">Dependentes</a>
-                            </div>
-                        </div>
+                        <!--<div>-->
+                            <!--<div class="space-top-30">-->
+                                <!--<a type="button" class="btn btnBlue btn-width-custom space-top-10 uppercase"-->
+                                   <!--data-toggle="modal" data-target="#AddDependenteModal">Dependentes</a>-->
+                            <!--</div>-->
+                        <!--</div>-->
 
-                        <div class="space-top-30">
-                            <input type="submit" value="finalizar"
-                                   class="btn btnBlue btn-width-custom space-top-10 uppercase"/>
-                        </div>
+                        <!--<div class="space-top-30">-->
+                            <!--<input type="submit" value="finalizar"-->
+                                   <!--class="btn btnBlue btn-width-custom space-top-10 uppercase"/>-->
+                        <!--</div>-->
+
+
+                        <!--&lt;!&ndash;<div>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<div class="space-top-30">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<a href="confirmacao_proposta_pme.html" type="button"&ndash;&gt;-->
+                        <!--&lt;!&ndash;class="btn btnBlue btn-width-custom space-top-10 uppercase">Continuar</a>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+
+                    <!--</div>-->
+
+
+                    <!--<div class="add-box-beneficiario space-top-30">-->
+                        <!--<div class="row">-->
+                            <!--<div class="col-xs-12">-->
+                                <!--<h4 class="uppercase font-blue title-section-odonto pull-left">Beneficiario 2</h4>-->
+                                <!--<a href="" class="pull-right link-odonto uppercase">excluir beneficiariÃ¡rio</a>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--&lt;!&ndash;<form class="space-top-20" th:action="@{/cadastrarDependente}" th:object="${dependente}">&ndash;&gt;-->
+
+                        <!--<div>-->
+                            <!--<div class="form-group inline space-right width-form3">-->
+                                <!--<label class="label-cpf">CPF</label>-->
+                                <!--<input th:field="*{cpf}" type="text" id="cpfDependente" class="cpf form-control">-->
+                            <!--</div>-->
+                            <!--<div class="form-group maxl inline width-form3">-->
+                                <!--<label>Sexo</label><br>-->
+                                <!--<label class="radio inline radio-sexo">-->
+                                    <!--<input th:field="*{sexo}" type="radio" name="sex" value="male" checked>-->
+                                    <!--<span> Masculino </span>-->
+                                <!--</label>-->
+                                <!--<label class="radio inline radio-sexo">-->
+                                    <!--<input th:field="*{sexo}" type="radio" name="sex" value="female">-->
+                                    <!--<span>Feminino </span>-->
+                                <!--</label>-->
+                            <!--</div>-->
+                            <!--<div class="form-group inline space-right width-form3">-->
+                                <!--<label class="">Data de nascimento</label>-->
+                                <!--<input th:field="*{dataNascimento}" type="text" class="form-control">-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+                        <!--<div>-->
+
+                            <!--<div class="form-group inline space-right width-form1">-->
+                                <!--<label class="label-nome">Nome</label>-->
+                                <!--<input th:field="*{nome}" type="text" id="telefone" class="nome form-control">-->
+                            <!--</div>-->
+
+                            <!--<div class="form-group inline space-right width-form3">-->
+                                <!--<label class="font-blue">Plano</label>-->
+                                <!--<select th:field="*{plano}" class="form-control form-control-custom"-->
+                                        <!--id="planoDependente">-->
+                                    <!--<option th:value="*{plano}">Integral DOC LE</option>-->
+                                    <!--<option th:value="*{plano}">Master LALE</option>-->
+
+
+                                <!--</select>-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+                        <!--<div>-->
+                            <!--<div class="form-group inline width-form6 space-right">-->
+                                <!--<label class="label-nome-mae">Nome da mÃ£e</label>-->
+                                <!--<input th:field="*{nomeDaMae}" type="text" class="nome-mae form-control">-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+
+                        <!--&lt;!&ndash; <div>-->
+                            <!--<div class="form-group inline space-right width-form3">-->
+                                <!--<label class="">Dependentes</label>-->
+                                <!--<select class="form-control" id="" data-toggle="modal" data-target="#AddDependenteModal">-->
+                                  <!--<option>1</option>-->
+                                  <!--<option value="volvo">2</option>-->
+                                  <!--<option>3</option>-->
+                                  <!--<option>4</option>-->
+                                  <!--<option>5</option>-->
+                                <!--</select>-->
+                            <!--</div>-->
+                          <!--</div> &ndash;&gt;-->
+
+                        <!--<div>-->
+                            <!--<div class="space-top-30">-->
+                                <!--<a type="button" class="btn btnBlue btn-width-custom space-top-10 uppercase"-->
+                                   <!--data-toggle="modal" data-target="#AddDependenteModal">Dependentes</a>-->
+                            <!--</div>-->
+                        <!--</div>-->
 
 
                         <!--<div>-->
-                        <!--<div class="space-top-30">-->
-                        <!--<a href="confirmacao_proposta_pme.html" type="button"-->
-                        <!--class="btn btnBlue btn-width-custom space-top-10 uppercase">Continuar</a>-->
+                            <!--<div class="space-top-30">-->
+                                <!--<a href="confirmacao_proposta_pme.html" type="button"-->
+                                   <!--class="btn btnBlue btn-width-custom space-top-10 uppercase">Continuar</a>-->
+                            <!--</div>-->
                         <!--</div>-->
+                        <!--&lt;!&ndash;</form>&ndash;&gt;-->
+                    <!--</div>-->
+
+                    <!--<div class="row space-top-30 space-bottom-30">-->
+                        <!--<div class="col-xs-12">-->
+                            <!--<a type="button" class="btn btnBlue btn-width-custom uppercase" id="AddBeneficiario">adicionar-->
+                                <!--novo beneficiÃ¡rio</a>-->
                         <!--</div>-->
 
+                    <!--</div>-->
 
-                    </div>
-
-
-                    <div class="add-box-beneficiario space-top-30">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <h4 class="uppercase font-blue title-section-odonto pull-left">Beneficiario 2</h4>
-                                <a href="" class="pull-right link-odonto uppercase">excluir beneficiariÃ¡rio</a>
-                            </div>
-                        </div>
-                        <!--<form class="space-top-20" th:action="@{/cadastrarDependente}" th:object="${dependente}">-->
-
-                        <div>
-                            <div class="form-group inline space-right width-form3">
-                                <label class="label-cpf">CPF</label>
-                                <input th:field="*{cpf}" type="text" id="cpfDependente" class="cpf form-control">
-                            </div>
-                            <div class="form-group maxl inline width-form3">
-                                <label>Sexo</label><br>
-                                <label class="radio inline radio-sexo">
-                                    <input th:field="*{sexo}" type="radio" name="sex" value="male" checked>
-                                    <span> Masculino </span>
-                                </label>
-                                <label class="radio inline radio-sexo">
-                                    <input th:field="*{sexo}" type="radio" name="sex" value="female">
-                                    <span>Feminino </span>
-                                </label>
-                            </div>
-                            <div class="form-group inline space-right width-form3">
-                                <label class="">Data de nascimento</label>
-                                <input th:field="*{dataNascimento}" type="text" class="form-control">
-                            </div>
-                        </div>
-
-                        <div>
-
-                            <div class="form-group inline space-right width-form1">
-                                <label class="label-nome">Nome</label>
-                                <input th:field="*{nome}" type="text" id="telefone" class="nome form-control">
-                            </div>
-
-                            <div class="form-group inline space-right width-form3">
-                                <label class="font-blue">Plano</label>
-                                <select th:field="*{plano}" class="form-control form-control-custom"
-                                        id="planoDependente">
-                                    <option th:value="*{plano}">Integral DOC LE</option>
-                                    <option th:value="*{plano}">Master LALE</option>
-
-
-                                </select>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="form-group inline width-form6 space-right">
-                                <label class="label-nome-mae">Nome da mÃ£e</label>
-                                <input th:field="*{nomeDaMae}" type="text" class="nome-mae form-control">
-                            </div>
-                        </div>
-
-
-                        <!-- <div>
-                            <div class="form-group inline space-right width-form3">
-                                <label class="">Dependentes</label>
-                                <select class="form-control" id="" data-toggle="modal" data-target="#AddDependenteModal">
-                                  <option>1</option>
-                                  <option value="volvo">2</option>
-                                  <option>3</option>
-                                  <option>4</option>
-                                  <option>5</option>
-                                </select>
-                            </div>
-                          </div> -->
-
-                        <div>
-                            <div class="space-top-30">
-                                <a type="button" class="btn btnBlue btn-width-custom space-top-10 uppercase"
-                                   data-toggle="modal" data-target="#AddDependenteModal">Dependentes</a>
-                            </div>
-                        </div>
-
-
-                        <div>
-                            <div class="space-top-30">
-                                <a href="confirmacao_proposta_pme.html" type="button"
-                                   class="btn btnBlue btn-width-custom space-top-10 uppercase">Continuar</a>
-                            </div>
-                        </div>
-                        <!--</form>-->
-                    </div>
-
-                    <div class="row space-top-30 space-bottom-30">
-                        <div class="col-xs-12">
-                            <a type="button" class="btn btnBlue btn-width-custom uppercase" id="AddBeneficiario">adicionar
-                                novo beneficiÃ¡rio</a>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
+                <!--</div>-->
+            <!--</div>-->
         </form>
         <!-- Modal -->
         <div class="modal fade" id="AddDependenteModal" tabindex="-1" role="dialog"
