@@ -137,52 +137,50 @@
 
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-                            <!--<div class="form-group maxl inline width-form3">-->
-                                <!--<label>Sexo</label><br>-->
-                                <!--<label class="radio inline radio-sexo">-->
-                                    <!--<input th:field="*{carrinho.beneficiarios[__${i.index}__].sexo}" type="radio" name="sex"-->
-                                           <!--value="M" checked>-->
-                                    <!--<span> Masculino </span>-->
-                                <!--</label>-->
-                                <!--<label class="radio inline radio-sexo">-->
-                                    <!--<input th:field="*{carrinho.beneficiarios[__${i.index}__].sexo}" type="radio" name="sex"-->
-                                           <!--value="F">-->
-                                    <!--<span>Feminino </span>-->
-                                <!--</label>-->
-                            <!--</div>-->
 
-                            <!--<div class="form-group inline space-right width-form3">-->
-                                <!--<label class="label-nascimento">Data de nascimento</label>-->
-                                <!--<input th:field="*{carrinho.beneficiarios[__${i.index}__].dataNascimento}" type="text"-->
-                                       <!--class="nascimento form-control">-->
-                            <!--</div>-->
-                        <!--</div>-->
+                            <div class="form-group maxl inline width-form3">
+                                <label>Sexo</label><br>
+                                <label class="radio inline radio-sexo">
+                                    <input th:field="*{beneficiarios[__${i.index}__].sexo}" type="radio" name="sex"
+                                           value="M" checked>
+                                    <span> Masculino </span>
+                                </label>
+                                <label class="radio inline radio-sexo">
+                                    <input th:field="*{beneficiarios[__${i.index}__].sexo}" type="radio" name="sex"
+                                           value="F">
+                                    <span>Feminino </span>
+                                </label>
+                            </div>
 
-                        <!--<div>-->
+                            <div class="form-group inline space-right width-form3">
+                                <label class="label-nascimento">Data de nascimento</label>
+                                <input th:field="*{beneficiarios[__${i.index}__].dataNascimento}" type="text"
+                                       class="nascimento form-control">
+                            </div>
+                        </div>
 
-                            <!--<div class="form-group inline space-right width-form1">-->
-                                <!--<label class="label-nome">Nome</label>-->
-                                <!--<input th:field="*{carrinho.beneficiarios[__${i.index}__].nome}" type="text"-->
-                                       <!--class="nome form-control">-->
-                            <!--</div>-->
+                        <div>
 
-                            <!--<div class="form-group inline space-right width-form3">-->
-                                <!--<label class="font-blue">Plano</label>-->
-                                <!--<input th:field="*{carrinho.beneficiarios[__${i.index}__].plano}" type="text"-->
-                                       <!--class="nome form-control">-->
-                            <!--</div>-->
-                        <!--</div>-->
+                            <div class="form-group inline space-right width-form1">
+                                <label class="label-nome">Nome</label>
+                                <input th:field="*{beneficiarios[__${i.index}__].nome}" type="text"
+                                       class="nome form-control">
+                            </div>
 
-                        <!--<div>-->
-                            <!--<div class="form-group inline width-form6 space-right">-->
-                                <!--<label class="label-nome-mae">Nome da mÃ£e</label>-->
-                                <!--<input th:field="*{carrinho.beneficiarios[__${i.index}__].nomeDaMae}" type="text"-->
-                                       <!--class="nome-mae form-control">-->
-                            <!--</div>-->
-                        <!--</div>-->
+                            <div class="form-group inline space-right width-form3">
+                                <label class="font-blue">Plano</label>
+                                <input th:field="*{beneficiarios[__${i.index}__].plano}" type="text"
+                                       class="nome form-control">
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="form-group inline width-form6 space-right">
+                                <label class="label-nome-mae">Nome da mÃ£e</label>
+                                <input th:field="*{beneficiarios[__${i.index}__].nomeDaMae}" type="text"
+                                       class="nome-mae form-control">
+                            </div>
+                        </div>
 
 
                         <!--  <div>
@@ -308,25 +306,18 @@
                         <!--</div>-->
 
 
-                        <!--<div>-->
-                            <!--<div class="space-top-30">-->
-                                <!--<a href="confirmacao_proposta_pme.html" type="button"-->
-                                   <!--class="btn btnBlue btn-width-custom space-top-10 uppercase">Continuar</a>-->
-                            <!--</div>-->
-                        <!--</div>-->
+                        <div>
+                            <div class="space-top-30">
+                                    <button type="submit" class="btn btnBlue btn-width-custom space-top-10 uppercase">Continuar</button>
+                            </div>
+                        </div>
                         <!--&lt;!&ndash;</form>&ndash;&gt;-->
                     <!--</div>-->
 
-                    <!--<div class="row space-top-30 space-bottom-30">-->
-                        <!--<div class="col-xs-12">-->
-                            <!--<a type="button" class="btn btnBlue btn-width-custom uppercase" id="AddBeneficiario">adicionar-->
-                                <!--novo beneficiÃ¡rio</a>-->
-                        <!--</div>-->
 
-                    <!--</div>-->
 
-                <!--</div>-->
-            <!--</div>-->
+                </div>
+            </div>
         </form>
         <!-- Modal -->
         <div class="modal fade" id="AddDependenteModal" tabindex="-1" role="dialog"
