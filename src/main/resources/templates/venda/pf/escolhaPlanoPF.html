@@ -27,10 +27,10 @@
       <div class="container-fluid nopadding">
 
 	   <div th:switch="${session.usuario.perfil}">
-	        <div th:case="'Corretor'">
+	   		<div th:case="'Corretor'">
 	            <div th:replace="fragments/menu-corretor :: menu-corretor">&nbsp;</div>
 	            <div th:replace="fragments/header-corretor :: header-corretor">&nbsp;</div>
-	        </div>
+	   		</div>
 	        <div th:case="'Corretora'">
 	            <div th:replace="fragments/menu-corretora :: menu-corretora">&nbsp;</div>
 	            <div th:replace="fragments/header-corretora :: header-corretora">&nbsp;</div>

@@ -3,12 +3,10 @@
 
  <head>
      <title>Escolha um plano PME | OdontoPrev</title>
- 
-     <meta charset="utf-8">
+      <meta charset="utf-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
      <meta name="viewport" content="width=device-width, initial-scale=1">
      <link rel="shortcut icon" href="@{/img/odpv.PNG}" type="image/png">
-     
      <script type="text/javascript" src="../../../js/jquery-3.2.1.min.js"></script>
      <script type="text/javascript" src="../../../js/bootstrap.min.js"></script>
      <script type="text/javascript" src="../../../js/jquery.mask.min.js"></script>
@@ -16,7 +14,6 @@
      <link href="../../../css/bootstrap.min.css" rel="stylesheet">
      <link href="../../../css/main.css" rel="stylesheet">
      <script type="text/javascript" src="../../../js/menu.js"></script>
-
     <script>
 	     $(function(){
 	         $(".button-collapse").sideNav();
@@ -25,7 +22,7 @@
 
  </head>
 <body style="min-width: 100% !important;">    
-     
+   
 <div class="container-fluid nopadding">
 
     <div th:switch="${session.usuario.perfil}">
@@ -39,14 +36,10 @@
         </div>
     </div>
 
-
-
-  <div class="header-logado">
+  <!--<div class="header-logado"> 
       <a href="#" data-activates="menu-mobile" class="button-collapse pull-right">
-          <img src="../../../img/menu.png" class="icon-menu">
-      </a>
-      <img src="../../../img/logo-mobile.png" class="logo-ondonto-mobile" style="position: relative;top:30px">
-
+      <img src="../../../img/menu.png" class="icon-menu"></a>
+      <img src="../../../img/logo-mobile.png" class="logo-ondonto-mobile" style="position: relative;top:30px"> -->
        <!--<div class="perfil-web">-->
           <!--<div class="circle-perfil">-->
             <!--<div class="data-perfil">-->
@@ -56,12 +49,7 @@
             <!--</div>-->
           <!--</div> -->
         <!--</div> -->
-        <div class="pull-right space-top-30 btn-header-web">
-            <a href="../../vendas_pf/escolhaPlanoPF.html" type="button" class="btn btnPink btn-width-custom text-right">VENDER PARA PESSOA FÃ�SICA</a><br>
-            <a href="Escolha_um_plano.html" type="button" class="btn btnBlue btn-width-custom space-top-10">VENDER PME</a>  
-        </div>
-  </div> 
-
+       
     <div class="container-logado padding-logado">
 
       <div class="row">
@@ -134,11 +122,11 @@
 
     <div class="footer-logado">
       <div class="pull-left box-footer">
-          <p>Â© OdontoPrev. S/A - CNPJ: 119.199/0001-51</p>
-          <p>Av. Marcos Penteado de Ulhoa Rodrigues, 939-14 andar-EdifÃ­cio Jatoba Torre 2-Barueri-SP CEP- 06460-040</p>
-          <p>OdontoPrev - CRO/SP nÂ° 19009</p>
+          <p>© OdontoPrev. S/A - CNPJ: 119.199/0001-51</p>
+          <p>Av. Marcos Penteado de Ulhoa Rodrigues, 939-14 andar - Edifício Jatoba Torre 2-Barueri-SP CEP- 06460-040</p>
+          <p>OdontoPrev - CRO/SP n° 19009</p>
       </div>
-      <div class="pull-right footer-img"><img src="../../../img/ans.png" ></div>
+      <div class="pull-right footer-img"><img src="../../img/ans.png" ></div>
     </div>
 </div>
 

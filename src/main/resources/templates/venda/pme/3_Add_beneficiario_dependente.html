@@ -3,7 +3,7 @@
 <head>
     <head>
 
-        <title>Adicionar beneficiarios e dependentes | OdontoPrev</title>
+        <title>Adicionar Beneficiários e Dependentes | OdontoPrev</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
@@ -58,11 +58,11 @@
         </div>
     </div>
 
-    <div class="header-logado">
+    <!--<div class="header-logado">
         <a href="#" data-activates="menu-mobile" class="button-collapse pull-right">
             <img th:src="@{/img/menu.png}" class="icon-menu">
         </a>
-        <img th:src="@{/img/logo-mobile.png}" class="logo-ondonto-mobile" style="position: relative;top:30px">
+        <img th:src="@{/img/logo-mobile.png}" class="logo-ondonto-mobile" style="position: relative;top:30px">--!>
 
         <!--<div class="perfil-web">-->
         <!--<div class="circle-perfil">-->
@@ -73,19 +73,12 @@
         <!--</div>-->
         <!--</div> -->
         <!--</div> -->
-        <div class="pull-right space-top-30 btn-header-web">
-            <a href="../../vendas_pf/escolhaPlanoPF.html" type="button" class="btn btnPink btn-width-custom text-right">VENDER
-                PARA PESSOA FÍSICA</a><br>
-            <a href="Escolha_um_plano.html" type="button" class="btn btnBlue btn-width-custom space-top-10">VENDER
-                PME</a>
-        </div>
-    </div>
-
+     
     <div class="container-logado padding-logado">
 
         <div class="titulo">
             <h4 class="uppercase font-blue nomargin">Venda PME</h4>
-            <h3 class="uppercase nomargin title-odonto font-blue">Adicionar beneficiários e dependentes</h3>
+            <h3 class="uppercase nomargin title-odonto font-blue">Adicionar Beneficiários e Dependentes</h3>
         </div>
 
         <div class="row">
@@ -105,8 +98,8 @@
                 </div>
 
                 <div class="space-top-30 box-button pull-left">
-                    <a type="button" class="btn btn-white text-silver uppercase">download modelo excel</a><br>
-                    <a type="button" class="btn btnBlue space-top-10 uppercase">Enviar planilha em excel </a>
+                    <a type="button" class="btn btn-white text-silver uppercase">Download Modelo Excel</a><br>
+                    <a type="button" class="btn btnBlue space-top-10 uppercase">Enviar Planilha em Excel </a>
                 </div>
 
             </div>
@@ -120,7 +113,7 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <h4 class="uppercase title-section-odonto font-blue pull-left">Beneficiário </h4>
-                                <a href="" class="pull-right link-odonto uppercase">excluir beneficiário</a>
+                                <a href="" class="pull-right link-odonto uppercase">Excluir Beneficiário</a>
                             </div>
                         </div>
 
@@ -167,7 +160,7 @@
                                    class="nome form-control">
                         </div>
                         <div class="form-group inline width-form6 space-right">
-                            <label class="label-nome-mae">Nome da mãe</label>
+                            <label class="label-nome-mae">Nome da Mãe</label>
                             <input th:field="*{beneficiarios[__${i.index}__].nomeDaMae}" type="text"
                                    class="nome-mae form-control">
                         </div>
@@ -266,7 +259,7 @@
             <div>
                 <div class="space-top-30">
                     <button type="submit" class="btn btnBlue btn-width-custom space-top-10 uppercase" name="action"
-                            value="add">adicionar novo beneficiário
+                            value="add">Adicionar Novo Beneficiário
                     </button>
                 </div>
             </div>
@@ -288,10 +281,9 @@
 
     <div class="footer-logado">
         <div class="pull-left box-footer">
-            <p>Â© OdontoPrev. S/A - CNPJ: 119.199/0001-51</p>
-            <p>Av. Marcos Penteado de Ulhoa Rodrigues, 939-14 andar-EdifÃ­cio Jatoba Torre 2-Barueri-SP CEP-
-                06460-040</p>
-            <p>OdontoPrev - CRO/SP nÂ° 19009</p>
+			<p>© OdontoPrev. S/A - CNPJ: 119.199/0001-51</p>
+			<p>Av. Marcos Penteado de Ulhoa Rodrigues, 939-14 andar - Edifício Jatoba Torre 2-Barueri-SP CEP - 06460-040</p>
+			<p>OdontoPrev - CRO/SP n° 19009</p>
         </div>
         <div class="pull-right footer-img"><img src="../../../img/ans.png"></div>
     </div>

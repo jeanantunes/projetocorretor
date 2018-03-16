@@ -3,7 +3,7 @@
 <head>
     <head>
 
-        <title>Plano selecionado PME | OdontoPrev</title>
+        <title>Plano Selecionado PME | OdontoPrev</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
@@ -37,8 +37,6 @@
     });
 
 </script>
-
-
 <div class="container-fluid nopadding">
 
     <div th:switch="${session.usuario.perfil}">
@@ -52,11 +50,11 @@
         </div>
     </div>
 
-    <div class="header-logado">
+    <!--<div class="header-logado">
         <a href="#" data-activates="menu-mobile" class="button-collapse pull-right">
             <img th:src="@{/img/menu.png} " class="icon-menu">
         </a>
-        <img th:src="@{/img/logo-mobile.png}" class="logo-ondonto-mobile" style="position: relative;top:30px">
+        <img th:src="@{/img/logo-mobile.png}" class="logo-ondonto-mobile" style="position: relative;top:30px">--!>
 
         <!--<div class="perfil-web">-->
         <!--<div class="circle-perfil">-->
@@ -67,15 +65,8 @@
         <!--</div>-->
         <!--</div>-->
         <!--</div>-->
-        <div class="pull-right space-top-30 btn-header-web">
-            <a href="../../vendas_pf/escolhaPlanoPF.html" type="button" class="btn btnPink btn-width-custom text-right">VENDER
-                PARA PESSOA FÍSICA</a><br>
-            <a href="Escolha_um_plano.html" type="button" class="btn btnBlue btn-width-custom space-top-10">VENDER
-                PME</a>
-        </div>
-    </div>
-
-    <div class="container-logado padding-logado">
+     
+        <div class="container-logado padding-logado">
 
 
         <div class="titulo">
