@@ -1,8 +1,10 @@
 package br.com.odontoprev.portalcorretor.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.odontoprev.portalcorretor.model.Carrinho;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,66 +18,66 @@ import br.com.odontoprev.portalcorretor.model.Cadastro;
 import br.com.odontoprev.portalcorretor.model.Dependente;
 import br.com.odontoprev.portalcorretor.model.VendaPf;
 
+import javax.servlet.http.HttpSession;
+
+import static br.com.odontoprev.portalcorretor.service.dto.Plano.*;
+
 @Controller
 public class VendaPfController {
-	
-	private static final String URL_ESTADO = "https://api.odontoprev.com.br:8243/cep/1.1/estados";
-	
-	
-	@RequestMapping(value = "venda/pf/escolhaPlanoPF", method = RequestMethod.GET)
-    public ModelAndView escolhaDoPlanoPf() {
-    
-	List<String> estados = 	new ArrayList<>();
-	List<Dependente> dependentes = 	new ArrayList<>();
-	
-    	VendaPf vendaPf = new VendaPf();
-    	
-    	vendaPf.setCelularTitularPlano("(11) 11111-1111");
-    	vendaPf.setCepTitularPlano("15900-000");
-    	vendaPf.setCpfTitularPlano("000.000.000-11");
-    	vendaPf.setDataNascimentoTitularPlano("03/02/1993");
-    	vendaPf.setEmailTitularPlano("teste@teste.com.br");
-    	vendaPf.setEnderecoTitularPlano("Rua Siqueira Campos");
-    	vendaPf.setNomeMaeTitularPlano("Cristina da Silva");
-    	vendaPf.setNomeTitularPlano("Marco Da Silva");
-    	vendaPf.setNumeroTitularPlano("12312313");
-    	vendaPf.setSexo("male");
-    	vendaPf.setComplementoTitularPlano("cc123");
-    	vendaPf.setCidadeTitularPlano("Araraquara");
-    	vendaPf.setBairroTitularPlano("Centro");
-    	vendaPf.setEstado(estados);
-    	vendaPf.setDependente(dependentes);
 
-    	 return new ModelAndView("venda/pf/escolhaPlanoPF", "vendaPf", vendaPf);
-    }
-	
-	
-	@RequestMapping(value = "venda/pf/titularDoPlanoPF", method = RequestMethod.GET)
-    public ModelAndView titularDoPlanoPf() {
-    
-	List<String> estados = 	new ArrayList<>();
-	List<Dependente> dependentes = 	new ArrayList<>();
-	
-    	VendaPf vendaPf = new VendaPf();
-    	vendaPf.setCelularTitularPlano("(11) 11111-1111");
-    	vendaPf.setCepTitularPlano("15900-000");
-    	vendaPf.setCpfTitularPlano("000.000.000-11");
-    	vendaPf.setDataNascimentoTitularPlano("03/02/1993");
-    	vendaPf.setEmailTitularPlano("teste@teste.com.br");
-    	vendaPf.setEnderecoTitularPlano("Rua Siqueira Campos");
-    	vendaPf.setNomeMaeTitularPlano("Cristina da Silva");
-    	vendaPf.setNomeTitularPlano("Marco Da Silva");
-    	vendaPf.setNumeroTitularPlano("12312313");
-    	vendaPf.setSexo("male");
-    	vendaPf.setComplementoTitularPlano("cc123");
-    	vendaPf.setCidadeTitularPlano("Araraquara");
-    	vendaPf.setBairroTitularPlano("Centro");
-    	vendaPf.setEstado(estados);
-    	vendaPf.setDependente(dependentes);
+    private static final String URL_ESTADO = "https://api.odontoprev.com.br:8243/cep/1.1/estados";
 
-    	 return new ModelAndView("venda/pf/titularDoPlanoPF", "vendaPf", vendaPf);
+
+    @RequestMapping(value = "venda/pf/Escolha_um_plano")
+    public ModelAndView escolhaPlanoPf(HttpSession session) throws IOException {
+
+        Carrinho carrinho = new Carrinho();
+        session.setAttribute("carrinho", carrinho);
+        return new ModelAndView("venda/pf/1_Escolha_um_plano", "carrinho", carrinho);
     }
-	
+
+
+    @RequestMapping(value = "venda/pf/Escolha_um_plano/addPlanoSelecionadoPf/{nomePlano}/{modPagamento}/{ehCarencia}")
+    public ModelAndView planoSelecionadoPf(@PathVariable("nomePlano") String nomePlano,
+                                           @PathVariable("modPagamento") String modPagamento,
+                                           @PathVariable("ehCarencia") String ehCarencia,
+                                           HttpSession session) {
+        Carrinho carrinho = (Carrinho) session.getAttribute("carrinho");
+
+        //TODO Refatorar
+        if (nomePlano.equals(Dental_Bem_Estar.getCdPlano()) && ehCarencia.equals("S") && modPagamento.equals("ANUAL")) {
+            carrinho.getPlanos().add(Dental_Bem_Estar_Anual_CC);
+        }else if(nomePlano.equals(Dental_Bem_Estar.getCdPlano()) && ehCarencia.equals("N") && modPagamento.equals("ANUAL")){
+            carrinho.getPlanos().add(Dental_Bem_Estar_Anual_SC);
+        }else if(nomePlano.equals(Dental_Bem_Estar.getCdPlano()) && ehCarencia.equals("N") && modPagamento.equals("MENSAL")){
+            carrinho.getPlanos().add(Dental_Bem_Estar);
+        }else if(nomePlano.equals(Dente_De_Leite.getCdPlano()) && ehCarencia.equals("N") && modPagamento.equals("ANUAL")){
+            carrinho.getPlanos().add(Dente_De_Leite_Anual);
+        }else if(nomePlano.equals(Dente_De_Leite.getCdPlano()) && ehCarencia.equals("N") && modPagamento.equals("MENSAL")){
+            carrinho.getPlanos().add(Dente_De_Leite);
+        }else if(nomePlano.equals(Dental_Estetica.getCdPlano()) && ehCarencia.equals("S") && modPagamento.equals("ANUAL")){
+            carrinho.getPlanos().add(Dental_Estetica_Anual_CC);
+        }else if(nomePlano.equals(Dental_Estetica.getCdPlano()) && ehCarencia.equals("N") && modPagamento.equals("ANUAL")){
+            carrinho.getPlanos().add(Dental_Estetica_Anual_SC);
+        }else if(nomePlano.equals(Dental_Estetica.getCdPlano()) && ehCarencia.equals("N") && modPagamento.equals("MENSAL")){
+            carrinho.getPlanos().add(Dental_Estetica);
+        }else if(nomePlano.equals(Dental_Orto.getCdPlano()) && ehCarencia.equals("S") && modPagamento.equals("ANUAL")){
+            carrinho.getPlanos().add(Dental_Orto_Anual_CC);
+        }else if(nomePlano.equals(Dental_Orto.getCdPlano()) && ehCarencia.equals("N") && modPagamento.equals("ANUAL")){
+            carrinho.getPlanos().add(Dental_Orto_Anual_SC);
+        }else if(nomePlano.equals(Dental_Orto.getCdPlano()) && ehCarencia.equals("N") && modPagamento.equals("MENSAL")){
+            carrinho.getPlanos().add(Dental_Orto);
+        }else if(nomePlano.equals(Dental_Vip.getCdPlano()) && ehCarencia.equals("S") && modPagamento.equals("ANUAL")){
+            carrinho.getPlanos().add(Dental_Vip_Anual_CC);
+        }else if(nomePlano.equals(Dental_Vip.getCdPlano()) && ehCarencia.equals("N") && modPagamento.equals("ANUAL")){
+            carrinho.getPlanos().add(Dental_Vip_Anual_SC);
+        }else if(nomePlano.equals(Dental_Vip.getCdPlano()) && ehCarencia.equals("N") && modPagamento.equals("MENSAL")){
+            carrinho.getPlanos().add(Dental_Vip);
+        }
+
+    return new ModelAndView("venda/pme/2_Plano_selecionado", "carrinho", carrinho);
+    }
+
 
     @RequestMapping(value = "venda/pf/cnpj", method = RequestMethod.GET)
     public ResponseEntity<Cadastro> cnpj(@RequestParam("cnpj") String cnpj) {
@@ -94,28 +96,28 @@ public class VendaPfController {
         cadastro.setEmail("teste@odontoprev.com.br");
         return cnpj.equals("23.423.423/423") ? ResponseEntity.ok(cadastro) : ResponseEntity.notFound().build();
     }
-    
+
     @RequestMapping(value = "venda/pf/pagamentoDebitoCC", method = RequestMethod.POST)
     public ModelAndView pagamentoDebito() {
-    	
-    	VendaPf vendaPf = new VendaPf();
-    		vendaPf.setPagamentoCartaoNome("0043");
-    		vendaPf.setPagamentoCartaoValidade("2018");
-        
-    	return new ModelAndView("venda/pf/pagamentoDebitoCC", "vendaPf", vendaPf);
+
+        VendaPf vendaPf = new VendaPf();
+        vendaPf.setPagamentoCartaoNome("0043");
+        vendaPf.setPagamentoCartaoValidade("2018");
+
+        return new ModelAndView("venda/pf/pagamentoDebitoCC", "vendaPf", vendaPf);
     }
-    
+
     @RequestMapping(value = "venda/pf/compraRealizadaPF", method = RequestMethod.GET)
-    public ModelAndView compraRealizada(@PathVariable("cadastro") VendaPf idVenda){
-     	VendaPf vendaPf = new VendaPf();	
-    return new ModelAndView("venda/pf/compraRealizadaPF", "vendaPf", vendaPf);
+    public ModelAndView compraRealizada(@PathVariable("cadastro") VendaPf idVenda) {
+        VendaPf vendaPf = new VendaPf();
+        return new ModelAndView("venda/pf/compraRealizadaPF", "vendaPf", vendaPf);
     }
-    
+
     @RequestMapping(value = "venda/pf/cep", method = RequestMethod.GET)
     public ModelAndView cep(@ModelAttribute("cadastro") Cadastro cadastro) {
         return new ModelAndView("cadastro/home", "cadastro", cadastro);
     }
-    
+
     @RequestMapping(value = "venda/pf/cadastrar", method = RequestMethod.POST)
     public ModelAndView cadastrar(@ModelAttribute("cadastro") Cadastro cadastro) {
         return new ModelAndView("venda/pf/cadastrar/termosCondicoes", "cadastro", cadastro);
@@ -129,6 +131,6 @@ public class VendaPfController {
     @RequestMapping(value = "venda/pf/bemvindo", method = RequestMethod.POST)
     public ModelAndView bemvindo(@ModelAttribute("cadastro") Cadastro cadastro) {
         return new ModelAndView("venda/pf/bemvindo", "cadastro", cadastro);
-    }  
+    }
 
 }

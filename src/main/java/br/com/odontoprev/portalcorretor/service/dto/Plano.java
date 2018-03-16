@@ -9,6 +9,27 @@ public class Plano {
 
     public static Plano Integral_DOC_LE = new Plano("Integral-DOC-LALE", "Integral DOC LE", "BEM-ESTAR+DOC", 37.82, "Modalidade Compulsoria", "font-gold");
 
+    //Planos PF
+    public static Plano Dental_Bem_Estar_Anual_CC = new Plano("DENTAL-BEM-ESTAR", "DENTAL BEM-ESTAR", "DENTAL BEM-ESTAR", 456.00, "", "font-purple");
+    public static Plano Dental_Bem_Estar_Anual_SC = new Plano("DENTAL-BEM-ESTAR", "DENTAL BEM-ESTAR", "DENTAL BEM-ESTAR", 547.00, "", "font-purple");
+    public static Plano Dental_Bem_Estar = new Plano("DENTAL-BEM-ESTAR", "DENTAL BEM-ESTAR", "DENTAL BEM-ESTAR", 45.60, "", "font-purple");
+
+    public static Plano Dente_De_Leite = new Plano("DENTE-DE-LEITE", "DENTE DE LEITE DE 0 A 7 ANOS", "DENTE DE LEITE DE 0 A 7 ANOS", 14.98, "", "font-gold");
+    public static Plano Dente_De_Leite_Anual = new Plano("DENTE-DE-LEITE", "DENTE DE LEITE DE 0 A 7 ANOS", "DENTE DE LEITE DE 0 A 7 ANOS", 149.80, "", "font-gold");
+
+    public static Plano Dental_Estetica_Anual_CC = new Plano("DENTAL-ESTETICA", "DENTAL ESTÉTICA", "DENTAL ESTÉTICA", 1150.00, "", "font-pink");
+    public static Plano Dental_Estetica_Anual_SC = new Plano("DENTAL-ESTETICA", "DENTAL ESTÉTICA", "DENTAL ESTÉTICA", 1380.00, "", "font-pink");
+    public static Plano Dental_Estetica = new Plano("DENTAL-ESTETICA", "DENTAL ESTÉTICA", "DENTAL ESTÉTICA", 115.00, "", "font-pink");
+
+    public static Plano Dental_Orto_Anual_CC = new Plano("DENTAL-ORTO", "DENTAL-ORTO", "DENTAL ORTO", 1470.00, "", "font-green");
+    public static Plano Dental_Orto_Anual_SC = new Plano("DENTAL-ORTO", "DENTAL-ORTO", "DENTAL ORTO", 1764.00, "", "font-green");
+    public static Plano Dental_Orto = new Plano("DENTAL-ORTO", "DENTAL-ORTO", "DENTAL ORTO", 147.00, "", "font-green");
+
+    public static Plano Dental_Vip_Anual_CC = new Plano("DENTAL-VIP", "DENTAL-VIP", "DENTAL VIP", 2203.05, "", "font-blue");
+    public static Plano Dental_Vip_Anual_SC = new Plano("DENTAL-VIP", "DENTAL-VIP", "DENTAL VIP", 2644.20, "", "font-blue");
+    public static Plano Dental_Vip = new Plano("DENTAL-VIP", "DENTAL-VIP", "DENTAL VIP", 220.35, "", "font-blue");
+
+
     private final String cdPlano;
     private final String nome;
     private final String desc;
