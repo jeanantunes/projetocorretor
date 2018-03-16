@@ -49,7 +49,7 @@ public class VendaPfController {
             carrinho.getPlanos().add(Dental_Bem_Estar_Anual_CC);
         }else if(nomePlano.equals(Dental_Bem_Estar.getCdPlano()) && ehCarencia.equals("N") && modPagamento.equals("ANUAL")){
             carrinho.getPlanos().add(Dental_Bem_Estar_Anual_SC);
-        }else if(nomePlano.equals(Dental_Bem_Estar.getCdPlano()) && ehCarencia.equals("N") && modPagamento.equals("MENSAL")){
+        }else if(nomePlano.equals(Dental_Bem_Estar.getCdPlano()) && ehCarencia.equals("S") && modPagamento.equals("MENSAL")){
             carrinho.getPlanos().add(Dental_Bem_Estar);
         }else if(nomePlano.equals(Dente_De_Leite.getCdPlano()) && ehCarencia.equals("N") && modPagamento.equals("ANUAL")){
             carrinho.getPlanos().add(Dente_De_Leite_Anual);
@@ -59,19 +59,19 @@ public class VendaPfController {
             carrinho.getPlanos().add(Dental_Estetica_Anual_CC);
         }else if(nomePlano.equals(Dental_Estetica.getCdPlano()) && ehCarencia.equals("N") && modPagamento.equals("ANUAL")){
             carrinho.getPlanos().add(Dental_Estetica_Anual_SC);
-        }else if(nomePlano.equals(Dental_Estetica.getCdPlano()) && ehCarencia.equals("N") && modPagamento.equals("MENSAL")){
+        }else if(nomePlano.equals(Dental_Estetica.getCdPlano()) && ehCarencia.equals("S") && modPagamento.equals("MENSAL")){
             carrinho.getPlanos().add(Dental_Estetica);
         }else if(nomePlano.equals(Dental_Orto.getCdPlano()) && ehCarencia.equals("S") && modPagamento.equals("ANUAL")){
             carrinho.getPlanos().add(Dental_Orto_Anual_CC);
         }else if(nomePlano.equals(Dental_Orto.getCdPlano()) && ehCarencia.equals("N") && modPagamento.equals("ANUAL")){
             carrinho.getPlanos().add(Dental_Orto_Anual_SC);
-        }else if(nomePlano.equals(Dental_Orto.getCdPlano()) && ehCarencia.equals("N") && modPagamento.equals("MENSAL")){
+        }else if(nomePlano.equals(Dental_Orto.getCdPlano()) && ehCarencia.equals("S") && modPagamento.equals("MENSAL")){
             carrinho.getPlanos().add(Dental_Orto);
         }else if(nomePlano.equals(Dental_Vip.getCdPlano()) && ehCarencia.equals("S") && modPagamento.equals("ANUAL")){
             carrinho.getPlanos().add(Dental_Vip_Anual_CC);
         }else if(nomePlano.equals(Dental_Vip.getCdPlano()) && ehCarencia.equals("N") && modPagamento.equals("ANUAL")){
             carrinho.getPlanos().add(Dental_Vip_Anual_SC);
-        }else if(nomePlano.equals(Dental_Vip.getCdPlano()) && ehCarencia.equals("N") && modPagamento.equals("MENSAL")){
+        }else if(nomePlano.equals(Dental_Vip.getCdPlano()) && ehCarencia.equals("S") && modPagamento.equals("MENSAL")){
             carrinho.getPlanos().add(Dental_Vip);
         }
 
