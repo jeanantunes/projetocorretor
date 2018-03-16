@@ -7,18 +7,17 @@ import br.com.odontoprev.portalcorretor.model.VendaPme;
 import br.com.odontoprev.portalcorretor.service.EnderecoService;
 import br.com.odontoprev.portalcorretor.service.VendaPMEService;
 import br.com.odontoprev.portalcorretor.service.dto.ConverterModelVendaPmeRequest;
-import br.com.odontoprev.portalcorretor.service.dto.VendaPMERequest;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.stream.Collectors;
 
 import static br.com.odontoprev.portalcorretor.service.dto.Plano.Integral_DOC_LE;
 import static br.com.odontoprev.portalcorretor.service.dto.Plano.Master_LALE;
@@ -33,6 +32,9 @@ public class VendaPmeController {
     @Autowired
     private EnderecoService enderecoService;
 
+    @Autowired
+    private VendaPMEService vendaPMEService;
+
     @RequestMapping(value = "venda/pme/Escolha_um_plano")
     public ModelAndView escolhaPlanoPme(HttpSession session) throws IOException {
         Carrinho carrinho = new Carrinho();
@@ -44,11 +46,21 @@ public class VendaPmeController {
     public ModelAndView planoSelecionadoPme(@PathVariable("nomePlano") String nomePlano, HttpSession session) {
         Carrinho carrinho = (Carrinho) session.getAttribute("carrinho");
 
-        if (nomePlano.equals("Master-LALE")) {
-            carrinho.getPlanos().add(Master_LALE);
+        if (carrinho.getPlanos().size() < 2) {
 
-        } else if (nomePlano.equals("Integral-DOC-LALE")) {
-            carrinho.getPlanos().add(Integral_DOC_LE);
+            if (nomePlano.equals(Integral_DOC_LE.getCdPlano()) && !carrinho.getPlanos().contains(Integral_DOC_LE)) {
+                carrinho.getPlanos().add(Integral_DOC_LE);
+
+            } else if (nomePlano.equals(Integral_DOC_LE.getCdPlano()) && carrinho.getPlanos().contains(Integral_DOC_LE)) {
+                carrinho.getPlanos().add(Master_LALE);
+
+            } else if (nomePlano.equals(Master_LALE.getCdPlano()) && !carrinho.getPlanos().contains(Master_LALE)) {
+                carrinho.getPlanos().add(Master_LALE);
+
+            } else if (nomePlano.equals(Master_LALE.getCdPlano()) && carrinho.getPlanos().contains(Master_LALE)) {
+                carrinho.getPlanos().add(Integral_DOC_LE);
+            }
+
         }
         return new ModelAndView("venda/pme/2_Plano_selecionado", "carrinho", carrinho);
     }
@@ -57,10 +69,12 @@ public class VendaPmeController {
     public ModelAndView planoSelecionadoPme(HttpSession session) {
         Carrinho carrinho = (Carrinho) session.getAttribute("carrinho");
 
-        if (carrinho.getPlanos().contains(Integral_DOC_LE)) {
-            carrinho.getPlanos().add(Master_LALE);
-        } else {
-            carrinho.getPlanos().add(Integral_DOC_LE);
+        if (carrinho.getPlanos().size() < 2) {
+            if (carrinho.getPlanos().contains(Integral_DOC_LE)) {
+                carrinho.getPlanos().add(Master_LALE);
+            } else {
+                carrinho.getPlanos().add(Integral_DOC_LE);
+            }
         }
         return new ModelAndView("venda/pme/2_Plano_selecionado", "carrinho", carrinho);
     }
@@ -76,26 +90,31 @@ public class VendaPmeController {
         return new ModelAndView("venda/pme/2_Plano_selecionado", "vendaPme", new VendaPme());
     }
 
-    @RequestMapping(value = "venda/pme/Escolha_um_plano/AddBeneficiarioDependente")
+    @RequestMapping(value = "/venda/pme/Escolha_um_plano/AddBeneficiarioDependente", method = RequestMethod.POST)
     public ModelAndView addPlanoBeneficiarioDependente(Carrinho carrinhoForm, HttpSession session) {
         Carrinho carrinho = (Carrinho) session.getAttribute("carrinho");
+        carrinho.getBeneficiarios().add(new Beneficiario());
         carrinho.setVendaPme(carrinhoForm.getVendaPme());
-
-        carrinho.setBeneficiarios(carrinho.getPlanos().stream().map(plano -> new Beneficiario(plano.getCdPlano())).collect(Collectors.toList()));
         return new ModelAndView("venda/pme/3_Add_beneficiario_dependente", "carrinho", carrinho);
     }
 
-    @RequestMapping(value = "confirmacaoProposta")
-    public ModelAndView confirmacaoProposta(Dependente dependente) {
-        VendaPMERequest vendaPMERequest = new VendaPMERequest();
+    @RequestMapping(value = "/venda/pme/Escolha_um_plano/confirmacaoProposta", method = RequestMethod.POST, params = "action=add")
+    public ModelAndView savePlanoBeneficiarioDependente(Carrinho carrinhoForm, HttpSession session) {
+        Carrinho carrinho = (Carrinho) session.getAttribute("carrinho");
+        carrinho.setBeneficiarios(carrinhoForm.getBeneficiarios());
+        carrinho.getBeneficiarios().add(new Beneficiario());
+        return new ModelAndView("venda/pme/3_Add_beneficiario_dependente", "carrinho", carrinho);
+    }
+
+
+    @RequestMapping(value = "/venda/pme/Escolha_um_plano/confirmacaoProposta", method = RequestMethod.POST, params = "action=save")
+    public ModelAndView confirmacaoProposta(Carrinho carrinhoForm, HttpSession session) {
+        Carrinho carrinho = (Carrinho) session.getAttribute("carrinho");
+        carrinhoForm.setBeneficiarios(carrinhoForm.getBeneficiarios());
         ConverterModelVendaPmeRequest converterModelVendaPmeRequest = new ConverterModelVendaPmeRequest();
 
-        //vendaPMERequest = converterModelVendaPmeRequest.converter(vendaPme);
-        //TODO Servico retornarndo URL Null dentro de VendaPMEService, Alterar parametro confirmacaoProposta
-        VendaPMEService vendaPMEService = new VendaPMEService();
 
-
-        vendaPMEService.Vender(vendaPMERequest);
+//        vendaPMEService.Vender(vendaPMERequest);
         return new ModelAndView("venda/pme/4_confirmacao_proposta_pme");
     }
     // Fim -> Metodos de Fluxo de Tela

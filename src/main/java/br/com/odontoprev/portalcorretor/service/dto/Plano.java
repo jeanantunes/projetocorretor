@@ -7,7 +7,7 @@ public class Plano {
 
     public static Plano Master_LALE = new Plano("Master-LALE", "Master LE", "ORTO+PRÓTESE", 119.48, "Modalidade Compulsoria", "font-pink");
 
-    public static Plano Integral_DOC_LE = new Plano("Integral_DOC_LE", "Integral DOC LE", "BEM-ESTAR+DOC", 37.82, "Modalidade Compulsoria", "font-gold");
+    public static Plano Integral_DOC_LE = new Plano("Integral-DOC-LALE", "Integral DOC LE", "BEM-ESTAR+DOC", 37.82, "Modalidade Compulsoria", "font-gold");
 
     private final String cdPlano;
     private final String nome;

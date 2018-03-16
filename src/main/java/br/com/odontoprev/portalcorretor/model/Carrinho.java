@@ -3,6 +3,7 @@ package br.com.odontoprev.portalcorretor.model;
 import br.com.odontoprev.portalcorretor.service.dto.Plano;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Carrinho {
@@ -12,7 +13,8 @@ public class Carrinho {
     private List<Plano> planos = new ArrayList<>();
 
     private Double total;
-    private List<Beneficiario> beneficiarios;
+    private List<Beneficiario> beneficiarios = new ArrayList<>();
+    private String acao;
 
     public List<Beneficiario> getBeneficiarios() {
         return beneficiarios;
@@ -53,5 +55,13 @@ public class Carrinho {
 
     public void setPlanos(List<Plano> planos) {
         this.planos = planos;
+    }
+
+    public String getAcao() {
+        return acao;
+    }
+
+    public void setAcao(String acao) {
+        this.acao = acao;
     }
 }
