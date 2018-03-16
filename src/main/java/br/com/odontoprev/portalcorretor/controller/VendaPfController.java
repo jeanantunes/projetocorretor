@@ -4,7 +4,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.odontoprev.portalcorretor.model.Carrinho;
+import br.com.odontoprev.portalcorretor.exceptions.SerasaConsultaException;
+import br.com.odontoprev.portalcorretor.model.*;
+import br.com.odontoprev.portalcorretor.service.SerasaService;
+import br.com.odontoprev.portalcorretor.service.dto.omninetworking.wim.ws.PessoaJuridica;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,10 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
-import br.com.odontoprev.portalcorretor.model.Cadastro;
-import br.com.odontoprev.portalcorretor.model.Dependente;
-import br.com.odontoprev.portalcorretor.model.VendaPf;
 
 import javax.servlet.http.HttpSession;
 
@@ -29,11 +28,11 @@ public class VendaPfController {
 
 
     @RequestMapping(value = "venda/pf/Escolha_um_plano")
-    public ModelAndView escolhaPlanoPf(HttpSession session) throws IOException {
+    public ModelAndView escolhaPlanoPf(HttpSession session) throws IOException, SerasaConsultaException {
 
         Carrinho carrinho = new Carrinho();
         session.setAttribute("carrinho", carrinho);
-        return new ModelAndView("venda/pf/1_Escolha_um_plano", "carrinho", carrinho);
+        return new ModelAndView("venda/pf/escolhaPlanoPF", "carrinho", carrinho);
     }
 
 
@@ -75,9 +74,13 @@ public class VendaPfController {
             carrinho.getPlanos().add(Dental_Vip);
         }
 
-    return new ModelAndView("venda/pme/2_Plano_selecionado", "carrinho", carrinho);
+        return new ModelAndView("venda/pf/titularDoPlanoPF", "carrinho", carrinho);
     }
 
+    @RequestMapping(value = "venda/pf/Escolha_um_plano/deletePlanoSelecionadoPf")
+    public void removePlano(HttpSession session) throws IOException {
+     //escolhaPlanoPf(session);
+    }
 
     @RequestMapping(value = "venda/pf/cnpj", method = RequestMethod.GET)
     public ResponseEntity<Cadastro> cnpj(@RequestParam("cnpj") String cnpj) {
