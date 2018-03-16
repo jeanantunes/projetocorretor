@@ -9,6 +9,7 @@ import java.util.List;
 public class Carrinho {
 
     private VendaPme vendaPme;
+    private VendaPf vendaPf;
 
     private List<Plano> planos = new ArrayList<>();
 
@@ -63,5 +64,13 @@ public class Carrinho {
 
     public void setAcao(String acao) {
         this.acao = acao;
+    }
+
+    public VendaPf getVendaPf() {
+        return vendaPf;
+    }
+
+    public void setVendaPf(VendaPf vendaPf) {
+        this.vendaPf = vendaPf;
     }
 }

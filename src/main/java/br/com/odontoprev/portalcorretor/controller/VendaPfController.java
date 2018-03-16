@@ -28,7 +28,7 @@ public class VendaPfController {
 
 
     @RequestMapping(value = "venda/pf/Escolha_um_plano")
-    public ModelAndView escolhaPlanoPf(HttpSession session) throws IOException, SerasaConsultaException {
+    public ModelAndView escolhaPlanoPf(HttpSession session) throws IOException {
 
         Carrinho carrinho = new Carrinho();
         session.setAttribute("carrinho", carrinho);
@@ -46,40 +46,55 @@ public class VendaPfController {
         //TODO Refatorar
         if (nomePlano.equals(Dental_Bem_Estar.getCdPlano()) && ehCarencia.equals("S") && modPagamento.equals("ANUAL")) {
             carrinho.getPlanos().add(Dental_Bem_Estar_Anual_CC);
+            carrinho.setTotal(Dental_Bem_Estar_Anual_CC.getValor());
         }else if(nomePlano.equals(Dental_Bem_Estar.getCdPlano()) && ehCarencia.equals("N") && modPagamento.equals("ANUAL")){
             carrinho.getPlanos().add(Dental_Bem_Estar_Anual_SC);
+            carrinho.setTotal(Dental_Bem_Estar_Anual_SC.getValor());
         }else if(nomePlano.equals(Dental_Bem_Estar.getCdPlano()) && ehCarencia.equals("S") && modPagamento.equals("MENSAL")){
             carrinho.getPlanos().add(Dental_Bem_Estar);
+            carrinho.setTotal(Dental_Bem_Estar.getValor());
         }else if(nomePlano.equals(Dente_De_Leite.getCdPlano()) && ehCarencia.equals("N") && modPagamento.equals("ANUAL")){
             carrinho.getPlanos().add(Dente_De_Leite_Anual);
+            carrinho.setTotal(Dente_De_Leite_Anual.getValor());
         }else if(nomePlano.equals(Dente_De_Leite.getCdPlano()) && ehCarencia.equals("N") && modPagamento.equals("MENSAL")){
             carrinho.getPlanos().add(Dente_De_Leite);
+            carrinho.setTotal(Dente_De_Leite.getValor());
         }else if(nomePlano.equals(Dental_Estetica.getCdPlano()) && ehCarencia.equals("S") && modPagamento.equals("ANUAL")){
             carrinho.getPlanos().add(Dental_Estetica_Anual_CC);
+            carrinho.setTotal(Dental_Estetica_Anual_CC.getValor());
         }else if(nomePlano.equals(Dental_Estetica.getCdPlano()) && ehCarencia.equals("N") && modPagamento.equals("ANUAL")){
             carrinho.getPlanos().add(Dental_Estetica_Anual_SC);
+            carrinho.setTotal(Dental_Estetica_Anual_SC.getValor());
         }else if(nomePlano.equals(Dental_Estetica.getCdPlano()) && ehCarencia.equals("S") && modPagamento.equals("MENSAL")){
             carrinho.getPlanos().add(Dental_Estetica);
+            carrinho.setTotal(Dental_Estetica.getValor());
         }else if(nomePlano.equals(Dental_Orto.getCdPlano()) && ehCarencia.equals("S") && modPagamento.equals("ANUAL")){
             carrinho.getPlanos().add(Dental_Orto_Anual_CC);
+            carrinho.setTotal(Dental_Orto_Anual_CC.getValor());
         }else if(nomePlano.equals(Dental_Orto.getCdPlano()) && ehCarencia.equals("N") && modPagamento.equals("ANUAL")){
             carrinho.getPlanos().add(Dental_Orto_Anual_SC);
+            carrinho.setTotal(Dental_Orto_Anual_SC.getValor());
         }else if(nomePlano.equals(Dental_Orto.getCdPlano()) && ehCarencia.equals("S") && modPagamento.equals("MENSAL")){
             carrinho.getPlanos().add(Dental_Orto);
+            carrinho.setTotal(Dental_Orto.getValor());
         }else if(nomePlano.equals(Dental_Vip.getCdPlano()) && ehCarencia.equals("S") && modPagamento.equals("ANUAL")){
             carrinho.getPlanos().add(Dental_Vip_Anual_CC);
+            carrinho.setTotal(Dental_Vip_Anual_CC.getValor());
         }else if(nomePlano.equals(Dental_Vip.getCdPlano()) && ehCarencia.equals("N") && modPagamento.equals("ANUAL")){
             carrinho.getPlanos().add(Dental_Vip_Anual_SC);
+            carrinho.setTotal(Dental_Vip_Anual_SC.getValor());
         }else if(nomePlano.equals(Dental_Vip.getCdPlano()) && ehCarencia.equals("S") && modPagamento.equals("MENSAL")){
             carrinho.getPlanos().add(Dental_Vip);
+            carrinho.setTotal(Dental_Vip.getValor());
         }
+        session.setAttribute("carrinho",carrinho);
 
         return new ModelAndView("venda/pf/titularDoPlanoPF", "carrinho", carrinho);
     }
 
     @RequestMapping(value = "venda/pf/Escolha_um_plano/deletePlanoSelecionadoPf")
     public void removePlano(HttpSession session) throws IOException {
-     //escolhaPlanoPf(session);
+     escolhaPlanoPf(session);
     }
 
     @RequestMapping(value = "venda/pf/cnpj", method = RequestMethod.GET)
@@ -98,16 +113,21 @@ public class VendaPfController {
         cadastro.setCelular("(11)98765-1234");
         cadastro.setEmail("teste@odontoprev.com.br");
         return cnpj.equals("23.423.423/423") ? ResponseEntity.ok(cadastro) : ResponseEntity.notFound().build();
+
+
     }
 
+
     @RequestMapping(value = "venda/pf/pagamentoDebitoCC", method = RequestMethod.POST)
-    public ModelAndView pagamentoDebito() {
+    public ModelAndView pagamentoDebito(Carrinho carrinhoForm, HttpSession session) {
 
-        VendaPf vendaPf = new VendaPf();
-        vendaPf.setPagamentoCartaoNome("0043");
-        vendaPf.setPagamentoCartaoValidade("2018");
+        Carrinho carrinho = (Carrinho) session.getAttribute("carrinho");
+        carrinho.setVendaPf(carrinhoForm.getVendaPf());
 
-        return new ModelAndView("venda/pf/pagamentoDebitoCC", "vendaPf", vendaPf);
+
+        session.setAttribute("carrinho",carrinho);
+
+        return new ModelAndView("venda/pf/pagamentoDebitoCC", "carrinho", carrinho);
     }
 
     @RequestMapping(value = "venda/pf/compraRealizadaPF", method = RequestMethod.GET)
