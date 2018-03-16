@@ -1,20 +1,15 @@
 package br.com.odontoprev.portalcorretor.controller;
 
-import br.com.odontoprev.api.manager.client.token.ApiManagerToken;
-import br.com.odontoprev.api.manager.client.token.ApiManagerTokenFactory;
-import br.com.odontoprev.api.manager.client.token.ApiToken;
-import br.com.odontoprev.api.manager.client.token.enumerator.ApiManagerTokenEnum;
-import br.com.odontoprev.api.manager.client.token.exception.ConnectionApiException;
-import br.com.odontoprev.api.manager.client.token.exception.CredentialsInvalidException;
-import br.com.odontoprev.api.manager.client.token.exception.URLEndpointNotFound;
-import br.com.odontoprev.portalcorretor.model.*;
+import br.com.odontoprev.portalcorretor.model.Beneficiario;
+import br.com.odontoprev.portalcorretor.model.Carrinho;
+import br.com.odontoprev.portalcorretor.model.Dependente;
+import br.com.odontoprev.portalcorretor.model.VendaPme;
+import br.com.odontoprev.portalcorretor.service.EnderecoService;
 import br.com.odontoprev.portalcorretor.service.VendaPMEService;
 import br.com.odontoprev.portalcorretor.service.dto.ConverterModelVendaPmeRequest;
 import br.com.odontoprev.portalcorretor.service.dto.VendaPMERequest;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.squareup.okhttp.*;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,11 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.IOException;
 import java.util.stream.Collectors;
 
 import static br.com.odontoprev.portalcorretor.service.dto.Plano.Integral_DOC_LE;
@@ -35,10 +26,12 @@ import static br.com.odontoprev.portalcorretor.service.dto.Plano.Master_LALE;
 @Controller
 public class VendaPmeController {
     private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(VendaPmeController.class);
-    private static final String URL_CEP = "https://api.odontoprev.com.br:8243/cep/1.1/por/cep/";
+    //private static final String URL_CEP = "https://api.odontoprev.com.br:8243/cep/1.1/por/cep/";
 
     //        UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
 
+    @Autowired
+    private EnderecoService enderecoService;
 
     @RequestMapping(value = "venda/pme/Escolha_um_plano")
     public ModelAndView escolhaPlanoPme(HttpSession session) throws IOException {
@@ -88,7 +81,7 @@ public class VendaPmeController {
         Carrinho carrinho = (Carrinho) session.getAttribute("carrinho");
         carrinho.setVendaPme(carrinhoForm.getVendaPme());
 
-        carrinho.setBeneficiarios(carrinho.getPlanos().stream().map(plano-> new Beneficiario(plano.getCdPlano()) ).collect(Collectors.toList()));
+        carrinho.setBeneficiarios(carrinho.getPlanos().stream().map(plano -> new Beneficiario(plano.getCdPlano())).collect(Collectors.toList()));
         return new ModelAndView("venda/pme/3_Add_beneficiario_dependente", "carrinho", carrinho);
     }
 
@@ -119,7 +112,7 @@ public class VendaPmeController {
     }
 
 
-    @RequestMapping(value = "buscaCEPPme/{cep}")
+   /* @RequestMapping(value = "buscaCEPPme/{cep}")
     private String buscaCEPPme(@PathVariable("cep") String cep) {
         String jsonInString = "";
         List<String> list = new ArrayList<>();
@@ -137,10 +130,10 @@ public class VendaPmeController {
         }
         return jsonInString;
 
-    }
+    }*/
 
 
-    public String obterToken() {
+   /* public String obterToken() {
         HttpURLConnection con = null;
         ObjectMapper mapper = new ObjectMapper();
         try {
@@ -212,7 +205,7 @@ public class VendaPmeController {
         }
 
         return result;
-    }
+    }*/
 
 
     private Dependente mockDadosDependente() {

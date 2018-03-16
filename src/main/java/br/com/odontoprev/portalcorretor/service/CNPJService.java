@@ -1,44 +1,28 @@
 package br.com.odontoprev.portalcorretor.service;
 
-import br.com.odontoprev.portalcorretor.controller.VendaPmeController;
-import br.com.odontoprev.portalcorretor.model.VendaPme;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.*;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
+
+import br.com.odontoprev.portalcorretor.model.VendaPme;
+import br.com.odontoprev.portalcorretor.service.dto.omninetworking.wim.ws.PessoaJuridica;
 
 
 @Service
-public class CNPJService {
-//    @Value("${odontoprev.servicebase.url}")
-    private String requesBasetUrl = "https://api.odontoprev.com.br:8243/";
-
-  //  @Value("${odontoprev.service.serasa.CNPJ}")
-    private String serasaCnpj = "serasa/consulta/1.0/";
-
+public class CNPJService {  
+    
     @Autowired
-    private ApiManagerTokenService apiManagerTokenService;
+    private SerasaService serasaService;
+    private static final Logger LOGGER = LoggerFactory.getLogger(CNPJService.class);
 
-    public VendaPme obterConsultaCNPJ(String cnpj) {
-        apiManagerTokenService = new ApiManagerTokenService();
-        String url = requesBasetUrl + serasaCnpj + cnpj;
-        RestTemplate restTemplate = new RestTemplate();
-        VendaPmeController vendaPmeController = new VendaPmeController();
+    public VendaPme obterConsultaCNPJ(String cnpj) {                
         try {
-            HttpHeaders headers = new HttpHeaders();
-            headers.set("Authorization", "Bearer " + vendaPmeController.obterToken());
-            HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
-            ResponseEntity<VendaPme> retorno = restTemplate.exchange(url, HttpMethod.POST, entity, VendaPme.class);
-
-            if (retorno.getStatusCode() == HttpStatus.OK) {
-                return retorno.getBody();
-            } else {
-                return new VendaPme();
-            }
-
+        	PessoaJuridica pessoaJuridica = serasaService.consultaSerasaCNPJ(cnpj);
+        	//TODO: Converter
+        	return new VendaPme();
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.error("ERRO AO CONSULTAR SERASA",e);
             return new VendaPme();
 
         }

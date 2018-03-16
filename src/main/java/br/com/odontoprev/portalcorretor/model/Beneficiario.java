@@ -8,6 +8,10 @@ public class Beneficiario {
     private String plano;
     private String nomeDaMae;
 
+
+    public Beneficiario() {
+    }
+
     public Beneficiario(String plano) {
         this.plano = plano;
     }
