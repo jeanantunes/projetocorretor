@@ -1,24 +1,9 @@
 package br.com.odontoprev.portalcorretor.controller;
 
-import br.com.odontoprev.api.manager.client.token.ApiManagerToken;
-import br.com.odontoprev.api.manager.client.token.ApiManagerTokenFactory;
-import br.com.odontoprev.api.manager.client.token.ApiToken;
-import br.com.odontoprev.api.manager.client.token.enumerator.ApiManagerTokenEnum;
-import br.com.odontoprev.api.manager.client.token.exception.ConnectionApiException;
-import br.com.odontoprev.api.manager.client.token.exception.CredentialsInvalidException;
-import br.com.odontoprev.api.manager.client.token.exception.URLEndpointNotFound;
-import br.com.odontoprev.portalcorretor.model.Beneficiario;
-import br.com.odontoprev.portalcorretor.model.Dependente;
-import br.com.odontoprev.portalcorretor.model.Token;
-import br.com.odontoprev.portalcorretor.model.VendaPme;
-import br.com.odontoprev.portalcorretor.service.VendaPMEService;
-import br.com.odontoprev.portalcorretor.service.dto.ConverterModelVendaPmeRequest;
-import br.com.odontoprev.portalcorretor.service.dto.Empresa;
-import br.com.odontoprev.portalcorretor.service.dto.Plano;
-import br.com.odontoprev.portalcorretor.service.dto.VendaPMERequest;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.squareup.okhttp.*;
+import java.io.IOException;
+
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,26 +12,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpSession;
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
+import br.com.odontoprev.portalcorretor.model.Beneficiario;
+import br.com.odontoprev.portalcorretor.model.Dependente;
+import br.com.odontoprev.portalcorretor.model.VendaPme;
+import br.com.odontoprev.portalcorretor.service.EnderecoService;
+import br.com.odontoprev.portalcorretor.service.VendaPMEService;
+import br.com.odontoprev.portalcorretor.service.dto.ConverterModelVendaPmeRequest;
+import br.com.odontoprev.portalcorretor.service.dto.Plano;
+import br.com.odontoprev.portalcorretor.service.dto.VendaPMERequest;
 
 @Controller
 public class VendaPmeController {
     private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(VendaPmeController.class);
-    private static final String URL_CEP = "https://api.odontoprev.com.br:8243/cep/1.1/por/cep/";
+    //private static final String URL_CEP = "https://api.odontoprev.com.br:8243/cep/1.1/por/cep/";
 
     @Autowired
     FluxoVendaController fluxoVendaController = new FluxoVendaController();
+    
+    @Autowired
+    private EnderecoService enderecoService;
 
 
     // Inicio -> Metodos de Fluxo de Tela
     @RequestMapping(value = "escolhaUmPlanoPme")
     public ModelAndView escolhaPlanoPme(HttpSession session) throws IOException {
         fluxoVendaController.inicioFluxoVenda(session);
+        enderecoService.obterEnderecoCorretora("03910020");
         return new ModelAndView("venda/pme/1_Escolha_um_plano");
     }
 
@@ -119,7 +110,7 @@ public class VendaPmeController {
     }
 
 
-    @RequestMapping(value = "buscaCEPPme/{cep}")
+   /* @RequestMapping(value = "buscaCEPPme/{cep}")
     private String buscaCEPPme(@PathVariable("cep") String cep) {
         String jsonInString = "";
         List<String> list = new ArrayList<>();
@@ -137,10 +128,10 @@ public class VendaPmeController {
         }
         return jsonInString;
 
-    }
+    }*/
 
 
-    public String obterToken() {
+   /* public String obterToken() {
         HttpURLConnection con = null;
         ObjectMapper mapper = new ObjectMapper();
         try {
@@ -212,7 +203,7 @@ public class VendaPmeController {
         }
 
         return result;
-    }
+    }*/
 
 
     private Dependente mockDadosDependente() {
