@@ -23,6 +23,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("login","index", "/cadastro/**", "/img/**", "/css/**", "/js/**", "/fonts/**").permitAll()
+                .antMatchers( "/app/**", "/config/**", "/repositorio/**", "/slick/**").permitAll()
+                .antMatchers("/**").hasAnyAuthority("Corretora","Corretor")
                 .antMatchers("/corretora/**").hasAuthority("Corretora")
                 .antMatchers("/forcavenda/**").hasAuthority("Corretor")
                 .anyRequest()
@@ -35,6 +37,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .permitAll();
+                
+         http.headers()
+				.frameOptions().sameOrigin()
+				.httpStrictTransportSecurity().disable();
     }
 
     @Autowired

@@ -1,0 +1,31 @@
+﻿{
+  "status": "",
+  "cpf": "",
+  "nome": "",
+  "dataNascimento": "",
+  "sexo": "",
+  "titular": true,
+  "telefone": "",
+  "celular": "",
+  "email": "",
+  "nomeMae":  "",
+  "dadosBancarios": {
+    "codigoBanco": "",
+    "agencia": "",
+    "tipoConta": "CC",
+    "conta": ""
+  },
+  "endereco": {
+    "cep": "",
+    "logradouro": "",
+    "numero": "",
+    "complemento": "",
+    "bairro": "",
+    "cidade": "",
+    "estado": ""
+  },
+  "planos": [
+  ],
+  "dependentes": [
+  ]
+}

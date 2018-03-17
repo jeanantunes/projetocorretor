@@ -53,14 +53,22 @@ public class CorretorWebConfig extends WebMvcConfigurerAdapter implements Applic
                 "/css/**",
                 "/js/**",
                 "/fonts/**",
-                "fragments/**")
+                "fragments/**",
+                 "/app/**", 
+                 "/config/**", 
+                 "/repositorio/**",
+                 "/slick/**")
                 .addResourceLocations(
                         "classpath:/META-INF/resources/webjars/",
                         "classpath:/static/img/",
                         "classpath:/static/css/",
                         "classpath:/static/js/",
                         "classpath:/static/fonts/",
-                        "classpath:fragments/");
+                        "classpath:fragments/",
+                        "classpath:/static/app/", 
+                        "classpath:/static/config/", 
+                        "classpath:/static/repositorio/",
+                        "classpath:/static/slick/");
     }
         
     private TemplateEngine templateEngine(ITemplateResolver templateResolver) {
@@ -109,6 +117,36 @@ public class CorretorWebConfig extends WebMvcConfigurerAdapter implements Applic
     
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {        
-        registry.addViewController("/login").setViewName("login");        
+        registry.addViewController("/login").setViewName("login"); 
+        registry.addViewController("/anteriorLogado.html").setViewName("anteriorLogado");
+        registry.addViewController("/cadastro_usuario.html").setViewName("cadastro_usuario");
+        registry.addViewController("/cartao_pf_debito.html").setViewName("cartao_pf_debito");
+        registry.addViewController("/compra_pf_boleto.html").setViewName("compra_pf_boleto");
+        registry.addViewController("/compra_pf_sucesso.html").setViewName("compra_pf_sucesso");
+        registry.addViewController("/fale_conosco.html").setViewName("fale_conosco");
+        registry.addViewController("/fale_conosco_login.html").setViewName("fale_conosco_login");
+        registry.addViewController("/fale_conosco_mensagem.html").setViewName("fale_conosco_mensagem");
+        registry.addViewController("/index.html").setViewName("index");
+        registry.addViewController("/lista_proposta.html").setViewName("lista_proposta");
+        registry.addViewController("/logado.html").setViewName("logado");
+        registry.addViewController("/meus_dados-backup.html").setViewName("meus_dados-backup");
+        registry.addViewController("/meus_dados.html").setViewName("meus_dados");
+        registry.addViewController("/proposta_pme_enviada.html").setViewName("proposta_pme_enviada");
+        registry.addViewController("/rede_credenciada.html").setViewName("rede_credenciada");
+        registry.addViewController("/resumo_pf_proposta.html").setViewName("resumo_pf_proposta");
+        registry.addViewController("/resumo_pme_proposta.html").setViewName("resumo_pme_proposta");
+        registry.addViewController("/vencimento_fatura_pme.html").setViewName("vencimento_fatura_pme");
+        registry.addViewController("/venda_index_pf.html").setViewName("venda_index_pf");
+        registry.addViewController("/venda_index_pme.html").setViewName("venda_index_pme");
+        registry.addViewController("/venda_pf_dados_dependentes.html").setViewName("venda_pf_dados_dependentes");
+        registry.addViewController("/venda_pf_dados_proposta.html").setViewName("venda_pf_dados_proposta");
+        registry.addViewController("/venda_pf_editar.html").setViewName("venda_pf_editar");
+        registry.addViewController("/venda_pme_addPlano.html").setViewName("venda_pme_addPlano");
+        registry.addViewController("/venda_pme_beneficiarios.html").setViewName("venda_pme_beneficiarios");
+        registry.addViewController("/venda_pme_beneficiarios_lista.html").setViewName("venda_pme_beneficiarios_lista");
+        registry.addViewController("/venda_pme_dados_proposta.html").setViewName("venda_pme_dados_proposta");
+        registry.addViewController("/venda_pme_dependentes.html").setViewName("venda_pme_dependentes");
+        registry.addViewController("/venda_pme_editar.html").setViewName("venda_pme_editar");
+        registry.addViewController("/venda_pme").setViewName("venda_pme");
     }
 }
