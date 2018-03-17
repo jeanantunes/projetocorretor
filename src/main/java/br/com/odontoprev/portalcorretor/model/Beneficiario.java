@@ -1,13 +1,32 @@
 package br.com.odontoprev.portalcorretor.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Beneficiario {
     private String cpf;
     private String sexo;
     private String dataNascimento;
     private String nome;
     private String plano;
-    private String nomeDaMae;
+    private String nomeDaMae;    
 
+    private List<Beneficiario> dependentes = new ArrayList<>();
+
+    public Beneficiario() {
+    }
+
+    public Beneficiario(String plano) {
+        this.plano = plano;
+    }
+
+    public List<Beneficiario> getDependentes() {
+        return dependentes;
+    }
+
+    public void setDependentes(List<Beneficiario> dependentes) {
+        this.dependentes = dependentes;
+    }
 
     public String getCpf() {
         return cpf;
@@ -56,4 +75,8 @@ public class Beneficiario {
     public void setNomeDaMae(String nomeDaMae) {
         this.nomeDaMae = nomeDaMae;
     }
+
+
+    
+    
 }

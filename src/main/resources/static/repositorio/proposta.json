@@ -1,0 +1,26 @@
+﻿{
+  "status": "",
+  "cnpj": "",
+  "cnae": "",
+  "razaoSocial": "",
+  "incEstadual": "",
+  "ramoAtividade": "",
+  "nomeFantasia": "",
+  "representanteLegal": "",
+  "contatoEmpresa": true,
+  "telefone": "",
+  "celular": "",
+  "email": "",
+  "vencimentoFatura": "",
+  "enderecoEmpresa": {
+    "cep": "",
+    "logradouro": "",
+    "numero": "",
+    "complemento": "",
+    "bairro": "",
+    "cidade": "",
+    "estado": ""
+  },
+  "planos": [
+  ]
+}

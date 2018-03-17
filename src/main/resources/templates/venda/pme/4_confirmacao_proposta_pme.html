@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br"
+      xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+     <title>Proposta Enviada| OdontoPrev</title>
+     
+     <meta charset="utf-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="shortcut icon" href="@{/img/odpv.PNG}" type="image/png">
+     
+     <script type="text/javascript" src="../../../js/jquery-3.2.1.min.js"></script>
+     <script type="text/javascript" src="../../../js/bootstrap.min.js"></script>
+     <script type="text/javascript" src="../../../js/jquery.mask.min.js"></script>
+     <script type="text/javascript" src="../../../js/odonto-Valida.js"></script> 
+     <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+     <link href="../../../css/main.css" rel="stylesheet">
+     <script type="text/javascript" src="../../../js/menu.js"></script>
+   
+ </head>
+ <body style="min-width: 100% !important;">    
+     
+
+    <script>
+     $(function(){
+         $(".button-collapse").sideNav();
+     });
+
+    </script>
+
+
+<div class="container-fluid nopadding">
+
+    <div th:switch="${session.usuario.perfil}">
+        <div th:case="'Corretor'">
+            <div th:replace="fragments/menu-corretor :: menu-corretor">&nbsp;</div>
+            <div th:replace="fragments/header-corretor :: header-corretor">&nbsp;</div>
+        </div>
+        <div th:case="'Corretora'">
+            <div th:replace="fragments/menu-corretora :: menu-corretora">&nbsp;</div>
+            <div th:replace="fragments/header-corretora :: header-corretora">&nbsp;</div>
+        </div>
+    </div>
+
+  <!--<div class="header-logado">
+      <a href="#" data-activates="menu-mobile" class="button-collapse pull-right">
+          <img src="../../../img/menu.png" class="icon-menu">
+      </a>
+      <img src="../../../img/logo-mobile.png" class="logo-ondonto-mobile" style="position: relative;top:30px">--!>
+
+       <!--<div class="perfil-web">-->
+          <!--<div class="circle-perfil">-->
+            <!--<div class="data-perfil">-->
+                <!--<p class="user-name"><strong>Marcos Palmas</strong></p> -->
+                <!--<p class="font-gray">Corretora XPTO</p>-->
+                <!--<a href="#" class="link-odonto nomargin">Sair</a>-->
+            <!--</div>-->
+          <!--</div> -->
+        <!--</div> -->
+
+    <div class="container-logado padding-logado">
+
+      <div class="row">
+          <div class="col-xs-12">
+            <div class="confirmacao-proposta">
+              <div class="titulo">
+                <h3 class="uppercase title-odonto font-blue nomargin space-top-30 text-center">Proposta Enviada</h3>
+              </div>
+
+                <div class="space-top-30">
+                    <p class="text-center subtitle-odonto nomargin">Você será avisado quando sua proposta</p>
+                    <p class="text-center subtitle-odonto">for aprovada pela OdontoPrev.</p>
+                    <p class="text-center subtitle-odonto"><strong>Número da Proposta</strong></p>
+                </div>
+
+                 <div class="text-center space-top-40">
+                      <span class="numero-proposta">224.232</span>
+                 </div>
+
+                <div class="space-top-30  text-center">
+                    <a href="../others/lista_de_pospostas.html" type="button" class="btn btnBlue btn-width-custom space-top-30 uppercase">Ir para Lista de Propostas</a>  
+                </div>
+
+                </div>
+          </div>  
+        </div>
+      </div>
+
+    <div class="footer-logado">
+      <div class="pull-left box-footer">
+          <p>© OdontoPrev. S/A - CNPJ: 119.199/0001-51</p>
+          <p>Av. Marcos Penteado de Ulhoa Rodrigues, 939-14 andar - Edifício Jatoba Torre 2 - Barueri-SP CEP - 06460-040</p>
+          <p>OdontoPrev - CRO/SP n° 19009</p>
+      </div>
+      <div class="pull-right footer-img"><img src="../../../img/ans.png" ></div>
+    </div>
+</div>
+
+</body>
+</html>

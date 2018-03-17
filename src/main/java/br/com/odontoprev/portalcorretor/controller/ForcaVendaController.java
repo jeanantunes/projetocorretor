@@ -83,20 +83,21 @@ public class ForcaVendaController {
     		return new ModelAndView("forcavenda/cadastro/editar", "forcaVenda", forcaVendaParam);
 
     	} else {
-/*    		if (!forcaVendaParam.getSenha().equals(forcaVendaParam.getConfirmaSenha())) {
+    		
+    		if (!forcaVendaParam.getSenha().equals(forcaVendaParam.getConfirmaSenha())) {
     			return new ModelAndView("forcavenda/cadastro/editar", "forcaVenda", forcaVendaParam);
-    		}*/
+    		}
 
         	UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
 
             ForcaVenda forcaVenda = forcaVendaService.ObterPorDocumento(usuario.getDocumento());
             forcaVenda.setCelular(forcaVendaParam.getCelular());
             forcaVenda.setEmail(forcaVendaParam.getEmail());
-            //forcaVenda.setSenha(forcaVendaParam.getSenha());
+            forcaVenda.setSenha(forcaVendaParam.getSenha());
 
             forcaVendaService.Alterar(forcaVenda);
-
-            return new ModelAndView("forcavenda/home");
+            
+            return this.home(session);
     	}
     }
     

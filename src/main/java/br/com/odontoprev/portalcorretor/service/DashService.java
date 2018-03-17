@@ -1,25 +1,24 @@
 package br.com.odontoprev.portalcorretor.service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import br.com.odontoprev.portalcorretor.service.dto.DashResponse;
 import br.com.odontoprev.portalcorretor.service.dto.DashboardPropostas;
-import br.com.odontoprev.portalcorretor.service.dto.Equipe;
 import br.com.odontoprev.portalcorretor.service.entity.FiltroStatusProposta;
 
 @Service
@@ -39,37 +38,48 @@ public class DashService {
 
     @Value("${odontoprev.service.dash_propostaCriticadas}")
     private String metodoPropostasCriticadas;
+    
+    private static Log log = LogFactory.getLog(DashService.class);
 
 
     @Autowired
     private ApiManagerTokenService apiManagerTokenService;
 
     // Obtem dash por numero de documento
-    public DashResponse ObterPorDocumento(LocalDate dataInicio, LocalDate dataFim, String cnpjCPF) {
+    public DashResponse[] obterPorDocumento(LocalDate dataInicio, LocalDate dataFim, String cnpjCPF) {
 
         RestTemplate restTemplate = new RestTemplate();
         Map<String, String> resquestMap = new HashMap<>();
-        String url = requesBasetUrl + metodoDash;
+        String url = requesBasetUrl + "/" + metodoDash;
 
-        resquestMap.put("dtInicio", dataInicio.toString());
-        resquestMap.put("dtFim", dataFim.toString());
-        resquestMap.put("cpf", cnpjCPF);
+        if(dataInicio!=null) {
+        	resquestMap.put("dtInicio", dataInicio.toString());
+        } 
+        if(dataFim!=null) {
+        	resquestMap.put("dtFim", dataFim.toString());
+        }
+        if(cnpjCPF!=null && cnpjCPF.length() > 11) {
+        	resquestMap.put("cnpj", cnpjCPF);
+        } else {
+        	resquestMap.put("cpf", cnpjCPF);
+        }
 
         try {
             HttpHeaders headers = new HttpHeaders();
             headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
-            HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
-            ResponseEntity<DashResponse> retorno = restTemplate.exchange(url, HttpMethod.POST, entity, DashResponse.class);
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            HttpEntity<Object> entity = new HttpEntity<>(resquestMap, headers);
+            ResponseEntity< ? extends DashResponse[]> retorno = restTemplate.postForEntity(url, entity, new DashResponse[]{}.getClass());
 
             if (retorno.getStatusCode() == HttpStatus.OK) {
                 return retorno.getBody();
             } else {
-                return new DashResponse();
+                return new DashResponse[]{};
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
-            return new DashResponse();
+        	log.error(e);
+            return new DashResponse[]{};
         }
 
     }

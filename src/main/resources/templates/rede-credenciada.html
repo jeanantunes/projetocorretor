@@ -21,6 +21,7 @@
         $(function () {
             $(".button-collapse").sideNav();
         });
+
     </script>
 
 </head>
@@ -54,25 +55,100 @@
             <div class="col-xs-12">
 
                 <div class="form-group">
-                    <label for="especs" class="label-especialidade labelOdontBlur">Especialidades</label>
-                    <select class="form-control especialidade selectListBlur" id="especs">
+                    <label for="especs" class="label-especialidade labelOdontBlur">ESPECIALIDADES</label>
+                    <select required id="especs" class="form-control especialidadelista selectListBlur" onchange="especialidadeSelecionada(this)">
+                        <option value="" th:disabled="disabled" th:selected="selected">Selecione...</option>
+                        <option th:each="especialidades : ${especialidade}" th:text="${especialidades.descricao}" th:value="${especialidades.codigo}">
                     </select>
                 </div>
+
+
+                <!--<div class="form-group inline space-right width-form7">-->
+                <!--<label class="label-cep uppercase">CEP</label>-->
+                <!--<input type="text" id="cepRedeCredenciada" class="cep form-control">-->
+                <!--</div>-->
+
                 <div class="form-group inline space-right width-form7">
-                    <label class="label-cep uppercase">CEP</label>
-                    <input type="text" id="cepRedeCredenciada" class="cep form-control">
+                    <label class="label-cidade uppercase">ESTADO</label>
+                    <select id="estados" class="form-control estadolista selectListBlur" onchange="buscaCidades(this)">
+                        <option value="" th:disabled="disabled" th:selected="selected">Selecione...</option>
+
+                        <option th:each="estados : ${estado}" th:text="${estados.nome}" th:value="${estados.uf}"
+                                th:selected="estados.uf == estadoSelecionado" >
+                    </select>
                 </div>
+
+
                 <div class="form-group inline space-right width-form7">
-                    <label class="label-cidade uppercase">Cidade</label>
-                    <input type="text" id="cidade" class="cidade form-control">
+                    <label class="label-cidade uppercase">CIDADE</label>
+                    <select id="cidades" class="form-control cidadelista selectListBlur" onchange="buscaBairros(this)">
+                        <!--<option th:each="cidades : ${cidade}" th:text="${cidades.nome}" th:value="${cidades.codigoCidade}">-->
+                    </select>
                 </div>
+
                 <div class="form-group inline space-right width-form7">
-                    <label class="label-bairro uppercase">Bairro </label>
-                    <input type="text" id="bairro" class="bairro form-control">
+                    <label class="label-bairro uppercase">BAIRRO</label>
+                    <select id="bairros" class="form-control bairrolista selectListBlur">
+                        <!--<option th:each="bairros : ${bairro}" th:text="${bairro.nome}" th:value="${bairros.codigo}">-->
+                    </select>
                 </div>
+
+
+                <script>
+                    function buscaCidades(estado) {
+                        $.get("/rede-credenciada/"+estado.value, function(data) {
+                            preencheCidades(data);
+                        });
+                    }
+
+                    function preencheCidades(cidades) {
+                        var $bairros = $("#bairros");
+                        cidades = JSON.parse(cidades);
+                        var $cidades = $("#cidades");
+                        $cidades.empty();
+                        $bairros.empty();
+
+                        $.each( cidades, function( index, value ){
+                            $cidades.append('<option value="'+value.codigoCidade+'">'+value.nome+'</option>');
+                        });
+                    }
+
+                    function buscaBairros(cidade) {
+                        $.get("/rede-credenciada/bairros/"+cidade.value, function(data){
+                        preencheBairros(data)});
+                    }
+
+                    function preencheBairros(bairros) {
+                        console.log(bairros);
+                        bairros = JSON.parse(bairros);
+                        var $bairros = $("#bairros");
+                        $bairros.empty();
+
+                        $.each( bairros, function( index, value ){
+                            $bairros.append('<option value="'+value.codigo+'">'+value.nome+'</option>');
+                        });
+                    }
+
+                   function especialidadeSelecionada(especialidade){
+                    $.get("/rede-credenciada/especialidade/"+especialidade.value);
+
+                    }
+
+                </script>
                 <div class="form-group inline btn-width-busca   ">
-                    <a href="#" type="button" class="btn uppercase btnBlue btn-width-busca space-top-10">Buscar</a>
+                    <a href="javascript:void(0)" type="button" class="btn uppercase btnBlue btn-width-busca space-top-10" onclick="enviarForm()">Buscar</a>
                 </div>
+
+                <script>
+                    function enviarForm() {
+                        var estadoValue = $("#estados").val();
+                        var especialidadeValue = $("#especs").val();
+                        var bairroValue = $("#bairros").val();
+                        console.log(estadoValue);
+                        $.get("/rede-credenciada/dentistas/"+estadoValue+"/"+especialidadeValue+"/"+bairroValue, function(data){
+                        console.log(data)});
+                    }
+                </script>
 
                 <!--<div class="form-group inline width-form7">
                   <label class="">Especialidade</label>
@@ -163,6 +239,7 @@
                         var latlng = {lat: -23.5432147, lng: -46.7356894};
                         mapa(redeCredenciada);
                     }
+
                 </script>
 
 
@@ -175,7 +252,9 @@
     <div th:replace="fragments/footer :: footer">&nbsp;</div>
 
 
-    <script type="text/javascript">
+<script type="text/javascript">
+
+
         var myMarkers = [];
 
 
@@ -626,9 +705,10 @@
             //Quando o campo cep perde o foco.
 
         });
+
     </script>
 
-
+</div>
 </body>
 
 </html>

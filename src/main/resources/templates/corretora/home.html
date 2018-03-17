@@ -163,7 +163,7 @@
                             <div class="uppercase text-odonto">Pessoa física</div>
                             <li class="space-top-5 barras" th:data-value="${corretora.percenteValorPF}"
                                 style="border:1px solid red; background-color: cyan">
-                                <span class="valor-vendar" th:text="${corretora.totalValorPF}">R$ 350,00</span>
+                                <span class="valor-vendar" th:text="${#numbers.formatDecimal(corretora.totalValorPF, 0,  'POINT', 2, 'COMMA')}"></span>
                             </li>
                          </span>
 
@@ -171,7 +171,7 @@
                             <div class="uppercase text-odonto">pme</div>
                             <li class="space-top-5 barras" th:data-value="${corretora.percenteValorPME}"
                                 style="border:1px solid red; background-color: #C3EB3B">
-                                <span class="valor-vendar" th:text="${corretora.totalValorPME}">R$ 100,00</span></li>
+                                <span class="valor-vendar" th:text="${#numbers.formatDecimal(corretora.totalValorPME, 0,  'POINT', 2, 'COMMA')}"></span></li>
                          </span>
                                 </ul>
                             </section>
@@ -249,8 +249,7 @@
                     <thead>
                     <tr>
                         <th><span>Vendedor</span></th>
-                        <th><span>Tipo de plano</span></th>
-                        <th><span>Data da venda</span></th>
+                        <th><span>Tipo de plano</span></th>                        
                         <th><span>Valor da proposta</span></th>
 
                     </tr>
@@ -258,10 +257,9 @@
                     <tbody>
                     <tr th:each="proposta : ${corretora.propostas}" class="line-table">
                         <td><span th:text="${proposta.nome}">Lopes</span></td>
-                        <td><span th:text="${proposta.tipoPlano}">PME</span></td>
-                        <td><span th:text="${proposta.dataVenda}">12/11/2017</span></td>
+                        <td><span th:text="${proposta.tipoPlano}">PME</span></td>                        
                         <td><span
-                                th:text="${#numbers.formatDecimal(proposta.valor, 0, 'COMMA', 2, 'POINT')}">R$ 100,00</span>
+                                th:text="${#numbers.formatDecimal(proposta.valor, 0, 'POINT', 2, 'COMMA')}">R$ 100,00</span>
                         </td>
                     </tr>
 

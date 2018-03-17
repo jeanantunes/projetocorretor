@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <!--<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-theme.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+
+    <script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.mask.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/odonto-Valida.js}"></script>
+    <script type="text/javascript" th:src="@{/js/menu.js}"></script>
+    <!--<script type="text/javascript" th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js}"></script>-->
+
+    <script>
+        $(function () {
+            $(".button-collapse").sideNav();
+        });
+    </script>
+
+</head>
+
+<body style="min-width: 100% !important;">
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.table-odonto tr:odd').css('background-color', '#EDEDED');
+
+        $('.table-odonto tr:even').css('background-color', '#fff');
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('.barras').each(function () {
+            var dataWidth = $(this).data('value');
+            $(this).css("width", dataWidth + "%");
+            $(this).css("max-width", "100%");
+            if (dataWidth <= 25) {
+                $(this).css("border-color", "transparent");
+            }
+            else if (dataWidth > 25 && dataWidth <= 50) {
+                $(this).css("border-color", "transparent");
+            }
+            else if (dataWidth > 50 && dataWidth <= 75) {
+                $(this).css("border-color", "transparent");
+            }
+            else if (dataWidth > 75 && dataWidth <= 100) {
+                $(this).css("border-color", "transparent");
+            }
+        });
+    });
+</script>
+
+<div class="container-fluid nopadding">
+
+    <div th:switch="${session.usuario.perfil}">
+	  <div th:case="'Corretor'">
+  			<div th:replace="fragments/menu-corretor :: menu-corretor">&nbsp;</div>
+			<div th:replace="fragments/header-corretor :: header-corretor">&nbsp;</div>
+	  </div>
+	  <div th:case="'Corretora'">
+  			<div th:replace="fragments/menu-corretora :: menu-corretora">&nbsp;</div>
+			<div th:replace="fragments/header-corretora :: header-corretora">&nbsp;</div>
+	  </div>  
+	</div>
+
+
+    <div class="container-logado padding-logado">
+       	<iframe src="/venda_index_pme.html"  width="100%" height="1080"></iframe>
+    </div>
+
+    <div th:replace="fragments/footer :: footer">&nbsp;</div>
+</div>
+
+</body>
+</html>

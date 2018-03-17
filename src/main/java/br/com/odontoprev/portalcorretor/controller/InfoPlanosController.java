@@ -52,4 +52,25 @@ public class InfoPlanosController {
         return "info-planos-dental-estetica";
 
     }
+    
+    @RequestMapping("/info-planos-PF")
+    public String indexInfoPlanoPF() {
+        return "info-planos-PF";
+
+    }
+    
+    @RequestMapping("/info-planos-PME")
+    public String indexInfoPlanoPME() {
+        return "info-planos-PME";
+
+    }
+    
+    @RequestMapping("/email")
+    public String email() {
+        return "email";
+
+    }
+    
+    
+    
 }

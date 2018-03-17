@@ -1,5 +1,7 @@
 package br.com.odontoprev.portalcorretor.model;
 
+import java.util.List;
+
 public class VendaPf {
 
 	private String nomeTitularPlano;
@@ -12,6 +14,56 @@ public class VendaPf {
 	private String cepTitularPlano;
 	private String enderecoTitularPlano;
 	private String numeroTitularPlano;
+	private String complementoTitularPlano;
+	private String bairroTitularPlano;
+	private String cidadeTitularPlano;
+	private String pagamentoCartaoNome;
+	private String pagamentoCartaoValidade;
+	private List<String> estado;
+	private List<Dependente> dependente;
+	
+	public String getPagamentoCartaoNome() {
+		return pagamentoCartaoNome;
+	}
+	public void setPagamentoCartaoNome(String pagamentoCartaoNome) {
+		this.pagamentoCartaoNome = pagamentoCartaoNome;
+	}
+	public String getPagamentoCartaoValidade() {
+		return pagamentoCartaoValidade;
+	}
+	public void setPagamentoCartaoValidade(String pagamentoCartaoValidade) {
+		this.pagamentoCartaoValidade = pagamentoCartaoValidade;
+	}
+	public List<Dependente> getDependente() {
+		return dependente;
+	}
+	public void setDependente(List<Dependente> dependente) {
+		this.dependente = dependente;
+	}
+	public List<String> getEstado() {
+		return estado;
+	}
+	public void setEstado(List<String> estado) {
+		this.estado = estado;
+	}
+	public String getComplementoTitularPlano() {
+		return complementoTitularPlano;
+	}
+	public void setComplementoTitularPlano(String complementoTitularPlano) {
+		this.complementoTitularPlano = complementoTitularPlano;
+	}
+	public String getBairroTitularPlano() {
+		return bairroTitularPlano;
+	}
+	public void setBairroTitularPlano(String bairroTitularPlano) {
+		this.bairroTitularPlano = bairroTitularPlano;
+	}
+	public String getCidadeTitularPlano() {
+		return cidadeTitularPlano;
+	}
+	public void setCidadeTitularPlano(String cidadeTitularPlano) {
+		this.cidadeTitularPlano = cidadeTitularPlano;
+	}
 	public String getNomeTitularPlano() {
 		return nomeTitularPlano;
 	}
@@ -72,7 +124,5 @@ public class VendaPf {
 	public void setNumeroTitularPlano(String numeroTitularPlano) {
 		this.numeroTitularPlano = numeroTitularPlano;
 	}
-
-	
 
 }

@@ -1,7 +1,5 @@
 package br.com.odontoprev.portalcorretor.service.dto;
 
-import java.util.Date;
-
 public class Corretora {
 
     private Integer cdCorretora;
@@ -11,10 +9,11 @@ public class Corretora {
     private String telefone;
     private String celular;
     private String email;
-    private Boolean statusCnpj;
-    private Boolean simplesNacional;
-    private Date dataAbertura;
+    private String statusCnpj;
+    private String simplesNacional;
+    private String dataAbertura;
     private Endereco enderecoCorretora;
+    private Conta conta;
 
     public Corretora() {
     }
@@ -77,33 +76,33 @@ public class Corretora {
 
     public void setEmail(String email) {
         this.email = email;
-    }
+    }    
 
-    public Boolean getStatusCnpj() {
-        return statusCnpj;
-    }
+    public String getStatusCnpj() {
+		return statusCnpj;
+	}
 
-    public void setStatusCnpj(Boolean statusCnpj) {
-        this.statusCnpj = statusCnpj;
-    }
+	public void setStatusCnpj(String statusCnpj) {
+		this.statusCnpj = statusCnpj;
+	}
 
-    public Boolean getSimplesNacional() {
-        return simplesNacional;
-    }
+	public String getSimplesNacional() {
+		return simplesNacional;
+	}
 
-    public void setSimplesNacional(Boolean simplesNacional) {
-        this.simplesNacional = simplesNacional;
-    }
+	public void setSimplesNacional(String simplesNacional) {
+		this.simplesNacional = simplesNacional;
+	}
 
-    public Date getDataAbertura() {
-        return dataAbertura;
-    }
+    public String getDataAbertura() {
+		return dataAbertura;
+	}
 
-    public void setDataAbertura(Date dataAbertura) {
-        this.dataAbertura = dataAbertura;
-    }
+	public void setDataAbertura(String dataAbertura) {
+		this.dataAbertura = dataAbertura;
+	}
 
-    public Endereco getEnderecoCorretora() {
+	public Endereco getEnderecoCorretora() {
         return enderecoCorretora;
     }
 
@@ -111,5 +110,11 @@ public class Corretora {
         this.enderecoCorretora = enderecoCorretora;
     }
 
+	public Conta getConta() {
+		return conta;
+	}
 
+	public void setConta(Conta conta) {
+		this.conta = conta;
+	}    
 }
