@@ -161,4 +161,11 @@ public class VendaPfController {
         return new ModelAndView("venda/pf/bemvindo", "cadastro", cadastro);
     }
 
+    @RequestMapping("/venda_pf/")
+    public String indexVendaPf() {
+        return "venda_pf";
+
+    }
+
+
 }

@@ -148,5 +148,9 @@ public class CorretorWebConfig extends WebMvcConfigurerAdapter implements Applic
         registry.addViewController("/venda_pme_dependentes.html").setViewName("venda_pme_dependentes");
         registry.addViewController("/venda_pme_editar.html").setViewName("venda_pme_editar");
         registry.addViewController("/venda_pme").setViewName("venda_pme");
+        registry.addViewController("/venda_pf").setViewName("venda_pf");
+        registry.addViewController("/componente/plano.html").setViewName("componente/plano");
+        registry.addViewController("/componente/planoFixo.html").setViewName("componente/planoFixo");
+        registry.addViewController("/componente/dependente.html").setViewName("componente/dependente");
     }
 }

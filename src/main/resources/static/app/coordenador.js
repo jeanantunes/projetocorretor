@@ -11,7 +11,7 @@ $(document).ready(function () {
     $("a[href='meus_dados.html']").hide()
 
     setPlanos();
-    carregarDadosUsuario();
+    //carregarDadosUsuario();
 
     $("#logout").click(function () {
         logout.removerRegistroLogin();
@@ -287,7 +287,7 @@ function setPlanos() {
     planos.push(plano);
 
     plano = getRepository("plano");
-    plano.cdPlano = 67;
+    plano.cdPlano = 7;
     plano.nome = "DENTAL BEM-ESTAR";
     plano.valor = "45";
     plano.centavo = "60";
@@ -476,7 +476,7 @@ function get(localName, obj) {
     if (o == null)
         return null;
 
-    return eval(o);
+    return JSON.parse(o);
 }
 
 function carregarDadosUsuario() {

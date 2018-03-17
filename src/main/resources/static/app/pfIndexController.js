@@ -1,5 +1,11 @@
 ﻿$(document).ready(function () {
 
+    var forca = sessionStorage.getItem("usuario");
+
+    forca.codigo = 6;
+
+    put("dadosUsuario", JSON.stringify(forca)) ;
+
 });
 
 function iniciarProposta(cdPlano) {
@@ -16,6 +22,7 @@ function iniciarProposta(cdPlano) {
     proposta.planos.push(plano);
 
     put("propostaPf", JSON.stringify(proposta));
+
 
     window.location.href = "venda_pf_dados_proposta.html";
 }
