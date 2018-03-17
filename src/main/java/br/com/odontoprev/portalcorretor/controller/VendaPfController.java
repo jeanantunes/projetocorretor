@@ -7,6 +7,7 @@ import java.util.List;
 import br.com.odontoprev.portalcorretor.exceptions.SerasaConsultaException;
 import br.com.odontoprev.portalcorretor.model.*;
 import br.com.odontoprev.portalcorretor.service.SerasaService;
+import br.com.odontoprev.portalcorretor.service.dto.Plano;
 import br.com.odontoprev.portalcorretor.service.dto.omninetworking.wim.ws.PessoaJuridica;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -42,6 +43,7 @@ public class VendaPfController {
                                            @PathVariable("ehCarencia") String ehCarencia,
                                            HttpSession session) {
         Carrinho carrinho = (Carrinho) session.getAttribute("carrinho");
+        ModelAndView modelAndView = new ModelAndView("venda/pf/titularDoPlanoPF");
 
         //TODO Refatorar
         if (nomePlano.equals(Dental_Bem_Estar.getCdPlano()) && ehCarencia.equals("S") && modPagamento.equals("ANUAL")) {
@@ -88,8 +90,10 @@ public class VendaPfController {
             carrinho.setTotal(Dental_Vip.getValor());
         }
         session.setAttribute("carrinho",carrinho);
+        modelAndView.addObject("carrinho", carrinho);
+        modelAndView.addObject("planoSelecionado", carrinho.getPlanos().get(0));
 
-        return new ModelAndView("venda/pf/titularDoPlanoPF", "carrinho", carrinho);
+        return modelAndView;
     }
 
     @RequestMapping(value = "venda/pf/Escolha_um_plano/deletePlanoSelecionadoPf")
@@ -120,14 +124,15 @@ public class VendaPfController {
 
     @RequestMapping(value = "venda/pf/pagamentoDebitoCC", method = RequestMethod.POST)
     public ModelAndView pagamentoDebito(Carrinho carrinhoForm, HttpSession session) {
-
+        ModelAndView modelAndView = new ModelAndView("venda/pf/pagamentoDebitoCC");
         Carrinho carrinho = (Carrinho) session.getAttribute("carrinho");
         carrinho.setVendaPf(carrinhoForm.getVendaPf());
 
 
         session.setAttribute("carrinho",carrinho);
-
-        return new ModelAndView("venda/pf/pagamentoDebitoCC", "carrinho", carrinho);
+        modelAndView.addObject("planoSelecionado", carrinho.getPlanos().get(0));
+        modelAndView.addObject("carrinho", carrinho);
+        return modelAndView;
     }
 
     @RequestMapping(value = "venda/pf/compraRealizadaPF", method = RequestMethod.GET)
