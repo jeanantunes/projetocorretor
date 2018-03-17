@@ -1,8 +1,11 @@
 package br.com.odontoprev.portalcorretor.service;
 
+import br.com.odontoprev.api.manager.client.token.util.ConfigurationUtils;
 import br.com.odontoprev.portalcorretor.service.dto.VendaPMERequest;
 import br.com.odontoprev.portalcorretor.service.dto.VendaResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +27,8 @@ public class VendaPMEService {
     @Autowired
     private ApiManagerTokenService apiManagerTokenService;
 
-    public long Vender(VendaPMERequest request) {
-        String url = requesBasetUrl + metodo;
+    public long vender(VendaPMERequest request) {
+        String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", metodo);
         RestTemplate restTemplate = new RestTemplate();
         VendaResponse result = null;
         try {
@@ -35,6 +38,8 @@ public class VendaPMEService {
 
             ObjectMapper mapper = new ObjectMapper();
             String object = mapper.writeValueAsString(request);
+            
+            log.info("JSON: \n"+new Gson().toJson(request));
 
             HttpEntity<String> entityReq = new HttpEntity<>(object, headers);
 
@@ -42,16 +47,15 @@ public class VendaPMEService {
 
             if (retorno.getStatusCode() == HttpStatus.OK) {
                 result = retorno.getBody();
-                log.info("Venda realizada " + result.getId());
+                log.info("Venda realizada " + result.getId()+" "+result.getMensagem());
                 return result.getId();
             } else {
                 log.info("Erro ao realizar a venda " + result.getMensagem());
                 return 0;
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            log.info("Erro ao realizar uma venda");
+        } catch (Exception e) {            
+            log.error("Erro ao realizar uma venda",e);
             return 0;
         }
 

@@ -1,12 +1,15 @@
 package br.com.odontoprev.portalcorretor.controller;
 
-import br.com.odontoprev.portalcorretor.model.Beneficiario;
-import br.com.odontoprev.portalcorretor.model.Carrinho;
-import br.com.odontoprev.portalcorretor.model.Dependente;
-import br.com.odontoprev.portalcorretor.model.VendaPme;
-import br.com.odontoprev.portalcorretor.service.EnderecoService;
-import br.com.odontoprev.portalcorretor.service.VendaPMEService;
-import br.com.odontoprev.portalcorretor.service.dto.ConverterModelVendaPmeRequest;
+import static br.com.odontoprev.portalcorretor.service.dto.Plano.Integral_DOC_LE;
+import static br.com.odontoprev.portalcorretor.service.dto.Plano.Master_LALE;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,24 +19,35 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpSession;
-import java.io.IOException;
-
-import static br.com.odontoprev.portalcorretor.service.dto.Plano.Integral_DOC_LE;
-import static br.com.odontoprev.portalcorretor.service.dto.Plano.Master_LALE;
+import br.com.odontoprev.portalcorretor.converter.ConverterCarrinhoForm;
+import br.com.odontoprev.portalcorretor.exceptions.SerasaConsultaException;
+import br.com.odontoprev.portalcorretor.model.Beneficiario;
+import br.com.odontoprev.portalcorretor.model.Carrinho;
+import br.com.odontoprev.portalcorretor.model.Dependente;
+import br.com.odontoprev.portalcorretor.model.UsuarioSession;
+import br.com.odontoprev.portalcorretor.model.VendaPme;
+import br.com.odontoprev.portalcorretor.service.EnderecoService;
+import br.com.odontoprev.portalcorretor.service.SerasaService;
+import br.com.odontoprev.portalcorretor.service.VendaPMEService;
+import br.com.odontoprev.portalcorretor.service.dto.ConverterModelVendaPmeRequest;
+import br.com.odontoprev.portalcorretor.service.dto.omninetworking.wim.ws.ArrayOfEndereco;
+import br.com.odontoprev.portalcorretor.service.dto.omninetworking.wim.ws.ArrayOfTelefone;
+import br.com.odontoprev.portalcorretor.service.dto.omninetworking.wim.ws.Endereco;
+import br.com.odontoprev.portalcorretor.service.dto.omninetworking.wim.ws.PessoaJuridica;
+import br.com.odontoprev.portalcorretor.service.dto.omninetworking.wim.ws.RepresentanteLegal;
 
 @Controller
 public class VendaPmeController {
     private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(VendaPmeController.class);
-    //private static final String URL_CEP = "https://api.odontoprev.com.br:8243/cep/1.1/por/cep/";
-
-    //        UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
-
+    
     @Autowired
     private EnderecoService enderecoService;
 
     @Autowired
     private VendaPMEService vendaPMEService;
+    
+    @Autowired
+    private SerasaService serasaService;
 
     @RequestMapping(value = "venda/pme/Escolha_um_plano")
     public ModelAndView escolhaPlanoPme(HttpSession session) throws IOException {
@@ -110,121 +124,69 @@ public class VendaPmeController {
     @RequestMapping(value = "/venda/pme/Escolha_um_plano/confirmacaoProposta", method = RequestMethod.POST, params = "action=save")
     public ModelAndView confirmacaoProposta(Carrinho carrinhoForm, HttpSession session) {
         Carrinho carrinho = (Carrinho) session.getAttribute("carrinho");
-        carrinhoForm.setBeneficiarios(carrinhoForm.getBeneficiarios());
-        ConverterModelVendaPmeRequest converterModelVendaPmeRequest = new ConverterModelVendaPmeRequest();
+        carrinho.setBeneficiarios(carrinhoForm.getBeneficiarios());        
 
-
-//        vendaPMEService.Vender(vendaPMERequest);
+        vendaPMEService.vender(new ConverterCarrinhoForm().converter(carrinho,(UsuarioSession)session.getAttribute("usuario")));
         return new ModelAndView("venda/pme/4_confirmacao_proposta_pme");
     }
     // Fim -> Metodos de Fluxo de Tela
 
 
     @RequestMapping(value = "buscaCnpjPme")
-    public ModelAndView buscaCnpjPme(@RequestParam("cnpj") String cnpj) {
-        ModelAndView modelAndView = new ModelAndView();
-        VendaPme vendaPme = new VendaPme();
-        vendaPme = mockDados();
-        vendaPme.setNomeFantasia("ALOOOU");
-//        fluxoVendaController.add("vendaPme", vendaPme);
-        return new ModelAndView("venda/pme/2_Plano_selecionado", "vendaPme", vendaPme);
+    public ModelAndView buscaCnpjPme(@RequestParam("cnpj") String cnpj, HttpSession session) {        
+         VendaPme vendaPme = new VendaPme();
+        Carrinho carrinho = (Carrinho) session.getAttribute("carrinho");
+        try {
+			final PessoaJuridica pessoaJuridica = serasaService.consultaSerasaCNPJ(cnpj);			 
+	        vendaPme.setCnpj(pessoaJuridica.getCnpj());
+	        //TODO: Verificar
+	        //vendaPme.setInscricaoEstadual("");
+	        //vendaPme.setRamoDeAtividade(pessoaJuridica.);
+	        vendaPme.setRazaoSocial(pessoaJuridica.getRazaoSocial());
+	        vendaPme.setNomeFantasia(pessoaJuridica.getNomeFantasia());
+	        List<RepresentanteLegal> representantesLegais = pessoaJuridica.getRepresentanteLegal().getRepresentanteLegal();
+	        if(!representantesLegais.isEmpty()) {
+				RepresentanteLegal representanteLegal = representantesLegais.get(0);
+		        if(representanteLegal!=null) {
+					vendaPme.setRepresentanteLegal(representanteLegal.getNome());
+			        vendaPme.setCpf(representanteLegal.getDocumento());
+		        }
+	        }
+	        vendaPme.setRepresentanteEhContatoEmpresa(false);
+	        List<ArrayOfTelefone> telefonesList = pessoaJuridica.getTelefones();
+	        if(!telefonesList.isEmpty()) {
+				ArrayOfTelefone telefones = telefonesList.get(0);
+				if(telefonesList.isEmpty()) {
+			        	        	
+			        	vendaPme.setTelefone("");
+			        	vendaPme.setCelular("");
+			        	        
+				}
+	        }
+	        List<ArrayOfEndereco> enderecosList = pessoaJuridica.getEnderecos();
+	        if(!enderecosList.isEmpty()){
+				ArrayOfEndereco enderecos = enderecosList.get(0);
+		        List<Endereco> endereco = enderecos.getEndereco();
+				if(endereco!=null && endereco.get(0)!=null) {
+					vendaPme.setCep(endereco.get(0).getCep());
+			        vendaPme.setEndereco(endereco.get(0).getLogradouro().getNome());
+			        vendaPme.setNumero(endereco.get(0).getLogradouro().getNumero());
+			        vendaPme.setComplemento(endereco.get(0).getLogradouro().getComplemento());
+			        vendaPme.setBairro(endereco.get(0).getBairro());
+			        vendaPme.setCidade(endereco.get(0).getCidade());
+		        }
+	        }
+	        vendaPme.setEnderecoEhoMesmo(false);
+		} catch (SerasaConsultaException e) {
+			LOGGER.error("ERROR",e);
+		}
+        //vendaPme = mockDados();
+        final Map<String,Object> model = new HashMap<String,Object>();
+        carrinho.setVendaPme(vendaPme);        
+        model.put("carrinho", carrinho);
+       
+        return new ModelAndView("venda/pme/2_Plano_selecionado", model);
     }
-
-
-   /* @RequestMapping(value = "buscaCEPPme/{cep}")
-    private String buscaCEPPme(@PathVariable("cep") String cep) {
-        String jsonInString = "";
-        List<String> list = new ArrayList<>();
-
-        try {
-            URL url = new URL(URL_CEP + cep);
-            ObjectMapper mapper = new ObjectMapper();
-            String json = readInputStreamToString(obterConexao(url));
-            list = mapper.readValue(json, new TypeReference<List<String>>() {
-            });
-            jsonInString = mapper.writeValueAsString(list);
-        } catch (Exception e) {
-            LOGGER.error(e.getMessage());
-            return "";
-        }
-        return jsonInString;
-
-    }*/
-
-
-   /* public String obterToken() {
-        HttpURLConnection con = null;
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            OkHttpClient client = new OkHttpClient();
-
-            MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
-            RequestBody body = RequestBody.create(mediaType, "grant_type=client_credentials");
-            Request request = new Request.Builder()
-                    .url("https://api.odontoprev.com.br:8243/token")
-                    .post(body)
-                    .addHeader("Content-Type", "application/json")
-                    .addHeader("Authorization", "Basic Y3hHZXBoTzFkcERDd3U0VHlfRExWTWxXQ0R3YTp0WlJtSUN1eUJWajJZRVczRjdaNXdWM2E0YVlh")
-                    .addHeader("Cache-Control", "no-cache")
-                    .build();
-
-            Response response = client.newCall(request).execute();
-            Token token = (Token) mapper.readValue(response.body().string(), Token.class);
-            return token.getAccess_token();
-        } catch (Exception e) {
-            return "";
-        }
-
-    }
-
-
-    public HttpURLConnection obterConexao(URL url) {
-
-        try {
-            ApiManagerToken apiManager = ApiManagerTokenFactory.create(ApiManagerTokenEnum.WSO2, "PORTAL_CORRETOR_WEB");
-            ApiToken apiToken = apiManager.generateToken();
-
-            HttpURLConnection con = (HttpURLConnection) url.openConnection();
-            con.setRequestMethod("GET");
-            con.setRequestProperty("Content-Type", "application/json");
-            con.setRequestProperty("Authorization", "Bearer " + obterToken());
-            return con;
-        } catch (CredentialsInvalidException | URLEndpointNotFound | ConnectionApiException | IOException e) {
-            LOGGER.error(e.getMessage());
-            return null;
-        } finally {
-
-        }
-    }
-
-    private String readInputStreamToString(HttpURLConnection connection) {
-        String result = null;
-        StringBuffer sb = new StringBuffer();
-        InputStream is = null;
-
-        try {
-            is = new BufferedInputStream(connection.getInputStream());
-            BufferedReader br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-            String inputLine = "";
-            while ((inputLine = br.readLine()) != null) {
-                sb.append(inputLine);
-            }
-            result = sb.toString();
-        } catch (Exception e) {
-
-            result = "";
-        } finally {
-            if (is != null) {
-                try {
-                    is.close();
-                } catch (IOException e) {
-                    LOGGER.error(e.getMessage());
-                }
-            }
-        }
-
-        return result;
-    }*/
 
 
     private Dependente mockDadosDependente() {

@@ -1,16 +1,16 @@
 package br.com.odontoprev.portalcorretor.service.dto;
 
-import br.com.odontoprev.portalcorretor.model.Dependente;
-import org.joda.time.DateTime;
-
 import java.util.List;
+
+import br.com.odontoprev.portalcorretor.model.Dependente;
 
 public class Titulare {
     private int cdVida;
     private int cdTitular;
     private String celular;
     private String cpf ;
-    private DateTime dataNascimento ;
+    private String cnpj;
+    private String dataNascimento ;
     private String email ;
     private String nome ;
     private String nomeMae ;
@@ -20,7 +20,7 @@ public class Titulare {
     private int cdVenda ;
     private int cdTeste ;
     private Endereco endereco ;
-    private List<Dependente> dependentes ;
+    private List<Titulare> dependentes ;
 
     public int getCdVida() {
         return cdVida;
@@ -54,11 +54,11 @@ public class Titulare {
         this.cpf = cpf;
     }
 
-    public DateTime getDataNascimento() {
+    public String getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(DateTime dataNascimento) {
+    public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
@@ -134,11 +134,21 @@ public class Titulare {
         this.endereco = endereco;
     }
 
-    public List<Dependente> getDependentes() {
+    public List<Titulare> getDependentes() {
         return dependentes;
     }
 
-    public void setDependentes(List<Dependente> dependentes) {
+    public void setDependentes(List<Titulare> dependentes) {
         this.dependentes = dependentes;
     }
+
+	public String getCnpj() {
+		return cnpj;
+	}
+
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
+	}
+    
+    
 }

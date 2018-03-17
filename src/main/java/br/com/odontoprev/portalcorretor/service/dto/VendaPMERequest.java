@@ -27,7 +27,18 @@ public class VendaPMERequest {
         this.titulares = titulares;
     }
 
-    private int cdForcaVenda;
+    public List<Plano> getPlanos() {
+		return planos;
+	}
+
+	public void setPlanos(List<Plano> planos) {
+		this.planos = planos;
+	}
+
+
+
+	private int cdForcaVenda;
     private List<Empresa> empresas;
+    private List<Plano> planos;
     private List<Titulare> titulares;
 }

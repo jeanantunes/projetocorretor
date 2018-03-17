@@ -9,7 +9,7 @@ public class Beneficiario {
     private String dataNascimento;
     private String nome;
     private String plano;
-    private String nomeDaMae;
+    private String nomeDaMae;    
 
     private List<Beneficiario> dependentes = new ArrayList<>();
 
@@ -75,4 +75,8 @@ public class Beneficiario {
     public void setNomeDaMae(String nomeDaMae) {
         this.nomeDaMae = nomeDaMae;
     }
+
+
+    
+    
 }
