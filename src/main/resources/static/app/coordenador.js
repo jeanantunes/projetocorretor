@@ -28,7 +28,27 @@ $(document).ready(function () {
 });
 
 function defineConexao() {
+	
+	 $.ajax({
+	        url: "/access_token/url",
+	        type: "get",
+	        async: false,
+	        xhrFields: {
+	            withCredentials: true
+	        },
+	        success: function (result) {
+	            URLBase = eval(result).url;
+	            if(URLBase.indexOf("api.it1")!== -1) {
+	            	setPlanosProd();
+	            } else {
+	            	setPlanosHml();
+	            }
+	        },
+	        error: function () {
 
+	        }
+	    });
+/*
     $.ajax({
         url: "config/connection.json",
         type: "get",
@@ -52,22 +72,19 @@ function defineConexao() {
         Token = conexao.chaveHomolog;
         setPlanosHml();
     }
+    */
 }
 
 
 function callTokenProd(callback) {
-
+	//TODO: Implementar chamada no controller
+    console.log("callTokenProd - coordendador.js");
     $.ajax({
         async: true,
-        url: URLBase + "/token",
+        url: "/access_token",
         method: "POST",
         headers: {
-            "Authorization": "Basic " + Token,
             "Cache-Control": "no-cache",
-            "Content-Type": "application/x-www-form-urlencoded"
-        },
-        data: {
-            "grant_type": "client_credentials"
         },
         success: function (resp) {
             callback(resp);
@@ -76,21 +93,17 @@ function callTokenProd(callback) {
             swal("Ops!", "Erro na conexão, tente mais tarde", "error");
         }
     });
+    
 };
 
 function callTokenProdSemMsgErro(callback) {
 
     $.ajax({
         async: true,
-        url: URLBase + "/token",
+        url: "/access_token",
         method: "POST",
         headers: {
-            "Authorization": "Basic " + Token,
             "Cache-Control": "no-cache",
-            "Content-Type": "application/x-www-form-urlencoded"
-        },
-        data: {
-            "grant_type": "client_credentials"
         },
         success: function (resp) {
             callback(resp);
@@ -1079,14 +1092,12 @@ function sincronizarPessoa(callback, pessoa) {
     callTokenProd(function (dataToken) {
 
         $.ajax({
-            async: true,
-            //url: URLBase + "vendapf",
+            async: true,            
             url: URLBase + "/corretorservicos/1.0/vendapf",
             method: "POST",
             data: json,
             headers: {
-                "Content-Type": "application/json",
-                "Cache-Control": "no-cache",
+                "Content-Type": "application/json",                
                 "Authorization": "Bearer " + dataToken.access_token
             },
             //data: "{ \r\n   \"cdForcaVenda\":\"" + forcaVenda.codigo + "\",\r\n   \"cdPlano\":\"" + 4 + "\",\r\n   \"titulares\":[ \r\n      { \r\n         \"celular\":\"" + pessoa[0].celular + "\",\r\n         \"contatoEmpresa\":" + pessoa[0].contatoEmpresa + ",\r\n         \"cpf\":\"" + pessoa[0].cpf + "\",\r\n         \"dadosBancarios\":{ \r\n            \"agencia\":\"" + pessoa[0].dadosBancarios.agencia + "\",\r\n            \"codigoBanco\":\"" + pessoa[0].dadosBancarios.codigoBanco + "\",\r\n            \"conta\":\"" + pessoa[0].dadosBancarios.conta + "\",\r\n            \"tipoConta\":\"" + pessoa[0].dadosBancarios.tipoConta + "\"\r\n         },\r\n         \"dependentes\":[ \r\n \r\n         ],\r\n         \"email\":\"" + pessoa[0].email + "\",\r\n         \"endereco\":{ \r\n            \"bairro\":\"" + pessoa[0].endereco.bairro + "\",\r\n            \"cep\":\"" + pessoa[0].endereco.cep + "\",\r\n            \"cidade\":\"" + pessoa[0].endereco.cidade + "\",\r\n            \"complemento\":\"" + pessoa[0].endereco.complemento + "\",\r\n            \"logradouro\":\"" + pessoa[0].endereco.logradouro + "\",\r\n            \"estado\":\"" + pessoa[0].endereco.estado + "\",\r\n            \"numero\":\"" + pessoa[0].endereco.numero + "\"\r\n         },\r\n         \"dataNascimento\":\"" + pessoa[0].dataNascimento + "\",\r\n         \"nomeMae\":\"" + pessoa[0].nomeMae + "\",\r\n         \"nome\":\"" + pessoa[0].nome + "\",\r\n         \"sexo\":\"" + pessoa[0].sexo +"\",\r\n         \"status\":\"PRONTA\",\r\n         \"titular\":true\r\n      }\r\n   ]\r\n}\r\n",
@@ -1187,6 +1198,7 @@ function isValidDate(date) {
 }
 
 function checkNetConnection() {
+/*
     var xhr = new XMLHttpRequest();
     var file = "http://www.odontoprev.com.br/home/portugues/_img/logo-odontoprev.png";
     var r = Math.round(Math.random() * 10000);
@@ -1201,6 +1213,8 @@ function checkNetConnection() {
     } catch (e) {
         return false;
     }
+    */
+	return true;
 }
 
 function getInputsByValue(value) {

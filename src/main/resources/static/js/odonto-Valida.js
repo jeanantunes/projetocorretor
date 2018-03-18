@@ -1,4 +1,4 @@
-
+URLBase = "";
 
 $(document).ready(function () {
 
@@ -111,21 +111,34 @@ $(document).ready(function () {
         }
     }
     //Quando o campo cep perde o foco.
+    
+    $.ajax({
+        url: "/access_token/url",
+        type: "get",
+        async: false,
+        xhrFields: {
+            withCredentials: true
+        },
+        success: function (result) {
+            URLBase = eval(result).url;
+        },
+        error: function () {
+
+        }
+    });
 });
 
 function callToken(callback) {
-
+	    console.log("callToken - odonto-Valida.js");
     $.ajax({
         async: true,
-        url: "https://api.odontoprev.com.br:8243/token/",
+        url: "/access_token",
         method: "POST",
-        headers: {
-            "Authorization": "Basic Y3hHZXBoTzFkcERDd3U0VHlfRExWTWxXQ0R3YTp0WlJtSUN1eUJWajJZRVczRjdaNXdWM2E0YVlh",
-            "Cache-Control": "no-cache",
-            "Content-Type": "application/x-www-form-urlencoded"
+        xhrFields: {
+            withCredentials: true
         },
-        data: {
-            "grant_type": "client_credentials"
+        headers: {
+            "Cache-Control": "no-cache",
         },
         success: function (resp) {
             callback(resp)
@@ -139,18 +152,19 @@ function callToken(callback) {
 function callCep(callback, token, cep) {
     $.ajax({
         async: true,
-        url: "https://api.odontoprev.com.br:8243/cep/1.1/por/cep/" + cep,
+        url: URLBase + "/cep/1.1/por/cep/" + cep,
         method: "GET",
         headers: {
-            "Authorization": "Bearer " + token,
-            "Cache-Control": "no-cache",
+            "Authorization": "Bearer " + token,         
             "Content-Type": "application/json"
         },
         success: function (resp) {
+        	console.log("RESP "+resp);
             callback(resp)
             swal.close();
         },
-        error: function () {
+        error: function (data) {
+        	console.log("RESP"+data);
             swal.close();
         }
     });
