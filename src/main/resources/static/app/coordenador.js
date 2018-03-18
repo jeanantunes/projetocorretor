@@ -38,10 +38,11 @@ function defineConexao() {
 	        },
 	        success: function (result) {
 	            URLBase = eval(result).url;
-	            if(URLBase.indexOf("api.it1")!== -1) {
-	            	setPlanosProd();
-	            } else {
+	            if(URLBase.indexOf("api-it1")!== -1) {
 	            	setPlanosHml();
+	            } else {
+	            	setPlanosProd();
+	            	
 	            }
 	        },
 	        error: function () {
