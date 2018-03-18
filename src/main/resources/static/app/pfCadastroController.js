@@ -3,6 +3,7 @@
 $(document).ready(function () {
     buscarPlanosSelecionados();
     carregarProposta();
+    resizeIframe('frame_pf');
 });
 
 function addDependente() {

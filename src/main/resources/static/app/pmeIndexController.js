@@ -1,4 +1,8 @@
 ﻿$(document).ready(function () {
+    var forca = new Object();
+    forca.codigo = 6;
+
+    put("dadosUsuario", JSON.stringify(forca)) ;
 
 });
 

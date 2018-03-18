@@ -439,11 +439,12 @@
 
 .titleBoxVendas{
     font-family: Roboto-Black;
-    font-size: 25pt;
+    font-size: 200%;
     text-align: center;
     margin-top: 35px;
     padding-left: 25px;
     padding-right: 25px;
+    height: 10%;
 }
 
 
@@ -838,6 +839,7 @@ h5, .subListBox{
     text-align: center;
     margin-bottom: 20%;
     padding: 5px;
+    height: 30%;
 }
 
 
@@ -1430,12 +1432,13 @@ margin-bottom: 10%;
 
 @media screen and (min-width: 800px) {
     .boxPlanos{
-    height: 900px !important;
+    height: 600px !important;
     }
 }
 
 .boxPlanos{
     height: 700px;
+    width: 30%; !important;
     border: 1px solid #EDEDED;
     border-radius: 18px;
     margin-bottom: 27pt;

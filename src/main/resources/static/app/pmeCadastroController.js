@@ -163,12 +163,12 @@ function buscarEmpresa() {
     var cnpj = get("dadosUsuario");
 
 
-    if (cnpj.cnpjCorretora == cnpjValidado)
-    {
-        swal("Ops", "Esse é o CNPJ da sua corretora, digite o CNPJ do seu cliente", "info");
-        $("#cnpjEmpresa").val("");
-        return;
-    }
+   // if (cnpj.cnpjCorretora == cnpjValidado)
+    //{
+    //    swal("Ops", "Esse é o CNPJ da sua corretora, digite o CNPJ do seu cliente", "info");
+    //    $("#cnpjEmpresa").val("");
+    //    return;
+   // }
 
 
     if (!checkNetConnection()) {

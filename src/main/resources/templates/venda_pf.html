@@ -15,6 +15,8 @@
     <script type="text/javascript" th:src="@{/js/jquery.mask.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/odonto-Valida.js}"></script>
     <script type="text/javascript" th:src="@{/js/menu.js}"></script>
+
+
     <!--<script type="text/javascript" th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js}"></script>-->
 
     <script>
@@ -71,7 +73,7 @@
 	</div>
 
     <div class="container-logado padding-logado">
-        <iframe src="/venda_index_pf.html"  width="100%" height="1500" id="frame" frameBorder="0" > </iframe>
+        <iframe src="/venda_index_pf.html"  width="100%" height="" id="frame_pf" frameBorder="0" > </iframe>
     </div>
 
     <div th:replace="fragments/footer :: footer">&nbsp;</div>
@@ -79,7 +81,6 @@
 
 </body>
 <script>
-    var hg = $("#Planos").height();
-    $("#frame").prop('heigth',hg)
+    var iframeheigt = $(document).height();
 </script>
 </html>

@@ -14,7 +14,7 @@
         <link href="css/sweetalert.css" rel="stylesheet" />
 	</head>
 	
-    <body>
+    <body id='body'>
 
         <!-- Bloco 1 -->
         <div class="container-fluid">
@@ -44,19 +44,19 @@
                         <label class="label-nome labelOdontBlur">Nome</label>
                     </div>
                     <div>
-                        <input type="text" class=" nome inputLabelBlur" id="nomeBeneficiario">
+                        <input type="text" class=" nome inputLabelBlur" id="nomeBeneficiario" autofocus >
                     </div>
                     <div>
                         <label class="label-email labelOdontBlur">E-mail</label>
                     </div>
                     <div>
-                        <input type="email" class="email inputLabelBlur">
+                        <input type="email" class="email inputLabelBlur" >
                     </div>
                     <div>
                         <label class="label-celular labelOdontBlur">Celular</label>
                     </div>
                     <div>
-                        <input type="tel" class="celular inputLabelBlur">
+                        <input type="tel" class="celular inputLabelBlur" >
                     </div>
                     <div>
                         <label class="label-cpf labelOdontBlur">CPF</label>
@@ -68,7 +68,7 @@
                         <label class="label-nascimento labelOdontBlur">Data de nascimento</label>
                     </div>
                     <div>
-                        <input type="tel" class="nascimento data inputLabelBlur" id="data">
+                        <input type="tel" class="nascimento data inputLabelBlur" id="data" >
                     </div>
                     <div>
                         <label class="label-sexo labelOdontBlur">Sexo</label>
@@ -87,7 +87,7 @@
                         <label class="label-nome labelOdontBlur">Nome da mãe</label>
                     </div>
                     <div>
-                        <input type="text" class="nome inputLabelBlur" id="nomeMae">
+                        <input type="text" class="nome inputLabelBlur" id="nomeMae" >
                     </div>
 
                     <!-- <input type="checkbox" value="" class="exemplo2 checkbox inputLabelFocus">
@@ -107,19 +107,19 @@
                         <label class="label-cep labelOdontBlur">CEP</label>
                     </div>
                     <div>
-                        <input type="tel" class="cep inputLabelBlur" id="cep">
+                        <input type="tel" class="cep inputLabelBlur" id="cep" >
                     </div>
                     <div>
-                        <label class="label-endereco labelOdontBlur">Endereço</label>
+                        <label class="label-endereco labelOdontBlur" >Endereço</label>
                     </div>
                     <div>
-                        <input type="text" class="endereco inputLabelBlur" id="rua">
+                        <input type="text" class="endereco inputLabelBlur" id="rua" >
                     </div>
                     <div>
                         <label class="label-numero labelOdontBlur">Número</label>
                     </div>
                     <div>
-                        <input type="tel" class="numero inputLabelBlur">
+                        <input type="tel" class="numero inputLabelBlur" >
                     </div>
                     <div>
                         <label class="label-complemento labelOdontBlur">Complemento</label>
@@ -131,19 +131,19 @@
                         <label class="label-bairro labelOdontBlur">Bairro</label>
                     </div>
                     <div>
-                        <input type="text" class="bairro inputLabelBlur" id="bairro">
+                        <input type="text" class="bairro inputLabelBlur" id="bairro" >
                     </div>
                     <div>
                         <label class="label-estado labelOdontBlur">Estado</label>
                     </div>
                     <div>
-                        <input type="text" class="estado inputLabelBlur" id="uf">
+                        <input type="text" class="estado inputLabelBlur" id="uf" >
                     </div>
                     <div>
                         <label class="label-cidade labelOdontBlur">Cidade</label>
                     </div>
                     <div>
-                        <input type="text" class="cidade inputLabelBlur" id="cidade">
+                        <input type="text" class="cidade inputLabelBlur" id="cidade" >
                     </div>
                 </div>
 
@@ -178,5 +178,6 @@
         <script src="js/sweetalert.min.js"></script>
         <script src="app/coordenador.js"></script>
         <script src="app/pfCadastroController.js"></script>
+    <script> resizeIframe('frame_pf');</script>
     </body>
 </html>
