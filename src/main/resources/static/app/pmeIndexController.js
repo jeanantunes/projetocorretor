@@ -1,7 +1,22 @@
 ﻿$(document).ready(function () {
     var forca = new Object();
-    forca.codigo = 6;
-
+	console.log("Chamada UsuarioSession");
+	$.ajax({
+        url: "/usuario_session",
+        type: "get",
+        async: false,
+        xhrFields: {
+            withCredentials: true
+        },
+        success: function (result) {
+        	console.log(result);
+            forca.codigo = eval(result).codigoUsuario;
+        },
+        error: function (result) {
+        	console.log(result);
+        }
+    });    
+    
     put("dadosUsuario", JSON.stringify(forca)) ;
 
 });

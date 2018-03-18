@@ -1149,14 +1149,12 @@ function sincronizarEmpresa(proposta, beneficiarios) {
 
     callTokenProd(function (dataToken) {
         $.ajax({
-            url: URLBase + "/corretorservicos/1.0/vendapme",
-            //url: "http://www.corretorvendaodonto.com.br:7001/portal-corretor-servico-0.0.1-SNAPSHOT/vendapme",
+            url: URLBase + "/corretorservicos/1.0/vendapme",            
             type: "POST",
             data: json,
             dataType: "json",
             headers: {
-                "Content-Type": "application/json",
-                "Cache-Control": "no-cache",
+                "Content-Type": "application/json",                
                 "Authorization": "Bearer " + dataToken.access_token
             },
             success: function (result) {
