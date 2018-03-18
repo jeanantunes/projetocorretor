@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import br.com.odontoprev.portalcorretor.model.ListaPropostas;
 import br.com.odontoprev.portalcorretor.model.UsuarioSession;
@@ -31,6 +33,8 @@ import br.com.odontoprev.portalcorretor.service.entity.FiltroStatusProposta;
 
 @Controller
 public class CorretoraController {
+	
+	private static final Log log = LogFactory.getLog(CorretoraController.class);
 
     @Autowired
     DashService dashService;
@@ -47,7 +51,8 @@ public class CorretoraController {
 
     @RequestMapping(value = "corretora/home", method = RequestMethod.GET)
     public ModelAndView home(HttpSession session) {    	
-    	
+    	final long start = new Date().getTime();
+    	log.info("CorretoraController.home - inicio");
         UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
 
         //TODO retornar valores nas propostas
@@ -103,7 +108,8 @@ public class CorretoraController {
         corretora.setTotalValorPME(new BigDecimal(totalValorPME).setScale(2, BigDecimal.ROUND_UP).doubleValue());
         corretora.setPercenteValorPME(totalValorPME > totalValorPF ? 100 : totalValorPME == 0 ? 0 : 50);
 
-
+        long time = new Date().getTime() - start;
+        log.info("CorretoraController.home - fim - "+ time+"ms");
         return new ModelAndView("corretora/home", "corretora", corretora);
     }
    
