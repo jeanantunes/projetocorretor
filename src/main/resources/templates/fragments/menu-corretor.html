@@ -70,12 +70,11 @@
                         <span>fale conosco</span>
                     </a>
                 </li>
--->
             </ul>
         </div>
     </nav>
 
-    <div class="nav-mobile">
+    <<div class="nav-mobile">
         <ul class="side-nav" id="menu-mobile" style="transform: translateX(-100%);">
             <li class="" style="background-color: #fff; padding: 30px">
                 <div class="perfil-mobile">
@@ -83,7 +82,7 @@
                         <div class="data-perfil">
                             <p class="user-name"><strong th:text="${session.usuario.getNomeUsuario()}"></strong></p>
                             <p class="font-gray" th:text="${session.usuario.getNomeCorretora()}"></p>
-                            <a th:href="@{/logout}" class="link-odonto">Sair</a>
+							<a th:href="@{/logout}" class="link-odonto">Sair</a>
                         </div>
                     </div>
                 </div>
@@ -141,6 +140,5 @@
     </div>
 
 </div>
-
 </body>
 </html>
