@@ -24,7 +24,7 @@ $(document).ready(function () {
         localStorage.removeItem("proposta");
     });
 
-    resizeIframe('frame_pf');
+    //resizeIframe('frame_pf');
 });
 
 function defineConexao() {
