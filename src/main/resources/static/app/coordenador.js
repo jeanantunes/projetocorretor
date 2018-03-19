@@ -452,6 +452,20 @@ function setPlanosProdCod() {
 
     planos = [];
 
+    ////// CODIGO PLANO INTEGRAL DOC LE ////////
+
+    var plano = new Object();
+    plano.cdPlano = 101;
+    plano.nome = "INTEGRAL DOC LE";
+    planos.push(plano);
+
+    ////// CODIGO PLANO MASTER LE ////////
+
+    var plano = new Object();
+    plano.cdPlano = 102;
+    plano.nome = "MASTER LE";
+    planos.push(plano);
+
     ////// CODIGO PLANOS DENTAL BEM - ESTAR ////////
 
     var plano = new Object();
@@ -529,6 +543,20 @@ function setPlanosProdCod() {
 function setPlanosHmlCod() {
 
     planos = [];
+
+    ////// CODIGO PLANO INTEGRAL DOC LE ////////
+
+    var plano = new Object();
+    plano.cdPlano = 61;
+    plano.nome = "INTEGRAL DOC LE";
+    planos.push(plano);
+
+    ////// CODIGO PLANO MASTER LE ////////
+
+    var plano = new Object();
+    plano.cdPlano = 62;
+    plano.nome = "MASTER LE";
+    planos.push(plano);
 
     ////// CODIGO PLANOS DENTAL BEM - ESTAR ////////
 
@@ -608,7 +636,7 @@ function setPlanosHml() {
     planos = [];
 
     plano = getRepository("plano");
-    plano.cdPlano = 101;
+    plano.cdPlano = 61;
     plano.nome = "Integral DOC LE";
     plano.valor = "24";
     plano.centavo = "93";
@@ -617,7 +645,7 @@ function setPlanosHml() {
     planos.push(plano);
 
     plano = getRepository("plano");
-    plano.cdPlano = 102;
+    plano.cdPlano = 62;
     plano.nome = "Master LE";
     plano.valor = "101";
     plano.centavo = "10";
@@ -947,11 +975,11 @@ function sincronizar() {
                     var o = empresas.filter(function (x) { return x.cnpj == item.cnpj });
                     var b = beneficiarios.filter(function (x) { return x.cnpj == item.cnpj });
                     sincronizarEmpresa(o, b);
-                    atualizarDashBoard();
+                    //atualizarDashBoard();
                 }
             });
 
-            swal.close();
+
         }
 
         if (pessoas != null) {
@@ -1161,23 +1189,47 @@ function sincronizarEmpresa(proposta, beneficiarios) {
                 if (result.id == 0) {
                     proposta[0].status = "CRITICADA";
                     atualizarEmpresas(proposta[0]);
+                    localStorage.removeItem('proposta');
+                    localStorage.removeItem('beneficiarios');
+                    localStorage.removeItem('beneficiario');
+                    localStorage.removeItem('empresas');
+                    localStorage.removeItem('numeroDependentes');
+                    localStorage.removeItem('QtdFinalizada');
+                    swal.close();
+                    swal({
+                            title: "Ops!",
+                            text: "Erro ao enviar a proposta, tente mais tarde ou entre em contato conosco!",
+                            type: "error"
+                        },
+                        function (isConfirm) {
+                            window.location.href = "/home";
+                        });
+
                 }
                 else {
-                    var empresas = get("empresas");
-                    var todosExcetoExclusao = empresas.filter(function (x) { return x.cnpj != proposta[0].cnpj });
+                    localStorage.removeItem('proposta');
+                    localStorage.removeItem('beneficiarios');
+                    localStorage.removeItem('beneficiario');
+                    localStorage.removeItem('empresas');
+                    localStorage.removeItem('numeroDependentes');
+                    localStorage.removeItem('QtdFinalizada');
+                    swal.close();
+
+                    //var empresas = get("empresas");
+                    //var todosExcetoExclusao = empresas.filter(function (x) { return x.cnpj != proposta[0].cnpj });
                 
-                    proposta[0].status = "ENVIADA";
+                    //proposta[0].status = "ENVIADA";
 
-                    todosExcetoExclusao.push(proposta[0]);
+                    //todosExcetoExclusao.push(proposta[0]);
 
-                    put("empresas", JSON.stringify(todosExcetoExclusao));
+                    //put("empresas", JSON.stringify(todosExcetoExclusao));
 
                 }
 
-                atualizarDashBoard();
+                //atualizarDashBoard();
             },
             error: function () {
-                swal.close();
+                //swal.close();
             }
         });
     });

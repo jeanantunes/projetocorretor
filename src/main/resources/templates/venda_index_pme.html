@@ -40,7 +40,7 @@
                     <div class="col-md-12 boxPlanos item">
                         <h1 class="titleBoxVendas colorSlick3">Integral DOC LE</h1>
                         <h5 class="h5SubTitlePlano colorSlick3">(Compulsório)</h5>
-                        <div class="row pVPlanoVenda">
+                        <div class="row pVPlanoVendaPME">
                             <label>Coberturas:</label>
                             <p>Documentação e radiografias ortodônticas</p>
                             <p>Prótese unitária (Coroa)</p>
@@ -55,7 +55,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <a class="btn btn-lg btn-block btnOdontPlano btnSlick3" onclick="iniciarProposta(101)" role="button">
+                                <a id="btnIntegral"class="btn btn-lg btn-block btnOdontPlano btnSlick3" onclick="iniciarProposta($(this).attr('data-id'))" role="button" data-id=""><!--TROCAR PARA ACAO DINAMICA-->
                                     <div class="spanInlineLeft">
                                         <span>Mensal</span>
                                     </div>
@@ -70,7 +70,7 @@
                     <div class="col-md-12 boxPlanos item">
                         <h1 class="titleBoxVendas titleSlick2">Master LE</h1>
                         <h5 class="h5SubTitlePlano colorSlick2">(Compulsório)</h5>
-                        <div class="row pVPlanoVenda">
+                        <div class="row pVPlanoVendaPME">
                             <label>Coberturas:</label>
                             <p>Todas as coberturas do plano INTEGRAL DOC LE</p><br>
                             <p>+ Prótese (Inclusive porcelana e cerâmica)</p>
@@ -80,7 +80,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <a class="btn btn-lg btn-block btnOdontPlano btnSlick2" onclick="iniciarProposta(102)" role="button">
+                                <a id="btnMaster" class="btn btn-lg btn-block btnOdontPlano btnSlick2" onclick="$(this).attr('data-id')" role="button" data-id="">
                                     <div class="spanInlineLeft">
                                         <span>Mensal</span>
                                     </div>
