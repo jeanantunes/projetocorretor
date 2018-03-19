@@ -10,65 +10,7 @@ function initMap(redeCredenciada) {
     mapa(redeCredenciada);
 }
 
-function mapa(abc) {
 
-
-
-    var latlng = { lat: -23.5432147, lng: -46.7356894 };
-    //initMap(latlng);
-
-    if (abc == null) {
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 4,
-            center: latlng,
-            disableDefaultUI: true
-        });
-    }
-    else if (abc != null) {
-        map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 13,
-            center: { lat: parseFloat(abc.dentistas[0].endereco.cidade.latitude), lng: parseFloat(abc.dentistas[0].endereco.cidade.longitude) },
-            disableDefaultUI: true
-        });
-
-        for (var i = 0; i < abc.dentistas.length; i++) {
-            var latlng2 = new google.maps.LatLng((abc.dentistas[i].endereco.cidade.latitude), (abc.dentistas[i].endereco.cidade.longitude));
-
-            var marker = new google.maps.Marker({
-                position: latlng2,
-                map: map,
-                center: latlng2
-            });
-
-
-            var infowindow = new google.maps.InfoWindow();
-
-
-            google.maps.event.addListener(marker, 'click', (function (marker, i) {
-                return function () {
-                    //console.log("Dentro da funcão Click:  " + contentString[i]);
-                    //infowindow.setContent('<div><strong>' + abc.dentistas[i].nomeDentista + '</strong><br>');
-                    //infowindow.open(map, marker);
-                                        
-                    document.getElementById('nomeDentista').innerHTML = abc.dentistas[i].nomeDentista;
-                    document.getElementById('croDentista').innerHTML = abc.dentistas[i].numeroCRO;
-                    document.getElementById('especialidadeDentista1').innerHTML = abc.dentistas[i].especialidade.descricaoEspecialidade;
-                    document.getElementById('especialidadeDentista1').innerHTML = abc.dentistas[i].especialidade.descricaoEspecialidade;
-                    document.getElementById('enderecoDentista').innerHTML = abc.dentistas[i].endereco.enderecoCompleto;
-                    document.getElementById('cepDentista').innerHTML = abc.dentistas[i].endereco.cep;
-                    document.getElementById('telefoneDentista').innerHTML = abc.dentistas[i].numeroFone;
-                    document.getElementById('tipoPessoaDentista').innerHTML = abc.dentistas[i].tipoPrestador;
-
-                    $("#btnModal").click();
-                }
-            })(marker, i));
-        }
-    }
-
-
-
-
-}
 
 var t;
 
@@ -80,7 +22,6 @@ function callEspecialidades(callback, token) {
         method: "GET",
         headers: {
             "Authorization": "Bearer " + token,
-            "Cache-Control": "no-cache",
             "Content-Type": "application/json"
         },
         success: function (resp) {
@@ -97,7 +38,6 @@ function callEstados(callback, token) {
         method: "GET",
         headers: {
             "Authorization": "Bearer " + token,
-            "Cache-Control": "no-cache",
             "Content-Type": "application/json"
         },
         success: function (resp) {
@@ -114,7 +54,6 @@ function callCidade(callback, token, uf) {
         method: "GET",
         headers: {
             "Authorization": "Bearer " + token,
-            "Cache-Control": "no-cache",
             "Content-Type": "application/json"
         },
         success: function (resp) {
@@ -133,8 +72,7 @@ function callBairro(callback, token, uf, codigoCidade) {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + token,
-            "Cache-Control": "no-cache"
+            "Authorization": "Bearer " + token
         },
         success: function (resp) {
             callback(resp)
@@ -216,8 +154,7 @@ function callRedeCredenciada(callback, token, CodBeneficiario, uf, codigoEspecia
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + token,
-            "Cache-Control": "no-cache"
+            "Authorization": "Bearer " + token
         },
 
         success: function (resp) {
