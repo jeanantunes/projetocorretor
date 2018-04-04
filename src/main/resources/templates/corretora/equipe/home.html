@@ -177,7 +177,13 @@
         </div>
 
         <div class=" space-top-30 btn-header-web">
-            <a th:href="@{/corretora/equipe/adicionar}" type="button" class="btn uppercase btnBlue btn-width-custom space-top-10">Adicionar nova pessoa na equipe</a>
+            <a th:href="@{/corretora/equipe/adicionar}" type="button" class="btn uppercase btnBlue btn-width-custom space-top-10">ADICIONAR NOVO</a>
+            <form action="uploadSuccess.html" th:action="@{/fileupload}" method="post" enctype="multipart/form-data">
+		          <label for="file">FAZER UPLOAD DA EQUIPE</label>
+		          <input type="file" name="file" id="file"/>
+		          <input type="submit" value="Upload" />
+        	</form>
+            <a th:href="@{/corretora/equipe/adicionar}" type="button" class="btn uppercase btnBlue btn-width-custom space-top-10">FAZER UPLOAD DA EQUIPE</a>
         </div>
 
         <div class="row space-top-30">
