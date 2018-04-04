@@ -12,6 +12,28 @@
 		<link href="css/style.css" rel="stylesheet">
 		<link href="css/odontoprev.css" rel="stylesheet">
         <link href="css/sweetalert.css" rel="stylesheet" />
+        
+        <script type="text/javascript">
+        function verificar(){
+        	
+        	nascimento = new Date(document.getElementById("data").value);
+        	dataAtual = new Date();
+        	ano = nascimento.getFullYear()
+        	idade = dataAtual.getFullYear() - nascimento.getFullYear();
+        	
+        	if(ano < 999 || idade > 18){
+        		document.getElementById("responsavelLegal").style.display = "none";
+        	}
+        	else{
+        		document.getElementById("responsavelLegal").style.display = "block";
+        	}
+        	
+        	
+        }
+        
+        </script>
+        
+        
 	</head>
 	
     <body id='body'>
@@ -44,13 +66,13 @@
                         <label class="label-nome labelOdontBlur">Nome</label>
                     </div>
                     <div>
-                        <input type="text" class=" nome inputLabelBlur" id="nomeBeneficiario" autofocus >
+                        <input type="text" class=" nome inputLabelBlur" id="nomeBeneficiario" autofocus>
                     </div>
                     <div>
                         <label class="label-email labelOdontBlur">E-mail</label>
                     </div>
                     <div>
-                        <input type="email" class="email inputLabelBlur" >
+                        <input type="email" class="email inputLabelBlur">
                     </div>
                     <div>
                         <label class="label-celular labelOdontBlur">Celular</label>
@@ -68,7 +90,7 @@
                         <label class="label-nascimento labelOdontBlur">Data de nascimento</label>
                     </div>
                     <div>
-                        <input type="tel" class="nascimento data inputLabelBlur" id="data" >
+                        <input type="tel" class="nascimento data inputLabelBlur" id="data" onkeyup="verificar();">
                     </div>
                     <div>
                         <label class="label-sexo labelOdontBlur">Sexo</label>
@@ -89,11 +111,82 @@
                     <div>
                         <input type="text" class="nome inputLabelBlur" id="nomeMae" >
                     </div>
+                    
+                    
+                    
+                    <div id="responsavelLegal" style="display:none;">
+                    <div class="alert" style="background:orange; color:white; margin:5%; text-align:center;">
+                    	<p><b>ATENÇÃO: </b> Para titulares menores de dezoito anos é necessário preencher os dados do responsável legal pelo plano</p>
+                    </div>
+                    
+                    <div>
+                        <label class="labelBlue">RESPONSÁVEL LEGAL</label>
+                    </div>
+                    
+                    <div>
+                        <label class="label-nome labelOdontBlur">Nome</label>
+                    </div>
+                    <div>
+                        <input type="text" class=" nome inputLabelBlur" id="nomeBeneficiario" autofocus >
+                    </div>
+                    
+                    <div>
+                        <label class="label-cpf labelOdontBlur">CPF</label>
+                    </div>
+                    <div>
+                        <input type="tel" class="cpf inputLabelBlur" id="cpf">
+                    </div>
+                    
+                    <div>
+                        <label class="label-sexo labelOdontBlur">Sexo</label>
+                    </div>
+                    <div>
+                        <div class="radio">
+                            <input id="radio-1" name="radio" type="radio" class="sexo" value="f">
+                            <label for="radio-1" class=" radio-inline radio-label label-sexo labelOdontBlur">Feminino</label>
+                        </div>
+                        <div class="radio">
+                            <input id="radio-2" name="radio" type="radio" class="sexo" value="m">
+                            <label for="radio-2" class="radio-inline radio-label label-sexo labelOdontBlur">Masculino</label>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="label-nascimento labelOdontBlur">Data de nascimento</label>
+                    </div>
+                    <div>
+                        <input type="tel" class="nascimento data inputLabelBlur" id="data" >
+                    </div>
+                    
+                    <div>
+                        <label class="label-nome labelOdontBlur">Nome da mãe</label>
+                    </div>
+                    <div>
+                        <input type="text" class="nome inputLabelBlur" id="nomeMae" >
+                    </div>
+                    
+                    <div>
+                        <label class="label-celular labelOdontBlur">Celular</label>
+                    </div>
+                    <div>
+                        <input type="tel" class="celular inputLabelBlur" >
+                    </div>
+                    
+                    <div>
+                        <label class="label-email labelOdontBlur">E-mail</label>
+                    </div>
+                    <div>
+                        <input type="email" class="email inputLabelBlur" >
+                    </div>          
+                    </div>
+                    
+                    
 
                     <!-- <input type="checkbox" value="" class="exemplo2 checkbox inputLabelFocus">
                 <label class="Label-checkbox labelOdontFocus checkbox-inline">
 
                 </label> -->
+                
                     <div class="squaredOne">
                         <input type="checkbox" value="None" id="squaredOne" name="check" class="checkbox inputLabelCheckFocus"/>
                         <label for="squaredOne" class="Label-checkbox labelCheckOdontFocus checkbox-inline">
@@ -101,6 +194,10 @@
                                 O representante legal é o titular do plano
                             </span>
                         </label>
+                    </div>
+                    
+                    <div>
+                        <label class="labelBlue">Endereço</label>
                     </div>
 
                     <div>
@@ -146,6 +243,7 @@
                         <input type="text" class="cidade inputLabelBlur" id="cidade" >
                     </div>
                 </div>
+                
 
                 <div id="listaDep"></div>
 

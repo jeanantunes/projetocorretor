@@ -70,15 +70,7 @@ public class InfoPlanosController {
         return "email";
     }
     
-    @RequestMapping("/esqueciSenha")
-    public String esqueciSenha() {
-        return "esqueciSenha";
-    }
     
-    @RequestMapping("/senhaRedefinida")
-    public String senhaRedefinida() {
-        return "senhaRedefinida";
-    }
     
    
     
