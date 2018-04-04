@@ -14,10 +14,11 @@ import org.springframework.web.multipart.MultipartFile;
 import br.com.odontoprev.portalcorretor.util.BreadCrumbs;
 
 
-/**
- * See http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/multipart/MultipartFile.html
- * http://docs.oracle.com/javaee/6/tutorial/doc/gmhal.html
+/*
+ * 
+ * 
  */
+
 @Controller
 public class FileUploadController {
 
@@ -30,8 +31,6 @@ public class FileUploadController {
 
     @RequestMapping(value = "/fileupload", method = RequestMethod.POST) 
     public String importFile(@RequestParam("file") MultipartFile myFile) throws IOException { 
-        String pageTitle = "Upload file";
-
         File destination = new File("/var/tmp", UUID.randomUUID().toString());
         myFile.transferTo(destination);
         // Redirect to a successful upload page 
