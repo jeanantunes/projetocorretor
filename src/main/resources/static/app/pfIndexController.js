@@ -1,25 +1,5 @@
-﻿$(document).ready(function () {	
-	var forca = new Object();
-	console.log("Chamada UsuarioSession");
-	$.ajax({
-        url: "/usuario_session",
-        type: "get",
-        async: false,
-        xhrFields: {
-            withCredentials: true
-        },
-        success: function (result) {
-        	console.log(result);
-            forca.codigo = eval(result).codigoUsuario;
-        },
-        error: function (result) {
-        	console.log(result);
-        }
-    });
-    put("dadosUsuario", JSON.stringify(forca)) ;
-
+﻿$(document).ready(function () {
     setIdPlano();
-
 });
 
 function setIdPlano() {
@@ -75,19 +55,19 @@ function setIdPlano() {
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     if (conexao.producaoLigado){
-
+    
         var plano = planos.filter(function (x) { if (x.nome == "DENTAL ORTO ANUAL") { return x.nome; } });
         $("#ortoAnualSCarencia").attr("data-id", plano[0].cdPlano);
-
+    
         var plano = planos.filter(function (x) { if (x.nome == "DENTAL ESTETICA ANUAL S/CARENCIA") { return x.nome; } });
         $("#esteticaAnualSCarencia").attr("data-id", plano[0].cdPlano);
-
+    
         var plano = planos.filter(function (x) { if (x.nome == "DENTAL VIP ANUAL S/CARENCIA") { return x.nome; } });
         $("#vipAnualSCarencia").attr("data-id", plano[0].cdPlano);
-
+    
         var plano = planos.filter(function (x) { if (x.nome == "DENTAL BEM-ESTAR ANUAL S/CARENCIA") { return x.nome; } });
         $("#bemEstarAnualSCarencia").attr("data-id", plano[0].cdPlano);
-
+    
         return;
     }
 
@@ -112,7 +92,6 @@ function iniciarProposta(cdPlano) {
     proposta.planos.push(plano);
 
     put("propostaPf", JSON.stringify(proposta));
-
 
     window.location.href = "venda_pf_dados_proposta.html";
 }

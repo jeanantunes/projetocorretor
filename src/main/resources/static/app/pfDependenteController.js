@@ -8,7 +8,6 @@ $(document).ready(function () {
     $('.cpf').off('blur').on();
 });
 
-
 function SalvarDependente() {
 
     var currentYear = (new Date).getFullYear();
@@ -17,37 +16,31 @@ function SalvarDependente() {
 
     if ($(".nome").val() == "") {
         swal("Ops!", "Preencha o Nome", "error");
-        $("#nomeDependente").focus();
         return;
     }
 
     if (!ValidaNome($("#nomeDependente").val())) {
         swal("Ops!", "Nome inválido", "error");
-        $("#nomeDependente").focus();
         return false;
     }
 
     if ($(".email").val() == "") {
         swal("Ops!", "Preencha o E-mail", "error");
-        $("#nomeDependente").focus();
         return;
     }
 
     if (!validateEmail($(".email").val())) {
         swal("Ops!", "Preencha um E-mail válido", "error");
-        $("#nomeDependente").focus();
         return;
     }
 
     if ($(".celular").val() == "") {
         swal("Ops!", "Preencha o Celular", "error");
-        $("#nomeDependente").focus();
         return;
     }
 
     if ($(".cpf").val() == "" && menor > 18) {
         swal("Ops!", "Preencha o CPF", "error");
-        $("#nomeDependente").focus();
         return;
     }
 
@@ -55,7 +48,6 @@ function SalvarDependente() {
         if ($(".cpf").val() == "") {
             console.log("Validando cpf");
             swal("Ops!", "CPF está inválido", "error");
-            $("#nomeDependente").focus();
             return;
         }        
     }
@@ -69,31 +61,31 @@ function SalvarDependente() {
     var benef = get("propostaPf");
     if (benef.cpf == $(".cpf").val() && $(".cpf").val() != "") {
         swal("Conflito!", "Você informou o mesmo CPF do titular para este dependente, por favor verifique.", "error");
-        $("#nomeDependente").focus();
+        return;
+    }
+
+    if (benef.cpf == $(".cpf").val() && $(".cpf").val() != "") {
+        swal("Conflito!", "Você informou o mesmo CPF do titular para este dependente, por favor verifique.", "error");
         return;
     }
 
     if ($(".nascimento").val() == "") {
         swal("Ops!", "Preencha a data de nascimento", "error");
-        $("#nomeDependente").focus();
         return;
     }
 
     if (!validarData($(".nascimento").val())) {
         swal("Ops!", "Preencha uma data de nascimento correta", "error");
-        $("#nomeDependente").focus();
         return;
     }
 
     if ($(".nome-mae").val() == "") {
         swal("Ops!", "Preencha o Nome da Mãe", "error");
-        $("#nomeDependente").focus();
         return;
     }
 
     if (!ValidaNome($("#nomeMae").val())) {
         swal("Ops!", "Nome da mãe inválido", "error");
-        $("#nomeDependente").focus();
         return false;
     }
 
@@ -103,7 +95,6 @@ function SalvarDependente() {
     var qtdDep = proposta.dependentes.filter(function (x) { return x.cpf == cpf }).length;
     if (qtdDep > 1) {
         swal("Ops!", "Existem dependentes com o mesmo CPF, por favor verifique.", "error");
-        $("#nomeDependente").focus();
         return;
     }
 
@@ -118,6 +109,7 @@ function SalvarDependente() {
     dependente.nomeMae = $(".nome-mae").val()
     dependente.dataNascimento = $(".nascimento").val();
     dependente.sexo = $(".sexo").val();
+    dependente.celular = $(".celular").val();
 
     if (proposta.dependentes.length == 0) {
         proposta.dependentes = [];

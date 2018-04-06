@@ -3,7 +3,7 @@ var cnae;
 
 $(document).ready(function () {
     buscarPlanosSelecionados();
-    carregarProposta();
+   carregarProposta();
 });
 
 function addBenef() {
@@ -18,7 +18,7 @@ function addBenef() {
 }
 
 function buscarPlanosSelecionados() {
-
+    $("#planos").html("");
     var proposta = get("proposta");
     var planos = get("planos");
 
@@ -37,11 +37,18 @@ function buscarPlanosSelecionados() {
 
         $("#planos").append(plano);
 
+        if (proposta.planos.length == 1) {
+            
+            $("#btnExcluirPlano").addClass('hide');
+        }
+
+        $(".labelQuantidadeBeneficiarios").addClass('hide');
     });
 }
 
 function excluirPlano(obj) {
 
+    var beneficiarios = get("beneficiarios");
     var container = $(".div-excluir[data-id=" + $(obj).attr("data-id") + "]");
     var proposta = get("proposta");
 
@@ -49,17 +56,98 @@ function excluirPlano(obj) {
         proposta = getRepository("proposta");
     }
 
-
+    var beneficiariosDaProposta = beneficiarios.filter(function (x) { return x.cnpj == proposta.cnpj });
+    var beneficiariosQueNSaoDaProposta = beneficiarios.filter(function (x) { return x.cnpj != proposta.cnpj });
+    var planoExcluido = proposta.planos.filter(function (x) { return x.cdPlano == container.attr("data-id") });
     var planosExcetoExcluido = proposta.planos.filter(function (x) { return x.cdPlano != container.attr("data-id") });
-    proposta.planos = [];
-    $.each(planosExcetoExcluido, function (i, item) {
-        proposta.planos.push(item);
+
+    var beneficiariosDessePlano = beneficiariosDaProposta.filter(function (x) {
+        return x.cdPlano == planoExcluido[0].cdPlano;
     });
 
-    put("proposta", JSON.stringify(proposta));
-    container.remove();
+    var quantidadeBeneficiarios = 0;
 
-    atualizarEmpresas(proposta);
+    $.each(beneficiariosDessePlano, function (i, item) {
+
+        quantidadeBeneficiarios += item.dependentes.length + 1;
+
+    });
+
+
+    if (quantidadeBeneficiarios > 0) {
+
+        var planos = get("planos");
+        var planoNaoExcluido = planos.filter(function (x) { return x.cdPlano == planosExcetoExcluido[0].cdPlano });
+
+        swal({
+            title: "Ops!",
+            text: "Tem certeza de que deseja excluir os beneficiários deste plano e transferi-lo para o plano " + planoNaoExcluido[0].nome + "?",
+            type: "warning",
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "Confirmar",
+            cancelButtonText: "Cancelar",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+            function (isConfirm) {
+                if (isConfirm) {
+
+                    var beneficiarios = [];
+
+                    $.each(beneficiariosDaProposta, function (i, item) {
+                        item.cdPlano = planosExcetoExcluido[0].cdPlano;
+
+                        beneficiarios.push(item);
+                    });
+
+
+                    $.each(beneficiariosQueNSaoDaProposta, function (i, item) {
+
+                        beneficiarios.push(item);
+                    });
+
+                    put("beneficiarios", JSON.stringify(beneficiarios));
+
+                    proposta.planos = [];
+                    $.each(planosExcetoExcluido, function (i, item) {
+                        proposta.planos.push(item);
+                    });
+
+                    put("proposta", JSON.stringify(proposta));
+                    container.remove();
+
+                    atualizarEmpresas(proposta);
+
+                    swal("Sucesso", "Beneficiários transferidos para o plano " + planoNaoExcluido[0].nome, "success");
+                } else {
+                    swal.close();
+                    return;
+                }
+            });
+    } else {
+        proposta.planos = [];
+        $.each(planosExcetoExcluido, function (i, item) {
+            proposta.planos.push(item);
+        });
+
+        put("proposta", JSON.stringify(proposta));
+        container.remove();
+        buscarPlanosSelecionados();
+        atualizarEmpresas(proposta);
+
+    }
+
+
+    //$.each(beneficiariosDaProposta, function (i, item) {
+    //    if (item.cdPlano == planoExcluido.cdPlano)
+    //    {
+    //        swal("Ops!", "Tem certeza de que deseja excluir os beneficiarios deste plano e transferi-lo para o plano ****") /
+    //        return;
+    //    }
+    //});
+
+
 }
 
 // Mantém os inputs em cache:
@@ -109,7 +197,6 @@ function callSerasaPme(callback, tokenSerasa, cnpj) {
 
             if (existe.length > 0 && $("#cnpjEmpresa").val() != proposta.cnpj) {
                 swal("Ops!", "CNPJ já cadastrado, por favor verifique.", "error");
-                $("#cnpjEmpresa").focus();
                 $("#cnpjEmpresa").val("");
                 return;
             }
@@ -141,10 +228,12 @@ function callSerasaPme(callback, tokenSerasa, cnpj) {
         method: "POST",
         headers: {
             "Content-Type": "application/xml",
-            "Authorization": "Bearer " + tokenSerasa         
+            "Authorization": "Bearer " + tokenSerasa
         },
-        data: "<soapenv:Envelope\r\n                xmlns:dat=\"http://services.experian.com.br/DataLicensing/DataLicensingService/\"\r\n                xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n                <soapenv:Header>\r\n               <wsse:Security\r\n                               xmlns:wsse=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd\"\r\n                               xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\">\r\n               <wsse:UsernameToken wsu:Id=\"UsernameToken-E26E52D53AB0F9B54115201256503949\">\r\n              <wsse:Username>51990098</wsse:Username>\r\n              <wsse:Password Type=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText\">Prj@2018</wsse:Password>\r\n              <wsse:Nonce EncodingType=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary\">3UoD2HzDrcGo5qh9W16B6A==</wsse:Nonce>\r\n              <wsu:Created>2018-03-04T01:07:30.394Z</wsu:Created>\r\n               </wsse:UsernameToken>\r\n               </wsse:Security>\r\n                </soapenv:Header>\r\n                <soapenv:Body>\r\n               <dat:ConsultarPJ>\r\n         <parameters>\r\n            <cnpj>" + cnpj + "</cnpj>\r\n            <RetornoPJ>\r\n               <razaoSocial>true</razaoSocial>\r\n               <nomeFantasia>true</nomeFantasia>\r\n               <dataAbertura>true</dataAbertura>\r\n               <cnae>true</cnae>\r\n               <endereco>true</endereco>\r\n               <telefone>true</telefone>\r\n               <situacaoCadastral>HISTORICO</situacaoCadastral>\r\n               <representanteLegal>true</representanteLegal>\r\n               <simplesNacional>true</simplesNacional>\r\n               <Pacote>PJ1</Pacote>\r\n            </RetornoPJ>\r\n         </parameters>\r\n      </dat:ConsultarPJ>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>",
+        data: "<soapenv:Envelope\r\n                xmlns:dat=\"http://services.experian.com.br/DataLicensing/DataLicensingService/\"\r\n                xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n                <soapenv:Header>\r\n               <wsse:Security\r\n                               xmlns:wsse=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd\"\r\n                               xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\">\r\n               <wsse:UsernameToken wsu:Id=\"UsernameToken-E26E52D53AB0F9B54115201256503949\">\r\n              <wsse:Username>51990098</wsse:Username>\r\n              <wsse:Password Type=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText\">Prj@2018</wsse:Password>\r\n              <wsse:Nonce EncodingType=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary\">3UoD2HzDrcGo5qh9W16B6A==</wsse:Nonce>\r\n              <wsu:Created>2018-03-04T01:07:30.394Z</wsu:Created>\r\n               </wsse:UsernameToken>\r\n               </wsse:Security>\r\n                </soapenv:Header>\r\n                <soapenv:Body>\r\n               <dat:ConsultarPJ>\r\n         <parameters>\r\n            <cnpj>" + cnpj + "</cnpj>\r\n            <RetornoPJ>\r\n               <razaoSocial>true</razaoSocial>\r\n               <nomeFantasia>true</nomeFantasia>\r\n               <dataAbertura>true</dataAbertura>\r\n               <naturezaJuridica>true</naturezaJuridica>\r\n <cnae>true</cnae>\r\n               <endereco>true</endereco>\r\n               <telefone>true</telefone>\r\n               <situacaoCadastral>HISTORICO</situacaoCadastral>\r\n               <representanteLegal>true</representanteLegal>\r\n               <simplesNacional>true</simplesNacional>\r\n               <Pacote>PJ1</Pacote>\r\n            </RetornoPJ>\r\n         </parameters>\r\n      </dat:ConsultarPJ>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>",
         success: function (resp) {
+            console.log(resp);
+
             callback(resp);
         },
         error: function () {
@@ -154,31 +243,123 @@ function callSerasaPme(callback, tokenSerasa, cnpj) {
 }
 
 $('#cnpjEmpresa').blur(function () {
-        buscarEmpresa();
+        verificarSePropostaExiste();
+        //buscarEmpresa();
 });
+
+function verificarSePropostaExiste() {
+
+    var empresas = get("empresas");
+
+    if (empresas == null) {
+        buscarEmpresa();
+        return;
+    }
+
+    var editado = empresas.filter(function (x) { return x.cnpj == $('#cnpjEmpresa').val() });
+
+    if (editado.length == 0)
+    {
+        buscarEmpresa();
+        return;
+    }
+
+    if (editado.length == 1 && editado[0].status == "SYNC")
+    {
+        swal("Ops!", "Você possui uma proposta com esse CNPJ em sincronismo", "error");
+        return;
+    }
+
+    if (editado.length == 1 && editado[0].status != "ENVIADA") {
+
+        swal({
+            title: "Ops!",
+            text: "Você já tem uma proposta com esse CNPJ, selecione uma opção:",
+            type: "warning",
+            confirmButtonClass: "btn-danger",
+            confirmButtonColor: "#1974CE",
+            confirmButtonText: "Editar proposta existente",
+            cancelButtonText: "Excluir proposta",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+            function (isConfirm) {
+                if (isConfirm) {
+
+                    put("proposta", JSON.stringify(editado[0]));
+                    window.location.href = "venda_pme_dados_proposta.html";
+
+                } else {
+
+                    swal({
+                        title: "Ops!",
+                        text: "Tem certeza que deseja excluir a proposta?",
+                        type: "warning",
+                        confirmButtonClass: "btn-danger",
+                        confirmButtonColor: "#1974CE",
+                        confirmButtonText: "Sim",
+                        cancelButtonText: "Não",
+                        showCancelButton: true,
+                        closeOnConfirm: false,
+                        closeOnCancel: false
+                    },
+                        function (isConfirm) {
+                            if (isConfirm) {
+                                var empresasExcetoExcluidas = empresas.filter(function (x) { return x.cnpj != $('#cnpjEmpresa').val() });
+                                put("empresas", JSON.stringify(empresasExcetoExcluidas));
+
+                                window.location.href = "venda_pme_dados_proposta.html"
+                                //buscarEmpresa();
+                            } else {
+                                verificarSePropostaExiste();
+                            }
+                        });
+                }
+            });
+    }
+}
+
+$("#squaredOne").change(function () {
+
+    $("#divSegundoContato").addClass('hide');
+    if (!$(this).is(':checked')) {
+
+        $("#divSegundoContato").removeClass('hide');
+
+    }
+});
+
+function validateDataMei(date) {
+
+    var eightYearsAgo = moment().subtract(6, "months");
+    var birthday = moment(date);
+
+    if (!birthday.isValid()) {
+        // INVALID DATE
+    } else if (eightYearsAgo.isAfter(birthday)) return true;
+
+    return false;
+}
 
 function buscarEmpresa() {
     
     var cnpjValidado = $('#cnpjEmpresa').val().replace(/\D/g, '');
     var cnpj = get("dadosUsuario");
+    var cnpjDaProposta = get("proposta");
 
+    if (cnpj.cnpjCorretora == cnpjValidado)
+    {
+        swal("Ops", "Esse é o CNPJ da sua corretora, digite o CNPJ do seu cliente", "info");
+        $("#cnpjEmpresa").val("");
+        return;
+    }
 
-   // if (cnpj.cnpjCorretora == cnpjValidado)
-    //{
-    //    swal("Ops", "Esse é o CNPJ da sua corretora, digite o CNPJ do seu cliente", "info");
-    //    $("#cnpjEmpresa").val("");
-    //    return;
-   // }
+    bloquearCampos();
 
+    if (!navigator.onLine) {
 
-    if (!checkNetConnection()) {
-
-        $("#razao-social").prop('disabled', false);
-        $("#ramo-atividade").prop('disabled', false);
-        $("#representante-legal").prop('disabled', false);
-        $("#cpf-representante").prop('disabled', false);
-        $("#nome-fantasia").prop('disabled', false);
-
+        desbloqCampos();
         return;
     }
 
@@ -193,6 +374,23 @@ function buscarEmpresa() {
                     try {
                         var situacaoEmpresa = dataConsulta.getElementsByTagName("situacao")[0].textContent;
                         var situacao = situacaoEmpresa.indexOf("ATIVA");
+                    } catch (Exception) { }
+                    
+                    try {
+                        var naturezaJuridica = dataConsulta.getElementsByTagName("codigo")[0].textContent;
+                        var dataAbertura = dataConsulta.getElementsByTagName("dataAbertura")[0].textContent;
+
+                        if (naturezaJuridica == "2135")
+                        {
+                            var date = toDateSplitHifenSerasa(dataAbertura);
+
+                            if (!validateDataMei(date)) {
+
+                                swal("Ops", "Venda não autorizada para Empresa MEI com menos de 6 meses", "info");
+                                return;
+                            }
+                        }
+
                     } catch (Exception) { }
                     
                     console.log(situacao);
@@ -250,6 +448,26 @@ function buscarEmpresa() {
 
         }, dataToken.access_token, cnpjValidado);
     });
+}
+
+function bloquearCampos() {
+
+    $("#razao-social").prop('disabled', true);
+    $("#ramo-atividade").prop('disabled', true);
+    $("#representante-legal").prop('disabled', true);
+    $("#cpf-representante").prop('disabled', true);
+    $("#nome-fantasia").prop('disabled', true);
+
+}
+
+function desbloqCampos() {
+
+    $("#razao-social").prop('disabled', false);
+    $("#ramo-atividade").prop('disabled', false);
+    $("#representante-legal").prop('disabled', false);
+    $("#cpf-representante").prop('disabled', false);
+    $("#nome-fantasia").prop('disabled', false);
+
 }
 
 function salvarRascunho() {
@@ -363,8 +581,15 @@ function salvarRascunhoMemoria() {
     proposta.enderecoEmpresa.estado = $("#uf").val();
     proposta.cnae = $("#cnae").val();
     proposta.cpfRepresentante = $("#cpf-representante").val();
+    proposta.contatoEmpresa = true;
 
-    console.log(proposta);
+    if (!$("#squaredOne").is(':checked')) {
+        proposta.contactEmpresa.nome = $("#nomeSegundoContato").val();
+        proposta.contactEmpresa.email = $("#emailSegundoContato").val();
+        proposta.contactEmpresa.celular = $("#celularSegundoContato").val();
+        proposta.contactEmpresa.telefone = $("#telefoneSegundoContato").val();
+        proposta.contatoEmpresa = false;
+    }
 
     var empresas = get("empresas");
 
@@ -387,19 +612,36 @@ function cnpjValido()
 }
 
 function carregarProposta() {
+
     var proposta = get("proposta");
+
     $("#cnpjEmpresa").val(proposta.cnpj);
+
+    if (proposta.razaoSocial == "" && $("#cnpjEmpresa").val() != "") $("#razao-social").prop('disabled', false);
     $("#razao-social").val(proposta.razaoSocial);
+
     $("#inscricao-estadual").val(proposta.incEstadual);
+
+    if (proposta.ramoAtividade == "" && $("#cnpjEmpresa").val() != "") $("#ramo-atividade").prop('disabled', false);
     $("#ramo-atividade").val(proposta.ramoAtividade);
+
+    if (proposta.nomeFantasia == "" && $("#cnpjEmpresa").val() != "") $("#nome-fantasia").prop('disabled', false);
     $("#nome-fantasia").val(proposta.nomeFantasia);
+
+    if (proposta.representanteLegal == "" && $("#cnpjEmpresa").val() != "") $("#representante-legal").prop('disabled', false);
     $("#representante-legal").val(proposta.representanteLegal);
 
     if (proposta.contatoEmpresa) {
         $("#squaredOne").attr("checked", true);
+        $("#divSegundoContato").addClass('hide');
     }
     else {
         $("#squaredOne").attr("checked", false);
+        $("#divSegundoContato").removeClass('hide');
+        $("#nomeSegundoContato").val(proposta.contactEmpresa.nome);
+        $("#emailSegundoContato").val(proposta.contactEmpresa.email);
+        $("#celularSegundoContato").val(proposta.contactEmpresa.celular);
+        $("#telefoneSegundoContato").val(proposta.contactEmpresa.telefone);
     }
 
     $("#cpf-representante").val(proposta.cpfRepresentante);
@@ -577,3 +819,6 @@ function limparCampos() {
     $("#uf").val("");
 
 }
+
+
+

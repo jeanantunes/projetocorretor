@@ -70,6 +70,25 @@ public class InfoPlanosController {
         return "email";
     }
     
+    @RequestMapping("/termosCondicoes")
+    public String termosCondicoes() {
+        return "termosCondicoes";
+    }
+    
+    @RequestMapping("/bemVindo")
+    public String bemVindo() {
+        return "bemVindo";
+    }
+    
+    
+    @RequestMapping("/homeTest")
+    public String homeTest() {
+        return "homeTest";
+    }
+    
+    
+    
+    
     
     
    

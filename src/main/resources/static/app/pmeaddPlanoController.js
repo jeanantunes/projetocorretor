@@ -11,7 +11,7 @@ function adicionarPlano(cdPlano) {
         proposta = getRepository("proposta");
     }
 
-    var plano = getRepository("plano");
+    plano = getRepository("plano");
     plano.cdPlano = cdPlano;
 
     var o = proposta.planos.filter(function (x) { return x.cdPlano == cdPlano });
@@ -31,22 +31,22 @@ function setIdPlano() {
 
     var planos = get("CodPlanos");
 
-// $.ajax({
-//      url: "config/connection.json",
-//      type: "get",
-//      async: false,
-//      success: function (result) {
-//          conexao = eval(result);
-//      },
-//      error: function () {
+    $.ajax({
+        url: "config/connection.json",
+        type: "get",
+        async: false,
+        success: function (result) {
+            conexao = JSON.parse(result);
+        },
+        error: function () {
 
-//      }
-//  });
+        }
+    });
 
-    var plano = planos.filter(function (x) {if (x.nome == "INTEGRAL DOC LE"){return x.nome;}});
+    var plano = planos.filter(function (x) { if (x.nome == "INTEGRAL DOC LE") { return x.nome; } });
     $("#btnIntegral").attr("data-id", plano[0].cdPlano);
 
 
-    var plano = planos.filter(function (x) {if (x.nome == "MASTER LE"){return x.nome;}});
+    var plano = planos.filter(function (x) { if (x.nome == "MASTER LE") { return x.nome; } });
     $("#btnMaster").attr("data-id", plano[0].cdPlano);
 }

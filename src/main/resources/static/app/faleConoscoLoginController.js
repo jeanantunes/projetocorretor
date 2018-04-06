@@ -1,14 +1,18 @@
 ﻿$(document).ready(function () { });
 
 function callToken(callback) {
-	    console.log("callTokenProd - faleConscoLoginController.js");
+
     $.ajax({
         async: true,
-        //url: "https://api.odontoprev.com.br:8243/token/",
-        url: "/access_token",
+        url: "https://api.odontoprev.com.br:8243/token/",
         method: "POST",
         headers: {
+            "Authorization": "Basic ZWp3c0pfVGN6YXdObUdDYlN3dW1PRnVXTXQ0YTozM3pyVjJoRXo3TkN3WElpejNfcnlnbzNZZjRh",
             "Cache-Control": "no-cache",
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        data: {
+            "grant_type": "client_credentials"
         },
         success: function (resp) {
             callback(resp);

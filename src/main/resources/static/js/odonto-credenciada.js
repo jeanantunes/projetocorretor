@@ -63,19 +63,19 @@ function mapa(abc) {
 var t;
 
 function callToken(callback) {
-	console.log("callToken - odonto-credenciada.js")
+
     $.ajax({
         async: true,
-        //url: "https://api.odontoprev.com.br:8243/token/",
-        url: "/access_token".
+        url: "https://api.odontoprev.com.br:8243/token/",
         method: "POST",
-        headers: {            
+        headers: {
+            "Authorization": "Basic Y3hHZXBoTzFkcERDd3U0VHlfRExWTWxXQ0R3YTp0WlJtSUN1eUJWajJZRVczRjdaNXdWM2E0YVlh",
             "Cache-Control": "no-cache",
-          //  "Content-Type": "application/x-www-form-urlencoded"
+            "Content-Type": "application/x-www-form-urlencoded"
         },
-      //  data: {
-      //      "grant_type": "client_credentials"
-      //  },
+        data: {
+            "grant_type": "client_credentials"
+        },
         success: function (resp) {
             callback(resp)
         },
@@ -147,7 +147,8 @@ function callBairro(callback, token, uf, codigoCidade, codigoBeneficiario) {
         headers: {
             "Content-Type": "application/json",
             "Authorization": "Bearer " + token,
-            "Cache-Control": "no-cache",            
+            "Cache-Control": "no-cache",
+            "Postman-Token": "c7575dd9-1908-dcf4-12eb-9091693dd541"
 
         },
         success: function (resp) {

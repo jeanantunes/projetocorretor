@@ -1,4 +1,6 @@
-﻿$(document).ready(function () {
+﻿
+
+$(document).ready(function () {
 
     especialidades();
     estados();
@@ -10,11 +12,23 @@ function initMap(redeCredenciada) {
     mapa(redeCredenciada);
 }
 
-
-
 var t;
 
 function callEspecialidades(callback, token) {
+
+    swal({
+        title: "Aguarde",
+        text: 'Estamos buscando as especialidades',
+        content: "input",
+        showCancelButton: false,
+        showConfirmButton: false,
+        imageUrl: "img/load.gif",
+        icon: "info",
+        button: {
+            text: "...",
+            closeModal: false,
+        },
+    })
 
     $.ajax({
         async: true,
@@ -25,12 +39,27 @@ function callEspecialidades(callback, token) {
             "Content-Type": "application/json"
         },
         success: function (resp) {
+
             callback(resp)
         },
     });
 }
 
 function callEstados(callback, token) {
+
+    swal({
+        title: "Aguarde",
+        text: 'Estamos buscando os estados',
+        content: "input",
+        showCancelButton: false,
+        showConfirmButton: false,
+        imageUrl: "img/load.gif",
+        icon: "info",
+        button: {
+            text: "...",
+            closeModal: false,
+        },
+    })
 
     $.ajax({
         async: true,
@@ -41,12 +70,27 @@ function callEstados(callback, token) {
             "Content-Type": "application/json"
         },
         success: function (resp) {
+            
             callback(resp)
         },
     });
 }
 
 function callCidade(callback, token, uf) {
+
+    swal({
+        title: "Aguarde",
+        text: 'Estamos procurando as cidades',
+        content: "input",
+        showCancelButton: false,
+        showConfirmButton: false,
+        imageUrl: "img/load.gif",
+        icon: "info",
+        button: {
+            text: "...",
+            closeModal: false,
+        },
+    })
 
     $.ajax({
         async: true,
@@ -64,6 +108,20 @@ function callCidade(callback, token, uf) {
 
 function callBairro(callback, token, uf, codigoCidade) {
 
+    swal({
+        title: "Aguarde",
+        text: 'Estamos procurando dentistas',
+        content: "input",
+        showCancelButton: false,
+        showConfirmButton: false,
+        imageUrl: "img/load.gif",
+        icon: "info",
+        button: {
+            text: "...",
+            closeModal: false,
+        },
+    })
+    
     var codigoBeneficiario = "375796040";
 
     $.ajax({
@@ -78,19 +136,20 @@ function callBairro(callback, token, uf, codigoCidade) {
             callback(resp)
         },
         error: function (xhr) {
+            swal.close();
             callback(xhr)
+            
         }
     });
 }
 
 function especialidades() {
     callTokenProd(function (dataToken) {
+
         callEspecialidades(function (dataEspecialidades) {
             //console.log(dataEspecialidades);
-
+            
             var sel = document.getElementById('especs');
-
-
 
             for (var i = 0; i < dataEspecialidades.length; i++) {
 
@@ -114,6 +173,8 @@ function especialidades() {
 
             document.getElementById('especs').value = especialidade;
 
+            swal.close();
+
         }, dataToken.access_token);
     });
 }
@@ -122,7 +183,7 @@ function callRedeCredenciada(callback, token, CodBeneficiario, uf, codigoEspecia
 
     swal({
         title: "Aguarde",
-        text: 'Estamos procurando seus dados',
+        text: 'Estamos procurando dentitas',
         content: "input",
         showCancelButton: false,
         showConfirmButton: false,
@@ -132,7 +193,7 @@ function callRedeCredenciada(callback, token, CodBeneficiario, uf, codigoEspecia
             text: "...",
             closeModal: false,
         },
-    })
+    });
 
     if (codigoCidade == undefined) {
 
@@ -154,7 +215,8 @@ function callRedeCredenciada(callback, token, CodBeneficiario, uf, codigoEspecia
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + token
+            "Authorization": "Bearer " + token,
+            "Cache-Control": "no-cache"
         },
 
         success: function (resp) {
@@ -198,6 +260,8 @@ function estados() {
 
             document.getElementById('estados').value = "selecione";
 
+
+            swal.close();
         }, dataToken.access_token);
     });
 }
@@ -238,6 +302,7 @@ $("#estados").change(function () {
 
             document.getElementById('cidades').value = "selecione";
 
+            swal.close();
         }, dataToken.access_token, uf);
     });
 });
@@ -290,6 +355,8 @@ $("#cidades").change(function () {
 
             document.getElementById('bairros').value = "selecione";
 
+            swal.close();
+
         }, dataToken.access_token, uf, codigoCidade);
     });
 });
@@ -325,24 +392,37 @@ $("#btnBuscar").click(function () {
 
                 initMap(dataRedeCredenciada);
 
+        
+
             }, dataToken.access_token, codBeneficiario, estado, codigoEspecialidade, codigoMicroregiao, privian, codigoMarca, "0", codCidade);
 
         }
         else if (codBairro != undefined) {
             callRedeCredenciada(function (dataRedeCredenciada) {
 
+                console.log(dataRedeCredenciada);
                 initMap(dataRedeCredenciada);
+               
             }, dataToken.access_token, codBeneficiario, estado, codigoEspecialidade, codigoMicroregiao, privian, codigoMarca, codBairro, codCidade);
         } 
         else if (codBairro == 0) {
             callRedeCredenciada(function (dataRedeCredenciada) {
 
+                console.log(dataRedeCredenciada);
                 initMap(dataRedeCredenciada);
+
             }, dataToken.access_token, codBeneficiario, estado, codigoEspecialidade, codigoMicroregiao, privian, codigoMarca, "0", codCidade);
         } 
 
 
     });
+});
+
+$("#closeModalRedeCredenciada").click(function () {
+
+    $('#myModal').modal('toggle');
+
+
 });
 
 

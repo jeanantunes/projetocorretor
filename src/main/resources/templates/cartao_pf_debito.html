@@ -16,6 +16,13 @@
 <body>
     <!-- Bloco 1 -->
     <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 boxHeader">
+                <div class="col-md-12 text-left imgLogoODPVHeader">
+                    <img src="img/logoODPV-header.png" class="" alt="Logo ODPV Header">
+                </div>
+            </div>
+        </div>
 
         <div class="row">
             <div class="col-md-12 odontBoxCenter">
@@ -50,6 +57,15 @@
                         <input type="tel" class="conta-corrente inputLabelBlur" id="contaDebito" name="" maxlength="10">
                     </div>
 
+                    <div class="row" id="divProximoMes">
+                        <div class="col-md-12">
+                            <label class="label-parentesco labelOdontBlur" id="proximoMes" style="margin-top: 40px; padding-right:20px; padding-left:20px; padding-bottom:10px; font-family: Roboto-Light; text-align: left; font-size: 14px;">
+                            <h6 class="text-left" style="font-family: Roboto-Bold;">ATENÇÃO</h6> 
+                            Não é possível debitar de conta poupança ou de conta salário. Para débitos em contas do banco
+                            Itaú, será necessário confirmar a ação via SMS.</label>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -71,6 +87,6 @@
     <script src="js/sweetalert.min.js"></script>
     <script charset="ISO-8859-1" src="app/coordenador.js"></script>
     <script charset="ISO-8859-1" src="app/pfCartaoDebito.js"></script>
-    <script> resizeIframe('frame_pf');</script>
+
 </body>
 </html>

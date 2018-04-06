@@ -10,8 +10,8 @@ $(document).ready(function () {
 
     $("a[href='meus_dados.html']").hide()
 
-    //setPlanos();
-    //carregarDadosUsuario();
+    
+    carregarDadosUsuario();
 
     $("#logout").click(function () {
         logout.removerRegistroLogin();
@@ -23,59 +23,57 @@ $(document).ready(function () {
         localStorage.removeItem("propostaPf");
         localStorage.removeItem("proposta");
     });
-
-    //resizeIframe('frame_pf');
 });
 
 function defineConexao() {
 	
-	 $.ajax({
-	        url: "/access_token/url",
-	        type: "get",
-	        async: false,
-	        xhrFields: {
-	            withCredentials: true
-	        },
-	        success: function (result) {
-	            URLBase = eval(result).url;
-	            if(URLBase.indexOf("api-it1")!== -1) {
-	            	setPlanosHml();
-	            } else {
-	            	setPlanosProd();
-	            	
-	            }
-	        },
-	        error: function () {
-
-	        }
-	    });
-/*
     $.ajax({
-        url: "config/connection.json",
-        type: "get",
-        async: false,
-        success: function (result) {
-            conexao = eval(result);
-        },
-        error: function () {
+           url: "/access_token/url",
+           type: "get",
+           async: false,
+           xhrFields: {
+               withCredentials: true
+           },
+           success: function (result) {
+               URLBase = eval(result).url;
+               if(URLBase.indexOf("api-it1")!== -1) {
+                   setPlanosHml();
+                   
+               } else {
+                   setPlanosProd();
+                   
+               }
+           },
+           error: function () {
 
-        }
-    });
+           }
+       });
+/*
+   $.ajax({
+       url: "config/connection.json",
+       type: "get",
+       async: false,
+       success: function (result) {
+           conexao = eval(result);
+       },
+       error: function () {
 
-    if (conexao.producaoLigado) {
-        URLBase = conexao.producaoURL;
-        Token = conexao.chaveProd;
-        setPlanosProd();
-    }
-    else {
-        URLBase = conexao.homologacaoURL;
-        console.log(URLBase);
-        Token = conexao.chaveHomolog;
-        setPlanosHml();
-    }
-    */
+       }
+   });
+
+   if (conexao.producaoLigado) {
+       URLBase = conexao.producaoURL;
+       Token = conexao.chaveProd;
+       setPlanosProd();
+   }
+   else {
+       URLBase = conexao.homologacaoURL;
+       console.log(URLBase);
+       Token = conexao.chaveHomolog;
+       setPlanosHml();
+   }
+   */
 }
-
 
 function callTokenProd(callback) {
 	//TODO: Implementar chamada no controller
@@ -154,50 +152,6 @@ function validarData(data) {
 }
 
 
-//function validarData() {
-//    var currentDate = new Date().toLocaleDateString();
-//
-//    if (currentDate < $(".data").val()) {
-//        console.log("Data maior");
-//
-//        $(".data").css({ "border-color": "red" });
-//        $(".nascimento").css("color", "red");
-//        $(".label-nascimento").css("color", "red");
-//    }
-//
-//    //var date = $(".data").val().replace("/", "-").replace("/", "-");
-//    //var date = new Date($(".data").val());
-//
-//    console.log($(".data").val());
-//
-//    console.log(currentDate === $(".data").val());
-//
-//
-//
-//    //if (currentDate < )
-//    //{
-//    //    console.log("Teste data");
-//    //}
-//
-//
-//    //console.log(inputTime);
-//
-//}
-
-//$("#data").blur(function () {
-//
-//    var id = document.getElementById('data');
-//
-//    var RegExPattern = /^((((0?[1-9]|[12]\d|3[01])[\.\-\/](0?[13578]|1[02])      [\.\-\/]((1[6-9]|[2-9]\d)?\d{2}))|((0?[1-9]|[12]\d|30)[\.\-\/](0?[13456789]|1[012])[\.\-\/]((1[6-9]|[2-9]\d)?\d{2}))|((0?[1-9]|1\d|2[0-8])[\.\-\/]0?2[\.\-\/]((1[6-9]|[2-9]\d)?\d{2}))|(29[\.\-\/]0?2[\.\-\/]((1[6-9]|[2-9]\d)?(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00)|00)))|(((0[1-9]|[12]\d|3[01])(0[13578]|1[02])((1[6-9]|[2-9]\d)?\d{2}))|((0[1-9]|[12]\d|30)(0[13456789]|1[012])((1[6-9]|[2-9]\d)?\d{2}))|((0[1-9]|1\d|2[0-8])02((1[6-9]|[2-9]\d)?\d{2}))|(2902((1[6-9]|[2-9]\d)?(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00)|00))))$/;
-//
-//    if (!((id.value.match(RegExPattern)) && (id.value != ''))) {
-//        console.log("data invalida");
-//        id.focus();
-//    }
-//    else console.log("data valida");
-//
-//});
-
 $(".data").blur(function () {
 
     if (validarData($(".data").val())) {
@@ -208,27 +162,17 @@ $(".data").blur(function () {
         return;
     }
 
-    $(".data").css({ "border-color": "red" });
+    $(".data").css("border-color", "red");
     $(".nascimento").css("color", "red");
     $(".label-nascimento").css("color", "red");
 
-    //var dataNascimento = parseDate($(".data").val().replace("/", "-").replace("/", "-"));
-    //var currentDate = new Date().toLocaleDateString();
-    //currentDate = new Date(currentDate.replace("/", "-").replace("/", "-"));
-    //
-    //
-    //console.log(dataNascimento);
-    //console.log(currentDate);
-    //
-    //if (dataNascimento < currentDate)
-    //{
-    //    console.log("Maior de idade");
-    //}
-})
+});
 
 function ValidaNome(fieldValue) {
 
-    var splittedName = fieldValue.split(/[\ |\']+/) // Separa o nome por espaços e apóstrofos (')
+    var splittedName = fieldValue.trim().split(/[\ |\']+/) // Separa o nome por espaços e apóstrofos (')
+
+    var splittedNameSpace = fieldValue.split(/[\ ]+/)
 
     var totalWords = splittedName.length
 
@@ -260,11 +204,13 @@ function ValidaNome(fieldValue) {
         if (splittedName[i] == "") return false
 
         // Se o nome possuir caracteres especiais, exceto apostrofo, é invalido
-        if (!splittedName[i].match(/^[a-zA-ZÁÉÍÓÚÀÈÌÒÙàèìòùáéíóúâêîôûãõ']+$/g)) return false
+        if (!splittedName[i].match(/^[a-zA-ZÁÉÍÓÚÀÈÌÒÙàèìòùáéíóúâêîôûãõçÇ']+$/g)) return false
 
         if (i === '0' || parseInt(i) === (totalWords - 1)) continue // Ignora o primeiro e o último nome
 
-        if (splittedName[i].length === 1 && !splittedName[i].match(/[E|Y]/i)) {
+        var nameWithApostrophe = splittedName[i] + "'" + splittedName[parseInt(i) + 1]
+
+        if (splittedName[i].length === 1 && !splittedName[i].match(/[E|Y]/i) && nameWithApostrophe != splittedNameSpace[i]) {
             return false
         }
     }
@@ -290,6 +236,7 @@ function setPlanosProd() {
     plano.nome = "Integral DOC LE";
     plano.valor = "24";
     plano.centavo = "93";
+    plano.valorFloat = 24.93;
     plano.desc = "Modalidade Compulsório";
     plano.css = "colorSlick3";
     planos.push(plano);
@@ -299,6 +246,7 @@ function setPlanosProd() {
     plano.nome = "Master LE";
     plano.valor = "101";
     plano.centavo = "10";
+    plano.valorFloat = 101.10;
     plano.desc = "Modalidade Compulsório";
     plano.css = "colorSlick2";
 
@@ -309,6 +257,7 @@ function setPlanosProd() {
     plano.nome = "DENTAL BEM-ESTAR";
     plano.valor = "45";
     plano.centavo = "60";
+    plano.valorFloat = 45.60;
     plano.desc = "Mensal";
     plano.css = "colorSlick3";
 
@@ -319,6 +268,7 @@ function setPlanosProd() {
     plano.nome = "DENTAL BEM-ESTAR";
     plano.valor = "456";
     plano.centavo = "00";
+    plano.valorFloat = 456.00;
     plano.desc = "Anual";
     plano.css = "colorSlick3";
 
@@ -329,9 +279,10 @@ function setPlanosProd() {
     plano.nome = "DENTAL BEM-ESTAR";
     plano.valor = "547";
     plano.centavo = "20";
+    plano.valorFloat = 547.20;
     plano.desc = "Anual";
     plano.css = "colorSlick3";
-
+    
     planos.push(plano);
 
     //plano = getRepository("plano");
@@ -359,6 +310,7 @@ function setPlanosProd() {
     plano.nome = "DENTAL ESTÉTICA";
     plano.valor = "115";
     plano.centavo = "00";
+    plano.valorFloat = 115.00;
     plano.desc = "Mensal";
     plano.css = "colorSlick3";
 
@@ -369,6 +321,7 @@ function setPlanosProd() {
     plano.nome = "DENTAL ESTÉTICA";
     plano.valor = "1150";
     plano.centavo = "00";
+    plano.valorFloat = 1150.00;
     plano.desc = "Anual";
     plano.css = "colorSlick3";
 
@@ -379,6 +332,7 @@ function setPlanosProd() {
     plano.nome = "DENTAL ESTÉTICA";
     plano.valor = "1380";
     plano.centavo = "00";
+    plano.valorFloat = 1380.00;
     plano.desc = "Anual";
     plano.css = "colorSlick3";
 
@@ -389,6 +343,7 @@ function setPlanosProd() {
     plano.nome = "DENTAL ORTO";
     plano.valor = "147";
     plano.centavo = "00";
+    plano.valorFloat = 147.00;
     plano.desc = "Mensal";
     plano.css = " colorSlick4";
 
@@ -399,6 +354,7 @@ function setPlanosProd() {
     plano.nome = "DENTAL ORTO";
     plano.valor = "1470";
     plano.centavo = "00";
+    plano.valorFloat = 1470.00;
     plano.desc = "Anual";
     plano.css = "colorSlick4";
 
@@ -409,6 +365,7 @@ function setPlanosProd() {
     plano.nome = "DENTAL ORTO";
     plano.valor = "1764";
     plano.centavo = "00";
+    plano.valorFloat = 1764.00;
     plano.desc = "Anual";
     plano.css = "colorSlick4";
 
@@ -419,6 +376,7 @@ function setPlanosProd() {
     plano.nome = "DENTAL VIP";
     plano.valor = "220";
     plano.centavo = "35";
+    plano.valorFloat = 220.35;
     plano.desc = "Mensal";
     plano.css = "colorSlick5";
 
@@ -429,6 +387,7 @@ function setPlanosProd() {
     plano.nome = "DENTAL VIP";
     plano.valor = "2203";
     plano.centavo = "50";
+    plano.valorFloat = 2203.50;
     plano.desc = "Anual";
     plano.css = "colorSlick5";
 
@@ -439,6 +398,7 @@ function setPlanosProd() {
     plano.nome = "DENTAL VIP";
     plano.valor = "2644";
     plano.centavo = "20";
+    plano.valorFloat = 2644.00;
     plano.desc = "Anual";
     plano.css = "colorSlick5";
 
@@ -453,14 +413,10 @@ function setPlanosProdCod() {
 
     planos = [];
 
-    ////// CODIGO PLANO INTEGRAL DOC LE ////////
-
     var plano = new Object();
     plano.cdPlano = 101;
     plano.nome = "INTEGRAL DOC LE";
     planos.push(plano);
-
-    ////// CODIGO PLANO MASTER LE ////////
 
     var plano = new Object();
     plano.cdPlano = 102;
@@ -484,12 +440,12 @@ function setPlanosProdCod() {
     plano.nome = "DENTAL BEM-ESTAR ANUAL S/CARENCIA";
     planos.push(plano);
 
-
+    
     //////// CODIGO PLANOS DENTAL ESTETICA /////////
 
     var plano = new Object();
     plano.cdPlano = 74;
-    plano.nome = "DENTAL ESTETICA MENSAL";
+    plano.nome = "DENTAL ESTETICA MENSAL";  
     planos.push(plano);
 
     var plano = new Object();
@@ -545,14 +501,10 @@ function setPlanosHmlCod() {
 
     planos = [];
 
-    ////// CODIGO PLANO INTEGRAL DOC LE ////////
-
     var plano = new Object();
     plano.cdPlano = 61;
     plano.nome = "INTEGRAL DOC LE";
     planos.push(plano);
-
-    ////// CODIGO PLANO MASTER LE ////////
 
     var plano = new Object();
     plano.cdPlano = 62;
@@ -641,6 +593,7 @@ function setPlanosHml() {
     plano.nome = "Integral DOC LE";
     plano.valor = "24";
     plano.centavo = "93";
+    plano.valorFloat = 24.93;
     plano.desc = "Modalidade Compulsório";
     plano.css = "colorSlick3";
     planos.push(plano);
@@ -650,6 +603,7 @@ function setPlanosHml() {
     plano.nome = "Master LE";
     plano.valor = "101";
     plano.centavo = "10";
+    plano.valorFloat = 101.10;
     plano.desc = "Modalidade Compulsório";
     plano.css = "colorSlick2";
 
@@ -660,6 +614,7 @@ function setPlanosHml() {
     plano.nome = "DENTAL BEM-ESTAR";
     plano.valor = "45";
     plano.centavo = "60";
+    plano.valorFloat = 45.60;
     plano.desc = "Mensal";
     plano.css = "colorSlick3";
 
@@ -670,6 +625,7 @@ function setPlanosHml() {
     plano.nome = "DENTAL BEM-ESTAR";
     plano.valor = "456";
     plano.centavo = "00";
+    plano.valorFloat = 456.00;
     plano.desc = "Anual";
     plano.css = "colorSlick3";
 
@@ -710,6 +666,7 @@ function setPlanosHml() {
     plano.nome = "DENTAL ESTÉTICA";
     plano.valor = "115";
     plano.centavo = "00";
+    plano.valorFloat = 115.00;
     plano.desc = "Mensal";
     plano.css = "colorSlick3";
 
@@ -720,6 +677,7 @@ function setPlanosHml() {
     plano.nome = "DENTAL ESTÉTICA";
     plano.valor = "1150";
     plano.centavo = "00";
+    plano.valorFloat = 1150.00;
     plano.desc = "Anual";
     plano.css = "colorSlick3";
 
@@ -740,6 +698,7 @@ function setPlanosHml() {
     plano.nome = "DENTAL ORTO";
     plano.valor = "147";
     plano.centavo = "00";
+    plano.valorFloat = 147.00;
     plano.desc = "Mensal";
     plano.css = " colorSlick4";
 
@@ -750,6 +709,7 @@ function setPlanosHml() {
     plano.nome = "DENTAL ORTO";
     plano.valor = "1470";
     plano.centavo = "00";
+    plano.valorFloat = 1470.00;
     plano.desc = "Anual";
     plano.css = "colorSlick4";
 
@@ -770,6 +730,7 @@ function setPlanosHml() {
     plano.nome = "DENTAL VIP";
     plano.valor = "220";
     plano.centavo = "35";
+    plano.valorFloat = 220.35;
     plano.desc = "Mensal";
     plano.css = "colorSlick5";
 
@@ -780,6 +741,7 @@ function setPlanosHml() {
     plano.nome = "DENTAL VIP";
     plano.valor = "2203";
     plano.centavo = "50";
+    plano.valorFloat = 2203.50;
     plano.desc = "Anual";
     plano.css = "colorSlick5";
 
@@ -864,6 +826,28 @@ function carregarDadosUsuario() {
     $("#numeroCorretor").val(carregarDados.telefone);
 }
 
+function toDate(dateStr) {
+    var parts = dateStr.split("/");
+    return new Date(parts[2], parts[1] - 1, parts[0]);
+}
+
+function toDateSplitHifenSerasa(dateStr) {
+    var parts = dateStr.split("-");
+    return new Date(parts[0], parts[1] - 1, parts[2].substring(0, 2));
+}
+
+function isMaiorDeIdade(date) {
+
+    var eightYearsAgo = moment().subtract(18, "years");
+    var birthday = moment(date);
+
+    if (!birthday.isValid()) {
+        // INVALID DATE
+    } else if (eightYearsAgo.isAfter(birthday)) return true;
+
+    return false;
+}
+
 function getUrlParameter(sParam) {
     var sPageURL = decodeURIComponent(window.location.search.substring(1)),
         sURLVariables = sPageURL.split('&'),
@@ -914,6 +898,7 @@ function atualizarDashBoard() {
     var digitandoPessoas = [];
     var criticadaPessoas = [];
     var prontaPessoas = [];
+    var syncPessoas = [];
 
     var digitandoEmpresas = [];
     var criticadaEmpresas = [];
@@ -923,6 +908,7 @@ function atualizarDashBoard() {
         digitandoPessoas = pessoas.filter(function (x) { return x.status == "DIGITANDO" });
         criticadaPessoas = pessoas.filter(function (x) { return x.status == "CRITICADA" });
         prontaPessoas = pessoas.filter(function (x) { return x.status == "PRONTA" });
+        syncPessoas = pessoas.filter(function (x) { return x.status == "SYNC" });
     }
 
     if (empresas != null) {
@@ -940,7 +926,7 @@ function atualizarDashBoard() {
 
     $("#digitando").html(digitandoPessoas.length + digitandoEmpresas.length);
     $("#criticada").html(criticadaPessoas.length + criticadaEmpresas.length);
-    $("#pronta").html(prontaPessoas.length + prontaEmpresas.length);
+    $("#pronta").html(prontaPessoas.length + prontaEmpresas.length + syncPessoas.length);
     $("#finalizada").html(qtdFinalizada);
 }
 
@@ -949,7 +935,7 @@ function atualizarDashBoard() {
 
 function sincronizar() {
 
-    if (checkNetConnection()) {
+    if (navigator.onLine) {
 
         var empresas = get("empresas");
         var pessoas = get("pessoas");
@@ -973,14 +959,25 @@ function sincronizar() {
 
             $.each(empresas, function (i, item) {
                 if (item.status == "PRONTA") {
+
                     var o = empresas.filter(function (x) { return x.cnpj == item.cnpj });
                     var b = beneficiarios.filter(function (x) { return x.cnpj == item.cnpj });
+
+                    var todosExcetoExclusao = empresas.filter(function (x) { return x.cnpj != item.cnpj });
+
+                    o[0].status = "SYNC";
+                    o[0].horaSync = new Date();
+
+                    todosExcetoExclusao.push(o[0]);
+
+                    put("empresas", JSON.stringify(todosExcetoExclusao));
+
                     sincronizarEmpresa(o, b);
-                    //atualizarDashBoard();
+                    atualizarDashBoard();
                 }
             });
 
-
+            swal.close();
         }
 
         if (pessoas != null) {
@@ -1013,13 +1010,15 @@ function sincronizar() {
 
                     o[0].status = "SYNC";
 
+                    o[0].horaSync = new Date();
+
                     pessoas.push(o[0]);
 
                     put("pessoas", JSON.stringify(pessoas));
                    
                     sincronizarPessoa(function (dataProposta) {
                         console.log(dataProposta);
-                    }, o);
+                    }, o, false);
 
                 }
             });
@@ -1050,7 +1049,7 @@ function removerAcentos(newStringComAcento) {
     return string;
 }
 
-function sincronizarPessoa(callback, pessoa) {
+function sincronizarPessoa(callback, pessoa, reSync) { // caso a proposta esteja sendo ressincronizada reSync recebe true
 
     //var pessoa = eval(pessoaString);
     var forcaVenda = get("dadosUsuario");
@@ -1063,23 +1062,49 @@ function sincronizarPessoa(callback, pessoa) {
 
     //var json = "{ \"cdForcaVenda\": \"" + forcaVenda.codigo + "\", \"cdPlano\": \"" + cdPlano + "\", \"titulares\": " + JSON.stringify(pessoa) + "}";
 
-    var json = {
-        "cdForcaVenda": forcaVenda.codigo,
-        "cdPlano": cdPlano,
-        "titulares": [
-            {
-                "celular": pessoa[0].celular,
-                "contatoEmpresa": pessoa[0].contatoEmpresa,
-                "cpf": pessoa[0].cpf,
-                "dadosBancarios": {
-                    "agencia": pessoa[0].dadosBancarios.agencia,
-                    "codigoBanco": pessoa[0].dadosBancarios.codigoBanco,
-                    "conta": pessoa[0].dadosBancarios.conta,
-                    "tipoConta": pessoa[0].dadosBancarios.tipoConta
-                },
-                "dependentes": pessoa[0].dependentes
-                ,
-                "email": pessoa[0].email,
+    var date = toDate(pessoa[0].dataNascimento);
+
+    if (isMaiorDeIdade(date)) {
+        var json = {
+            "cdForcaVenda": forcaVenda.codigo,
+            "cdPlano": cdPlano,
+            "titulares": [
+                {
+                    "nome": removerAcentos(pessoa[0].nome),
+                    "cpf": pessoa[0].cpf,
+                    "dataNascimento": pessoa[0].dataNascimento,
+                    "nomeMae": removerAcentos(pessoa[0].nomeMae),
+                    "sexo": pessoa[0].sexo,
+                    "status": pessoa[0].status,
+                    "titular": pessoa[0].titular,
+                    "celular": pessoa[0].celular,
+                    "contatoEmpresa": pessoa[0].contatoEmpresa,
+                    "dadosBancarios": {
+                        "agencia": pessoa[0].dadosBancarios.agencia,
+                        "codigoBanco": pessoa[0].dadosBancarios.codigoBanco,
+                        "conta": pessoa[0].dadosBancarios.conta,
+                        "tipoConta": pessoa[0].dadosBancarios.tipoConta
+                    },
+                    "dependentes": pessoa[0].dependentes,
+                    "email": pessoa[0].email,
+                    "endereco": {
+                        "bairro": removerAcentos(pessoa[0].endereco.bairro),
+                        "cep": pessoa[0].endereco.cep,
+                        "cidade": removerAcentos(pessoa[0].endereco.cidade),
+                        "complemento": pessoa[0].endereco.complemento,
+                        "logradouro": removerAcentos(pessoa[0].endereco.logradouro),
+                        "estado": pessoa[0].endereco.estado,
+                        "numero": pessoa[0].endereco.numero
+                    }
+                }
+            ],
+            "responsavelContratual": {
+                "nome": pessoa[0].responsavelContratual.nome,
+                "cpf": pessoa[0].responsavelContratual.cpf,
+                "dataNascimento": pessoa[0].responsavelContratual.dataNascimento,
+                "email": pessoa[0].responsavelContratual.email,
+                "celular": pessoa[0].responsavelContratual.celular,
+                "sexo": pessoa[0].responsavelContratual.sexo,
                 "endereco": {
                     "bairro": removerAcentos(pessoa[0].endereco.bairro),
                     "cep": pessoa[0].endereco.cep,
@@ -1088,45 +1113,101 @@ function sincronizarPessoa(callback, pessoa) {
                     "logradouro": removerAcentos(pessoa[0].endereco.logradouro),
                     "estado": pessoa[0].endereco.estado,
                     "numero": pessoa[0].endereco.numero
-                },
-                "dataNascimento": pessoa[0].dataNascimento,
-                "nomeMae": removerAcentos(pessoa[0].nomeMae),
-                "nome": removerAcentos(pessoa[0].nome),
-                "sexo": pessoa[0].sexo,
-                "status": pessoa[0].status,
-                "titular": pessoa[0].titular
+                }
             }
-        ]
-    };
+        };
+
+    } else {
+        var json = {
+            "cdForcaVenda": forcaVenda.codigo,
+            "cdPlano": cdPlano,
+            "titulares": [
+                {
+                    "nome": removerAcentos(pessoa[0].nome),
+                    "cpf": pessoa[0].cpf,
+                    "dataNascimento": pessoa[0].dataNascimento,
+                    "nomeMae": removerAcentos(pessoa[0].nomeMae),
+                    "sexo": pessoa[0].sexo,
+                    "status": pessoa[0].status,
+                    "titular": pessoa[0].titular,
+                    "celular": pessoa[0].celular,
+                    "contatoEmpresa": pessoa[0].contatoEmpresa,
+                    "dadosBancarios": {
+                        "agencia": pessoa[0].dadosBancarios.agencia,
+                        "codigoBanco": pessoa[0].dadosBancarios.codigoBanco,
+                        "conta": pessoa[0].dadosBancarios.conta,
+                        "tipoConta": pessoa[0].dadosBancarios.tipoConta
+                    },
+                    "dependentes": pessoa[0].dependentes,
+                    "email": pessoa[0].email,
+                    "endereco": {
+                        "bairro": removerAcentos(pessoa[0].endereco.bairro),
+                        "cep": pessoa[0].endereco.cep,
+                        "cidade": removerAcentos(pessoa[0].endereco.cidade),
+                        "complemento": pessoa[0].endereco.complemento,
+                        "logradouro": removerAcentos(pessoa[0].endereco.logradouro),
+                        "estado": pessoa[0].endereco.estado,
+                        "numero": pessoa[0].endereco.numero
+                    }
+                }
+            ],
+            "responsavelContratual": {
+                "nome": "",
+                "cpf": "",
+                "dataNascimento": "",
+                "email": "",
+                "celular": "",
+                "sexo": "",
+                "endereco": {
+                    "bairro": "",
+                    "cep": "",
+                    "cidade": "",
+                    "complemento": "",
+                    "logradouro": "",
+                    "estado": "",
+                    "numero": ""
+                }
+            }
+        };
+    }
+
+    
 
     json = JSON.stringify(json);
 
     console.log(json);
 
-    swal({
-        title: "Aguarde",
-        text: 'Estamos enviando a sua proposta',
-        content: "input",
-        imageUrl: "img/load.gif",
-        showCancelButton: false,
-        showConfirmButton: false,
-        icon: "info",
-        button: {
-            text: "...",
-            closeModal: false,
-        },
-    });
+    if (reSync){
+
+        swal({
+            title: "Aguarde",
+            text: 'Estamos enviando a sua proposta',
+            content: "input",
+            imageUrl: "img/load.gif",
+            showCancelButton: false,
+            showConfirmButton: false,
+            icon: "info",
+            button: {
+                text: "...",
+                closeModal: false,
+            },
+        });
+
+    }
+
+
 
 
     callTokenProd(function (dataToken) {
 
         $.ajax({
-            async: true,            
+            async: true,
+            //url: URLBase + "vendapf",
             url: URLBase + "/corretorservicos/1.0/vendapf",
             method: "POST",
             data: json,
             headers: {
-                "Content-Type": "application/json",                
+                "Content-Type": "application/json",               
                 "Authorization": "Bearer " + dataToken.access_token
             },
             //data: "{ \r\n   \"cdForcaVenda\":\"" + forcaVenda.codigo + "\",\r\n   \"cdPlano\":\"" + 4 + "\",\r\n   \"titulares\":[ \r\n      { \r\n         \"celular\":\"" + pessoa[0].celular + "\",\r\n         \"contatoEmpresa\":" + pessoa[0].contatoEmpresa + ",\r\n         \"cpf\":\"" + pessoa[0].cpf + "\",\r\n         \"dadosBancarios\":{ \r\n            \"agencia\":\"" + pessoa[0].dadosBancarios.agencia + "\",\r\n            \"codigoBanco\":\"" + pessoa[0].dadosBancarios.codigoBanco + "\",\r\n            \"conta\":\"" + pessoa[0].dadosBancarios.conta + "\",\r\n            \"tipoConta\":\"" + pessoa[0].dadosBancarios.tipoConta + "\"\r\n         },\r\n         \"dependentes\":[ \r\n \r\n         ],\r\n         \"email\":\"" + pessoa[0].email + "\",\r\n         \"endereco\":{ \r\n            \"bairro\":\"" + pessoa[0].endereco.bairro + "\",\r\n            \"cep\":\"" + pessoa[0].endereco.cep + "\",\r\n            \"cidade\":\"" + pessoa[0].endereco.cidade + "\",\r\n            \"complemento\":\"" + pessoa[0].endereco.complemento + "\",\r\n            \"logradouro\":\"" + pessoa[0].endereco.logradouro + "\",\r\n            \"estado\":\"" + pessoa[0].endereco.estado + "\",\r\n            \"numero\":\"" + pessoa[0].endereco.numero + "\"\r\n         },\r\n         \"dataNascimento\":\"" + pessoa[0].dataNascimento + "\",\r\n         \"nomeMae\":\"" + pessoa[0].nomeMae + "\",\r\n         \"nome\":\"" + pessoa[0].nome + "\",\r\n         \"sexo\":\"" + pessoa[0].sexo +"\",\r\n         \"status\":\"PRONTA\",\r\n         \"titular\":true\r\n      }\r\n   ]\r\n}\r\n",
@@ -1148,6 +1229,7 @@ function sincronizarPessoa(callback, pessoa) {
 
                     var pessoas = get("pessoas");
                     pessoa[0].status = "ENVIADA";
+                    pessoa[0].dataAtualizacao = new Date();
 
                     var todosExcetoExclusao = pessoas.filter(function (x) { return x.cpf != pessoa[0].cpf });
                     todosExcetoExclusao.push(pessoa[0]);
@@ -1165,10 +1247,11 @@ function sincronizarPessoa(callback, pessoa) {
             }
         });
     });
-
 }
 
 function sincronizarEmpresa(proposta, beneficiarios) {
+
+    console.log(proposta);
 
     var dadosUsuario = get("dadosUsuario");
     var pdata = [];
@@ -1178,59 +1261,37 @@ function sincronizarEmpresa(proposta, beneficiarios) {
 
     callTokenProd(function (dataToken) {
         $.ajax({
-            url: URLBase + "/corretorservicos/1.0/vendapme",            
+            url: URLBase + "/corretorservicos/1.0/vendapme",
+            //url: "http://www.corretorvendaodonto.com.br:7001/portal-corretor-servico-0.0.1-SNAPSHOT/vendapme",
             type: "POST",
             data: json,
             dataType: "json",
             headers: {
-                "Content-Type": "application/json",                
+                "Content-Type": "application/json",
                 "Authorization": "Bearer " + dataToken.access_token
             },
             success: function (result) {
                 if (result.id == 0) {
                     proposta[0].status = "CRITICADA";
                     atualizarEmpresas(proposta[0]);
-                    localStorage.removeItem('proposta');
-                    localStorage.removeItem('beneficiarios');
-                    localStorage.removeItem('beneficiario');
-                    localStorage.removeItem('empresas');
-                    localStorage.removeItem('numeroDependentes');
-                    localStorage.removeItem('QtdFinalizada');
-                    swal.close();
-                    swal({
-                            title: "Ops!",
-                            text: "Erro ao enviar a proposta, tente mais tarde ou entre em contato conosco!",
-                            type: "error"
-                        },
-                        function (isConfirm) {
-                            window.location.href = "/home";
-                        });
-
                 }
                 else {
-                    localStorage.removeItem('proposta');
-                    localStorage.removeItem('beneficiarios');
-                    localStorage.removeItem('beneficiario');
-                    localStorage.removeItem('empresas');
-                    localStorage.removeItem('numeroDependentes');
-                    localStorage.removeItem('QtdFinalizada');
-                    swal.close();
-
-                    //var empresas = get("empresas");
-                    //var todosExcetoExclusao = empresas.filter(function (x) { return x.cnpj != proposta[0].cnpj });
+                    var empresas = get("empresas");
+                    var todosExcetoExclusao = empresas.filter(function (x) { return x.cnpj != proposta[0].cnpj });
                 
-                    //proposta[0].status = "ENVIADA";
+                    proposta[0].status = "ENVIADA";
 
-                    //todosExcetoExclusao.push(proposta[0]);
+                    todosExcetoExclusao.push(proposta[0]);
 
-                    //put("empresas", JSON.stringify(todosExcetoExclusao));
+                    put("empresas", JSON.stringify(todosExcetoExclusao));
 
                 }
 
-                //atualizarDashBoard();
+                atualizarDashBoard();
             },
-            error: function () {
-                //swal.close();
+            error: function (xhr) {
+                console.log(xhr);
+                swal.close();
             }
         });
     });
@@ -1249,7 +1310,6 @@ function isValidDate(date) {
 }
 
 function checkNetConnection() {
-/*
     var xhr = new XMLHttpRequest();
     var file = "http://www.odontoprev.com.br/home/portugues/_img/logo-odontoprev.png";
     var r = Math.round(Math.random() * 10000);
@@ -1264,8 +1324,6 @@ function checkNetConnection() {
     } catch (e) {
         return false;
     }
-    */
-	return true;
 }
 
 function getInputsByValue(value) {
@@ -1285,7 +1343,6 @@ function validateEmail(email) {
 
     return false;
 }
-
 
 function resizeIframe(iframeID)
 {

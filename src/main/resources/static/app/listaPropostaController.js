@@ -76,6 +76,7 @@ function carregarListaOffline() {
     $("#total").html(qtdEmpresas + qtdPessoas);
 
     $.each(pessoas, function (i, item) {
+
         var itemLista = getComponent("itemLista");
 
         var status = "";
@@ -96,13 +97,17 @@ function carregarListaOffline() {
             link = "logado.html";
             acaoseta = "";
         } else if (item.status == "CRITICADA") {
-            status = "Pendente finalizar cadastro";
+            status = "Criticada";
             css = "colorCirc3";
             acao = "ver detalhes";
             link = "venda_pf_editar.html?cpf=" + item.cpf;
             acaoseta = "";
-        } else if (item.status == "ENVIADA") {
+        } else if (item.status == "ENVIADA" || item.status == "Aprovado") {
             status = "Enviada";
+            css = "colorCirc2";
+            acaoseta = "hide";
+        } else if (item.status == "SYNC") {
+            status = "Sincronizando";
             css = "colorCirc2";
             acaoseta = "hide";
         }
@@ -120,6 +125,8 @@ function carregarListaOffline() {
     $.each(empresas, function (i, item) {
         var itemLista = getComponent("itemLista");
 
+        console.log(item);
+
         var status = "";
         var css = "";
         var acao = "";
@@ -127,7 +134,7 @@ function carregarListaOffline() {
         var acaoseta = "";
 
         if (item.status == "DIGITANDO") {
-            status = "Aguardando aprovação";
+            status = "Incompleta";
             css = "colorCirc1";
             acao = "ver detalhes";
             link = "venda_pme_editar.html?cnpj=" + item.cnpj;
@@ -139,7 +146,7 @@ function carregarListaOffline() {
             link = "logado.html";
             acaoseta = "";
         } else if (item.status == "CRITICADA") {
-            status = "Pendente finalizar cadastro";
+            status = "Criticada";
             css = "colorCirc3";
             acao = "ver detalhes";
             link = "venda_pme_editar.html?cnpj=" + item.cnpj;
@@ -183,9 +190,7 @@ function carregarListaOnline() {
 
     var qtdPessoas = 0;
     var qtdEmpresas = 0;
-
-        
-
+ 
     //if (pessoas != null) {
     //    qtdPessoas = pessoas.length;
     //}
@@ -196,7 +201,11 @@ function carregarListaOnline() {
 
     $.each(pessoas, function (i, item) {
 
-        if (item.status != "ENVIADA") {
+        console.log(item);
+
+        if (item.status != "ENVIADA" && item.status != "Aprovado") {
+
+            
 
             qtdPessoas++;
 
@@ -221,11 +230,15 @@ function carregarListaOnline() {
                 link = "logado.html";
                 acaoseta = "";
             } else if (item.status == "CRITICADA") {
-                status = "Pendente finalizar cadastro";
+                status = "Criticada";
                 css = "colorCirc3";
                 acao = "ver detalhes";
                 link = "venda_pf_editar.html?cpf=" + item.cpf;
                 acaoseta = "";
+            } else if (item.status == "SYNC") {
+                status = "Sincronizando";
+                css = "colorCirc5";
+                acaoseta = "hide";
             }
 
             itemLista = itemLista.replace("{NOME}", item.nome);
@@ -246,8 +259,6 @@ function carregarListaOnline() {
         TokenAcess = dataToken.access_token;
 
         callDashBoardPF(function (dataDashPf) {
-
-            console.log(dataDashPf);
 
             $.each(dataDashPf.dashboardPropostasPF, function (i, item) {
 
@@ -303,19 +314,19 @@ function carregarListaOnline() {
 
     $.each(empresas, function (i, item) {
 
+        var status = "";
+        var css = "";
+        var acao = "";
+        var link = "";
+
         if (item.status != "ENVIADA") {
 
             qtdEmpresas++;
 
             var itemLista = getComponent("itemLista");
 
-            var status = "";
-            var css = "";
-            var acao = "";
-            var link = "";
-
             if (item.status == "DIGITANDO") {
-                status = "Aguardando aprovação";
+                status = "Incompleta";
                 css = "colorCirc1";
                 acao = "ver detalhes";
                 link = "venda_pme_editar.html?cnpj=" + item.cnpj;
@@ -327,7 +338,7 @@ function carregarListaOnline() {
                 link = "logado.html";
                 acaoseta = "";
             } else if (item.status == "CRITICADA") {
-                status = "Pendente finalizar cadastro";
+                status = "Criticada";
                 css = "colorCirc3";
                 acao = "ver detalhes";
                 link = "venda_pme_editar.html?cnpj=" + item.cnpj;
@@ -335,6 +346,10 @@ function carregarListaOnline() {
             } else if (item.status == "ENVIADA") {
                 status = "Enviada";
                 css = "colorCirc2";
+                acaoseta = "hide";
+            } else if (item.status == "SYNC") {
+                status = "Sincronizando";
+                css = "colorCirc5";
                 acaoseta = "hide";
             }
 
@@ -371,25 +386,37 @@ function carregarListaOnline() {
                 var acao = "";
                 var link = "";
 
-                if (item.statusVenda == "PROPOSTA IMPLANTADA") {
+                if (item.statusVenda == "Aprovado") {
 
-                    status = "PROPOSTA IMPLANTADA";
-                    css = "colorCirc1";
-                    acaoseta = "hide";
-
-                } else if (item.statusVenda == "VIDAS COM CRITICAS") {
-                    status = "VIDAS COM CRITICAS";
-                    css = "colorCirc3";
-                    acaoseta = "hide";
-                } else if (item.statusVenda == "AGUARDANDO EMPRESA") {
-                    status = "AGUARDANDO EMPRESA";
-                    css = "colorCirc1";
-                    acaoseta = "hide";
-                } else if (item.statusVenda == "VIDAS OK") {
-                    status = "VIDAS OK";
+                    status = "Aprovada";
                     css = "colorCirc2";
                     acaoseta = "hide";
+                } else if (item.statusVenda == "Criticado") {
+
+                    status = "Criticada";
+                    css = "colorCirc3";
+                    acaoseta = "hide";
                 }
+
+                //if (item.statusVenda == "PROPOSTA IMPLANTADA") {
+                //
+                //    status = "PROPOSTA IMPLANTADA";
+                //    css = "colorCirc1";
+                //    acaoseta = "hide";
+                //
+                //} else if (item.statusVenda == "VIDAS COM CRITICAS") {
+                //    status = "VIDAS COM CRITICAS";
+                //    css = "colorCirc3";
+                //    acaoseta = "hide";
+                //} else if (item.statusVenda == "AGUARDANDO EMPRESA") {
+                //    status = "AGUARDANDO EMPRESA";
+                //    css = "colorCirc1";
+                //    acaoseta = "hide";
+                //} else if (item.statusVenda == "VIDAS OK") {
+                //    status = "VIDAS OK";
+                //    css = "colorCirc2";
+                //    acaoseta = "hide";
+                //}
 
                 itemLista = itemLista.replace("{NOME}", (item.razaoSocial == undefined || item.razaoSocial == "" ? item.cnpj : item.razaoSocial));
                 itemLista = itemLista.replace("{STATUS}", status);
@@ -410,10 +437,8 @@ function carregarListaOnline() {
         }, TokenAcess);
     });
  
-
     $("#totalEmpresas").html(qtdEmpresas);
     $("#total").html(qtdEmpresas + qtdPessoas);
-
     
 }
 

@@ -2,20 +2,25 @@ $(document).ready(function ()
 { });
 
 function callToken(callback) {
-	    console.log("callTokenProd - fale_conosco_mensagemController.js");
+
     $.ajax({
         async: true,
-        url: "/access_token",
+        url: "https://api.odontoprev.com.br:8243/token/",
         method: "POST",
         headers: {
+            "Authorization": "Basic ZWp3c0pfVGN6YXdObUdDYlN3dW1PRnVXTXQ0YTozM3pyVjJoRXo3TkN3WElpejNfcnlnbzNZZjRh",
             "Cache-Control": "no-cache",
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        data: {
+            "grant_type": "client_credentials"
         },
         success: function (resp) {
             callback(resp);
         },
         error: function (xhr)
         {
-            swal("Ops!", "Erro na conexï¿½o, tente mais tarde", "error");
+            swal("Ops!", "Erro na conexão, tente mais tarde", "error");
         }
     });
 }
@@ -66,7 +71,7 @@ function callEmail(callback, token)
         //data:"{\r\n\r\n  \"sender\": \"" + faleConosco.emailRemetente + "\",\r\n\r\n\"senderName\": \"" + faleConosco.nomeRemetente + "\",\r\n\r\n\"recepients\": [\r\n\r\n    \"" + emailFaleConosco + "\"\r\n\r\n  ],\r\n\r\n  \"recepientName\": \"Fernando S.\",\r\n\r\n\"subject\": \"" + faleConosco.subject + "\",\r\n\r\n\"type\": \"text/html\",\r\n\r\n\"body\": \"" + faleConosco.textoEnviado + "\"\r\n\r\n}",
 
         error: function (xhr) {
-            swal("Ops!", "Erro na conexï¿½o, tente mais tarde", "error");
+            swal("Ops!", "Erro na conexão, tente mais tarde", "error");
         }
     });
 

@@ -1,26 +1,5 @@
 ﻿$(document).ready(function () {
-    var forca = new Object();
-	console.log("Chamada UsuarioSession");
-	$.ajax({
-        url: "/usuario_session",
-        type: "get",
-        async: false,
-        xhrFields: {
-            withCredentials: true
-        },
-        success: function (result) {
-        	console.log(result);
-            forca.codigo = eval(result).codigoUsuario;
-        },
-        error: function (result) {
-        	console.log(result);
-        }
-    });    
-    
-    put("dadosUsuario", JSON.stringify(forca)) ;
-
     setIdPlano();
-
 });
 
 function iniciarProposta(cdPlano) {
@@ -54,10 +33,10 @@ function setIdPlano() {
         }
     });
 
-    var plano = planos.filter(function (x) {if (x.nome == "INTEGRAL DOC LE"){return x.nome;}});
+    var plano = planos.filter(function (x) { if (x.nome == "INTEGRAL DOC LE") { return x.nome; } });
     $("#btnIntegral").attr("data-id", plano[0].cdPlano);
 
 
-    var plano = planos.filter(function (x) {if (x.nome == "MASTER LE"){return x.nome;}});
+    var plano = planos.filter(function (x) { if (x.nome == "MASTER LE") { return x.nome; } });
     $("#btnMaster").attr("data-id", plano[0].cdPlano);
 }
