@@ -117,7 +117,8 @@ public class CorretorWebConfig extends WebMvcConfigurerAdapter implements Applic
     
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {        
-        registry.addViewController("/login").setViewName("login"); 
+        registry.addViewController("/login").setViewName("login");
+        
         registry.addViewController("/anteriorLogado.html").setViewName("anteriorLogado");
         registry.addViewController("/cadastro_usuario.html").setViewName("cadastro_usuario");
         registry.addViewController("/cartao_pf_debito.html").setViewName("cartao_pf_debito");
