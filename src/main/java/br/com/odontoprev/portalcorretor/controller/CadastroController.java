@@ -17,7 +17,7 @@ public class CadastroController {
         Cadastro cadastro = new Cadastro();
         cadastro.setDono(true);
         cadastro.setCnpj("23423423423");
-        return new ModelAndView("cadastro/home", "cadastro", cadastro);
+        return new ModelAndView("cadastro_usuario", "cadastro", cadastro);
     }
 
 
