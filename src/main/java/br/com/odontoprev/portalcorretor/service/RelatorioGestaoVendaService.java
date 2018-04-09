@@ -33,10 +33,8 @@ public class RelatorioGestaoVendaService {
 		
 		 log.info("Relatorio Gestao de Venda - gerarCSV "); 
 		 
-		 //String url = requesBasetUrl + gestaoVendaCSV + cnpj;
+		 String url = requesBasetUrl + gestaoVendaCSV + cnpj;
 		 
-		 String url = "https://api-it1.odontoprev.com.br:8243/corretorservicos/1.0/downloadCSV/03136742000137";		 
-	    
 		 RestTemplate restTemplate = new RestTemplate();
 		 
 	     try {
