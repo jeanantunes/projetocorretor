@@ -1,26 +1,35 @@
 ﻿<!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Language" content="pt-br">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1 shrink-to-fit=no">
-
     <title>Odontoprev</title>
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/odontoprev.css" rel="stylesheet">
-    <link href="css/sweetalert.css" rel="stylesheet" />
-	<script src="js/jquery.3.2.1.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/scripts.js"></script>
-    <script src="js/coordenador.js"></script>
-    <script charset="ISO-8859-1" src="js/cadastroUsuarioController.js"></script>
-    <script charset="ISO-8859-1" src="js/sweetalert.min.js"></script>
-    <script src="js/odontoprev.js"></script>
-    <script src="js/jquery.mask.min.js"></script>
-    <script src="js/odonto-Valida.js"></script>
+	
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/odontoprev.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/sweetalert.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-theme.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+    <!-- 		<link href="css/estiloOdontoPrev.css" rel="stylesheet"> -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" th:src="@{/app/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/app/jquery.mask.min.js}"></script>
+    <script type="text/javascript" th:src="@{/app/odonto-Valida.js}"></script>
+	<script type="text/javascript" th:src="@{/app/scripts.js}"></script>
+	<!--<script type="text/javascript" th:src="@{/app/coordenador.js}"></script>-->
+	<script type="text/javascript" th:src="@{/app/cadastroCoordenadorController.js}"></script>
+	<script type="text/javascript" th:src="@{/app/cadastroUsuarioController.js}"></script>
+	<script type="text/javascript" th:src="@{/app/sweetalert.min.js}"></script>
+	<script type="text/javascript" th:src="@{/app/odontoprev.js}"></script>
 
 </head>
 <body>
@@ -59,7 +68,7 @@
 
         <div class="row">
             <div class="col-md-12">
-                <a class="btn btn-lg btn-block btnOdont disabled" id="btnCpfOdont" role="button">CONTINUAR</a>
+                <a class="btn btn-lg btn-block btnOdont" id="btnCpfOdont" role="button">CONTINUAR</a>
             </div>
         </div>
     </div>
@@ -624,8 +633,8 @@
         <div class="modal-dialog modalConteiner">
             <div class="modal-content">
                 <div class="modal-body modalBoxCenter">
-                    <img src="img/btn-excluir.png" class="closeModal" data-dismiss="modal" class="btnExcluir" alt="">
-                    <div class="row">
+                    <img th:src="@{/img/btn-excluir.png}" class="closeModal" data-dismiss="modal" class="btnExcluir" alt="">
+                       <div class="row">
                         <h1 class="titleOdont text-center">
                             ATENÇÃO
                         </h1>

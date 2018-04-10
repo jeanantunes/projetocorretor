@@ -1,15 +1,21 @@
 package br.com.odontoprev.portalcorretor.controller;
 
+import br.com.odontoprev.api.manager.client.token.ApiManagerToken;
+import br.com.odontoprev.api.manager.client.token.ApiManagerTokenFactory;
+import br.com.odontoprev.api.manager.client.token.ApiToken;
+import br.com.odontoprev.api.manager.client.token.enumerator.ApiManagerTokenEnum;
+import br.com.odontoprev.api.manager.client.token.exception.ConnectionApiException;
+import br.com.odontoprev.api.manager.client.token.exception.CredentialsInvalidException;
+import br.com.odontoprev.api.manager.client.token.exception.URLEndpointNotFound;
 import br.com.odontoprev.portalcorretor.model.Cadastro;
+import br.com.odontoprev.portalcorretor.service.dto.TokenResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@RestController
 public class CadastroController {
 
     @RequestMapping(value = "cadastro", method = RequestMethod.GET)
@@ -61,6 +67,28 @@ public class CadastroController {
     @RequestMapping(value = "bemvindo", method = RequestMethod.POST)
     public ModelAndView bemvindo(@ModelAttribute("cadastro") Cadastro cadastro) {
         return new ModelAndView("cadastro/bemvindo", "cadastro", cadastro);
+    }
+
+    @RequestMapping(value = "get_token", method = RequestMethod.GET, produces = "application/json")
+    public String getToken() {
+        ApiManagerToken apiManager = ApiManagerTokenFactory.create(ApiManagerTokenEnum.WSO2, "PORTAL_CORRETOR_WEB");
+        ApiToken apiToken = null;
+        TokenResponse token = new TokenResponse();
+        try {
+            apiToken = apiManager.generateToken();
+
+            token.setToken(apiToken.getAccessToken());
+        } catch (CredentialsInvalidException e) {
+            e.printStackTrace();
+        } catch (URLEndpointNotFound urlEndpointNotFound) {
+            urlEndpointNotFound.printStackTrace();
+        } catch (ConnectionApiException e) {
+            e.printStackTrace();
+        }
+
+        return token.getToken();
+
+
     }
 
 

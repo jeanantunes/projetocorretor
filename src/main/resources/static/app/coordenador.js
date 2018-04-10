@@ -17,6 +17,11 @@ $(document).ready(function () {
         logout.removerRegistroLogin();
     });
 
+    callTokenProd(function(dataToken){
+
+
+    });
+
     defineConexao();
 
     $(".linkMenu").click(function () {
@@ -80,7 +85,7 @@ function callTokenProd(callback) {
     console.log("callTokenProd - coordendador.js");
     $.ajax({
         async: true,
-        url: "/access_token",
+        url: "/token",
         method: "POST",
         headers: {
             "Cache-Control": "no-cache",
