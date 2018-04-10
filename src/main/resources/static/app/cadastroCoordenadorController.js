@@ -34,7 +34,7 @@ function defineConexao() {
         type: "get",
         async: false,
         success: function (result) {
-            conexao = JSON.parse(result);
+            conexao = eval(result);
         },
         error: function () {
 
@@ -43,12 +43,10 @@ function defineConexao() {
 
     if (conexao.producaoLigado) {
         URLBase = conexao.producaoURL;
-        Token = conexao.chaveProd;
     }
     else {
         URLBase = conexao.homologacaoURL;
         console.log(URLBase);
-        Token = conexao.chaveHomolog;
     }
 }
 
@@ -56,16 +54,9 @@ function callTokenProd(callback) {
 
     $.ajax({
         async: true,
-        url: URLBase + "/token",
-        method: "POST",
-        headers: {
-            "Authorization": "Basic " + Token,
-            "Cache-Control": "no-cache",
-            "Content-Type": "application/x-www-form-urlencoded"
-        },
-        data: {
-            "grant_type": "client_credentials"
-        },
+        url: "/get_token",
+        method: "GET",
+
         success: function (resp) {
             callback(resp);
         },

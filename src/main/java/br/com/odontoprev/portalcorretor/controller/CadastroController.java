@@ -9,10 +9,13 @@ import br.com.odontoprev.api.manager.client.token.exception.CredentialsInvalidEx
 import br.com.odontoprev.api.manager.client.token.exception.URLEndpointNotFound;
 import br.com.odontoprev.portalcorretor.model.Cadastro;
 import br.com.odontoprev.portalcorretor.service.dto.TokenResponse;
+import br.com.odontoprev.portalcorretor.service.dto.omninetworking.wim.ws.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.ws.rs.Produces;
 
 @Controller
 @RestController
@@ -68,9 +71,9 @@ public class CadastroController {
     public ModelAndView bemvindo(@ModelAttribute("cadastro") Cadastro cadastro) {
         return new ModelAndView("cadastro/bemvindo", "cadastro", cadastro);
     }
-
-    @RequestMapping(value = "get_token", method = RequestMethod.GET, produces = "application/json")
-    public String getToken() {
+    @Produces("application/json")
+    @RequestMapping(value = "get_token", method = RequestMethod.GET)
+    public TokenResponse getToken() {
         ApiManagerToken apiManager = ApiManagerTokenFactory.create(ApiManagerTokenEnum.WSO2, "PORTAL_CORRETOR_WEB");
         ApiToken apiToken = null;
         TokenResponse token = new TokenResponse();
@@ -86,7 +89,7 @@ public class CadastroController {
             e.printStackTrace();
         }
 
-        return token.getToken();
+        return token;
 
 
     }

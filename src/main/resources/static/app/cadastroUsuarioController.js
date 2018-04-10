@@ -47,7 +47,7 @@ $(document).ready(function () {
                         $("#cpfOdont").addClass("hide");
                     }
 
-                }, dataToken.access_token, cpfValidado);
+                }, dataToken.token, cpfValidado);
             });
         }
     });
@@ -57,7 +57,7 @@ $(document).ready(function () {
 });
 
 function callForcaVenda(callback, token, cpf) {
-
+console.log(token);
     swal({
         title: "Aguarde",
         text: 'Estamos procurando seus dados',
@@ -78,7 +78,6 @@ function callForcaVenda(callback, token, cpf) {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Cache-Control": "no-cache",
             "Authorization": "Bearer " + token
         },
         success: function (resp) {
