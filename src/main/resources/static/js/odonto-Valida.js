@@ -143,7 +143,6 @@ function callCep(callback, token, cep) {
         method: "GET",
         headers: {
             "Authorization": "Bearer " + token,
-            "Cache-Control": "no-cache",
             "Content-Type": "application/json"
         },
         success: function (resp) {
