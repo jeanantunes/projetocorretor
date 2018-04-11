@@ -27,7 +27,7 @@ $(document).ready(function () {
                         return;
                     }
 
-                    if (dataDadosUsuario.cdForcaVenda != null && dataDadosUsuario.statusForcaVenda.toUpperCase() == "PR�-CADASTRO") {
+                    if (dataDadosUsuario.cdForcaVenda != null && dataDadosUsuario.statusForcaVenda.toUpperCase() == "PRÉ-CADASTRO") {
 
                         swal.close();
                         console.log(dataDadosUsuario);
@@ -85,10 +85,10 @@ $(document).ready(function () {
 
                     console.log(dataForcaVenda);
 
-                }, dataToken.access_token, cpfTratado, celularTratado, email, codCorretora, nome, senha, dataNascimento);
+                }, dataToken.token, cpfTratado, celularTratado, email, codCorretora, nome, senha, dataNascimento);
 
 
-            }, dataToken.access_token, cnpjValidado);
+            },dataToken.token, cnpjValidado);
         });
 
     });
@@ -221,27 +221,9 @@ $(document).ready(function () {
 
                     $("#corretoraCadastro").html(nomeEmpresa);
 
-                    forca.nome = dataDadosUsuario.nome;
-                    forca.cargo = dataDadosUsuario.cargo;
-                    forca.cpf = dataDadosUsuario.cpf;
-                    forca.email = dataDadosUsuario.email;
-                    forca.login = dataDadosUsuario.login;
-                    forca.nomeEmpresa = dataDadosUsuario.corretora.razaoSocial;
-                    forca.nomeGerente = dataDadosUsuario.nomeGerente;
-                    forca.responsavel = dataDadosUsuario.responsavel;
-                    forca.rg = dataDadosUsuario.rg;
-                    forca.senha = dataDadosUsuario.senha;
-                    forca.statusUsuario = dataDadosUsuario.statusForcaVenda;
-                    forca.telefone = dataDadosUsuario.celular;
-                    forca.codigo = dataDadosUsuario.cdForcaVenda;
+                }, dataToken.token, cpf);
 
-                    put("dadosUsuario", JSON.stringify(forca));
-
-                    login.salvarDadosUsuario(JSON.stringify(forca));
-
-                }, dataToken.access_token, cpf);
-
-            }, dataToken.access_token, codigoForca, nome, telefone, email, senha);
+            }, dataToken.token, codigoForca, nome, telefone, email, senha);
 
         });
 
@@ -504,7 +486,6 @@ function callInputForcaVenda(callback, token, cpf, celular, email, corretora, no
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "Cache-Control": "no-cache",
             "Authorization": "Bearer " + token
         },
         processData: false,
