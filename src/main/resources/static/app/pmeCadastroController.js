@@ -635,7 +635,7 @@ function carregarProposta() {
         $("#squaredOne").attr("checked", true);
         $("#divSegundoContato").addClass('hide');
     }
-    else {
+    else if(proposta.contatoEmpresa != "" && !proposta.contatoEmpresa) {
         $("#squaredOne").attr("checked", false);
         $("#divSegundoContato").removeClass('hide');
         $("#nomeSegundoContato").val(proposta.contactEmpresa.nome);
