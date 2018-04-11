@@ -22,11 +22,12 @@ $(document).ready(function () {
 
 });
 
+
+
 function addBenef() {
     if ($(".cnpj").val() == "")
     {
         swal("Ops!", "Preencha o cnpj", "error");
-        $("#cnpjEmpresa").focus();
         return;
     }
     salvarRascunhoMemoria();
@@ -350,15 +351,15 @@ function validateDataMei(date) {
 function buscarEmpresa() {
     
     var cnpjValidado = $('#cnpjEmpresa').val().replace(/\D/g, '');
-    var cnpj = get("dadosUsuario");
+    //var cnpj = get("dadosUsuario");
     var cnpjDaProposta = get("proposta");
 
-    if (cnpj.cnpjCorretora == cnpjValidado)
-    {
-        swal("Ops", "Esse é o CNPJ da sua corretora, digite o CNPJ do seu cliente", "info");
-        $("#cnpjEmpresa").val("");
-        return;
-    }
+    //if (cnpj.cnpjCorretora == cnpjValidado)
+    //{
+    //    swal("Ops", "Esse é o CNPJ da sua corretora, digite o CNPJ do seu cliente", "info");
+    //    $("#cnpjEmpresa").val("");
+    //    return;
+    //}
 
     bloquearCampos();
 
@@ -479,61 +480,61 @@ function salvarRascunho() {
 
     if ($("#cnpjEmpresa").val() == "") {
         swal("Ops!", "Preencha o CNPJ", "error");
-        $("#cnpjEmpresa").focus();
+
         return;
     }
     
     if ($("#telefone").val() == "") {
         swal("Ops!", "Preencha o telefone", "error");
-        $("#cnpjEmpresa").focus();
+
         return;
     }
 
     if ($("#celular").val() == "") {
         swal("Ops!", "Preencha o celular", "error");
-        $("#cnpjEmpresa").focus();
+
         return;
     }
 
     if ($("#email").val() == "") {
         swal("Ops!", "Preencha o email", "error");
-        $("#cnpjEmpresa").focus();
+
         return;
     }
 
     if (!validateEmail($(".email").val())) {
         swal("Ops!", "Preencha um E-mail válido", "error");
-        $("#cnpjEmpresa").focus();
+
         return;
     }
 
     if ($("#cep").val() == "") {
         swal("Ops!", "Preencha o cep", "error");
-        $("#cnpjEmpresa").focus();
+
         return;
     }
 
     if ($("#rua").val() == "") {
         swal("Ops!", "Preencha o endereço", "error");
-        $("#cnpjEmpresa").focus();
+
         return;
     }
 
     if ($("#bairro").val() == "") {
         swal("Ops!", "Preencha o bairro", "error");
-        $("#cnpjEmpresa").focus();
+
         return;
     }
 
     if ($("#cidade").val() == "") {
         swal("Ops!", "Preencha o cidade", "error");
-        $("#cnpjEmpresa").focus();
+
         return;
     }
 
     if ($("#estado").val() == "") {
         swal("Ops!", "Preencha o estado", "error");
-        $("#cnpjEmpresa").focus();
+
         return;
     }
 
@@ -547,13 +548,13 @@ function salvarEContinuar() {
 
     if ($("#cnpjEmpresa").val() == "") {
         swal("Ops!", "Preencha o CNPJ", "error");
-        $("#cnpjEmpresa").focus();
+
         return;
     }
 
     if (!validaCnpj($("#cnpjEmpresa").val())) {
         swal("Ops!", "Preencha um CNPJ válido", "error");
-        $("#cnpjEmpresa").focus();
+
         return;
     }
 
@@ -683,7 +684,7 @@ function validarProposta() {
 
     if ((qtdBenef + qtdDependente) < 3) {
         swal("Ops!", "Proposta deve possuir no mínimo 3 vidas", "error");
-        $("#cnpjEmpresa").focus();
+
         return;
     }
 

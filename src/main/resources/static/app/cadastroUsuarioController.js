@@ -456,7 +456,6 @@ function callDadosUsuarios(callback, token, cpf) {
         url: URLBase + "dcss/usuario/1.0/cpf/" + cpf,
         method: "GET",
         headers: {
-            "Cache-Control": "no-cache",
             "Authorization": "Bearer " + token
         },
         success: function (resp) {
@@ -511,7 +510,6 @@ function callPutForcaVenda(callback, token, codForca, nome, celular, email, senh
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
-            "Cache-Control": "no-cache",
             "Authorization": "Bearer " + token
         },
         processData: false,
@@ -547,7 +545,6 @@ function callCorretora(callback, token, cnpj) {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Cache-Control": "no-cache",
             "Authorization": "Bearer " + token
         },
         success: function (resp) {

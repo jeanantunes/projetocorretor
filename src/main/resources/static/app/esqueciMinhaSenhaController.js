@@ -2,8 +2,14 @@ $(document).ready(function () {
 
     $("#confirmarLogin").click(function(){
 
+        if($("#senha").val().length < 8){
+            swal("Ops!", "A senha deve conter no minimo 8 caracteres", "error");
+
+            return;
+        }
+
         if($("#confirmarSenha").val() != $("#senha").val()){
-            swal("Ops!", "As senhas devem ser identicas", "error");
+            swal("Ops!", "As senhas devem ser iguais", "error");
 
             return;
         }

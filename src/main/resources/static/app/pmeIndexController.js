@@ -6,6 +6,25 @@ function iniciarProposta(cdPlano) {
 
     var proposta = getRepository("proposta");
 
+    var forca = new Object();
+    console.log("Chamada UsuarioSession");
+    $.ajax({
+        url: "/usuario_session",
+        type: "get",
+        async: false,
+        xhrFields: {
+            withCredentials: true
+        },
+        success: function (result) {
+            console.log(result);
+            forca.codigo = eval(result).codigoUsuario;
+        },
+        error: function (result) {
+            console.log(result);
+        }
+    });
+    put("dadosUsuario", JSON.stringify(forca));
+
     plano = getRepository("plano");
     plano.cdPlano = cdPlano;
 

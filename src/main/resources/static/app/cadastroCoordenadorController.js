@@ -11,9 +11,6 @@ $(document).ready(function () {
     defineConexao();
 });
 
-
-
-
 function put(localName, obj) {
     localStorage.setItem(localName, obj);
 }

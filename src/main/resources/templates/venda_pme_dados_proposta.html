@@ -25,11 +25,10 @@
     <script src="js/sweetalert.min.js"></script>
     <script src="js/odonto-Valida.js"></script>
     <script src="app/coordenador.js"></script>
-    <script type="text/javascript" th:src="@{/js/odonto-Valida.js}"></script>
-    <script type="text/javascript" th:src="@{/app/scripts.js}"></script>
-    <script type="text/javascript" th:src="@{/app/coordenador.js}"></script>
-    <script type="text/javascript" th:src="@{/app/pmeCadastroController.js}"></script>
-    <script> resizeIframe('frame_pf');</script>
+    <script type="text/javascript" src="js/odonto-Valida.js"></script>
+    <script type="text/javascript" src="app/scripts.js"></script>
+    <script type="text/javascript" src="app/coordenador.js"></script>
+    <script type="text/javascript" src="app/pmeCadastroController.js"></script>
     <script src="js/moment.js"></script>
 </head>
 
@@ -289,21 +288,21 @@
         <!-- Offline habilita este botão e esconde os outros  -->
         <!-- End Offline habilita este botão e esconde os outros  -->
 
-        <div class="row">
-            <div class="col-md-12 btnPadBtm">
-                <button class="btn btn-lg btn-block btnOdont" id="" role="button" onclick="salvarEContinuar()">SALVAR E CONTINUAR DEPOIS</button>
-            </div>
-        </div>
+        <!--  <div class="row">
+             <div class="col-md-12 btnPadBtm">
+                 <button class="btn btn-lg btn-block btnOdont" id="" role="button" onclick="salvarEContinuar()">SALVAR E CONTINUAR DEPOIS</button>
+             </div>
+         </div>-->
 
 
-        <div class="row">
-            <div class="col-md-12 btnPadBtm">
-                <button class="btn btn-lg btn-block btnOdont" id="finalizar" role="button" onclick="validarProposta()">CONTINUAR</button>
-            </div>
-        </div>
-    </div>
-    </div>
-    <!-- End Bloco 1 -->
+         <div class="row">
+             <div class="col-md-12 btnPadBtm">
+                 <button class="btn btn-lg btn-block btnOdont" id="finalizar" role="button" onclick="validarProposta()">CONTINUAR</button>
+             </div>
+         </div>
+     </div>
+     </div>
+     <!-- End Bloco 1 -->
 
 </body>
 </html>
