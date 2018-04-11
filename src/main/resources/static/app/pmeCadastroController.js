@@ -4,6 +4,22 @@ var cnae;
 $(document).ready(function () {
     buscarPlanosSelecionados();
    carregarProposta();
+
+    $("#squaredOne").change(function () {
+
+        $("#divSegundoContato").addClass('hide');
+        if (!$(this).is(':checked')) {
+
+            $("#divSegundoContato").removeClass('hide');
+
+        }
+    });
+
+    $('#cnpjEmpresa').blur(function () {
+        verificarSePropostaExiste();
+        //buscarEmpresa();
+    });
+
 });
 
 function addBenef() {
@@ -242,10 +258,7 @@ function callSerasaPme(callback, tokenSerasa, cnpj) {
     });
 }
 
-$('#cnpjEmpresa').blur(function () {
-        verificarSePropostaExiste();
-        //buscarEmpresa();
-});
+
 
 function verificarSePropostaExiste() {
 
@@ -320,15 +333,7 @@ function verificarSePropostaExiste() {
     }
 }
 
-$("#squaredOne").change(function () {
 
-    $("#divSegundoContato").addClass('hide');
-    if (!$(this).is(':checked')) {
-
-        $("#divSegundoContato").removeClass('hide');
-
-    }
-});
 
 function validateDataMei(date) {
 
