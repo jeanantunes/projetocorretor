@@ -1,5 +1,8 @@
 ﻿<!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Language" content="pt-br">
@@ -12,6 +15,22 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="css/odontoprev.css" rel="stylesheet">
     <link href="css/sweetalert.css" rel="stylesheet" />
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script>
+    <script src="js/odontoprev.js"></script>
+    <script src="js/jquery.3.2.1.js"></script>
+    <script src="js/jquery.mask.min.js"></script>
+    <script src="js/sweetalert.min.js"></script>
+    <script src="js/odonto-Valida.js"></script>
+    <script src="app/coordenador.js"></script>
+    <script type="text/javascript" th:src="@{/js/odonto-Valida.js}"></script>
+    <script type="text/javascript" th:src="@{/app/scripts.js}"></script>
+    <script type="text/javascript" th:src="@{/app/coordenador.js}"></script>
+    <script type="text/javascript" th:src="@{/app/pmeCadastroController.js}"></script>
+    <script> resizeIframe('frame_pf');</script>
+    <script src="js/moment.js"></script>
 </head>
 
 <body>
@@ -285,17 +304,6 @@
     </div>
     </div>
     <!-- End Bloco 1 -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/scripts.js"></script>
-    <script src="js/odontoprev.js"></script>
-    <script src="js/jquery.3.2.1.js"></script>
-    <script src="js/jquery.mask.min.js"></script>
-    <script src="js/sweetalert.min.js"></script>
-    <script src="js/odonto-Valida.js"></script>
-    <script src="app/coordenador.js"></script>
-    <script src="app/pmeCadastroController.js"></script>
-    <script> resizeIframe('frame_pf');</script>
-	<script src="js/moment.js"></script>
+
 </body>
 </html>

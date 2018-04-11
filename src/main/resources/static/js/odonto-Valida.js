@@ -71,7 +71,7 @@ $(document).ready(function () {
                 })
 
                 try {
-                    callToken(function (dataToken) {
+                    callTokenProd(function (dataToken) {
                         callCep(function (dataCep) {
                             $("#bairro").val(dataCep[0].bairro);
                             $("#cidade").val(dataCep[0].cidade);
@@ -112,29 +112,6 @@ $(document).ready(function () {
     }
     //Quando o campo cep perde o foco.
 });
-
-function callToken(callback) {
-
-    $.ajax({
-        async: true,
-        url: "https://api.odontoprev.com.br:8243/token/",
-        method: "POST",
-        headers: {
-            "Authorization": "Basic Y3hHZXBoTzFkcERDd3U0VHlfRExWTWxXQ0R3YTp0WlJtSUN1eUJWajJZRVczRjdaNXdWM2E0YVlh",
-            "Cache-Control": "no-cache",
-            "Content-Type": "application/x-www-form-urlencoded"
-        },
-        data: {
-            "grant_type": "client_credentials"
-        },
-        success: function (resp) {
-            callback(resp)
-        },
-        error: function (xhr) {
-            swal("Ops!", "Erro na conexão, tente mais tarde", "error");
-        }
-    });
-}
 
 function callCep(callback, token, cep) {
     $.ajax({
