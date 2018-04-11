@@ -22,12 +22,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("login","index", "/cadastro/**", "/img/**", "/css/**", "/js/**", "/fonts/**","/get_token/**").permitAll()
+                .antMatchers("login","index", "/cadastro/**", "/img/**", "/css/**", "/js/**", "/fonts/**","/get_token/**", "/esqueci-minha-senha", "/esqueci-minha-senha/**").permitAll()
                 .antMatchers( "/app/**", "/config/**", "/repositorio/**", "/slick/**").permitAll()
                 .antMatchers("/termoAceite/**").permitAll()
                 .antMatchers("/**").hasAnyAuthority("Corretora","Corretor")
                 .antMatchers("/corretora/**").hasAuthority("Corretora")
                 .antMatchers("/get_token").permitAll()
+                .antMatchers("/esqueci-minha-senha/**").permitAll()
                 .antMatchers("/forcavenda/**").hasAuthority("Corretor")
                 .antMatchers("/forcavenda/**").hasAuthority("Corretor")
                 .anyRequest()

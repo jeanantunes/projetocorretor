@@ -94,5 +94,9 @@ public class CadastroController {
 
     }
 
+    @RequestMapping(value = "esqueci-minha-senha/{token}", method = RequestMethod.GET)
+    public ModelAndView esqueciSenha(@PathVariable String token) {
 
+        return new ModelAndView("redefinirSenha");
+    }
 }

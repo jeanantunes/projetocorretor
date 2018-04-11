@@ -85,7 +85,7 @@ function callTokenProd(callback) {
     console.log("callTokenProd - coordendador.js");
     $.ajax({
         async: true,
-        url: "/token",
+        url: "/access_token",
         method: "POST",
         headers: {
             "Cache-Control": "no-cache",
