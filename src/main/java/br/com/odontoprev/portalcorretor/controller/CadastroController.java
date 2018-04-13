@@ -99,4 +99,10 @@ public class CadastroController {
 
         return new ModelAndView("redefinirSenha");
     }
+
+    @RequestMapping(value = "recuperar_senha", method = RequestMethod.GET)
+    public ModelAndView esqueciSenha() {
+
+        return new ModelAndView("recuperar_senha");
+    }
 }
