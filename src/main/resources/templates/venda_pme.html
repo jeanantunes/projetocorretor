@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-theme.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
 
     <script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
@@ -14,7 +15,6 @@
     <script type="text/javascript" th:src="@{/js/jquery.mask.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/odonto-Valida.js}"></script>
     <script type="text/javascript" th:src="@{/js/menu.js}"></script>
-    <script type="text/javascript" th:src="@{/js/iframe.js}"></script>
     <!--<script type="text/javascript" th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js}"></script>-->
 
     <script>
@@ -71,17 +71,12 @@
 	  </div>  
 	</div>
 
-
     <div class="col-sm-12 container-logado padding-logado">
-        <iframe src="/venda_index_pme.html"   width="100%" height="" id="frame_pf" frameBorder="0" > </iframe>
+        <iframe src="/venda_index_pme.html" class="col-sm-12" height="" id="frame_pf" frameBorder="0" > </iframe>
     </div>
 
-    <div th:replace="fragments/footer :: footer">&nbsp;</div>
-</div>
+     <div th:replace="fragments/footer :: footer">&nbsp;</div>
+ </div>
 
-</body>
-
-<script>
-    var iframeheigt = $(document).height();
-</script>
-</html>
+ </body>
+ </html>
