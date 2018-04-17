@@ -1,3 +1,5 @@
+var URLBase = "";
+
 $(document).ready(function () {
 
     $("#confirmarLogin").click(function(){
@@ -34,7 +36,7 @@ $(document).ready(function () {
                             window.location.href = "/login";
                         });
                 }, dataToken.token, cdForca, nome, celular, email, senha);
-            });
+            }, dataToken.token);
         });
     });
 
@@ -56,17 +58,18 @@ function callTokenProd(callback) {
     });
 };
 
-function callEsqueciMinhaSenha(callback) {
+function callEsqueciMinhaSenha(callback, token) {
 
     var chaveRedefinirSenha = location.href.substring(location.href.lastIndexOf('/') + 1);
 
     $.ajax({
 
         async: true,
-        url: "http://172.16.20.30:7001/portal-corretor-servico-0.0.1-SNAPSHOT/esqueciMinhaSenha/" + chaveRedefinirSenha,
+        url:  "https://api.odontoprev.com.br:8243/corretorservicos/1.0/esqueciMinhaSenha/" + chaveRedefinirSenha,
         method: "GET",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token
         },
         processData: false,
         success: function (resp) {
@@ -84,7 +87,7 @@ function callPutForcaVenda(callback, token, codForca, nome, celular, email, senh
 
     $.ajax({
         async: true,
-        url: "https://api-it1.odontoprev.com.br:8243/corretorservicos/1.0/forcavenda/login",
+        url: "https://api.odontoprev.com.br:8243/corretorservicos/1.0/forcavenda/login",
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -100,3 +103,19 @@ function callPutForcaVenda(callback, token, codForca, nome, celular, email, senh
         }
     });
 }
+
+function callTokenProd(callback) {
+
+    $.ajax({
+        async: true,
+        url: "/get_token",
+        method: "GET",
+
+        success: function (resp) {
+            callback(resp);
+        },
+        error: function (xhr) {
+            swal("Ops!", "Erro na conexão, tente mais tarde", "error");
+        }
+    });
+};

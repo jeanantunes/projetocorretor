@@ -1,4 +1,5 @@
 ﻿$(document).ready(function () {
+ localStorage.removeItem('proposta')
     setIdPlano();
 });
 

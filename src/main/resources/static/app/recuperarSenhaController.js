@@ -1,6 +1,32 @@
 ﻿$(document).ready(function () {
 
+    defineConexao();
 });
+
+var URLBase = "";
+
+function defineConexao() {
+
+    $.ajax({
+        url: "config/connection.json",
+        type: "get",
+        async: false,
+        success: function (result) {
+            conexao = eval(result);
+        },
+        error: function () {
+
+        }
+    });
+
+    if (conexao.producaoLigado) {
+        URLBase = conexao.producaoURL;
+    }
+    else {
+        URLBase = conexao.homologacaoURL;
+        console.log(URLBase);
+    }
+}
 
 $("#continuarRecuperacaoDeSenha").click(function () {
 
@@ -10,34 +36,35 @@ $("#continuarRecuperacaoDeSenha").click(function () {
         return;
     }
 
-    callRecuperarSenha(function (dataRecuperar) {
+    callTokenProd(function (dataToken) {
+        callRecuperarSenha(function (dataRecuperar) {
 
-        swal.close();
-        $("#loadingRecuperacaoSenha").addClass('hide');
-        $("#senhaEnviada").removeClass('hide');
+            swal.close();
+            $("#loadingRecuperacaoSenha").addClass('hide');
+            $("#senhaEnviada").removeClass('hide');
 
-        var position = dataRecuperar.mensagem.indexOf(":");
-        var email = dataRecuperar.mensagem.substring(position + 2, dataRecuperar.mensagem.length);
-        
+            var position = dataRecuperar.mensagem.indexOf(":");
+            var email = dataRecuperar.mensagem.substring(position + 2, dataRecuperar.mensagem.length);
 
-        var doisPrimeirosCharEmail = email.substring(0, 2);
-        var emailSemDominio = email.substring(0, email.indexOf("@"));
-        var emailComAsterisco = doisPrimeirosCharEmail;
 
-        for (i = 0; i < emailSemDominio.length - 2; i++){
-            emailComAsterisco += "*";
-        }
+            var doisPrimeirosCharEmail = email.substring(0, 2);
+            var emailSemDominio = email.substring(0, email.indexOf("@"));
+            var emailComAsterisco = doisPrimeirosCharEmail;
 
-        $("#emailRecuperacao").html(email.replace(emailSemDominio, emailComAsterisco));
-    }, $("#cpf").val().replace(/\D/g, ''));
+            for (i = 0; i < emailSemDominio.length - 2; i++) {
+                emailComAsterisco += "*";
+            }
+
+            $("#emailRecuperacao").html(email.replace(emailSemDominio, emailComAsterisco));
+        }, dataToken.token, $("#cpf").val().replace(/\D/g, ''));
+    });
 
 });
 
 
 
-function callRecuperarSenha(callback, cpf) {
+function callRecuperarSenha(callback, token, cpf) {
 
-    var token = 123456478;
     var json = { "cpf": cpf };
 
     swal({
@@ -57,12 +84,11 @@ function callRecuperarSenha(callback, cpf) {
     $.ajax({
 
         async: true,
-        url: "http://172.16.20.30:7001/portal-corretor-servico-0.0.1-SNAPSHOT/esqueciMinhaSenha",
+        url:   URLBase + "/corretorservicos/1.0/esqueciMinhaSenha",//"https://api.odontoprev.com.br:8243/corretorservicos/1.0/esqueciMinhaSenha",
         method: "POST",
         headers: {
-            "Authorization": "Bearer 866a12f4-741f-3a5a-b85e-df71699ca1d6",
-            "Content-Type": "application/json",
-            "Cache-Control": "no-cache"
+            "Authorization": "Bearer " + token,
+            "Content-Type": "application/json"
         },
         processData: false,
         data: JSON.stringify({ "cpf": cpf }),
@@ -78,6 +104,22 @@ function callRecuperarSenha(callback, cpf) {
         }
     });
 }
+
+function callTokenProd(callback) {
+
+    $.ajax({
+        async: true,
+        url: "/get_token",
+        method: "GET",
+
+        success: function (resp) {
+            callback(resp);
+        },
+        error: function (xhr) {
+            swal("Ops!", "Erro na conexão, tente mais tarde", "error");
+        }
+    });
+};
 
 // Um link para redefinir sua senha foi enviado para o e-mail ***@hotmail.com.
 // Acesse e finalize o processo

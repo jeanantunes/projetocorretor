@@ -79,7 +79,6 @@ public class CadastroController {
         TokenResponse token = new TokenResponse();
         try {
             apiToken = apiManager.generateToken();
-
             token.setToken(apiToken.getAccessToken());
         } catch (CredentialsInvalidException e) {
             e.printStackTrace();
@@ -90,7 +89,6 @@ public class CadastroController {
         }
 
         return token;
-
 
     }
 
