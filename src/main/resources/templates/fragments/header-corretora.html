@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<div class="header-logado" th:fragment="header-corretora">
+    <a href="#" data-activates="menu-mobile" class="button-collapse pull-right">
+        <img th:src="@{/img/menu.png}" class="icon-menu">
+    </a>
+
+    <img th:src="@{/img/logo-mobile.png}" class="logo-ondonto-mobile" style="position: relative;top:30px">
+
+    <div class="perfil-web">
+        <div class="circle-perfil">
+
+            <div class="data-perfil">
+                <p class="user-name"><strong th:text="${session.usuario.getNomeCorretora()}"></strong></p>
+                <a th:href="@{/logout}" class="link-odonto">Sair</a>
+            </div>
+        </div>
+
+        <div class="circle-perfil_corretora">
+        <img src="/img/empresa.png" width="100px" height="100px" style="margin-left: 10px; margin-top: 10px"/>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Pagamento com cartão de crédito | OdontoPrev</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-theme.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+
+    <script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.mask.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/odonto-Valida.js}"></script>
+    <script type="text/javascript" th:src="@{/js/menu.js}"></script>
+    <script>
+        $(function () {
+            $(".button-collapse").sideNav();
+
+            $(".planoSelecionado").click(function () {
+                $(".box-plano-select").hide();
+            });
+
+        });
+
+
+    </script>
+</head>
+
+<body style="min-width: 100% !important;">
+<div class="container-fluid nopadding">
+    <div th:switch="${session.usuario.perfil}">
+        <div th:case="'Corretor'">
+            <div th:replace="fragments/menu-corretor :: menu-corretor">&nbsp;</div>
+            <div th:replace="fragments/header-corretor :: header-corretor">&nbsp;</div>
+        </div>
+        <div th:case="'Corretora'">
+            <div th:replace="fragments/menu-corretora :: menu-corretora">&nbsp;</div>
+            <div th:replace="fragments/header-corretora :: header-corretora">&nbsp;</div>
+        </div>
+    </div>
+    <!--  <div class="header-logado">
+          <a href="#" data-activates="menu-mobile" class="button-collapse pull-right">
+              <img src="../../../assets/img/menu.png" class="icon-menu">
+          </a>
+          <img src="../../../assets/img/logo-mobile.png" class="logo-ondonto-mobile" style="position: relative;top:30px">
+
+           <div class="perfil-web">
+              <div class="circle-perfil">
+                <div class="data-perfil">
+                    <p class="user-name"><strong>Marcos Palmas</strong></p>
+                    <p class="font-gray">Corretora XPTO</p>
+                    <a href="#" class="link-odonto">Sair</a>
+                </div>
+              </div>
+            </div>
+            <div class="pull-right space-top-30 btn-header-web">
+                <a href="/escolhaPlanoPF.html" type="button" class="btn btnPink btn-width-custom text-right">VENDER PARA PESSOA FÍSICA</a><br>
+                <a href="../pme/Escolha_um_plano.html" type="button" class="btn btnBlue btn-width-custom space-top-10">VENDER PME</a>
+            </div>
+      </div> -->
+    <form class="space-top-40" th:action="@{/venda/pf/compraRealizadaPF}" th:object="${vendaPf}" method="GET">
+        <div class="container-logado padding-logado">
+            <div class="titulo">
+                <h4 class="uppercase font-blue nomargin">Venda pessoa física</h4>
+                <h3 class="uppercase font-blue nomargin title-odonto">
+                    Pagamento com Débito em Conta
+                </h3>
+
+                <p class=" label-plano text-silver space-top-10">Resumo dos planos </p>
+            </div>
+            <form class="space-top-40" action="#" th:object="${planoSelecionado}">
+                <div class="row">
+                    <div class="col-xs-7">
+                        <div class="box-plano-select box-pme pull-left space-top-30 space-right-30">
+                            <img th:src="@{/img/close.png}" class="close-blue planoSelecionado">
+                            <div class="row">
+                                <div class="col-xs-7">
+                                    <p class="label-plano font-purple space-bottom-0 space-left-10">
+                                        <strong th:text="*{nome}"></strong>
+                                    </p>
+                                    <!--<p class="label-plano text-silver space-top-10 space-left-10" th:text="*{valor}">Total por ano R$547,20</p>-->
+                                </div>
+                                <div class="col-xs-5 text-right font-purple">
+                                    <div class="space-top-10  space-right-10">
+                                        <strong>
+                                            <span class="font-moeda">R$</span>
+                                            <span class="font-moeda" th:text="*{valor}"></span>
+                                        </strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row space-top-30">
+                    <div class="col-xs-7">
+                        <div class="row">
+                            <div class="col-xs-5">
+                            <span class="label-plano font-blue">
+                                <strong>Total</strong>
+                            </span>
+                            </div>
+                            <div class="col-xs-7 text-left font-blue">
+                                <strong>
+                                    <span class="font-moeda">R$</span>
+                                    <span class="font-moeda" th:text="*{valor}"></span>
+                                    <!--<span class="font-cent">28</span>-->
+                                </strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <p class="label-plano text-silver space-top-90">Para finalizar a proposta, preencha os dados abaixo</p>
+
+
+            <div class="space-top-60">
+                <div class="form-group inline space-right width-form3 space-top-50">
+                    <label class="label-bancos font-blue">Bancos</label>
+                    <select class="bancos form-control form-control-custom" id="bancosCC" data-toggle="modal"
+                            data-target="">
+                        <option>033 - Santander</option>
+                        <option>237 - Bradesco</option>
+                        <option>341 - Itaú</option>
+                    </select>
+                </div>
+
+                <div class="form-group inline space-right-30 width-form3">
+                    <label class="label-nome">Agência </label>
+                    <input type="text" id="pagamentoCartaoNome" class="nome form-control">
+                </div>
+                <div class="form-group inline space-right-30 width-form3">
+                    <label class="label-validade">Conta Corrente </label>
+                    <input type="text" id="pagamentoCartaoValidade" class="validade form-control">
+                </div>
+            </div>
+
+            <div class="space-top-30">
+                <input type="submit" value="finalizar" class="btn btnBlue btn-width-cc uppercase space-right-30"/>
+            </div>
+    </form>
+</div>
+
+<div th:replace="fragments/footer :: footer">&nbsp;</div>
+</div>
+</body>
+</html>

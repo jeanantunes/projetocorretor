@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <!--<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-theme.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+
+    <!-- 		<link href="css/estiloOdontoPrev.css" rel="stylesheet"> -->
+    <script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.mask.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/odonto-Valida.js}"></script>
+
+    <script type="text/javascript" th:src="@{/js/menu.js}"></script>
+    <!--<script type="text/javascript"-->
+    <!--th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js}"></script>-->
+
+    <script>
+        $(function () {
+            $(".button-collapse").sideNav();
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.table-odonto .line-table:odd').css('background-color', '#fff');
+
+            $('.table-odonto .line-table:even').css('background-color', '#EDEDED');
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.barras').each(function () {
+                var dataWidth = $(this).data('value');
+                $(this).css("width", dataWidth + "%");
+                $(this).css("max-width", "100%");
+                if (dataWidth <= 25) {
+                    $(this).css("background-color", "red");
+                }
+                else if (dataWidth > 25 && dataWidth <= 50) {
+                    $(this).css("background-color", "orange");
+                }
+                else if (dataWidth > 50 && dataWidth <= 75) {
+                    $(this).css("background-color", "yellow");
+                }
+                else if (dataWidth > 75 && dataWidth <= 100) {
+                    $(this).css("background-color", "green");
+                }
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $(".btn-odonto-pink-primary").css("background-color", "#D9487F");
+            $(".btn-odonto-pink-primary").css("border-color", "#D9487F");
+            $(".btn-odonto-pink-primary").css("color", "#fff");
+
+            $('.btn-odonto-pink-primary').click(function () {
+                $(".btn-odonto-pink-primary").css("background-color", "#D9487F");
+                $(".btn-odonto-pink-primary").css("border-color", "#D9487F");
+                $(".btn-odonto-pink-primary").css("color", "#fff");
+                $(".btn-odonto-blue-primary").css("background-color", "#fff");
+                $(".btn-odonto-blue-primary").css("color", "#2D6FCE");
+
+            });
+
+
+            $('.btn-odonto-blue-primary').click(function () {
+                $(".btn-odonto-blue-primary").css("background-color", "#2D6FCE");
+                $(".btn-odonto-blue-primary").css("border-color", "#2D6FCE");
+                $(".btn-odonto-blue-primary").css("color", "#fff");
+                $(".btn-odonto-pink-primary").css("background-color", "#fff");
+                $(".btn-odonto-pink-primary").css("color", "#D9487F");
+
+            });
+
+
+        });
+
+    </script>
+</head>
+<body style="min-width: 100% !important;">
+
+<div class="container-fluid nopadding">
+
+    <div th:replace="fragments/menu-corretora :: menu-corretora">&nbsp;</div>
+
+    <div th:replace="fragments/header-corretora :: header-corretora">&nbsp;</div>
+
+
+    <form action="#" th:action="@{/corretora/equipe/adicionar}" th:object="${forca}" method="POST">
+        <input type="hidden" th:field="*{cdForcaVenda}">
+        <div class="container-logado padding-logado">
+
+            <div class="titulo">
+                <h3 class="uppercase title-odonto font-blue nomargin uppercase">ADICIONAR NOVA PESSOA na EQUIPE</h3>
+
+            <p class="text-silver space-top-15">
+                Preencha abaixo os dados de quem quer adicionar à sua equipe. No primeiro acesso cada um deles irá criar
+                uma senha para usar o aplicativo, eles já estarão atrelados à sua corretora. </p>
+
+            </div>
+
+            <div th:if="*{error}" style="padding-top: 10px" >
+                <span th:text="*{error}" class="alert alert-danger"></span>
+            </div>
+
+            <div>
+                <div class="form-group inline width-form1 space-right space-top-30">
+                    <label class="label-nome">Nome </label>
+                    <input type="text" id="confirmeNomeAddPessoaEquipe" th:field="*{nome}" class="nome form-control">
+                </div>
+                <div class="form-group inline space-right width-form3 ">
+                    <label class="label-cpf">CPF</label>
+                    <input type="text" id="cpfAddPessoaEquipe"  th:field="*{cpf}" class="cpf form-control ">
+                </div>
+            </div>
+
+
+            <div>
+                <div class="form-group inline space-right width-form3 space-top-30">
+                    <label class="label-dataNascimento">Data de nascimento</label>
+                    <input type="text" id="dataNascimentoAddPessoaEquipe"  th:field="*{dataNascimento}" class="dataNascimento form-control">
+                </div>
+                <div class="form-group inline space-right width-form3">
+                    <label class="label-celular">Celular</label>
+                    <input type="text" id="celularAddPessoaEquipe" th:field="*{celular}" class="celular form-control">
+                </div>
+                <div class="form-group inline space-right width-form3">
+                    <label class="label-email">E-mail </label>
+                    <input type="text" id="emailAddPessoaEquipe" th:field="*{email}" class="email form-control">
+                </div>
+
+            </div>
+
+            <div>
+
+                <div class="form-group inline space-right width-form3 space-top-30">
+                    <label class="label-departamento">Departamento</label>
+                    <input type="text" id="departamentoAddPessoaEquipe" th:field="*{departamento}" class="departamento form-control">
+                </div>
+                <div class="form-group inline space-right width-form3">
+                    <label class="label-cargo">Cargo</label>
+                    <input type="text" id="cargoAddPessoaEquipe" th:field="*{cargo}" class="cargo form-control">
+                </div>
+                <div class="space-top-30">
+                    <input type="submit" class="btn btnBlue btn-width-custom space-top-10 uppercase"
+                           value="salvar"></input>
+
+                </div>
+            </div>
+
+
+        </div>
+    </form>
+    <div class="footer-logado">
+        <div class="pull-left box-footer">
+            <p>Â© OdontoPrev. S/A - CNPJ: 119.199/0001-51</p>
+            <p>Av. Marcos Penteado de Ulhoa Rodrigues, 939-14 andar-EdifÃ­cio Jatoba Torre 2-Barueri-SP CEP-
+                06460-040</p>
+            <p>OdontoPrev - CRO/SP nÂ° 19009</p>
+        </div>
+        <div class="pull-right footer-img"><img src="../../../img/ans.png"></div>
+    </div>
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,7 @@
+{
+"producaoURL": "https://api.odontoprev.com.br:8243",
+"homologacaoURL": "https://api-it1.odontoprev.com.br:8243",
+"chaveHomolog": "",
+"chaveProd": "",
+"producaoLigado": false
+}

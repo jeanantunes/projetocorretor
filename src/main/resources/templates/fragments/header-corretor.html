@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<div class="header-logado" th:fragment="header-corretor">
+    <a href="#" data-activates="menu-mobile" class="button-collapse pull-right">
+        <img th:src="@{/img/menu.png}" class="icon-menu">
+    </a>
+    <img th:src="@{/img/logo-mobile.png}" class="logo-ondonto-mobile" style="position: relative;top:30px">
+    <div class="perfil-web">
+        <div class="circle-perfil">
+            <div class="data-perfil">
+                <p class="user-name"><strong th:text="${session.usuario.getNomeUsuario()}"></strong></p>
+                <p class="font-gray" th:text="${session.usuario.getNomeCorretora()}"></p>
+                <a th:href="@{/logout}" class="link-odonto">Sair</a>
+            </div>
+        </div>
+        <div class="circle-perfil">
+            <img src="/img/avatar.png" width="125" height="125" style="margin-left: -2px;margin-top: -3px;">
+        </div>
+    </div>
+    <!--<div class="pull-right space-top-30 btn-header-web">-->
+    <!--<a th:href="@{/venda/pf/escolhaPlanoPF}" type="button" class="btn btnPink btn-width-custom text-right">VENDER-->
+    <!--PARA PESSOA FÍSICA</a><br>-->
+    <!--<a th:href="@{/venda/pf/Escolha_um_plano}" type="button" class="btn btnBlue btn-width-custom space-top-10">VENDER-->
+    <!--PME</a>-->
+    <!--</div>-->
+</div>
+
+</body>
+</html>

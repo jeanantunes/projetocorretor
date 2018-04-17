@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Language" content="pt-br">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Odontoprev</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/odontoprev.css" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- Bloco 1 -->
+<div class="container-fluid">
+
+    <div class="col-md-12 odontBoxCenter">
+        <div class="row">
+            <div class="text-center">
+                <div>
+                    <h1 class="titleOdont text-center">
+                        BENEFICIÁRIOS
+                    </h1>
+                    <h2 class="subTitleOdont text-center">
+                        EMPRESA
+                    </h2>
+                </div>
+                <div class="row nomeRazaSocial">
+                    <h4 id="razaoSocial"></h4>
+                    <h4 id="cnpjEmpresa"></h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="lista" id="lista">
+            Você ainda não possui beneficiários cadastrados
+        </div>
+
+        <br /><br />
+        <br />
+
+        <div class="row">
+            <div class="col-md-12 btnPadBtm">
+                <button class="btn btn-lg btn-block btnOdont" id="adicionarBeneficiario" role="button" onclick="adicionarBenef()">ADICIONAR BENEFICIÁRIOS</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 btnPadBtm">
+                <a class="btn btn-lg btn-block btnOdont" id="continuar" role="button" href="venda_pme_dados_proposta.html">CONTINUAR</a>
+                <button href="" class="btn btn-lg btn-block btnOdont" id="voltar" style="background:#9f9f9f" role="button" onclick="history.go(-1)">VOLTAR</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Bloco 1 -->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/scripts.js"></script>
+<script src="js/odontoprev.js"></script>
+<script src="js/jquery.3.2.1.js"></script>
+<script src="js/jquery.mask.min.js"></script>
+<script src="js/odonto-Valida.js"></script>
+<script src="app/coordenador.js"></script>
+<script src="app/pmeListaBenefController.js"></script>
+<script> resizeIframe('frame_pf');</script>
+</body>
+</html>

@@ -1,0 +1,293 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <head>
+
+        <title>Adicionar Beneficiários e Dependentes | OdontoPrev</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-theme.min.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+
+        <!-- 		<link href="css/estiloOdontoPrev.css" rel="stylesheet"> -->
+        <script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
+        <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+        <script type="text/javascript" th:src="@{/js/jquery.mask.min.js}"></script>
+        <script type="text/javascript" th:src="@{/js/odonto-Valida.js}"></script>
+
+        <script type="text/javascript" th:src="@{/js/menu.js}"></script>
+
+    </head>
+<body style="min-width: 100% !important;">
+
+
+<script>
+    $(function () {
+
+
+        $(".add-box-beneficiario").hide();
+
+        $("#AddBeneficiario").click(function () {
+            $(".add-box-beneficiario").show();
+        });
+
+
+        $(".button-collapse").sideNav();
+
+    });
+
+
+</script>
+<script type="text/javascript">
+
+
+</script>
+
+<div class="container-fluid nopadding">
+
+    <div th:switch="${session.usuario.perfil}">
+        <div th:case="'Corretor'">
+            <div th:replace="fragments/menu-corretor :: menu-corretor">&nbsp;</div>
+            <div th:replace="fragments/header-corretor :: header-corretor">&nbsp;</div>
+        </div>
+        <div th:case="'Corretora'">
+            <div th:replace="fragments/menu-corretora :: menu-corretora">&nbsp;</div>
+            <div th:replace="fragments/header-corretora :: header-corretora">&nbsp;</div>
+        </div>
+    </div>
+
+    <!--<div class="header-logado">
+        <a href="#" data-activates="menu-mobile" class="button-collapse pull-right">
+            <img th:src="@{/img/menu.png}" class="icon-menu">
+        </a>
+        <img th:src="@{/img/logo-mobile.png}" class="logo-ondonto-mobile" style="position: relative;top:30px">--!>
+
+        <!--<div class="perfil-web">-->
+        <!--<div class="circle-perfil">-->
+        <!--<div class="data-perfil">-->
+        <!--<p class="user-name"><strong>Marcos Palmas</strong></p> -->
+        <!--<p class="font-gray">Corretora XPTO</p>-->
+        <!--<a href="#" class="link-odonto nomargin">Sair</a>-->
+        <!--</div>-->
+        <!--</div> -->
+        <!--</div> -->
+     
+    <div class="container-logado padding-logado">
+
+        <div class="titulo">
+            <h4 class="uppercase font-blue nomargin">Venda PME</h4>
+            <h3 class="uppercase nomargin title-odonto font-blue">Adicionar Beneficiários e Dependentes</h3>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box-name-empresa box-pme pull-left space-top-30">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <form th:object="${carrinho}">
+                                <output th:field="*{vendaPme.razaoSocial}" type="text" id="razaoSocial"></output>
+                                <p class="title-section-odonto font-blue space-bottom-0 space-left-10"
+                                   th:value="${carrinho.vendaPme.razaoSocial}">Toca da Raposa ME</p>
+                                <p class="subtitle-odonto space-left-10">CNPJ: <span
+                                        th:value="${carrinho.vendaPme.cpf}">04.690.274.0001-00</span></p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-top-30 box-button pull-left">
+                    <a type="button" class="btn btn-white text-silver uppercase">Download Modelo Excel</a><br>
+                    <a type="button" class="btn btnBlue space-top-10 uppercase">Enviar Planilha em Excel </a>
+                </div>
+
+            </div>
+        </div>
+        <form class="space-top-20" th:action="@{/venda/pme/Escolha_um_plano/confirmacaoProposta}"
+              th:object="${carrinho}" method="post">
+            <div class="row space-top-30" th:each="beneficiario, i : *{beneficiarios}">
+                <div class="col-xs-12">
+
+                    <div class="box-beneficiario">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h4 class="uppercase title-section-odonto font-blue pull-left">Beneficiário </h4>
+                                <a href="" class="pull-right link-odonto uppercase">Excluir Beneficiário</a>
+                            </div>
+                        </div>
+
+
+                        <div>
+                            <div class="form-group inline space-right width-form3">
+                                <label class="label-cpf">CPF</label>
+                                <input type="text" th:field="*{beneficiarios[__${i.index}__].cpf}"
+                                       class="cpf form-control">
+
+                            </div>
+                        </div>
+
+                        <div class="form-group maxl inline width-form3">
+                            <label>Sexo</label><br>
+                            <label class="radio inline radio-sexo">
+                                <input th:field="*{beneficiarios[__${i.index}__].sexo}" type="radio" name="sex"
+                                       value="M" checked>
+                                <span> Masculino </span>
+                            </label>
+                            <label class="radio inline radio-sexo">
+                                <input th:field="*{beneficiarios[__${i.index}__].sexo}" type="radio" name="sex"
+                                       value="F">
+                                <span>Feminino </span>
+                            </label>
+                        </div>
+
+                        <div class="form-group inline space-right width-form3">
+                            <label class="label-nascimento">Data de nascimento</label>
+                            <input th:field="*{beneficiarios[__${i.index}__].dataNascimento}" type="text"
+                                   class="nascimento form-control">
+                        </div>
+
+
+                        <div class="form-group inline space-right width-form1">
+                            <label class="label-nome">Nome</label>
+                            <input th:field="*{beneficiarios[__${i.index}__].nome}" type="text"
+                                   class="nome form-control">
+                        </div>
+
+                        <div class="form-group inline space-right width-form3">
+                            <label class="font-blue">Plano</label>
+                            <input th:field="*{beneficiarios[__${i.index}__].plano}" type="text"
+                                   class="nome form-control">
+                        </div>
+                        <div class="form-group inline width-form6 space-right">
+                            <label class="label-nome-mae">Nome da Mãe</label>
+                            <input th:field="*{beneficiarios[__${i.index}__].nomeDaMae}" type="text"
+                                   class="nome-mae form-control">
+                        </div>
+
+                        <div class="space-top-30">
+                            <a type="button" class="btn btnBlue btn-width-custom space-top-10 uppercase"
+                               data-toggle="modal" data-target="#AddDependenteModal">Dependentes</a>
+                        </div>
+                    </div>
+
+                    <!-- Modal -->
+                    <!--<div class="modal fade" id="AddDependenteModal" tabindex="-1" role="dialog"-->
+                         <!--aria-labelledby="exampleModalCenterTitle" aria-hidden="true">-->
+                        <!--<div class="modal-dialog modal-dialog-centered modal-custom" role="document">-->
+                            <!--<div class="modal-content">-->
+
+
+                                <!--<img src="../../../assets/img/close.png" class="close-blue" data-dismiss="modal">-->
+
+
+                                <!--<div class="modal-body">-->
+                                    <!--<div class="form-modal">-->
+                                        <!--<div class="row">-->
+                                            <!--<div class="col-xs-12">-->
+                                                <!--<h4 class="uppercase font-blue title-section-odonto pull-left">-->
+                                                    <!--dependente 1</h4>-->
+                                                <!--<a href="" class="space-top-10 link-odonto pull-right uppercase"-->
+                                                   <!--style="padding-left: 20px">excluir dependente</a>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                        <!--<form class="space-top-20 formAddDependente">-->
+
+                                            <!--<div>-->
+                                                <!--<div class="form-group inline space-right width-form3">-->
+                                                    <!--<label class="label-cpf">CPF</label>-->
+                                                    <!--<input type="text" id="telefone" class="cpf form-control">-->
+                                                <!--</div>-->
+                                                <!--<div class="form-group maxl inline width-form3">-->
+                                                    <!--<label>Sexo</label><br>-->
+                                                    <!--<label class="radio inline radio-sexo">-->
+                                                        <!--<input type="radio" name="sex" value="male" checked>-->
+                                                        <!--<span> Masculino </span>-->
+                                                    <!--</label>-->
+                                                    <!--<label class="radio inline radio-sexo">-->
+                                                        <!--<input type="radio" name="sex" value="female">-->
+                                                        <!--<span>Feminino </span>-->
+                                                    <!--</label>-->
+                                                <!--</div>-->
+                                                <!--<div class="form-group inline space-right width-form3">-->
+                                                    <!--<label class="label-nascimento">Data de nascimento</label>-->
+                                                    <!--<input type="text" class="nascimento form-control">-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+
+                                            <!--<div>-->
+
+                                                <!--<div class="form-group inline space-right width-form1">-->
+                                                    <!--<label class="label-nome">Nome</label>-->
+                                                    <!--<input type="text" id="telefone" class="nome form-control">-->
+                                                <!--</div>-->
+
+                                                <!--<div class="form-group inline space-right width-form3">-->
+                                                    <!--<label class="font-blue">Plano</label>-->
+                                                    <!--<select class="form-control form-control-custom" id="">-->
+                                                        <!--<option></option>-->
+                                                    <!--</select>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+
+                                            <!--<div>-->
+                                                <!--<div class="form-group inline width-form6 space-right">-->
+                                                    <!--<label class="label-nome-mae">Nome da mãe</label>-->
+                                                    <!--<input type="text" class="nome-mae form-control">-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+
+                                            <!--<div>-->
+                                                <!--<div class="space-top-30">-->
+                                                    <!--<a href="confirmacao_proposta_pme.html" type="button"-->
+                                                       <!--class="btn btnBlue btn-width-custom space-top-10 uppercase">Continuar</a>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        <!--</form>-->
+                                    <!--</div>-->
+
+                                <!--</div>-->
+
+                            <!--</div>-->
+                        <!--</div>-->
+
+                    <!--</div>-->
+
+
+                </div>
+            </div>
+            <div>
+                <div class="space-top-30">
+                    <button type="submit" class="btn btnBlue btn-width-custom space-top-10 uppercase" name="action"
+                            value="add">Adicionar Novo Beneficiário
+                    </button>
+                </div>
+            </div>
+            <div>
+                <div class="space-top-30">
+                    <button type="submit" class="btn btnBlue btn-width-custom space-top-10 uppercase" name="action"
+                            value="save">Continuar
+                    </button>
+                </div>
+            </div>
+
+            <!--&lt;!&ndash;</form>&ndash;&gt;-->
+            <!--</div>-->
+
+
+        </form>
+
+    </div>
+
+    <div class="footer-logado">
+        <div class="pull-left box-footer">
+			<p>© OdontoPrev. S/A - CNPJ: 119.199/0001-51</p>
+			<p>Av. Marcos Penteado de Ulhoa Rodrigues, 939-14 andar - Edifício Jatoba Torre 2 - Barueri-SP CEP - 06460-040</p>
+			<p>OdontoPrev - CRO/SP n° 19009</p>
+        </div>
+        <div class="pull-right footer-img"><img src="../../../img/ans.png"></div>
+    </div>
+</div>
+
+</body>
+</html>

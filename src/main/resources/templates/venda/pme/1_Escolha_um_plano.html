@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
+
+ <head>
+     <title>Escolha um plano PME | OdontoPrev</title>
+      <meta charset="utf-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="shortcut icon" href="@{/img/odpv.PNG}" type="image/png">
+     <script type="text/javascript" src="../../../js/jquery-3.2.1.min.js"></script>
+     <script type="text/javascript" src="../../../js/bootstrap.min.js"></script>
+     <script type="text/javascript" src="../../../js/jquery.mask.min.js"></script>
+     <script type="text/javascript" src="../../../js/odonto-Valida.js"></script> 
+     <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+     <link href="../../../css/main.css" rel="stylesheet">
+     <script type="text/javascript" src="../../../js/menu.js"></script>
+    <script>
+	     $(function(){
+	         $(".button-collapse").sideNav();
+	     });
+     </script>
+
+ </head>
+<body style="min-width: 100% !important;">    
+   
+<div class="container-fluid nopadding">
+
+    <div th:switch="${session.usuario.perfil}">
+        <div th:case="'Corretor'">
+            <div th:replace="fragments/menu-corretor :: menu-corretor">&nbsp;</div>
+            <div th:replace="fragments/header-corretor :: header-corretor">&nbsp;</div>
+        </div>
+        <div th:case="'Corretora'">
+            <div th:replace="fragments/menu-corretora :: menu-corretora">&nbsp;</div>
+            <div th:replace="fragments/header-corretora :: header-corretora">&nbsp;</div>
+        </div>
+    </div>
+
+  <!--<div class="header-logado"> 
+      <a href="#" data-activates="menu-mobile" class="button-collapse pull-right">
+      <img src="../../../img/menu.png" class="icon-menu"></a>
+      <img src="../../../img/logo-mobile.png" class="logo-ondonto-mobile" style="position: relative;top:30px"> -->
+       <!--<div class="perfil-web">-->
+          <!--<div class="circle-perfil">-->
+            <!--<div class="data-perfil">-->
+                <!--<p class="user-name"><strong>Marcos Palmas</strong></p> -->
+                <!--<p class="font-gray">Corretora XPTO</p>-->
+                <!--<a href="#" class="link-odonto nomargin">Sair</a>-->
+            <!--</div>-->
+          <!--</div> -->
+        <!--</div> -->
+       
+    <div class="container-logado padding-logado">
+
+      <div class="row">
+          <div class="col-xs-12">
+            
+              <div class="titulo">
+                <h4 class="uppercase font-blue nomargin">Venda PME</h4> 
+                <h3 class="uppercase title-odonto font-blue nomargin">Escolha um plano</h3>
+              </div>
+               
+               <a th:href="@{/venda/pme/Escolha_um_plano/addPlanoSelecionadoPme/62}">
+                 <div class="box-plano box-pme pull-left space-top-30 space-right-30">
+                     <h3 class="text-center uppercase font-pink nomargin "><strong>bem-estar</strong> <strong>+</strong> <strong>doc</strong></h3>
+                     <p class="text-center font-pink"><strong>(<span>Integral</span> <span class="uppercase">doc</span> <span class="uppercase">lale</span>)</strong></p>
+
+                      <p class="text-center font-gray"><strong>Coberturas:</strong></p>
+                      <p class="text-center text-silver nomargin">Limpeza periódicas</p>
+                      <p class="text-center text-silver nomargin">Restaurações</p>
+                      <p class="text-center text-silver nomargin">Tratamento de Canal e Gengiva</p>
+                      <p class="text-center text-silver nomargin">Emergêcia 24h</p>
+                      <p class="text-center text-silver nomargin">extração do dente do siso</p>
+                      <p class="text-center text-silver nomargin">Radiografias</p>
+                      <p class="text-center text-silver nomargin">Consulta de Rotina</p>
+                      <p class="text-center text-silver nomargin">Tratamento de mau hálito</p>
+                      <p class="text-center text-silver nomargin">Documentação ortodêntica</p>
+                      <p class="text-center text-silver nomargin"></p>
+
+                      <div class="valor-plano bg-pink"> 
+                          <div class="row">
+                             <div class="col-xs-6">
+                                <span class="label-plano">Mensal</span>
+                             </div>
+                             <div class="col-xs-6 text-right">
+                                <span class="font-moeda">R$</span> <span class="font-moeda">37,</span><span class="font-cent">82</span>
+                             </div>
+                           </div>
+                      </div>
+
+                 </div> 
+               </a>
+
+
+              <a th:href="@{/venda/pme/Escolha_um_plano/addPlanoSelecionadoPme/63}">
+                 <div class="box-plano box-pme pull-left space-top-30">
+                     <h3 class="text-center uppercase font-gold nomargin"><strong>orto</strong> <strong>+</strong> <strong>prótese</strong></h3>
+                     <p class="text-center font-gold"><strong>(<span>Master</span> <span class="uppercase">lale</span>)</strong></p>
+                     <p class="text-center font-gray"><strong>Coberturas:</strong></p>
+                     <p class="text-center text-silver">Todas as coberturas do Plano Integral DOC LE</p>
+                     <p class="text-center text-silver">+ Cobertura completa na especialidade de Ortodontia (incluindo aparelho e manuteção)</p>
+                     <p class="text-center text-silver">+ Próteses (incluindo porcela e cerâmica)</p>
+
+                      
+                       <div class="valor-plano bg-gold"> 
+                         <div class="row">
+                           <div class="col-xs-6">
+                              <span class="label-plano">Mensal</span>
+                           </div>
+                           <div class="col-xs-6 text-right">
+
+                          <span class="font-moeda">R$</span> <span class="font-moeda">119,</span><span class="font-cent">48</span>
+                           </div>
+                         </div>
+                       </div>
+                      
+                 </div>
+               </a>
+          </div>  
+        </div>
+      </div>
+
+    <div class="footer-logado">
+      <div class="pull-left box-footer">
+          <p>© OdontoPrev. S/A - CNPJ: 119.199/0001-51</p>
+          <p>Av. Marcos Penteado de Ulhoa Rodrigues, 939 - 14 andar - Edifício Jatoba Torre 2 - Barueri-SP CEP - 06460-040</p>
+          <p>OdontoPrev - CRO/SP n° 19009</p>
+      </div>
+      <div class="pull-right footer-img"><img src="../../img/ans.png" ></div>
+    </div>
+</div>
+
+</body>
+</html>

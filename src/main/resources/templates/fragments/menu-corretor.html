@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<script>
+    $(function () {
+        $(".button-collapse").sideNav();
+    });
+
+</script>
+
+<div th:fragment="menu-corretor">
+
+    <nav class="nav-odonto">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo" style="color: silver; padding: 35px">
+                <img th:src="@{/img/logo.png}">
+            </a>
+            <ul class="hide-on-med-and-down">
+                <li class="nav-cel  nav-active">
+                    <a th:href="@{/forcavenda/home}">
+                        <img th:src="@{/img/menu-home.png}">
+                        <span>home</span>
+                    </a>
+                </li>
+
+                <!--<li class="nav-cel">
+                    <a th:href="@{/forcavenda/cadastro/editar}">
+                        <img th:src="@{/img/menu-meus-dados.png}">
+                        <span>meus dados</span>
+                    </a>
+                </li>-->
+
+                
+                <li class="nav-cel">
+                    <a th:href="@{/venda_pf}">
+                        <img th:src="@{/img/menu-vender-pf.png}">
+                        <span>vender pessoa física</span>
+                    </a>
+                </li>
+                <li class="nav-cel">
+                    <a th:href="@{/venda_pme}">
+                        <img th:src="@{/img/menu-vender-pme.png}">
+                        <span>vender pme</span>
+                    </a>
+                </li>
+                
+                <li class="nav-cel">
+                    <a th:href="@{/info-planos}">
+                        <img th:src="@{/img/menu-listas.png}">
+                        <span>informações dos planos</span>
+                    </a>
+                </li>
+                <li class="nav-cel">
+                    <a th:href="@{/lista-propostas}">
+                        <img th:src="@{/img/menu-listas.png}">
+                        <span>lista de propostas</span>
+                    </a>
+                </li>
+                <li class="nav-cel">
+                    <a th:href="@{/rede-credenciada}">
+                        <img th:src="@{/img/menu-rede-credenciada.png}">
+                        <span>rede credenciada</span>
+                    </a>
+                </li>
+
+                <li class="nav-cel">
+                    <a th:href="@{/fale-conosco}">
+                        <img th:src="@{/img/menu-contato.png}">
+                        <span>fale conosco</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="nav-mobile">
+        <ul class="side-nav" id="menu-mobile" style="transform: translateX(-100%);">
+            <li class="" style="background-color: #fff; padding: 30px">
+                <div class="perfil-mobile">
+                    <div class="circle-perfil">
+                        <div class="data-perfil">
+                            <p class="user-name"><strong th:text="${session.usuario.getNomeUsuario()}"></strong></p>
+                            <p class="font-gray" th:text="${session.usuario.getNomeCorretora()}"></p>
+							<a th:href="@{/logout}" class="link-odonto">Sair</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-cel  nav-active">
+                <a th:href="@{/forcavenda/home}">
+                    <img th:src="@{/img/menu-home.png}">
+                    <span>home</span>
+                </a>
+            </li>
+            <li class="nav-cel">
+                <a href="#">
+                    <img th:src="@{/img/menu-meus-dados.png}">
+                    <span>meus dados</span>
+                </a>
+            </li>
+            <li class="nav-cel">
+                <a th:href="@{/venda_pf}">
+                   <img th:src="@{/img/menu-vender-pf.png}">
+                    <span>vender pessoa física</span>
+                </a>
+            </li>
+            <li class="nav-cel">
+                <a th:href="@{/venda_pme}">
+                    <img th:src="@{/img/menu-vender-pme.png}">
+                    <span>vender pme</span>
+                </a>
+            </li>
+            <li class="nav-cel">
+                <a href="#">
+                    <img th:src="@{/img/menu-listas.png}">
+                    <span>informações dos planos</span>
+                </a>
+            </li>
+            <li class="nav-cel">
+                <a th:href="@{/lista-propostas}">
+                    <img th:src="@{/img/menu-listas.png}">
+                    <span>lista de propostas</span>
+                </a>
+            </li>
+
+            <li class="nav-cel">
+                <a th:href="@{/rede-credenciada}">
+                    <img th:src="@{/img/menu-rede-credenciada.png}">
+                    <span>rede credenciada</span>
+                </a>
+            </li>
+            <li class="nav-cel">
+                <a th:href="@{/fale-conosco}">
+                    <img th:src="@{/img/menu-contato.png}">
+                    <span>fale conosco</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+</div>
+</body>
+</html>
