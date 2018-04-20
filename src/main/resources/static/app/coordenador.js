@@ -1392,6 +1392,9 @@ function validateEmail(email) {
 function resizeIframe(iframeID)
 {
     var iframe = window.parent.document.getElementById(iframeID);
+    
+    if(iframe == null)return;
+    
     var container = document.body;
     var h =  parseInt(container.offsetHeight)+200;
     iframe.style.height = h.toString() + 'px';

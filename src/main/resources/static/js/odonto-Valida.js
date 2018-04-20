@@ -111,6 +111,34 @@ $(document).ready(function () {
         }
     }
     //Quando o campo cep perde o foco.
+    
+    //Verica se o checkbox esta ativo e retira o "disabled"//
+
+    $(document).ready(function () {
+        $("#squaredOne").click(function (e) {
+            if ($("#squaredOne").is(":checked")) {
+
+
+                $("#btnTermoNCadastrado").removeClass('disabled');
+            } else {
+
+                $("#btnTermoNCadastrado").addClass('disabled');
+            }
+        });
+
+        $("#squaredOneTermoCadastrado").click(function (e) {
+            if ($("#squaredOneTermoCadastrado").is(":checked")) {
+
+                $("#btnTermo").removeClass("disabled");
+
+            } else {
+                $("#btnTermo").addClass("disabled");
+       
+            }
+        });
+
+
+    });
 });
 
 function callCep(callback, token, cep) {
@@ -1317,6 +1345,9 @@ $(document).ready(function () {
             $(this).css({ "border-color": "#F00" });
             $(".label-bairro").css("color", "red");
         }
+        $(this).css({ "border-color": "#3A94FB" });
+        $(".bairro").css("color", "#3A94FB");
+        $(".label-bairro").css("color", "#3A94FB");
     });
 
     $(".bairro").keyup(function () {

@@ -412,6 +412,30 @@ $(document).ready(function () {
             $("#btnkeyOdontNCpf").removeClass('disabled');
         }
     });
+    
+    $("#termoNCadastrado").scroll(function () {
+
+        if ($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight) {
+     
+             console.log("estou aqui");
+             $("#squaredOne").prop('disabled', false);
+             $("#squaredOneLabel").prop('disabled', false);
+             
+         }
+     
+    });
+
+    $("#termoCadastrado").scroll(function () {
+
+        if ($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight) {
+
+            console.log("estou aqui");
+            $("#squaredOneTermoCadastrado").prop('disabled', false);
+            $("#squaredOneTermoCadastradoLabel").prop('disabled', false);
+
+        }
+
+    });
 
 });
 
@@ -434,6 +458,7 @@ function callForcaVenda(callback, token, cpf) {
 
     $.ajax({
         async: true,
+        //url: "https://api-it1.odontoprev.com.br:8243/" + "corretorservicos/1.0/forcavenda/" + cpf,
         url: URLBase + "/corretorservicos/1.0/forcavenda/" + cpf,
         method: "GET",
         headers: {
@@ -453,9 +478,11 @@ function callDadosUsuarios(callback, token, cpf) {
 
     $.ajax({
         async: true,
+        //url: "https://api-it1.odontoprev.com.br:8243/" + "dcss/usuario/1.0/cpf/" + cpf,
         url: URLBase + "dcss/usuario/1.0/cpf/" + cpf,
         method: "GET",
         headers: {
+            "Content-Type": "application/json",
             "Authorization": "Bearer " + token
         },
         success: function (resp) {
@@ -481,6 +508,7 @@ function callInputForcaVenda(callback, token, cpf, celular, email, corretora, no
 
     $.ajax({
         async: true,
+        //url: "https://api-it1.odontoprev.com.br:8243/" + "corretorservicos/1.0/forcavenda/",
         url: URLBase + "/corretorservicos/1.0/forcavenda/",
         method: "POST",
         headers: {
@@ -506,6 +534,7 @@ function callPutForcaVenda(callback, token, codForca, nome, celular, email, senh
 
     $.ajax({
         async: true,
+        //url: "https://api-it1.odontoprev.com.br:8243/" + "corretorservicos/1.0/forcavenda/login",
         url: URLBase + "/corretorservicos/1.0/forcavenda/login",
         method: "PUT",
         headers: {
@@ -541,6 +570,7 @@ function callCorretora(callback, token, cnpj) {
 
     $.ajax({
         async: true,
+        //url: "https://api-it1.odontoprev.com.br:8243/" + "corretorservicos/1.0/corretora/" + cnpj,
         url: URLBase + "/corretorservicos/1.0/corretora/" + cnpj,
         method: "GET",
         headers: {

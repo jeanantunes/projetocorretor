@@ -5,10 +5,7 @@ import br.com.odontoprev.portalcorretor.model.UsuarioSession;
 import br.com.odontoprev.portalcorretor.service.ForcaVendaService;
 import br.com.odontoprev.portalcorretor.service.dto.AtivarResponse;
 import br.com.odontoprev.portalcorretor.service.dto.Corretora;
-import br.com.odontoprev.portalcorretor.service.dto.ExcluirResponse;
 import br.com.odontoprev.portalcorretor.service.dto.ForcaVenda;
-import br.com.odontoprev.portalcorretor.service.dto.ReprovarResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -30,8 +27,7 @@ public class CadastroForcaController {
     @Autowired
     ForcaVendaService forcaVendaService;
 
-    @SuppressWarnings("unused")
-	@RequestMapping(value = "corretora/equipe/adicionar", method = RequestMethod.GET)
+    @RequestMapping(value = "corretora/equipe/adicionar", method = RequestMethod.GET)
     public ModelAndView adicionar(HttpSession session) {
         UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
 
@@ -107,58 +103,19 @@ public class CadastroForcaController {
             msg = "Força de venda não pertence a essa corretora";
             error = true;
         }
-        
+
         AtivarResponse ativar = forcaVendaService.ativar(forcaVenda.getCpf());
         if(ativar.getMessage() !=null){
             error = true;
             msg = ativar.getMessage();
         }
 
-        return listaForca(usuario, error, msg);
-    }
-    
-    @RequestMapping(value = "corretora/equipe/reprovar", method = RequestMethod.GET)
-    public ModelAndView reprovar(@RequestParam("cpf") String cpf, HttpSession session) {
-        UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
-        ForcaVenda forcaVenda = forcaVendaService.ObterPorDocumento(cpf);
-      
-        Boolean error = false;
-        String msg = "";
-        
-        ReprovarResponse reprovar = forcaVendaService.reprovar(forcaVenda.getCpf());
-        if(reprovar.getMessage() !=null){
-            error = true;
-            msg = reprovar.getMessage();
-        }
-
-        return listaForca(usuario, error, msg);
-    }
-
-
-	private ModelAndView listaForca(UsuarioSession usuario, Boolean error, String msg) {
-		ListaForca listaForca = getListaForca(usuario.getCodigoCorretora());
+        ListaForca listaForca = getListaForca(usuario.getCodigoCorretora());
         listaForca.setErro(error);
         listaForca.setMessage(msg);
         return new ModelAndView("corretora/equipe/home", "listaForca", listaForca);
-	}
-
-    @RequestMapping(value = "corretora/equipe/excluir", method = RequestMethod.GET)
-    public ModelAndView excluir(@RequestParam("cpf") String cpf, HttpSession session) {
-        UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
-        ForcaVenda forcaVenda = forcaVendaService.ObterPorDocumento(cpf);
-      
-        Boolean error = false;
-        String msg = "";
-        
-        ExcluirResponse excluir = forcaVendaService.excluir(forcaVenda.getCpf());
-        if(excluir.getMessage() !=null){
-            error = true;
-            msg = excluir.getMessage();
-        }
-
-        return listaForca(usuario, error, msg);
     }
-    
+
 //    @RequestMapping(value = "corretora/equipe/editar", method = RequestMethod.GET)
 //    public ModelAndView editar(@RequestParam("id") String id, HttpSession session) {
 //        UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
