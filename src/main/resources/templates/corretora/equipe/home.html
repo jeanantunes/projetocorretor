@@ -165,7 +165,9 @@
                     <tr th:each="forca : ${listaForca.lista}" class="line-table">                    	
                         <td><span class="dados" data-toggle="tooltip" th:title="${forca.cpf} + '<br>' + ${forca.email} + '<br>' + ${forca.celular}"  th:text="${forca.nome}"></span></td>
                         <td><span th:text="${forca.statusForcaVenda}"></span></td>
-						<td><span>  <a class="btn uppercase btnBlue" th:href="@{/corretora/equipe/excluir(cpf=${forca.cpf})}"> Excluir </a></span>
+
+                        <!--<td><span>  <a th:href="@{/corretora/equipe/desativar(id=${forca.cdForcaVenda})}" > Desativar </a></span>-->
+                       
                     </tr>
 
                     </tbody>
@@ -218,7 +220,7 @@
                         <td><span th:text="${forca.statusForcaVenda}">PME</span></td>
 
                         <td><span>  <a class="btn uppercase btnBlue" th:href="@{/corretora/equipe/ativar(id=${forca.cpf})}"> Ativar </a></span>
-                        <td><span>  <a class="btn uppercase btnBlue" th:href="@{/corretora/equipe/reprovar(cpf=${forca.cpf})}"> Reprovar </a></span>
+                        <!--<td><span>  <a th:href="@{/corretora/equipe/desativar(id=${forca.cpf})}" > Desativar </a></span>-->
                         </td>
                     </tr>
 

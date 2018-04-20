@@ -595,7 +595,7 @@ nav.sidebar, .main{
 	border-color: transparent;
 }
 
-/* Adicione espaço ao navegador e ao Windows direito.*/
+/* Adicione espaÃ§o ao navegador e ao Windows direito.*/
 .main{
 	padding: 10px 10px 0 10px;
 }
@@ -603,7 +603,7 @@ nav.sidebar, .main{
 
 
 
-/* exibição do lado pequeno / médio */
+/* exibiÃ§Ã£o do lado pequeno / mÃ©dio */
 @media (min-width: 768px) {
 
 
@@ -611,12 +611,12 @@ nav.sidebar, .main{
 	/*Permitir que o principal seja ao lado de Nav*/
 	.main{
 		position: absolute;
-		width: calc(100% - 40px); /*mantém 100% menos o tamanho do nav*/
+		width: calc(100% - 40px); /*mantÃ©m 100% menos o tamanho do nav*/
 		margin-left: 40px;
 		float: right;
 	}
 
-	/*Permite que a barra de navegação seja mostrada no mouseover*/
+	/*Permite que a barra de navegaÃ§Ã£o seja mostrada no mouseover*/
 	nav.sidebar:hover + .main{
 		margin-left: 200px;
 
@@ -637,17 +637,17 @@ nav.sidebar, .main{
 		margin-left: 0px;
 	}
 
-	/*Ícones do centro*/
+	/*Ã�cones do centro*/
 	nav.sidebar a{
 		padding-right: 13px;
 	}
 
-	/*adiciona top de borda à primeira caixa de navegação */
+	/*adiciona top de borda Ã  primeira caixa de navegaÃ§Ã£o */
 	nav.sidebar .navbar-nav > li:first-child{
 		border-top: 1px #2D6FCE solid;
 	}
 
-	/*adiciona borda para caixas de navegação inferiores*/
+	/*adiciona borda para caixas de navegaÃ§Ã£o inferiores*/
 	nav.sidebar .navbar-nav > li{
 		border-bottom: 1px #3A94FB solid;
 	}
@@ -939,7 +939,7 @@ nav:hover .forAnimate{
 	color: white;
 	border-radius: 25px;
 }
-/*=================================================RODAPÉ================================================================*/
+/*=================================================RODAPÃ‰================================================================*/
 .title-vender-botao{
 	color:#2D6FCE;
 	margin-left:16%;
@@ -952,7 +952,7 @@ nav:hover .forAnimate{
 	margin-left: 14%;
 	color: #656565;
 }
-/*=================================================RODAPÉ================================================================*/
+/*=================================================RODAPÃ‰================================================================*/
 
 
 
@@ -1881,7 +1881,7 @@ nav:hover .forAnimate{
 }
 .btnEsqueciSenha {
 	color: #D9487F!important;
-	font-weight: bold;
+	font-family: Roboto, auto;
 }
 .btnEsqueciSenha:hover {
 	color: #D9487F!important;
@@ -2055,7 +2055,7 @@ input[type=checkbox] {
 
 }
 
-/* link que ainda não foi visitado */
+/* link que ainda nÃ£o foi visitado */
 a:link {
 	color:#fff;
 }

@@ -1,11 +1,8 @@
 package br.com.odontoprev.portalcorretor.service;
 
 import br.com.odontoprev.portalcorretor.service.dto.AtivarResponse;
-import br.com.odontoprev.portalcorretor.service.dto.ExcluirResponse;
 import br.com.odontoprev.portalcorretor.service.dto.ForcaVenda;
 import br.com.odontoprev.portalcorretor.service.dto.ForcaVendaResponse;
-import br.com.odontoprev.portalcorretor.service.dto.ReprovarResponse;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.logging.Log;
@@ -28,18 +25,11 @@ public class ForcaVendaService {
 
     @Value("${odontoprev.servicebase.url}")
     private String requesBasetUrl;
-    
-    @Value("${odontoprev.servicebase.url.semToken}")
-    private String requesBasetUrlSemToken;
 
     @Value("${odontoprev.forcavenda.metodo}")
     private String metodoGetPorDocuemnto_Post_Put;
 
     private String ativar = "forcavenda/status-ativo";
-    
-    private String excluir = "forcavenda/status-excluido";
-    
-    private String reprovar = "forcavenda/status-reprovado";
 
     @Value("${odontoprev.forcavenda.ListaPorCorretora}")
     private String metodoListaPorCorretora;
@@ -47,8 +37,7 @@ public class ForcaVendaService {
     @Autowired
     private ApiManagerTokenService apiManagerTokenService;
 
-    @SuppressWarnings("null")
-	public long Criar(ForcaVenda forcaVenda) {
+    public long Criar(ForcaVenda forcaVenda) {
         String url = requesBasetUrl + "/" + metodoGetPorDocuemnto_Post_Put;
         RestTemplate restTemplate = new RestTemplate();
         ForcaVendaResponse result = null;
@@ -84,7 +73,8 @@ public class ForcaVendaService {
 
     public AtivarResponse ativar(String cpf) {
         String url = requesBasetUrl + "/" + ativar;
-        RestTemplate restTemplate = new RestTemplate();       
+        RestTemplate restTemplate = new RestTemplate();
+        ForcaVendaResponse result = null;
         try {
             HttpHeaders headers = new HttpHeaders();
             headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
@@ -108,66 +98,11 @@ public class ForcaVendaService {
         }
 
     }
-    
-    public ExcluirResponse excluir(String cpf) {
-        //String url = requesBasetUrl + "/" + excluir;
-        String url = requesBasetUrlSemToken + "/" + excluir;
-        RestTemplate restTemplate = new RestTemplate();
-       
-        try {
-            HttpHeaders headers = new HttpHeaders();
-            headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
-            headers.setContentType(MediaType.APPLICATION_JSON);
-
-            Map<String, String> loginMap = new HashMap<>();
-            loginMap.put("cpf", cpf);
-            HttpEntity<Map<String, String>> entityReq = new HttpEntity<>(loginMap, headers);
-
-            ResponseEntity<ExcluirResponse> retorno = restTemplate.exchange(url, HttpMethod.PUT, entityReq, ExcluirResponse.class);
-
-            if (retorno.getStatusCode() == HttpStatus.OK) {
-                return retorno.getBody();
-            } else {
-                return new ExcluirResponse("0", "Falha ao excluir cpf");
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ExcluirResponse("0", "Falha ao excluir cpf");
-        }
-    }
-
-    public ReprovarResponse reprovar(String cpf) {
-        //String url = requesBasetUrl + "/" + reprovar;
-    	String url = requesBasetUrlSemToken + "/" + reprovar;
-        RestTemplate restTemplate = new RestTemplate();
-       
-        try {
-            HttpHeaders headers = new HttpHeaders();
-            headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
-            headers.setContentType(MediaType.APPLICATION_JSON);
-
-            Map<String, String> loginMap = new HashMap<>();
-            loginMap.put("cpf", cpf);
-            HttpEntity<Map<String, String>> entityReq = new HttpEntity<>(loginMap, headers);
-
-            ResponseEntity<ReprovarResponse> retorno = restTemplate.exchange(url, HttpMethod.PUT, entityReq, ReprovarResponse.class);
-
-            if (retorno.getStatusCode() == HttpStatus.OK) {
-                return retorno.getBody();
-            } else {
-                return new ReprovarResponse("0", "Falha ao reprovar cpf");
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ReprovarResponse("0", "Falha ao reprovar cpf");
-        }
-    }
 
     public boolean Alterar(ForcaVenda forcaVenda) {
         String url = requesBasetUrl + metodoGetPorDocuemnto_Post_Put;
-        RestTemplate restTemplate = new RestTemplate();        
+        RestTemplate restTemplate = new RestTemplate();
+        ForcaVendaResponse result = null;
         try {
             HttpHeaders headers = new HttpHeaders();
             headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
@@ -217,7 +152,8 @@ public class ForcaVendaService {
 
     public ForcaVenda ObterPorDocumento(String documento) {
         String url = requesBasetUrl + "/"+ metodoGetPorDocuemnto_Post_Put + documento;
-        RestTemplate restTemplate = new RestTemplate();        
+        RestTemplate restTemplate = new RestTemplate();
+        ForcaVendaResponse result = null;
         try {
             HttpHeaders headers = new HttpHeaders();
             headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
