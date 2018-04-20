@@ -1,127 +1,147 @@
-<!DOCTYPE html>
- <html>
- <head>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
+<head>
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-     <link rel="shortcut icon" href="../../../assets/img/odpv.PNG" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="shortcut icon" href="../../../assets/img/odpv.PNG" type="image/png">
 
     <title>Proposta enviada| OdontoPrev</title>
- </head>
- <body style="min-width: 100% !important;">    
-     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-     <script type="text/javascript" src="../../../assets/js/bootstrap.min.js"></script>
-     <script type="text/javascript" src="../../../assets/js/jquery.mask.min.js"></script>
-     <script type="text/javascript" src="../../../assets/js/odonto-Valida.js"></script> 
-     <link href="../../../assets/css/bootstrap.min.css" rel="stylesheet">
-     <link href="../../../assets/css/main.css" rel="stylesheet">
-     <script type="text/javascript" src="../../../assets/js/menu.js"></script>
+</head>
+<body style="min-width: 100% !important;">
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../../../assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../../assets/js/jquery.mask.min.js"></script>
+<script type="text/javascript" src="../../../assets/js/odonto-Valida.js"></script>
+<link href="../../../assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="../../../assets/css/main.css" rel="stylesheet">
+<script type="text/javascript" src="../../../assets/js/menu.js"></script>
 
-    <script>
-     $(function(){
-         $(".button-collapse").sideNav();
-     });
+<script>
+    $(function () {
+        $(".button-collapse").sideNav();
+    });
 
-    </script>
+</script>
 
 
 <div class="container-fluid nopadding">
 
- <nav class="nav-odonto">
-     <div class="nav-wrapper">
-         <a href="#" class="brand-logo" style="color: silver; padding: 35px"><img src="../../../assets/img/logo.png"></a>
-         <ul class="hide-on-med-and-down">
-             <li class="nav-cel"><a href="../others/home-dono-corretora.html"><img src="../../../assets/img/menu-home.png" ><span>home</span></a></li>
-             <li class="nav-cel"><a href="#"><img src="../../../assets/img/menu-meus-dados.png" ><span>meus dados</span></a></li>
-             <li class="nav-cel"><a href="../vendas_pf/escolhaPlanoPF.html"><img src="../../../assets/img/menu-vender-pf.png" ><span>vender pessoa física</span></a></li>
-             <li class="nav-cel nav-active"><a href="Escolha_um_plano.html"><img src="../../../assets/img/menu-vender-pme.png" ><span>vender pme</span></a></li>
-             <li class="nav-cel"><a href="#"><img src="../../../assets/img/menu-listas.png" ><span>informações dos planos</span></a></li>
-             <li class="nav-cel"><a href="../others/lista_de_pospostas.html"><img src="../../../assets/img/menu-listas.png" ><span>lista de propostas</span></a></li>
-             <li class="nav-cel"><a href="../others/busca-rede-credenciadas.html"><img src="../../../assets/img/menu-rede-credenciada.png" ><span>rede credenciada</span></a></li>
-             <li class="nav-cel"><a href="../others/fale-conosco-forca-vendas.html"><img src="../../../assets/img/menu-contato.png" ><span>fale conosco</span></a></li>
-         </ul> 
-    </div>
- </nav>
-
-<div class="nav-mobile">
-    <ul class="side-nav" id="menu-mobile">
-         <li class="" style="background-color: #fff; padding: 30px">
-            <div class="perfil-mobile"> 
-                  <div class="circle-perfil">
-                      <div class="data-perfil">
-                          <p class="font-gray name-mobile"><strong>Marcos Palmas</strong></p> 
-                          <p class="font-gray">Corretora XPTO</p>
-                          <p class="font-pink">Sair</p>
-                      </div>
-                  </div>
-            </div>
-         </li>
-            <li class="nav-cel"><a href="../others/home-dono-corretora.html"><img src="../../../assets/img/menu-home.png" ><span>home</span></a></li>
-             <li class="nav-cel"><a href="#"><img src="../../../assets/img/menu-meus-dados.png" ><span>meus dados</span></a></li>
-             <li class="nav-cel"><a href="../vendas_pf/escolhaPlanoPF.html"><img src="../../../assets/img/menu-vender-pf.png" ><span>vender pessoa física</span></a></li>
-             <li class="nav-cel nav-active"><a href="Escolha_um_plano.html"><img src="../../../assets/img/menu-vender-pme.png" ><span>vender pme</span></a></li>
-             <li class="nav-cel"><a href="#"><img src="../../../assets/img/menu-listas.png" ><span>informações dos planos</span></a></li>
-             <li class="nav-cel"><a href="../others/lista_de_pospostas.html"><img src="../../../assets/img/menu-listas.png" ><span>lista de propostas</span></a></li>
-             <li class="nav-cel"><a href="../others/busca-rede-credenciadas.html"><img src="../../../assets/img/menu-rede-credenciada.png" ><span>rede credenciada</span></a></li>
-             <li class="nav-cel"><a href="../others/fale-conosco-forca-vendas.html"><img src="../../../assets/img/menu-contato.png" ><span>fale conosco</span></a></li>
-         </ul>
-     </div>
-
-  <div class="header-logado">
-      <a href="#" data-activates="menu-mobile" class="button-collapse pull-right">
-          <img src="../../../assets/img/menu.png" class="icon-menu">
-      </a>
-      <img src="../../../assets/img/logo-mobile.png" class="logo-ondonto-mobile" style="position: relative;top:30px">
-
-       <div class="perfil-web">
-          <div class="circle-perfil">
-            <div class="data-perfil">
-                <p class="user-name"><strong>Marcos Palmas</strong></p> 
-                <p class="font-gray">Corretora XPTO</p>
-                <a href="#" class="link-odonto nomargin">Sair</a>
-            </div>
-          </div> 
-        </div> 
-        <div class="pull-right space-top-30 btn-header-web">
-            <a href="../vendas_pf/escolhaPlanoPF.html" type="button" class="btn btnPink btn-width-custom text-right">VENDER PARA PESSOA FÍSICA</a><br>
-            <a href="Escolha_um_plano.html" type="button" class="btn btnBlue btn-width-custom space-top-10">VENDER PME</a>  
+    <nav class="nav-odonto">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo" style="color: silver; padding: 35px"><img src="../../../assets/img/logo.png"></a>
+            <ul class="hide-on-med-and-down">
+                <li class="nav-cel"><a href="../others/home-dono-corretora.html"><img
+                        src="../../../assets/img/menu-home.png"><span>home</span></a></li>
+                <li class="nav-cel"><a href="#"><img
+                        src="../../../assets/img/menu-meus-dados.png"><span>meus dados</span></a></li>
+                <li class="nav-cel"><a href="../vendas_pf/escolhaPlanoPF.html"><img
+                        src="../../../assets/img/menu-vender-pf.png"><span>vender pessoa física</span></a></li>
+                <li class="nav-cel nav-active"><a href="Escolha_um_plano.html"><img
+                        src="../../../assets/img/menu-vender-pme.png"><span>vender pme</span></a></li>
+                <li class="nav-cel"><a href="#"><img src="../../../assets/img/menu-listas.png"><span>informações dos planos</span></a>
+                </li>
+                <li class="nav-cel"><a href="../others/lista_de_pospostas.html"><img
+                        src="../../../assets/img/menu-listas.png"><span>lista de propostas</span></a></li>
+                <li class="nav-cel"><a href="../others/busca-rede-credenciadas.html"><img
+                        src="../../../assets/img/menu-rede-credenciada.png"><span>rede credenciada</span></a></li>
+                <li class="nav-cel"><a href="../others/fale-conosco-forca-vendas.html"><img
+                        src="../../../assets/img/menu-contato.png"><span>fale conosco</span></a></li>
+            </ul>
         </div>
-  </div> 
+    </nav>
+
+    <div class="nav-mobile">
+        <ul class="side-nav" id="menu-mobile">
+            <li class="" style="background-color: #fff; padding: 30px">
+                <div class="perfil-mobile">
+                    <div class="circle-perfil">
+                        <div class="data-perfil">
+                            <p class="font-gray name-mobile"><strong>Marcos Palmas</strong></p>
+                            <p class="font-gray">Corretora XPTO</p>
+                            <p class="font-pink">Sair</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-cel"><a href="../others/home-dono-corretora.html"><img
+                    src="../../../assets/img/menu-home.png"><span>home</span></a></li>
+            <li class="nav-cel"><a href="#"><img
+                    src="../../../assets/img/menu-meus-dados.png"><span>meus dados</span></a></li>
+            <li class="nav-cel"><a href="../vendas_pf/escolhaPlanoPF.html"><img
+                    src="../../../assets/img/menu-vender-pf.png"><span>vender pessoa física</span></a></li>
+            <li class="nav-cel nav-active"><a href="Escolha_um_plano.html"><img
+                    src="../../../assets/img/menu-vender-pme.png"><span>vender pme</span></a></li>
+            <li class="nav-cel"><a href="#"><img
+                    src="../../../assets/img/menu-listas.png"><span>informações dos planos</span></a></li>
+            <li class="nav-cel"><a href="../others/lista_de_pospostas.html"><img
+                    src="../../../assets/img/menu-listas.png"><span>lista de propostas</span></a></li>
+            <li class="nav-cel"><a href="../others/busca-rede-credenciadas.html"><img
+                    src="../../../assets/img/menu-rede-credenciada.png"><span>rede credenciada</span></a></li>
+            <li class="nav-cel"><a href="../others/fale-conosco-forca-vendas.html"><img
+                    src="../../../assets/img/menu-contato.png"><span>fale conosco</span></a></li>
+        </ul>
+    </div>
+
+    <div class="header-logado">
+        <a href="#" data-activates="menu-mobile" class="button-collapse pull-right">
+            <img src="../../../assets/img/menu.png" class="icon-menu">
+        </a>
+        <img src="../../../assets/img/logo-mobile.png" class="logo-ondonto-mobile" style="position: relative;top:30px">
+
+        <div class="perfil-web">
+            <div class="circle-perfil">
+                <div class="data-perfil">
+                    <p class="user-name"><strong>Marcos Palmas</strong></p>
+                    <p class="font-gray">Corretora XPTO</p>
+                    <a href="#" class="link-odonto nomargin">Sair</a>
+                </div>
+            </div>
+        </div>
+        <div class="pull-right space-top-30 btn-header-web">
+            <a href="../vendas_pf/escolhaPlanoPF.html" type="button" class="btn btnPink btn-width-custom text-right">VENDER
+                PARA PESSOA FÍSICA</a><br>
+            <a href="Escolha_um_plano.html" type="button" class="btn btnBlue btn-width-custom space-top-10">VENDER
+                PME</a>
+        </div>
+    </div>
 
     <div class="container-logado padding-logado">
 
-      <div class="row">
-          <div class="col-xs-12">
-            <div class="confirmacao-proposta">
-              <div class="titulo">
-                <h3 class="uppercase title-odonto font-blue nomargin space-top-30 text-center">proposta enviada</h3>
-              </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="confirmacao-proposta">
+                    <div class="titulo">
+                        <h3 class="uppercase title-odonto font-blue nomargin space-top-30 text-center">proposta
+                            enviada</h3>
+                    </div>
 
-                <div class="space-top-30">
-                    <p class="text-center subtitle-odonto nomargin">Você será avisado quando sua proposta</p>
-                    <p class="text-center subtitle-odonto">for aprovada pela OdontoPrev.</p>
-                    <p class="text-center subtitle-odonto"><strong>Número da proposta</strong></p>
+                    <div class="space-top-30">
+                        <p class="text-center subtitle-odonto nomargin">Você será avisado quando sua proposta</p>
+                        <p class="text-center subtitle-odonto">for aprovada pela OdontoPrev.</p>
+                        <p class="text-center subtitle-odonto"><strong>Número da proposta</strong></p>
+                    </div>
+
+                    <div class="text-center space-top-40">
+                        <span class="numero-proposta">224.232</span>
+                    </div>
+
+                    <div class="space-top-30  text-center">
+                        <a href="../others/lista_de_pospostas.html" type="button"
+                           class="btn btnBlue btn-width-custom space-top-30 uppercase">Ir para lista de propostas</a>
+                    </div>
+
                 </div>
-
-                 <div class="text-center space-top-40">
-                      <span class="numero-proposta">224.232</span>
-                 </div>
-
-                <div class="space-top-30  text-center">
-                    <a href="../others/lista_de_pospostas.html" type="button" class="btn btnBlue btn-width-custom space-top-30 uppercase">Ir para lista de propostas</a>  
-                </div>
-
-                </div>
-          </div>  
+            </div>
         </div>
-      </div>
+    </div>
 
     <div class="footer-logado">
-      <div class="pull-left box-footer">
-          <p>© OdontoPrev. S/A - CNPJ: 119.199/0001-51</p>
-          <p>Av. Marcos Penteado de Ulhoa Rodrigues, 939-14 andar-Edifício Jatoba Torre 2-Barueri-SP CEP- 06460-040</p>
-          <p>OdontoPrev - CRO/SP n° 19009</p>
-      </div>
-      <div class="pull-right footer-img"><img src="../../../assets/img/ans.png" ></div>
+        <div class="pull-left box-footer">
+            <p>© OdontoPrev. S/A - CNPJ: 119.199/0001-51</p>
+            <p>Av. Marcos Penteado de Ulhoa Rodrigues, 939-14 andar-Edifício Jatoba Torre 2-Barueri-SP CEP-
+                06460-040</p>
+            <p>OdontoPrev - CRO/SP n° 19009</p>
+        </div>
+        <div class="pull-right footer-img"><img th:src="@{/img/ans.png}"></div>
     </div>
 </div>
 

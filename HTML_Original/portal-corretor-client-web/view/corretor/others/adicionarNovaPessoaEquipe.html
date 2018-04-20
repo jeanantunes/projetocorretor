@@ -1,9 +1,7 @@
-<!DOCTYPE html>
-<html>
-
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="shortcut icon" href="../../../assets/img/odpv.PNG" type="image/png">
 
     <title>Adicionar pessoa a equipe| OdontoPrev</title>
@@ -12,146 +10,157 @@
 </head>
 
 <body>
-        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script type="text/javascript" src="../../../assets/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="../../../assets/js/jquery.mask.min.js"></script>
-        <script type="text/javascript" src="../../../assets/js/odonto-Valida.js"></script>
-        <link href="../../../assets/css/bootstrap.min.css" rel="stylesheet">
-        <link href="../../../assets/css/main.css" rel="stylesheet">
-        <script type="text/javascript" src="../../../assets/js/menu.js"></script>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../../../assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../../assets/js/jquery.mask.min.js"></script>
+<script type="text/javascript" src="../../../assets/js/odonto-Valida.js"></script>
+<link href="../../../assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="../../../assets/css/main.css" rel="stylesheet">
+<script type="text/javascript" src="../../../assets/js/menu.js"></script>
 
-    <script>
-        $(function () {
-            $(".button-collapse").sideNav();
-        });
+<script>
+    $(function () {
+        $(".button-collapse").sideNav();
+    });
 
-    </script>
+</script>
 
 
 <div class="container-fluid nopadding">
 
-     <nav class="nav-odonto">
-     <div class="nav-wrapper">
-         <a href="#" class="brand-logo" style="color: silver; padding: 35px"><img src="../../../assets/img/logo.png"></a>
-         <ul class="hide-on-med-and-down">
-             <li class="nav-cel"><a href="home-dono-corretora.html"><img src="../../../assets/img/menu-home.png" ><span>home</span></a></li>
-             <li class="nav-cel"><a href="#"><img src="../../../assets/img/menu-meus-dados.png" ><span>dados da corretora</span></a></li>
-             <li class="nav-cel  nav-active"><a href="forca-de-vendas.html"><img src="../../../assets/img/menu-listas.png" ><span>equipe</span></a></li>
-             <li class="nav-cel"><a href="lista_de_pospostas.html"><img src="../../../assets/img/menu-listas.png" ><span>lista de propostas</span></a></li>
-             <li class="nav-cel"><a href="busca-rede-credenciadas.html"><img src="../../../assets/img/menu-rede-credenciada.png" ><span>rede credenciada</span></a></li>
-             <li class="nav-cel"><a href="fale-conosco.html"><img src="../../../assets/img/menu-contato.png" ><span>fale conosco</span></a></li>
-         </ul> 
+    <nav class="nav-odonto">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo" style="color: silver; padding: 35px"><img src="../../../assets/img/logo.png"></a>
+            <ul class="hide-on-med-and-down">
+                <li class="nav-cel"><a href="home-dono-corretora.html"><img
+                        src="../../../assets/img/menu-home.png"><span>home</span></a></li>
+                <li class="nav-cel"><a href="#"><img src="../../../assets/img/menu-meus-dados.png"><span>dados da corretora</span></a>
+                </li>
+                <li class="nav-cel  nav-active"><a href="forca-de-vendas.html"><img
+                        src="../../../assets/img/menu-listas.png"><span>equipe</span></a></li>
+                <li class="nav-cel"><a href="lista_de_pospostas.html"><img
+                        src="../../../assets/img/menu-listas.png"><span>lista de propostas</span></a></li>
+                <li class="nav-cel"><a href="busca-rede-credenciadas.html"><img
+                        src="../../../assets/img/menu-rede-credenciada.png"><span>rede credenciada</span></a></li>
+                <li class="nav-cel"><a href="fale-conosco.html"><img src="../../../assets/img/menu-contato.png"><span>fale conosco</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="nav-mobile">
+        <ul class="side-nav" id="menu-mobile">
+            <li class="" style="background-color: #fff; padding: 30px">
+                <div class="perfil-mobile">
+                    <div class="circle-perfil">
+                        <div class="data-perfil">
+                            <p class="font-gray name-mobile"><strong>Corretora XPTO</strong></p>
+                            <p class="font-pink">Sair</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-cel"><a href="home-dono-corretora.html"><img src="../../../assets/img/menu-home.png"><span>home</span></a>
+            </li>
+            <li class="nav-cel"><a href="#"><img
+                    src="../../../assets/img/menu-meus-dados.png"><span>dados da corretora</span></a></li>
+            <li class="nav-cel  nav-active"><a href="forca-de-vendas.html"><img
+                    src="../../../assets/img/menu-listas.png"><span>equipe</span></a></li>
+            <li class="nav-cel"><a href="lista_de_pospostas.html"><img src="../../../assets/img/menu-listas.png"><span>lista de propostas</span></a>
+            </li>
+            <li class="nav-cel"><a href="busca-rede-credenciadas.html"><img
+                    src="../../../assets/img/menu-rede-credenciada.png"><span>rede credenciada</span></a></li>
+            <li class="nav-cel"><a href="fale-conosco.html"><img src="../../../assets/img/menu-contato.png"><span>fale conosco</span></a>
+            </li>
+        </ul>
     </div>
- </nav>
 
-<div class="nav-mobile">
-    <ul class="side-nav" id="menu-mobile">
-         <li class="" style="background-color: #fff; padding: 30px">
-            <div class="perfil-mobile"> 
-                  <div class="circle-perfil">
-                      <div class="data-perfil">
-                          <p class="font-gray name-mobile"><strong>Corretora XPTO</strong></p> 
-                          <p class="font-pink">Sair</p>
-                      </div>
-                  </div>
+    <div class="header-logado">
+        <a href="#" data-activates="menu-mobile" class="button-collapse pull-right">
+            <img src="../../../assets/img/menu.png" class="icon-menu">
+        </a>
+        <img src="../../../assets/img/logo-mobile.png" class="logo-ondonto-mobile" style="position: relative;top:30px">
+
+        <div class="perfil-web">
+            <div class="circle-perfil">
+                <div class="data-perfil">
+                    <p class="user-name"><strong>Corretora XPTO</strong></p>
+                    <a href="#" class="link-odonto">Sair</a>
+                </div>
             </div>
-         </li>
-             <li class="nav-cel"><a href="home-dono-corretora.html"><img src="../../../assets/img/menu-home.png" ><span>home</span></a></li>
-             <li class="nav-cel"><a href="#"><img src="../../../assets/img/menu-meus-dados.png" ><span>dados da corretora</span></a></li>
-             <li class="nav-cel  nav-active"><a href="forca-de-vendas.html"><img src="../../../assets/img/menu-listas.png" ><span>equipe</span></a></li>
-             <li class="nav-cel"><a href="lista_de_pospostas.html"><img src="../../../assets/img/menu-listas.png" ><span>lista de propostas</span></a></li>
-             <li class="nav-cel"><a href="busca-rede-credenciadas.html"><img src="../../../assets/img/menu-rede-credenciada.png" ><span>rede credenciada</span></a></li>
-             <li class="nav-cel"><a href="fale-conosco.html"><img src="../../../assets/img/menu-contato.png" ><span>fale conosco</span></a></li>
-     </ul>
- </div>
+        </div>
 
-  <div class="header-logado">
-      <a href="#" data-activates="menu-mobile" class="button-collapse pull-right">
-          <img src="../../../assets/img/menu.png" class="icon-menu">
-      </a>
-      <img src="../../../assets/img/logo-mobile.png" class="logo-ondonto-mobile" style="position: relative;top:30px">
-
-       <div class="perfil-web">
-          <div class="circle-perfil">
-            <div class="data-perfil">
-                <p class="user-name"><strong>Corretora XPTO</strong></p> 
-                <a href="#" class="link-odonto">Sair</a>
-            </div>
-          </div> 
-        </div> 
-        
-  </div> 
+    </div>
 
 
-        <div class="container-logado padding-logado">
+    <div class="container-logado padding-logado">
 
-                <div class="titulo">
-                        <h3 class="uppercase title-odonto font-blue nomargin uppercase">FAZER UPLOAD DA EQUIPE</h3>
-                         <h3 class="uppercase title-odonto font-blue nomargin uppercase">ADICIONAR NOVA</h3>
-                        
-                        <p class="text-silver space-top-15">
-          Infome os dados abaixo, quando a força de venda cadastrar no sistema de venda OdontoPrev ele será automáticamente adicionado a sua corretora.                        </p>
-        
-                    </div>         
+        <div class="titulo">
+            <h3 class="uppercase title-odonto font-blue nomargin uppercase">FAZER UPLOAD DA EQUIPE</h3>
+            <h3 class="uppercase title-odonto font-blue nomargin uppercase">ADICIONAR NOVA</h3>
 
-  
-            <div>
+            <p class="text-silver space-top-15">
+                Infome os dados abaixo, quando a força de venda cadastrar no sistema de venda OdontoPrev ele será
+                automáticamente adicionado a sua corretora. </p>
+
+        </div>
+
+
+        <div>
             <div class="form-group inline width-form1 space-right space-top-30">
                 <label class="label-nome">Nome </label>
                 <input type="text" id="confirmeNomeAddPessoaEquipe" class="nome form-control">
-              </div>
-              <div class="form-group inline space-right width-form3 ">
+            </div>
+            <div class="form-group inline space-right width-form3 ">
                 <label class="label-cpf">CPF</label>
                 <input type="text" id="cpfAddPessoaEquipe" class="cpf form-control ">
-              </div>
             </div>
+        </div>
 
-           
-    
-              <div>
-                <div class="form-group inline space-right width-form3 space-top-30">
-                  <label class="label-dataNascimento">Data de nascimento</label>
-                  <input type="text" id="dataNascimentoAddPessoaEquipe" class="dataNascimento form-control">
-                </div>
-                <div class="form-group inline space-right width-form3">
-                  <label class="label-celular">Celular</label>
-                  <input type="text" id="celularAddPessoaEquipe" class="celular form-control">
-                </div>
-                <div class="form-group inline space-right width-form3">
-                  <label class="label-email">E-mail </label>
-                  <input type="text" id="emailAddPessoaEquipe" class="email form-control">
-                </div>
 
-              </div>
-
-              <div>
-    
-                <div class="form-group inline space-right width-form3 space-top-30">
-                  <label class="label-departamento">Departamento</label>
-                  <input type="text" id="departamentoAddPessoaEquipe" class="departamento form-control">
-                </div>
-                <div class="form-group inline space-right width-form3">
-                  <label class="label-cargo">Cargo</label>
-                  <input type="text" id="cargoAddPessoaEquipe" class="cargo form-control">
-                </div>
-                <div class="space-top-30">
-                        <a type="button" class="btn btnBlue btn-width-custom space-top-10 uppercase">salvar</a>  
-                    </div>
-              </div>
-             
-            
+        <div>
+            <div class="form-group inline space-right width-form3 space-top-30">
+                <label class="label-dataNascimento">Data de nascimento</label>
+                <input type="text" id="dataNascimentoAddPessoaEquipe" class="dataNascimento form-control">
+            </div>
+            <div class="form-group inline space-right width-form3">
+                <label class="label-celular">Celular</label>
+                <input type="text" id="celularAddPessoaEquipe" class="celular form-control">
+            </div>
+            <div class="form-group inline space-right width-form3">
+                <label class="label-email">E-mail </label>
+                <input type="text" id="emailAddPessoaEquipe" class="email form-control">
+            </div>
 
         </div>
-              <div class="footer-logado">
-      <div class="pull-left box-footer">
-          <p>© OdontoPrev. S/A - CNPJ: 119.199/0001-51</p>
-          <p>Av. Marcos Penteado de Ulhoa Rodrigues, 939-14 andar-Edifício Jatoba Torre 2-Barueri-SP CEP- 06460-040</p>
-          <p>OdontoPrev - CRO/SP n° 19009</p>
-      </div>
-      <div class="pull-right footer-img"><img src="../../../assets/img/ans.png" ></div>
-    </div>
+
+        <div>
+
+            <div class="form-group inline space-right width-form3 space-top-30">
+                <label class="label-departamento">Departamento</label>
+                <input type="text" id="departamentoAddPessoaEquipe" class="departamento form-control">
             </div>
+            <div class="form-group inline space-right width-form3">
+                <label class="label-cargo">Cargo</label>
+                <input type="text" id="cargoAddPessoaEquipe" class="cargo form-control">
+            </div>
+            <div class="space-top-30">
+                <a type="button" class="btn btnBlue btn-width-custom space-top-10 uppercase">salvar</a>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="footer-logado">
+        <div class="pull-left box-footer">
+            <p>© OdontoPrev. S/A - CNPJ: 119.199/0001-51</p>
+            <p>Av. Marcos Penteado de Ulhoa Rodrigues, 939-14 andar-Edifício Jatoba Torre 2-Barueri-SP CEP-
+                06460-040</p>
+            <p>OdontoPrev - CRO/SP n° 19009</p>
+        </div>
+        <div class="pull-right footer-img"><img th:src="@{/img/ans.png}"></div>
+    </div>
+</div>
 
 </body>
-
 </html>
