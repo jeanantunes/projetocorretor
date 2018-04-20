@@ -27,7 +27,7 @@ public class FaleConoscoController {
     	FaleConoscoForcaVendasModel faleConoscoForcaVendasModel = new FaleConoscoForcaVendasModel();
     	faleConoscoForcaVendasModel.setNomeCorretor("Corretor XYZ 1850");
     	faleConoscoForcaVendasModel.setNomeCorretora("Corretora XPTO 1850");
-    	faleConoscoForcaVendasModel.setTipoMensagem("D�vidas");
+    	faleConoscoForcaVendasModel.setTipoMensagem("Dúvidas");
         ModelAndView modelAndView = new ModelAndView(
         		"fale-conosco-mensagem", 
         		"faleConoscoForcaVendasModel", 
@@ -41,7 +41,7 @@ public class FaleConoscoController {
     	FaleConoscoForcaVendasModel faleConoscoForcaVendasModel = new FaleConoscoForcaVendasModel();
     	faleConoscoForcaVendasModel.setNomeCorretor("Corretor XYZ 1850");
     	faleConoscoForcaVendasModel.setNomeCorretora("Corretora XPTO 1850");
-    	faleConoscoForcaVendasModel.setTipoMensagem("Suget�es");
+    	faleConoscoForcaVendasModel.setTipoMensagem("Sugestões");
         ModelAndView modelAndView = new ModelAndView(
         		"fale-conosco-mensagem", 
         		"faleConoscoForcaVendasModel", 
