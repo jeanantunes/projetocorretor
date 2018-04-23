@@ -165,7 +165,7 @@
                     <tr th:each="forca : ${listaForca.lista}" class="line-table">                    	
                         <td><span class="dados" data-toggle="tooltip" th:title="${forca.cpf} + '<br>' + ${forca.email} + '<br>' + ${forca.celular}"  th:text="${forca.nome}"></span></td>
                         <td><span th:text="${forca.statusForcaVenda}"></span></td>
-
+						<td><span>  <a class="btn uppercase btnBlue" th:href="@{/corretora/equipe/excluir(cpf=${forca.cpf})}"> Excluir </a></span>
                         <!--<td><span>  <a th:href="@{/corretora/equipe/desativar(id=${forca.cdForcaVenda})}" > Desativar </a></span>-->
                        
                     </tr>
@@ -175,16 +175,16 @@
 
             </div>
         </div>
-<!--##Upload Força de Vendas##
+
         <div class=" space-top-30 btn-header-web">
             <a th:href="@{/corretora/equipe/adicionar}" type="button" class="btn uppercase btnBlue btn-width-custom space-top-10">ADICIONAR NOVO</a>
             <form action="uploadSuccess.html" th:action="@{/fileupload}" method="post" enctype="multipart/form-data">
-		          <label for="file">FAZER UPLOAD DA EQUIPE</label>
+		          <!--<label for="file">FAZER UPLOAD DA EQUIPE</label>
 		          <input type="file" name="file" id="file"/>
 		          <input type="submit" value="Upload" />
         	</form>
-            <a th:href="@{/corretora/equipe/adicionar}" type="button" class="btn uppercase btnBlue btn-width-custom space-top-10">FAZER UPLOAD DA EQUIPE</a>
-        </div>-->
+            <a th:href="@{/corretora/equipe/adicionar}" type="button" class="btn uppercase btnBlue btn-width-custom space-top-10">FAZER UPLOAD DA EQUIPE</a>-->
+        </div>
 
         <div class="row space-top-30">
             <div class="col-xs-12">
@@ -220,6 +220,8 @@
                         <td><span th:text="${forca.statusForcaVenda}">PME</span></td>
 
                         <td><span>  <a class="btn uppercase btnBlue" th:href="@{/corretora/equipe/ativar(id=${forca.cpf})}"> Ativar </a></span>
+                        <td><span>  <a class="btn uppercase btnBlue" th:href="@{/corretora/equipe/reprovar(cpf=${forca.cpf})}"> Reprovar </a></span>
+                        
                         <!--<td><span>  <a th:href="@{/corretora/equipe/desativar(id=${forca.cpf})}" > Desativar </a></span>-->
                         </td>
                     </tr>

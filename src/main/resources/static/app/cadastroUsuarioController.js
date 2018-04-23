@@ -27,7 +27,8 @@ $(document).ready(function () {
                         return;
                     }
 
-                    if (dataDadosUsuario.cdForcaVenda != null && dataDadosUsuario.statusForcaVenda.toUpperCase() == "PRÉ-CADASTRO") {
+                    if (dataDadosUsuario.cdForcaVenda != null && (dataDadosUsuario.statusForcaVenda.toUpperCase() == "PRÉ-CADASTRO" || dataDadosUsuario.statusForcaVenda.toUpperCase() == "INATIVO" || 
+dataDadosUsuario.statusForcaVenda.toUpperCase() == "REPROVADO")) {
 
                         swal.close();
                         console.log(dataDadosUsuario);
