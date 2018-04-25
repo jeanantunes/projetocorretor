@@ -7,12 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-theme.min.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <!--link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/-->
     <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
 
     <!-- 		<link href="css/estiloOdontoPrev.css" rel="stylesheet"> -->
     <script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
-    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+    <!--script-- type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script-->
     <script type="text/javascript" th:src="@{/js/jquery.mask.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/odonto-Valida.js}"></script>
 
@@ -20,7 +20,7 @@
     <!--<script type="text/javascript"-->
     <!--th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js}"></script>-->
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	
+
     <script>
         $(function () {
             $(".button-collapse").sideNav();
@@ -86,32 +86,32 @@
 
 
         });
-        
-        
+
+
         $(document).ready(function(){
-        	$('[data-toggle="tooltip"]').tooltip({html: true, placement: "bottom"});   
-        });        	
-        
-        
-        
-        
+        	$('[data-toggle="tooltip"]').tooltip({html: true, placement: "bottom"});
+        });
+
+
+
+
     </script>
-    
+
     <style>
     	/* Tooltip */
 		  .dados + .tooltip > .tooltip-inner {
-		      background-color: #da497f; 
-		      color: #FFFFFF; 
+		      background-color: #da497f;
+		      color: #FFFFFF;
 		      padding: 20px;
-		      font-size: 12px;		
+		      font-size: 12px;
 		  }
 		  /* Tooltip on bottom */
 		  .dados + .tooltip.bottom > .tooltip-arrow {
-		      border-bottom: 5px solid #da497f;		     
+		      border-bottom: 5px solid #da497f;
 		  }
 	</style>
-		 
-		      
+
+
 </head>
 <body style="min-width: 100% !important;">
 
@@ -162,12 +162,12 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="forca : ${listaForca.lista}" class="line-table">                    	
+                    <tr th:each="forca : ${listaForca.lista}" class="line-table">
                         <td><span class="dados" data-toggle="tooltip" th:title="${forca.cpf} + '<br>' + ${forca.email} + '<br>' + ${forca.celular}"  th:text="${forca.nome}"></span></td>
                         <td><span th:text="${forca.statusForcaVenda}"></span></td>
 						<td><span>  <a class="btn uppercase btnBlue" th:href="@{/corretora/equipe/excluir(cpf=${forca.cpf})}"> Excluir </a></span>
                         <!--<td><span>  <a th:href="@{/corretora/equipe/desativar(id=${forca.cdForcaVenda})}" > Desativar </a></span>-->
-                       
+
                     </tr>
 
                     </tbody>
@@ -221,7 +221,7 @@
 
                         <td><span>  <a class="btn uppercase btnBlue" th:href="@{/corretora/equipe/ativar(id=${forca.cpf})}"> Ativar </a></span>
                         <td><span>  <a class="btn uppercase btnBlue" th:href="@{/corretora/equipe/reprovar(cpf=${forca.cpf})}"> Reprovar </a></span>
-                        
+
                         <!--<td><span>  <a th:href="@{/corretora/equipe/desativar(id=${forca.cpf})}" > Desativar </a></span>-->
                         </td>
                     </tr>
