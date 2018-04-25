@@ -455,8 +455,7 @@ function callRedeCredenciada(callback, token, CodBeneficiario, uf, codigoEspecia
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + token,
-            "Cache-Control": "no-cache"
+            "Authorization": "Bearer " + token
         },
 
         success: function (resp) {

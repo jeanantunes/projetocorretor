@@ -10,19 +10,17 @@ $(document).ready(function () {
 
     $("a[href='meus_dados.html']").hide()
 
-    
-    carregarDadosUsuario();
+        carregarDadosUsuario();
 
     $("#logout").click(function () {
         logout.removerRegistroLogin();
     });
 
-    callTokenProd(function(dataToken){
-
+		callTokenProd(function(dataToken){
 
     });
 
-    defineConexao();
+		defineConexao();
 
     $(".linkMenu").click(function () {
         localStorage.removeItem("propostaPf");
@@ -30,7 +28,12 @@ $(document).ready(function () {
     });
 
     resizeIframe('frame_pf');
-});
+	$("input").blur(function () {
+
+	$(this).val($(this).val().trim());
+								});
+								
+	});
 
 function defineConexao() {
 	
