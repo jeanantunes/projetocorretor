@@ -13,6 +13,7 @@
     <script type="text/javascript" th:src="@{/js/odonto-Valida.js}"></script>
     <script type="text/javascript" th:src="@{/js/menu.js}"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script>
         $(function () {
@@ -140,14 +141,8 @@
             <div class="col-xs-12">
                 <h4 class="uppercase font-blue title-section-odonto pull-left">Sua equipe</h4>
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col-xs-12">
-                <h2><span class="label bg-gold col-md-12">
-                    <span class="bg-white">&#128276;</span>&nbsp;
-                    <strong th:text="${listaForca.totalForca}">2</strong>&nbsp;
-                    Usuário aguardando sua aprovação</span></h2>
+            <div class="col-xs-12 text-silver">
+                <p>Você pode conferir abaixo todos os corretores vinculados à sua corretora. </p>
             </div>
         </div>
 
@@ -173,7 +168,8 @@
                                   th:text="${forca.nome}"></span></td>
                         <td><span th:text="${forca.statusForcaVenda}"></span></td>
                         <td align="right"><span>  <a class="text-silver"
-                                       th:href="@{/corretora/equipe/excluir(cpf=${forca.cpf})}"> X Recusar </a></span>
+                                                     th:href="@{/corretora/equipe/excluir(cpf=${forca.cpf})}">
+                            <i style="font-size: 16px;" class="fa">&#xf014;</i> Excluir</a></span>
                             <!--<td><span>  <a th:href="@{/corretora/equipe/desativar(id=${forca.cdForcaVenda})}" > Desativar </a></span>-->
 
                     </tr>
@@ -187,9 +183,24 @@
         <div class="col-xs-12">
             <div class=" space-top-30 btn-header-web">
                 <a th:href="@{/corretora/equipe/adicionar}" type="button"
-                   class="btn uppercase btnBlue btn-width-custom space-top-10 navbar-right">ADICIONAR NOVO</a>
+                   class="btn uppercase btnBlue btn-width-custom space-top-10 navbar-right">ADICIONAR NOVO CORRETOR</a>
+                <!-- TODO: Não entra na Sprint5 -->
+                <!-- a th:href="@{/corretora/equipe/adicionar}" type="button"
+                class="btn uppercase btnBlue btn-width-custom space-top-10 navbar-right">DADOS COMPLETOS DA EQUIPE</a-->
+            </div>
+        </div>
+
+        <div class="col-xs-30">
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <h4><p style="color: #5e5e5e">Faça o upload da equipe de vendas</p></h4>
+            <p class="text-odonto font-silver">Para fazer o upload da sua equipe de vendas, você precisa preencher
+                corretamente todos os campos do formulário.</p>
+            <a th:src="@{/static/modelo.xlsx}" style="color: #a94442">Clique aqui e faça o download da planilha em
+                excel</a>
+            <div class="space-top-10 btn-header-web">
                 <button type="button" data-toggle="modal" data-target="#uploadModal"
-                        class="btn uppercase btnBlue btn-width-custom space-top-10 navbar-right">FAZER UPLOAD DA EQUIPE
+                        class="btn uppercase btnBlue btn-width-custom space-top-10 navbar-left">FAZER UPLOAD DA EQUIPE
                 </button>
                 <!--a th:href="@{/fileupload}" type="button"
                    class="btn uppercase btnBlue btn-width-custom space-top-10 navbar-right">FAZER UPLOAD DA EQUIPE</a-->
@@ -202,22 +213,24 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">FAZER UPLOAD DA EQUIPE</h4>
+                                <h4 class="modal-title text-blue">UPLOAD DA EQUIPE DE VENDAS</h4>
                             </div>
                             <div class="modal-body">
                                 <form class="md-form" action="#" th:action="@{/fileupload}" th:object="${fileupload}"
                                       method="post">
                                     <div class="file-field">
-                                        <p><input type="file"
+                                        <p><input type="file" name="file" id="file"
+                                                  style="width: 0.1px;height: 0.1px;opacity: 0; overflow: hidden; position: absolute; z-index: -1;"
                                                   accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                                            <label for="file" class="btn uppercase btnBlue space-top-10">ESCOLHER
+                                                ARQUIVO</label>
                                         </p>
-                                        <p><input class="file-path validate" size="76px" type="text"
-                                                  placeholder="Escolha seu arquivo"></p>
                                     </div>
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn uppercase btnBlue space-top-10">Enviar</button>
+                                <div class="col-xs-3"><a type="button" th:href="@{/fileupload}"
+                                                         class="btn uppercase btnBlue">Enviar</a></div>
                             </div>
                         </div>
                     </div>
@@ -230,18 +243,32 @@
                       <input type="submit" value="Upload" />
                 </form-->
             </div>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
         </div>
 
         <div class="row space-top-30">
             <div class="col-xs-12">
                 <h4 class="uppercase font-blue title-section-odonto pull-left">Aguardando aprovação</h4>
             </div>
-        </div>
 
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2><span class="label bg-gold col-md-12">
+                    <i style="font-size:18px" class="fa">&#xf0a2;</i>&nbsp;
+                    <strong th:text="${listaForca.totalForca}">2</strong>&nbsp;
+                    Corretores aguardando sua aprovação</span></h2>
+                </div>
+            </div>
+
+        </div>
+        <br/>
         <div class="row">
             <div class="col-xs-12">
-                <p class="text-odonto font-silver">Os usuários abaixo pediram permissão para trabalhar no seu time.
-                    Aprove para autorizar o acesso ou Exclua caso não conheça.</p>
+                <p class="text-odonto font-silver">Os usuários abaixo informaram fazer parte da equipe de vendas da sua
+                    corretora.
+                    Para autorizar o acesso clique em “ativar”. Caso você não conheça este corretor, clique em
+                    “reprovar".</p>
             </div>
         </div>
 
@@ -259,22 +286,21 @@
                         <th><span>Ações</span></th>
                     </tr>
                     </thead>
-                    <tbody>
 
+                    <tbody>
                     <tr th:each="forca : ${listaForca.aguardandoAprovacao}" class="line-table">
                         <td><span th:text="${forca.nome}">Lopes</span></td>
                         <td><span th:text="${forca.statusForcaVenda}">PME</span></td>
 
-                        <td><span>  <a class="btn uppercase btnBlue"
-                                       th:href="@{/corretora/equipe/ativar(id=${forca.cpf})}"> Ativar </a></span>
-                        <td><span>  <a class="btn uppercase btnBlue"
-                                       th:href="@{/corretora/equipe/reprovar(cpf=${forca.cpf})}"> Reprovar </a></span>
+                        <td><span>  <a class="text-silver"
+                                       th:href="@{/corretora/equipe/ativar(id=${forca.cpf})}">
+                            <i style="font-size: 16px" class="fa">&#xf087;</i> Ativar</a></span>
+                        <td><span>  <a class="text-silver"
+                                       th:href="@{/corretora/equipe/reprovar(cpf=${forca.cpf})}">X Reprovar</a></span>
 
                             <!--<td><span>  <a th:href="@{/corretora/equipe/desativar(id=${forca.cpf})}" > Desativar </a></span>-->
                         </td>
                     </tr>
-
-
                     </tbody>
                 </table>
             </div>
