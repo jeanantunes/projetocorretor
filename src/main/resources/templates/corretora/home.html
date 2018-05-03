@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="pt-br"
+      xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
@@ -275,13 +276,19 @@
                 </table>
             </div>
 
-            <div class="col-xs-12">
-                <div class=" space-top-30 btn-header-web">
-                    <!-- id=export -->
-                    <a th:href="@{/downloadCSV/{cnpj}(cnpj=${session.usuario.documento})}" type="button"
-                       class="btn uppercase btnBlue btn-width-custom space-top-10 navbar-right"
-                       style="padding-left: 8px;">
-                        <i style="font-size:14px" class="fa">&#xf0c7;</i> DOWNLOAD DO RELATÓRIO COMPLETO</a>
+            <div th:switch="${session.usuario.perfil}">
+                <div class="row" sec:authorize="hasRole('Corretor')">
+                    <div class="col-xs-12">
+                        <div class=" space-top-30 btn-header-web">
+                            <!-- id=export -->
+                            <!-- http://172.16.20.30:8080/portal-corretor-servico-0.0.1-SNAPSHOT -->
+                            <a th:href="@{https://api-it1.odontoprev.com.br:8243/corretorservicos/1.0/downloadCSV/{cnpj}(cnpj=${session.usuario.documento})}"
+                               type="button"
+                               class="btn uppercase btnBlue btn-width-custom space-top-10 navbar-right"
+                               style="padding-left: 8px;">
+                                <i style="font-size:14px" class="fa">&#xf0c7;</i> DOWNLOAD DO RELATÓRIO COMPLETO</a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
