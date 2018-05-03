@@ -58,7 +58,7 @@ $(document).ready(function () {
     }
     // This must be a hyperlink
     $("#export").click(function (event) {
-        var outputFile = 'relatorio-gestao-vendas'
+        var outputFile = 'template'
         //var outputFile = window.prompt("What do you want to name your output file (Note: This won't have any effect on Safari)") || 'export';
         outputFile = outputFile.replace('.csv','') + '.csv'
 
