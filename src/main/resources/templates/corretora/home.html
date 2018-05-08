@@ -347,13 +347,14 @@
             </div>
         </div>
 
-        <div class="row" sec:authorize="hasRole('Corretora')">
+        <!-- TODO: Jean Antunes Sprint 5 -->
+        <!-- div class="row" sec:authorize="hasRole('Corretora')">
             <div class="col-xs-11">
                 <div class=" space-top-30 btn-header-web">
                     <!-- id=exportRel -->
                     <!-- http://172.16.20.30:8080/portal-corretor-servico-0.0.1-SNAPSHOT -->
                     <!-- onclick="javascript:event.target.port=8080" -->
-                    <a href="/downloadCSV" th:href="@{|downloadCSV/${session.usuario.documento}|}"
+                    <!-- a href="/downloadCSV" th:href="@{|downloadCSV/${session.usuario.documento}|}"
                        type="button"
                        class="btn uppercase btnBlue btn-width-custom space-top-10 navbar-right"
                        style="padding-left: 8px;">
@@ -361,6 +362,7 @@
                 </div>
             </div>
         </div>
+        <!-- TODO: Jean Antunes Sprint 5 -->
     </div>
 
     <div th:replace="fragments/footer :: footer">&nbsp;</div>
