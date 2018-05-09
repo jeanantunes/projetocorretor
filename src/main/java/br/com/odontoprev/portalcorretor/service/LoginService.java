@@ -107,7 +107,8 @@ public class LoginService {
 					LoginADResponse LoginADResponse = new Gson().fromJson(loginRetorno.getBody(), LoginADResponse.class);
 						if("success".equals(LoginADResponse.getStatuscode())) {
 							UsuarioSession usuarioSession = new UsuarioSession();
-							usuarioSession.setNomeUsuario(LoginADResponse.getNome());							
+							usuarioSession.setNomeUsuario(LoginADResponse.getNome());
+							usuarioSession.setPerfil("Adiministrador");
 							return usuarioSession;
 						}
 				}

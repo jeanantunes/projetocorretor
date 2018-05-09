@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<script>
+    $(function () {
+        $(".button-collapse").sideNav();
+    });
+
+</script>
+
+<div th:fragment="menu-admin">
+
+    <nav class="nav-odonto">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo" style="color: silver; padding: 35px">
+                <img th:src="@{/img/logo.png}">
+            </a>
+            <ul class="hide-on-med-and-down">
+                <li class="nav-cel  nav-active">
+                    <a th:href="@{/admin/home}">
+                        <img th:src="@{/img/menu-home.png}">
+                        <span>home</span>
+                    </a>
+                </li>            
+            </ul>
+        </div>
+    </nav>
+
+    <div class="nav-mobile">
+        <ul class="side-nav" id="menu-mobile" style="transform: translateX(-100%);">
+            <li class="" style="background-color: #fff; padding: 30px">
+                <div class="perfil-mobile">
+                    <div class="circle-perfil">
+                        <div class="data-perfil">
+                            <p class="user-name"><strong th:text="${session.usuario.getNomeUsuario()}"></strong></p>
+                            <p class="font-gray" th:text="${session.usuario.getNomeCorretora()}"></p>
+							<a th:href="@{/logout}" class="link-odonto">Sair</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-cel  nav-active">
+                <a th:href="@{/admin/home}">
+                    <img th:src="@{/img/menu-admin.png}">
+                    <span>home</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+</div>
+</body>
+</html>
