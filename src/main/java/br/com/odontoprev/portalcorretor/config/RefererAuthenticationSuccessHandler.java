@@ -33,8 +33,13 @@ public class RefererAuthenticationSuccessHandler implements AuthenticationSucces
                 .map(GrantedAuthority::getAuthority)
                 .anyMatch(aut -> aut.equals("Corretora"))) {
             resp.sendRedirect("/corretora/home");
-        } else {
+        } else if(auth.getAuthorities()
+                .stream()
+                .map(GrantedAuthority::getAuthority)
+                .anyMatch(aut -> aut.equals("Corretor"))) {
             resp.sendRedirect("/forcavenda/home");
+        } else {
+        	resp.sendRedirect("/admin/home");
         }
     }
 }
