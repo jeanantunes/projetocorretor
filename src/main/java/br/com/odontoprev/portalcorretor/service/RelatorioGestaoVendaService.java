@@ -32,11 +32,11 @@ public class RelatorioGestaoVendaService {
 	public RelatorioGestaoVenda gerarCSV(String cnpj) {
 		
 		 log.info("Relatorio Gestao de Venda - gerarCSV "); 
-		 
+
 		 String url = requesBasetUrl + gestaoVendaCSV + cnpj;
 		 
 		 RestTemplate restTemplate = new RestTemplate();
-		 
+
 	     try {
            HttpHeaders headers = new HttpHeaders();
            headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());

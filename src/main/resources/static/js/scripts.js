@@ -69,3 +69,8 @@ $(document).ready(function () {
         // We actually need this to be a typical hyperlink
     });
 });
+// Modernizr para Download em Safari e IE
+$('#modeloDownload').click(function(e) {
+    e.preventDefault();  //stop the browser from following
+    window.location.href = 'modelo.csv';
+});

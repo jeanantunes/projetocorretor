@@ -1,0 +1,47 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="shortcut icon" th:href="@{/img/odpv.PNG}" type="image/png"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-theme.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+    <script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.mask.min.js}"></script>
+</head>
+<body>
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th><span>NOME</span></th>
+            <th><span>CPF</span></th>
+            <th><span>DATANASCIMENTO</span></th>
+            <th><span>CELULAR</span></th>
+            <th><span>EMAIL</span></th>
+            <th><span>DEPARTAMENTO</span></th>
+            <th><span>CARGO</span></th>
+        </tr>
+        </thead>
+
+        <tr th:each="file : ${files}" class="line-table">
+            <td><span th:text="${files.nome}">Jean</span></td>
+            <td><span th:text="${files.cpf}">33111354822</span></td>
+            <td><span th:text="${files.dataNascimento}">01/05/2018</span></td>
+            <td><span th:text="${files.celular}">1199999999</span></td>
+            <td><span th:text="${files.email}">jean.antunes@gmail.com</span></td>
+            <td><span th:text="${files.departamento}">Depmto</span></td>
+            <td><span th:text="${files.cargo}">Cargo</span></td>
+        </tr>
+    </table>
+    <!--
+    <ul>
+        <li th:each="file : ${files}">
+            <!-- NOME,"CPF","DATANASCIMENTO","CELULAR","EMAIL","DEPARTAMENTO","CARGO" -->
+    <a th:href="${file}" th:text="${file}"/>
+    </li>
+    </ul>
+    -->
+</div>
+</body>
+</html>
