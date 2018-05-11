@@ -30,6 +30,7 @@ public class CsvFileDownloadController {
         UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
 
         relatorioGestaoVendaService.gerarCSV(usuario.getDocumento());
+
         return "redirect:" + "/corretora/home";
     }
 
@@ -108,7 +109,7 @@ public class CsvFileDownloadController {
 
         Iterator<String> iter = rows.iterator();
         while (iter.hasNext()) {
-            String outputString = (String) iter.next();
+            String outputString = iter.next();
             response.getOutputStream().print(outputString);
         }
 
