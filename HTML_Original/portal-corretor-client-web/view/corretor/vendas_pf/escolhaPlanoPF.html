@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Escolha de plano PF | OdontoPrev</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="../../../assets/img/odpv.PNG" type="image/png">
     <link href="../../../assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../../assets/css/main.css" rel="stylesheet">
@@ -21,415 +20,440 @@
 
     </script>
 </head>
-    <body style="min-width: 100% !important;">    
-      <div class="container-fluid nopadding">
+<body style="min-width: 100% !important;">
+<div class="container-fluid nopadding">
 
-           <nav class="nav-odonto">
-             <div class="nav-wrapper">
-                 <a href="#" class="brand-logo" style="color: silver; padding: 35px"><img src="../../../assets/img/logo.png"></a>
-                 <ul class="hide-on-med-and-down">
-                     <li class="nav-cel"><a href="../others/home-forca-vendas.html"><img src="../../../assets/img/menu-home.png" ><span>home</span></a></li>
-                     <li class="nav-cel"><a href="#"><img src="../../../assets/img/menu-meus-dados.png" ><span>meus dados</span></a></li>
-                     <li class="nav-cel nav-active"><a href="../vendas_pf/escolhaPlanoPF.html"><img src="../../../assets/img/menu-vender-pf.png" ><span>vender pessoa física</span></a></li>
-                     <li class="nav-cel"><a href="../vendas_pme/Escolha_um_plano.html"><img src="../../../assets/img/menu-vender-pme.png" ><span>vender pme</span></a></li>
-                     <li class="nav-cel"><a href="#"><img src="../../../assets/img/menu-listas.png" ><span>informações dos planos</span></a></li>
-                     <li class="nav-cel"><a href="../others/lista_de_pospostas_forca_vendas.html"><img src="../../../assets/img/menu-listas.png" ><span>lista de propostas</span></a></li>
-                     <li class="nav-cel"><a href="../others/busca-rede-credenciadas-forca-vendas.html"><img src="../../../assets/img/menu-rede-credenciada.png" ><span>rede credenciada</span></a></li>
-                     <li class="nav-cel"><a href="../others/fale-conosco-forca-vendas.html"><img src="../../../assets/img/menu-contato.png" ><span>fale conosco</span></a></li>
-                 </ul> 
-            </div>
-         </nav>
+    <nav class="nav-odonto">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo" style="color: silver; padding: 35px"><img src="../../../assets/img/logo.png"></a>
+            <ul class="hide-on-med-and-down">
+                <li class="nav-cel"><a href="../others/home-forca-vendas.html"><img
+                        src="../../../assets/img/menu-home.png"><span>home</span></a></li>
+                <li class="nav-cel"><a href="#"><img
+                        src="../../../assets/img/menu-meus-dados.png"><span>meus dados</span></a></li>
+                <li class="nav-cel nav-active"><a href="../vendas_pf/escolhaPlanoPF.html"><img
+                        src="../../../assets/img/menu-vender-pf.png"><span>vender pessoa física</span></a></li>
+                <li class="nav-cel"><a href="../vendas_pme/Escolha_um_plano.html"><img
+                        src="../../../assets/img/menu-vender-pme.png"><span>vender pme</span></a></li>
+                <li class="nav-cel"><a href="#"><img src="../../../assets/img/menu-listas.png"><span>informações dos planos</span></a>
+                </li>
+                <li class="nav-cel"><a href="../others/lista_de_pospostas_forca_vendas.html"><img
+                        src="../../../assets/img/menu-listas.png"><span>lista de propostas</span></a></li>
+                <li class="nav-cel"><a href="../others/busca-rede-credenciadas-forca-vendas.html"><img
+                        src="../../../assets/img/menu-rede-credenciada.png"><span>rede credenciada</span></a></li>
+                <li class="nav-cel"><a href="../others/fale-conosco-forca-vendas.html"><img
+                        src="../../../assets/img/menu-contato.png"><span>fale conosco</span></a></li>
+            </ul>
+        </div>
+    </nav>
 
-        <div class="nav-mobile">
-            <ul class="side-nav" id="menu-mobile">
-                 <li class="" style="background-color: #fff; padding: 30px">
-                    <div class="perfil-mobile"> 
-                          <div class="circle-perfil">
-                              <div class="data-perfil">
-                                 <p class="user-name"><strong>Marcos Palmas</strong></p> 
-                                 <p class="font-gray">Corretora XPTO</p>
-                                 <a href="#" class="link-odonto">Sair</a>
-                              </div>
-                          </div>
-                    </div>
-                 </li>
-                     <li class="nav-cel"><a href="../others/home-forca-vendas.html"><img src="../../../assets/img/menu-home.png" ><span>home</span></a></li>
-                     <li class="nav-cel"><a href="#"><img src="../../../assets/img/menu-meus-dados.png" ><span>meus dados</span></a></li>
-                     <li class="nav-cel nav-active"><a href="../vendas_pf/escolhaPlanoPF.html"><img src="../../../assets/img/menu-vender-pf.png" ><span>vender pessoa física</span></a></li>
-                     <li class="nav-cel"><a href="../vendas_pme/Escolha_um_plano.html"><img src="../../../assets/img/menu-vender-pme.png" ><span>vender pme</span></a></li>
-                     <li class="nav-cel"><a href="#"><img src="../../../assets/img/menu-listas.png" ><span>informações dos planos</span></a></li>
-                     <li class="nav-cel"><a href="../others/lista_de_pospostas_forca_vendas.html"><img src="../../../assets/img/menu-listas.png" ><span>lista de propostas</span></a></li>
-                     <li class="nav-cel"><a href="../others/busca-rede-credenciadas-forca-vendas.html"><img src="../../../assets/img/menu-rede-credenciada.png" ><span>rede credenciada</span></a></li>
-                     <li class="nav-cel"><a href="../others/fale-conosco-forca-vendas.html"><img src="../../../assets/img/menu-contato.png" ><span>fale conosco</span></a></li>
-             </ul>
-         </div>
-
-          <div class="header-logado">
-              <a href="#" data-activates="menu-mobile" class="button-collapse pull-right">
-                  <img src="../../../assets/img/menu.png" class="icon-menu">
-              </a>
-              <img src="../../../assets/img/logo-mobile.png" class="logo-ondonto-mobile" style="position: relative;top:30px">
-
-               <div class="perfil-web">
-                  <div class="circle-perfil">
-                    <div class="data-perfil">
-                        <p class="user-name"><strong>Marcos Palmas</strong></p> 
-                        <p class="font-gray">Corretora XPTO</p>
-                        <a href="#" class="link-odonto">Sair</a>
-                    </div>
-                  </div> 
-                </div> 
-                <div class="pull-right space-top-30 btn-header-web">
-                    <a href="../vendas_pf/escolhaPlanoPF.html" type="button" class="btn btnPink btn-width-custom text-right">VENDER PARA PESSOA FÍSICA</a><br>
-                    <a href="../vendas_pme/Escolha_um_plano.html" type="button" class="btn btnBlue btn-width-custom space-top-10">VENDER PME</a>  
-                </div>
-          </div> 
-                <div class="container-logado padding-logado">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="titulo">
-                                <h4 class="uppercase font-blue nomargin">VENDA PESSOA FÍSICA</h4>
-                                <h3 class="uppercase title-odonto font-blue nomargin">
-                                    Escolha um plano
-                                </h3>
-                            </div>
-
-                            <div class="box-plano-pf pull-left space-top-30 space-right">
-                                <h3 class="text-center uppercase font-purple nomargin ">
-                                    <strong>dental bem-estar</strong>
-                                   
-                                </h3>
-                                <p class="text-center font-gray space-top-10">
-                                    <strong>Coberturas:</strong>
-                                </p>
-                                <p class="text-center text-silver nomargin">Consultas</p>
-                                <p class="text-center text-silver nomargin">Extrações</p>
-                                <p class="text-center text-silver nomargin">Restaurações</p>
-                                <p class="text-center text-silver nomargin">Limpeza</p>
-                                <p class="text-center text-silver nomargin">Emergências</p>
-                                <p class="text-center text-silver nomargin">Tratamento de gengiva e Canal</p>
-
-                                <div class="valor-plano-pf bg-purple space-top-30">
-                                    <a href="titularDoPlanoPF.html" role="button">
-                                        <div class="row">
-                                            <div class="col-xs-5">
-                                                <span class="label-plano">Mensal</span>
-                                            </div>
-                                            <div class="col-xs-7 text-right">
-                                                <span class="font-moeda">R$</span>
-                                                <span class="font-moeda">45,</span>
-                                                <span class="font-cent">60</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <p class="font-purple font-small-size">Carência: 90 dias para tratamentos e 180 dias para prótese </p>
-
-                                <div class="valor-plano-pf bg-purple space-top-20 ">
-                                    <a href="titularDoPlanoPF.html" role="button">
-                                        <div class="row">
-                                            <div class="col-xs-5">
-                                                <span class="label-plano">Anual</span>
-                                            </div>
-                                            <div class="col-xs-7 text-right">
-                                                <span class="font-moeda">R$</span>
-                                                <span class="font-moeda">456,</span>
-                                                <span class="font-cent">00</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <p class="font-purple font-small-size">Carência: 60 dias para tratamentos e 90 dias para prótese </p>
-
-                                <div class="valor-plano-pf bg-purple  space-top-20">
-                                    <a href="titularDoPlanoPF.html" role="button">
-                                        <div class="row">
-                                            <div class="col-xs-5">
-                                                <span class="label-plano">Anual</span>
-                                            </div>
-                                            <div class="col-xs-7 text-right">
-                                                <span class="font-moeda">R$</span>
-                                                <span class="font-moeda">547,</span>
-                                                <span class="font-cent">20</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <p class=" font-purple font-small-size">Sem carência</p>
-                            </div>
-
-                            <div class="box-plano-pf box-pme pull-left space-top-30 space-right">
-                                <h3 class="text-center uppercase font-gold nomargin">
-                                    <strong>DENTE DE LEITE</strong>
-                                </h3>
-                                <h3 class="text-center uppercase font-gold nomargin">
-                                    <strong>DE 0 A 7 ANOS</strong>
-                                </h3>
-
-                                <p class="text-center font-gray space-top-10">
-                                    <strong>Coberturas:</strong>
-                                </p>
-                                <p class="text-center text-silver nomargin">Consultas</p>
-                                <p class="text-center text-silver nomargin">Extrações</p>
-                                <p class="text-center text-silver nomargin">Restaurações</p>
-                                <p class="text-center text-silver nomargin">Limpeza</p>
-                                <p class="text-center text-silver nomargin">Emergências</p>
-                                <p class="text-center text-silver nomargin">Tratamento de gengiva e Canal</p>
-
-                                <div class="valor-plano-pf bg-gold space-top-30">
-                                    <a href="titularDoPlanoPF.html" role="button">
-                                        <div class="row">
-                                            <div class="col-xs-5">
-                                                <span class="label-plano">Mensal</span>
-                                            </div>
-                                            <div class="col-xs-7 text-right">
-                                                <span class="font-moeda">R$</span>
-                                                <span class="font-moeda">14,</span>
-                                                <span class="font-cent">98</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="valor-plano-pf bg-gold space-top-20 ">
-                                    <a href="titularDoPlanoPF.html" role="button">
-                                        <div class="row">
-                                            <div class="col-xs-5">
-                                                <span class="label-plano">Anual</span>
-                                            </div>
-                                            <div class="col-xs-7 text-right">
-                                                <span class="font-moeda">R$</span>
-                                                <span class="font-moeda">149,</span>
-                                                <span class="font-cent">80</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="box-plano-pf box-pme pull-left space-top-30 space-right">
-                                <h3 class="text-center uppercase font-pink nomargin ">
-                                    <strong>DENTAL ESTÉTICA</strong>
-                                </h3>
-
-                                <p class="text-center font-gray space-top-10">
-                                    <strong>Coberturas:</strong>
-                                </p>
-                                <p class="text-center text-silver nomargin">Consultas</p>
-                                <p class="text-center text-silver nomargin">Extrações</p>
-                                <p class="text-center text-silver nomargin">Restaurações</p>
-                                <p class="text-center text-silver nomargin">Limpeza</p>
-                                <p class="text-center text-silver nomargin">Emergências</p>
-                                <p class="text-center text-silver nomargin">Tratamento de gengiva e Canal</p>
-
-                                <div class="valor-plano-pf bg-pink space-top-30">
-                                    <a href="titularDoPlanoPF.html" role="button">
-                                        <div class="row">
-                                            <div class="col-xs-5">
-                                                <span class="label-plano">Mensal</span>
-                                            </div>
-                                            <div class="col-xs-7 text-right">
-                                                <span class="font-moeda">R$</span>
-                                                <span class="font-moeda">115,</span>
-                                                <span class="font-cent">00</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <p class="font-pink font-small-size">Carência: 90 dias para tratamentos e 180 dias para prótese </p>
-
-
-                                <div class="valor-plano-pf bg-pink space-top-20 ">
-                                    <a href="titularDoPlanoPF.html" role="button">
-                                        <div class="row">
-                                            <div class="col-xs-5">
-                                                <span class="label-plano">Anual</span>
-                                            </div>
-                                            <div class="col-xs-7 text-right">
-                                                <span class="font-moeda">R$</span>
-                                                <span class="font-moeda">1150,</span>
-                                                <span class="font-cent">00</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <p class=" font-pink font-small-size">Carência: 60 dias para tratamentos e 90 dias para prótese </p>
-
-                                <div class="valor-plano-pf bg-pink  space-top-20">
-                                    <a href="titularDoPlanoPF.html" role="button">
-                                        <div class="row">
-                                            <div class="col-xs-5">
-                                                <span class="label-plano">Anual</span>
-                                            </div>
-                                            <div class="col-xs-7 text-right">
-                                                <span class="font-moeda">R$</span>
-                                                <span class="font-moeda">1380,</span>
-                                                <span class="font-cent">00</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <p class=" font-pink font-small-size">Sem carência</p>
-                            </div>
-
-                            <div class="box-plano-pf box-pme pull-left space-top-30 space-right">
-
-                                <h3 class="text-center uppercase font-green nomargin ">
-                                    <strong>dental orto</strong>
-                                </h3>
-
-                                <p class="text-center font-gray space-top-10">
-                                    <strong>Coberturas:</strong>
-                                </p>
-                                <p class="text-center text-silver nomargin">
-                                     Colocação + Manutenção de aparelho
-                                </p>
-                                <p class="text-center text-silver nomargin">
-                                   Placa de clareamento + gel 
-                                </p>
-                                <p class="text-center text-silver nomargin">
-                                     Limpezas periódicas 
-                                </p>
-                                <p class="text-center text-silver nomargin">
-                                    Emergências 24h
-                                </p>
-
-                                <div class="valor-plano-pf bg-green-box space-top-30">
-                                    <a href="titularDoPlanoPF.html" role="button">
-                                        <div class="row">
-                                            <div class="col-xs-5">
-                                                <span class="label-plano">Mensal</span>
-                                            </div>
-                                            <div class="col-xs-7 text-right">
-                                                <span class="font-moeda">R$</span>
-                                                <span class="font-moeda">147,</span>
-                                                <span class="font-cent">00</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <p class="font-green font-small-size">Carência: 90 dias para tratamentos e 180 dias para prótese </p>
-
-                                <div class="valor-plano-pf bg-green-box space-top-20 ">
-                                    <a href="titularDoPlanoPF.html" role="button">
-                                        <a href="titularDoPlanoPF.html" role="button">
-                                            <div class="row">
-                                                <div class="col-xs-5">
-                                                    <span class="label-plano">Anual</span>
-                                                </div>
-                                                <div class="col-xs-7 text-right">
-                                                    <span class="font-moeda">R$</span>
-                                                    <span class="font-moeda">1470,</span>
-                                                    <span class="font-cent">00</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                </div>
-                                <p class=" font-green font-small-size">Carência: 60 dias para tratamentos e 90 dias para prótese </p>
-
-                                <div class="valor-plano-pf bg-green-box  space-top-20">
-                                    <a href="titularDoPlanoPF.html" role="button">
-                                        <div class="row">
-                                            <div class="col-xs-5">
-                                                <span class="label-plano">Anual</span>
-                                            </div>
-                                            <div class="col-xs-7 text-right">
-                                                <span class="font-moeda">R$</span>
-                                                <span class="font-moeda">1764,</span>
-                                                <span class="font-cent">00</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <p class="font-green font-small-size">Sem carência</p>
-                            </div>
-
-                            <div class="box-plano-pf box-pme pull-left space-top-30 space-right-30">
-
-                                <h3 class="text-center uppercase font-blue1 nomargin ">
-                                   <strong> DENTAL vip</strong>
-                                </h3>
-
-                                <p class="text-center font-gray space-top-10">
-                                    <strong>Coberturas:</strong>
-                                </p>
-                                <p class="text-center text-silver nomargin">
-                                     Colocação + Manutenção de aparelho 
-                                </p>
-                                <p class="text-center text-silver nomargin">
-                                     Placa de clareamento + gel 
-                                </p>
-                                <p class="text-center text-silver nomargin">
-                                     Limpezas periódicas 
-                                </p>
-                                <p class="text-center text-silver nomargin">
-                                     Tratamento de canal e gengiva 
-                                </p>
-                                <p class="text-center text-silver nomargin">
-                                     Emergências 24h
-                                </p>
-
-                                <div class="valor-plano-pf bg-blue space-top-30">
-                                    <a href="titularDoPlanoPF.html" role="button">
-                                        <div class="row">
-                                            <div class="col-xs-5">
-                                                <span class="label-plano">Mensal</span>
-                                            </div>
-                                            <div class="col-xs-7 text-right">
-                                                <span class="font-moeda">R$</span>
-                                                <span class="font-moeda">220,</span>
-                                                <span class="font-cent">35</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <p class="font-blue1 font-small-size">Carência: 90 dias para tratamentos e 180 dias para prótese </p>
-
-                                <div class="valor-plano-pf bg-blue space-top-20 ">
-                                    <a href="titularDoPlanoPF.html" role="button">
-                                        <div class="row">
-                                            <div class="col-xs-5">
-                                                <span class="label-plano">Anual</span>
-                                            </div>
-                                            <div class="col-xs-7 text-right">
-                                                <span class="font-moeda">R$</span>
-                                                <span class="font-moeda">2203,</span>
-                                                <span class="font-cent">05</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <p class=" font-blue1 font-small-size">Carência: 60 dias para tratamentos e 90 dias para prótese </p>
-
-                                <div class="valor-plano-pf bg-blue  space-top-20">
-                                    <a href="titularDoPlanoPF.html" role="button">
-                                        <div class="row">
-                                            <div class="col-xs-5">
-                                                <span class="label-plano">Anual</span>
-                                            </div>
-                                            <div class="col-xs-7 text-right">
-                                                <span class="font-moeda">R$</span>
-                                                <span class="font-moeda">2644,</span>
-                                                <span class="font-cent">20</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <p class=" font-blue1 font-small-size">Sem carência</p>
-                            </div>
-
+    <div class="nav-mobile">
+        <ul class="side-nav" id="menu-mobile">
+            <li class="" style="background-color: #fff; padding: 30px">
+                <div class="perfil-mobile">
+                    <div class="circle-perfil">
+                        <div class="data-perfil">
+                            <p class="user-name"><strong>Marcos Palmas</strong></p>
+                            <p class="font-gray">Corretora XPTO</p>
+                            <a href="#" class="link-odonto">Sair</a>
                         </div>
                     </div>
                 </div>
+            </li>
+            <li class="nav-cel"><a href="../others/home-forca-vendas.html"><img src="../../../assets/img/menu-home.png"><span>home</span></a>
+            </li>
+            <li class="nav-cel"><a href="#"><img
+                    src="../../../assets/img/menu-meus-dados.png"><span>meus dados</span></a></li>
+            <li class="nav-cel nav-active"><a href="../vendas_pf/escolhaPlanoPF.html"><img
+                    src="../../../assets/img/menu-vender-pf.png"><span>vender pessoa física</span></a></li>
+            <li class="nav-cel"><a href="../vendas_pme/Escolha_um_plano.html"><img
+                    src="../../../assets/img/menu-vender-pme.png"><span>vender pme</span></a></li>
+            <li class="nav-cel"><a href="#"><img
+                    src="../../../assets/img/menu-listas.png"><span>informações dos planos</span></a></li>
+            <li class="nav-cel"><a href="../others/lista_de_pospostas_forca_vendas.html"><img
+                    src="../../../assets/img/menu-listas.png"><span>lista de propostas</span></a></li>
+            <li class="nav-cel"><a href="../others/busca-rede-credenciadas-forca-vendas.html"><img
+                    src="../../../assets/img/menu-rede-credenciada.png"><span>rede credenciada</span></a></li>
+            <li class="nav-cel"><a href="../others/fale-conosco-forca-vendas.html"><img
+                    src="../../../assets/img/menu-contato.png"><span>fale conosco</span></a></li>
+        </ul>
+    </div>
 
-                <div class="footer-logado">
-                  <div class="pull-left box-footer">
-                      <p>© OdontoPrev. S/A - CNPJ: 119.199/0001-51</p>
-                      <p>Av. Marcos Penteado de Ulhoa Rodrigues, 939-14 andar-Edifício Jatoba Torre 2-Barueri-SP CEP- 06460-040</p>
-                      <p>OdontoPrev - CRO/SP n° 19009</p>
-                  </div>
-                  <div class="pull-right footer-img"><img src="../../../assets/img/ans.png" ></div>
+    <div class="header-logado">
+        <a href="#" data-activates="menu-mobile" class="button-collapse pull-right">
+            <img src="../../../assets/img/menu.png" class="icon-menu">
+        </a>
+        <img src="../../../assets/img/logo-mobile.png" class="logo-ondonto-mobile" style="position: relative;top:30px">
+
+        <div class="perfil-web">
+            <div class="circle-perfil">
+                <div class="data-perfil">
+                    <p class="user-name"><strong>Marcos Palmas</strong></p>
+                    <p class="font-gray">Corretora XPTO</p>
+                    <a href="#" class="link-odonto">Sair</a>
                 </div>
-         </div>
-    </body>
+            </div>
+        </div>
+        <div class="pull-right space-top-30 btn-header-web">
+            <a href="../vendas_pf/escolhaPlanoPF.html" type="button" class="btn btnPink btn-width-custom text-right">VENDER
+                PARA PESSOA FÍSICA</a><br>
+            <a href="../vendas_pme/Escolha_um_plano.html" type="button"
+               class="btn btnBlue btn-width-custom space-top-10">VENDER PME</a>
+        </div>
+    </div>
+    <div class="container-logado padding-logado">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="titulo">
+                    <h4 class="uppercase font-blue nomargin">VENDA PESSOA FÍSICA</h4>
+                    <h3 class="uppercase title-odonto font-blue nomargin">
+                        Escolha um plano
+                    </h3>
+                </div>
+
+                <div class="box-plano-pf pull-left space-top-30 space-right">
+                    <h3 class="text-center uppercase font-purple nomargin ">
+                        <strong>dental bem-estar</strong>
+
+                    </h3>
+                    <p class="text-center font-gray space-top-10">
+                        <strong>Coberturas:</strong>
+                    </p>
+                    <p class="text-center text-silver nomargin">Consultas</p>
+                    <p class="text-center text-silver nomargin">Extrações</p>
+                    <p class="text-center text-silver nomargin">Restaurações</p>
+                    <p class="text-center text-silver nomargin">Limpeza</p>
+                    <p class="text-center text-silver nomargin">Emergências</p>
+                    <p class="text-center text-silver nomargin">Tratamento de gengiva e Canal</p>
+
+                    <div class="valor-plano-pf bg-purple space-top-30">
+                        <a href="titularDoPlanoPF.html" role="button">
+                            <div class="row">
+                                <div class="col-xs-5">
+                                    <span class="label-plano">Mensal</span>
+                                </div>
+                                <div class="col-xs-7 text-right">
+                                    <span class="font-moeda">R$</span>
+                                    <span class="font-moeda">45,</span>
+                                    <span class="font-cent">60</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <p class="font-purple font-small-size">Carência: 90 dias para tratamentos e 180 dias para
+                        prótese </p>
+
+                    <div class="valor-plano-pf bg-purple space-top-20 ">
+                        <a href="titularDoPlanoPF.html" role="button">
+                            <div class="row">
+                                <div class="col-xs-5">
+                                    <span class="label-plano">Anual</span>
+                                </div>
+                                <div class="col-xs-7 text-right">
+                                    <span class="font-moeda">R$</span>
+                                    <span class="font-moeda">456,</span>
+                                    <span class="font-cent">00</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <p class="font-purple font-small-size">Carência: 60 dias para tratamentos e 90 dias para
+                        prótese </p>
+
+                    <div class="valor-plano-pf bg-purple  space-top-20">
+                        <a href="titularDoPlanoPF.html" role="button">
+                            <div class="row">
+                                <div class="col-xs-5">
+                                    <span class="label-plano">Anual</span>
+                                </div>
+                                <div class="col-xs-7 text-right">
+                                    <span class="font-moeda">R$</span>
+                                    <span class="font-moeda">547,</span>
+                                    <span class="font-cent">20</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <p class=" font-purple font-small-size">Sem carência</p>
+                </div>
+
+                <div class="box-plano-pf box-pme pull-left space-top-30 space-right">
+                    <h3 class="text-center uppercase font-gold nomargin">
+                        <strong>DENTE DE LEITE</strong>
+                    </h3>
+                    <h3 class="text-center uppercase font-gold nomargin">
+                        <strong>DE 0 A 7 ANOS</strong>
+                    </h3>
+
+                    <p class="text-center font-gray space-top-10">
+                        <strong>Coberturas:</strong>
+                    </p>
+                    <p class="text-center text-silver nomargin">Consultas</p>
+                    <p class="text-center text-silver nomargin">Extrações</p>
+                    <p class="text-center text-silver nomargin">Restaurações</p>
+                    <p class="text-center text-silver nomargin">Limpeza</p>
+                    <p class="text-center text-silver nomargin">Emergências</p>
+                    <p class="text-center text-silver nomargin">Tratamento de gengiva e Canal</p>
+
+                    <div class="valor-plano-pf bg-gold space-top-30">
+                        <a href="titularDoPlanoPF.html" role="button">
+                            <div class="row">
+                                <div class="col-xs-5">
+                                    <span class="label-plano">Mensal</span>
+                                </div>
+                                <div class="col-xs-7 text-right">
+                                    <span class="font-moeda">R$</span>
+                                    <span class="font-moeda">14,</span>
+                                    <span class="font-cent">98</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="valor-plano-pf bg-gold space-top-20 ">
+                        <a href="titularDoPlanoPF.html" role="button">
+                            <div class="row">
+                                <div class="col-xs-5">
+                                    <span class="label-plano">Anual</span>
+                                </div>
+                                <div class="col-xs-7 text-right">
+                                    <span class="font-moeda">R$</span>
+                                    <span class="font-moeda">149,</span>
+                                    <span class="font-cent">80</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="box-plano-pf box-pme pull-left space-top-30 space-right">
+                    <h3 class="text-center uppercase font-pink nomargin ">
+                        <strong>DENTAL ESTÉTICA</strong>
+                    </h3>
+
+                    <p class="text-center font-gray space-top-10">
+                        <strong>Coberturas:</strong>
+                    </p>
+                    <p class="text-center text-silver nomargin">Consultas</p>
+                    <p class="text-center text-silver nomargin">Extrações</p>
+                    <p class="text-center text-silver nomargin">Restaurações</p>
+                    <p class="text-center text-silver nomargin">Limpeza</p>
+                    <p class="text-center text-silver nomargin">Emergências</p>
+                    <p class="text-center text-silver nomargin">Tratamento de gengiva e Canal</p>
+
+                    <div class="valor-plano-pf bg-pink space-top-30">
+                        <a href="titularDoPlanoPF.html" role="button">
+                            <div class="row">
+                                <div class="col-xs-5">
+                                    <span class="label-plano">Mensal</span>
+                                </div>
+                                <div class="col-xs-7 text-right">
+                                    <span class="font-moeda">R$</span>
+                                    <span class="font-moeda">115,</span>
+                                    <span class="font-cent">00</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <p class="font-pink font-small-size">Carência: 90 dias para tratamentos e 180 dias para prótese </p>
+
+
+                    <div class="valor-plano-pf bg-pink space-top-20 ">
+                        <a href="titularDoPlanoPF.html" role="button">
+                            <div class="row">
+                                <div class="col-xs-5">
+                                    <span class="label-plano">Anual</span>
+                                </div>
+                                <div class="col-xs-7 text-right">
+                                    <span class="font-moeda">R$</span>
+                                    <span class="font-moeda">1150,</span>
+                                    <span class="font-cent">00</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <p class=" font-pink font-small-size">Carência: 60 dias para tratamentos e 90 dias para prótese </p>
+
+                    <div class="valor-plano-pf bg-pink  space-top-20">
+                        <a href="titularDoPlanoPF.html" role="button">
+                            <div class="row">
+                                <div class="col-xs-5">
+                                    <span class="label-plano">Anual</span>
+                                </div>
+                                <div class="col-xs-7 text-right">
+                                    <span class="font-moeda">R$</span>
+                                    <span class="font-moeda">1380,</span>
+                                    <span class="font-cent">00</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <p class=" font-pink font-small-size">Sem carência</p>
+                </div>
+
+                <div class="box-plano-pf box-pme pull-left space-top-30 space-right">
+
+                    <h3 class="text-center uppercase font-green nomargin ">
+                        <strong>dental orto</strong>
+                    </h3>
+
+                    <p class="text-center font-gray space-top-10">
+                        <strong>Coberturas:</strong>
+                    </p>
+                    <p class="text-center text-silver nomargin">
+                        Colocação + Manutenção de aparelho
+                    </p>
+                    <p class="text-center text-silver nomargin">
+                        Placa de clareamento + gel
+                    </p>
+                    <p class="text-center text-silver nomargin">
+                        Limpezas periódicas
+                    </p>
+                    <p class="text-center text-silver nomargin">
+                        Emergências 24h
+                    </p>
+
+                    <div class="valor-plano-pf bg-green-box space-top-30">
+                        <a href="titularDoPlanoPF.html" role="button">
+                            <div class="row">
+                                <div class="col-xs-5">
+                                    <span class="label-plano">Mensal</span>
+                                </div>
+                                <div class="col-xs-7 text-right">
+                                    <span class="font-moeda">R$</span>
+                                    <span class="font-moeda">147,</span>
+                                    <span class="font-cent">00</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <p class="font-green font-small-size">Carência: 90 dias para tratamentos e 180 dias para
+                        prótese </p>
+
+                    <div class="valor-plano-pf bg-green-box space-top-20 ">
+                        <a href="titularDoPlanoPF.html" role="button">
+                            <a href="titularDoPlanoPF.html" role="button">
+                                <div class="row">
+                                    <div class="col-xs-5">
+                                        <span class="label-plano">Anual</span>
+                                    </div>
+                                    <div class="col-xs-7 text-right">
+                                        <span class="font-moeda">R$</span>
+                                        <span class="font-moeda">1470,</span>
+                                        <span class="font-cent">00</span>
+                                    </div>
+                                </div>
+                            </a>
+                    </div>
+                    <p class=" font-green font-small-size">Carência: 60 dias para tratamentos e 90 dias para
+                        prótese </p>
+
+                    <div class="valor-plano-pf bg-green-box  space-top-20">
+                        <a href="titularDoPlanoPF.html" role="button">
+                            <div class="row">
+                                <div class="col-xs-5">
+                                    <span class="label-plano">Anual</span>
+                                </div>
+                                <div class="col-xs-7 text-right">
+                                    <span class="font-moeda">R$</span>
+                                    <span class="font-moeda">1764,</span>
+                                    <span class="font-cent">00</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <p class="font-green font-small-size">Sem carência</p>
+                </div>
+
+                <div class="box-plano-pf box-pme pull-left space-top-30 space-right-30">
+
+                    <h3 class="text-center uppercase font-blue1 nomargin ">
+                        <strong> DENTAL vip</strong>
+                    </h3>
+
+                    <p class="text-center font-gray space-top-10">
+                        <strong>Coberturas:</strong>
+                    </p>
+                    <p class="text-center text-silver nomargin">
+                        Colocação + Manutenção de aparelho
+                    </p>
+                    <p class="text-center text-silver nomargin">
+                        Placa de clareamento + gel
+                    </p>
+                    <p class="text-center text-silver nomargin">
+                        Limpezas periódicas
+                    </p>
+                    <p class="text-center text-silver nomargin">
+                        Tratamento de canal e gengiva
+                    </p>
+                    <p class="text-center text-silver nomargin">
+                        Emergências 24h
+                    </p>
+
+                    <div class="valor-plano-pf bg-blue space-top-30">
+                        <a href="titularDoPlanoPF.html" role="button">
+                            <div class="row">
+                                <div class="col-xs-5">
+                                    <span class="label-plano">Mensal</span>
+                                </div>
+                                <div class="col-xs-7 text-right">
+                                    <span class="font-moeda">R$</span>
+                                    <span class="font-moeda">220,</span>
+                                    <span class="font-cent">35</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <p class="font-blue1 font-small-size">Carência: 90 dias para tratamentos e 180 dias para
+                        prótese </p>
+
+                    <div class="valor-plano-pf bg-blue space-top-20 ">
+                        <a href="titularDoPlanoPF.html" role="button">
+                            <div class="row">
+                                <div class="col-xs-5">
+                                    <span class="label-plano">Anual</span>
+                                </div>
+                                <div class="col-xs-7 text-right">
+                                    <span class="font-moeda">R$</span>
+                                    <span class="font-moeda">2203,</span>
+                                    <span class="font-cent">05</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <p class=" font-blue1 font-small-size">Carência: 60 dias para tratamentos e 90 dias para
+                        prótese </p>
+
+                    <div class="valor-plano-pf bg-blue  space-top-20">
+                        <a href="titularDoPlanoPF.html" role="button">
+                            <div class="row">
+                                <div class="col-xs-5">
+                                    <span class="label-plano">Anual</span>
+                                </div>
+                                <div class="col-xs-7 text-right">
+                                    <span class="font-moeda">R$</span>
+                                    <span class="font-moeda">2644,</span>
+                                    <span class="font-cent">20</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <p class=" font-blue1 font-small-size">Sem carência</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-logado">
+        <div class="pull-left box-footer">
+            <p>© OdontoPrev. S/A - CNPJ: 119.199/0001-51</p>
+            <p>Av. Marcos Penteado de Ulhoa Rodrigues, 939-14 andar-Edifício Jatoba Torre 2-Barueri-SP CEP-
+                06460-040</p>
+            <p>OdontoPrev - CRO/SP n° 19009</p>
+        </div>
+        <div class="pull-right footer-img"><img th:src="@{/img/ans.png}"></div>
+    </div>
+</div>
+</body>
 </html>

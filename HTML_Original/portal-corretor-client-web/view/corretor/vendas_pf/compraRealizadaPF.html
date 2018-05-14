@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Compra realizada com sucesso | OdontoPrev</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <link rel="shortcut icon" href="../../../assets/img/odpv.PNG" type="image/png">
     <link href="../../../assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../../assets/css/main.css" rel="stylesheet">
@@ -14,7 +13,7 @@
     <script type="text/javascript" src="../../../assets/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../../../assets/js/jquery.mask.min.js"></script>
     <script type="text/javascript" src="../../../assets/js/odonto-Valida.js"></script>
-  
+
     <script type="text/javascript" src="../../../assets/js/menu.js"></script>
     <script>
         $(function () {
@@ -28,178 +27,201 @@
     </script>
 </head>
 
-<body style="min-width: 100% !important;">    
-        <div class="container-fluid nopadding">
-         <nav class="nav-odonto">
-           <div class="nav-wrapper">
-               <a href="#" class="brand-logo" style="color: silver; padding: 35px"><img src="../../../assets/img/logo.png"></a>
-               <ul class="hide-on-med-and-down">
-                   <li class="nav-cel"><a href="../others/home-dono-corretora.html"><img src="../../../assets/img/menu-home.png" ><span>home</span></a></li>
-                   <li class="nav-cel"><a href="#"><img src="../../../assets/img/menu-meus-dados.png" ><span>meus dados</span></a></li>
-                   <li class="nav-cel nav-active"><a href="../vendas_pf/escolhaPlanoPF.html"><img src="../../../assets/img/menu-vender-pf.png" ><span>vender pessoa física</span></a></li>
-                   <li class="nav-cel"><a href="../vendas_pme/Escolha_um_plano.html"><img src="../../../assets/img/menu-vender-pme.png" ><span>vender pme</span></a></li>
-                   <li class="nav-cel"><a href="#"><img src="../../../assets/img/menu-listas.png" ><span>informações dos planos</span></a></li>
-                   <li class="nav-cel"><a href="../others/lista_de_pospostas.html"><img src="../../../assets/img/menu-listas.png" ><span>lista de propostas</span></a></li>
-                   <li class="nav-cel"><a href="../others/busca-rede-credenciadas.html"><img src="../../../assets/img/menu-rede-credenciada.png" ><span>rede credenciada</span></a></li>
-                   <li class="nav-cel"><a href="../others/fale-conosco-forca-vendas.html"><img src="../../../assets/img/menu-contato.png" ><span>fale conosco</span></a></li>
-               </ul> 
-          </div>
-       </nav>
+<body style="min-width: 100% !important;">
+<div class="container-fluid nopadding">
+    <nav class="nav-odonto">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo" style="color: silver; padding: 35px"><img src="../../../assets/img/logo.png"></a>
+            <ul class="hide-on-med-and-down">
+                <li class="nav-cel"><a href="../others/home-dono-corretora.html"><img
+                        src="../../../assets/img/menu-home.png"><span>home</span></a></li>
+                <li class="nav-cel"><a href="#"><img
+                        src="../../../assets/img/menu-meus-dados.png"><span>meus dados</span></a></li>
+                <li class="nav-cel nav-active"><a href="../vendas_pf/escolhaPlanoPF.html"><img
+                        src="../../../assets/img/menu-vender-pf.png"><span>vender pessoa física</span></a></li>
+                <li class="nav-cel"><a href="../vendas_pme/Escolha_um_plano.html"><img
+                        src="../../../assets/img/menu-vender-pme.png"><span>vender pme</span></a></li>
+                <li class="nav-cel"><a href="#"><img src="../../../assets/img/menu-listas.png"><span>informações dos planos</span></a>
+                </li>
+                <li class="nav-cel"><a href="../others/lista_de_pospostas.html"><img
+                        src="../../../assets/img/menu-listas.png"><span>lista de propostas</span></a></li>
+                <li class="nav-cel"><a href="../others/busca-rede-credenciadas.html"><img
+                        src="../../../assets/img/menu-rede-credenciada.png"><span>rede credenciada</span></a></li>
+                <li class="nav-cel"><a href="../others/fale-conosco-forca-vendas.html"><img
+                        src="../../../assets/img/menu-contato.png"><span>fale conosco</span></a></li>
+            </ul>
+        </div>
+    </nav>
 
-      <div class="nav-mobile">
-          <ul class="side-nav" id="menu-mobile">
-               <li class="" style="background-color: #fff; padding: 30px">
-                  <div class="perfil-mobile"> 
-                        <div class="circle-perfil">
-                            <div class="data-perfil">
-                               <p class="user-name"><strong>Marcos Palmas</strong></p> 
-                               <p class="font-gray">Corretora XPTO</p>
-                               <a href="#" class="link-odonto">Sair</a>
+    <div class="nav-mobile">
+        <ul class="side-nav" id="menu-mobile">
+            <li class="" style="background-color: #fff; padding: 30px">
+                <div class="perfil-mobile">
+                    <div class="circle-perfil">
+                        <div class="data-perfil">
+                            <p class="user-name"><strong>Marcos Palmas</strong></p>
+                            <p class="font-gray">Corretora XPTO</p>
+                            <a href="#" class="link-odonto">Sair</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-cel"><a href="../others/home-dono-corretora.html"><img
+                    src="../../../assets/img/menu-home.png"><span>home</span></a></li>
+            <li class="nav-cel"><a href="#"><img
+                    src="../../../assets/img/menu-meus-dados.png"><span>meus dados</span></a></li>
+            <li class="nav-cel nav-active"><a href="../vendas_pf/escolhaPlanoPF.html"><img
+                    src="../../../assets/img/menu-vender-pf.png"><span>vender pessoa física</span></a></li>
+            <li class="nav-cel"><a href="../vendas_pme/Escolha_um_plano.html"><img
+                    src="../../../assets/img/menu-vender-pme.png"><span>vender pme</span></a></li>
+            <li class="nav-cel"><a href="#"><img
+                    src="../../../assets/img/menu-listas.png"><span>informações dos planos</span></a></li>
+            <li class="nav-cel"><a href="../others/lista_de_pospostas.html"><img
+                    src="../../../assets/img/menu-listas.png"><span>lista de propostas</span></a></li>
+            <li class="nav-cel"><a href="../others/busca-rede-credenciadas.html"><img
+                    src="../../../assets/img/menu-rede-credenciada.png"><span>rede credenciada</span></a></li>
+            <li class="nav-cel"><a href="../others/fale-conosco-forca-vendas.html"><img
+                    src="../../../assets/img/menu-contato.png"><span>fale conosco</span></a></li>
+        </ul>
+    </div>
+
+    <div class="header-logado">
+        <a href="#" data-activates="menu-mobile" class="button-collapse pull-right">
+            <img src="../../../assets/img/menu.png" class="icon-menu">
+        </a>
+        <img src="../../../assets/img/logo-mobile.png" class="logo-ondonto-mobile" style="position: relative;top:30px">
+
+        <div class="perfil-web">
+            <div class="circle-perfil">
+                <div class="data-perfil">
+                    <p class="user-name"><strong>Marcos Palmas</strong></p>
+                    <p class="font-gray">Corretora XPTO</p>
+                    <a href="#" class="link-odonto">Sair</a>
+                </div>
+            </div>
+        </div>
+        <div class="pull-right space-top-30 btn-header-web">
+            <a href="../vendas_pf/escolhaPlanoPF.html" type="button" class="btn btnPink btn-width-custom text-right">VENDER
+                PARA PESSOA FÍSICA</a><br>
+            <a href="../vendas_pme/Escolha_um_plano.html" type="button"
+               class="btn btnBlue btn-width-custom space-top-10">VENDER PME</a>
+        </div>
+    </div>
+
+    <div class="container-logado padding-logado">
+        <div class="titulo">
+            <h2 class="uppercase text-center font-blue title-odonto nomargin">compra realizada com sucesso!</h2>
+            <h4 class=" font-silver space-top-20  text-center nomargin">
+                O pagamento dos palnos abaixo foram
+            </h4>
+            <h4 class=" font-silver text-center nomargin">
+                realizados com sucesso.
+            </h4>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+
+                <div class="row space-top-30">
+                    <div class="col-xs-12">
+                        <div class="box-plano-compraRealizadaSucesso box-pme pull-center space-top-50 ">
+                            <div class="row">
+                                <div class="col-xs-7">
+                                    <p class="label-plano font-purple space-bottom-0 space-left-10">
+                                        <strong>Mensal</strong>
+                                    </p>
+                                    <p class="label-plano font-gray space-left-10">Total por ano R$ 547,20</p>
+                                    <p class="label-plano font-gray space-left-10 space-top-8">Titular:
+                                        <strong>Tiago Pereira</strong>
+                                    </p>
+                                    <a href="" type="button"
+                                       class="btn  link-odoemitirCarteirinha space-top-10 uppercase">EMITIR
+                                        CARTEIRINHA</a>
+                                </div>
+
+                                <div class="col-xs-5 text-right font-purple">
+                                    <div class="space-top-10 space-right-10">
+                                        <strong>
+                                            <span class="font-moeda">R$</span>
+                                            <span class="font-moeda">37,</span>
+                                            <span class="font-cent">82</span>
+                                        </strong>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                  </div>
-               </li>
-                   <li class="nav-cel"><a href="../others/home-dono-corretora.html"><img src="../../../assets/img/menu-home.png" ><span>home</span></a></li>
-                   <li class="nav-cel"><a href="#"><img src="../../../assets/img/menu-meus-dados.png" ><span>meus dados</span></a></li>
-                   <li class="nav-cel nav-active"><a href="../vendas_pf/escolhaPlanoPF.html"><img src="../../../assets/img/menu-vender-pf.png" ><span>vender pessoa física</span></a></li>
-                   <li class="nav-cel"><a href="../vendas_pme/Escolha_um_plano.html"><img src="../../../assets/img/menu-vender-pme.png" ><span>vender pme</span></a></li>
-                   <li class="nav-cel"><a href="#"><img src="../../../assets/img/menu-listas.png" ><span>informações dos planos</span></a></li>
-                   <li class="nav-cel"><a href="../others/lista_de_pospostas.html"><img src="../../../assets/img/menu-listas.png" ><span>lista de propostas</span></a></li>
-                   <li class="nav-cel"><a href="../others/busca-rede-credenciadas.html"><img src="../../../assets/img/menu-rede-credenciada.png" ><span>rede credenciada</span></a></li>
-                   <li class="nav-cel"><a href="../others/fale-conosco-forca-vendas.html"><img src="../../../assets/img/menu-contato.png" ><span>fale conosco</span></a></li>
-             </ul>
-       </div>
-
-        <div class="header-logado">
-            <a href="#" data-activates="menu-mobile" class="button-collapse pull-right">
-                <img src="../../../assets/img/menu.png" class="icon-menu">
-            </a>
-            <img src="../../../assets/img/logo-mobile.png" class="logo-ondonto-mobile" style="position: relative;top:30px">
-
-             <div class="perfil-web">
-                <div class="circle-perfil">
-                  <div class="data-perfil">
-                      <p class="user-name"><strong>Marcos Palmas</strong></p> 
-                      <p class="font-gray">Corretora XPTO</p>
-                      <a href="#" class="link-odonto">Sair</a>
-                  </div>
-                </div> 
-              </div> 
-              <div class="pull-right space-top-30 btn-header-web">
-                  <a href="../vendas_pf/escolhaPlanoPF.html" type="button" class="btn btnPink btn-width-custom text-right">VENDER PARA PESSOA FÍSICA</a><br>
-                  <a href="../vendas_pme/Escolha_um_plano.html" type="button" class="btn btnBlue btn-width-custom space-top-10">VENDER PME</a>  
-              </div>
-         </div> 
-        
-          <div class="container-logado padding-logado">
-                  <div class="titulo">
-                      <h2 class="uppercase text-center font-blue title-odonto nomargin">compra realizada com sucesso!</h2>
-                      <h4 class=" font-silver space-top-20  text-center nomargin">
-                          O pagamento dos palnos abaixo foram
-                      </h4>
-                      <h4 class=" font-silver text-center nomargin">
-                        realizados com sucesso.
-                      </h4>
-                  </div>
-
-                <div class="row">
+                    </div>
+                </div>
+                <div class="row space-top-30">
                     <div class="col-xs-12">
 
-                     <div class="row space-top-30">
-                      <div class="col-xs-12">
-                          <div class="box-plano-compraRealizadaSucesso box-pme pull-center space-top-50 ">
-                              <div class="row">
-                                  <div class="col-xs-7">
-                                      <p class="label-plano font-purple space-bottom-0 space-left-10">
-                                          <strong>Mensal</strong>
-                                      </p>
-                                      <p class="label-plano font-gray space-left-10">Total por ano R$ 547,20</p>
-                                      <p class="label-plano font-gray space-left-10 space-top-8">Titular:
-                                          <strong>Tiago Pereira</strong>
-                                      </p>
-                                      <a href="" type="button" class="btn  link-odoemitirCarteirinha space-top-10 uppercase">EMITIR CARTEIRINHA</a>
-                                  </div>
+                        <div class="box-plano-compraRealizadaSucesso box-pme pull-center space-top-30 ">
 
-                                  <div class="col-xs-5 text-right font-purple">
-                                      <div class="space-top-10 space-right-10">
-                                          <strong>
-                                              <span class="font-moeda">R$</span>
-                                              <span class="font-moeda">37,</span>
-                                              <span class="font-cent">82</span>
-                                          </strong>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-               <div class="row space-top-30">
-                      <div class="col-xs-12">
+                            <div class="row">
+                                <div class="col-xs-7">
+                                    <p class="label-plano font-purple space-bottom-0 space-left-10">
+                                        <strong>Mensal</strong>
+                                    </p>
+                                    <p class="label-plano font-gray space-left-10 ">Total por ano R$ 547,20</p>
+                                    <p class="label-plano font-gray space-left-10 space-top-8">Titular:
+                                        <strong>Carols Pereira</strong>
+                                    </p>
+                                    <a href="" type="button"
+                                       class="btn  link-odoemitirCarteirinha space-top-10 uppercase">EMITIR
+                                        CARTEIRINHA</a>
 
-                          <div class="box-plano-compraRealizadaSucesso box-pme pull-center space-top-30 ">
-                              
-                              <div class="row">
-                                  <div class="col-xs-7">
-                                      <p class="label-plano font-purple space-bottom-0 space-left-10">
-                                          <strong>Mensal</strong>
-                                      </p>
-                                      <p class="label-plano font-gray space-left-10 ">Total por ano R$ 547,20</p>
-                                      <p class="label-plano font-gray space-left-10 space-top-8">Titular:
-                                          <strong>Carols Pereira</strong>
-                                      </p>
-                                      <a href="" type="button" class="btn  link-odoemitirCarteirinha space-top-10 uppercase">EMITIR CARTEIRINHA</a>
-
-                                  </div>
-                                  <div class="col-xs-5 text-right font-purple">
-                                      <div class="space-top-10  space-right-10">
-                                          <strong>
-                                              <span class="font-moeda">R$</span>
-                                              <span class="font-moeda">37,</span>
-                                              <span class="font-cent">82</span>
-                                          </strong>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="space-top-50">
-                                      <div class="row">
-                                          <div class="col-xs-7 ">
-                                              <div class="row">
-                                                  <div class="col-xs-5">
+                                </div>
+                                <div class="col-xs-5 text-right font-purple">
+                                    <div class="space-top-10  space-right-10">
+                                        <strong>
+                                            <span class="font-moeda">R$</span>
+                                            <span class="font-moeda">37,</span>
+                                            <span class="font-cent">82</span>
+                                        </strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="space-top-50">
+                                <div class="row">
+                                    <div class="col-xs-7 ">
+                                        <div class="row">
+                                            <div class="col-xs-5">
                                                       <span class="label-plano font-blue ">
                                                           <strong>Total</strong>
                                                       </span>
-                                                  </div>
-                                                  <div class="col-xs-7 text-left font-blue">
-                                                      <strong>
-                                                          <span class="font-moeda">R$</span>
-                                                          <span class="font-moeda">151,</span>
-                                                          <span class="font-cent">28</span>
-                                                      </strong>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>
-                          </div>
-                     </div>
-                 </div>
-              </div>
+                                            </div>
+                                            <div class="col-xs-7 text-left font-blue">
+                                                <strong>
+                                                    <span class="font-moeda">R$</span>
+                                                    <span class="font-moeda">151,</span>
+                                                    <span class="font-cent">28</span>
+                                                </strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-          </div>
+        </div>
 
-      <div class="space-top-30 text-center">
-          <a href="" type="button" class="btn btnBlue btn-width-custom space-top-10 uppercase">FINALIZAR</a>
-      </div>
-      </div>
-      <div class="footer-logado">
+        <div class="space-top-30 text-center">
+            <a href="" type="button" class="btn btnBlue btn-width-custom space-top-10 uppercase">FINALIZAR</a>
+        </div>
+    </div>
+    <div class="footer-logado">
         <div class="pull-left box-footer">
             <p>© OdontoPrev. S/A - CNPJ: 119.199/0001-51</p>
-            <p>Av. Marcos Penteado de Ulhoa Rodrigues, 939-14 andar-Edifício Jatoba Torre 2-Barueri-SP CEP- 06460-040</p>
+            <p>Av. Marcos Penteado de Ulhoa Rodrigues, 939-14 andar-Edifício Jatoba Torre 2-Barueri-SP CEP-
+                06460-040</p>
             <p>OdontoPrev - CRO/SP n° 19009</p>
         </div>
-        <div class="pull-right footer-img"><img src="../../../assets/img/ans.png" ></div>
-      </div>
-  </div>
+        <div class="pull-right footer-img"><img th:src="@{/img/ans.png}"></div>
+    </div>
+</div>
 
 </body>
 </html>

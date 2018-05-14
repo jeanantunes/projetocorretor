@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html>
-
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Titular do plano pessoa fisíca | OdontoPrev</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="../../../assets/img/odpv.PNG" type="image/png">
     <link href="../../../assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../../assets/css/main.css" rel="stylesheet">
@@ -26,74 +24,91 @@
     </script>
 </head>
 
-<body style="min-width: 100% !important;">    
-  <div class="container-fluid nopadding">
-     <nav class="nav-odonto">
-     <div class="nav-wrapper">
-         <a href="#" class="brand-logo" style="color: silver; padding: 35px"><img src="../../../assets/img/logo.png"></a>
-         <ul class="hide-on-med-and-down">
-             <li class="nav-cel"><a href="../others/home-dono-corretora.html"><img src="../../../assets/img/menu-home.png" ><span>home</span></a></li>
-             <li class="nav-cel"><a href="#"><img src="../../../assets/img/menu-meus-dados.png" ><span>meus dados</span></a></li>
-             <li class="nav-cel nav-active"><a href="../vendas_pf/escolhaPlanoPF.html"><img src="../../../assets/img/menu-vender-pf.png" ><span>vender pessoa física</span></a></li>
-             <li class="nav-cel"><a href="../vendas_pme/Escolha_um_plano.html"><img src="../../../assets/img/menu-vender-pme.png" ><span>vender pme</span></a></li>
-             <li class="nav-cel"><a href="#"><img src="../../../assets/img/menu-listas.png" ><span>informações dos planos</span></a></li>
-             <li class="nav-cel"><a href="../others/lista_de_pospostas.html"><img src="../../../assets/img/menu-listas.png" ><span>lista de propostas</span></a></li>
-             <li class="nav-cel"><a href="../others/busca-rede-credenciadas.html"><img src="../../../assets/img/menu-rede-credenciada.png" ><span>rede credenciada</span></a></li>
-             <li class="nav-cel"><a href="../others/fale-conosco-forca-vendas.html"><img src="../../../assets/img/menu-contato.png" ><span>fale conosco</span></a></li>
-         </ul> 
-    </div>
- </nav>
-
-<div class="nav-mobile">
-    <ul class="side-nav" id="menu-mobile">
-         <li class="" style="background-color: #fff; padding: 30px">
-            <div class="perfil-mobile"> 
-                  <div class="circle-perfil">
-                      <div class="data-perfil">
-                         <p class="user-name"><strong>Marcos Palmas</strong></p> 
-                         <p class="font-gray">Corretora XPTO</p>
-                         <a href="#" class="link-odonto">Sair</a>
-                      </div>
-                  </div>
-            </div>
-         </li>
-             <li class="nav-cel"><a href="../others/home-dono-corretora.html"><img src="../../../assets/img/menu-home.png" ><span>home</span></a></li>
-             <li class="nav-cel"><a href="#"><img src="../../../assets/img/menu-meus-dados.png" ><span>meus dados</span></a></li>
-             <li class="nav-cel nav-active"><a href="../vendas_pf/escolhaPlanoPF.html"><img src="../../../assets/img/menu-vender-pf.png" ><span>vender pessoa física</span></a></li>
-             <li class="nav-cel"><a href="../vendas_pme/Escolha_um_plano.html"><img src="../../../assets/img/menu-vender-pme.png" ><span>vender pme</span></a></li>
-             <li class="nav-cel"><a href="#"><img src="../../../assets/img/menu-listas.png" ><span>informações dos planos</span></a></li>
-             <li class="nav-cel"><a href="../others/lista_de_pospostas.html"><img src="../../../assets/img/menu-listas.png" ><span>lista de propostas</span></a></li>
-             <li class="nav-cel"><a href="../others/busca-rede-credenciadas.html"><img src="../../../assets/img/menu-rede-credenciada.png" ><span>rede credenciada</span></a></li>
-             <li class="nav-cel"><a href="../others/fale-conosco-forca-vendas.html"><img src="../../../assets/img/menu-contato.png" ><span>fale conosco</span></a></li>
-     </ul>
- </div>
-
-  <div class="header-logado">
-      <a href="#" data-activates="menu-mobile" class="button-collapse pull-right">
-          <img src="../../../assets/img/menu.png" class="icon-menu">
-      </a>
-      <img src="../../../assets/img/logo-mobile.png" class="logo-ondonto-mobile" style="position: relative;top:30px">
-
-       <div class="perfil-web">
-          <div class="circle-perfil">
-            <div class="data-perfil">
-                <p class="user-name"><strong>Marcos Palmas</strong></p> 
-                <p class="font-gray">Corretora XPTO</p>
-                <a href="#" class="link-odonto">Sair</a>
-            </div>
-          </div> 
-        </div> 
-        <div class="pull-right space-top-30 btn-header-web">
-            <a href="../vendas_pf/escolhaPlanoPF.html" type="button" class="btn btnPink btn-width-custom text-right">VENDER PARA PESSOA FÍSICA</a><br>
-            <a href="../vendas_pme/Escolha_um_plano.html" type="button" class="btn btnBlue btn-width-custom space-top-10">VENDER PME</a>  
+<body style="min-width: 100% !important;">
+<div class="container-fluid nopadding">
+    <nav class="nav-odonto">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo" style="color: silver; padding: 35px"><img src="../../../assets/img/logo.png"></a>
+            <ul class="hide-on-med-and-down">
+                <li class="nav-cel"><a href="../others/home-dono-corretora.html"><img
+                        src="../../../assets/img/menu-home.png"><span>home</span></a></li>
+                <li class="nav-cel"><a href="#"><img
+                        src="../../../assets/img/menu-meus-dados.png"><span>meus dados</span></a></li>
+                <li class="nav-cel nav-active"><a href="../vendas_pf/escolhaPlanoPF.html"><img
+                        src="../../../assets/img/menu-vender-pf.png"><span>vender pessoa física</span></a></li>
+                <li class="nav-cel"><a href="../vendas_pme/Escolha_um_plano.html"><img
+                        src="../../../assets/img/menu-vender-pme.png"><span>vender pme</span></a></li>
+                <li class="nav-cel"><a href="#"><img src="../../../assets/img/menu-listas.png"><span>informações dos planos</span></a>
+                </li>
+                <li class="nav-cel"><a href="../others/lista_de_pospostas.html"><img
+                        src="../../../assets/img/menu-listas.png"><span>lista de propostas</span></a></li>
+                <li class="nav-cel"><a href="../others/busca-rede-credenciadas.html"><img
+                        src="../../../assets/img/menu-rede-credenciada.png"><span>rede credenciada</span></a></li>
+                <li class="nav-cel"><a href="../others/fale-conosco-forca-vendas.html"><img
+                        src="../../../assets/img/menu-contato.png"><span>fale conosco</span></a></li>
+            </ul>
         </div>
-  </div> 
+    </nav>
 
+    <div class="nav-mobile">
+        <ul class="side-nav" id="menu-mobile">
+            <li class="" style="background-color: #fff; padding: 30px">
+                <div class="perfil-mobile">
+                    <div class="circle-perfil">
+                        <div class="data-perfil">
+                            <p class="user-name"><strong>Marcos Palmas</strong></p>
+                            <p class="font-gray">Corretora XPTO</p>
+                            <a href="#" class="link-odonto">Sair</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-cel"><a href="../others/home-dono-corretora.html"><img
+                    src="../../../assets/img/menu-home.png"><span>home</span></a></li>
+            <li class="nav-cel"><a href="#"><img
+                    src="../../../assets/img/menu-meus-dados.png"><span>meus dados</span></a></li>
+            <li class="nav-cel nav-active"><a href="../vendas_pf/escolhaPlanoPF.html"><img
+                    src="../../../assets/img/menu-vender-pf.png"><span>vender pessoa física</span></a></li>
+            <li class="nav-cel"><a href="../vendas_pme/Escolha_um_plano.html"><img
+                    src="../../../assets/img/menu-vender-pme.png"><span>vender pme</span></a></li>
+            <li class="nav-cel"><a href="#"><img
+                    src="../../../assets/img/menu-listas.png"><span>informações dos planos</span></a></li>
+            <li class="nav-cel"><a href="../others/lista_de_pospostas.html"><img
+                    src="../../../assets/img/menu-listas.png"><span>lista de propostas</span></a></li>
+            <li class="nav-cel"><a href="../others/busca-rede-credenciadas.html"><img
+                    src="../../../assets/img/menu-rede-credenciada.png"><span>rede credenciada</span></a></li>
+            <li class="nav-cel"><a href="../others/fale-conosco-forca-vendas.html"><img
+                    src="../../../assets/img/menu-contato.png"><span>fale conosco</span></a></li>
+        </ul>
+    </div>
+
+    <div class="header-logado">
+        <a href="#" data-activates="menu-mobile" class="button-collapse pull-right">
+            <img src="../../../assets/img/menu.png" class="icon-menu">
+        </a>
+        <img src="../../../assets/img/logo-mobile.png" class="logo-ondonto-mobile" style="position: relative;top:30px">
+
+        <div class="perfil-web">
+            <div class="circle-perfil">
+                <div class="data-perfil">
+                    <p class="user-name"><strong>Marcos Palmas</strong></p>
+                    <p class="font-gray">Corretora XPTO</p>
+                    <a href="#" class="link-odonto">Sair</a>
+                </div>
+            </div>
+        </div>
+        <div class="pull-right space-top-30 btn-header-web">
+            <a href="../vendas_pf/escolhaPlanoPF.html" type="button" class="btn btnPink btn-width-custom text-right">VENDER
+                PARA PESSOA FÍSICA</a><br>
+            <a href="../vendas_pme/Escolha_um_plano.html" type="button"
+               class="btn btnBlue btn-width-custom space-top-10">VENDER PME</a>
+        </div>
+    </div>
 
 
     <div class="container-logado padding-logado row">
 
-         <div class="col-xs-12">
+        <div class="col-xs-12">
             <div class="titulo">
                 <h4 class="uppercase font-blue nomargin">Venda pessoa fisíca</h4>
                 <h3 class="uppercase font-blue nomargin">
@@ -150,266 +165,269 @@
             </div>
 
 
-</div>
+        </div>
 
 
+        <div class="col-xs-12">
+            <div class="form-group  width-form1 space-right space-top-30">
+                <label class="label-nome">Nome</label>
+                <input type="text" id="nomeTitularPlano" class="nome form-control ">
+            </div>
+        </div>
 
-
-            <div class="col-xs-12">
-                    <div class="form-group  width-form1 space-right space-top-30">
-                        <label class="label-nome">Nome</label>
-                        <input type="text" id="nomeTitularPlano" class="nome form-control ">
-                    </div>
+        <div class="col-xs-12">
+            <div class="form-group inline space-right-30 width-form3 space-top-30">
+                <label class="label-cpf">CPF</label>
+                <input type="text" id="cpfTitularPlano" class="cpf form-control ">
             </div>
 
-            <div class="col-xs-12">
-                <div class="form-group inline space-right-30 width-form3 space-top-30">
-                    <label class="label-cpf">CPF</label>
-                    <input type="text" id="cpfTitularPlano" class="cpf form-control ">
-                </div>
-
-                <div class="form-group maxl inline width-form3">
-                          <label>Sexo</label><br>
-                          <label class="radio inline radio-sexo"> 
-                              <input type="radio" name="sex" value="male" checked>
-                              <span> Masculino </span> 
-                           </label>
-                          <label class="radio inline radio-sexo"> 
-                              <input type="radio" name="sex" value="female">
-                              <span>Feminino </span> 
-                          </label>
-                     </div>
-
-                <div class="form-group inline  width-form3 space-top-30">
-                    <label class="label-dataNascimento">Data de nascimento</label>
-                    <input type="text" id="dataNascimentoTitularPlano" class="dataNascimento form-control">
-                </div>
+            <div class="form-group maxl inline width-form3">
+                <label>Sexo</label><br>
+                <label class="radio inline radio-sexo">
+                    <input type="radio" name="sex" value="male" checked>
+                    <span> Masculino </span>
+                </label>
+                <label class="radio inline radio-sexo">
+                    <input type="radio" name="sex" value="female">
+                    <span>Feminino </span>
+                </label>
             </div>
 
-            <div class="col-xs-12">
-                <div class="form-group  width-form1  space-top-30 ">
-                    <label class="label-nomeMae">Nome da mãe</label>
-                    <input type="text" id="nomeMaeTitularPlano" class="nomeMae form-control ">
-                </div>
+            <div class="form-group inline  width-form3 space-top-30">
+                <label class="label-dataNascimento">Data de nascimento</label>
+                <input type="text" id="dataNascimentoTitularPlano" class="dataNascimento form-control">
+            </div>
+        </div>
+
+        <div class="col-xs-12">
+            <div class="form-group  width-form1  space-top-30 ">
+                <label class="label-nomeMae">Nome da mãe</label>
+                <input type="text" id="nomeMaeTitularPlano" class="nomeMae form-control ">
+            </div>
+        </div>
+
+        <div class="col-xs-12">
+            <div class="form-group inline  width-form2 space-right-30 space-top-30">
+                <label class="label-celular">Celular</label>
+                <input type="text" id="celularTitularPlano" class="celular form-control">
             </div>
 
-            <div class="col-xs-12">
-                <div class="form-group inline  width-form2 space-right-30 space-top-30">
-                    <label class="label-celular">Celular</label>
-                    <input type="text" id="celularTitularPlano" class="celular form-control">
-                </div>
-
-                <div class="form-group inline width-form2">
-                    <label class="label-email">E-mail</label>
-                    <input type="text" id="emailTitularPlano" class="email form-control">
-                </div>
+            <div class="form-group inline width-form2">
+                <label class="label-email">E-mail</label>
+                <input type="text" id="emailTitularPlano" class="email form-control">
             </div>
+        </div>
 
-           
 
-            <div class="squared col-xs-12">
-                    <input type="checkbox" value="None" id="squaredOne" name="check" class="checkbox inputLabelCheckFocus" checked>
-                    <label for="squaredOne" class=" font-blue Label-checkbox labelCheckOdontFocus checkbox-inline">
+        <div class="squared col-xs-12">
+            <input type="checkbox" value="None" id="squaredOne" name="check" class="checkbox inputLabelCheckFocus"
+                   checked>
+            <label for="squaredOne" class=" font-blue Label-checkbox labelCheckOdontFocus checkbox-inline">
                         <span class="spanCheckbox">
                            <strong>O representante legal é o titular do plano</strong>
                         </span>
-                    </label>
-            </div>      
-
-            
-            <div class="col-xs-12">
-                <h4 class="labelEndCorretoraDonoDeCorretora sub-title space-top-60">
-                    ENDEREÇO
-                </h4>
-
-                <div class="form-group space-right width-form3 space-top-50">
-                    <label class="label-cep">CEP</label>
-                    <input type="text" id="cepTitularPlano" class=" cep form-control">
-                    <a href=" ">
-                        <img src="../../../assets/img/magnifie.png" class="icone-revelar-senha" align="right">
-                    </a>
-                </div>
-
-                <div class="form-group inline space-right width-form1 space-top-30">
-                    <label class="label-endereco">Endereço</label>
-                    <input type="text" id="enderecoTitularPlano" class="endereco form-control ">
-                </div>
-
-                <div class="form-group inline space-right width-form3">
-                    <label class="label-numero">Número</label>
-                    <input type="text" id="numeroTitularPlano" class="numero form-control ">
-                </div>
-            </div>
-            
-
-            
-            <div class="col-xs-12">
-                <div class="form-group inline space-right width-form3 space-top-30">
-                    <label form="complemento" class="label-complemento">Complemento</label>
-                    <input type="text" id="complementoTitularPlano" class="complemento form-control">
-                </div>
-
-                <div class="form-group inline space-right width-form3">
-                    <label form="bairro" class="label-bairro">Bairro</label>
-                    <input type="text" id="bairroTitularPlano" class=" bairro form-control ">
-                </div>
-
-                <div class="form-group inline space-right width-form2">
-                    <label form="cidade" class="label-cidade">Cidade</label>
-                    <input type="text" id="cidadeTitularPlano" class="cidade form-control">
-                </div>
-
-                <div class="form-group inline space-right">
-                    <label class="label-estado font-blue">ESTADO</label>
-                    <select class=" estado form-control form-control-custom" id="estado estadoTitularPlano">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
-                </div>
-            </div>
-           
-
-            <div class="col-xs-12">
-               
-
-                <div class="form-group inline space-right width-form3 space-top-50">
-                    <label class="label-dependentes font-blue">Dependentes</label>
-                    <select class="dependentes form-control form-control-custom" id="dependentesTitularPlano" data-toggle="modal" data-target="#AddDependenteModal">
-                        <option>0</option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        <option>6</option>
-                        <option>7</option>
-                        <option>8</option>
-                        <option>9</option>
-                    </select>
-                </div>
-            </div>
-
-            
-            <div class="col-xs-12 space-top-50">
-                <a href="pagamentoDebitoCC.html" type="button" class="btn btnBlue btn-width-cc uppercase space-right-30">finalizar compra debito em conta corrente</a>
-
-                <a href=" " type="button" class="btn btnBlue btn-width-custom ">FINALIZAR COM BOLETO</a>
-            </div>
-        
-
+            </label>
         </div>
 
 
-        <!-- Modal -->
-        <div class="modal fade" id="AddDependenteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-custom" role="document">
-                <div class="modal-content">
+        <div class="col-xs-12">
+            <h4 class="labelEndCorretoraDonoDeCorretora sub-title space-top-60">
+                ENDEREÇO
+            </h4>
+
+            <div class="form-group space-right width-form3 space-top-50">
+                <label class="label-cep">CEP</label>
+                <input type="text" id="cepTitularPlano" class=" cep form-control">
+                <a href=" ">
+                    <img src="../../../assets/img/magnifie.png" class="icone-revelar-senha" align="right">
+                </a>
+            </div>
+
+            <div class="form-group inline space-right width-form1 space-top-30">
+                <label class="label-endereco">Endereço</label>
+                <input type="text" id="enderecoTitularPlano" class="endereco form-control ">
+            </div>
+
+            <div class="form-group inline space-right width-form3">
+                <label class="label-numero">Número</label>
+                <input type="text" id="numeroTitularPlano" class="numero form-control ">
+            </div>
+        </div>
 
 
-                    <img src="../../../assets/img/close.png" class="close-blue" data-dismiss="modal">
+        <div class="col-xs-12">
+            <div class="form-group inline space-right width-form3 space-top-30">
+                <label form="complemento" class="label-complemento">Complemento</label>
+                <input type="text" id="complementoTitularPlano" class="complemento form-control">
+            </div>
+
+            <div class="form-group inline space-right width-form3">
+                <label form="bairro" class="label-bairro">Bairro</label>
+                <input type="text" id="bairroTitularPlano" class=" bairro form-control ">
+            </div>
+
+            <div class="form-group inline space-right width-form2">
+                <label form="cidade" class="label-cidade">Cidade</label>
+                <input type="text" id="cidadeTitularPlano" class="cidade form-control">
+            </div>
+
+            <div class="form-group inline space-right">
+                <label class="label-estado font-blue">ESTADO</label>
+                <select class=" estado form-control form-control-custom" id="estado estadoTitularPlano">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div>
+        </div>
 
 
-                    <div class="modal-body">
-                        <div class="form-modal">
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <h4 class="uppercase title-section-donto text-blue pull-left" style="color:#2D6FCE">dependente 1</h4>
-                                    <a href="" class=" link-odonto pull-right uppercase">excluir dependente</a>
+        <div class="col-xs-12">
+
+
+            <div class="form-group inline space-right width-form3 space-top-50">
+                <label class="label-dependentes font-blue">Dependentes</label>
+                <select class="dependentes form-control form-control-custom" id="dependentesTitularPlano"
+                        data-toggle="modal" data-target="#AddDependenteModal">
+                    <option>0</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                </select>
+            </div>
+        </div>
+
+
+        <div class="col-xs-12 space-top-50">
+            <a href="pagamentoDebitoCC.html" type="button" class="btn btnBlue btn-width-cc uppercase space-right-30">finalizar
+                compra debito em conta corrente</a>
+
+            <a href=" " type="button" class="btn btnBlue btn-width-custom ">FINALIZAR COM BOLETO</a>
+        </div>
+
+
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="AddDependenteModal" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-custom" role="document">
+            <div class="modal-content">
+
+
+                <img src="../../../assets/img/close.png" class="close-blue" data-dismiss="modal">
+
+
+                <div class="modal-body">
+                    <div class="form-modal">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h4 class="uppercase title-section-donto text-blue pull-left" style="color:#2D6FCE">
+                                    dependente 1</h4>
+                                <a href="" class=" link-odonto pull-right uppercase">excluir dependente</a>
+                            </div>
+                        </div>
+
+
+                        <form class="space-top-20 formAddDependente">
+
+                            <div>
+                                <div class="form-group  width-form1 space-right ">
+                                    <label class="label-nomeModalPF">Nome</label>
+                                    <input type="text" id="nomeTitularPlanoModalPF" class="nomeModalPF form-control ">
                                 </div>
                             </div>
 
-                                                    
-                           
-
-                            <form class="space-top-20 formAddDependente">
-
-                                <div>
-                                    <div class="form-group  width-form1 space-right ">
-                                        <label class="label-nomeModalPF">Nome</label>
-                                        <input type="text" id="nomeTitularPlanoModalPF" class="nomeModalPF form-control ">
-                                    </div>
+                            <div>
+                                <div class="form-group inline space-right-30 width-form3 space-top-30">
+                                    <label class="label-cpfModalPF">CPF</label>
+                                    <input type="text" id="cpfTitularPlanoModalPF" class="cpfModalPF form-control ">
                                 </div>
 
-                                <div>
-                                    <div class="form-group inline space-right-30 width-form3 space-top-30">
-                                        <label class="label-cpfModalPF">CPF</label>
-                                        <input type="text" id="cpfTitularPlanoModalPF" class="cpfModalPF form-control ">
-                                    </div>
-
-                                    <div class="form-group maxl inline width-form3">
-                          <label>Sexo</label><br>
-                          <label class="radio inline radio-sexo"> 
-                              <input type="radio" name="sex" value="male" checked>
-                              <span> Masculino </span> 
-                           </label>
-                          <label class="radio inline radio-sexo"> 
-                              <input type="radio" name="sex" value="female">
-                              <span>Feminino </span> 
-                          </label>
-                     </div>
-
-                                    <div class="form-group inline  width-form3 space-top-30">
-                                        <label class="label-dataNascimentoModalPF">Data de nascimento</label>
-                                        <input type="text" id="dataNascimentoTitularPlanoModalPF" class="dataNascimentoModalPF form-control">
-                                    </div>
+                                <div class="form-group maxl inline width-form3">
+                                    <label>Sexo</label><br>
+                                    <label class="radio inline radio-sexo">
+                                        <input type="radio" name="sex" value="male" checked>
+                                        <span> Masculino </span>
+                                    </label>
+                                    <label class="radio inline radio-sexo">
+                                        <input type="radio" name="sex" value="female">
+                                        <span>Feminino </span>
+                                    </label>
                                 </div>
 
-                                <div>
-                                    <div class="form-group  width-form1  space-top-30 ">
-                                        <label class="label-nomeMaeModalPF">Nome da mãe</label>
-                                        <input type="text" id="nomeMaeTitularPlanoModalPF" class="nomeMaeModalPF form-control ">
-                                    </div>
+                                <div class="form-group inline  width-form3 space-top-30">
+                                    <label class="label-dataNascimentoModalPF">Data de nascimento</label>
+                                    <input type="text" id="dataNascimentoTitularPlanoModalPF"
+                                           class="dataNascimentoModalPF form-control">
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="form-group  width-form1  space-top-30 ">
+                                    <label class="label-nomeMaeModalPF">Nome da mãe</label>
+                                    <input type="text" id="nomeMaeTitularPlanoModalPF"
+                                           class="nomeMaeModalPF form-control ">
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="form-group inline  width-form2 space-right-30 space-top-30">
+                                    <label class="label-celularModalPF">Celular</label>
+                                    <input type="text" id="celularTitularPlanoModalPF"
+                                           class="celularModalPF form-control">
                                 </div>
 
-                                <div>
-                                    <div class="form-group inline  width-form2 space-right-30 space-top-30">
-                                        <label class="label-celularModalPF">Celular</label>
-                                        <input type="text" id="celularTitularPlanoModalPF" class="celularModalPF form-control">
-                                    </div>
-
-                                    <div class="form-group inline width-form2">
-                                        <label class="label-emailModalPF">E-mail</label>
-                                        <input type="text" id="emailTitularPlanoModalPF" class="emailModalPF form-control">
-                                    </div>
+                                <div class="form-group inline width-form2">
+                                    <label class="label-emailModalPF">E-mail</label>
+                                    <input type="text" id="emailTitularPlanoModalPF" class="emailModalPF form-control">
                                 </div>
+                            </div>
 
-                                
 
-                                <div class="squared">
-                                        <input type="checkbox" value="None" id="squaredTwo" name="check" class="checkbox inputLabelCheckFocus" checked>
-                                        <label for="squaredTwo" class=" font-blue Label-checkbox labelCheckOdontFocus checkbox-inline">
+                            <div class="squared">
+                                <input type="checkbox" value="None" id="squaredTwo" name="check"
+                                       class="checkbox inputLabelCheckFocus" checked>
+                                <label for="squaredTwo"
+                                       class=" font-blue Label-checkbox labelCheckOdontFocus checkbox-inline">
                                             <span class="spanCheckbox">
                                                   <strong>  O endereço é o mesmo do titular</strong>
                                             </span>
-                                        </label>
-                                    </div>
+                                </label>
+                            </div>
 
-                                <div class="space-top-30">
-                                    <a href="titularDoPlanoPF.html" type="button" class="btn btnBlue btn-width-custom space-top-10 uppercase">Continuar</a>
-                                </div>
+                            <div class="space-top-30">
+                                <a href="titularDoPlanoPF.html" type="button"
+                                   class="btn btnBlue btn-width-custom space-top-10 uppercase">Continuar</a>
+                            </div>
 
-                            </form>
+                        </form>
 
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
     <div class="footer-logado">
-      <div class="pull-left box-footer">
-          <p>© OdontoPrev. S/A - CNPJ: 119.199/0001-51</p>
-          <p>Av. Marcos Penteado de Ulhoa Rodrigues, 939-14 andar-Edifício Jatoba Torre 2-Barueri-SP CEP- 06460-040</p>
-          <p>OdontoPrev - CRO/SP n° 19009</p>
-      </div>
-      <div class="pull-right footer-img"><img src="../../../assets/img/ans.png" ></div>
+        <div class="pull-left box-footer">
+            <p>© OdontoPrev. S/A - CNPJ: 119.199/0001-51</p>
+            <p>Av. Marcos Penteado de Ulhoa Rodrigues, 939-14 andar-Edifício Jatoba Torre 2-Barueri-SP CEP-
+                06460-040</p>
+            <p>OdontoPrev - CRO/SP n° 19009</p>
+        </div>
+        <div class="pull-right footer-img"><img th:src="@{/img/ans.png}"></div>
     </div>
-    </div>
-
+</div>
 
 </body>
-
 </html>

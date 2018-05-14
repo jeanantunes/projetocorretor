@@ -1,5 +1,4 @@
-<html xmlns:th="http://www.thymeleaf.org" lang="pt-br"
-      xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <head>
 
@@ -57,16 +56,16 @@
         <img th:src="@{/img/logo-mobile.png}" class="logo-ondonto-mobile" style="position: relative;top:30px">--!>
 
         <!--<div class="perfil-web">-->
-        <!--<div class="circle-perfil">-->
-        <!--<div class="data-perfil">-->
-        <!--<p class="user-name"><strong>Marcos Palmas</strong></p>-->
-        <!--<p class="font-gray">Corretora XPTO</p>-->
-        <!--<a href="#" class="link-odonto nomargin">Sair</a>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--</div>-->
-     
-        <div class="container-logado padding-logado">
+    <!--<div class="circle-perfil">-->
+    <!--<div class="data-perfil">-->
+    <!--<p class="user-name"><strong>Marcos Palmas</strong></p>-->
+    <!--<p class="font-gray">Corretora XPTO</p>-->
+    <!--<a href="#" class="link-odonto nomargin">Sair</a>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+
+    <div class="container-logado padding-logado">
 
 
         <div class="titulo">
@@ -76,34 +75,39 @@
 
         <div class="row">
             <div class="col-xs-12">
-                <div class="box-plano-select box-pme pull-left space-top-30 space-right-30" th:each="plano : ${carrinho.planos}" >
+                <div class="box-plano-select box-pme pull-left space-top-30 space-right-30"
+                     th:each="plano : ${carrinho.planos}">
                     <img th:src="@{/img/close.png}" class="close-blue planoSelecionado" id="">
                     <div class="row">
                         <div class="col-xs-7">
-                            <p class="font-pink title-section-odonto space-bottom-0 space-left-10"><strong th:text="${plano.nome}">Integral DOC LE</strong></p>
-                            <p class="label-plano text-silver space-left-10" th:text="${plano.tipo}">Modalidade Compulsoria</p>
+                            <p class="font-pink title-section-odonto space-bottom-0 space-left-10"><strong
+                                    th:text="${plano.nome}">Integral DOC LE</strong></p>
+                            <p class="label-plano text-silver space-left-10" th:text="${plano.tipo}">Modalidade
+                                Compulsoria</p>
                         </div>
                         <div class="col-xs-5 text-right font-pink">
                             <div class="space-top-10 space-right-10"><strong><span class="font-moeda">R$</span>
-                                <span class="font-moeda" th:text="${plano.inteiro}">37,</span><span class="font-cent" th:text="${plano.centavos}">82</span></strong></div>
+                                <span class="font-moeda" th:text="${plano.inteiro}">37,</span><span class="font-cent"
+                                                                                                    th:text="${plano.centavos}">82</span></strong>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!--<div class="box-plano-select box-pme pull-left space-top-30 space-right-30">-->
-                    <!--<img src="../../../img/close.png" class="close-blue planoSelecionado">-->
+                <!--<img src="../../../img/close.png" class="close-blue planoSelecionado">-->
 
-                    <!--<div class="row">-->
-                        <!--<div class="col-xs-7">-->
-                            <!--<p class="title-section-odonto font-gold space-bottom-0 space-left-10"><strong>Master-->
-                                <!--LE</strong></p>-->
-                            <!--<p class="label-plano text-silver space-left-10">Modalidade Compulsoria</p>-->
-                        <!--</div>-->
-                        <!--<div class="col-xs-5 text-right font-gold">-->
-                            <!--<div class="space-top-10  space-right-10"><strong><span class="font-moeda">R$</span> <span-->
-                                    <!--class="font-moeda">37,</span><span class="font-cent">82</span></strong></div>-->
-                        <!--</div>-->
-                    <!--</div>-->
+                <!--<div class="row">-->
+                <!--<div class="col-xs-7">-->
+                <!--<p class="title-section-odonto font-gold space-bottom-0 space-left-10"><strong>Master-->
+                <!--LE</strong></p>-->
+                <!--<p class="label-plano text-silver space-left-10">Modalidade Compulsoria</p>-->
+                <!--</div>-->
+                <!--<div class="col-xs-5 text-right font-gold">-->
+                <!--<div class="space-top-10  space-right-10"><strong><span class="font-moeda">R$</span> <span-->
+                <!--class="font-moeda">37,</span><span class="font-cent">82</span></strong></div>-->
+                <!--</div>-->
+                <!--</div>-->
                 <!--</div>-->
             </div>
         </div>
@@ -119,7 +123,8 @@
                         <span class="label-plano font-blue"><strong>Total</strong></span>
                     </div>
                     <div class="col-xs-7 text-left font-blue">
-                        <strong><span class="font-moeda">R$</span> <span class="font-moeda" th:text="${carrinho.inteiro}">119,</span><span
+                        <strong><span class="font-moeda">R$</span> <span class="font-moeda"
+                                                                         th:text="${carrinho.inteiro}">119,</span><span
                                 class="font-cent" th:text="${carrinho.centavos}">48</span></strong>
                     </div>
                 </div>
@@ -131,7 +136,8 @@
                 <h4 class="uppercase title-section-odonto font-blue nomargin">Dados da empresa</h4>
                 <div>
 
-                    <form class="space-top-40" th:action="@{/venda/pme/Escolha_um_plano/AddBeneficiarioDependente}" th:object="${carrinho}"
+                    <form class="space-top-40" th:action="@{/venda/pme/Escolha_um_plano/AddBeneficiarioDependente}"
+                          th:object="${carrinho}"
                           method="POST">
                         <div>
                             <div class="form-group inline space-right width-form3">
@@ -153,12 +159,13 @@
                             <div class="form-group inline space-right width-form5">
                                 <label class="label-inscricao-estadual">Inscrição Estadual</label>
                                 <input th:field="*{vendaPme.inscricaoEstadual}" type="text" id="inscricao-estadual"
-                                       maxlength="14" class="inscricao-estadual form-control" >
+                                       maxlength="14" class="inscricao-estadual form-control">
                             </div>
                             <div class="form-group inline space-right width-form5">
                                 <label class="label-ramo-atividade">Ramo de Atividade </label>
-                                <input th:field="*{vendaPme.ramoDeAtividade}" type="text" class="ramo-atividade form-control"
-                                       >
+                                <input th:field="*{vendaPme.ramoDeAtividade}" type="text"
+                                       class="ramo-atividade form-control"
+                                >
                             </div>
                         </div>
 
@@ -167,13 +174,13 @@
 
                             <div class="form-group inline width-form5 space-right">
                                 <label class="label-razao-social">Razão Social</label>
-                                <input th:field="*{vendaPme.razaoSocial}" type="text" class="razao-social form-control" >
+                                <input th:field="*{vendaPme.razaoSocial}" type="text" class="razao-social form-control">
                             </div>
 
                             <div class="form-group inline  width-form5">
                                 <label class="label-nome-fantasia">Nome Fantasia</label>
                                 <input th:field="*{vendaPme.nomeFantasia}" type="text" id="nome-fantasia"
-                                       class="nome-fantasia form-control" >
+                                       class="nome-fantasia form-control">
                             </div>
 
                         </div>
@@ -183,12 +190,12 @@
                             <div class="form-group inline space-right width-form3">
                                 <label class="label-representante-legal">Representante Legal</label>
                                 <input th:field="*{vendaPme.representanteLegal}" type="text" id="representante-legal"
-                                       class="representante-legal form-control" >
+                                       class="representante-legal form-control">
                             </div>
 
                             <div class="form-group inline  width-form3">
                                 <label class="label-cpf uppercase">CPF</label>
-                                <input th:field="*{vendaPme.cpf}" type="text" id="cpf" class="cpf form-control" >
+                                <input th:field="*{vendaPme.cpf}" type="text" id="cpf" class="cpf form-control">
                             </div>
 
                             <div class="squared inline">
@@ -208,11 +215,13 @@
 
                             <div class="form-group inline space-right width-form3">
                                 <label class="label-telefone">Telefone</label>
-                                <input th:field="*{vendaPme.telefone}" type="text" id="telefone" class="telefone form-control">
+                                <input th:field="*{vendaPme.telefone}" type="text" id="telefone"
+                                       class="telefone form-control">
                             </div>
                             <div class="form-group inline space-right width-form3">
                                 <label class="label-celular">Celular</label>
-                                <input th:field="*{vendaPme.celular}" type="text" id="celular" class="celular form-control">
+                                <input th:field="*{vendaPme.celular}" type="text" id="celular"
+                                       class="celular form-control">
                             </div>
                             <div class="form-group inline space-right width-form3">
                                 <label class="label-email">E-mail </label>
@@ -241,7 +250,8 @@
 
                                 <div class="form-group inline space-right width-form3">
                                     <label class="label-numero">Número</label>
-                                    <input th:field="*{vendaPme.numero}" type="text" class="numero form-control " id="numero">
+                                    <input th:field="*{vendaPme.numero}" type="text" class="numero form-control "
+                                           id="numero">
                                 </div>
                             </div>
                         </div>
@@ -250,18 +260,21 @@
                             <div class="col-xs-12">
                                 <div class="form-group inline space-right width-form3">
                                     <label form="complemento" class="label-complemento">Complemento</label>
-                                    <input th:field="*{vendaPme.complemento}" type="text" class="complemento form-control"
+                                    <input th:field="*{vendaPme.complemento}" type="text"
+                                           class="complemento form-control"
                                            id="complemento">
                                 </div>
 
                                 <div class="form-group inline space-right width-form3">
                                     <label form="bairro" class="label-bairro">Bairro</label>
-                                    <input th:field="*{vendaPme.bairro}" type="text" class="bairro form-control" id="bairro">
+                                    <input th:field="*{vendaPme.bairro}" type="text" class="bairro form-control"
+                                           id="bairro">
                                 </div>
 
                                 <div class="form-group inline space-right width-form2">
                                     <label form="cidade" class="label-cidade">Cidade</label>
-                                    <input th:field="*{vendaPme.cidade}" type="text" class="cidade form-control" id="cidade">
+                                    <input th:field="*{vendaPme.cidade}" type="text" class="cidade form-control"
+                                           id="cidade">
                                 </div>
 
                                 <div class="form-group inline space-right">
@@ -310,7 +323,8 @@
                             <div class="col-xs-12">
                                 <div class="form-group inline space-right">
                                     <label class="font-blue">Data de Vencimento da Fatura </label>
-                                    <select th:field="*{vendaPme.dataVencimento}" class="form-control form-control-custom"
+                                    <select th:field="*{vendaPme.dataVencimento}"
+                                            class="form-control form-control-custom"
                                             id="data-vencimento">
                                         <option th:field="*{vendaPme.dataVencimento}" value="5">5</option>
                                         <option th:field="*{vendaPme.dataVencimento}" value="15">15</option>
@@ -339,10 +353,11 @@
     <div class="footer-logado">
         <div class="pull-left box-footer">
             <p>© OdontoPrev. S/A - CNPJ: 119.199/0001-51</p>
-            <p>Av. Marcos Penteado de Ulhoa Rodrigues, 939 - 14 Andar-Edifício Jatoba Torre 2 - Barueri-SP CEP - 06460-040</p>
-            <p>OdontoPrev - CRO/SP nÂ° 19009</p>
+            <p>Av. Marcos Penteado de Ulhoa Rodrigues, 939 - 14 Andar-Edifício Jatoba Torre 2 - Barueri-SP CEP -
+                06460-040</p>
+            <p>OdontoPrev - CRO/SP n° 19009</p>
         </div>
-        <div class="pull-right footer-img"><img src="../../../assets/img/ans.png"></div>
+        <div class="pull-right footer-img"><img th:src="@{/img/ans.png}"></div>
     </div>
 
 </div>

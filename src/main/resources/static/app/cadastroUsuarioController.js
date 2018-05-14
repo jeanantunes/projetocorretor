@@ -1,7 +1,53 @@
 $(document).ready(function () {
 
+    var termo = getComponent("termoCadastro");
+
+    localStorage.removeItem("reCadastro");
+
+    $(".componenteTermo").append(termo);
+
+    $("#nomeNaoCadastrado").blur(function () {
+
+        $("#nomeNaoCadastrado").val($("#nomeNaoCadastrado").val().trim());
+
+    });
+
+    $("#nomeNaoCadastrado").keyup(function () {
+
+        var capturandoEspaco = $("#nomeNaoCadastrado").val().substring($("#nomeNaoCadastrado").val().length - 2, $("#nomeNaoCadastrado").val().length);
+
+        if (capturandoEspaco == "  ") {
+
+            $("#nomeNaoCadastrado").val($("#nomeNaoCadastrado").val().substring(0, $("#nomeNaoCadastrado").val().length - 1))
+
+        }
+    });
+
+    $("#termoNCadastrado").scroll(function () {
+
+        if ($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight) {
+     
+             console.log("estou aqui");
+             $("#squaredOne").prop('disabled', false);
+             $("#squaredOneLabel").prop('disabled', false);
+             
+         }
+     
+    });
+
+    $("#termoCadastrado").scroll(function () {
+
+        if ($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight) {
+
+            $("#squaredOneTermoCadastrado").prop('disabled', false);
+            $("#squaredOneTermoCadastradoLabel").prop('disabled', false);
+
+        }
+
+    });
+
     $("#btnCpfOdont").click(function () {
-        console.log("Teste click");
+
         var cpfValidado = $("#cpf").val().replace(/\D/g, '');
 
         if (TestaCPF(cpfValidado)) {
@@ -9,9 +55,9 @@ $(document).ready(function () {
             callTokenProd(function (dataToken) {
                 callForcaVenda(function (dataDadosUsuario) {
 
-                    if (dataDadosUsuario.statusForcaVenda == "Aguardando AprovaÃ§Ã£o") {
+                    if (dataDadosUsuario.statusForcaVenda == "Aguardando Aprovação") {
                         console.log("Executou swal");
-                        swal("Ops!", "Seu cadastro estÃ¡ aguardando aprovaÃ§Ã£o!", "error");
+                        swal("Ops!", "Seu cadastro está aguardando aprovação!", "error");
 
                         //window.location = "index.html";
 
@@ -20,14 +66,15 @@ $(document).ready(function () {
 
                     if (dataDadosUsuario.statusForcaVenda == "Ativo") {
                         console.log("Executou swal");
-                        swal("Ops!", "VocÃª jÃ¡ estÃ¡ cadastrado, clique em entrar!", "error");
+                        swal("Ops!", "Você já está cadastrado, clique em entrar!", "error");
 
                         //window.location = "index.html";
 
                         return;
                     }
+                    // || dataDadosUsuario.statusForcaVenda.toUpperCase() == "INATIVO" || dataDadosUsuario.statusForcaVenda.toUpperCase() == "REPROVADO"
 
-                    if (dataDadosUsuario.cdForcaVenda != null && dataDadosUsuario.statusForcaVenda.toUpperCase() == "PRÃ‰-CADASTRO") {
+                    if (dataDadosUsuario.cdForcaVenda != null && dataDadosUsuario.statusForcaVenda.toUpperCase() == "PRÉ-CADASTRO") {
 
                         swal.close();
                         console.log(dataDadosUsuario);
@@ -40,9 +87,25 @@ $(document).ready(function () {
                         localStorage.setItem("dadosUsuario", JSON.stringify(dataDadosUsuario));
 
                     }
+
+                    else if (dataDadosUsuario.cdForcaVenda != null && (dataDadosUsuario.statusForcaVenda.toUpperCase() == "INATIVO" || dataDadosUsuario.statusForcaVenda.toUpperCase() == "REPROVADO")) {
+                    
+                        swal.close();
+                        put("reCadastro", true);
+                        console.log(dataDadosUsuario);
+                        $("#divCadastroInativo").removeClass("hide");
+                        $("#cpfOdont").addClass("hide");
+                        $("#nomeInativoCadastrado").val(dataDadosUsuario.nome);
+                        $("#celularInativoCadastrado").val(dataDadosUsuario.celular);
+                        $("#emailInativoCadastrado").val(dataDadosUsuario.email);
+                    
+                        localStorage.setItem("dadosUsuario", JSON.stringify(dataDadosUsuario));
+                    
+                    }
                     else if (dataDadosUsuario.cdForcaVenda == null) {
                         swal.close();
                         console.log(dataDadosUsuario);
+                        put("reCadastro", false);
                         $("#celOdontCorretora").removeClass("hide");
                         $("#cpfOdont").addClass("hide");
                     }
@@ -67,28 +130,62 @@ $(document).ready(function () {
                     return;
                 }
 
-                $("#infoCorretora").addClass('hide');
-                $("#cadastroSucessoCorretora").removeClass("hide");
+
                 //$("#termoOdontNCadastrado").removeClass('hide');
 
-                var codCorretora = dataCorretora.cdCorretora;
-                var nome = $("#nomeNaoCadastrado").val();
-                var cpfTratado = $("#cpf").val().replace(/\D/g, '');
-                var celularTratado = $("#celularNaoCadastrado").val().replace(/\D/g, '');
-                var email = $("#emailNaoCadastrado").val();
-                var senha = $("#confirmar-senhaCpfFalse").val();
-                var dataNascimento = "11/08/2001";
+                var reCadastro = get("reCadastro");
 
-                console.log(dataNascimento);
-
-                callInputForcaVenda(function (dataForcaVenda) {
-
-                    console.log(dataForcaVenda);
-
-                }, dataToken.token, cpfTratado, celularTratado, email, codCorretora, nome, senha, dataNascimento);
+                if (!reCadastro) {
 
 
-            },dataToken.token, cnpjValidado);
+
+
+                    var codCorretora = dataCorretora.cdCorretora;
+                    var nome = $("#nomeNaoCadastrado").val();
+                    var cpfTratado = $("#cpf").val().replace(/\D/g, '');
+                    var celularTratado = $("#celularNaoCadastrado").val().replace(/\D/g, '');
+                    var email = $("#emailNaoCadastrado").val();
+                    var senha = $("#confirmar-senhaCpfFalse").val();
+                    var dataNascimento = "12/09/2002";
+
+
+                    console.log(dataNascimento);
+
+                    callInputForcaVenda(function (dataForcaVenda) {
+
+                        $("#infoCorretora").addClass('hide');
+                        $("#cadastroSucessoCorretora").removeClass("hide");
+
+                    }, dataToken.token, cpfTratado, celularTratado, email, codCorretora, nome, senha, dataNascimento);
+
+
+                } else {
+
+
+
+                    var dadosUsuario = get("dadosUsuario");
+                    var codCorretora = dataCorretora.cdCorretora;
+                    var nome = $("#nomeInativoCadastrado").val();
+                    
+                    var cpfTratado = $("#cpf").val().replace(/\D/g, '');
+                    var celularTratado = $("#celularInativoCadastrado").val().replace(/\D/g, '');
+                    var email = $("#emailInativoCadastrado").val();
+                    var senha = $("#confirmar-senhaCpfFalse").val();
+                    var dataNascimento = "12/09/2002";
+
+                    callPutSenhaForcaVenda(function () {
+
+                        $("#infoCorretora").addClass('hide');
+                        $("#cadastroSucessoCorretora").removeClass("hide");
+
+                    }, dataToken.token, dadosUsuario.cdForcaVenda, nome, celularTratado, email, senha, codCorretora);
+
+                }
+
+
+
+
+            }, dataToken.token, cnpjValidado);
         });
 
     });
@@ -100,37 +197,6 @@ $(document).ready(function () {
 
 
     });
-
-//$("#nomeNaoCadastrado").blur(function () {
-//
-//    var nome = $("#nomeNaoCadastrado").val();
-//
-//    var validaNome = isValidFullname(nome);
-//
-//    console.log(nome);
-//
-//    console.log(validaNome);
-//
-//})
-
-
-//$("#btnInfoCorretoraNCpf").click(function () {
-//    $("#infoCorretora").addClass("hide")
-//    $("#cadastroSucessoCorretora").removeClass("hide")
-//    return false;
-//});
-
-
-// Aqui comeï¿½a validacao de campos
-
-    function validateEmail(email) {
-        var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
-        if (reg.test(email)) {
-            return true;
-        }
-
-        return false;
-    }
 
     $("#nomeNaoCadastrado").keyup(function () {
 
@@ -153,7 +219,7 @@ $(document).ready(function () {
         $("#btnCelOdontNCpf").addClass('disabled');
 
         if ($(this).val() != "" && $("#celularNaoCadastrado").val().length > 14 && $("#nomeNaoCadastrado").val() != "" && validateEmail($(this).val()) && ValidaNome($("#nomeNaoCadastrado").val())) {
-            console.log("Executando validaï¿½ï¿½o email");
+            console.log("Executando validação email");
             $("#btnCelOdontNCpf").removeClass('disabled');
         }
     });
@@ -167,16 +233,18 @@ $(document).ready(function () {
     });
 
 
-//@TODO Corrigir keyup
-// $("#cpf").keyup(function () {
-//
-//     $("#btnCpfOdont").addClass('disabled');
-//
-//     if ($("#cpf").val().length == 14 && TestaCPF($("#cpf").val().replace(/\D/g, ''))) {
-//         $("#btnCpfOdont").removeClass('disabled');
-//     }
-//
-// });
+    // Aqui começa a validacao dos campos de cadastro 
+
+
+    $("#cpf").keyup(function () {
+
+        $("#btnCpfOdont").addClass('disabled');
+
+        if ($("#cpf").val().length == 14 && TestaCPF($("#cpf").val().replace(/\D/g, ''))) {
+            $("#btnCpfOdont").removeClass('disabled');
+        }
+
+    });
 
     $("#btnTermo").click(function () {
 
@@ -221,6 +289,27 @@ $(document).ready(function () {
 
                     $("#corretoraCadastro").html(nomeEmpresa);
 
+                    forca.nome = dataDadosUsuario.nome;
+                    forca.cargo = dataDadosUsuario.cargo;
+                    forca.cpf = dataDadosUsuario.cpf;
+                    forca.email = dataDadosUsuario.email;
+                    forca.login = dataDadosUsuario.login;
+                    forca.nomeEmpresa = dataDadosUsuario.corretora.razaoSocial;
+                    forca.nomeGerente = dataDadosUsuario.nomeGerente;
+                    forca.responsavel = dataDadosUsuario.responsavel;
+                    forca.rg = dataDadosUsuario.rg;
+                    forca.senha = dataDadosUsuario.senha;
+                    forca.statusUsuario = dataDadosUsuario.statusForcaVenda;
+                    forca.telefone = dataDadosUsuario.celular;
+                    forca.codigo = dataDadosUsuario.cdForcaVenda;
+
+                    put("dadosUsuario", JSON.stringify(forca));
+
+                    login.salvarDadosUsuario(JSON.stringify(forca));
+
+                    $("#termoOdont").addClass("hide")
+                    $("#cadastroSucesso").removeClass("hide")
+
                 }, dataToken.token, cpf);
 
             }, dataToken.token, codigoForca, nome, telefone, email, senha);
@@ -229,61 +318,62 @@ $(document).ready(function () {
 
     });
 
-// senha
+    // senha
     $(".password").focus(function () {
         if ($(this).val() == "") {
-            $(this).css({"border-color": "1974CE"});
+            $(this).css({ "border-color": "1974CE" });
             $(".password").css("color", "#1974CE");
             $(".label-password").css("color", "#1974CE");
         }
     });
 
-// $(".password").blur(function(){
-//      if($(this).val() == "")
-//          {
-//              $(this).css({"border-color" : "#F00"});
-//              $(".label-password").css("color", "red");
-//          }
-//     });
+    // $(".password").blur(function(){
+    //      if($(this).val() == "")
+    //          {
+    //              $(this).css({"border-color" : "#F00"});
+    //              $(".label-password").css("color", "red");
+    //          }
+    //     });
 
-//  $(".password").keyup(function(){
-//  if($(this).val() != "")
-//      {
-//          $(this).css({"border-color" : "#3A94FB"});
-//          $(".password").css("color", "#3A94FB");
-//          $(".label-password").css("color", "#3A94FB");
-//      }
-//  });
+    //  $(".password").keyup(function(){
+    //  if($(this).val() != "")
+    //      {
+    //          $(this).css({"border-color" : "#3A94FB"});
+    //          $(".password").css("color", "#3A94FB");
+    //          $(".label-password").css("color", "#3A94FB");
+    //      }
+    //  });
 
-// sennha corfimar
+    // sennha corfimar
 
     $(".password-confirm").focus(function () {
         if ($(this).val() == "") {
-            $(this).css({"border-color": "3A94FB"});
+            $(this).css({ "border-color": "3A94FB" });
             $(".password").css("color", "#1974CE"); // se clicar dentro fica azul
             $(".label-password-confirm").css("color", "#1974CE");
         }
     });
 
-//    $(".password-confirm").blur(function(){
-//        if($(this).val() == "" || $(this).val() != $(".password").val())
-//            {
-//                $(this).css({"border-color" : "#F00"});
-//                $(".label-password-confirm").css("color", "red"); // se estiver vazio fica vermelho
-//            }
-//       });
+    //    $(".password-confirm").blur(function(){
+    //        if($(this).val() == "" || $(this).val() != $(".password").val())
+    //            {
+    //                $(this).css({"border-color" : "#F00"});
+    //                $(".label-password-confirm").css("color", "red"); // se estiver vazio fica vermelho
+    //            }
+    //       });
 
-//    $(".password-confirm").keyup(function(){
-//    if($(this).val() != "" && $(this).val() == $(".password").val())
-//        {
-//            $(this).css({"border-color" : "#3A94FB"});
-//            $(".password-confirm").css("color", "#3A94FB");// se nao tiver vazio, fica azul
-//            $(".label-password-confirm").css("color", "#3A94FB");
-//        }
-//    });
+    //    $(".password-confirm").keyup(function(){
+    //    if($(this).val() != "" && $(this).val() == $(".password").val())
+    //        {
+    //            $(this).css({"border-color" : "#3A94FB"});
+    //            $(".password-confirm").css("color", "#3A94FB");// se nao tiver vazio, fica azul
+    //            $(".label-password-confirm").css("color", "#3A94FB");
+    //        }
+    //    });
 
 
-// Validaï¿½ao da pagina de cadastro associado a corretora
+
+    // Validaçao da pagina de cadastro associado a corretora
 
     $("#senhaCpfTrue").blur(function () {
 
@@ -294,7 +384,7 @@ $(document).ready(function () {
 
         if (senha.length < 8) {
 
-            $("#senhaCpfTrue").css({"border-color": "#F00"});
+            $("#senhaCpfTrue").css({ "border-color": "#F00" });
             $(".password").css("color", "red");
             $(".label-password").css("color", "red");
             $(".label-password-confirm-8").css("color", "red");
@@ -302,7 +392,7 @@ $(document).ready(function () {
             return;
         }
         else if (senha.length > 7 && (confirmarSenha == "")) {
-            $("#senhaCpfTrue").css({"border-color": "#3A94FB"});
+            $("#senhaCpfTrue").css({ "border-color": "#3A94FB" });
             $(".password").css("color", "#3A94FB");
             $(".label-password").css("color", "#3A94FB");
             $(".label-password-confirm-8").css("color", "#3A94FB");
@@ -310,7 +400,7 @@ $(document).ready(function () {
 
             return;
         } else {
-            $("#confirmar-senhaCpfTrue").css({"border-color": "#F00"});
+            $("#confirmar-senhaCpfTrue").css({ "border-color": "#F00" });
             $(".password-confirm").css("color", "red");
             $(".label-password-confirm").css("color", "red");
         }
@@ -333,14 +423,14 @@ $(document).ready(function () {
 
         if (confirmarSenha != senha || confirmarSenha.length < 8 || senha.length < 8) {
 
-            $("#confirmar-senhaCpfTrue").css({"border-color": "#F00"});
+            $("#confirmar-senhaCpfTrue").css({ "border-color": "#F00" });
             $(".password-confirm").css("color", "red");
             $(".label-password-confirm").css("color", "red");
 
         } else if (confirmarSenha == senha && confirmarSenha.length > 7 && senha.length > 7) {
 
             console.log("Teste");
-            $("#confirmar-senhaCpfTrue").css({"border-color": "#3A94FB"});
+            $("#confirmar-senhaCpfTrue").css({ "border-color": "#3A94FB" });
             $("#confirmar-senhaCpfTrue").css("color", "#3A94FB");
             $(".label-password-confirm").css("color", "#3A94FB");
             $("#btnkeyOdont").removeClass('disabled');
@@ -348,7 +438,7 @@ $(document).ready(function () {
     });
 
 
-// Validaï¿½ao da pagina de cadastro nao associado a corretora
+    // Validaçao da pagina de cadastro nao associado a corretora
 
 
     $("#senhaCpfFalse").blur(function () {
@@ -361,7 +451,7 @@ $(document).ready(function () {
 
         if (senha.length < 8) {
 
-            $(this).css({"border-color": "#F00"});
+            $(this).css({ "border-color": "#F00" });
             $(".password").css("color", "red");
             $(".label-password").css("color", "red");
             $(".label-password-confirm-8").css("color", "red");
@@ -370,14 +460,14 @@ $(document).ready(function () {
         }
         else if (senha.length > 7 && (confirmarSenha == "")) {
 
-            $(this).css({"border-color": "#3A94FB"});
+            $(this).css({ "border-color": "#3A94FB" });
             $(".password").css("color", "#3A94FB");
             $(".label-password").css("color", "#3A94FB");
             $(".label-password-confirm-8").css("color", "#3A94FB");
 
             return;
         } else {
-            $("#confirmar-senhaCpfFalse").css({"border-color": "#F00"});
+            $("#confirmar-senhaCpfFalse").css({ "border-color": "#F00" });
             $(".password-confirm").css("color", "red");
             $(".label-password-confirm").css("color", "red");
         }
@@ -400,48 +490,29 @@ $(document).ready(function () {
 
         if (confirmarSenha != senha || confirmarSenha.length < 8 || senha.length < 8) {
 
-            $(this).css({"border-color": "#F00"});
+            $(this).css({ "border-color": "#F00" });
             $(".password-confirm").css("color", "red");
             $(".label-password-confirm").css("color", "red");
 
         } else if (confirmarSenha == senha && confirmarSenha.length > 7 && senha.length > 7) {
 
-            $(this).css({"border-color": "#3A94FB"});
+            $(this).css({ "border-color": "#3A94FB" });
             $(this).css("color", "#3A94FB");
             $(".label-password-confirm").css("color", "#3A94FB");
             $("#btnkeyOdontNCpf").removeClass('disabled');
         }
     });
-    
-    $("#termoNCadastrado").scroll(function () {
 
-        if ($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight) {
-     
-             console.log("estou aqui");
-             $("#squaredOne").prop('disabled', false);
-             $("#squaredOneLabel").prop('disabled', false);
-             
-         }
-     
-    });
 
-    $("#termoCadastrado").scroll(function () {
 
-        if ($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight) {
 
-            console.log("estou aqui");
-            $("#squaredOneTermoCadastrado").prop('disabled', false);
-            $("#squaredOneTermoCadastradoLabel").prop('disabled', false);
-
-        }
-
-    });
 
 });
 
 
+
 function callForcaVenda(callback, token, cpf) {
-    console.log(token);
+
     swal({
         title: "Aguarde",
         text: 'Estamos procurando seus dados',
@@ -458,7 +529,6 @@ function callForcaVenda(callback, token, cpf) {
 
     $.ajax({
         async: true,
-        //url: "https://api-it1.odontoprev.com.br:8243/" + "corretorservicos/1.0/forcavenda/" + cpf,
         url: URLBase + "/corretorservicos/1.0/forcavenda/" + cpf,
         method: "GET",
         headers: {
@@ -478,11 +548,10 @@ function callDadosUsuarios(callback, token, cpf) {
 
     $.ajax({
         async: true,
-        //url: "https://api-it1.odontoprev.com.br:8243/" + "dcss/usuario/1.0/cpf/" + cpf,
         url: URLBase + "dcss/usuario/1.0/cpf/" + cpf,
         method: "GET",
         headers: {
-            "Content-Type": "application/json",
+			
             "Authorization": "Bearer " + token
         },
         success: function (resp) {
@@ -493,7 +562,7 @@ function callDadosUsuarios(callback, token, cpf) {
             //$("#loadingLogin").addClass('hide');
             if (xhr.status == 0) {
                 $("#erroLogin").removeClass('hide');
-                $("#erroLogin").html("Sem conexÃ£o, tente novamente.");
+                $("#erroLogin").html("Sem conexão, tente novamente.");
             }
             //console.log(JSON.stringify(resp.statusText));
             //ob.imprimirAlgo(JSON.stringify(resp.statusText));
@@ -508,7 +577,6 @@ function callInputForcaVenda(callback, token, cpf, celular, email, corretora, no
 
     $.ajax({
         async: true,
-        //url: "https://api-it1.odontoprev.com.br:8243/" + "corretorservicos/1.0/forcavenda/",
         url: URLBase + "/corretorservicos/1.0/forcavenda/",
         method: "POST",
         headers: {
@@ -534,7 +602,6 @@ function callPutForcaVenda(callback, token, codForca, nome, celular, email, senh
 
     $.ajax({
         async: true,
-        //url: "https://api-it1.odontoprev.com.br:8243/" + "corretorservicos/1.0/forcavenda/login",
         url: URLBase + "/corretorservicos/1.0/forcavenda/login",
         method: "PUT",
         headers: {
@@ -543,6 +610,41 @@ function callPutForcaVenda(callback, token, codForca, nome, celular, email, senh
         },
         processData: false,
         "data": "{\r\n\r\n    \"cdForcaVenda\": " + codForca + ",\r\n\r\n    \"nome\": \"" + nome + "\",\r\n\r\n    \"celular\": \"" + celular + "\",\r\n\r\n    \"email\": \"" + email + "\",\r\n\r\n    \"senha\": \"" + senha + "\",\r\n\r\n    \"nomeEmpresa\": \"" + nomeEmpresa + "\",\r\n\r\n    \"nomeGerente\": \"" + nomeGerente + "\",\r\n\r\n    \"responsavel\": \"" + responsavel + "\",\r\n\r\n    \"rg\": 0,\r\n\r\n    \"canalVenda\": " + canalVenda + "\r\n\r\n}",
+        success: function (resp) {
+            callback(resp);
+        },
+        error: function (xhr) {
+
+        }
+    });
+}
+
+function callPutSenhaForcaVenda(callback, token, codForca, nome, celular, email, senha, cdCorretora) {
+
+    var setarPreCadastro = 1;
+
+    var json = {
+        "cdForcaVenda": codForca,
+        "nome": nome,
+        "celular": celular,
+        "email": email,
+        "senha": senha,
+        "corretora": {
+            "cdCorretora": parseInt(cdCorretora)
+        },
+        "statusForcaVenda": setarPreCadastro
+    };
+
+    $.ajax({
+        async: true,
+        url: URLBase + "/corretorservicos/1.0/forcavenda",
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token
+        },
+        processData: false,
+        data: JSON.stringify(json),
         success: function (resp) {
             callback(resp);
         },
@@ -570,7 +672,6 @@ function callCorretora(callback, token, cnpj) {
 
     $.ajax({
         async: true,
-        //url: "https://api-it1.odontoprev.com.br:8243/" + "corretorservicos/1.0/corretora/" + cnpj,
         url: URLBase + "/corretorservicos/1.0/corretora/" + cnpj,
         method: "GET",
         headers: {
@@ -586,4 +687,41 @@ function callCorretora(callback, token, cnpj) {
 
         }
     });
+}
+
+
+
+//$("#nomeNaoCadastrado").blur(function () {
+//
+//    var nome = $("#nomeNaoCadastrado").val();
+//
+//    var validaNome = isValidFullname(nome);
+//
+//    console.log(nome);
+//
+//    console.log(validaNome);
+//
+//})
+
+
+
+
+//$("#btnInfoCorretoraNCpf").click(function () {
+//    $("#infoCorretora").addClass("hide")
+//    $("#cadastroSucessoCorretora").removeClass("hide")
+//    return false;
+//});
+
+
+
+
+// Aqui começa validacao de campos
+
+function validateEmail(email) {
+    var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
+    if (reg.test(email)) {
+        return true;
+    }
+
+    return false;
 }

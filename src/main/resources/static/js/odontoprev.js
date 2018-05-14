@@ -15,6 +15,12 @@ $(document).ready(function(){
         $( "#keyOdont" ).removeClass( "hide" )
         return false;
     });
+	
+	$("#btnInativoCelOdont").click(function () {
+$("#divCadastroInativo").addClass("hide")
+$("#keyOdontCorretora").removeClass("hide")
+return false;
+});
 
     $("#btnkeyOdont").click(function(){
         $( "#keyOdont" ).addClass( "hide" )

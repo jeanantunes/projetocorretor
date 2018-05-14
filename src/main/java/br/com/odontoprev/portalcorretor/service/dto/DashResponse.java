@@ -2,6 +2,32 @@ package br.com.odontoprev.portalcorretor.service.dto;
 
 public class DashResponse {
 
+
+    int codigoEmpresa;
+
+    //esse codigo sera filtro para soma dos finalizados / para a barra na tela utilizar só os finalizados
+    int empresaDCMS;
+
+    int totalVidas;
+
+    Double valorTotal;
+
+    int codigoForcaVenda;
+
+    String nomeForca;
+
+    String cpf;
+
+    int codigoCorretora;
+
+    String nomeCorretora;
+
+    String cnpj;
+
+    String tipoVenda;
+
+    String dtVenda;
+
     public int getCodigoEmpresa() {
         return codigoEmpresa;
     }
@@ -90,28 +116,15 @@ public class DashResponse {
         this.tipoVenda = tipoVenda;
     }
 
-    int codigoEmpresa;
+    public String getDtVenda() {
+        String dia = dtVenda.substring(8, 10);
+        String mes = dtVenda.substring(4, 8);
+        String ano = dtVenda.substring(0, 4);
+        return dia + mes + ano;
+    }
 
-    //esse codigo sera filtro para soma dos finalizados / para a barra na tela utilizar só os finalizados
-    int empresaDCMS;
-
-    int totalVidas;
-
-    Double valorTotal;
-
-    int codigoForcaVenda;
-
-    String nomeForca;
-
-    String cpf;
-
-    int codigoCorretora;
-
-    String nomeCorretora;
-
-    String cnpj;
-
-    String tipoVenda;
-
+    public void setDtVenda(String dtVenda) {
+        this.dtVenda = dtVenda;
+    }
 
 }
