@@ -35,8 +35,8 @@ public class RelatorioGestaoVendaService {
 
         log.info("Relatorio Gestao de Venda - gerarCSV ");
 
-        //String url = requesBasetUrl + gestaoVendaCSV + cnpj;
-        String url = "http://localhost:9090/downloadCSV/" + cnpj;
+        String url = requesBasetUrl + gestaoVendaCSV + cnpj;
+        //String url = "http://localhost:9090/downloadCSV/" + cnpj;
 
         //RestTemplate restTemplate = new RestTemplate();
         RestTemplate restTemplate = new RestTemplate();
