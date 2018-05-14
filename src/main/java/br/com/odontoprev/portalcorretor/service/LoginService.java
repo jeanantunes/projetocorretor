@@ -26,6 +26,7 @@ import br.com.odontoprev.api.manager.client.token.util.ConfigurationUtils;
 import br.com.odontoprev.portalcorretor.model.UsuarioSession;
 import br.com.odontoprev.portalcorretor.service.dto.LoginADResponse;
 import br.com.odontoprev.portalcorretor.service.dto.LoginResponse;
+import br.com.odontoprev.portalcorretor.service.dto.Perfil;
 
 @Service
 public class LoginService {
@@ -46,6 +47,10 @@ public class LoginService {
 
 	@Autowired
 	private ApiManagerTokenService apiManagerTokenService;
+	
+
+	@Autowired
+	private PerfilService perfilService;
 
 	public UsuarioSession Autenticar(String usuario, String senha) {
 		final long start = new Date().getTime();
@@ -108,7 +113,10 @@ public class LoginService {
 						if("success".equals(LoginADResponse.getStatuscode())) {
 							UsuarioSession usuarioSession = new UsuarioSession();
 							usuarioSession.setNomeUsuario(LoginADResponse.getNome());
-							usuarioSession.setPerfil("Adiministrador");
+							Perfil perfil = perfilService.buscarPerfilPorUsuario(usuario);
+							if(perfil!=null) {
+								usuarioSession.setPerfil(perfil.getNomePerfil());
+							}
 							return usuarioSession;
 						}
 				}
