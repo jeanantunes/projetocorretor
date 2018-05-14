@@ -6,6 +6,7 @@ import br.com.odontoprev.portalcorretor.service.RelatorioGestaoVendaService;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,13 +26,21 @@ public class CsvFileDownloadController {
     private RelatorioGestaoVendaService relatorioGestaoVendaService;
 
     @RequestMapping(value = "/downloadModelo", method = {RequestMethod.GET})
-    public String downloadModelo(HttpSession session) {
+    public void downloadModelo(HttpSession session, HttpServletResponse response) throws IOException {
 
         UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
 
-        relatorioGestaoVendaService.gerarCSV(usuario.getDocumento());
+        byte[] file = relatorioGestaoVendaService.gerarCSV(usuario.getDocumento());
 
-        return "redirect:" + "/corretora/home";
+        response.setContentType(String.valueOf(MediaType.TEXT_PLAIN_VALUE));
+
+        String headerKey = "Content-Disposition";
+        String headerValue = String.format("attachment; filename=\"%s\"", "relatorio-gestao-vendas.csv");
+        response.setHeader(headerKey, headerValue);
+        response.getWriter().write(new String(file, "UTF-8"));
+        response.getWriter().flush();
+
+        //return "redirect:" + "/corretora/home";
     }
 
 
