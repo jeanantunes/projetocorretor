@@ -26,11 +26,17 @@ public class ReenvioEmailAceitePMEController {
 
     }
 
-    @RequestMapping(value = "buscaCnpjReenvio", method = RequestMethod.GET)
-    public ModelAndView buscarCnpjReenvio(HttpSession session, @ModelAttribute("reenvioEmailAceitePMEModel") ReenvioEmailAceitePMEModel reenvioEmailAceitePMEModel) {
+    @RequestMapping(value = "buscaCnpjReenvio", method = RequestMethod.POST)
+    public ModelAndView buscarCnpjReenvio(HttpSession session, @ModelAttribute("emailAceite") ReenvioEmailAceitePMEModel reenvioEmailAceitePMEModel) {
 
         UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
-        CnpjDadosAceiteResponse cnpjDadosAceiteResponse = empresaService.obterDadosEmpresa("09296295000160");
+        //CNPJ: 09296295000160
+        if (reenvioEmailAceitePMEModel.getCnpj() == null || "".equals(reenvioEmailAceitePMEModel.getCnpj())) {
+            reenvioEmailAceitePMEModel.setError("O campo CNPJ é obrigatório");
+            return new ModelAndView("buscaCnpjReenvio", "reenvioEmailAceitePME", reenvioEmailAceitePMEModel);
+        }
+        String cnpj = reenvioEmailAceitePMEModel.getCnpj().replace(".","").replace("/","").replace("-","");
+        CnpjDadosAceiteResponse cnpjDadosAceiteResponse = empresaService.obterDadosEmpresa(cnpj);
 
         reenvioEmailAceitePMEModel.setCnpj(cnpjDadosAceiteResponse.getCnpj());
         reenvioEmailAceitePMEModel.setRazaoSocial(cnpjDadosAceiteResponse.getRazaoSocial());
@@ -42,7 +48,7 @@ public class ReenvioEmailAceitePMEController {
         }
         reenvioEmailAceitePMEModel.setObservacao(cnpjDadosAceiteResponse.getObservacao());
 
-        return new ModelAndView("admin/email_aceite", "reenvioEmailAceitePMEModel", reenvioEmailAceitePMEModel);
+        return new ModelAndView("admin/email_aceite", "reenvioEmailAceitePME", reenvioEmailAceitePMEModel);
 
     }
 
