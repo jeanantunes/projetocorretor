@@ -53,11 +53,18 @@
 
             <div id="naoSouDono" align="center">
 
-                <form class="space-top-10">
+                <form class="space-top-10" action="#" th:action="@{/buscaCnpjReenvio}" th:object="${reenvioEmailAceitePMEModel}" method="GET">
 
                     <div class="form-group width-form3 ">
-                        <label class="label-cpfcnpj">CNPJ da Empresa</label>
-                        <input type="text" id="cpfcnpj" class="cpfcnpj form-control">
+                        <label class="label-cnpj">CNPJ da Empresa</label>
+                        <input type="text" th:text="${cnpj}" id="cnpj" class="cnpj form-control">
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12 ">
+
+                            <a type="button" href="/buscaCnpjReenvio" class="btn btnBlue btn-width-custom space-top-60 uppercase">BUSCAR</a>
+                        </div>
                     </div>
 
                     <div class="form-group width-form3 ">
