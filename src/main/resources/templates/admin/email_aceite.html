@@ -53,36 +53,36 @@
 
             <div id="naoSouDono" align="center">
 
-                <form class="space-top-10" action="#" th:action="@{/buscaCnpjReenvio}" th:object="${reenvioEmailAceitePMEModel}" method="GET">
+                <form class="space-top-10" action="#" th:action="@{/buscaCnpjReenvio}" th:object="${reenvioEmailAceitePME}" method="POST">
 
                     <div class="form-group width-form3 ">
                         <label class="label-cnpj">CNPJ da Empresa</label>
-                        <input type="text" th:text="${cnpj}" id="cnpj" class="cnpj form-control">
+                        <input type="text" th:name="cnpj" id="cnpj" class="cnpj form-control">
                     </div>
 
                     <div class="row">
                         <div class="col-xs-12 ">
 
-                            <a type="button" href="/buscaCnpjReenvio" class="btn btnBlue btn-width-custom space-top-60 uppercase">BUSCAR</a>
+                            <input type="submit" class="btn btnBlue btn-width-custom space-top-60 uppercase" value="BUSCAR" />
                         </div>
                     </div>
 
                     <div class="form-group width-form3 ">
                         <label class="label-razaoSocial">Nome Empresa:</label>
-                        <input type="text" th:text="${razaoSocial}" id="razaoSocial" class="nomeEmp form-control">
+                        <input type="text" th:name="razaoSocial" id="razaoSocial" class="nomeEmp form-control">
                     </div>
 
                     <div class="form-group width-form3 ">
                         <label class="label-dataAceite">Data Aceite:</label>
-                        <input type="text" th:text="${dataAceite}" id="dataAceite" class="dataAceite form-control">
+                        <input type="date" th:name="dataAceite" id="dataAceite" class="dataAceite form-control">
                     </div>
 
                     <div class="form-group width-form3 ">
                         <label class="label-email">E-mail:</label>
-                        <input type="text" th:text="${email}" id="email" class="email form-control">
+                        <input type="email" th:name="email" id="email" class="email form-control">
                     </div>
 
-                    <div th:text="${observacao}" id="observacao">Mensagem observação</div>
+                    <div th:name="observacao" id="observacao">Mensagem observação</div>
 
                     <div class="row">
                         <div class="col-xs-12 ">

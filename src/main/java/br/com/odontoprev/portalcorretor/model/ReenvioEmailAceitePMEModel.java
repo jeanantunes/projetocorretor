@@ -7,6 +7,7 @@ public class ReenvioEmailAceitePMEModel {
     private String dataAceite;
     private String email;
     private String observacao;
+    private String error;
 
     public String getCnpj() {
         return cnpj;
@@ -48,6 +49,14 @@ public class ReenvioEmailAceitePMEModel {
         this.observacao = observacao;
     }
 
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
+
     @Override
     public String toString() {
         return "ReenvioEmailAceitePMEModel{" +
@@ -56,6 +65,7 @@ public class ReenvioEmailAceitePMEModel {
                 ", dataAceite='" + dataAceite + '\'' +
                 ", email='" + email + '\'' +
                 ", observacao='" + observacao + '\'' +
+                ", error='" + error + '\'' +
                 '}';
     }
 }
