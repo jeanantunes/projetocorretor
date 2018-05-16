@@ -36,7 +36,7 @@ public class ReenvioEmailAceitePMEController {
             return new ModelAndView("buscaCnpjReenvio", "reenvioEmailAceitePME", reenvioEmailAceitePMEModel);
         }
         String cnpj = reenvioEmailAceitePMEModel.getCnpj().replace(".","").replace("/","").replace("-","");
-        CnpjDadosAceiteResponse cnpjDadosAceiteResponse = empresaService.obterDadosEmpresa(cnpj);
+        CnpjDadosAceiteResponse cnpjDadosAceiteResponse = empresaService.obterDadosReenvio(cnpj);
 
         reenvioEmailAceitePMEModel.setCnpj(cnpjDadosAceiteResponse.getCnpj());
         reenvioEmailAceitePMEModel.setRazaoSocial(cnpjDadosAceiteResponse.getRazaoSocial());

@@ -13,13 +13,13 @@ public class EmpresaService {
     @Value("${odontoprev.servicebase.url}")
     private String requesBasetUrl;
 
-    @Value("${odontoprev.corretoras.empresa}")
+    @Value("${odontoprev.corretoras.reenvio.aceite}")
     private String dadosEmpresa;
 
     @Autowired
     private ApiManagerTokenService apiManagerTokenService;
 
-    public CnpjDadosAceiteResponse obterDadosEmpresa(String cnpj) {
+    public CnpjDadosAceiteResponse obterDadosReenvio(String cnpj) {
         CnpjDadosAceiteResponse cnpjDadosAceiteResponse = null;
 
         //String url = requesBasetUrl + dadosEmpresa + cnpj;
