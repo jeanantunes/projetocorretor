@@ -19,13 +19,13 @@ public class EmpresaService {
     @Value("${odontoprev.servicebase.url}")
     private String requesBasetUrl;
 
-    @Value("${odontoprev.corretoras.empresa}")
+    @Value("${odontoprev.corretoras.reenvio.aceite}")
     private String dadosEmpresa;
 
     @Autowired
     private ApiManagerTokenService apiManagerTokenService;
 
-    public CnpjDadosAceiteResponse obterDadosEmpresa(String cnpj) {
+    public CnpjDadosAceiteResponse obterDadosReenvio(String cnpj) {
         CnpjDadosAceiteResponse cnpjDadosAceiteResponse = null;
 
         //String url = requesBasetUrl + dadosEmpresa + cnpj;
@@ -51,7 +51,7 @@ public class EmpresaService {
             return null;
         }
     }
-  
+
     //201805161145 - esert - COR-170
     public CnpjDadosDCMSResponse obterDadosEmpresaDCMS(String cnpj) {
         CnpjDadosDCMSResponse cnpjDadosDCMSResponse = null;
