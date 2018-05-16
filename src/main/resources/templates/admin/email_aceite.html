@@ -39,8 +39,8 @@
 
     <div class="container-logado padding-logado">
 
-        <div class="row header-odonto" style="background:#F5F5F4;">
-            <div class="col-xs-12 padding-header">
+        <div class="row" style="background:#F5F5F4;">
+            <div class="col-xs-12">
                 <h2 class="text-center font-blue title-odonto">Reenvio E-mail Aceite PME</h2>
                 <p class="text-center text-silver sub-title space-top-30">Insira os dados abaixo
                 </p>
@@ -57,32 +57,31 @@
 
                     <div class="form-group width-form3 ">
                         <label class="label-cnpj">CNPJ da Empresa</label>
-                        <input type="text" th:name="cnpj" id="cnpj" class="cnpj form-control">
+                        <input type="text" th:name="cnpj" id="cnpj" th:value="${cnpj}" class="cnpj form-control" style="text-align:center">
+                        <span th:text="${cnpj == null} ? ${error} : ''"></span>
+                        <!-- span th:text="${reenvioEmailAceitePME}">HAHA</span -->
                     </div>
 
                     <div class="row">
                         <div class="col-xs-12 ">
-
-                            <input type="submit" class="btn btnBlue btn-width-custom space-top-60 uppercase" value="BUSCAR" />
+                            <input type="submit" class="btn btnBlue btn-width-custom space-top-10 uppercase" value="BUSCAR" />
                         </div>
                     </div>
 
-                    <div class="form-group width-form3 ">
+                    <div class="form-group width-form space-top-60 ">
                         <label class="label-razaoSocial">Nome Empresa:</label>
-                        <input type="text" th:name="razaoSocial" id="razaoSocial" class="nomeEmp form-control">
-                    </div>
+                        <input type="text" th:name="razaoSocial" id="razaoSocial" th:value="${razaoSocial}" class="nomeEmp form-control" style="width: 350px;text-align:center";>
 
-                    <div class="form-group width-form3 ">
                         <label class="label-dataAceite">Data Aceite:</label>
-                        <input type="date" th:name="dataAceite" id="dataAceite" class="dataAceite form-control">
-                    </div>
+                        <input type="date" th:name="dataAceite" id="dataAceite" th:value="${dataAceite}" class="dataAceite form-control" style="width: 200px;text-align:center;">
 
-                    <div class="form-group width-form3 ">
                         <label class="label-email">E-mail:</label>
-                        <input type="email" th:name="email" id="email" class="email form-control">
+                        <input type="email" th:name="email" id="email" th:value="${email}" class="email form-control" style="width: 200px;text-align:center;">
                     </div>
 
-                    <div th:name="observacao" id="observacao">Mensagem observação</div>
+                    <div id="observacao">
+                        <label th:name="observacao" th:value="${observacao}">Mensagem observação</label>
+                    </div>
 
                     <div class="row">
                         <div class="col-xs-12 ">
