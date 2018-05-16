@@ -6,6 +6,7 @@ import br.com.odontoprev.portalcorretor.model.UsuarioSession;
 import br.com.odontoprev.portalcorretor.service.EmpresaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,13 +28,13 @@ public class ReenvioEmailAceitePMEController {
     }
 
     @RequestMapping(value = "buscaCnpjReenvio", method = RequestMethod.POST)
-    public ModelAndView buscarCnpjReenvio(HttpSession session, @ModelAttribute("emailAceite") ReenvioEmailAceitePMEModel reenvioEmailAceitePMEModel) {
+    public ModelAndView buscarCnpjReenvio(Model model, @ModelAttribute("emailAceite") ReenvioEmailAceitePMEModel reenvioEmailAceitePMEModel) {
 
-        UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
         //CNPJ: 09296295000160
         if (reenvioEmailAceitePMEModel.getCnpj() == null || "".equals(reenvioEmailAceitePMEModel.getCnpj())) {
             reenvioEmailAceitePMEModel.setError("O campo CNPJ é obrigatório");
-            return new ModelAndView("buscaCnpjReenvio", "reenvioEmailAceitePME", reenvioEmailAceitePMEModel);
+            model.addAttribute("error", reenvioEmailAceitePMEModel.getError());
+            //return new ModelAndView("buscaCnpjReenvio", "reenvioEmailAceitePME", reenvioEmailAceitePMEModel);
         }
         String cnpj = reenvioEmailAceitePMEModel.getCnpj().replace(".","").replace("/","").replace("-","");
         CnpjDadosAceiteResponse cnpjDadosAceiteResponse = empresaService.obterDadosReenvio(cnpj);
@@ -48,6 +49,11 @@ public class ReenvioEmailAceitePMEController {
         }
         reenvioEmailAceitePMEModel.setObservacao(cnpjDadosAceiteResponse.getObservacao());
 
+        model.addAttribute("cnpj", reenvioEmailAceitePMEModel.getCnpj());
+        model.addAttribute("razaoSocial", reenvioEmailAceitePMEModel.getRazaoSocial());
+        model.addAttribute("dataAceite", reenvioEmailAceitePMEModel.getDataAceite());
+        model.addAttribute("email", reenvioEmailAceitePMEModel.getEmail());
+        model.addAttribute("observacao", reenvioEmailAceitePMEModel.getObservacao());
         return new ModelAndView("admin/email_aceite", "reenvioEmailAceitePME", reenvioEmailAceitePMEModel);
 
     }
