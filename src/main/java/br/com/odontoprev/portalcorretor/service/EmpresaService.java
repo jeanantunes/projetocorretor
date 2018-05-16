@@ -19,17 +19,21 @@ public class EmpresaService {
     @Value("${odontoprev.servicebase.url}")
     private String requesBasetUrl;
 
-    @Value("${odontoprev.corretoras.reenvio.aceite}")
+    @Value("${odontoprev.corretoras.empresa}") // /cnpj-dados/
     private String dadosEmpresa;
+
+    @Value("${odontoprev.corretoras.reenvio.aceite}") // /cnpj-dadosaceite/
+    private String dadosEmpresaAceite;
 
     @Autowired
     private ApiManagerTokenService apiManagerTokenService;
 
+    // /cnpj-dadosaceite/
     public CnpjDadosAceiteResponse obterDadosReenvio(String cnpj) {
         CnpjDadosAceiteResponse cnpjDadosAceiteResponse = null;
 
-        //String url = requesBasetUrl + dadosEmpresa + cnpj;
-        String url = "http://localhost:9090/cnpj-dadosaceite/" + cnpj;
+        String url = requesBasetUrl + dadosEmpresaAceite + cnpj; // /cnpj-dadosaceite/
+        //String url = "http://localhost:9090/cnpj-dadosaceite/" + cnpj;
         RestTemplate restTemplate = new RestTemplate();
 
         try {
@@ -52,11 +56,12 @@ public class EmpresaService {
         }
     }
 
+    // /cnpj-dados/
     //201805161145 - esert - COR-170
     public CnpjDadosDCMSResponse obterDadosEmpresaDCMS(String cnpj) {
         CnpjDadosDCMSResponse cnpjDadosDCMSResponse = null;
 
-        String url = requesBasetUrl + dadosEmpresa + cnpj;
+        String url = requesBasetUrl + dadosEmpresa + cnpj; // /cnpj-dados/
         RestTemplate restTemplate = new RestTemplate();
 
         try {

@@ -20,35 +20,75 @@ public class VincularDCMSController {
     private EmpresaService empresaService;
 
 	@RequestMapping("admin/update_dcms")
-    public String index() {
-        return "admin/update_dcms";
+    public ModelAndView index() {
+	    return new ModelAndView("admin/update_dcms", "banana", new VincularDCMSModel()); //201805161823 - esert - nao pode passar model (null), precisa passar model instanciada 
     }
 
-	@RequestMapping(value = "buscarCnpj", method = RequestMethod.POST)
-	public ModelAndView buscarCnpj(HttpSession session, @ModelAttribute("vincularDCMS") VincularDCMSModel vincularDCMSModel) {
+	@RequestMapping(value = "admin/buscaCnpjDCMS/{cnpj}", method = RequestMethod.GET)
+	public ModelAndView buscarCnpj(@ModelAttribute("cnpj") String cnpj) {
+		VincularDCMSModel vincularDCMSModel = new VincularDCMSModel();
 	
-//		UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
-	    
-	    String cnpj = "11431155000107";
-	    
-	    vincularDCMSModel.setCnpj(cnpj); //qg debug
-	    
-	    if (vincularDCMSModel.getCnpj() == null || "".equals(vincularDCMSModel.getCnpj())) {
+//		UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");	    
+//	    vincularDCMSModel.setCnpj("11431155000107");
+	    	    
+	    if (
+	    	cnpj == null 
+	    	|| 
+	    	cnpj.isEmpty()
+	    ) {
 	    	vincularDCMSModel.setObservacao("O campo CNPJ é obrigatório");
-	        return new ModelAndView("update_dcms", "vincularDCMS", vincularDCMSModel);
+	    } else {
+	    
+		    cnpj = cnpj.replace(".","").replace("/","").replace("-","");
+		    
+		    CnpjDadosDCMSResponse cnpjDadosDCMSResponse = empresaService.obterDadosEmpresaDCMS(cnpj);
+		
+		    if(cnpjDadosDCMSResponse!=null) {
+			    vincularDCMSModel.setCnpj(cnpjDadosDCMSResponse.getCnpj());
+			    vincularDCMSModel.setCdEmpresa(cnpjDadosDCMSResponse.getCdEmpresa());
+			    vincularDCMSModel.setEmpDcms(cnpjDadosDCMSResponse.getEmpDcms());
+			    vincularDCMSModel.setObservacao(cnpjDadosDCMSResponse.getObservacao());
+		    } else {
+		    	vincularDCMSModel.setObservacao("Dados não encontrados.");    	
+		    }
 	    }
 	    
-	    cnpj = vincularDCMSModel.getCnpj().replace(".","").replace("/","").replace("-","");
-	    
-	    CnpjDadosDCMSResponse cnpjDadosDCMSResponse = empresaService.obterDadosEmpresaDCMS(cnpj);
-	
-	    vincularDCMSModel.setCnpj(cnpjDadosDCMSResponse.getCnpj());
-	    vincularDCMSModel.setCdEmpresa(cnpjDadosDCMSResponse.getCdEmpresa());
-	    vincularDCMSModel.setEmpDcms(cnpjDadosDCMSResponse.getEmpDcms());
-	    vincularDCMSModel.setObservacao(cnpjDadosDCMSResponse.getObservacao());
-	
-	    return new ModelAndView("admin/update_dcms", "vincularDCMS", vincularDCMSModel);
+	    return new ModelAndView("admin/update_dcms", "banana", vincularDCMSModel);
 	
 	}
+
+	@RequestMapping(value = "vincularDCMS", method = RequestMethod.POST)
+		public ModelAndView vincularDCMS(HttpSession session, @ModelAttribute("banana") br.com.odontoprev.portalcorretor.model.VincularDCMSModel vincularDCMSModel) {
+		
+	//		UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
+		    
+		    String cnpj = "0";
+	//	    vincularDCMSModel.setCnpj("11431155000107");
+		    	    
+		    if (
+		    	vincularDCMSModel.getCnpj() == null 
+		    	|| 
+		    	vincularDCMSModel.getCnpj().isEmpty()
+		    ) {
+		    	vincularDCMSModel.setObservacao("O campo CNPJ é obrigatório");
+		    } else {
+		    
+			    cnpj = vincularDCMSModel.getCnpj().replace(".","").replace("/","").replace("-","");
+			    
+			    CnpjDadosDCMSResponse cnpjDadosDCMSResponse = empresaService.obterDadosEmpresaDCMS(cnpj);
+			
+			    if(cnpjDadosDCMSResponse!=null) {
+				    vincularDCMSModel.setCnpj(cnpjDadosDCMSResponse.getCnpj());
+				    vincularDCMSModel.setCdEmpresa(cnpjDadosDCMSResponse.getCdEmpresa());
+				    vincularDCMSModel.setEmpDcms(cnpjDadosDCMSResponse.getEmpDcms());
+				    vincularDCMSModel.setObservacao(cnpjDadosDCMSResponse.getObservacao());
+			    } else {
+			    	vincularDCMSModel.setObservacao("Dados não encontrados.");    	
+			    }
+		    }
+		    
+		    return new ModelAndView("admin/update_dcms", "banana", vincularDCMSModel);
+		
+		}
 
 }
