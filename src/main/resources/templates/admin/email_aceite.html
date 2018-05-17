@@ -57,9 +57,7 @@
 
                     <div class="form-group width-form3 ">
                         <label class="label-cnpj">CNPJ da Empresa</label>
-                        <input type="text" th:name="cnpj" id="cnpj" th:value="${cnpj}" class="cnpj form-control" style="text-align:center">
-                        <span th:text="${cnpj == null} ? ${error} : ''"></span>
-                        <!-- span th:text="${reenvioEmailAceitePME}">HAHA</span -->
+                        <input type="text" th:name="cnpj" id="cnpj" th:value="${cnpj}" th:text="${cnpj == null} ? ${error} : ''" class="cnpj form-control" style="text-align:center">
                     </div>
 
                     <div class="row">

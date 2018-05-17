@@ -34,7 +34,7 @@ public class ReenvioEmailAceitePMEController {
         if (reenvioEmailAceitePMEModel.getCnpj() == null || "".equals(reenvioEmailAceitePMEModel.getCnpj())) {
             reenvioEmailAceitePMEModel.setError("O campo CNPJ é obrigatório");
             model.addAttribute("error", reenvioEmailAceitePMEModel.getError());
-            //return new ModelAndView("buscaCnpjReenvio", "reenvioEmailAceitePME", reenvioEmailAceitePMEModel);
+            return new ModelAndView("admin/email_aceite", "reenvioEmailAceitePME", reenvioEmailAceitePMEModel);
         }
         String cnpj = reenvioEmailAceitePMEModel.getCnpj().replace(".","").replace("/","").replace("-","");
         CnpjDadosAceiteResponse cnpjDadosAceiteResponse = empresaService.obterDadosReenvio(cnpj);
