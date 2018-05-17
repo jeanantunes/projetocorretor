@@ -53,9 +53,7 @@
 
             <div id="naoSouDono" align="center">
             
-                <form class="space-top-10" action="#" th:action="@{/vincularDCMS}" th:object="${banana}" method="POST">
-
-<!-- 					<div><input th:name="${vincularDCMS}"/></div> -->
+                <form class="space-top-10" action="#" th:action="@{/buscaCnpjDCMS}" th:object="${banana}" method="POST">
 					
                     <div class="form-group width-form3 ">
                         <label class="label-cnpj">CNPJ da Empresa</label>
@@ -64,14 +62,14 @@
 
                     <div class="row">
                         <div class="col-xs-12 ">
-<!--                             <a href="submit"  -->
-<!-- 							class="btn btnBlue btn-width-custom space-top-10 uppercase"  -->
-<!-- 							value="BUSCAR" /> -->
-                            <a type="button" href="buscaCnpjDCMS/{cnpj}"
-                              class="btn btnBlue btn-width-custom space-top-10 uppercase">BUSCAR</a>
+<!--                             <a href="#" th:href="@{buscaCnpjDCMS/11431155000107}" class="btn btnBlue btn-width-custom space-top-10 uppercase">BUSCAR1543</a> -->
+<!--                             <a href="#" th:href="@{'buscaCnpjDCMS/' + *{cnpj}}" class="btn btnBlue btn-width-custom space-top-10 uppercase">BUSCAR1548</a> -->
+<!--                             <a href="#" th:href="@{buscaCnpjDCMS/{cnpj}(cnpj=${cnpj})}" class="btn btnBlue btn-width-custom space-top-10 uppercase">BUSCAR1630</a> -->
+<!--                         	 <a onclick="buscaCnpjDCMS()" class="btn btnBlue btn-width-custom space-top-10 uppercase">BUSCAR 1624</a> -->
+                        	<input type="submit" class="btn btnBlue btn-width-custom space-top-10 uppercase" value="BUSCAR 1750"></input>
                         </div>
                     </div>
-					
+					             
                     <div class="form-group width-form">
                         <label class="label-cdEmpresa">Código da Empresa</label>
                         <input type="text" th:value="*{cdEmpresa}" id="cdEmpresa" class="cdEmpresa form-control" style="width: 30%; inline-block">
@@ -84,22 +82,20 @@
                         <label th:text="*{observacao}" id="observacao" class="observacao"></label>
                     </div>
                     
-<!--                     <div class="row"> -->
-<!--                         <div class="col-xs-12 "> -->
-<!--                             <a type="button" href="ServiceSalvarDCMS" -->
-<!--                                class="btn btnBlue btn-width-custom space-top-60 uppercase">GERAR ARQUIVO DE VIDAS</a> -->
-                               
-<!--                         </div> -->
-<!--                     </div> -->
+                </form>
+                
+                <form class="space-top-10" action="#" th:action="@{/vincularDCMS}" th:object="${banana}" method="POST">
+	                <input type="hidden" th:value="*{cnpj}" th:name="cnpj" id="cnpj_h" />
+	                <input type="hidden" th:value="*{cdEmpresa}" th:name="cdEmpresa" id="cdEmpresa_h" />
+	                <input type="hidden" th:value="*{empDcms}"  th:name="empDcms" id="empDcms_h" />
                     
                     <div class="row">
                         <div class="col-xs-12 ">
-                            <a href="submit" 
-							class="btn btnBlue btn-width-custom space-top-10 uppercase">GERAR ARQUIVO DE VIDAS</a>
+                            <input type="submit" class="btn btnBlue btn-width-custom space-top-10 uppercase" value="GERAR ARQUIVO DE VIDAS"></input>
                         </div>
-                    </div>
-                    
+                    </div>                    
                 </form>
+                
             </div>
 
             <div th:replace="fragments/footer :: footer">&nbsp;</div>

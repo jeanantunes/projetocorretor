@@ -6,12 +6,18 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import br.com.odontoprev.portalcorretor.model.CnpjDadosAceiteResponse;
 import br.com.odontoprev.portalcorretor.service.dto.CnpjDadosDCMSResponse;
+import br.com.odontoprev.portalcorretor.service.dto.EmpresaDcms;
+import br.com.odontoprev.portalcorretor.service.dto.EmpresaResponse;
 
 @Service
 public class EmpresaService {
@@ -21,6 +27,9 @@ public class EmpresaService {
 
     @Value("${odontoprev.corretoras.empresa}") // /cnpj-dados/
     private String dadosEmpresa;
+
+    @Value("${odontoprev.corretoras.empresa.dcms}") // /empresa-dcms
+    private String dadosEmpresaDCMS;
 
     @Value("${odontoprev.corretoras.reenvio.aceite}") // /cnpj-dadosaceite/
     private String dadosEmpresaAceite;
@@ -83,5 +92,41 @@ public class EmpresaService {
             return null;
         }
     }
+
+	// /cnpj-dados/
+	//201805161145 - esert - COR-170
+	
+    //201805171816 - esert - COR-170
+    public EmpresaResponse updateDadosEmpresaDCMS(EmpresaDcms empresaDcms) {
+    	EmpresaResponse empresaResponse = null;
+	
+	    String url = requesBasetUrl + dadosEmpresaDCMS; // /empresa-dcms/ PUT
+	    RestTemplate restTemplate = new RestTemplate();
+	
+	    try {
+	        HttpHeaders headers = new HttpHeaders();
+	        headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.setSerializationInclusion(JsonInclude.Include.USE_DEFAULTS);
+            String object = mapper.writeValueAsString(empresaDcms);
+
+            HttpEntity<String> entityReq = new HttpEntity<>(object, headers);
+	        ResponseEntity<EmpresaResponse> response = restTemplate.exchange(url, HttpMethod.PUT, entityReq, EmpresaResponse.class);
+	
+	        if (response.getStatusCode() == HttpStatus.OK) {
+	
+	            empresaResponse = response.getBody();
+	            return empresaResponse;
+	        } else {
+	            return null;
+	        }
+	
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return null;
+	    }
+	}
 
 }
