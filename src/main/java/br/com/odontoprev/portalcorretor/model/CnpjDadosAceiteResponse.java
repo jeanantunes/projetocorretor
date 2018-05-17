@@ -10,10 +10,14 @@ public class CnpjDadosAceiteResponse implements Serializable { //2018051102036 -
     private static final long serialVersionUID = -4530821493004106650L;
 
     private String cnpj;
-    private Long cdEmpresa;
     private String razaoSocial;
+    private String dataAceite;
+    private String email;
     private String observacao;
+    private String error;
+    private Long cdEmpresa;
     private Long cdVenda;
+
     private Date dtVenda; //2018051111438 - esert - COR-172
     private String empDcms; //2018051102036 - esert - COR-169
     private TokenAceite tokenAceite;
@@ -82,11 +86,45 @@ public class CnpjDadosAceiteResponse implements Serializable { //2018051102036 -
         this.tokenAceite = tokenAceite;
     }
 
+    public String getDataAceite() {
+        return dataAceite;
+    }
+
+    public void setDataAceite(String dataAceite) {
+        this.dataAceite = dataAceite;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
+
     @Override
     public String toString() {
-        return "CnpjDadosAceite [cnpj=" + cnpj + ", cdEmpresa=" + cdEmpresa + ", razaoSocial=" + razaoSocial
-                + ", observacao=" + observacao + ", cdVenda=" + cdVenda + ", dtVenda=" + dtVenda + ", empDcms="
-                + empDcms + ", tokenAceite=" + tokenAceite + "]";
+        return "CnpjDadosAceiteResponse{" +
+                "cnpj='" + cnpj + '\'' +
+                ", razaoSocial='" + razaoSocial + '\'' +
+                ", dataAceite='" + dataAceite + '\'' +
+                ", email='" + email + '\'' +
+                ", observacao='" + observacao + '\'' +
+                ", error='" + error + '\'' +
+                ", cdEmpresa=" + cdEmpresa +
+                ", cdVenda=" + cdVenda +
+                ", dtVenda=" + dtVenda +
+                ", empDcms='" + empDcms + '\'' +
+                ", tokenAceite=" + tokenAceite +
+                '}';
     }
 
 }

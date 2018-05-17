@@ -2,7 +2,6 @@ package br.com.odontoprev.portalcorretor.controller.admin;
 
 import br.com.odontoprev.portalcorretor.model.CnpjDadosAceiteResponse;
 import br.com.odontoprev.portalcorretor.model.ReenvioEmailAceitePMEModel;
-import br.com.odontoprev.portalcorretor.model.UsuarioSession;
 import br.com.odontoprev.portalcorretor.service.EmpresaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,9 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 
 @Controller
@@ -30,22 +29,30 @@ public class ReenvioEmailAceitePMEController {
     @RequestMapping(value = "buscaCnpjReenvio", method = RequestMethod.POST)
     public ModelAndView buscarCnpjReenvio(Model model, @ModelAttribute("emailAceite") ReenvioEmailAceitePMEModel reenvioEmailAceitePMEModel) {
 
-        //CNPJ: 09296295000160
         if (reenvioEmailAceitePMEModel.getCnpj() == null || "".equals(reenvioEmailAceitePMEModel.getCnpj())) {
             reenvioEmailAceitePMEModel.setError("O campo CNPJ é obrigatório");
             model.addAttribute("error", reenvioEmailAceitePMEModel.getError());
             return new ModelAndView("admin/email_aceite", "reenvioEmailAceitePME", reenvioEmailAceitePMEModel);
         }
-        String cnpj = reenvioEmailAceitePMEModel.getCnpj().replace(".","").replace("/","").replace("-","");
+        String cnpj = reenvioEmailAceitePMEModel.getCnpj().replace(".", "").replace("/", "").replace("-", "");
         CnpjDadosAceiteResponse cnpjDadosAceiteResponse = empresaService.obterDadosReenvio(cnpj);
 
+        if (cnpjDadosAceiteResponse.getCnpj() == null) {
+            reenvioEmailAceitePMEModel.setObservacao("CNPJ não encontrado!!!");
+            model.addAttribute("observacao", reenvioEmailAceitePMEModel.getObservacao());
+            return new ModelAndView("admin/email_aceite", "reenvioEmailAceitePME", reenvioEmailAceitePMEModel);
+        }
         reenvioEmailAceitePMEModel.setCnpj(cnpjDadosAceiteResponse.getCnpj());
         reenvioEmailAceitePMEModel.setRazaoSocial(cnpjDadosAceiteResponse.getRazaoSocial());
         if (cnpjDadosAceiteResponse.getTokenAceite() != null) {
             if (cnpjDadosAceiteResponse.getTokenAceite().getDataAceite() != null) {
                 reenvioEmailAceitePMEModel.setDataAceite(new SimpleDateFormat("dd/MM/yyyy").format(cnpjDadosAceiteResponse.getTokenAceite().getDataAceite()));
+            } else {
+                reenvioEmailAceitePMEModel.setDataAceite(null);
             }
-            reenvioEmailAceitePMEModel.setEmail(cnpjDadosAceiteResponse.getTokenAceite().getEmail());
+            if (cnpjDadosAceiteResponse.getTokenAceite().getEmail() != null) {
+                reenvioEmailAceitePMEModel.setEmail(cnpjDadosAceiteResponse.getTokenAceite().getEmail());
+            }
         }
         reenvioEmailAceitePMEModel.setObservacao(cnpjDadosAceiteResponse.getObservacao());
 
@@ -58,58 +65,23 @@ public class ReenvioEmailAceitePMEController {
 
     }
 
-    /*
-    @RequestMapping("/info-planos-master-le")
-    public String indexInfoPlanoMasterLe() {
-        return "info-planos-master-le";
+    @RequestMapping(value = "reenvioEmailAceite", method = RequestMethod.POST)
+    @ResponseBody
+    public ModelAndView reenvioEmailAceite(Model model, @ModelAttribute("reenvioEmailAceite") ReenvioEmailAceitePMEModel reenvioEmailAceitePMEModel) {
 
+        String cnpj = reenvioEmailAceitePMEModel.getCnpj().replace(".", "").replace("/", "").replace("-", "");
+        CnpjDadosAceiteResponse cnpjDadosAceiteResponse = empresaService.obterDadosReenvio(cnpj);
+
+        reenvioEmailAceitePMEModel.setCdEmpresa(String.valueOf(cnpjDadosAceiteResponse.getCdEmpresa()));
+        reenvioEmailAceitePMEModel.setCdVenda(String.valueOf(cnpjDadosAceiteResponse.getCdVenda()));
+        cnpjDadosAceiteResponse.setEmail(reenvioEmailAceitePMEModel.getEmail());
+        empresaService.reenvioEmailAceite(cnpjDadosAceiteResponse);
+
+        model.addAttribute("cdEmpresa", reenvioEmailAceitePMEModel.getCdEmpresa());
+        model.addAttribute("cdVenda", reenvioEmailAceitePMEModel.getCdVenda());
+        model.addAttribute("email", reenvioEmailAceitePMEModel.getEmail());
+        model.addAttribute("observacao", reenvioEmailAceitePMEModel.getObservacao());
+
+        return new ModelAndView("admin/email_aceite", "reenvioEmail", reenvioEmailAceitePMEModel);
     }
-
-    @RequestMapping("/info-planos-rol-min")
-    public String indexInfoPlanoRolMin() {
-        return "info-planos-rol-min";
-
-    }
-
-
-    @RequestMapping("/info-planos-dental-bem-estar")
-    public String indexInfoPlanoDentalBemEstar() {
-        return "info-planos-dental-bem-estar";
-
-    }
-
-    @RequestMapping("/info-planos-dental-vip")
-    public String indexInfoPlanoDentalVip() {
-        return "info-planos-dental-vip";
-
-    }
-    @RequestMapping("/info-planos-dental-orto")
-    public String indexInfoPlanoDentalOrto() {
-        return "info-planos-dental-orto";
-
-    }
-
-    @RequestMapping("/info-planos-dental-estetica")
-    public String indexInfoPlanoDentalEstetica() {
-        return "info-planos-dental-estetica";
-
-    }
-    
-    @RequestMapping("/info-planos-PF")
-    public String indexInfoPlanoPF() {
-        return "info-planos-PF";
-
-    }
-    
-    @RequestMapping("/info-planos-PME")
-    public String indexInfoPlanoPME() {
-        return "info-planos-PME";
-
-    }
-    
-    @RequestMapping("/email")
-    public String email() {
-        return "email";
-    }
-    */
 }

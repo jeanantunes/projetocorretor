@@ -20,10 +20,24 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script>
-        $(function () {
-            $(".button-collapse").sideNav();
-        });
+        $(document).ready(function () {
+            $(function () {
+                $(".button-collapse").sideNav();
+            });
 
+            $("#email").blur(function () {
+                console.log("blur");
+                var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
+                if (reg.test($("#email").val())) {
+                    console.log("funfou");
+                    console.log($("#email").val());
+                    $("#emailDois").val($("#email").val());
+                    return;
+                }
+                console.log("n funfou");
+                return false;
+            });
+        });
     </script>
 </head>
 <body style="min-width: 100% !important;">
@@ -53,48 +67,73 @@
 
             <div id="naoSouDono" align="center">
 
-                <form class="space-top-10" action="#" th:action="@{/buscaCnpjReenvio}" th:object="${reenvioEmailAceitePME}" method="POST">
+                <form class="space-top-10" action="#" th:action="@{/buscaCnpjReenvio}"
+                      th:object="${reenvioEmailAceitePME}" method="POST">
 
                     <div class="form-group width-form3 ">
                         <label class="label-cnpj">CNPJ da Empresa</label>
-                        <input type="text" th:name="cnpj" id="cnpj" th:value="${cnpj}" th:text="${cnpj == null} ? ${error} : ''" class="cnpj form-control" style="text-align:center">
+                        <input type="text" th:name="cnpj" id="cnpj" th:value="${cnpj}" class="cnpj form-control"
+                               style="text-align:center">
+                        <span th:text="${cnpj == null} ? ${error} : ''"
+                              style="text-align:center;color: #b92c28;font-family: Roboto-Medium !important;font-size: 15px!important;"/>
                     </div>
 
                     <div class="row">
                         <div class="col-xs-12 ">
-                            <input type="submit" class="btn btnBlue btn-width-custom space-top-10 uppercase" value="BUSCAR" />
+                            <input type="submit" class="btn btnBlue btn-width-custom space-top-10 uppercase"
+                                   value="BUSCAR"/>
                         </div>
                     </div>
 
-                    <div class="form-group width-form space-top-60 ">
-                        <label class="label-razaoSocial">Nome Empresa:</label>
-                        <input type="text" th:name="razaoSocial" id="razaoSocial" th:value="${razaoSocial}" class="nomeEmp form-control" style="width: 350px;text-align:center";>
+                    <div class="form-group width-form1 space-top-60 display:none">
+                        <label class="label-razaoSocial"
+                               th:style="${razaoSocial == null}  ? 'display:none' : 'display:inline-block'">Nome
+                            Empresa:</label>
+                        <input type="text" onload="this.value=''" th:name="razaoSocial" id="razaoSocial" disabled
+                               th:value="${razaoSocial}"
+                               th:style="${razaoSocial == null}  ? 'display:none' : 'display:inline-block;text-align:center'"
+                               class="razaoSocial form-control" style="text-align:center;">
 
-                        <label class="label-dataAceite">Data Aceite:</label>
-                        <input type="date" th:name="dataAceite" id="dataAceite" th:value="${dataAceite}" class="dataAceite form-control" style="width: 200px;text-align:center;">
+                        <label class="label-dataAceite"
+                               th:style="${dataAceite} == null ? 'display:none' : 'display:inline-block'">Data
+                            Aceite:</label>
+                        <input type="text" onload="this.value=''" th:name="dataAceite" id="dataAceite"
+                               th:value="${dataAceite}"
+                               th:style="${dataAceite} == null ? 'display:none' : 'display:inline-block;text-align:center'"
+                               class="dataAceite form-control" style="text-align:center;">
 
-                        <label class="label-email">E-mail:</label>
-                        <input type="email" th:name="email" id="email" th:value="${email}" class="email form-control" style="width: 200px;text-align:center;">
+                        <label class="label-email"
+                               th:style="${email == null}  ? 'display:none' : 'display:inline-block'">E-mail:</label>
+                        <input type="text" onload="this.value=''" th:name="email" id="email" th:value="${email}"
+                               th:style="${email == null}  ? 'display:none' : 'display:inline-block;text-align:center'"
+                               class="email form-control" style="text-align:center;">
                     </div>
 
                     <div id="observacao">
-                        <label th:name="observacao" th:value="${observacao}">Mensagem observação</label>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-xs-12 ">
-
-                            <a type="button" href="ServiceSalvarEnviarEmail"
-                               class="btn btnBlue btn-width-custom space-top-60 uppercase">SALVAR E ENVIAR E-MAIL</a>
-                        </div>
+                        <span th:name="observacao" th:text="${observacao}"
+                              style="text-align:center;color: #b92c28;font-family: Roboto-Medium !important;font-size: 15px!important;"/>
                     </div>
                 </form>
+                <div class="row">
+                    <div class="col-xs-12 ">
+                        <form class="space-top-10" action="#" th:action="@{/reenvioEmailAceite}"
+                              th:object="${reenvioEmail}" method="POST">
+                            <input type="text" th:name="cnpj" th:value="${cnpj}" class="cnpj form-control"
+                                   style="text-align:center;display: none;">
+                            <input id="emailDois" type="text" th:name="email" th:value="${email}" class="email form-control"
+                                   style="text-align:center;display: none;">
+                            <input type="submit" class="btn btnBlue btn-width-custom space-top-10 uppercase"
+                                   value="SALVAR E ENVIAR E-MAIL"/>
+                        </form>
+                    </div>
+                </div>
             </div>
-
-            <div th:replace="fragments/footer :: footer">&nbsp;</div>
-
         </div>
+
+        <div th:replace="fragments/footer :: footer">&nbsp;</div>
+
     </div>
+</div>
 </div>
 </body>
 </html>

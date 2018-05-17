@@ -1,23 +1,16 @@
 package br.com.odontoprev.portalcorretor.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import br.com.odontoprev.portalcorretor.model.CnpjDadosAceiteResponse;
 import br.com.odontoprev.portalcorretor.service.dto.CnpjDadosDCMSResponse;
 import br.com.odontoprev.portalcorretor.service.dto.EmpresaDcms;
 import br.com.odontoprev.portalcorretor.service.dto.EmpresaResponse;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.*;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 @Service
 public class EmpresaService {
@@ -34,6 +27,9 @@ public class EmpresaService {
     @Value("${odontoprev.corretoras.reenvio.aceite}") // /cnpj-dadosaceite/
     private String dadosEmpresaAceite;
 
+    @Value("${odontoprev.corretoras.email.aceite}")
+    private String reenvioEmailAceite;
+
     @Autowired
     private ApiManagerTokenService apiManagerTokenService;
 
@@ -41,8 +37,8 @@ public class EmpresaService {
     public CnpjDadosAceiteResponse obterDadosReenvio(String cnpj) {
         CnpjDadosAceiteResponse cnpjDadosAceiteResponse = null;
 
-        String url = requesBasetUrl + dadosEmpresaAceite + cnpj; // /cnpj-dadosaceite/
-        //String url = "http://localhost:9090/cnpj-dadosaceite/" + cnpj;
+        //String url = requesBasetUrl + dadosEmpresaAceite + cnpj; // /cnpj-dadosaceite/
+        String url = "http://localhost:9090/cnpj-dadosaceite/" + cnpj;
         RestTemplate restTemplate = new RestTemplate();
 
         try {
@@ -55,6 +51,40 @@ public class EmpresaService {
 
                 cnpjDadosAceiteResponse = retorno.getBody();
                 return cnpjDadosAceiteResponse;
+            } else {
+                return null;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public EmpresaResponse reenvioEmailAceite(CnpjDadosAceiteResponse cnpjDadosAceiteResponse) {
+        EmpresaResponse empresaResponse = null;
+
+        cnpjDadosAceiteResponse.getCnpj().replace(".", "").replace("/", "").replace("-", "");
+        //String url = requesBasetUrl + dadosEmpresaAceite + cnpj; // /cnpj-dadosaceite/
+        String url = "http://localhost:9090/empresa-emailaceite";
+        RestTemplate restTemplate = new RestTemplate();
+
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
+            headers.setContentType(MediaType.APPLICATION_JSON);
+
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.setSerializationInclusion(JsonInclude.Include.USE_DEFAULTS);
+            String strObject = mapper.writeValueAsString(cnpjDadosAceiteResponse);
+
+            HttpEntity<String> entity = new HttpEntity<>(strObject, headers);
+            ResponseEntity<EmpresaResponse> retorno = restTemplate.exchange(url, HttpMethod.PUT, entity, EmpresaResponse.class);
+
+            if (retorno.getStatusCode() == HttpStatus.OK) {
+
+                empresaResponse = retorno.getBody();
+                return empresaResponse;
             } else {
                 return null;
             }
@@ -93,40 +123,40 @@ public class EmpresaService {
         }
     }
 
-	// /cnpj-dados/
-	//201805161145 - esert - COR-170
-	
+    // /cnpj-dados/
+    //201805161145 - esert - COR-170
+
     //201805171816 - esert - COR-170
     public EmpresaResponse updateDadosEmpresaDCMS(EmpresaDcms empresaDcms) {
-    	EmpresaResponse empresaResponse = null;
-	
-	    String url = requesBasetUrl + dadosEmpresaDCMS; // /empresa-dcms/ PUT
-	    RestTemplate restTemplate = new RestTemplate();
-	
-	    try {
-	        HttpHeaders headers = new HttpHeaders();
-	        headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
+        EmpresaResponse empresaResponse = null;
+
+        String url = requesBasetUrl + dadosEmpresaDCMS; // /empresa-dcms/ PUT
+        RestTemplate restTemplate = new RestTemplate();
+
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
             headers.setContentType(MediaType.APPLICATION_JSON);
-            
+
             ObjectMapper mapper = new ObjectMapper();
             mapper.setSerializationInclusion(JsonInclude.Include.USE_DEFAULTS);
             String jsonAsString = mapper.writeValueAsString(empresaDcms);
 
             HttpEntity<String> entityReq = new HttpEntity<>(jsonAsString, headers);
-	        ResponseEntity<EmpresaResponse> response = restTemplate.exchange(url, HttpMethod.PUT, entityReq, EmpresaResponse.class);
-	
-	        if (response.getStatusCode() == HttpStatus.OK) {
-	
-	            empresaResponse = response.getBody();
-	            return empresaResponse;
-	        } else {
-	            return null;
-	        }
-	
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	        return null;
-	    }
-	}
+            ResponseEntity<EmpresaResponse> response = restTemplate.exchange(url, HttpMethod.PUT, entityReq, EmpresaResponse.class);
+
+            if (response.getStatusCode() == HttpStatus.OK) {
+
+                empresaResponse = response.getBody();
+                return empresaResponse;
+            } else {
+                return null;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
 }
