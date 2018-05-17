@@ -16,7 +16,7 @@ import br.com.odontoprev.portalcorretor.service.dto.CnpjDadosDCMSResponse;
 @Service
 public class EmpresaService {
 
-    @Value("${odontoprev.servicebase.url}")
+    @Value("${odontoprec.service.base}")
     private String requesBasetUrl;
 
     @Value("${odontoprev.corretoras.empresa}") // /cnpj-dados/
