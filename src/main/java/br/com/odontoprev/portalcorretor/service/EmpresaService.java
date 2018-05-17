@@ -110,9 +110,9 @@ public class EmpresaService {
             
             ObjectMapper mapper = new ObjectMapper();
             mapper.setSerializationInclusion(JsonInclude.Include.USE_DEFAULTS);
-            String object = mapper.writeValueAsString(empresaDcms);
+            String jsonAsString = mapper.writeValueAsString(empresaDcms);
 
-            HttpEntity<String> entityReq = new HttpEntity<>(object, headers);
+            HttpEntity<String> entityReq = new HttpEntity<>(jsonAsString, headers);
 	        ResponseEntity<EmpresaResponse> response = restTemplate.exchange(url, HttpMethod.PUT, entityReq, EmpresaResponse.class);
 	
 	        if (response.getStatusCode() == HttpStatus.OK) {
