@@ -39,8 +39,8 @@
 
     <div class="container-logado padding-logado">
 
-        <div class="row header-odonto" style="background:#F5F5F4;">
-            <div class="col-xs-12 padding-header">
+        <div class="row" style="background:#F5F5F4;">
+            <div class="col-xs-12">
                 <h2 class="text-center font-blue title-odonto">Vincular Empresa DCMS</h2>
                 <p class="text-center text-silver sub-title space-top-30">Insira os dados abaixo
                 </p>
@@ -52,31 +52,53 @@
         <div class="content-odonto" style="margin-bottom: 200px">
 
             <div id="naoSouDono" align="center">
+            
+                <form class="space-top-10" action="#" th:action="@{/vincularDCMS}" th:object="${banana}" method="POST">
 
-                <form class="space-top-10">
-
+<!-- 					<div><input th:name="${vincularDCMS}"/></div> -->
+					
                     <div class="form-group width-form3 ">
-                        <label class="label-cpfcnpj">CNPJ da Empresa</label>
-                        <input type="text" id="cpfcnpj" class="cpfcnpj form-control">
-                    </div>
-
-                    <div class="form-group width-form3 ">
-                        <label class="label-numero">Codigo da Empresa</label>
-                        <input type="text" id="numero" class="numero form-control">
-                    </div>
-
-                    <div class="form-group width-form3 ">
-                        <label class="label-dcms">Codigo DCMS</label>
-                        <input type="text" id="dcms" class="dcms form-control">
+                        <label class="label-cnpj">CNPJ da Empresa</label>
+                        <input type="text" th:value="*{cnpj}" th:name="cnpj" id="cnpj" class="cnpj form-control">
                     </div>
 
                     <div class="row">
                         <div class="col-xs-12 ">
-
-                            <a type="button" href="ServicoPUT_COD_DCMS"
-                               class="btn btnBlue btn-width-custom space-top-60 uppercase">GERAR ARQUIVO DE VIDAS</a>
+<!--                             <a href="submit"  -->
+<!-- 							class="btn btnBlue btn-width-custom space-top-10 uppercase"  -->
+<!-- 							value="BUSCAR" /> -->
+                            <a type="button" href="buscaCnpjDCMS/{cnpj}"
+                              class="btn btnBlue btn-width-custom space-top-10 uppercase">BUSCAR</a>
                         </div>
                     </div>
+					
+                    <div class="form-group width-form">
+                        <label class="label-cdEmpresa">Código da Empresa</label>
+                        <input type="text" th:value="*{cdEmpresa}" id="cdEmpresa" class="cdEmpresa form-control" style="width: 30%; inline-block">
+
+                        <label class="label-dcms">Código DCMS</label>
+                        <input type="text" th:value="*{empDcms}" id="empDcms" class="empDcms form-control" style="width: 30%; inline-block">
+
+                        <label class="label-observacao">Mensagem Observação</label>
+                        <br>
+                        <label th:text="*{observacao}" id="observacao" class="observacao"></label>
+                    </div>
+                    
+<!--                     <div class="row"> -->
+<!--                         <div class="col-xs-12 "> -->
+<!--                             <a type="button" href="ServiceSalvarDCMS" -->
+<!--                                class="btn btnBlue btn-width-custom space-top-60 uppercase">GERAR ARQUIVO DE VIDAS</a> -->
+                               
+<!--                         </div> -->
+<!--                     </div> -->
+                    
+                    <div class="row">
+                        <div class="col-xs-12 ">
+                            <a href="submit" 
+							class="btn btnBlue btn-width-custom space-top-10 uppercase">GERAR ARQUIVO DE VIDAS</a>
+                        </div>
+                    </div>
+                    
                 </form>
             </div>
 
