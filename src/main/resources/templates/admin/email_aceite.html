@@ -26,7 +26,6 @@
             });
 
             $("#email").blur(function () {
-                console.log("blur");
                 var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
                 if (reg.test($("#email").val())) {
                     console.log("funfou");
@@ -34,8 +33,12 @@
                     $("#emailDois").val($("#email").val());
                     return;
                 }
-                console.log("n funfou");
                 return false;
+            });
+
+            $("#email").click(function () {
+                //document.getElementById('btnSalvarEnviar').style.display = "inline-block";
+                $("#btnSalvarEnviar").removeClass('hide');
             });
         });
     </script>
@@ -97,10 +100,11 @@
                         <label class="label-dataAceite"
                                th:style="${dataAceite} == null ? 'display:none' : 'display:inline-block'">Data
                             Aceite:</label>
-                        <input type="text" onload="this.value=''" th:name="dataAceite" id="dataAceite"
+                        <input type="text" onload="this.value=''" th:name="dataAceite"
+                               id="dataAceite"
                                th:value="${dataAceite}"
                                th:style="${dataAceite} == null ? 'display:none' : 'display:inline-block;text-align:center'"
-                               class="dataAceite form-control" style="text-align:center;">
+                               class="dataAceite form-control" style="text-align:center;" disabled>
 
                         <label class="label-email"
                                th:style="${email == null}  ? 'display:none' : 'display:inline-block'">E-mail:</label>
@@ -120,9 +124,11 @@
                               th:object="${reenvioEmail}" method="POST">
                             <input type="text" th:name="cnpj" th:value="${cnpj}" class="cnpj form-control"
                                    style="text-align:center;display: none;">
-                            <input id="emailDois" type="text" th:name="email" th:value="${email}" class="email form-control"
+                            <input id="emailDois" type="text" th:name="email" th:value="${email}"
+                                   class="email form-control"
                                    style="text-align:center;display: none;">
-                            <input type="submit" class="btn btnBlue btn-width-custom space-top-10 uppercase"
+                            <input type="submit" id="btnSalvarEnviar"
+                                   class="btn btnBlue btn-width-custom space-top-10 uppercase hide"
                                    value="SALVAR E ENVIAR E-MAIL"/>
                         </form>
                     </div>

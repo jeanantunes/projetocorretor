@@ -3,6 +3,7 @@ package br.com.odontoprev.portalcorretor.controller.admin;
 import br.com.odontoprev.portalcorretor.model.CnpjDadosAceiteResponse;
 import br.com.odontoprev.portalcorretor.model.ReenvioEmailAceitePMEModel;
 import br.com.odontoprev.portalcorretor.service.EmpresaService;
+import br.com.odontoprev.portalcorretor.service.dto.EmpresaResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -75,13 +76,17 @@ public class ReenvioEmailAceitePMEController {
         reenvioEmailAceitePMEModel.setCdEmpresa(String.valueOf(cnpjDadosAceiteResponse.getCdEmpresa()));
         reenvioEmailAceitePMEModel.setCdVenda(String.valueOf(cnpjDadosAceiteResponse.getCdVenda()));
         cnpjDadosAceiteResponse.setEmail(reenvioEmailAceitePMEModel.getEmail());
-        empresaService.reenvioEmailAceite(cnpjDadosAceiteResponse);
+        EmpresaResponse empresaResponse = empresaService.reenvioEmailAceite(cnpjDadosAceiteResponse);
 
         model.addAttribute("cdEmpresa", reenvioEmailAceitePMEModel.getCdEmpresa());
         model.addAttribute("cdVenda", reenvioEmailAceitePMEModel.getCdVenda());
         model.addAttribute("email", reenvioEmailAceitePMEModel.getEmail());
-        model.addAttribute("observacao", reenvioEmailAceitePMEModel.getObservacao());
-
+        if (empresaResponse == null) {
+            reenvioEmailAceitePMEModel.setError("Erro ao atualizar/enviar e-mail.");
+            model.addAttribute("error", reenvioEmailAceitePMEModel.getError());
+        } else {
+            model.addAttribute("observacao", empresaResponse.getMensagem());
+        }
         return new ModelAndView("admin/email_aceite", "reenvioEmail", reenvioEmailAceitePMEModel);
     }
 }
