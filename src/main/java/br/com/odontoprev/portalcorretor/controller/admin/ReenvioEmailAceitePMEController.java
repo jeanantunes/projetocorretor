@@ -51,7 +51,7 @@ public class ReenvioEmailAceitePMEController {
                 reenvioEmailAceitePMEModel.setDataAceite(null);
             }
             if (cnpjDadosAceiteResponse.getTokenAceite().getEmail() != null) {
-                reenvioEmailAceitePMEModel.setEmail(cnpjDadosAceiteResponse.getTokenAceite().getEmail());
+                reenvioEmailAceitePMEModel.setEmail(cnpjDadosAceiteResponse.getEmail());
             }
         }
         reenvioEmailAceitePMEModel.setObservacao(cnpjDadosAceiteResponse.getObservacao());
