@@ -21,21 +21,32 @@
 
     <script>
         $(document).ready(function () {
-	        $(function () {
-	            $(".button-collapse").sideNav();
-	        });
+            $(function () {
+                $(".button-collapse").sideNav();
+            });
 
-            $("#empDcms").blur(function () {
-                console.log("blur");
+            $("#cdEmpDcms").blur(function () {
                 var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
                 if (reg.test($("#empDcms").val())) {
-                    console.log("funfou");
-                    console.log($("#empDcms").val());
                     $("#empDcms_h").val($("#empDcms").val());
                     return;
                 }
-                console.log("n funfou");
                 return false;
+            });
+
+            $("#cdEmpDcms").click(function () {
+                //document.getElementById('btnSalvarEnviar').style.display = "inline-block";
+                $("#btnSalvar").removeClass('hide');
+            });
+
+            $("#btnBuscar").click(function () {
+                //document.getElementById('btnSalvarEnviar').style.display = "inline-block";
+                $("#cdEmpDcmsTxt").removeClass('hide');
+            });
+
+            $("#btnBuscar").click(function () {
+                //document.getElementById('btnSalvarEnviar').style.display = "inline-block";
+                $("#cdEmpDcms").removeClass('hide');
             });
         });
     </script>
@@ -45,10 +56,10 @@
 <div class="container-fluid nopadding">
 
     <!-- div th:switch="${session.usuario.perfil}" -->
-        <!-- div th:case="'Adiministrador'" -->
-            <div th:replace="fragments/menu-admin :: menu-admin">&nbsp;</div>
-            <div th:replace="/fragments/header-admin :: header-admin">&nbsp;</div>
-        <!-- /div-->
+    <!-- div th:case="'Adiministrador'" -->
+    <div th:replace="fragments/menu-admin :: menu-admin">&nbsp;</div>
+    <div th:replace="/fragments/header-admin :: header-admin">&nbsp;</div>
+    <!-- /div-->
     <!-- /div -->
 
     <div class="container-logado padding-logado">
@@ -66,71 +77,66 @@
         <div class="content-odonto" style="margin-bottom: 200px">
 
             <div id="naoSouDono" align="center">
-            
-                <form class="space-top-10" action="#" th:action="@{/buscaCnpjDCMS}" 
+
+                <form class="space-top-10" action="#" th:action="@{/buscaCnpjDCMS}"
                       th:object="${banana}" method="POST">
-					
+
                     <div class="form-group width-form3 ">
                         <label class="label-cnpj">CNPJ da Empresa</label>
                         <input type="text" th:name="cnpj" id="cnpj" th:value="${cnpj}" class="cnpj form-control"
                                style="text-align:center">
-                        <span th:text="${cnpj == null} ? ${error} : ''"
+                        <span th:text="${cnpj == null} ? ${observacao} : ''"
                               style="text-align:center;color: #b92c28;font-family: Roboto-Medium !important;font-size: 15px!important;"/>
                     </div>
 
                     <div class="row">
                         <div class="col-xs-12 ">
-                            <input type="submit" class="btn btnBlue btn-width-custom space-top-10 uppercase"
+                            <input type="submit" id="btnBuscar"
+                                   class="btn btnBlue btn-width-custom space-top-10 uppercase"
                                    value="BUSCAR"/>
                         </div>
                     </div>
-					             
+
                     <div class="form-group width-form1 space-top-60 display:none">
-                        <label class="label-razaoSocial"
-                               th:style="${razaoSocial == null}  ? 'display:none' : 'display:inline-block'">Nome
-                            Empresa:</label>
-                        <input type="text" onload="this.value=''" th:name="razaoSocial" id="razaoSocial" disabled
-                               th:value="${razaoSocial}"
-                               th:style="${razaoSocial == null}  ? 'display:none' : 'display:inline-block;text-align:center'"
-                               class="razaoSocial form-control" style="text-align:center;">
 
-                        <label class="label-dataAceite"
-                               th:style="${dataAceite} == null ? 'display:none' : 'display:inline-block'">Data
-                            Aceite:</label>
-                        <input type="text" onload="this.value=''" th:name="dataAceite" id="dataAceite"
-                               th:value="${dataAceite}"
-                               th:style="${dataAceite} == null ? 'display:none' : 'display:inline-block;text-align:center'"
-                               class="dataAceite form-control" style="text-align:center;">
+                        <label class="label-cdEmpresa"
+                               th:style="${cdEmpresa == null}  ? 'display:none' : 'display:inline-block'">Código da
+                            Empresa</label>
+                        <input type="text" th:value="*{cdEmpresa}" th:name="cdEmpresa" id="cdEmpresa"
+                               th:style="${cdEmpresa == null}  ? 'display:none' : 'display:inline-block;text-align:center'"
+                               class="cdEmpresa form-control"
+                               th:disabled="${cdEmpDcms} != null"
+                               style="width: 30%;">
 
-                        <label class="label-email"
-                               th:style="${email == null}  ? 'display:none' : 'display:inline-block'">E-mail:</label>
-                        <input type="text" onload="this.value=''" th:name="email" id="email" th:value="${email}"
-                               th:style="${email == null}  ? 'display:none' : 'display:inline-block;text-align:center'"
-                               class="email form-control" style="text-align:center;">
-
-                        <label class="label-cdEmpresa">Código da Empresa</label>
-                        <input type="text" th:value="*{cdEmpresa}" id="cdEmpresa" class="cdEmpresa form-control" style="width: 30%; inline-block">
-
-                        <label class="label-dcms">Código DCMS</label>
-                        <input type="text" th:value="*{empDcms}" id="empDcms" class="empDcms form-control" style="width: 30%; inline-block">
+                        <label class="label-dcms" id="cdEmpDcmsTxt"
+                               th:style="${cdEmpDcms == ''}  ? 'display:inline-block' : 'display:inline-block'">Código
+                            DCMS</label>
+                        <input type="text" th:value="*{cdEmpDcms}" th:name="cdEmpDcms" id="cdEmpDcms"
+                               th:style="${cdEmpDcms == ''}  ? 'display:inline-block;text-align:center' : 'display:inline-block;text-align:center'"
+                               class="empDcms form-control"
+                               th:disabled="${cdEmpDcms} != ''"
+                               style="width: 30%;">
                     </div>
 
                     <div id="observacao">
                         <span th:name="observacao" th:text="${observacao}"
                               style="text-align:center;color: #b92c28;font-family: Roboto-Medium !important;font-size: 15px!important;"/>
-                    </div>                    
+                    </div>
                 </form>
                 <div class="row">
                     <div class="col-xs-12 ">
-		                <form class="space-top-10" action="#" th:action="@{/vincularDCMS}" th:object="${banana}" method="POST">
-			                <input type="hidden" th:value="*{cnpj}" th:name="cnpj" id="cnpj_h" />
-			                <input type="hidden" th:value="*{cdEmpresa}" th:name="cdEmpresa" id="cdEmpresa_h" />
-			                <input type="hidden" th:value="*{empDcms}"  th:name="empDcms" id="empDcms_h" />
-                    
-                            <input type="submit" class="btn btnBlue btn-width-custom space-top-10 uppercase" value="GERAR ARQUIVO DE VIDAS"></input>
-		                </form>
+                        <form class="space-top-10" action="#" th:action="@{/vincularDCMS}" th:object="${banana}"
+                              method="POST">
+                            <input type="hidden" th:value="*{cnpj}" th:name="cnpj" id="cnpj_h"/>
+                            <input type="hidden" th:value="*{cdEmpresa}" th:name="cdEmpresa" id="cdEmpresa_h"/>
+                            <input type="hidden" th:value="*{cdEmpDcms}" th:name="cdEmpDcms" id="empDcms_h"/>
+
+                            <input type="submit" id="btnSalvar"
+                                   class="btn btnBlue btn-width-custom space-top-10 uppercase hide"
+                                   value="SALVAR"/>
+                        </form>
                     </div>
-                </div>                    
+                </div>
             </div>
         </div>
 

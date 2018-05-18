@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,7 +34,7 @@ public class VincularDCMSController {
 //	public ModelAndView buscaCnpjDCMS(@PathVariable String cnpj) {
 	
 	@RequestMapping(value = "buscaCnpjDCMS", method = RequestMethod.POST)
-	public ModelAndView buscaCnpjDCMS(HttpSession session, @ModelAttribute("banana") br.com.odontoprev.portalcorretor.model.VincularDCMSModel vincularDCMSModel) {
+	public ModelAndView buscaCnpjDCMS(Model model, HttpSession session, @ModelAttribute("banana") br.com.odontoprev.portalcorretor.model.VincularDCMSModel vincularDCMSModel) {
 
 		//VincularDCMSModel vincularDCMSModel = new VincularDCMSModel();
 		String cnpj = vincularDCMSModel.getCnpj();
@@ -56,13 +57,21 @@ public class VincularDCMSController {
 		    if(cnpjDadosDCMSResponse!=null) {
 			    vincularDCMSModel.setCnpj(cnpjDadosDCMSResponse.getCnpj());
 			    vincularDCMSModel.setCdEmpresa(cnpjDadosDCMSResponse.getCdEmpresa());
-			    vincularDCMSModel.setEmpDcms(cnpjDadosDCMSResponse.getEmpDcms());
+			    vincularDCMSModel.setCdEmpDcms(cnpjDadosDCMSResponse.getEmpDcms());
 			    vincularDCMSModel.setObservacao(cnpjDadosDCMSResponse.getObservacao());
 		    } else {
 		    	vincularDCMSModel.setObservacao("Dados não encontrados.");    	
 		    }
+
+		    if (cnpjDadosDCMSResponse.getEmpDcms() == null){
+		    	vincularDCMSModel.setCdEmpDcms("");
+			}
 	    }
-	    
+
+		model.addAttribute("cnpj", vincularDCMSModel.getCnpj());
+		model.addAttribute("cdEmpresa", vincularDCMSModel.getCdEmpresa());
+		model.addAttribute("cdEmpDcms", vincularDCMSModel.getCdEmpDcms());
+		model.addAttribute("observacao", vincularDCMSModel.getObservacao());
 	    return new ModelAndView("admin/update_dcms", "banana", vincularDCMSModel);	
 	}
 
@@ -84,9 +93,9 @@ public class VincularDCMSController {
 	    ) {
 	    	vincularDCMSModel.setObservacao("O campo CdEmpresa é obrigatório");	    	
 	    } else if (
-			vincularDCMSModel.getEmpDcms() == null 
+			vincularDCMSModel.getCdEmpDcms() == null
 			|| 
-			vincularDCMSModel.getEmpDcms().isEmpty()
+			vincularDCMSModel.getCdEmpDcms().isEmpty()
 	    ) {
 	    	vincularDCMSModel.setObservacao("O campo EmpDcms é obrigatório");	    	
 	    } else {
@@ -96,14 +105,14 @@ public class VincularDCMSController {
 		    EmpresaDcms empresaDcms = new EmpresaDcms();
 		    empresaDcms.setCnpj(cnpj);
 		    empresaDcms.setCdEmpresa(vincularDCMSModel.getCdEmpresa());
-		    empresaDcms.setEmpDcms(vincularDCMSModel.getEmpDcms());
+		    empresaDcms.setEmpDcms(vincularDCMSModel.getCdEmpDcms());
 		    
 		    EmpresaResponse empresaResponse = empresaService.updateDadosEmpresaDCMS(empresaDcms);
 		
 		    if(empresaResponse!=null) {
 			    vincularDCMSModel.setCnpj(vincularDCMSModel.getCnpj());
 			    vincularDCMSModel.setCdEmpresa(vincularDCMSModel.getCdEmpresa());
-			    vincularDCMSModel.setEmpDcms(vincularDCMSModel.getEmpDcms());
+			    vincularDCMSModel.setCdEmpDcms(vincularDCMSModel.getCdEmpDcms());
 			    vincularDCMSModel.setObservacao(empresaResponse.getMensagem().concat(" [" + (new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date().getTime())) + "]")); //201805171955 - esert
 		    } else {
 		    	vincularDCMSModel.setObservacao("Falha na atualização ou geração TXT. [" + (new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date().getTime())) + "]");    	

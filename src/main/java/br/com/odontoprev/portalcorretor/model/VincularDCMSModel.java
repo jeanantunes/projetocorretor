@@ -4,7 +4,7 @@ public class VincularDCMSModel {
 
     private String cnpj;
     private Long cdEmpresa;
-    private String empDcms;
+    private String cdEmpDcms;
     private String observacao;
     
 	public String getCnpj() {
@@ -19,11 +19,11 @@ public class VincularDCMSModel {
 	public void setCdEmpresa(Long cdEmpresa) {
 		this.cdEmpresa = cdEmpresa;
 	}
-	public String getEmpDcms() {
-		return empDcms;
+	public String getCdEmpDcms() {
+		return cdEmpDcms;
 	}
-	public void setEmpDcms(String empDcms) {
-		this.empDcms = empDcms;
+	public void setCdEmpDcms(String cdEmpDcms) {
+		this.cdEmpDcms = cdEmpDcms;
 	}
 	public String getObservacao() {
 		return observacao;
@@ -34,7 +34,7 @@ public class VincularDCMSModel {
 	
 	@Override
 	public String toString() {
-		return "VincularDCMSModel [cnpj=" + cnpj + ", cdEmpresa=" + cdEmpresa + ", empDcms=" + empDcms + ", observacao="
+		return "VincularDCMSModel [cnpj=" + cnpj + ", cdEmpresa=" + cdEmpresa + ", cdEmpDcms=" + cdEmpDcms + ", observacao="
 				+ observacao + "]";
 	}
 }

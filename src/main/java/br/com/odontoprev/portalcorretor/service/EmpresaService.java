@@ -100,7 +100,8 @@ public class EmpresaService {
     public CnpjDadosDCMSResponse obterDadosEmpresaDCMS(String cnpj) {
         CnpjDadosDCMSResponse cnpjDadosDCMSResponse = null;
 
-        String url = requesBasetUrl + dadosEmpresa + cnpj; // /cnpj-dados/
+        //String url = requesBasetUrl + dadosEmpresa + cnpj; // /cnpj-dados/
+        String url = "http://localhost:9090/cnpj-dados/" + cnpj;
         RestTemplate restTemplate = new RestTemplate();
 
         try {
@@ -130,7 +131,8 @@ public class EmpresaService {
     public EmpresaResponse updateDadosEmpresaDCMS(EmpresaDcms empresaDcms) {
         EmpresaResponse empresaResponse = null;
 
-        String url = requesBasetUrl + dadosEmpresaDCMS; // /empresa-dcms/ PUT
+        //String url = requesBasetUrl + dadosEmpresaDCMS; // /empresa-dcms/ PUT
+        String url = "http://localhost:9090/empresa-dcms";
         RestTemplate restTemplate = new RestTemplate();
 
         try {
