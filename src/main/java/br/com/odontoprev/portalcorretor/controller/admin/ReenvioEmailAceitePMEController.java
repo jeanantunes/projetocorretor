@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.text.SimpleDateFormat;
-
 @Controller
 public class ReenvioEmailAceitePMEController {
 
@@ -39,15 +37,16 @@ public class ReenvioEmailAceitePMEController {
         CnpjDadosAceiteResponse cnpjDadosAceiteResponse = empresaService.obterDadosReenvio(cnpj);
 
         if (cnpjDadosAceiteResponse.getCnpj() == null) {
-            reenvioEmailAceitePMEModel.setObservacao("CNPJ não encontrado!!!");
-            model.addAttribute("observacao", reenvioEmailAceitePMEModel.getObservacao());
+            model.addAttribute("observacao", cnpjDadosAceiteResponse.getObservacao());
             return new ModelAndView("admin/email_aceite", "reenvioEmailAceitePME", reenvioEmailAceitePMEModel);
         }
         reenvioEmailAceitePMEModel.setCnpj(cnpjDadosAceiteResponse.getCnpj());
         reenvioEmailAceitePMEModel.setRazaoSocial(cnpjDadosAceiteResponse.getRazaoSocial());
         if (cnpjDadosAceiteResponse.getTokenAceite() != null) {
             if (cnpjDadosAceiteResponse.getTokenAceite().getDataAceite() != null) {
-                reenvioEmailAceitePMEModel.setDataAceite(new SimpleDateFormat("dd/MM/yyyy").format(cnpjDadosAceiteResponse.getTokenAceite().getDataAceite()));
+                reenvioEmailAceitePMEModel.setDataAceite(cnpjDadosAceiteResponse.getTokenAceite().getDataAceite());
+                cnpjDadosAceiteResponse.setObservacao("A Empresa já fez o Aceite do E-mail");
+                model.addAttribute("observacao", cnpjDadosAceiteResponse.getObservacao());
             } else {
                 reenvioEmailAceitePMEModel.setDataAceite(null);
             }

@@ -110,6 +110,7 @@
                                th:style="${email == null}  ? 'display:none' : 'display:inline-block'">E-mail:</label>
                         <input type="text" onload="this.value=''" th:name="email" id="email" th:value="${email}"
                                th:style="${email == null}  ? 'display:none' : 'display:inline-block;text-align:center'"
+                               th:disabled="${dataAceite} != null"
                                class="email form-control" style="text-align:center;">
                     </div>
 
@@ -139,6 +140,7 @@
         <div th:replace="fragments/footer :: footer">&nbsp;</div>
 
     </div>
+
 </div>
 </div>
 </body>
