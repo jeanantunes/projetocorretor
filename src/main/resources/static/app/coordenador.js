@@ -1043,13 +1043,13 @@ function sincronizar() {
 function removerAcentos(newStringComAcento) {
     var string = newStringComAcento;
     var mapaAcentosHex = {
-        a: /[\xE0-\xE6]/g,
-        e: /[\xE8-\xEB]/g,
-        i: /[\xEC-\xEF]/g,
-        o: /[\xF2-\xF6]/g,
-        u: /[\xF9-\xFC]/g,
-        c: /\xE7/g,
-        n: /\xF1/g
+        A: /[\xE0-\xE6]/g,
+        E: /[\xE8-\xEB]/g,
+        I: /[\xEC-\xEF]/g,
+        O: /[\xF2-\xF6]/g,
+        U: /[\xF9-\xFC]/g,
+        C: /\xE7/g,
+        N: /\xF1/g
     };
 
     for (var letra in mapaAcentosHex) {
@@ -1058,6 +1058,26 @@ function removerAcentos(newStringComAcento) {
     }
 
     return string;
+}
+
+function removerAcentosMinusculo(newStringComAcento) {
+	var string = newStringComAcento;
+	var mapaAcentosHex = {
+		a: /[\xE0-\xE6]/gi,
+		e: /[\xE8-\xEB]/gi,
+		i: /[\xEC-\xEF]/gi,
+		o: /[\xF2-\xF6]/gi,
+		u: /[\xF9-\xFC]/gi,
+		c: /\xE7/gi,
+		n: /\xF1/gi
+	};
+
+	for (var letra in mapaAcentosHex) {
+	var expressaoRegular = mapaAcentosHex[letra];
+	string = string.replace(expressaoRegular, letra);
+}
+
+return string;
 }
 
 function sincronizarPessoa(callback, pessoa, reSync) { // caso a proposta esteja sendo ressincronizada reSync recebe true
@@ -1073,18 +1093,18 @@ function sincronizarPessoa(callback, pessoa, reSync) { // caso a proposta esteja
 
     //var json = "{ \"cdForcaVenda\": \"" + forcaVenda.codigo + "\", \"cdPlano\": \"" + cdPlano + "\", \"titulares\": " + JSON.stringify(pessoa) + "}";
 
-    var date = toDate(pessoa[0].dataNascimento);
+   var date = toDate(pessoa[0].dataNascimento);
 
-    if (isMaiorDeIdade(date)) {
+    if (!isMaiorDeIdade(date)) {
         var json = {
             "cdForcaVenda": forcaVenda.codigo,
             "cdPlano": cdPlano,
             "titulares": [
                 {
-                    "nome": removerAcentos(pessoa[0].nome),
+                    "nome": removerAcentosMinusculo(pessoa[0].nome),
                     "cpf": pessoa[0].cpf,
                     "dataNascimento": pessoa[0].dataNascimento,
-                    "nomeMae": removerAcentos(pessoa[0].nomeMae),
+                    "nomeMae": removerAcentosMinusculo(pessoa[0].nomeMae),
                     "sexo": pessoa[0].sexo,
                     "status": pessoa[0].status,
                     "titular": pessoa[0].titular,
@@ -1099,11 +1119,11 @@ function sincronizarPessoa(callback, pessoa, reSync) { // caso a proposta esteja
                     "dependentes": pessoa[0].dependentes,
                     "email": pessoa[0].email,
                     "endereco": {
-                        "bairro": removerAcentos(pessoa[0].endereco.bairro),
+                        "bairro": removerAcentosMinusculo(pessoa[0].endereco.bairro),
                         "cep": pessoa[0].endereco.cep,
-                        "cidade": removerAcentos(pessoa[0].endereco.cidade),
+                        "cidade": removerAcentosMinusculo(pessoa[0].endereco.cidade),
                         "complemento": pessoa[0].endereco.complemento,
-                        "logradouro": removerAcentos(pessoa[0].endereco.logradouro),
+                        "logradouro": removerAcentosMinusculo(pessoa[0].endereco.logradouro),
                         "estado": pessoa[0].endereco.estado,
                         "numero": pessoa[0].endereco.numero
                     }
@@ -1117,11 +1137,11 @@ function sincronizarPessoa(callback, pessoa, reSync) { // caso a proposta esteja
                 "celular": pessoa[0].responsavelContratual.celular,
                 "sexo": pessoa[0].responsavelContratual.sexo,
                 "endereco": {
-                    "bairro": removerAcentos(pessoa[0].endereco.bairro),
+                    "bairro": removerAcentosMinusculo(pessoa[0].endereco.bairro),
                     "cep": pessoa[0].endereco.cep,
-                    "cidade": removerAcentos(pessoa[0].endereco.cidade),
+                    "cidade": removerAcentosMinusculo(pessoa[0].endereco.cidade),
                     "complemento": pessoa[0].endereco.complemento,
-                    "logradouro": removerAcentos(pessoa[0].endereco.logradouro),
+                    "logradouro": removerAcentosMinusculo(pessoa[0].endereco.logradouro),
                     "estado": pessoa[0].endereco.estado,
                     "numero": pessoa[0].endereco.numero
                 }
@@ -1134,10 +1154,11 @@ function sincronizarPessoa(callback, pessoa, reSync) { // caso a proposta esteja
             "cdPlano": cdPlano,
             "titulares": [
                 {
-                    "nome": removerAcentos(pessoa[0].nome),
+                    "nome": removerAcentosMinusculo(pessoa[0].nome),
                     "cpf": pessoa[0].cpf,
                     "dataNascimento": pessoa[0].dataNascimento,
-                    "nomeMae": removerAcentos(pessoa[0].nomeMae),
+                    "nomeMae": removerAcentosMinusculo(pessoa[0].nomeMae),
+                    "email": pessoa[0].email,
                     "sexo": pessoa[0].sexo,
                     "status": pessoa[0].status,
                     "titular": pessoa[0].titular,
@@ -1150,39 +1171,36 @@ function sincronizarPessoa(callback, pessoa, reSync) { // caso a proposta esteja
                         "tipoConta": pessoa[0].dadosBancarios.tipoConta
                     },
                     "dependentes": pessoa[0].dependentes,
-                    "email": pessoa[0].email,
                     "endereco": {
-                        "bairro": removerAcentos(pessoa[0].endereco.bairro),
+                        "bairro": removerAcentosMinusculo(pessoa[0].endereco.bairro),
                         "cep": pessoa[0].endereco.cep,
-                        "cidade": removerAcentos(pessoa[0].endereco.cidade),
+                        "cidade": removerAcentosMinusculo(pessoa[0].endereco.cidade),
                         "complemento": pessoa[0].endereco.complemento,
-                        "logradouro": removerAcentos(pessoa[0].endereco.logradouro),
+                        "logradouro": removerAcentosMinusculo(pessoa[0].endereco.logradouro),
                         "estado": pessoa[0].endereco.estado,
                         "numero": pessoa[0].endereco.numero
                     }
                 }
             ],
             "responsavelContratual": {
-                "nome": "",
-                "cpf": "",
-                "dataNascimento": "",
-                "email": "",
-                "celular": "",
-                "sexo": "",
+                "nome": removerAcentosMinusculo(pessoa[0].nome),
+                "cpf": pessoa[0].cpf,
+                "dataNascimento": pessoa[0].dataNascimento,
+                "email": pessoa[0].email,
+                "celular": pessoa[0].celular,
+                "sexo": pessoa[0].sexo,
                 "endereco": {
-                    "bairro": "",
-                    "cep": "",
-                    "cidade": "",
-                    "complemento": "",
-                    "logradouro": "",
-                    "estado": "",
-                    "numero": ""
+                    "bairro": removerAcentosMinusculo(pessoa[0].endereco.bairro),
+                    "cep": pessoa[0].endereco.cep,
+                    "cidade": removerAcentosMinusculo(pessoa[0].endereco.cidade),
+                    "complemento": pessoa[0].endereco.complemento,
+                    "logradouro": removerAcentosMinusculo(pessoa[0].endereco.logradouro),
+                    "estado": pessoa[0].endereco.estado,
+                    "numero": pessoa[0].endereco.numero
                 }
             }
         };
     }
-
-    
 
     json = JSON.stringify(json);
 

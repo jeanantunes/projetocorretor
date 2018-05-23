@@ -37,8 +37,8 @@ public class EmpresaService {
     public CnpjDadosAceiteResponse obterDadosReenvio(String cnpj) {
         CnpjDadosAceiteResponse cnpjDadosAceiteResponse = null;
 
-        String url = requesBasetUrl + dadosEmpresaAceite + cnpj; // /cnpj-dadosaceite/
-        //String url = "http://localhost:9090/cnpj-dadosaceite/" + cnpj;
+        //String url = requesBasetUrl + dadosEmpresaAceite + cnpj; // /cnpj-dadosaceite/
+        String url = "https://172.18.203.20:7001/cnpj-dadosaceite/" + cnpj;
         RestTemplate restTemplate = new RestTemplate();
 
         try {
@@ -65,8 +65,8 @@ public class EmpresaService {
         EmpresaResponse empresaResponse = null;
 
         cnpjDadosAceiteResponse.getCnpj().replace(".", "").replace("/", "").replace("-", "");
-        String url = requesBasetUrl + dadosEmpresaAceite; // /cnpj-dadosaceite/
-        //String url = "http://localhost:9090/empresa-emailaceite";
+        //String url = requesBasetUrl + dadosEmpresaAceite; // /cnpj-dadosaceite/
+        String url = "https://172.18.203.20:7001/empresa-dadosaceite/";
         RestTemplate restTemplate = new RestTemplate();
 
         try {
@@ -101,7 +101,7 @@ public class EmpresaService {
         CnpjDadosDCMSResponse cnpjDadosDCMSResponse = null;
 
         //String url = requesBasetUrl + dadosEmpresa + cnpj; // /cnpj-dados/
-        String url = "http://localhost:9090/cnpj-dados/" + cnpj;
+        String url = "https://172.18.203.20:7001/cnpj-dados/" + cnpj;
         RestTemplate restTemplate = new RestTemplate();
 
         try {
@@ -132,7 +132,7 @@ public class EmpresaService {
         EmpresaResponse empresaResponse = null;
 
         //String url = requesBasetUrl + dadosEmpresaDCMS; // /empresa-dcms/ PUT
-        String url = "http://localhost:9090/empresa-dcms";
+        String url = "https://172.18.203.20:7001/empresa-dcms";
         RestTemplate restTemplate = new RestTemplate();
 
         try {
