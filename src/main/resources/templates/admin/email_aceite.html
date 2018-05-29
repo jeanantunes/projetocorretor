@@ -47,10 +47,16 @@
 
 <div class="container-fluid nopadding">
 
+    <!--
     <div th:switch="${session.usuario.perfil}">
     <div th:case="'Adiministrador'">
+    -->
     <div th:replace="fragments/menu-admin :: menu-admin">&nbsp;</div>
     <div th:replace="/fragments/header-admin :: header-admin">&nbsp;</div>
+    <!--
+    </div>
+    </div>
+    -->
 
     <div class="container-logado padding-logado">
 
@@ -139,8 +145,6 @@
 
     </div>
 
-</div>
-</div>
 </div>
 </div>
 </body>

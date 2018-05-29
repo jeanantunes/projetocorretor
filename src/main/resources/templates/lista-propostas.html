@@ -141,7 +141,7 @@
                 <div class="container pull-left panel-odonto nopadding space-right">
                     <div class="panel panel-default rosa">
                         <div
-                                class="panel-heading bg-pink text-silver text-center uppercase">pessoa
+                                class="bg-pink text-silver text-center uppercase rosa">pessoa
                             física
                         </div>
                         <div class="panel-body">
@@ -161,7 +161,7 @@
                                 <div class="col-xs-12">
 
                                     <div class="box-proposta" th:each="proposta : ${listaPropostas.propostaPF}">
-                                        <div  th:class="${#strings.equals(proposta.statusVenda,'Aprovado')}?  point-green : point-yellow "></div>
+                                        <div  th:class="${#strings.equals(proposta.statusVenda,'Aprovado')}?  point-green : point-red "></div>
                                         <p class="title-name text-odonto pull-left">
                                             <strong th:text="${proposta.nome}">Maria Angela da Silva</strong>
                                         </p>
@@ -186,7 +186,7 @@
 
                 <div class="container pull-left panel-odonto nopadding">
                     <div class="panel panel-default azul">
-                        <div class="panel-heading bg-blue text-center uppercase">pme</div>
+                        <div class="bg-blue text-center uppercase azul">pme</div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-xs-12">
@@ -203,7 +203,7 @@
 
 
                                     <div class="box-proposta" th:each="proposta : ${listaPropostas.propostaPME}">
-                                        <div  th:class="${#strings.equals(proposta.statusVenda,'Aprovado')}?  point-green : point-yellow "></div>
+                                        <div  th:class="${#strings.equals(proposta.statusVenda,'Aprovado')}?  point-green : point-red "></div>
                                         <p class="title-name text-odonto pull-left">
                                             <strong th:text="${proposta.nome}">Maria Angela da Silva</strong>
                                         </p>

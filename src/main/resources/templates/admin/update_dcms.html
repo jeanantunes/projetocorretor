@@ -27,8 +27,8 @@
 
             $("#cdEmpDcms").blur(function () {
                 var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
-                if (reg.test($("#empDcms").val())) {
-                    $("#empDcms_h").val($("#empDcms").val());
+                if (reg.test($("#cdEmpDcms").val())) {
+                    $("#cdEmpDcms").val($("#cdEmpDcms").val());
                     return;
                 }
                 return false;
@@ -38,16 +38,6 @@
                 //document.getElementById('btnSalvarEnviar').style.display = "inline-block";
                 $("#btnSalvar").removeClass('hide');
             });
-
-            $("#btnBuscar").click(function () {
-                //document.getElementById('btnSalvarEnviar').style.display = "inline-block";
-                $("#cdEmpDcmsTxt").removeClass('hide');
-            });
-
-            $("#btnBuscar").click(function () {
-                //document.getElementById('btnSalvarEnviar').style.display = "inline-block";
-                $("#cdEmpDcms").removeClass('hide');
-            });
         });
     </script>
 </head>
@@ -55,11 +45,15 @@
 
 <div class="container-fluid nopadding">
 
+    <!--
     <div th:switch="${session.usuario.perfil}">
-    <div th:case="'Adiministrador'">
+    <div th:case="'Adiministrador'"> -->
     <div th:replace="fragments/menu-admin :: menu-admin">&nbsp;</div>
     <div th:replace="/fragments/header-admin :: header-admin">&nbsp;</div>
-
+    <!--
+    </div>
+    </div>
+    -->
 
     <div class="container-logado padding-logado">
 
@@ -101,40 +95,50 @@
                         <label class="label-cdEmpresa"
                                th:style="${cdEmpresa == null}  ? 'display:none' : 'display:inline-block'">Código da
                             Empresa</label>
-                        <input type="text" th:value="*{cdEmpresa}" th:name="cdEmpresa" id="cdEmpresa"
+                        <input type="text" th:value="${cdEmpresa}" th:name="cdEmpresa" id="cdEmpresa"
                                th:style="${cdEmpresa == null}  ? 'display:none' : 'display:inline-block;text-align:center'"
                                class="cdEmpresa form-control"
+                               th:disabled="${cdEmpresa} != null"
+                               style="width: 30%;">
+
+                        <!--
+                        <label class="label-dcms" id="cdEmpDcmsTxt"
+                               th:style="${cdEmpresa == null}  ? 'display:none' : 'display:inline-block'">Código
+                            DCMS</label>
+                        <input type="text" th:value="${cdEmpDcms}" th:name="cdEmpDcms" id="cdEmpDcms"
+                               th:style="${cdEmpresa == null}  ? 'display:none' : 'display:inline-block;text-align:center'"
+                               class="cdEmpDcms form-control"
                                th:disabled="${cdEmpDcms} != null"
                                style="width: 30%;">
-
-                        <label class="label-dcms" id="cdEmpDcmsTxt"
-                               th:style="${cdEmpDcms == ''}  ? 'display:inline-block' : 'display:inline-block'">Código
-                            DCMS</label>
-                        <input type="text" th:value="*{cdEmpDcms}" th:name="cdEmpDcms" id="cdEmpDcms"
-                               th:style="${cdEmpDcms == ''}  ? 'display:inline-block;text-align:center' : 'display:inline-block;text-align:center'"
-                               class="empDcms form-control"
-                               th:disabled="${cdEmpDcms} != ''"
-                               style="width: 30%;">
-                    </div>
-
-                    <div id="observacao">
-                        <span th:name="observacao" th:text="${observacao}"
-                              style="text-align:center;color: #b92c28;font-family: Roboto-Medium !important;font-size: 15px!important;"/>
+                         -->
                     </div>
                 </form>
                 <div class="row">
                     <div class="col-xs-12 ">
-                        <form class="space-top-10" action="#" th:action="@{/vincularDCMS}" th:object="${banana}"
-                              method="POST">
-                            <input type="hidden" th:value="*{cnpj}" th:name="cnpj" id="cnpj_h"/>
-                            <input type="hidden" th:value="*{cdEmpresa}" th:name="cdEmpresa" id="cdEmpresa_h"/>
-                            <input type="hidden" th:value="*{cdEmpDcms}" th:name="cdEmpDcms" id="empDcms_h"/>
+                        <div class="form-group width-form1">
+                            <form class="space-top-10" action="#" th:action="@{/vincularDCMS}" th:object="${banana}"
+                                  method="POST">
+                                <input type="hidden" th:value="${cnpj}" th:name="cnpj" id="cnpj_h"/>
+                                <input type="hidden" th:value="${cdEmpresa}" th:name="cdEmpresa" id="cdEmpresa_h"/>
+                                <label class="label-dcms" id="cdEmpDcmsTxt"
+                                       th:style="${cdEmpresa == null}  ? 'display:none' : 'display:inline-block'">Código
+                                    DCMS</label>
+                                <input type="text" th:value="${cdEmpDcms}" th:name="cdEmpDcms" id="cdEmpDcms"
+                                       th:style="${cdEmpresa == null}  ? 'display:none' : 'display:inline-block;text-align:center'"
+                                       class="cdEmpDcms form-control"
+                                       th:disabled="${cdEmpDcms} != null"
+                                       style="width: 30%;">
 
-                            <input type="submit" id="btnSalvar"
-                                   class="btn btnBlue btn-width-custom space-top-10 uppercase hide"
-                                   value="SALVAR"/>
-                        </form>
+                                <input type="submit" id="btnSalvar"
+                                       class="btn btnBlue btn-width-custom space-top-10 uppercase hide"
+                                       value="SALVAR"/>
+                            </form>
+                        </div>
                     </div>
+                </div>
+                <div id="observacao">
+                        <span th:name="observacao" th:text="${observacao}"
+                              style="text-align:center;color: #b92c28;font-family: Roboto-Medium !important;font-size: 15px!important;"/>
                 </div>
             </div>
         </div>
@@ -142,8 +146,6 @@
         <div th:replace="fragments/footer :: footer">&nbsp;</div>
 
     </div>
-</div>
-</div>
 </div>
 </div>
 </body>

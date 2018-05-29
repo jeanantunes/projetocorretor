@@ -30,18 +30,11 @@ public class VincularDCMSController {
 	    return new ModelAndView("admin/update_dcms", "banana", new VincularDCMSModel()); //201805161823 - esert - nao pode passar model (null), precisa passar model instanciada 
     }
 
-//	@RequestMapping(value = "admin/buscaCnpjDCMS/{cnpj}", method = RequestMethod.GET)
-//	public ModelAndView buscaCnpjDCMS(@PathVariable String cnpj) {
-	
 	@RequestMapping(value = "buscaCnpjDCMS", method = RequestMethod.POST)
 	public ModelAndView buscaCnpjDCMS(Model model, HttpSession session, @ModelAttribute("banana") br.com.odontoprev.portalcorretor.model.VincularDCMSModel vincularDCMSModel) {
 
-		//VincularDCMSModel vincularDCMSModel = new VincularDCMSModel();
 		String cnpj = vincularDCMSModel.getCnpj();
 		
-//		UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");	    
-//	    vincularDCMSModel.setCnpj("11431155000107");
-	        
 	    if (
 	    	cnpj == null 
 	    	|| 
@@ -63,9 +56,6 @@ public class VincularDCMSController {
 		    	vincularDCMSModel.setObservacao("Dados não encontrados.");    	
 		    }
 
-		    if (cnpjDadosDCMSResponse.getEmpDcms() == null){
-		    	vincularDCMSModel.setCdEmpDcms("");
-			}
 	    }
 
 		model.addAttribute("cnpj", vincularDCMSModel.getCnpj());
@@ -75,31 +65,27 @@ public class VincularDCMSController {
 	    return new ModelAndView("admin/update_dcms", "banana", vincularDCMSModel);	
 	}
 
-	//201805171846 - esert - COR-170
 	@RequestMapping(value = "vincularDCMS", method = RequestMethod.POST)
-	public ModelAndView vincularDCMS(HttpSession session, @ModelAttribute("banana") br.com.odontoprev.portalcorretor.model.VincularDCMSModel vincularDCMSModel) {
-		    
+	public ModelAndView vincularDCMS(Model model, @ModelAttribute("banana") br.com.odontoprev.portalcorretor.model.VincularDCMSModel vincularDCMSModel) {
+
+		model.addAttribute("cnpj", vincularDCMSModel.getCnpj());
+		model.addAttribute("cdEmpresa", vincularDCMSModel.getCdEmpresa());
+		model.addAttribute("cdEmpDcms", vincularDCMSModel.getCdEmpDcms());
+
 	    String cnpj = "0";	    	    
-	    if (
-	    	vincularDCMSModel.getCnpj() == null 
-	    	|| 
-	    	vincularDCMSModel.getCnpj().isEmpty()
-	    ) {
+	    if (vincularDCMSModel.getCnpj() == null || vincularDCMSModel.getCnpj().isEmpty()) {
 	    	vincularDCMSModel.setObservacao("O campo CNPJ é obrigatório");
-	    } else if (
-	    	vincularDCMSModel.getCdEmpresa() == null 
-	    	|| 
-	    	vincularDCMSModel.getCdEmpresa() == 0L
-	    ) {
-	    	vincularDCMSModel.setObservacao("O campo CdEmpresa é obrigatório");	    	
-	    } else if (
-			vincularDCMSModel.getCdEmpDcms() == null
-			|| 
-			vincularDCMSModel.getCdEmpDcms().isEmpty()
-	    ) {
-	    	vincularDCMSModel.setObservacao("O campo EmpDcms é obrigatório");	    	
+	    	model.addAttribute("observacao", vincularDCMSModel.getObservacao());
+			return new ModelAndView("admin/update_dcms", "banana", vincularDCMSModel);
+	    } else if (vincularDCMSModel.getCdEmpresa() == null || vincularDCMSModel.getCdEmpresa() == 0L) {
+	    	vincularDCMSModel.setObservacao("O campo Código da Empresa é obrigatório");
+			model.addAttribute("observacao", vincularDCMSModel.getObservacao());
+			return new ModelAndView("admin/update_dcms", "banana", vincularDCMSModel);
+	    } else if (vincularDCMSModel.getCdEmpDcms() == null || vincularDCMSModel.getCdEmpDcms().isEmpty()) {
+	    	vincularDCMSModel.setObservacao("O campo Código DCMS é obrigatório");
+			model.addAttribute("observacao", vincularDCMSModel.getObservacao());
+			return new ModelAndView("admin/update_dcms", "banana", vincularDCMSModel);
 	    } else {
-	    
 		    cnpj = vincularDCMSModel.getCnpj().replace(".","").replace("/","").replace("-","").replace(" ","");
 		    
 		    EmpresaDcms empresaDcms = new EmpresaDcms();
@@ -115,11 +101,15 @@ public class VincularDCMSController {
 			    vincularDCMSModel.setCdEmpDcms(vincularDCMSModel.getCdEmpDcms());
 			    vincularDCMSModel.setObservacao(empresaResponse.getMensagem().concat(" [" + (new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date().getTime())) + "]")); //201805171955 - esert
 		    } else {
-		    	vincularDCMSModel.setObservacao("Falha na atualização ou geração TXT. [" + (new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date().getTime())) + "]");    	
+		    	vincularDCMSModel.setObservacao("Falha ao atualizar DCMS. [" + (new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date().getTime())) + "]");
+				model.addAttribute("observacao", vincularDCMSModel.getObservacao());
+				return new ModelAndView("admin/update_dcms", "banana", vincularDCMSModel);
 		    }
 	    }
-	    
-	    return new ModelAndView("admin/update_dcms", "banana", vincularDCMSModel);	
+
+	    vincularDCMSModel.setObservacao("DCMS atualizado com Sucesso");
+		model.addAttribute("observacao", vincularDCMSModel.getObservacao());
+	    return new ModelAndView("admin/update_dcms", "banana", vincularDCMSModel);
 	}
 	
 }
