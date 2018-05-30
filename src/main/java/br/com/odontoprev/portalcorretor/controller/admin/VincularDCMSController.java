@@ -102,8 +102,6 @@ public class VincularDCMSController {
 			    vincularDCMSModel.setObservacao(empresaResponse.getMensagem().concat(" [" + (new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date().getTime())) + "]")); //201805171955 - esert
 		    } else {
 		    	vincularDCMSModel.setObservacao("Falha ao atualizar DCMS. [" + (new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date().getTime())) + "]");
-				model.addAttribute("observacao", vincularDCMSModel.getObservacao());
-				return new ModelAndView("admin/update_dcms", "banana", vincularDCMSModel);
 		    }
 	    }
 
