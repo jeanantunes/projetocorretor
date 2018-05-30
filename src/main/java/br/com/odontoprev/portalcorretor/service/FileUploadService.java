@@ -1,6 +1,6 @@
 package br.com.odontoprev.portalcorretor.service;
 
-import br.com.odontoprev.api.manager.client.token.util.ConfigurationUtils;
+import br.com.odontoprev.portalcorretor.model.UploadCsv;
 import br.com.odontoprev.portalcorretor.service.dto.FileUploadResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
@@ -11,10 +11,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class FileUploadService {
@@ -29,8 +28,11 @@ public class FileUploadService {
     @Autowired
     private ApiManagerTokenService apiManagerTokenService;
 
-    public RequestEntity<?> fileUpload(String file, Integer codigoCorretora) {
-        String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", metodo + codigoCorretora);
+    public FileUploadResponse fileUpload(byte[] file, Integer cdCorretora) {
+        FileUploadResponse fileUploadResponse = null;
+
+        //String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", metodo + cdCorretora);
+        String url = "http://localhost:9090/upload/" + cdCorretora;
         RestTemplate restTemplate = new RestTemplate();
         FileUploadResponse result = null;
         try {
@@ -48,12 +50,13 @@ public class FileUploadService {
             ResponseEntity<FileUploadResponse> retorno = restTemplate.exchange(url, HttpMethod.POST, entityReq, FileUploadResponse.class);
 
             if (retorno.getStatusCode() == HttpStatus.OK) {
-                result = retorno.getBody();
+                fileUploadResponse = retorno.getBody();
                 log.info("Upload realizado com sucesso " + result.getId() + " " + result.getMensagem());
-                return null;
+
+                return fileUploadResponse;
             } else {
                 log.info("Erro ao realizar upload " + result.getMensagem());
-                return null;
+                return fileUploadResponse;
             }
 
         } catch (Exception e) {
@@ -61,6 +64,12 @@ public class FileUploadService {
             return null;
         }
 
+    }
+
+    public List<UploadCsv> uploadCsvList(String csv, String cdCorretora, String uploadFile) {
+        List<UploadCsv> csvList = new ArrayList<>();
+
+        return csvList;
     }
 
 }

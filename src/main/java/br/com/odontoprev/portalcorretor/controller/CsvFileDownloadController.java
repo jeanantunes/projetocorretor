@@ -1,6 +1,6 @@
 package br.com.odontoprev.portalcorretor.controller;
 
-import br.com.odontoprev.portalcorretor.model.ModeloCSV;
+import br.com.odontoprev.portalcorretor.model.UploadCsv;
 import br.com.odontoprev.portalcorretor.model.UsuarioSession;
 import br.com.odontoprev.portalcorretor.service.RelatorioGestaoVendaService;
 import org.apache.poi.ss.usermodel.*;
@@ -44,6 +44,7 @@ public class CsvFileDownloadController {
     }
 
 
+    /*
     @RequestMapping(value = "/downloadXLS", method = {RequestMethod.GET})
     @ResponseBody
     public void downloadXLS(HttpServletResponse response) throws IOException {
@@ -53,9 +54,9 @@ public class CsvFileDownloadController {
         response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
 
         String[] col = {"NOME", "CPF", "DATANASCIMENTO", "CELULAR", "EMAIL", "DEPARTAMENTO", "CARGO"};
-        List<ModeloCSV> model = new ArrayList<>();
+        List<UploadCsv> model = new ArrayList<>();
 
-        model.add(new ModeloCSV("NOME\t", "CPF\t", "DATANASCIMENTO\t", "CELULAR\t", "EMAIL\t", "DEPARTAMENTO\t", "CARGO"));
+        model.add(new UploadCsv("NOME\t", "CPF\t", "DATANASCIMENTO\t", "CELULAR\t", "EMAIL\t", "DEPARTAMENTO\t", "CARGO"));
 
         Workbook workbook = new XSSFWorkbook();
         Sheet sheet = workbook.createSheet("Modelo");
@@ -78,7 +79,7 @@ public class CsvFileDownloadController {
         int rowNum = 1;
 
         Row row = sheet.createRow(rowNum++);
-        for (ModeloCSV csv : model) {
+        for (UploadCsv csv : model) {
             row.createCell(0).setCellValue(csv.getNome());
             row.createCell(1).setCellValue(csv.getCpf());
             row.createCell(2).setCellValue(csv.getDataNascimento());
@@ -98,7 +99,7 @@ public class CsvFileDownloadController {
             response.getOutputStream().print(outputString);
         }
     }
-
+    */
 
     @RequestMapping(value = "/downloadCSV")
     public void downloadCSV(HttpServletResponse response) throws IOException {
