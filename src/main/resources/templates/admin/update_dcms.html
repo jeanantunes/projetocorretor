@@ -98,22 +98,16 @@
 
                     <div class="form-group width-form1 space-top-60 display:none">
 
-                        <label class="label-cdEmpresa"
-                               th:style="${cdEmpresa == null}  ? 'display:none' : 'display:inline-block'">Código da
+                        <label class="label-cdEmpresa">Código da
                             Empresa</label>
                         <input type="text" th:value="*{cdEmpresa}" th:name="cdEmpresa" id="cdEmpresa"
-                               th:style="${cdEmpresa == null}  ? 'display:none' : 'display:inline-block;text-align:center'"
                                class="cdEmpresa form-control"
-                               th:disabled="${cdEmpDcms} != null"
                                style="width: 30%;">
 
-                        <label class="label-dcms" id="cdEmpDcmsTxt"
-                               th:style="${cdEmpDcms == ''}  ? 'display:inline-block' : 'display:inline-block'">Código
+                        <label class="label-dcms" id="cdEmpDcmsTxt">Código
                             DCMS</label>
                         <input type="text" th:value="*{cdEmpDcms}" th:name="cdEmpDcms" id="cdEmpDcms"
-                               th:style="${cdEmpDcms == ''}  ? 'display:inline-block;text-align:center' : 'display:inline-block;text-align:center'"
                                class="empDcms form-control"
-                               th:disabled="${cdEmpDcms} != ''"
                                style="width: 30%;">
                     </div>
 
