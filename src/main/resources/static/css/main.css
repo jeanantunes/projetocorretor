@@ -1243,6 +1243,7 @@ nav:hover .forAnimate {
     width: 100%;
     background: url(../img/portal.jpg) no-repeat bottom center scroll;
     position: absolute;
+    background-size: cover;
 }
 
 .imagem-odonto {
