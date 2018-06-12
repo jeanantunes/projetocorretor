@@ -46,10 +46,10 @@
 <div class="container-fluid nopadding">
 
     <div th:switch="${session.usuario.perfil}">
-    <div th:case="'Adiministrador'"> -->
-    <div th:replace="fragments/menu-admin :: menu-admin">&nbsp;</div>
-    <div th:replace="fragments/header-admin :: header-admin">&nbsp;</div>
-    </div>
+        <div th:case="'Adiministrador'">
+            <div th:replace="fragments/menu-admin :: menu-admin">&nbsp;</div>
+            <div th:replace="fragments/header-admin :: header-admin">&nbsp;</div>
+        </div>
     </div>
 
     <div class="container-logado padding-logado">
@@ -123,7 +123,7 @@
                                 <input type="text" th:value="${cdEmpDcms}" th:name="cdEmpDcms" id="cdEmpDcms"
                                        th:style="${cdEmpresa == null}  ? 'display:none' : 'display:inline-block;text-align:center'"
                                        class="cdEmpDcms form-control"
-                                       th:disabled="${cdEmpDcms} != null"
+                                       th:disabled="${cdEmpDcms} != ''"
                                        style="width: 30%;">
 
                                 <input type="submit" id="btnSalvar"
