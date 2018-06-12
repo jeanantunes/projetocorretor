@@ -18,13 +18,13 @@ public class EmpresaService {
     @Value("${odontoprec.service.base}")
     private String requesBasetUrl;
 
-    @Value("${odontoprev.corretoras.empresa}") // /cnpj-dados/
+    @Value("${odontoprev.corretoras.empresa}")
     private String dadosEmpresa;
 
-    @Value("${odontoprev.corretoras.empresa.dcms}") // /empresa-dcms
+    @Value("${odontoprev.corretoras.empresa.dcms}")
     private String dadosEmpresaDCMS;
 
-    @Value("${odontoprev.corretoras.reenvio.aceite}") // /cnpj-dadosaceite/
+    @Value("${odontoprev.corretoras.reenvio.aceite}")
     private String dadosEmpresaAceite;
 
     @Value("${odontoprev.corretoras.email.aceite}")
@@ -33,12 +33,11 @@ public class EmpresaService {
     @Autowired
     private ApiManagerTokenService apiManagerTokenService;
 
-    // /cnpj-dadosaceite/
     public CnpjDadosAceiteResponse obterDadosReenvio(String cnpj) {
         CnpjDadosAceiteResponse cnpjDadosAceiteResponse = null;
 
-        //String url = requesBasetUrl + dadosEmpresaAceite + cnpj; // /cnpj-dadosaceite/
-        String url = "https://172.18.203.20:7001/cnpj-dadosaceite/" + cnpj;
+        String url = requesBasetUrl + dadosEmpresaAceite + cnpj;
+        //String url = "https://172.18.203.20:7001/cnpj-dadosaceite/" + cnpj;
         RestTemplate restTemplate = new RestTemplate();
 
         try {
@@ -65,8 +64,8 @@ public class EmpresaService {
         EmpresaResponse empresaResponse = null;
 
         cnpjDadosAceiteResponse.getCnpj().replace(".", "").replace("/", "").replace("-", "");
-        //String url = requesBasetUrl + dadosEmpresaAceite; // /cnpj-dadosaceite/
-        String url = "https://172.18.203.20:7001/empresa-dadosaceite/";
+        String url = requesBasetUrl + dadosEmpresaAceite;
+        //String url = "https://172.18.203.20:7001/empresa-dadosaceite/";
         RestTemplate restTemplate = new RestTemplate();
 
         try {
@@ -95,13 +94,11 @@ public class EmpresaService {
         }
     }
 
-    // /cnpj-dados/
-    //201805161145 - esert - COR-170
     public CnpjDadosDCMSResponse obterDadosEmpresaDCMS(String cnpj) {
         CnpjDadosDCMSResponse cnpjDadosDCMSResponse = null;
 
-        //String url = requesBasetUrl + dadosEmpresa + cnpj; // /cnpj-dados/
-        String url = "https://172.18.203.20:7001/cnpj-dados/" + cnpj;
+        String url = requesBasetUrl + dadosEmpresa + cnpj;
+        //String url = "https://172.18.203.20:7001/cnpj-dados/" + cnpj;
         RestTemplate restTemplate = new RestTemplate();
 
         try {
@@ -124,15 +121,11 @@ public class EmpresaService {
         }
     }
 
-    // /cnpj-dados/
-    //201805161145 - esert - COR-170
-
-    //201805171816 - esert - COR-170
     public EmpresaResponse updateDadosEmpresaDCMS(EmpresaDcms empresaDcms) {
         EmpresaResponse empresaResponse = null;
 
-        //String url = requesBasetUrl + dadosEmpresaDCMS; // /empresa-dcms/ PUT
-        String url = "https://172.18.203.20:7001/empresa-dcms";
+        String url = requesBasetUrl + dadosEmpresaDCMS;
+        //String url = "https://172.18.203.20:7001/empresa-dcms";
         RestTemplate restTemplate = new RestTemplate();
 
         try {

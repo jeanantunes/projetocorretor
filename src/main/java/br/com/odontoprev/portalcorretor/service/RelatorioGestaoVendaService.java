@@ -22,8 +22,8 @@ public class RelatorioGestaoVendaService {
     @Value("${odontoprev.relatorio.xls.pme}")
     private String relatorioCsvPME;
 
-    //@Value("${odontoprev.relatorio.xls.pf}")
-    //private String relatorioCsvPF;
+    @Value("${odontoprev.relatorio.xls.pf}")
+    private String relatorioCsvPF;
 
     @Autowired
     private ApiManagerTokenService apiManagerTokenService;
@@ -60,13 +60,13 @@ public class RelatorioGestaoVendaService {
         }
     }
 
-    /*
-    public byte[] gerarCsvPF(String pf) {
+
+    public byte[] gerarCsvPF(String dataInicio, String dataFim, String cnpj) {
 
         log.info("Relatorio Gestao de Venda PF - gerarCSV ");
 
-        String url = requesBasetUrl + relatorioCsvPF + pf;
-        //String url = "http://localhost:9090/downloadCsvPF/" + pf;
+        String url = requesBasetUrl + relatorioCsvPF + dataInicio + "/" + dataFim + "/" + cnpj;
+        //String url = "http://172.16.244.160:9090/downloadxls/corretoratotalvidaspf/" + dataInicio + "/" + dataFim + "/" + cnpj;
 
         RestTemplate restTemplate = new RestTemplate();
         MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
@@ -92,5 +92,4 @@ public class RelatorioGestaoVendaService {
             return new byte[0];
         }
     }
-    */
 }
