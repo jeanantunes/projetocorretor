@@ -45,13 +45,14 @@ public class CsvFileDownloadController {
         response.getWriter().flush();
     }
 
-    /*
     @RequestMapping(value = "/downloadPF", method = {RequestMethod.GET})
     public void downloadPF(HttpSession session, HttpServletResponse response) throws IOException {
 
+        String dataInicio = "0";
+        String dataFim = "0";
         UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
 
-        byte[] file = relatorioGestaoVendaService.gerarCsvPF(usuario.getDocumento());
+        byte[] file = relatorioGestaoVendaService.gerarCsvPF(dataInicio, dataFim, usuario.getDocumento());
 
         response.setContentType(String.valueOf(MediaType.TEXT_PLAIN_VALUE));
 
@@ -61,7 +62,6 @@ public class CsvFileDownloadController {
         response.getWriter().write(new String(file, "UTF-8"));
         response.getWriter().flush();
     }
-    */
 
     @RequestMapping(value = "/downloadXLS", method = {RequestMethod.GET})
     @ResponseBody
