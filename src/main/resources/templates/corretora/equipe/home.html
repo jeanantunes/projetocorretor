@@ -8,6 +8,8 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-theme.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/odontoprev.css}"/>
+
     <script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/jquery.mask.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/odonto-Valida.js}"></script>
@@ -195,6 +197,8 @@
             </div>
         </div>
 
+        <!-- TODO: Jean Antunes UPLOAD-->
+        <!--
         <div class="col-xs-30">
             <p>&nbsp;</p>
             <p>&nbsp;</p>
@@ -233,7 +237,8 @@
                 </table>
             </div -->
             <!-- id="export" -->
-            <a href="/downloadCSV" style="color: #dc4680;"><b>Clique aqui e faça o download da
+            <!--
+            <a href="/downloadXLS" style="color: #dc4680;"><b>Clique aqui e faça o download da
                 planilha em excel</b></a>
             <div class="space-top-10 btn-header-web">
                 <a href="#" type="button" data-toggle="modal" data-target="#uploadModal"
@@ -243,14 +248,19 @@
                    class="btn uppercase btnBlue btn-width-custom space-top-10 navbar-right">FAZER UPLOAD DA EQUIPE</a-->
 
 
+
                 <!-- INICIO - Modal -->
+        <!--
                 <div class="modal fade" id="uploadModal" role="dialog">
                     <div class="modal-dialog">
-                        <!-- Modal content-->
+                        <div class="imgBtnExcluir" id="closeModalRedeCredenciada">
+                            <img th:src="@{/img/btn-excluir.png}" class="btnExcluir" data-dismiss="modal">
+                        </div>
                         <div class="modal-content">
                             <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title text-blue">UPLOAD DA EQUIPE DE VENDAS</h4>
+                                <!-- button type="button" class="close" data-dismiss="modal">&times;</button -->
+        <!--
+                                <h4 class="modal-title font-blue">UPLOAD DA EQUIPE DE VENDAS</h4>
                             </div>
                             <div class="modal-body">
                                 <form class="md-form" action="/fileupload" method="POST"
@@ -279,10 +289,13 @@
                       <input type="file" name="file" id="file"/>
                       <input type="submit" value="Upload" />
                 </form-->
+        <!--
             </div>
             <p>&nbsp;</p>
             <p>&nbsp;</p>
         </div>
+        -->
+        <!-- TODO: Jean Antunes UPLOAD-->
 
         <div class="row space-top-30">
             <div class="col-xs-12">
