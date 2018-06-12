@@ -22,8 +22,8 @@ public class RelatorioGestaoVendaService {
     @Value("${odontoprev.relatorio.xls.pme}")
     private String relatorioCsvPME;
 
-    @Value("${odontoprev.relatorio.xls.pf}")
-    private String relatorioCsvPF;
+    //@Value("${odontoprev.relatorio.xls.pf}")
+    //private String relatorioCsvPF;
 
     @Autowired
     private ApiManagerTokenService apiManagerTokenService;
@@ -60,6 +60,7 @@ public class RelatorioGestaoVendaService {
         }
     }
 
+    /*
     public byte[] gerarCsvPF(String pf) {
 
         log.info("Relatorio Gestao de Venda PF - gerarCSV ");
@@ -91,4 +92,5 @@ public class RelatorioGestaoVendaService {
             return new byte[0];
         }
     }
+    */
 }
