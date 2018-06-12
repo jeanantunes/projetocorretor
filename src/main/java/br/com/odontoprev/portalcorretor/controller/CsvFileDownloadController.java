@@ -45,6 +45,7 @@ public class CsvFileDownloadController {
         response.getWriter().flush();
     }
 
+    /*
     @RequestMapping(value = "/downloadPF", method = {RequestMethod.GET})
     public void downloadPF(HttpSession session, HttpServletResponse response) throws IOException {
 
@@ -60,7 +61,7 @@ public class CsvFileDownloadController {
         response.getWriter().write(new String(file, "UTF-8"));
         response.getWriter().flush();
     }
-
+    */
 
     @RequestMapping(value = "/downloadXLS", method = {RequestMethod.GET})
     @ResponseBody
