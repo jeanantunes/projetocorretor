@@ -440,7 +440,7 @@ function buscarEmpresa() {
                     try { $("#representante-legal").val(dataConsulta.getElementsByTagName("nome")[0].textContent); } catch (Exception) { $("#representante-legal").prop('disabled', false); }
                     try { $("#cpf-representante").val(dataConsulta.getElementsByTagName("documento")[0].textContent); } catch (Exception) { $("#cpf-representante").prop('disabled', false); }
                     try { $("#nome-fantasia").val(dataConsulta.getElementsByTagName("nomeFantasia")[0].textContent); } catch (Exception) { $("#nome-fantasia").prop('disabled', false); }
-                    try { $("#cnae").val(dataConsulta.getElementsByTagName("codigo")[0].textContent); } catch (Exception) { }
+                    try { $("#cnae").val(dataConsulta.getElementsByTagName("codigo")[1].textContent); } catch (Exception) { }
                     try { $("#cep").val(dataConsulta.getElementsByTagName("cep")[0].textContent); } catch (Exception) { }
                     try { $("#uf").val(dataConsulta.getElementsByTagName("uf")[0].textContent); } catch (Exception) { }
                     try { $("#cidade").val(dataConsulta.getElementsByTagName("cidade")[0].textContent); } catch (Exception) { }
