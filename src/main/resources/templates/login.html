@@ -24,6 +24,9 @@
     <script type="text/javascript" th:src="@{/js/scripts.js}"></script>
 </head>
 <body>
+
+
+
 <form th:action="@{/login}" method="POST">
     <div class="container-cadastro">
         <img th:src="@{/img/logo-mobile.png}" class="img-logo-odonto logoOdonto">
@@ -43,8 +46,10 @@
 
             <div class="form-group width-form space-top-15">
                 <label class="label-password">SENHA</label>
-                <a href="#"><img th:src="@{/img/senha-1@2x.png}" class="img-senha" align="right"></a>
-                <input type="password" id="senha-index" class="password form-control" name="password"/>
+                <div>
+                    <img th:src="@{/img/senha-1@2x.png}" class="img-senha" align="right">
+                    <input type="password" id="senha-index" class="password form-control" name="password"/>
+                </div>
             </div>
 
             <div class="space-top-40">
@@ -60,5 +65,23 @@
         </div>
     </div>
 </form>
+
+<script>
+    $(document).ready(function() {
+
+        $( ".img-senha" ).mousedown(function() {
+            $("#senha-index").attr('type', 'text');
+            console.log("display senha");
+        });
+
+        $( ".img-senha" ).mouseup(function() {
+            $("#senha-index").attr("type", "password");
+            console.log("ocultar senha");
+        });
+    });
+</script>
+
 </body>
+
+
 </html>
