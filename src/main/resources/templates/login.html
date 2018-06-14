@@ -16,12 +16,14 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-theme.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/sweetalert.css}"/>
     <!-- 		<link href="css/estiloOdontoPrev.css" rel="stylesheet"> -->
     <script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/jquery.mask.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/odonto-Valida.js}"></script>
     <script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+    <script type="text/javascript" th:src="@{/js/sweetalert.min.js}"></script>
 </head>
 <body>
 
@@ -66,8 +68,41 @@
     </div>
 </form>
 
-<script>
+<script type="text/javascript">
     $(document).ready(function() {
+
+        try {
+
+            let oBrowser = get_browser();
+            let versionBroswer = parseFloat(oBrowser.version == null ? 0 : oBrowser.version);
+
+            if(oBrowser.name == "Chrome" && versionBroswer < 65) {
+
+                swal({
+                        title: "Ops!\n Navegador desatualizado",
+                        text: "Atualize seu navegador para conseguir utilizar todas as funcionalidades disponíveis.",
+                        type: "warning",
+                        confirmButtonClass: "btn-danger",
+                        confirmButtonColor: "#1974CE",
+                        confirmButtonText: "Atualizar",
+                        cancelButtonText: "Sair",
+                        showCancelButton: true,
+                        closeOnConfirm: false,
+                        closeOnCancel: true
+                    },
+                    function (isConfirm) {
+                        if (isConfirm) {
+
+                            window.open("https://www.google.com/chrome/");
+
+                        }
+                    })
+            }
+        }
+        catch (Exception) {
+
+        }
+
 
         $( ".img-senha" ).mousedown(function() {
             $("#senha-index").attr('type', 'text');
@@ -78,7 +113,34 @@
             $("#senha-index").attr("type", "password");
             console.log("ocultar senha");
         });
+
+
     });
+
+    function get_browser() {
+        try {
+            var ua = navigator.userAgent, tem,
+                M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+            if (/trident/i.test(M[1])) {
+                tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
+                return {name: 'IE', version: (tem[1] || '')};
+            }
+            if (M[1] === 'Chrome') {
+                tem = ua.match(/\bOPR|Edge\/(\d+)/)
+                if (tem != null) {
+                    return {name: 'Opera', version: tem[1]};
+                }
+            }
+            M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
+            if ((tem = ua.match(/version\/(\d+)/i)) != null) {
+                M.splice(1, 1, tem[1]);
+            }
+            return {
+                name: M[0],
+                version: M[1]
+            };
+        }catch (Exception){}
+    }
 </script>
 
 </body>
