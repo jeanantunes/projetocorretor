@@ -1323,7 +1323,8 @@ function sincronizarEmpresa(callback, proposta, beneficiarios) {
 
 
         $.ajax({
-            url: URLBase + "/corretorservicos/1.0/vendapme",
+            url: "http://172.16.244.160:9090/vendapme",
+            //url: URLBase + "/corretorservicos/1.0/vendapme",
             //url: "http://www.corretorvendaodonto.com.br:7001/portal-corretor-servico-0.0.1-SNAPSHOT/vendapme",
             type: "POST",
             data: json,

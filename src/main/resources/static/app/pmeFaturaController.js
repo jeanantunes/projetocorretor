@@ -48,8 +48,10 @@ $(document).ready(function () {
 function atualizarFatura() {
 
     var proposta = get("proposta");
+    let vencimento = isEffectiveDate($(".selectListBlur").val());
     proposta.vencimentoFatura = $(".selectListBlur").val();
-
+    proposta.dataVigencia = vencimento.format("DD/MM/YYYY");
+    proposta.dataMovimentacao = vencimento.format("DD/MM/YYYY");
     atualizarEmpresas(proposta);
     put("proposta", JSON.stringify(proposta));
 
@@ -91,7 +93,7 @@ function isEffectiveDate(dayDueDate) {
             //$("#vencimento").html('Data de vencimento:<br>' + vencimento.format("DD/MM/YYYY"));
             //$("#vigencia").html('Data de vigência:<br>' + vencimento.format("DD/MM/YYYY"));
             $("#dataVigencia").html(vencimento.format("DD/MM/YYYY"));
-            break;
+            return vencimento;
 
         case "15":
 
@@ -108,7 +110,7 @@ function isEffectiveDate(dayDueDate) {
             //$("#vencimento").html('Data de vencimento:<br>' + vencimento.format("DD/MM/YYYY"));
             //$("#vigencia").html('Data de vigência:<br>' + vencimento.format("DD/MM/YYYY"));
             $("#dataVigencia").html(vencimento.format("DD/MM/YYYY"));
-            break;
+            return vencimento;
 
         case "25":
 
@@ -125,7 +127,7 @@ function isEffectiveDate(dayDueDate) {
             //$("#vencimento").html('Data de vencimento:<br>' + vencimento.format("DD/MM/YYYY"));
             //$("#vigencia").html('Data de vigência:<br>' + vencimento.format("DD/MM/YYYY"));
             $("#dataVigencia").html(vencimento.format("DD/MM/YYYY"));
-            break;
+            return vencimento;
 
     }
 
