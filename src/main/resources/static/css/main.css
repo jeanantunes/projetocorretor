@@ -3339,6 +3339,12 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
     color: #C1C1C1 !important;
 }
 
+.text-black {
+    color: #000000 !important;
+    text-decoration: none;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
 .box-plano-select {
     width: 415px;
     height: 100px;

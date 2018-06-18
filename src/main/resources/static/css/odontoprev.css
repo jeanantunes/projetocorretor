@@ -1,17 +1,17 @@
-.backFrontOdont{
+.backFrontOdont {
     background-color: #F1F9FF;
 }
 
-.sweet-alert{
-        margin-top:10% !important;
-  }
+.sweet-alert {
+    margin-top: 10% !important;
+}
 
-.backTopOdont{
+.backTopOdont {
     padding-bottom: 30%;
     padding-top: 10%;
 }
 
-.iniOdont{
+.iniOdont {
     padding-bottom: 100%;
     background-color: #F1F9FF;
 }
@@ -29,7 +29,7 @@
 
 /*********************************** Imagem Usuário ****************************************/
 
-.perfil{
+.perfil {
     border: 15px solid #EDEDED;
     background-color: #ffffff;
     border-radius: 50%;
@@ -40,7 +40,7 @@
     margin-bottom: 5%;
 }
 
-.perfilMenu{
+.perfilMenu {
     background-color: #ffffff;
     border-radius: 50%;
     height: 60px !important;
@@ -49,7 +49,7 @@
     margin-bottom: 5%;
 }
 
-.imgPerfil{
+.imgPerfil {
     max-width: 100%;
     max-height: 100%;
     border-radius: 50%;
@@ -57,19 +57,19 @@
 
 /*********************************** End Imagem Usuário ****************************************/
 
-.boxLabInput{
+.boxLabInput {
     margin-bottom: 10%;
     margin-top: 5%;
     color: #3197EE;
 }
 
-.boxList{
+.boxList {
     margin-top: 5%;
     padding-left: 12%;
     margin-bottom: 5%;
 }
 
-.boxDependente{
+.boxDependente {
     padding-bottom: 10%;
     border: 1px solid #EDEDED;
     padding: 10px;
@@ -77,65 +77,65 @@
     box-shadow: 2px 5px 15px 0px #EDEDED;
 }
 
-.boxHeader{
+.boxHeader {
     border: 1px solid #fff;
     box-shadow: 0px 0px 50px 0px #EFEFEF;
     padding: 50px 0px 0px 0px;
 
 }
 
-.btnEnter{
+.btnEnter {
     position: relative;
     top: 360px;
 }
 
-.btnLogin{
+.btnLogin {
     position: relative;
     top: 460px;
 }
 
-.loginOdont{
+.loginOdont {
     padding-bottom: 50%;
     background-color: #F1F9FF;
 }
 
-.odontBoxCenter{
+.odontBoxCenter {
     padding-bottom: 0%;
 }
 
-.odontCenterIndex{
+.odontCenterIndex {
     padding-bottom: 10%;
     padding-top: 5%;
     padding-right: 10%;
     padding-left: 10%;
 }
 
-.btnPadBtm{
+.btnPadBtm {
     padding-bottom: 20pt;
-}  
+}
 
-.btnPadBtmTop{
+.btnPadBtmTop {
     padding-Top: 20pt;
     padding-bottom: 20pt;
 }
 
-.margBtmTop{
+.margBtmTop {
     margin-top: 60px;
     margin-bottom: 30px;
 }
 
-.boxBtnIndex{
+.boxBtnIndex {
     position: relative;
     margin-top: 120%;
     padding-bottom: 2%;
 }
 
-.boxAlerts{
+.boxAlerts {
     border-top: 1px solid #ACAAA5;
     border-bottom: 1px solid #ACAAA5;
 }
 
-.imagHead{
+.imagHead {
     position: absolute;
     margin-left: -30px;
     margin-top: 10px;
@@ -151,12 +151,14 @@
 
 .radio {
     display: inline-block;
-  }
-  .radio input[type="radio"] {
+}
+
+.radio input[type="radio"] {
     position: absolute;
     opacity: 0;
-  }
-  .radio input[type="radio"] + .radio-label:before {
+}
+
+.radio input[type="radio"] + .radio-label:before {
     content: '';
     background: #f4f4f4;
     border-radius: 100%;
@@ -172,26 +174,29 @@
     text-align: center;
     -webkit-transition: all 250ms ease;
     transition: all 250ms ease;
-  }
-  .radio input[type="radio"]:checked + .radio-label:before {
+}
+
+.radio input[type="radio"]:checked + .radio-label:before {
     background-color: #3197EE;
     box-shadow: inset 0 0 0 4px #f4f4f4;
-  }
-  .radio input[type="radio"]:focus + .radio-label:before {
+}
+
+.radio input[type="radio"]:focus + .radio-label:before {
     outline: none;
     border-color: #3197EE;
-  }
-  .radio input[type="radio"]:disabled + .radio-label:before {
+}
+
+.radio input[type="radio"]:disabled + .radio-label:before {
     box-shadow: inset 0 0 0 4px #f4f4f4;
     border-color: #b4b4b4;
     background: #b4b4b4;
-  }
-  .radio input[type="radio"] + .radio-label:empty:before {
+}
+
+.radio input[type="radio"] + .radio-label:empty:before {
     margin-right: 0;
-  }
+}
 
 /*********************************** End Radio Button ****************************************/
-
 
 /*********************************** Menu ****************************************/
 
@@ -233,7 +238,7 @@
     padding-bottom: 37px;
 }
 
-.btnMenu{
+.btnMenu {
     font-size: 30px;
     z-index: 2;
     position: absolute;
@@ -243,19 +248,24 @@
 }
 
 @media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+    .sidenav {
+        padding-top: 15px;
+    }
+
+    .sidenav a {
+        font-size: 18px;
+    }
 }
 
 /*********************************** End Menu ****************************************/
 
 /*********************************** Footer Fale Conosco ****************************************/
 
-.ans{
+.ans {
     margin-top: 8px;
 }
 
-.footerContato{
+.footerContato {
     font-family: Roboto-Regular;
     font-size: 12pt;
     background-color: #BCE0FD;
@@ -265,111 +275,109 @@
     text-align: center;
 }
 
-.footerImg{
+.footerImg {
     margin-bottom: 50px;
 }
 
 @media screen and (max-width: 800px) {
-    .footerContato{
+    .footerContato {
         font-size: 10pt !important;
     }
-  }
+}
 
 /*********************************** End Footer Fale Conosco ****************************************/
 
 /*********************************** Fale Conosco Mensagem ****************************************/
 
 .noresize {
-    resize: none; 
-  }
+    resize: none;
+}
 
 /*********************************** End Fale Conosco Mensagem ****************************************/
 
 /*********************************** Color ****************************************/
 
-.color1{
-    color:#1974CE;
+.color1 {
+    color: #1974CE;
 }
 
-.color2{
-    color:#656565;
+.color2 {
+    color: #656565;
 }
 
 /*********************************** End Color ****************************************/
 
 /*********************************** Cor Planos ****************************************/
 
-.titleSlick1{
-    color:#AC72C3;
-  }
-  
-  
-  .btnSlick1{
-      background-color: #AC72C3;
-  }
-  
-  .colorSlick1{
-      color:#AC72C3;
-  }
-  
-  .titleSlick2{
-      color:#F9B40A;
-  }
-  
-  .btnSlick2{
-      background-color: #F9B40A;
-  }
-  
-  .colorSlick2{
-      color:#F9B40A;
-  }
-  
-  .titleSlick3{
-      color:#DC6DAB;
-  }
-  
-  .btnSlick3{
-      background-color: #DC6DAB;
-  }
-  
-  .colorSlick3{
-      color:#DC6DAB;
-  }
-  
-  
-  .titleSlick4{
-      color:#46D5C6;
-  }
-  
-  .btnSlick4{
-      background-color: #46D5C6;
-  }
-  
-  .colorSlick4{
-      color:#46D5C6;
-  }
-  
-  .titleSlick5{
-      color:#52A4E3;
-  }
-  
-  .btnSlick5{
-      background-color: #52A4E3;
-  }
-  
-  .colorSlick5{
-      color:#52A4E3;
-  }
-  
-  .colorSlick5{
-      color:#D9487F;
-  }
-  
-  .colorSlick6{
-      color:#1974CE;
-  }
-  
-  /*********************************** End Cor Planos ****************************************/
+.titleSlick1 {
+    color: #AC72C3;
+}
+
+.btnSlick1 {
+    background-color: #AC72C3;
+}
+
+.colorSlick1 {
+    color: #AC72C3;
+}
+
+.titleSlick2 {
+    color: #F9B40A;
+}
+
+.btnSlick2 {
+    background-color: #F9B40A;
+}
+
+.colorSlick2 {
+    color: #F9B40A;
+}
+
+.titleSlick3 {
+    color: #DC6DAB;
+}
+
+.btnSlick3 {
+    background-color: #DC6DAB;
+}
+
+.colorSlick3 {
+    color: #DC6DAB;
+}
+
+.titleSlick4 {
+    color: #46D5C6;
+}
+
+.btnSlick4 {
+    background-color: #46D5C6;
+}
+
+.colorSlick4 {
+    color: #46D5C6;
+}
+
+.titleSlick5 {
+    color: #52A4E3;
+}
+
+.btnSlick5 {
+    background-color: #52A4E3;
+}
+
+.colorSlick5 {
+    color: #52A4E3;
+}
+
+.colorSlick5 {
+    color: #D9487F;
+}
+
+.colorSlick6 {
+    color: #1974CE;
+}
+
+/*********************************** End Cor Planos ****************************************/
 
 /**
 *** Seta para BAIXO
@@ -379,38 +387,37 @@
     display: inline-block;
     vertical-align: middle;
     margin-right: 10px;
-    width: 0; 
-    height: 0; 
-  
+    width: 0;
+    height: 0;
+
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
     border-top: 5px solid #f00;
-  }
+}
 
-
-.imgIndex{
+.imgIndex {
     background-image: url("../img/Walkingthrout1.jpg");
     background-repeat: no-repeat;
     background-size: 100%;
 }
 
-.imgLogoODPV{
+.imgLogoODPV {
     position: relative;
     padding-top: 10%;
     text-align: center;
 }
 
-.imgLogoODPVHeader{
+.imgLogoODPVHeader {
     position: relative;
     bottom: 30px;
 }
 
-.imgAlarm{
+.imgAlarm {
     position: absolute;
     left: 10px;
 }
 
-.imgDel{
+.imgDel {
     position: absolute;
     left: 10px;
 }
@@ -421,7 +428,7 @@
     src: url('fonts/Roboto-Black.ttf');
 }
 
-.cortoraSucess{
+.cortoraSucess {
     font-family: Roboto-Black;
     font-size: 10pt;
     color: #fff;
@@ -429,7 +436,7 @@
     padding: 20px;
 }
 
-.nomeRazaSocial{
+.nomeRazaSocial {
     font-family: Roboto-Black;
     font-size: 20pt;
     color: #fff;
@@ -441,7 +448,7 @@
     text-align: center;
 }
 
-.titleBoxVendas{
+.titleBoxVendas {
     font-family: Roboto-Black;
     font-size: 200%;
     text-align: center;
@@ -451,14 +458,13 @@
     height: 10%;
 }
 
-
 @media screen and (max-width: 450px) {
-    .formPagVal{
+    .formPagVal {
         font-size: 18pt !important;
     }
 }
 
-.formPagVal{
+.formPagVal {
     font-family: Roboto-Black;
     font-size: 25pt;
     position: relative;
@@ -471,56 +477,55 @@
 }
 
 @media screen and (max-width: 450px) {
-    .labelFormPag{
+    .labelFormPag {
         font-size: 12pt !important;
     }
 }
 
-h1, .titleListBox{
+h1, .titleListBox {
     font-family: Roboto-Bold;
     font-size: 35pt;
     text-align: center;
 }
 
-.labelFormPag{
+.labelFormPag {
     font-family: Roboto-Bold;
     font-size: 16pt;
     position: absolute;
     margin-top: 15pt;
 }
 
-.labelBlue{
+.labelBlue {
     font-family: Roboto-Bold;
     font-size: 20pt;
     color: #1974CE;
     margin-bottom: 40pt;
 }
 
-.labelBlueAlert{
+.labelBlueAlert {
     font-family: Roboto-Bold;
     font-size: 20pt;
     color: #1974CE;
     margin-top: 30pt;
 }
 
-.labelOdont{
+.labelOdont {
     font-family: Roboto-Bold;
     font-size: 20pt;
-    color: #656565; 
+    color: #656565;
     margin-bottom: 0;
 }
 
-.spanBoldListOdont{
+.spanBoldListOdont {
     font-family: Roboto-Bold;
     font-size: 12pt;
-    color: #656565; 
+    color: #656565;
 }
 
-
-.labelOdontMenu{
+.labelOdontMenu {
     font-family: Roboto-Bold;
     font-size: 14pt;
-    color: #656565; 
+    color: #656565;
     margin-bottom: 0;
     white-space: nowrap;
     position: relative;
@@ -528,7 +533,7 @@ h1, .titleListBox{
     left: 70px;
 }
 
-.imgBtnExcluir{
+.imgBtnExcluir {
     text-align: right;
     position: relative;
     left: 10px;
@@ -536,7 +541,7 @@ h1, .titleListBox{
     z-index: 1;
 }
 
-.imgBtnEditar{
+.imgBtnEditar {
     text-align: right;
     position: relative;
     left: 10px;
@@ -544,7 +549,7 @@ h1, .titleListBox{
     z-index: 1;
 }
 
-.btnOdontSell{
+.btnOdontSell {
     font-family: Roboto-Bold;
     font-size: 12pt;
     position: absolute;
@@ -555,22 +560,22 @@ h1, .titleListBox{
     color: #fff;
 }
 
-.btnOdontSell:hover{
+.btnOdontSell:hover {
     color: #fff;
 }
 
-.linkMenu{
+.linkMenu {
     font-family: Roboto-Bold;
     font-size: 10pt;
     color: #fff;
 }
 
-.linkMenu:hover{
+.linkMenu:hover {
     background-color: #D9487F;
     text-decoration: none;
 }
 
-.colorActive{
+.colorActive {
     background-color: #D9487F;
 }
 
@@ -580,7 +585,7 @@ h1, .titleListBox{
     color: #fff;
 }
 
-.linkOdont{
+.linkOdont {
     color: #D9487F;
     font-family: Roboto-Bold;
     font-size: 15pt;
@@ -589,13 +594,13 @@ h1, .titleListBox{
     padding-top: 5%;
 }
 
-@media screen and (max-width: 450px){
-.linkOdontCarteirinha {
-    font-size: 10pt !important;
+@media screen and (max-width: 450px) {
+    .linkOdontCarteirinha {
+        font-size: 10pt !important;
     }
 }
 
-.linkOdontCarteirinha{
+.linkOdontCarteirinha {
     color: #D9487F;
     font-family: Roboto-Bold;
     font-size: 14pt;
@@ -604,7 +609,7 @@ h1, .titleListBox{
     padding-top: 100px;
 }
 
-.linkOdontSalvar{
+.linkOdontSalvar {
     color: #D9487F;
     font-family: Roboto-Bold;
     font-size: 12pt;
@@ -614,7 +619,7 @@ h1, .titleListBox{
     padding-bottom: 5%;
 }
 
-.linkOdontSucess{
+.linkOdontSucess {
     font-family: Roboto-Bold;
     color: #D9487F;
     font-size: 12pt;
@@ -623,14 +628,14 @@ h1, .titleListBox{
     padding-top: 5%;
 }
 
-.h5SubTitlePlano{
+.h5SubTitlePlano {
     font-family: Roboto-Bold;
     font-size: 10pt;
     text-align: center;
     margin-bottom: 5%;
 }
 
-.linkOdontAddPlanos{
+.linkOdontAddPlanos {
     font-family: Roboto-Bold;
     font-size: 12pt;
     font-weight: 700;
@@ -642,13 +647,13 @@ h1, .titleListBox{
     src: url('fonts/Roboto-Regular.ttf');
 }
 
-.subLabelOdont{
+.subLabelOdont {
     font-family: Roboto-Regular;
     color: #656565;
     font-size: 10pt;
 }
 
-.subLabelOdontMenu{
+.subLabelOdontMenu {
     font-family: Roboto-Regular;
     color: #656565;
     font-size: 10pt;
@@ -658,53 +663,81 @@ h1, .titleListBox{
     left: 70px;
 }
 
-.titleOdont{
+.titleOdont {
     font-family: Roboto-Regular;
     color: #1974CE;
     font-size: 30pt;
 }
 
-.p-odont{
+.titleResumoProp {
+    font-family: Roboto-Regular;
+    font-weight: bold;
+    color: #1974CE;
+    font-size: 20pt;
+}
+
+.titleResumoPropBlue {
+    font-family: Roboto-Regular;
+    font-weight: bold;
+    color: #1974CE;
+    font-size: 15pt;
+    margin-top: 50px;
+    margin-bottom: 25px;
+}
+
+.label-odont {
+    font-family: Roboto-Regular;
+    color: #95989A;
+    font-size: 10pt;
+}
+
+.p-odont {
     font-family: Roboto-Regular;
     color: #95989A;
     font-size: 15pt;
 }
 
-.subTitleOdontSucess{
+.linkDepBlue{
+    color: blue;
+    font-family: Roboto-Regular;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.subTitleOdontSucess {
     font-family: Roboto-Regular;
     color: #1974CE;
     font-size: 22pt;
 }
-
 
 @font-face {
     font-family: Roboto-Light;
     src: url('fonts/Roboto-Light.ttf');
 }
 
-.linkDetailList{
+.linkDetailList {
     font-family: Roboto-Bold;
     color: #7D7D7D;
     font-size: 11pt;
 }
 
-.linkDetailList:hover{
+.linkDetailList:hover {
     font-family: Roboto-Bold;
     color: #7D7D7D;
     font-size: 11pt;
     text-decoration: none;
 }
 
-.setaList{
-    color:#D94980;
+.setaList {
+    color: #D94980;
 }
 
 @media screen and (max-width: 450px) {
-    .labelTipo{
+    .labelTipo {
         font-size: 10pt !important;
     }
 
-    .labelMes{
+    .labelMes {
         font-size: 10pt !important;
     }
 
@@ -712,36 +745,36 @@ h1, .titleListBox{
         font-size: 10pt !important;
     }
 
-    .labelBold{
+    .labelBold {
         font-size: 12pt !important;
     }
 
-    .labelLight{
+    .labelLight {
         font-size: 12pt !important;
     }
 
-    .labelBoldModal{
+    .labelBoldModal {
         font-size: 16pt !important;
     }
 
-    .labelLightModal{
+    .labelLightModal {
         font-size: 10pt !important;
     }
 
-    .labelBoldModalPlano{
+    .labelBoldModalPlano {
         font-size: 12pt !important;
     }
 
-    .labelBoldTitleModal{
+    .labelBoldTitleModal {
         font-size: 12pt !important;
     }
 
-    .labelBoldPink{
+    .labelBoldPink {
         font-size: 12pt !important;
     }
 }
 
-.labelMes{
+.labelMes {
     font-family: Roboto-Light;
     font-size: 14pt;
     color: #ACAAA5;
@@ -749,13 +782,13 @@ h1, .titleListBox{
     margin-top: 50pt;
 }
 
-h5, .subListBox{
+h5, .subListBox {
     font-family: Roboto-Light;
     font-size: 12pt;
     text-align: center;
 }
 
-.labelTipo{
+.labelTipo {
     font-family: Roboto-Light;
     font-size: 14pt;
     color: #ACAAA5;
@@ -772,19 +805,19 @@ h5, .subListBox{
     margin-bottom: 10pt;
 }
 
-.labelBold{
+.labelBold {
     font-family: Roboto-Bold;
     font-size: 16pt;
     color: #ACAAA5;
 }
 
-.labelBoldPink{
+.labelBoldPink {
     font-family: Roboto-Bold;
     font-size: 16pt;
     color: #D9487F;
 }
 
-.labelBoldTitleModal{
+.labelBoldTitleModal {
     font-family: Roboto-Bold;
     font-size: 16pt;
     color: #787878;
@@ -792,30 +825,30 @@ h5, .subListBox{
     position: relative;
 }
 
-.labelLight{
+.labelLight {
     font-family: Roboto-Light;
     font-size: 16pt;
     color: #ACAAA5;
 }
 
-.spanLight{
+.spanLight {
     font-family: Roboto-Light;
     font-size: 12pt;
 }
 
-.labelBoldModal{
+.labelBoldModal {
     font-family: Roboto-Bold;
     font-size: 18pt;
     color: #fff;
 }
 
-.labelLightModal{
+.labelLightModal {
     font-family: Roboto-Light;
     font-size: 16pt;
     color: #fff;
 }
 
-.labelBoldModalPlano{
+.labelBoldModalPlano {
     font-family: Roboto-Bold;
     font-size: 14pt;
     color: #ACAAA5;
@@ -823,20 +856,20 @@ h5, .subListBox{
     text-align: center;
 }
 
-.valorGrafico{
-       font-family: Roboto-Light;
-       font-size: 14pt;
-       color: #656565;
-       padding-left: 103%;
-       white-space: nowrap; 
+.valorGrafico {
+    font-family: Roboto-Light;
+    font-size: 14pt;
+    color: #656565;
+    padding-left: 103%;
+    white-space: nowrap;
 }
 
-.boxBeneficiario{
+.boxBeneficiario {
     position: absolute;
     top: 40px;
 }
 
-.pVPlanoVenda{
+.pVPlanoVenda {
     font-family: Roboto-Light;
     font-size: 100%;
     color: #656565;
@@ -847,12 +880,11 @@ h5, .subListBox{
     margin-top: 5%;
 }
 
-
-.pVPlanoVenda p{
+.pVPlanoVenda p {
     margin: 0 0 1px;
 }
 
-.pVPlanoVendaPME{
+.pVPlanoVendaPME {
     font-family: Roboto-Light;
     font-size: 100%;
     color: #656565;
@@ -863,12 +895,11 @@ h5, .subListBox{
     margin-top: 15%;
 }
 
-
-.pVPlanoVendaPME p{
+.pVPlanoVendaPME p {
     margin: 0 0 1px;
 }
 
-.labelVendGrafic{
+.labelVendGrafic {
     font-family: Roboto-Light;
     font-size: 9pt;
     color: #656565;
@@ -880,53 +911,99 @@ h5, .subListBox{
     color: #fff;
 }
 
-.subTitleOdont{
+.subTitleOdont {
     font-family: Roboto-Light;
     font-size: 15pt;
     color: #ACAAA5;
 }
 
-.spanLightListOdont{
+.subTitleResumoProp {
+    font-family: Roboto-Light;
+    font-size: 12pt;
+    color: #ACAAA5;
+    margin-top: 15px;
+    margin-bottom: 30px;
+}
+
+.tipoPlano {
+    font-family: Roboto-Light;
+    font-size: 11pt;
+    color: #ACAAA5;
+    margin-left: 25px;
+}
+
+.valorTotalPlanoLabel {
+    font-family: Roboto-Light;
+    font-size: 11pt;
+    color: #ACAAA5;
+    margin-left: 25px;
+    display: inline-block;
+}
+
+.valorTotalPlano {
+    font-family: Roboto-Light;
+    font-size: 11pt;
+    color: #ACAAA5;
+    display: inline-block;
+}
+
+.titlePlanoResumoProp {
+    color: #AF6FC3;
+    font-size: 15px;
+    margin-left: 25px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    display: inline-block;
+    vertical-align: text-bottom;
+}
+
+.valorPlanoResumoProp {
+    color: #AF6FC3;
+    font-size: 30px;
+    margin-top: 0px;
+    margin-bottom: -5px;
+    display: inline-block;
+}
+
+.spanLightListOdont {
     font-family: Roboto-Light;
     font-size: 10pt;
     color: #ACAAA5;
-    display:block;
+    display: block;
 }
 
-.subTitleOdontVenda{
+.subTitleOdontVenda {
     font-family: Roboto-Light;
     font-size: 15pt;
     color: #656565;
 }
 
-.subTitleOdonth3{
+.subTitleOdonth3 {
     font-family: Roboto-Light;
     font-size: 15pt;
     color: #ACAAA5;
 }
 
-.spanText{
+.spanText {
     font-family: Roboto-Light;
     font-size: 20pt;
     color: #1974CE;
     text-align: center;
 }
 
-.btnTabList{
+.btnTabList {
     font-family: Roboto-Light;
     font-size: 10pt;
-    color:#fff;
+    color: #fff;
 }
-
-
 
 /***********************************BOX ALERTS ****************************************/
 
-.colorAlert{
+.colorAlert {
     color: #656565;
 }
 
-.boxAlertIcomp{
+.boxAlertIcomp {
     font-family: Roboto-Light;
     color: #fff;
     font-size: 10pt;
@@ -942,7 +1019,7 @@ h5, .subListBox{
     box-shadow: 2px 10px 20px 0px #E1E1E1;
 }
 
-.boxAlertCritico{
+.boxAlertCritico {
     font-family: Roboto-Light;
     color: #fff;
     font-size: 10pt;
@@ -957,7 +1034,7 @@ h5, .subListBox{
     box-shadow: 2px 10px 20px 0px #E1E1E1;
 }
 
-.boxAlertSucess{
+.boxAlertSucess {
     font-family: Roboto-Light;
     color: #fff;
     font-size: 10pt;
@@ -972,7 +1049,7 @@ h5, .subListBox{
     box-shadow: 2px 10px 20px 0px #E1E1E1;
 }
 
-.boxAlertPendente{
+.boxAlertPendente {
     font-family: Roboto-Light;
     color: #656565;
     font-size: 10pt;
@@ -988,98 +1065,96 @@ h5, .subListBox{
     margin-top: 20px;
     box-shadow: 2px 10px 20px 0px #E1E1E1;
 }
-
 
 @media screen and (min-width: 680px) {
 
-.label-Pend{
-    position: relative;
-    top: 25%;
-    color: #656565;
-}
+    .label-Pend {
+        position: relative;
+        top: 25%;
+        color: #656565;
+    }
 
-.label-Sucess{
-    position: relative;
-    top: 25%;
-}
+    .label-Sucess {
+        position: relative;
+        top: 25%;
+    }
 
-.label-Critico{
-    position: relative;
-    top: 25%;
-}
+    .label-Critico {
+        position: relative;
+        top: 25%;
+    }
 
-.label-Icomp{
-    position: relative;
-    top: 25%;
-}
+    .label-Icomp {
+        position: relative;
+        top: 25%;
+    }
 
-.boxAlertIcomp{
-    font-family: Roboto-Light;
-    color: #fff;
-    font-size: 16pt;
-    background-color: #F9B40A;
-    padding: 20px;
-    margin-top: 20%;
-    border-radius: 10px;
-    text-align: center;
-    display: inline-block;
-    width: 300px;
-    height: 220px;
-    margin-right: 20px;
-    box-shadow: 2px 10px 20px 0px #E1E1E1;
-}
+    .boxAlertIcomp {
+        font-family: Roboto-Light;
+        color: #fff;
+        font-size: 16pt;
+        background-color: #F9B40A;
+        padding: 20px;
+        margin-top: 20%;
+        border-radius: 10px;
+        text-align: center;
+        display: inline-block;
+        width: 300px;
+        height: 220px;
+        margin-right: 20px;
+        box-shadow: 2px 10px 20px 0px #E1E1E1;
+    }
 
-.boxAlertCritico{
-    font-family: Roboto-Light;
-    color: #fff;
-    font-size: 16pt;
-    background-color: #FF4141;
-    padding: 20px;
-    margin-top: 14px;
-    border-radius: 10px;
-    /* margin-bottom: 20%; */
-    text-align: center;
-    display: inline-block;
-    width: 300px;
-    height: 220px;
-    box-shadow: 2px 10px 20px 0px #E1E1E1;
-}
+    .boxAlertCritico {
+        font-family: Roboto-Light;
+        color: #fff;
+        font-size: 16pt;
+        background-color: #FF4141;
+        padding: 20px;
+        margin-top: 14px;
+        border-radius: 10px;
+        /* margin-bottom: 20%; */
+        text-align: center;
+        display: inline-block;
+        width: 300px;
+        height: 220px;
+        box-shadow: 2px 10px 20px 0px #E1E1E1;
+    }
 
-.boxAlertSucess{
-    font-family: Roboto-Light;
-    color: #fff;
-    font-size: 16pt;
-    background-color: #83BC00;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20%;
-    text-align: center;
-    display: inline-block;
-    width: 300px;
-    height: 220px;
-    box-shadow: 2px 10px 20px 0px #E1E1E1;
-}
+    .boxAlertSucess {
+        font-family: Roboto-Light;
+        color: #fff;
+        font-size: 16pt;
+        background-color: #83BC00;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20%;
+        text-align: center;
+        display: inline-block;
+        width: 300px;
+        height: 220px;
+        box-shadow: 2px 10px 20px 0px #E1E1E1;
+    }
 
-.boxAlertPendente{
-    font-family: Roboto-Light;
-    color: #656565;
-    font-size: 16pt;
-    background-color: #EDEDED;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20%;
-    text-align: center;
-    display: inline-block;
-    width: 300px;
-    height: 220px;
-    margin-right: 20px;
-    margin-top: 20px;
-    box-shadow: 2px 10px 20px 0px #E1E1E1;
-}
+    .boxAlertPendente {
+        font-family: Roboto-Light;
+        color: #656565;
+        font-size: 16pt;
+        background-color: #EDEDED;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20%;
+        text-align: center;
+        display: inline-block;
+        width: 300px;
+        height: 220px;
+        margin-right: 20px;
+        margin-top: 20px;
+        box-shadow: 2px 10px 20px 0px #E1E1E1;
+    }
 
+    /*********************************** End BOX ALERTS ****************************************/
 
-/*********************************** End BOX ALERTS ****************************************/
-    
 }
 
 @font-face {
@@ -1087,7 +1162,7 @@ h5, .subListBox{
     src: url('fonts/Roboto-Medium.ttf');
 }
 
-.selectListBlur{
+.selectListBlur {
     font-family: Roboto-Medium;
     box-shadow: 0 0 0 0 !important;
     padding: 0px;
@@ -1101,16 +1176,16 @@ h5, .subListBox{
     border-bottom: 1px solid #3197EE;
 }
 
-#proximoMes{
-    margin-top: 2% ;   
+#proximoMes {
+    margin-top: 2%;
     background-color: #F9B40A;
     color: white;
     border-radius: 2%;
-     font-size: 10pt;
+    font-size: 10pt;
     text-align: center;
 }
 
-.selectListCidadeBlur{
+.selectListCidadeBlur {
     font-family: Roboto-Medium;
     padding: 0px;
     box-shadow: 0 0 0 0 !important;
@@ -1125,7 +1200,7 @@ h5, .subListBox{
 
 }
 
-.btnOdont{
+.btnOdont {
     font-family: Roboto-Medium;
     font-size: 12pt;
     background-color: #1974CE;
@@ -1133,11 +1208,11 @@ h5, .subListBox{
     padding: 16px;
 }
 
-.btnOdont:hover{
+.btnOdont:hover {
     color: #fff !important;
 }
 
-.btnOdontDependente{
+.btnOdontDependente {
     font-family: Roboto-Medium;
     font-size: 12pt;
     background-color: #fff;
@@ -1145,7 +1220,7 @@ h5, .subListBox{
     border: 1px solid #EDEDED;
 }
 
-.btnTranspOdont{
+.btnTranspOdont {
     font-family: Roboto-Medium;
     font-size: 12pt;
     background-color: transparent;
@@ -1154,31 +1229,31 @@ h5, .subListBox{
     padding: 16px;
 }
 
-.btnTranspOdont:hover{
+.btnTranspOdont:hover {
     color: #fff !important;
 }
 
-.btnOdontPlano{
+.btnOdontPlano {
     font-family: Roboto-Medium;
     font-size: 12pt;
     color: #ffffff;
     text-align: left;
 }
 
-.spanInlineLeft{
+.spanInlineLeft {
     text-align: left;
     position: absolute;
 }
 
-.spanInlineRight{
+.spanInlineRight {
     text-align: right;
 }
 
-.btnOdontPlano:hover{
-    color:#fff;
+.btnOdontPlano:hover {
+    color: #fff;
 }
 
-.btnPinkOdont{
+.btnPinkOdont {
     font-family: Roboto-Medium;
     font-size: 12pt;
     background-color: #D9487F;
@@ -1186,7 +1261,7 @@ h5, .subListBox{
     padding: 16px;
 }
 
-.btnOpacityOdont{
+.btnOpacityOdont {
     font-family: Roboto-Medium;
     font-size: 12pt;
     background-color: #fff;
@@ -1201,26 +1276,25 @@ h5, .subListBox{
     color: #fff !important;
 }
 
-.btnPinkOdont:hover{
+.btnPinkOdont:hover {
     color: #fff !important;
 }
 
-.labelOdontBlur{
+.labelOdontBlur {
     font-family: Roboto-Medium;
     color: #ACAAA5;
     font-size: 15pt;
     padding-top: 4%;
 }
 
-
-.labelOdontFocus{
+.labelOdontFocus {
     font-family: Roboto-Medium;
     color: #1974CE;
     font-size: 15pt;
     padding-top: 10%;
 }
 
-.labelInfoOdontFocus{
+.labelInfoOdontFocus {
     font-family: Roboto-Medium;
     color: #1974CE;
     font-size: 12pt;
@@ -1228,39 +1302,39 @@ h5, .subListBox{
 }
 
 /*********************************** Color p Plano ****************************************/
-.pInfoPlanoSlick1{
+.pInfoPlanoSlick1 {
     font-family: Roboto-Medium;
     color: #AC72C3;
     font-size: 80%;
 }
 
-.pInfoPlanoSlick2{
+.pInfoPlanoSlick2 {
     font-family: Roboto-Medium;
     color: #F9B40A;
     font-size: 80%;
 }
 
-.pInfoPlanoSlick3{
+.pInfoPlanoSlick3 {
     font-family: Roboto-Medium;
     color: #DC6DAB;
     font-size: 80%;
 }
 
-.pInfoPlanoSlick4{
+.pInfoPlanoSlick4 {
     font-family: Roboto-Medium;
     color: #46D5C6;
     font-size: 80%;
 }
 
-.pInfoPlanoSlick5{
+.pInfoPlanoSlick5 {
     font-family: Roboto-Medium;
-    color:#52A4E3;
+    color: #52A4E3;
     font-size: 80%;
 }
 
 /*********************************** End Color p Plano ****************************************/
 
-.labelCheckOdontFocus{
+.labelCheckOdontFocus {
     font-family: Roboto-Medium;
     color: #1974CE;
     font-size: 10pt;
@@ -1268,7 +1342,7 @@ h5, .subListBox{
     white-space: nowrap;
 }
 
-.labelCheckOdontBlur{
+.labelCheckOdontBlur {
     font-family: Roboto-Medium;
     color: #ACAAA5;
     font-size: 10pt;
@@ -1277,7 +1351,7 @@ h5, .subListBox{
     white-space: nowrap;
 }
 
-.inputLabelFocus{
+.inputLabelFocus {
     font-family: Roboto-Medium;
     border: 0;
     outline: 0;
@@ -1288,9 +1362,9 @@ h5, .subListBox{
     box-shadow: 0 0 0 0;
     border-radius: 0;
     border-bottom: 1px solid #1974CE;
-    }
+}
 
-.inputLabelBlur{
+.inputLabelBlur {
     font-family: Roboto-Medium;
     color: #ACAAA5;
     border: 0;
@@ -1305,7 +1379,7 @@ h5, .subListBox{
 
 /*********************************** End Fonts ****************************************/
 
-.modal-header-OdontMed{
+.modal-header-OdontMed {
     min-height: 16.43px;
     padding: 15px;
     background-color: #D9487F;
@@ -1313,7 +1387,7 @@ h5, .subListBox{
     text-align: center;
 }
 
-.modal-body-OdontMed{
+.modal-body-OdontMed {
     padding-bottom: 60px;
     padding-top: 60px;
     background-color: #F8F8F8;
@@ -1325,27 +1399,27 @@ h5, .subListBox{
     font-size: 16pt;
 }
 
-.modal-footer-OdontMed{
+.modal-footer-OdontMed {
     padding: 0px;
     text-align: right;
     background-color: #F8F8F8;
     text-align: center;
 }
 
-.modalBoxCenter{
+.modalBoxCenter {
     padding: 60px;
 }
 
-.boxDados{
+.boxDados {
     margin-top: 10%;
     margin-bottom: 10%;
 }
 
-.modalConteiner{
-    top:20px;
+.modalConteiner {
+    top: 20px;
 }
 
-.closeModal{
+.closeModal {
     position: absolute;
     left: 92%;
     top: -1%;
@@ -1405,10 +1479,10 @@ h5, .subListBox{
     border: solid transparent !important;
     border-width: 0 0 2rem 2rem;
     transition: 0.2s;
-    transform: rotate(225deg)!important;
+    transform: rotate(225deg) !important;
 }
 
-.slick-prev{
+.slick-prev {
     left: 20px;
     padding: 1rem !important;
     box-shadow: 1px -1px 0 1px #ACAAA5 inset;
@@ -1416,12 +1490,13 @@ h5, .subListBox{
     border: solid transparent !important;
     border-width: 0 0 2rem 2rem;
     transition: 0.2s;
-    transform: rotate(44deg)!important;
+    transform: rotate(44deg) !important;
 }
 
 .slick-prev:before, .slick-next:before {
     color: white !important;
 }
+
 .slick-prev:before {
     content: '';
 }
@@ -1430,47 +1505,47 @@ h5, .subListBox{
     content: '';
 }
 
-.setaCinza{
-position: absolute;
-left: 96.3%;
-top: 30%;
-width: 0;
-height: 0;
-border-style: solid;
-border-width: 9px 5.5px 0 5.5px;
-border-color: #ACAAA5 transparent transparent transparent;
+.setaCinza {
+    position: absolute;
+    left: 96.3%;
+    top: 30%;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 9px 5.5px 0 5.5px;
+    border-color: #ACAAA5 transparent transparent transparent;
 }
 
-.boxVendas{
-position: relative;
-margin-top: 45pt;
-margin-bottom: 10%;
+.boxVendas {
+    position: relative;
+    margin-top: 45pt;
+    margin-bottom: 10%;
 }
 
-.imgVenda{
+.imgVenda {
     text-align: center;
 }
 
 @media screen and (min-width: 800px) {
-    .boxPlanos{
-    height: 600px !important;
+    .boxPlanos {
+        height: 600px !important;
     }
 }
 
-.boxPlanos{
+.boxPlanos {
     height: 700px;
-    
+
     border: 1px solid #EDEDED;
     border-radius: 18px;
     margin-bottom: 27pt;
     box-shadow: 2px 5px 15px 0px #EDEDED;
-    }
+}
 
-.boxDadosProposta{
-height: 100pt;
-border: 1px solid #EDEDED;
-border-radius: 18px;
-box-shadow: 2px 5px 15px 0px #EDEDED;
+.boxDadosProposta {
+    height: 100pt;
+    border: 1px solid #EDEDED;
+    border-radius: 18px;
+    box-shadow: 2px 5px 15px 0px #EDEDED;
 }
 
 #map {
@@ -1478,50 +1553,51 @@ box-shadow: 2px 5px 15px 0px #EDEDED;
     width: 100%;
 }
 
-.font-moeda{
+.font-moeda {
     font-size: 25px !important;
-   
-   }
 
-.font-cent{
-font-size: 14px !important;
-position: relative;
+}
+
+.font-cent {
+    font-size: 14px !important;
+    position: relative;
     bottom: 8px;
 }
 
-.boxSucess{
+.boxSucess {
     height: 100%;
 }
 
-.closeNav{
-    position:absolute;
-    width:100%;
-    height:100%;
-    top:0;
-    left:0;
+.closeNav {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
     z-index: 2;
 }
 
-.mySidenav{
-    overflow:auto;
+.mySidenav {
+    overflow: auto;
 }
 
-.fixed{
+.fixed {
     position: fixed;
     width: 100%;
 }
-.spanCheckbox{
+
+.spanCheckbox {
     padding-left: 10px;
 }
 
 /*********************************** Botão SAIR/EDITAR ****************************************/
 
-.edit{
+.edit {
     float: right;
     margin-top: 26px;
 }
 
-.sair{
+.sair {
     margin-right: 3px;
     margin-left: 7px;
 }
@@ -1530,10 +1606,10 @@ position: relative;
 
 /*********************************** SQUARED ONE ****************************************/
 input[type=checkbox] {
-	visibility: hidden;
+    visibility: hidden;
 }
 
-.inputLabelCheckFocus{
+.inputLabelCheckFocus {
     font-family: Roboto-Medium;
     border: 0;
     outline: 0;
@@ -1543,15 +1619,15 @@ input[type=checkbox] {
     color: #1974CE;
     background: transparent;
     border-bottom: 1px solid #1974CE;
-    }
+}
 
 .squaredOne {
-	width: 20px;	
-	position: relative;
+    width: 20px;
+    position: relative;
 }
 
 .squaredOne label {
-	cursor: pointer;
+    cursor: pointer;
     padding-left: 20px;
     top: 0;
     border-radius: 4px;
@@ -1560,37 +1636,37 @@ input[type=checkbox] {
 }
 
 .squaredOne label:after {
-	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-	filter: alpha(opacity=0);
-	opacity: 0;
-	content: '';
-	position: absolute;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    opacity: 0;
+    content: '';
+    position: absolute;
     width: 16px;
     height: 10px;
-	background: transparent;
-	top: 2px;
-	left: 2px;
-	border: 3px solid #1974CE;
-	border-top: none;
-	border-right: none;
+    background: transparent;
+    top: 2px;
+    left: 2px;
+    border: 3px solid #1974CE;
+    border-top: none;
+    border-right: none;
 
-	-webkit-transform: rotate(-45deg);
-	-moz-transform: rotate(-45deg);
-	-o-transform: rotate(-45deg);
-	-ms-transform: rotate(-45deg);
-	transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
 }
 
 .squaredOne label:hover::after {
-	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
-	filter: alpha(opacity=30);
-	opacity: 0.3;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+    filter: alpha(opacity=30);
+    opacity: 0.3;
 }
 
 .squaredOne input[type=checkbox]:checked + label:after {
-	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-	filter: alpha(opacity=100);
-	opacity: 1;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    filter: alpha(opacity=100);
+    opacity: 1;
 }
 
 /*********************************** End SQUARED ONE ****************************************/
@@ -1602,59 +1678,59 @@ input[type=checkbox] {
     position: relative;
 }
 
-    .squaredOneTermoCadastrado label {
-        cursor: pointer;
-        padding-left: 20px;
-        top: 0;
-        border-radius: 4px;
-        border: 2px solid #D9487F;
-        margin-bottom: 30px;
-    }
+.squaredOneTermoCadastrado label {
+    cursor: pointer;
+    padding-left: 20px;
+    top: 0;
+    border-radius: 4px;
+    border: 2px solid #D9487F;
+    margin-bottom: 30px;
+}
 
-        .squaredOneTermoCadastrado label:after {
-            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-            filter: alpha(opacity=0);
-            opacity: 0;
-            content: '';
-            position: absolute;
-            width: 16px;
-            height: 10px;
-            background: transparent;
-            top: 2px;
-            left: 2px;
-            border: 3px solid #1974CE;
-            border-top: none;
-            border-right: none;
-            -webkit-transform: rotate(-45deg);
-            -moz-transform: rotate(-45deg);
-            -o-transform: rotate(-45deg);
-            -ms-transform: rotate(-45deg);
-            transform: rotate(-45deg);
-        }
+.squaredOneTermoCadastrado label:after {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    opacity: 0;
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 10px;
+    background: transparent;
+    top: 2px;
+    left: 2px;
+    border: 3px solid #1974CE;
+    border-top: none;
+    border-right: none;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
 
-        .squaredOneTermoCadastrado label:hover::after {
-            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
-            filter: alpha(opacity=30);
-            opacity: 0.3;
-        }
+.squaredOneTermoCadastrado label:hover::after {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+    filter: alpha(opacity=30);
+    opacity: 0.3;
+}
 
-    .squaredOneTermoCadastrado input[type=checkbox]:checked + label:after {
-        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-        filter: alpha(opacity=100);
-        opacity: 1;
-    }
+.squaredOneTermoCadastrado input[type=checkbox]:checked + label:after {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    filter: alpha(opacity=100);
+    opacity: 1;
+}
 
 /*********************************** End SQUARED TERMO USUARIO PRE CADASTRADO ****************************************/
 
 /*********************************** SQUARED TWO ****************************************/
 
-.squaredTwo{
-	width: 20px;	
-	position: relative;
+.squaredTwo {
+    width: 20px;
+    position: relative;
 }
 
 .squaredTwo label {
-	cursor: pointer;
+    cursor: pointer;
     padding-left: 20px;
     top: 0;
     border-radius: 4px;
@@ -1663,44 +1739,44 @@ input[type=checkbox] {
 }
 
 .squaredTwo label:after {
-	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-	filter: alpha(opacity=0);
-	opacity: 0;
-	content: '';
-	position: absolute;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    opacity: 0;
+    content: '';
+    position: absolute;
     width: 16px;
     height: 10px;
-	background: transparent;
-	top: 2px;
-	left: 2px;
-	border: 3px solid #1974CE;
-	border-top: none;
-	border-right: none;
+    background: transparent;
+    top: 2px;
+    left: 2px;
+    border: 3px solid #1974CE;
+    border-top: none;
+    border-right: none;
 
-	-webkit-transform: rotate(-45deg);
-	-moz-transform: rotate(-45deg);
-	-o-transform: rotate(-45deg);
-	-ms-transform: rotate(-45deg);
-	transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
 }
 
 .squaredTwo label:hover::after {
-	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
-	filter: alpha(opacity=30);
-	opacity: 0.3;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+    filter: alpha(opacity=30);
+    opacity: 0.3;
 }
 
 .squaredTwo input[type=checkbox]:checked + label:after {
-	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-	filter: alpha(opacity=100);
-	opacity: 1;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    filter: alpha(opacity=100);
+    opacity: 1;
 }
 
 /*********************************** End SQUARED TWO ****************************************/
 
 /*********************************** TABS ****************************************/
 
-.nav-tabs>.tabPF.active>a, .nav-tabs>.tabPF.active>a:focus, .nav-tabs>.tabPF.active>a:hover{
+.nav-tabs > .tabPF.active > a, .nav-tabs > .tabPF.active > a:focus, .nav-tabs > .tabPF.active > a:hover {
     color: #fff;
     cursor: default;
     background-color: #D9487F;
@@ -1708,7 +1784,7 @@ input[type=checkbox] {
     border-bottom-color: transparent;
 }
 
-.nav-tabs>.tabPME.active>a, .nav-tabs>.tabPME.active>a:focus, .nav-tabs>.tabPME.active>a:hover{
+.nav-tabs > .tabPME.active > a, .nav-tabs > .tabPME.active > a:focus, .nav-tabs > .tabPME.active > a:hover {
     color: #fff;
     cursor: default;
     background-color: #1974CE;
@@ -1716,28 +1792,28 @@ input[type=checkbox] {
     border-bottom-color: transparent;
 }
 
-.nav>li>a {
+.nav > li > a {
     position: relative;
     display: block;
     padding: 15px 51px;
     background-color: #C3C7CB;
 }
 
-.nav-tabs>li>a {
+.nav-tabs > li > a {
     margin-right: 0px;
     line-height: inherit;
     border: 1px solid transparent;
     border-radius: 0;
 }
 
-.nav-tabs.nav-justified>li>a {
+.nav-tabs.nav-justified > li > a {
     margin-right: 0;
     border-radius: 0;
 }
 
-@media (max-width: 768px){
+@media (max-width: 768px) {
 
-    .nav-tabs.nav-justified>li {
+    .nav-tabs.nav-justified > li {
         float: left;
         width: 50%;
     }
@@ -1750,15 +1826,15 @@ input[type=checkbox] {
     list-style: none;
 }
 
-.tab-content>.active {
+.tab-content > .active {
     display: flow-root;
 }
 
-.pme{
+.pme {
     border: 1px solid #1974CE;
 }
 
-.pf{
+.pf {
     border: 1px solid #D9487F;
 }
 
@@ -1766,7 +1842,7 @@ input[type=checkbox] {
 
 /*********************************** Lista de Planos ****************************************/
 
-.listCirc{
+.listCirc {
     position: relative;
     right: 30px;
     top: 20px;
@@ -1775,15 +1851,15 @@ input[type=checkbox] {
     height: 20px;
 }
 
-.colorCirc1{
+.colorCirc1 {
     background-color: #FFE310;
 }
 
-.colorCirc2{
+.colorCirc2 {
     background-color: #94EA31;
 }
 
-.colorCirc3{
+.colorCirc3 {
     background-color: #FF4141;
 }
 
@@ -1791,37 +1867,38 @@ input[type=checkbox] {
     background-color: #40ff00;
 }
 
-.listBarra{
-    border-left:1px solid silver; 
-    padding:0px 0px 0px 20px; 
-    position:relative; 
-    left:-20px; margin-top:3px;  
+.listBarra {
+    border-left: 1px solid silver;
+    padding: 0px 0px 0px 20px;
+    position: relative;
+    left: -20px;
+    margin-top: 3px;
 }
 
 /*********************************** End Lista de Planos ****************************************/
 
 /*********************************** Gráfico VENDAS ****************************************/
 
-*{
-  box-sizing: border-box;
+* {
+    box-sizing: border-box;
 }
 
-.grafico-barras{
- margin-bottom: 1em;
- position: relative;
- width: 80%;
- height: auto;
+.grafico-barras {
+    margin-bottom: 1em;
+    position: relative;
+    width: 80%;
+    height: auto;
 }
 
-.barra-fondo{
-  border-radius: 2px;
+.barra-fondo {
+    border-radius: 2px;
     background: transparent;
     margin-bottom: 10px;
     display: block;
 }
 
-.barras{  
-    background-color: cyan;    
+.barras {
+    background-color: cyan;
     border-radius: 15px;
     cursor: pointer;
     margin-bottom: 10px;
@@ -1829,93 +1906,81 @@ input[type=checkbox] {
     position: relative;
     z-index: 9999;
     display: block;
-    height: 30px;  
-    width: 0%; 
+    height: 30px;
+    width: 0%;
 }
 
 .valor-vendar {
     position: absolute;
-    right: -73px; 
-    top: 5px; 
-    color: #656565 
+    right: -73px;
+    top: 5px;
+    color: #656565
 }
 
 /*********************************** End Gráfico VENDAS ****************************************/
 
 /*==============================================BARRA DE ROLAGEM=========================================*/
 
-
-
 ::-webkit-scrollbar {
 
     width: 12px;
-    
-    }
-    
-    
-    ::-webkit-scrollbar-track {
-    
-    -webkit-box-shadow: 
-    inset 0 
-    0 6px rgba(0,0,0,0.3);
-    
-    border-radius: 
-    0px;
+
+}
+
+::-webkit-scrollbar-track {
+
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+
+    border-radius: 0px;
     background-color: #EAEAEA;
-    
-    }
-    
-    
-    ::-webkit-scrollbar-thumb {
-    
-    border-radius: 
-    0px;
-    
-        -webkit-box-shadow: 
-    inset 0 
-    0 6px rgba(0,0,0,0.4);
-    
-        background: 
-    #2B6DC9;
-    
-    }
-    
-    ::-webkit-scrollbar-thumb:hover {
-    
-    border-radius: 
-    8px;
-    
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
-    
-        border: 1px solid #2B6DC9;
-    
-        background: #F5FFFF;
-    
-    }
+
+}
+
+::-webkit-scrollbar-thumb {
+
+    border-radius: 0px;
+
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.4);
+
+    background: #2B6DC9;
+
+}
+
+::-webkit-scrollbar-thumb:hover {
+
+    border-radius: 8px;
+
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+
+    border: 1px solid #2B6DC9;
+
+    background: #F5FFFF;
+
+}
 
 /*==============================================END BARRA DE ROLAGEM=========================================*/
 
 /*********************************** Textarea ****************************************/
 
-    .textTermoCondicao{
-        margin-top: 20px;
-        margin-bottom: 20px;
-        height: 350px;
-        overflow: auto;
-        border: 1px solid #ACAAA5;
-    }
+.textTermoCondicao {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 350px;
+    overflow: auto;
+    border: 1px solid #ACAAA5;
+}
 
-    .textTermoCondicao p{
-        font-family: Roboto-Light;
-        font-size: 12pt;
-        color: #ACAAA5;
-        padding: 10px;
-    }
+.textTermoCondicao p {
+    font-family: Roboto-Light;
+    font-size: 12pt;
+    color: #ACAAA5;
+    padding: 10px;
+}
 
 /*********************************** End Textarea ****************************************/
 
 /*********************************** Dropdown ****************************************/
-    
+
 .dropdown-menu {
     font-family: Roboto-Light;
     color: #787878;
@@ -1935,10 +2000,11 @@ input[type=checkbox] {
     background-clip: padding-box;
     border: 0;
     border-radius: 0 0 30px 30px;
-    -webkit-box-shadow: 0 0px 0px ;
-    box-shadow: 0 0px 0px ;
+    -webkit-box-shadow: 0 0px 0px;
+    box-shadow: 0 0px 0px;
 }
-.btnDropOdont{
+
+.btnDropOdont {
     font-family: Roboto-Light;
     color: #787878;
     display: inline-block;
@@ -1963,23 +2029,25 @@ input[type=checkbox] {
     border: 1px solid transparent;
     border-radius: 18px;
 }
+
 .dropdown, .dropup {
     position: absolute;
     right: 0;
     top: 0;
 }
 
-.loading{
+.loading {
     text-align: center;
     margin-top: 50%;
     margin-bottom: 50%;
- }
+}
 
- .loadingBack{
+.loadingBack {
     position: relative;
     z-index: 9999;
     background-color: black;
     opacity: 0.5;
- }
+}
+
 /*********************************** End Dropdown ****************************************/
     
