@@ -123,14 +123,77 @@
                     </td>
                     <td>
                         <label class="label-odont">Dependentes</label><br/>
-                        <label class="p-odont" th:value="${depNome}" th:text="${depNome}" th:style="${depNome} == null ? 'display:none' : 'display:inline-block'" />
+                        <label class="p-odont" th:value="${depNome}" th:text="${depNome}"
+                               th:style="${depNome} == null ? 'display:none' : 'display:inline-block'"/>
                         <div th:each="dependente : ${detalhesPlano.dependentes}">
-                            <a href="#"
+                            <a href="#" type="button" data-toggle="modal"
+                               th:attrappend="data-target='#' + ${dependente.cdVida}"
                                th:style="${dependente.cdTitular != 0} ? 'display:inline-block' : 'display:none'">
-                                <label th:name="${dependente.nome}"
+                                <label th:name="${dependente.cdVida}"
                                        th:text="${dependente.nome}" class="linkDepBlue"></label>
-                                <label th:name="${dependente.cdVida}" th:text="${dependente.cdVida}" th:hidden="true"/>
                             </a>
+                            <!-- INICIO - Modal -->
+                            <div class="modal fade" th:attr="id=${dependente.cdVida}" role="dialog">
+                                <div class="modal-dialog" style="width: 400px">
+                                    <div class="imgBtnExcluir" id="closeModalDependentes">
+                                        <img th:src="@{/img/btn-excluir.png}" class="btnExcluir" data-dismiss="modal">
+                                    </div>
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title font-blue">DADOS DO DEPENDENTE</h4>
+                                        </div>
+                                        <div class="modal-body md-form">
+                                            <table>
+                                                <tr>
+                                                    <td>
+                                                        <label class="label-odont">Nome</label><br/>
+                                                        <div class="p-odont" th:text="${dependente.nome}"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="label-odont">E-mail</label><br/>
+                                                        <div class="p-odont" th:text="${dependente.email}"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="label-odont">Celular</label><br/>
+                                                        <div class="p-odont" th:text="${dependente.celular}"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="label-odont">CPF</label><br/>
+                                                        <div class="p-odont" th:text="${dependente.cpf}"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="label-odont">Data de Nascimento</label><br/>
+                                                        <div class="p-odont"
+                                                             th:text="${dependente.dataNascimento}"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="label-odont">Sexo</label><br/>
+                                                        <div class="p-odont" th:text="${dependente.sexo}"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="label-odont">Nome da Mãe</label><br/>
+                                                        <div class="p-odont" th:text="${dependente.nomeMae}"></div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="modal-footer">&nbsp;</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- FIM -->
                         </div>
                     </td>
 

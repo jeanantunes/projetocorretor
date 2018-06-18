@@ -26,8 +26,8 @@ public class PropostaService {
     public DetalhesPropostaResponse detalhesProposta(String cdVenda) {
         DetalhesPropostaResponse detalhesPropostaResponse = null;
 
-        //String url = requestBase + metodo + cdVenda;
-        String url = "http://localhost:9090/proposta/dados/critica/venda/" + cdVenda;
+        String url = requestBase + metodo + cdVenda;
+        //String url = "http://localhost:9090/proposta/dados/critica/venda/" + cdVenda;
 
         RestTemplate restTemplate = new RestTemplate();
         try {
