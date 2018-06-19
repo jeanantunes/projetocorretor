@@ -156,14 +156,14 @@
                          <span class="barra-fondo">
                             <div class="uppercase text-odonto">Pessoa física</div>
                             <li class="space-top-5 barras" th:data-value="${corretor.percenteValorPF}"
-                                style="border:1px solid red; background-color: cyan"><span class="valor-vendar"
+                                style="border:1px solid red; background-color: cyan"><span class="valor-vendar" style="display:block; text-align: right; margin-right: -60px;"
                                                                                            th:text="${#numbers.formatDecimal(corretor.totalValorPF, 0, 'POINT' , 2 ,'COMMA')}">R$ 350,00</span></li>
                          </span>
 
                                     <span class="barra-fondo">
                             <div class="uppercase text-odonto">pme</div>
                             <li class="space-top-5 barras" th:data-value="${corretor.percenteValorPME}"
-                                style="border:1px solid red; background-color: #C3EB3B"><span class="valor-vendar"
+                                style="border:1px solid red; background-color: #C3EB3B"><span class="valor-vendar" style="display:block; text-align: right; margin-right: -60px;"
                                                                                               th:text="${#numbers.formatDecimal(corretor.totalValorPME, 0, 'POINT' , 2, 'COMMA')}">R$ 100,00</span></li>
                          </span>
                                 </ul>
