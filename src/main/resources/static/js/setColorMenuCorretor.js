@@ -25,9 +25,9 @@ function setColorMenu() {
     else if (url.indexOf("/corretora/equipe/home") !== -1)
         $("a[href='/corretora/equipe/home']").addClass('nav-active');
     else if (url.indexOf("/corretora/equipe/adicionar") !== -1)
-        $("a[href='/corretora/equipe/adicionar']").addClass('nav-active');
+        $("a[href='/corretora/equipe']").addClass('nav-active');
     else if (url.indexOf("/corretora/cadastro/editar") !== -1)
-        $("a[href='/corretora/cadastro/editar']").addClass('nav-active');
+        $("a[href='/corretora/equipe']").addClass('nav-active');
     else if (url.indexOf("/corretora/home") !== -1)
         $("a[href='/corretora/home']").addClass('nav-active');
 }
