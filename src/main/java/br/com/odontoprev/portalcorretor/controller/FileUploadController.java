@@ -2,10 +2,10 @@ package br.com.odontoprev.portalcorretor.controller;
 
 import br.com.odontoprev.portalcorretor.model.UsuarioSession;
 import br.com.odontoprev.portalcorretor.service.FileUploadService;
+import br.com.odontoprev.portalcorretor.service.dto.FileUploadResponse;
 import br.com.odontoprev.portalcorretor.util.BreadCrumbs;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,9 +17,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.IOException;
-import java.util.UUID;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @Controller
 public class FileUploadController {
@@ -34,28 +35,36 @@ public class FileUploadController {
         return "fileupload";
     }
 
-    @RequestMapping(value = "/fileupload", produces = MediaType.MULTIPART_FORM_DATA_VALUE, consumes = MediaType.MULTIPART_FORM_DATA_VALUE, method = {RequestMethod.POST})
-    public String importFile(@RequestParam("file") MultipartFile myFile, HttpSession session, RedirectAttributes redirectAttributes) {
-        File destination = new File("C:\\Users\\Vector\\jotait\\est-portalcorretor-web", UUID.randomUUID().toString());
+    @RequestMapping(value = "/fileupload", method = RequestMethod.POST)
+    public String importFile(@RequestParam MultipartFile file, HttpSession session, RedirectAttributes redirectAttributes) throws IOException {
+        byte[] bytes = file.getBytes();
+        Path destination = Paths.get("C:\\Users\\Vector\\jotait\\est-portalcorretor-web", file.getOriginalFilename());
+        Files.write(destination.getFileName(), bytes);
 
-        if (myFile.isEmpty()) {
+        if (bytes.equals(null)) {
             redirectAttributes.addFlashAttribute("mensagemError", "Porfavor selecione um arquivo para upload");
             return "redirect:" + "/corretora/equipe/home";
+            //return new ModelAndView("/corretora/equipe/home", "uploadCsv", uploadCsv);
         }
 
-        try {
-            ByteArrayInputStream stream = new ByteArrayInputStream(myFile.getBytes());
-            String myString = IOUtils.toString(stream, "UTF-8");
+        ByteArrayInputStream stream = new ByteArrayInputStream(file.getBytes());
+        String myString = IOUtils.toString(stream, "UTF-8");
 
-            UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
+        UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
 
-            fileUploadService.fileUpload(new String(myFile.getBytes()), usuario.getCodigoCorretora());
+        FileUploadResponse response = fileUploadService.fileUpload(file, usuario.getCodigoCorretora());
+
+        if (response.getId() == 200){
             redirectAttributes.addFlashAttribute("mensagemSucesso",
-                    "Upload realizado com sucesso '" + myFile.getOriginalFilename() + "'");
-        } catch (IOException e) {
-            e.printStackTrace();
+                    "Upload realizado com sucesso '" + file.getOriginalFilename() + "'");
+        }else {
+            redirectAttributes.addFlashAttribute("mensagemErro", "Ocorreu um erro ao realizar Upload, verifique seu arquivo e tente novamente.");
         }
+
+        Files.delete(destination.getFileName());
+
         return "redirect:" + "/corretora/equipe/home";
+        //return new ModelAndView("/corretora/equipe/home", "uploadCsv", uploadCsv);
         //return "redirect:/uploadSuccess";
     }
 

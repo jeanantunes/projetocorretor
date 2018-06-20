@@ -56,7 +56,7 @@ public class ForcaVendaController {
         corretora.setTotalCriticadas(criticadas.intValue());
 
         double totalValorPF = propostaPF.getDashboardPropostasPF().stream().mapToDouble(Proposta::getValor).sum();
-        double totalValorPME = propostaPF.getDashboardPropostasPME().stream().mapToDouble(Proposta::getValor).sum();
+        double totalValorPME = propostaPME.getDashboardPropostasPME().stream().mapToDouble(Proposta::getValor).sum();
 
         corretora.setTotalValorPF(totalValorPF);
         corretora.setPercenteValorPF( totalValorPF> totalValorPME ? 100:  totalValorPF == 0 ? 0 : 50 );

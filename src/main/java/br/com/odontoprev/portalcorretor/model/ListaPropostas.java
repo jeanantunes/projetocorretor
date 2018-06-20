@@ -20,6 +20,7 @@ public class ListaPropostas {
     private Double totalValorPME;
     private Double totalValorPF;
     private Integer countCorretoresAprovacao;
+    private String cdVenda;
 
     public Integer getCountCorretoresAprovacao() {
         return countCorretoresAprovacao;
@@ -131,5 +132,13 @@ public class ListaPropostas {
 
     public void setPercenteValorPME(Integer percenteValorPME) {
         this.percenteValorPME = percenteValorPME;
+    }
+
+    public String getCdVenda() {
+        return cdVenda;
+    }
+
+    public void setCdVenda(String cdVenda) {
+        this.cdVenda = cdVenda;
     }
 }
