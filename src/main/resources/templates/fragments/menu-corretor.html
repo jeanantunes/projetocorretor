@@ -17,7 +17,7 @@
                 <img th:src="@{/img/logo.png}">
             </a>
             <ul class="hide-on-med-and-down">
-                <li class="nav-cel  nav-active">
+                <li class="nav-cel">
                     <a th:href="@{/forcavenda/home}">
                         <img th:src="@{/img/menu-home.png}">
                         <span>home</span>
@@ -31,7 +31,7 @@
                     </a>
                 </li>-->
 
-                
+
                 <li class="nav-cel">
                     <a th:href="@{/venda_pf}">
                         <img th:src="@{/img/menu-vender-pf.png}">
@@ -44,7 +44,7 @@
                         <span>vender pme</span>
                     </a>
                 </li>
-                
+
                 <li class="nav-cel">
                     <a th:href="@{/info-planos}">
                         <img th:src="@{/img/menu-listas.png}">
@@ -82,26 +82,26 @@
                         <div class="data-perfil">
                             <p class="user-name"><strong th:text="${session.usuario.getNomeUsuario().split(' ')[0]}"></strong></p>
                             <p class="font-gray" th:text="${session.usuario.getNomeCorretora()}"></p>
-							<a th:href="@{/logout}" class="link-odonto">Sair</a>
+                            <a th:href="@{/logout}" class="link-odonto">Sair</a>
                         </div>
                     </div>
                 </div>
             </li>
-            <li class="nav-cel  nav-active">
+            <li class="nav-cel">
                 <a th:href="@{/forcavenda/home}">
                     <img th:src="@{/img/menu-home.png}">
                     <span>home</span>
                 </a>
             </li>
-            <li class="nav-cel">
+            <!--<li class="nav-cel">
                 <a href="#">
                     <img th:src="@{/img/menu-meus-dados.png}">
                     <span>meus dados</span>
                 </a>
-            </li>
+            </li>-->
             <li class="nav-cel">
                 <a th:href="@{/venda_pf}">
-                   <img th:src="@{/img/menu-vender-pf.png}">
+                    <img th:src="@{/img/menu-vender-pf.png}">
                     <span>vender pessoa física</span>
                 </a>
             </li>
@@ -112,7 +112,7 @@
                 </a>
             </li>
             <li class="nav-cel">
-                <a href="#">
+                <a href="/info-planos">
                     <img th:src="@{/img/menu-listas.png}">
                     <span>informações dos planos</span>
                 </a>
