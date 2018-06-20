@@ -1653,6 +1653,10 @@ input[type=checkbox] {
     position: relative;
 }
 
+.titleVencimentoData {
+    text-shadow: 1px 0 red, 0 1px red, 1px 0 red, 0 1px red;
+}
+
 .squaredOne label {
     cursor: pointer;
     padding-left: 20px;

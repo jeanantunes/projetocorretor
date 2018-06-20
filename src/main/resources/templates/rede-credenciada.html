@@ -28,6 +28,7 @@
     <script src="/app/coordenador.js"></script>
     <script src="/app/redeCredenciadaController.js"></script>
     <script src="/js/jquery-ui.js"></script>
+    <script type="text/javascript" th:src="@{/js/menu.js}"></script>
     <!--<script type="text/javascript" th:src="@{/js/jquery-3.2.1.js}"></script>
     <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/jquery.mask.min.js}"></script>
@@ -134,7 +135,13 @@
 </head>
 
 <body style="min-width: 100% !important;">
-    
+
+    <script>
+        $(function () {
+            $(".button-collapse").sideNav();
+        });
+
+    </script>
     
     <!-- Bloco 1 -->
     <div class="container-fluid nopadding">
@@ -297,6 +304,7 @@
             padding-right: 20px;
         }
     </style>
+
     <script type="text/javascript" th:src="@{/js/setColorMenuCorretor.js}"></script>
 </body>
 </html>
