@@ -82,12 +82,12 @@ function isEffectiveDate(dayDueDate) {
             var dataVencimento = moment("05-" + month.toString() + "-" + year, "DD-MM-YYYY");
             var dataVencimento = dataVencimento.add(1, 'M');
 
-            var olderDate = moment(dataVencimento).add(-11, "days");
+            var olderDate = moment(dataVencimento).add(-12, "days");
 
             if (currentTime.isAfter(olderDate)) vencimento = dataVencimento.add(1, 'M');
             else vencimento = dataVencimento;
 
-            var dataDeCorteDeMovimentacao = moment(dataVencimento).add(-11, "days");
+            var dataDeCorteDeMovimentacao = moment(dataVencimento).add(-12, "days");
 
             //$("#corte").html('Data de corte de movimentação:<br>' + dataDeCorteDeMovimentacao.format("DD/MM/YYYY"));
             //$("#vencimento").html('Data de vencimento:<br>' + vencimento.format("DD/MM/YYYY"));
@@ -99,12 +99,12 @@ function isEffectiveDate(dayDueDate) {
 
             var vencimento;
             var dataVencimento = moment("15-" + month.toString() + "-" + year, "DD-MM-YYYY");
-            var olderDate = moment(dataVencimento).add(-11, "days");
+            var olderDate = moment(dataVencimento).add(-12, "days");
 
             if (currentTime.isAfter(olderDate)) vencimento = dataVencimento.add(1, 'M');
             else vencimento = dataVencimento;
 
-            var dataDeCorteDeMovimentacao = moment(dataVencimento).add(-11, "days");
+            var dataDeCorteDeMovimentacao = moment(dataVencimento).add(-12, "days");
 
             //$("#corte").html('Data de corte de movimentação:<br>' + dataDeCorteDeMovimentacao.format("DD/MM/YYYY"));
             //$("#vencimento").html('Data de vencimento:<br>' + vencimento.format("DD/MM/YYYY"));
@@ -116,12 +116,12 @@ function isEffectiveDate(dayDueDate) {
 
             var vencimento;
             var dataVencimento = moment("25-" + month.toString() + "-" + year, "DD-MM-YYYY");
-            var olderDate = moment(dataVencimento).add(-11, "days");
+            var olderDate = moment(dataVencimento).add(-12, "days");
 
             if (currentTime.isAfter(olderDate)) vencimento = dataVencimento.add(1, 'M');
             else vencimento = dataVencimento;
 
-            var dataDeCorteDeMovimentacao = moment(dataVencimento).add(-11, "days");
+            var dataDeCorteDeMovimentacao = moment(dataVencimento).add(-12, "days");
 
             //$("#corte").html('Data de corte de movimentação:<br>' + dataDeCorteDeMovimentacao.format("DD/MM/YYYY"));
             //$("#vencimento").html('Data de vencimento:<br>' + vencimento.format("DD/MM/YYYY"));

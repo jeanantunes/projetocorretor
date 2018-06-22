@@ -278,12 +278,6 @@ function verificarSePropostaExiste() {
         return;
     }
 
-    if (editado.length == 1 && editado[0].status == "SYNC")
-    {
-        swal("Ops!", "Você possui uma proposta com esse CNPJ em sincronismo", "error");
-        return;
-    }
-
     if (editado.length == 1 && editado[0].status != "ENVIADA") {
 
         swal({
