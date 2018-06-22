@@ -42,9 +42,6 @@ $(document).ready(function () {
 
 });
 
-
-
-
 function atualizarFatura() {
 
     var proposta = get("proposta");
@@ -58,8 +55,6 @@ function atualizarFatura() {
     window.location.href = "resumo_pme_proposta.html";
 
 }
-
-
 
 function isEffectiveDate(dayDueDate) {
 
