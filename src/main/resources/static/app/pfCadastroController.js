@@ -1,6 +1,7 @@
 ﻿var preenchidos = false;
 
 $(document).ready(function () {
+    atualizarPropostaMundial();
     buscarPlanosSelecionados();
     carregarProposta();
     localStorage.removeItem("dependentePfEmEdicao");
@@ -704,4 +705,16 @@ function verificarInputs() {
     // Habilite, ou não, o <button>, dependendo da variável:
     $("#continuarVendaPf").removeClass('disabled'); //,
     return true;
+}
+
+function atualizarPropostaMundial() {
+
+    let planoProposta = get("propostaPf");
+
+    let planoDaProposta = planoProposta.planos[0].cdPlano;
+
+    if (planoDaProposta == 84 || planoDaProposta == 85) {
+        $("#boxMundial").html('<div class="infoCopa"><p class="textCopa">#VAI<strong> TER</strong> JOGO</p><small>Durante o mundial venda planos BEM-ESTAR com condições especiais!</small></div>');
+
+    }
 }

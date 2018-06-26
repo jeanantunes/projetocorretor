@@ -1499,6 +1499,6 @@ function resizeIframe(iframeID) {
     if (iframe == null) return;
 
     var container = document.body;
-    var h = parseInt(container.offsetHeight) + 200;
+    var h = parseInt(container.offsetHeight) + 300;
     iframe.style.height = h.toString() + 'px';
 }
