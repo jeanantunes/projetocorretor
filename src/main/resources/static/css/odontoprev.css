@@ -1558,12 +1558,12 @@ h5, .subListBox {
 
 @media screen and (min-width: 800px) {
     .boxPlanos {
-        height: 600px !important;
+        height: 750px !important;
     }
 }
 
 .boxPlanos {
-    height: 700px;
+    height: 750px;
 
     border: 1px solid #EDEDED;
     border-radius: 18px;
