@@ -8,16 +8,36 @@ var conexao;
 
 $(document).ready(function () {
 
+    $(function () {
+        var regex = new RegExp('[^A-Za-z \]', 'g');
+        // repare a flag "g" de global, para substituir todas as ocorrências
+        $('.nomeRegex').bind('input', function () {
+            $(this).val($(this).val().replace(regex, ''));
+
+            var capturandoEspaco = $(this).val().substring($(this).val().length - 2, $(this).val().length);
+
+            if (capturandoEspaco == " ") {
+
+                $(this).val($(this).val().substring(0, $(this).val().length - 1))
+
+            }
+        });
+
+        $('.nomeRegex').blur(function () {
+            $(this).val($(this).val().trim());
+        });
+    });
+
     $("a[href='meus_dados.html']").hide()
 
-    
+
     carregarDadosUsuario();
 
     $("#logout").click(function () {
         logout.removerRegistroLogin();
     });
 
-    callTokenProd(function(dataToken){
+    callTokenProd(function (dataToken) {
 
 
     });
@@ -33,57 +53,57 @@ $(document).ready(function () {
 });
 
 function defineConexao() {
-	
+
     $.ajax({
-           url: "/access_token/url",
+        url: "/access_token/url",
+        type: "get",
+        async: false,
+        xhrFields: {
+            withCredentials: true
+        },
+        success: function (result) {
+            URLBase = eval(result).url;
+            if (URLBase.indexOf("api-it1") !== -1) {
+                setPlanosHml();
+
+            } else {
+                setPlanosProd();
+
+            }
+        },
+        error: function () {
+
+        }
+    });
+    /*
+       $.ajax({
+           url: "config/connection.json",
            type: "get",
            async: false,
-           xhrFields: {
-               withCredentials: true
-           },
            success: function (result) {
-               URLBase = eval(result).url;
-               if(URLBase.indexOf("api-it1")!== -1) {
-                   setPlanosHml();
-                   
-               } else {
-                   setPlanosProd();
-                   
-               }
+               conexao = eval(result);
            },
            error: function () {
 
            }
        });
-/*
-   $.ajax({
-       url: "config/connection.json",
-       type: "get",
-       async: false,
-       success: function (result) {
-           conexao = eval(result);
-       },
-       error: function () {
 
+       if (conexao.producaoLigado) {
+           URLBase = conexao.producaoURL;
+           Token = conexao.chaveProd;
+           setPlanosProd();
        }
-   });
-
-   if (conexao.producaoLigado) {
-       URLBase = conexao.producaoURL;
-       Token = conexao.chaveProd;
-       setPlanosProd();
-   }
-   else {
-       URLBase = conexao.homologacaoURL;
-       console.log(URLBase);
-       Token = conexao.chaveHomolog;
-       setPlanosHml();
-   }
-   */
+       else {
+           URLBase = conexao.homologacaoURL;
+           console.log(URLBase);
+           Token = conexao.chaveHomolog;
+           setPlanosHml();
+       }
+       */
 }
 
 function callTokenProd(callback) {
-	//TODO: Implementar chamada no controller
+    //TODO: Implementar chamada no controller
     console.log("callTokenProd - coordendador.js");
     $.ajax({
         async: true,
@@ -99,7 +119,7 @@ function callTokenProd(callback) {
             swal("Ops!", "Erro na conexão, tente mais tarde", "error");
         }
     });
-    
+
 };
 
 function callTokenProdSemMsgErro(callback) {
@@ -163,7 +183,7 @@ $(".data").blur(function () {
 
     if (validarData($(".data").val())) {
 
-        $(this).css({ "border-color": "#3A94FB" });
+        $(this).css({"border-color": "#3A94FB"});
         $(".nascimento").css("color", "#3A94FB");
         $(".label-nascimento").css("color", "#3A94FB");
         return;
@@ -259,6 +279,7 @@ function setPlanosProd() {
 
     planos.push(plano);
 
+    //TODO Descomentar após PLANO COPA
     /*
     plano = getRepository("plano");
     plano.cdPlano = 67;
@@ -295,7 +316,7 @@ function setPlanosProd() {
 */
 
     plano = getRepository("plano");
-    plano.cdPlano = 67;
+    plano.cdPlano = 84;
     plano.nome = "DENTAL BEM-ESTAR";
     plano.valor = "45";
     plano.centavo = "60";
@@ -306,7 +327,7 @@ function setPlanosProd() {
     planos.push(plano);
 
     plano = getRepository("plano");
-    plano.cdPlano = 66;
+    plano.cdPlano = 85;
     plano.nome = "DENTAL BEM-ESTAR";
     plano.valor = "456";
     plano.centavo = "00";
@@ -476,20 +497,20 @@ function setPlanosProdCod() {
     */
 
     var plano = new Object();
-    plano.cdPlano = 67;
+    plano.cdPlano = 84;
     plano.nome = "DENTAL BEM-ESTAR MENSAL";
     planos.push(plano);
 
     var plano = new Object();
-    plano.cdPlano = 66;
+    plano.cdPlano = 85;
     plano.nome = "DENTAL BEM-ESTAR ANUAL";
     planos.push(plano);
-    
+
     //////// CODIGO PLANOS DENTAL ESTETICA /////////
 
     var plano = new Object();
     plano.cdPlano = 74;
-    plano.nome = "DENTAL ESTETICA MENSAL";  
+    plano.nome = "DENTAL ESTETICA MENSAL";
     planos.push(plano);
 
     var plano = new Object();
@@ -862,8 +883,8 @@ function carregarDadosUsuario() {
     if (carregarDados == null)
         return;
 
-    $("#nomeCorretorMenu").html(carregarDados.nome == null? "" : carregarDados.nome.split(' ')[0]);
-    $("#nomeCorretoraMenu").html(carregarDados.nomeEmpresa == null? "" : carregarDados.nomeEmpresa.split(' ')[0]);
+    $("#nomeCorretorMenu").html(carregarDados.nome == null ? "" : carregarDados.nome.split(' ')[0]);
+    $("#nomeCorretoraMenu").html(carregarDados.nomeEmpresa == null ? "" : carregarDados.nomeEmpresa.split(' ')[0]);
     $("#nomeCorretor").html(carregarDados.nome);
     $("#nomeCorretora").html(carregarDados.nomeEmpresa);
     $("#emailCorretor").val(carregarDados.email);
@@ -909,7 +930,9 @@ function getUrlParameter(sParam) {
 
 function atualizarPessoas(proposta) {
     var pessoas = get("pessoas");
-    var propostas = pessoas.filter(function (x) { return x.cpf != proposta.cpf });
+    var propostas = pessoas.filter(function (x) {
+        return x.cpf != proposta.cpf
+    });
     pessoas = []; //limpar
 
     $.each(propostas, function (i, item) {
@@ -923,7 +946,9 @@ function atualizarPessoas(proposta) {
 
 function atualizarEmpresas(proposta) {
     var empresas = get("empresas");
-    var propostas = empresas.filter(function (x) { return x.cnpj != proposta.cnpj });
+    var propostas = empresas.filter(function (x) {
+        return x.cnpj != proposta.cnpj
+    });
     empresas = []; //limpar
 
     $.each(propostas, function (i, item) {
@@ -949,16 +974,30 @@ function atualizarDashBoard() {
     var prontaEmpresas = [];
 
     if (pessoas != null) {
-        digitandoPessoas = pessoas.filter(function (x) { return x.status == "DIGITANDO" });
-        criticadaPessoas = pessoas.filter(function (x) { return x.status == "CRITICADA" });
-        prontaPessoas = pessoas.filter(function (x) { return x.status == "PRONTA" });
-        syncPessoas = pessoas.filter(function (x) { return x.status == "SYNC" });
+        digitandoPessoas = pessoas.filter(function (x) {
+            return x.status == "DIGITANDO"
+        });
+        criticadaPessoas = pessoas.filter(function (x) {
+            return x.status == "CRITICADA"
+        });
+        prontaPessoas = pessoas.filter(function (x) {
+            return x.status == "PRONTA"
+        });
+        syncPessoas = pessoas.filter(function (x) {
+            return x.status == "SYNC"
+        });
     }
 
     if (empresas != null) {
-        digitandoEmpresas = empresas.filter(function (x) { return x.status == "DIGITANDO" });
-        criticadaEmpresas = empresas.filter(function (x) { return x.status == "CRITICADA" });
-        prontaEmpresas = empresas.filter(function (x) { return x.status == "PRONTA" });
+        digitandoEmpresas = empresas.filter(function (x) {
+            return x.status == "DIGITANDO"
+        });
+        criticadaEmpresas = empresas.filter(function (x) {
+            return x.status == "CRITICADA"
+        });
+        prontaEmpresas = empresas.filter(function (x) {
+            return x.status == "PRONTA"
+        });
     }
 
     var qtdFinalizada = get("QtdFinalizada");
@@ -973,8 +1012,6 @@ function atualizarDashBoard() {
     $("#pronta").html(prontaPessoas.length + prontaEmpresas.length + syncPessoas.length);
     $("#finalizada").html(qtdFinalizada);
 }
-
-
 
 
 function sincronizar() {
@@ -1004,10 +1041,16 @@ function sincronizar() {
             $.each(empresas, function (i, item) {
                 if (item.status == "PRONTA") {
 
-                    var o = empresas.filter(function (x) { return x.cnpj == item.cnpj });
-                    var b = beneficiarios.filter(function (x) { return x.cnpj == item.cnpj });
+                    var o = empresas.filter(function (x) {
+                        return x.cnpj == item.cnpj
+                    });
+                    var b = beneficiarios.filter(function (x) {
+                        return x.cnpj == item.cnpj
+                    });
 
-                    var todosExcetoExclusao = empresas.filter(function (x) { return x.cnpj != item.cnpj });
+                    var todosExcetoExclusao = empresas.filter(function (x) {
+                        return x.cnpj != item.cnpj
+                    });
 
                     o[0].status = "SYNC";
                     o[0].horaSync = new Date();
@@ -1047,8 +1090,12 @@ function sincronizar() {
             $.each(pessoas, function (i, item) {
                 if (item.status == "PRONTA") {
 
-                    var o = pessoas.filter(function (x) { return x.cpf == item.cpf });
-                    var propostas = pessoas.filter(function (x) { return x.cpf != item.cpf });
+                    var o = pessoas.filter(function (x) {
+                        return x.cpf == item.cpf
+                    });
+                    var propostas = pessoas.filter(function (x) {
+                        return x.cpf != item.cpf
+                    });
 
                     pessoas = []; //limpar
 
@@ -1063,7 +1110,7 @@ function sincronizar() {
                     pessoas.push(o[0]);
 
                     put("pessoas", JSON.stringify(pessoas));
-                   
+
                     sincronizarPessoa(function (dataProposta) {
                         console.log(dataProposta);
                     }, o, false);
@@ -1073,7 +1120,8 @@ function sincronizar() {
         }
     }
     else {
-        swal("Você está sem Internet", "Não se preocupe, você pode acessar a tela inicial e enviar esta proposta depois.", "info");0
+        swal("Você está sem Internet", "Não se preocupe, você pode acessar a tela inicial e enviar esta proposta depois.", "info");
+        0
     }
 }
 
@@ -1098,23 +1146,23 @@ function removerAcentos(newStringComAcento) {
 }
 
 function removerAcentosMinusculo(newStringComAcento) {
-	var string = newStringComAcento;
-	var mapaAcentosHex = {
-		a: /[\xE0-\xE6]/gi,
-		e: /[\xE8-\xEB]/gi,
-		i: /[\xEC-\xEF]/gi,
-		o: /[\xF2-\xF6]/gi,
-		u: /[\xF9-\xFC]/gi,
-		c: /\xE7/gi,
-		n: /\xF1/gi
-	};
+    var string = newStringComAcento;
+    var mapaAcentosHex = {
+        a: /[\xE0-\xE6]/gi,
+        e: /[\xE8-\xEB]/gi,
+        i: /[\xEC-\xEF]/gi,
+        o: /[\xF2-\xF6]/gi,
+        u: /[\xF9-\xFC]/gi,
+        c: /\xE7/gi,
+        n: /\xF1/gi
+    };
 
-	for (var letra in mapaAcentosHex) {
-	var expressaoRegular = mapaAcentosHex[letra];
-	string = string.replace(expressaoRegular, letra);
-}
+    for (var letra in mapaAcentosHex) {
+        var expressaoRegular = mapaAcentosHex[letra];
+        string = string.replace(expressaoRegular, letra);
+    }
 
-return string;
+    return string;
 }
 
 function sincronizarPessoa(callback, pessoa, reSync) { // caso a proposta esteja sendo ressincronizada reSync recebe true
@@ -1130,7 +1178,7 @@ function sincronizarPessoa(callback, pessoa, reSync) { // caso a proposta esteja
 
     //var json = "{ \"cdForcaVenda\": \"" + forcaVenda.codigo + "\", \"cdPlano\": \"" + cdPlano + "\", \"titulares\": " + JSON.stringify(pessoa) + "}";
 
-   var date = toDate(pessoa[0].dataNascimento);
+    var date = toDate(pessoa[0].dataNascimento);
 
     if (!isMaiorDeIdade(date)) {
         var json = {
@@ -1243,7 +1291,7 @@ function sincronizarPessoa(callback, pessoa, reSync) { // caso a proposta esteja
 
     console.log(json);
 
-    if (reSync){
+    if (reSync) {
 
         swal({
             title: "Aguarde",
@@ -1260,8 +1308,6 @@ function sincronizarPessoa(callback, pessoa, reSync) { // caso a proposta esteja
         });
 
     }
-
-
 
 
     callTokenProd(function (dataToken) {
@@ -1287,7 +1333,7 @@ function sincronizarPessoa(callback, pessoa, reSync) { // caso a proposta esteja
             method: "POST",
             data: json,
             headers: {
-                "Content-Type": "application/json",               
+                "Content-Type": "application/json",
                 "Authorization": "Bearer " + dataToken.access_token
             },
             //data: "{ \r\n   \"cdForcaVenda\":\"" + forcaVenda.codigo + "\",\r\n   \"cdPlano\":\"" + 4 + "\",\r\n   \"titulares\":[ \r\n      { \r\n         \"celular\":\"" + pessoa[0].celular + "\",\r\n         \"contatoEmpresa\":" + pessoa[0].contatoEmpresa + ",\r\n         \"cpf\":\"" + pessoa[0].cpf + "\",\r\n         \"dadosBancarios\":{ \r\n            \"agencia\":\"" + pessoa[0].dadosBancarios.agencia + "\",\r\n            \"codigoBanco\":\"" + pessoa[0].dadosBancarios.codigoBanco + "\",\r\n            \"conta\":\"" + pessoa[0].dadosBancarios.conta + "\",\r\n            \"tipoConta\":\"" + pessoa[0].dadosBancarios.tipoConta + "\"\r\n         },\r\n         \"dependentes\":[ \r\n \r\n         ],\r\n         \"email\":\"" + pessoa[0].email + "\",\r\n         \"endereco\":{ \r\n            \"bairro\":\"" + pessoa[0].endereco.bairro + "\",\r\n            \"cep\":\"" + pessoa[0].endereco.cep + "\",\r\n            \"cidade\":\"" + pessoa[0].endereco.cidade + "\",\r\n            \"complemento\":\"" + pessoa[0].endereco.complemento + "\",\r\n            \"logradouro\":\"" + pessoa[0].endereco.logradouro + "\",\r\n            \"estado\":\"" + pessoa[0].endereco.estado + "\",\r\n            \"numero\":\"" + pessoa[0].endereco.numero + "\"\r\n         },\r\n         \"dataNascimento\":\"" + pessoa[0].dataNascimento + "\",\r\n         \"nomeMae\":\"" + pessoa[0].nomeMae + "\",\r\n         \"nome\":\"" + pessoa[0].nome + "\",\r\n         \"sexo\":\"" + pessoa[0].sexo +"\",\r\n         \"status\":\"PRONTA\",\r\n         \"titular\":true\r\n      }\r\n   ]\r\n}\r\n",
@@ -1311,7 +1357,9 @@ function sincronizarPessoa(callback, pessoa, reSync) { // caso a proposta esteja
                     pessoa[0].status = "ENVIADA";
                     pessoa[0].dataAtualizacao = new Date();
 
-                    var todosExcetoExclusao = pessoas.filter(function (x) { return x.cpf != pessoa[0].cpf });
+                    var todosExcetoExclusao = pessoas.filter(function (x) {
+                        return x.cpf != pessoa[0].cpf
+                    });
                     todosExcetoExclusao.push(pessoa[0]);
 
                     console.log(todosExcetoExclusao);
@@ -1333,7 +1381,6 @@ function sincronizarPessoa(callback, pessoa, reSync) { // caso a proposta esteja
 function sincronizarEmpresa(callback, proposta, beneficiarios) {
 
     console.log(proposta);
-
 
 
     var dadosUsuario = get("dadosUsuario");
@@ -1376,8 +1423,10 @@ function sincronizarEmpresa(callback, proposta, beneficiarios) {
                 }
                 else {
                     var empresas = get("empresas");
-                    var todosExcetoExclusao = empresas.filter(function (x) { return x.cnpj != proposta[0].cnpj });
-                
+                    var todosExcetoExclusao = empresas.filter(function (x) {
+                        return x.cnpj != proposta[0].cnpj
+                    });
+
                     proposta[0].status = "ENVIADA";
 
                     todosExcetoExclusao.push(proposta[0]);
@@ -1444,13 +1493,12 @@ function validateEmail(email) {
     return false;
 }
 
-function resizeIframe(iframeID)
-{
+function resizeIframe(iframeID) {
     var iframe = window.parent.document.getElementById(iframeID);
-    
-    if(iframe == null)return;
-    
+
+    if (iframe == null) return;
+
     var container = document.body;
-    var h =  parseInt(container.offsetHeight)+200;
+    var h = parseInt(container.offsetHeight) + 200;
     iframe.style.height = h.toString() + 'px';
 }
