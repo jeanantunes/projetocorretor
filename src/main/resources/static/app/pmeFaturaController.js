@@ -47,11 +47,11 @@ function atualizarFatura() {
     var proposta = get("proposta");
     let vencimento = isEffectiveDate($(".selectListBlur").val());
     proposta.vencimentoFatura = $(".selectListBlur").val();
-    proposta.dataVigencia = vencimento.format("DD/MM/YYYY");
-    proposta.dataMovimentacao = vencimento.format("DD/MM/YYYY");
+    proposta.dataVigencia = vencimento.dataVencimento.format("DD/MM/YYYY");
+    proposta.dataMovimentacao = vencimento.dataMovimentacao.format("DD/MM/YYYY");
     atualizarEmpresas(proposta);
-    put("proposta", JSON.stringify(proposta));
 
+    put("proposta", JSON.stringify(proposta));
     window.location.href = "resumo_pme_proposta.html";
 
 }
@@ -88,7 +88,8 @@ function isEffectiveDate(dayDueDate) {
             //$("#vencimento").html('Data de vencimento:<br>' + vencimento.format("DD/MM/YYYY"));
             //$("#vigencia").html('Data de vigência:<br>' + vencimento.format("DD/MM/YYYY"));
             $("#dataVigencia").html(vencimento.format("DD/MM/YYYY"));
-            return vencimento;
+            var retornoDatas = { "dataMovimentacao": dataDeCorteDeMovimentacao, "dataVencimento" : vencimento }
+            return retornoDatas;
 
         case "15":
 
@@ -105,7 +106,8 @@ function isEffectiveDate(dayDueDate) {
             //$("#vencimento").html('Data de vencimento:<br>' + vencimento.format("DD/MM/YYYY"));
             //$("#vigencia").html('Data de vigência:<br>' + vencimento.format("DD/MM/YYYY"));
             $("#dataVigencia").html(vencimento.format("DD/MM/YYYY"));
-            return vencimento;
+            var retornoDatas = { "dataMovimentacao": dataDeCorteDeMovimentacao, "dataVencimento" : vencimento }
+            return retornoDatas;
 
         case "25":
 
@@ -122,7 +124,8 @@ function isEffectiveDate(dayDueDate) {
             //$("#vencimento").html('Data de vencimento:<br>' + vencimento.format("DD/MM/YYYY"));
             //$("#vigencia").html('Data de vigência:<br>' + vencimento.format("DD/MM/YYYY"));
             $("#dataVigencia").html(vencimento.format("DD/MM/YYYY"));
-            return vencimento;
+            var retornoDatas = { "dataMovimentacao": dataDeCorteDeMovimentacao, "dataVencimento" : vencimento }
+            return retornoDatas;
 
     }
 
