@@ -66,7 +66,8 @@ function cadastrarConta() {
     proposta.dadosBancarios.codigoBanco = $(".bancos").val();
     proposta.dadosBancarios.agencia = $("#agenciaDebito").val();
     proposta.dadosBancarios.conta = $("#contaDebito").val();
-
+    proposta.dadosBancarios.tipoConta = "CC";
+	
     atualizarPessoas(proposta);
 
     window.location.href = "compra_pf_sucesso.html";
