@@ -122,6 +122,24 @@ function callTokenProd(callback) {
 
 };
 
+function callTokenVendas(callback) {
+
+    $.ajax({
+        async: true,
+        url: "/access_token",
+        method: "POST",
+        headers: {
+            "Cache-Control": "no-cache",
+        },
+        success: function (resp) {
+            callback(resp);
+        },
+        error: function (xhr) {
+            callback(xhr);
+        }
+    });
+};
+
 function callTokenProdSemMsgErro(callback) {
 
     $.ajax({
@@ -1165,6 +1183,91 @@ function removerAcentosMinusculo(newStringComAcento) {
     return string;
 }
 
+function enviarPropostaPf() {
+
+    if (!navigator.onLine) {
+        swal("Você está sem Internet", "Não se preocupe, você pode acessar a tela inicial e enviar esta proposta depois.", "info");
+        return;
+    }
+
+    let proposta = get("propostaPf");
+    let propostas = get("pessoas");
+
+    if (proposta != null) {
+
+        swal({
+            title: "Aguarde",
+            text: 'Estamos enviando a sua proposta',
+            content: "input",
+            imageUrl: "img/load.gif",
+            showCancelButton: false,
+            showConfirmButton: false,
+            icon: "info",
+            button: {
+                text: "...",
+                closeModal: false,
+            },
+        });
+
+        if (proposta.status == "PRONTA") {
+
+            //var o = pessoas.filter(function (x) { return x.cpf == item.cpf });
+            var propostasDiferentes = propostas.filter(function (x) { return x.cpf != proposta.cpf });
+
+            propostas = []; //limpar
+
+            $.each(propostasDiferentes, function (i, item) {
+                propostas.push(item);
+            });
+
+            proposta.status = "SYNC";
+            proposta.horaSync = new Date();
+            propostas.push(proposta);
+
+            put("pessoas", JSON.stringify(propostas));
+
+            sincronizarPf(function (dataProposta) {
+
+                if (dataProposta.id != undefined) {
+
+                    if (dataProposta.id == 0) {
+
+                        proposta.status = "CRITICADA";
+                        atualizarPessoas(proposta);
+                        console.log("Erro");
+
+                    } else {
+
+                        var pessoas = get("pessoas");
+                        var todosExcetoExclusao = pessoas.filter(function (x) { return x.cpf != proposta.cpf });
+                        //todosExcetoExclusao.push(proposta);
+
+                        console.log(todosExcetoExclusao);
+                        put("pessoas", JSON.stringify(todosExcetoExclusao));
+
+                        if (proposta.dadosBancarios.tipoConta == "CC") {
+                            window.location.href = "compra_pf_sucesso.html";
+                        } else {
+
+                            window.location.href = "compra_pf_boleto.html";
+                        }
+                    }
+                } else {
+
+                    let atualizarProposta = get("propostaPf");
+                    atualizarProposta.status = "PRONTA";
+                    put("propostaPf", JSON.stringify(atualizarProposta));
+                    atualizarPessoas(atualizarProposta);
+                    swal("Ops!","Algo deu errado. Por favor, tente enviar outra vez a proposta.", "error")
+                }
+
+                atualizarDashBoard();
+
+            }, proposta);
+        }
+    }
+}
+
 function sincronizarPessoa(callback, pessoa, reSync) { // caso a proposta esteja sendo ressincronizada reSync recebe true
 
     //var pessoa = eval(pessoaString);
@@ -1378,6 +1481,164 @@ function sincronizarPessoa(callback, pessoa, reSync) { // caso a proposta esteja
     });
 }
 
+function sincronizarPf(callback, pessoa) {
+
+    var forcaVenda = get("dadosUsuario");
+
+    var cdPlano = pessoa.planos[0].cdPlano;
+
+    var pdata = [];
+
+    //var json = "{ \"cdForcaVenda\": \"" + forcaVenda.codigo + "\", \"cdPlano\": \"" + cdPlano + "\", \"titulares\": " + JSON.stringify(pessoa) + "}";
+
+    var date = toDate(pessoa.dataNascimento);
+
+    if (!isMaiorDeIdade(date)) {
+        var json = {
+            "cdForcaVenda": forcaVenda.codigo,
+            "cdPlano": cdPlano,
+            "titulares": [
+                {
+                    "nome": removerAcentosMinusculo(pessoa.nome),
+                    "cpf": pessoa.cpf,
+                    "dataNascimento": pessoa.dataNascimento,
+                    "nomeMae": removerAcentosMinusculo(pessoa.nomeMae),
+                    "sexo": pessoa.sexo,
+                    "status": pessoa.status,
+                    "titular": pessoa.titular,
+                    "celular": pessoa.celular,
+                    "contatoEmpresa": pessoa.contatoEmpresa,
+                    "dadosBancarios": {
+                        "agencia": pessoa.dadosBancarios.agencia,
+                        "codigoBanco": pessoa.dadosBancarios.codigoBanco,
+                        "conta": pessoa.dadosBancarios.conta,
+                        "tipoConta": pessoa.dadosBancarios.tipoConta
+                    },
+                    "dependentes": pessoa.dependentes,
+                    "email": pessoa.email,
+                    "endereco": {
+                        "bairro": removerAcentosMinusculo(pessoa.endereco.bairro),
+                        "cep": pessoa.endereco.cep,
+                        "cidade": removerAcentosMinusculo(pessoa.endereco.cidade),
+                        "complemento": pessoa.endereco.complemento,
+                        "logradouro": removerAcentosMinusculo(pessoa.endereco.logradouro),
+                        "estado": pessoa.endereco.estado,
+                        "numero": pessoa.endereco.numero
+                    }
+                }
+            ],
+            "responsavelContratual": {
+                "nome": pessoa.responsavelContratual.nome,
+                "cpf": pessoa.responsavelContratual.cpf,
+                "dataNascimento": pessoa.responsavelContratual.dataNascimento,
+                "email": pessoa.responsavelContratual.email,
+                "celular": pessoa.responsavelContratual.celular,
+                "sexo": pessoa.responsavelContratual.sexo,
+                "endereco": {
+                    "bairro": removerAcentosMinusculo(pessoa.endereco.bairro),
+                    "cep": pessoa.endereco.cep,
+                    "cidade": removerAcentosMinusculo(pessoa.endereco.cidade),
+                    "complemento": pessoa.endereco.complemento,
+                    "logradouro": removerAcentosMinusculo(pessoa.endereco.logradouro),
+                    "estado": pessoa.endereco.estado,
+                    "numero": pessoa.endereco.numero
+                }
+            }
+        };
+
+    } else {
+        var json = {
+            "cdForcaVenda": forcaVenda.codigo,
+            "cdPlano": cdPlano,
+            "titulares": [
+                {
+                    "nome": removerAcentosMinusculo(pessoa.nome),
+                    "cpf": pessoa.cpf,
+                    "dataNascimento": pessoa.dataNascimento,
+                    "nomeMae": removerAcentosMinusculo(pessoa.nomeMae),
+                    "email": pessoa.email,
+                    "sexo": pessoa.sexo,
+                    "status": pessoa.status,
+                    "titular": pessoa.titular,
+                    "celular": pessoa.celular,
+                    "contatoEmpresa": pessoa.contatoEmpresa,
+                    "dadosBancarios": {
+                        "agencia": pessoa.dadosBancarios.agencia,
+                        "codigoBanco": pessoa.dadosBancarios.codigoBanco,
+                        "conta": pessoa.dadosBancarios.conta,
+                        "tipoConta": pessoa.dadosBancarios.tipoConta
+                    },
+                    "dependentes": pessoa.dependentes,
+                    "endereco": {
+                        "bairro": removerAcentosMinusculo(pessoa.endereco.bairro),
+                        "cep": pessoa.endereco.cep,
+                        "cidade": removerAcentosMinusculo(pessoa.endereco.cidade),
+                        "complemento": pessoa.endereco.complemento,
+                        "logradouro": removerAcentosMinusculo(pessoa.endereco.logradouro),
+                        "estado": pessoa.endereco.estado,
+                        "numero": pessoa.endereco.numero
+                    }
+                }
+            ],
+            "responsavelContratual": {
+                "nome": removerAcentosMinusculo(pessoa.nome),
+                "cpf": pessoa.cpf,
+                "dataNascimento": pessoa.dataNascimento,
+                "email": pessoa.email,
+                "celular": pessoa.celular,
+                "sexo": pessoa.sexo,
+                "endereco": {
+                    "bairro": removerAcentosMinusculo(pessoa.endereco.bairro),
+                    "cep": pessoa.endereco.cep,
+                    "cidade": removerAcentosMinusculo(pessoa.endereco.cidade),
+                    "complemento": pessoa.endereco.complemento,
+                    "logradouro": removerAcentosMinusculo(pessoa.endereco.logradouro),
+                    "estado": pessoa.endereco.estado,
+                    "numero": pessoa.endereco.numero
+                }
+            }
+        };
+    }
+
+    json = JSON.stringify(json);
+
+    console.log(json);
+
+    callTokenVendas(function (dataToken) {
+
+        if (dataToken.status != undefined) {
+
+            callback(dataToken);
+        }
+
+        $.ajax({
+            async: true,
+            //url: "http://172.16.244.160:9090/vendapf",
+            url: URLBase + "/corretorservicos/1.0/vendapf",
+            method: "POST",
+            data: json,
+            headers: {
+                "Content-Type": "application/json",
+                "Cache-Control": "no-cache",
+                "Authorization": "Bearer " + dataToken.access_token
+            },
+            //data: "{ \r\n   \"cdForcaVenda\":\"" + forcaVenda.codigo + "\",\r\n   \"cdPlano\":\"" + 4 + "\",\r\n   \"titulares\":[ \r\n      { \r\n         \"celular\":\"" + pessoa.celular + "\",\r\n         \"contatoEmpresa\":" + pessoa.contatoEmpresa + ",\r\n         \"cpf\":\"" + pessoa.cpf + "\",\r\n         \"dadosBancarios\":{ \r\n            \"agencia\":\"" + pessoa.dadosBancarios.agencia + "\",\r\n            \"codigoBanco\":\"" + pessoa.dadosBancarios.codigoBanco + "\",\r\n            \"conta\":\"" + pessoa.dadosBancarios.conta + "\",\r\n            \"tipoConta\":\"" + pessoa.dadosBancarios.tipoConta + "\"\r\n         },\r\n         \"dependentes\":[ \r\n \r\n         ],\r\n         \"email\":\"" + pessoa.email + "\",\r\n         \"endereco\":{ \r\n            \"bairro\":\"" + pessoa.endereco.bairro + "\",\r\n            \"cep\":\"" + pessoa.endereco.cep + "\",\r\n            \"cidade\":\"" + pessoa.endereco.cidade + "\",\r\n            \"complemento\":\"" + pessoa.endereco.complemento + "\",\r\n            \"logradouro\":\"" + pessoa.endereco.logradouro + "\",\r\n            \"estado\":\"" + pessoa.endereco.estado + "\",\r\n            \"numero\":\"" + pessoa.endereco.numero + "\"\r\n         },\r\n         \"dataNascimento\":\"" + pessoa.dataNascimento + "\",\r\n         \"nomeMae\":\"" + pessoa.nomeMae + "\",\r\n         \"nome\":\"" + pessoa.nome + "\",\r\n         \"sexo\":\"" + pessoa.sexo +"\",\r\n         \"status\":\"PRONTA\",\r\n         \"titular\":true\r\n      }\r\n   ]\r\n}\r\n",
+
+            processData: false,
+            success: function (result) {
+                console.log(result);
+                callback(result);
+
+            },
+            error: function (resp) {
+                console.log(resp);
+                callback(resp);
+            }
+        });
+    });
+}
+
+
 function sincronizarEmpresa(callback, proposta, beneficiarios) {
 
     console.log(proposta);
@@ -1501,4 +1762,41 @@ function resizeIframe(iframeID) {
     var container = document.body;
     var h = parseInt(container.offsetHeight) + 300;
     iframe.style.height = h.toString() + 'px';
+}
+
+function sincronizarPME(callback, proposta, beneficiarios) {
+
+    var dadosUsuario = get("dadosUsuario");
+    var pdata = [];
+    var json = "{ \"cdForcaVenda\":" + dadosUsuario.codigo + ", \"empresas\": " + JSON.stringify(proposta) + ", \"titulares\":" + JSON.stringify(beneficiarios) + "}";
+
+    console.log(json);
+
+    callTokenVendas(function (dataToken) {
+
+        if (dataToken.status != undefined) {
+
+            callback(dataToken);
+        }
+
+        $.ajax({
+            url: URLBase + "/corretorservicos/1.0/vendapme",
+            //url: "http://www.corretorvendaodonto.com.br:7001/portal-corretor-servico-0.0.1-SNAPSHOT/vendapme",
+            type: "POST",
+            data: json,
+            dataType: "json",
+            headers: {
+                "Content-Type": "application/json",
+                "Cache-Control": "no-cache",
+                "Authorization": "Bearer " + dataToken.access_token
+            },
+            success: function (result) {
+                callback(result)
+            },
+            error: function (xhr) {
+                callback(xhr)
+                //swal.close();
+            }
+        });
+    });
 }

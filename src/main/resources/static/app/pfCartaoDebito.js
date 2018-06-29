@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $(".bancos").change(function () {
         if ($(this).val() == "341") {
-            swal("Atenção!", "Lembre o seu cliente de que o Itaú exige liberação para o débito em conta.", "info");
+            swal("Atenï¿½ï¿½o!", "Lembre o seu cliente de que o Itaï¿½ exige liberaï¿½ï¿½o para o dï¿½bito em conta.", "info");
         }
     });
 });
@@ -19,7 +19,7 @@ $("#contaDebito").keyup(function () {
 
 $(function () {
     var regex = new RegExp('[^0-9]', 'g');
-    // repare a flag "g" de global, para substituir todas as ocorrências
+    // repare a flag "g" de global, para substituir todas as ocorrï¿½ncias
     $('.agencia').bind('input', function () {
         $(this).val($(this).val().replace(regex, ''));
     });
@@ -27,7 +27,7 @@ $(function () {
 
 $(function () {
     var regex = new RegExp('[^a-zA-Z0-9]', 'g');
-    // repare a flag "g" de global, para substituir todas as ocorrências
+    // repare a flag "g" de global, para substituir todas as ocorrï¿½ncias
     $('.conta-corrente').bind('input', function () {
         $(this).val($(this).val().replace(regex, ''));
     });
@@ -66,8 +66,9 @@ function cadastrarConta() {
     proposta.dadosBancarios.codigoBanco = $(".bancos").val();
     proposta.dadosBancarios.agencia = $("#agenciaDebito").val();
     proposta.dadosBancarios.conta = $("#contaDebito").val();
-
+    proposta.dadosBancarios.tipoConta = "CC";
+    proposta.status = "PRONTA";
     atualizarPessoas(proposta);
-
-    window.location.href = "compra_pf_sucesso.html";
+    put("propostaPf", JSON.stringify(proposta));
+    enviarPropostaPf();
 }
