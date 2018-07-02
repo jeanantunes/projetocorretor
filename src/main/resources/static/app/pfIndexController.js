@@ -77,7 +77,7 @@ function setIdPlano() {
 
     if (conexao.producaoLigado){
     
-        var plano = planos.filter(function (x) { if (x.nome == "DENTAL ORTO ANUAL") { return x.nome; } });
+        var plano = planos.filter(function (x) { if (x.nome == "DENTAL ORTO ANUAL S/CARENCIA") { return x.nome; } });
         $("#ortoAnualSCarencia").attr("data-id", plano[0].cdPlano);
     
         var plano = planos.filter(function (x) { if (x.nome == "DENTAL ESTETICA ANUAL S/CARENCIA") { return x.nome; } });
