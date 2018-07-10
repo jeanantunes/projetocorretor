@@ -1,13 +1,21 @@
 package br.com.odontoprev.portalcorretor.service;
 
+import br.com.odontoprev.portalcorretor.model.DetalhesBoletoResponse;
 import br.com.odontoprev.portalcorretor.model.DetalhesPropostaResponse;
+import br.com.odontoprev.portalcorretor.model.FichaFinanceiraResponse;
+import br.com.odontoprev.portalcorretor.model.FichaFinancieraBoleto;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.Arrays;
 
 @Service
 public class PropostaService {
@@ -19,6 +27,9 @@ public class PropostaService {
 
     @Value("${odontoprev.detalhes.proposta}")
     private String metodo;
+
+    @Value("${odontoprev.detalhes.boleto}")
+    private String detalhesBoleto;
 
     @Autowired
     private ApiManagerTokenService apiManagerTokenService;
@@ -49,6 +60,77 @@ public class PropostaService {
             e.printStackTrace();
             log.error("DetalhesPropostaService ->>> " + e);
             return null;
+        }
+    }
+
+    public FichaFinanceiraResponse listarBoleto(DetalhesBoletoResponse detalhesBoletoResponse) {
+        FichaFinanceiraResponse financeiraResponse = null;
+
+        log.info("LISTAR BOLETO ->>> detalhesBoleto");
+
+        //https://api-it3.odontoprev.com.br:8243/corretor/boleto/1.0/financeiro/obterfichafinanceira/codigoassociado
+        //https://api-it3.odontoprev.com.br:8243/corretor/boleto/1.0/financeiro/obterfichafinanceira/numeroproposta
+        //https://api-it3.odontoprev.com.br:8243/corretor/boleto/1.0/financeiro/gerarboleto
+        //https://api-it3.odontoprev.com.br:8243/corretor/boleto/1.0/financeiro/gerarboletofile
+
+        String url = "http://172.18.203.20:7001/est-corretorboletoebs-api-rs-1.0/financeiro/obterfichafinanceira/numeroproposta";
+
+        RestTemplate restTemplate = new RestTemplate();
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
+            headers.setContentType(MediaType.APPLICATION_JSON);
+
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.setSerializationInclusion(JsonInclude.Include.USE_DEFAULTS);
+            String strObject = mapper.writeValueAsString(detalhesBoletoResponse);
+
+            HttpEntity<String> entity = new HttpEntity<>(strObject, headers);
+            ResponseEntity<FichaFinanceiraResponse> retorno = restTemplate.exchange(url, HttpMethod.POST, entity, FichaFinanceiraResponse.class);
+            if (retorno.getStatusCode() == HttpStatus.OK) {
+                log.info("FichaFinanceira ->>> " + HttpStatus.OK);
+                financeiraResponse = retorno.getBody();
+                return financeiraResponse;
+            } else {
+                log.warn("FichaFinanceira ->>> " + financeiraResponse);
+                return financeiraResponse;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.warn("FichaFinanceira ->>> " + financeiraResponse);
+            return financeiraResponse;
+        }
+    }
+
+    public byte[] gerarBoleto(FichaFinancieraBoleto financieraBoleto) {
+
+        log.info("GERAR BOLETO ->>> gerarBoleto");
+
+        String url = "http://172.18.203.21:8090/est-corretorboletoebs-api-rs-1.0/financeiro/gerarboleto";
+
+        RestTemplate restTemplate = new RestTemplate();
+        MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
+        mappingJackson2HttpMessageConverter.setSupportedMediaTypes(Arrays.asList(
+                new MediaType("application", "json")));
+        restTemplate.getMessageConverters().add(mappingJackson2HttpMessageConverter);
+
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
+
+            HttpEntity<FichaFinancieraBoleto> entity = new HttpEntity<>(financieraBoleto, headers);
+            ResponseEntity<String> retorno = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
+
+            if (retorno.getStatusCode() == HttpStatus.OK) {
+                return retorno.getBody().getBytes();
+            } else {
+                return new byte[0];
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new byte[0];
         }
     }
 }

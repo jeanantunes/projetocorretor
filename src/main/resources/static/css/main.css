@@ -3847,6 +3847,14 @@ transform
     float: left;
 }
 
+.point-blue {
+    width: 20px;
+    height: 20px;
+    background-color: #2699FB;
+    border-radius: 100px;
+    float: left;
+}
+
 .point-red {
     width: 20px;
     height: 20px;

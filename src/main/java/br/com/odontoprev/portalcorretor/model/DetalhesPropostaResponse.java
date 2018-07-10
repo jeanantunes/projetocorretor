@@ -8,6 +8,8 @@ public class DetalhesPropostaResponse implements Serializable {
     private Long cdVenda;
     private VendaCritica venda;
     private List<Beneficiarios> dependentes;
+    private List<FichaFinanciera> fichaFinanciera;
+    private Long id;
 
     public Long getCdVenda() {
         return cdVenda;
@@ -31,5 +33,21 @@ public class DetalhesPropostaResponse implements Serializable {
 
     public void setDependentes(List<Beneficiarios> dependentes) {
         this.dependentes = dependentes;
+    }
+
+    public List<FichaFinanciera> getFichaFinanciera() {
+        return fichaFinanciera;
+    }
+
+    public void setFichaFinanciera(List<FichaFinanciera> fichaFinanciera) {
+        this.fichaFinanciera = fichaFinanciera;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

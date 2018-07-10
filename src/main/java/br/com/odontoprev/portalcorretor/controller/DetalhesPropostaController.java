@@ -1,10 +1,9 @@
 package br.com.odontoprev.portalcorretor.controller;
 
-import br.com.odontoprev.portalcorretor.model.Beneficiarios;
-import br.com.odontoprev.portalcorretor.model.DetalhesPropostaResponse;
-import br.com.odontoprev.portalcorretor.model.UsuarioSession;
+import br.com.odontoprev.portalcorretor.model.*;
 import br.com.odontoprev.portalcorretor.service.PropostaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +11,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -21,8 +27,10 @@ public class DetalhesPropostaController {
     @Autowired
     PropostaService propostaService;
 
+    FichaFinanceiraResponse fichaFinanciera;
+
     @RequestMapping(value = "detalhesProposta", method = RequestMethod.GET)
-    public ModelAndView detalhesProposta(Model model, @RequestParam("cdVenda") String cdVenda, HttpSession session) {
+    public ModelAndView detalhesProposta(Model model, @RequestParam("cdVenda") String cdVenda, HttpSession session) throws IOException, ParseException {
 
         UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
 
@@ -100,7 +108,135 @@ public class DetalhesPropostaController {
             model.addAttribute("tipoPlano", "Mensal");
         }
 
+        SimpleDateFormat dtIni = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat dtFim = new SimpleDateFormat("yyyy-MM-dd");
+
+        String dataInicial = dtIni.format((dtIni.parse("2018-03-01")));
+
+        Date dtFinal = new Date();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(dtFinal);
+        cal.set(Calendar.DAY_OF_MONTH, 1); // DIA 1
+        cal.add(Calendar.MONTH, 1); // +1 MES
+        cal.add(Calendar.YEAR, 1); // +1 ANO
+        dtFinal = cal.getTime();
+        String dataFinal = dtFim.format((dtFinal));
+
+        fichaFinanciera = detalhesBoleto(detalhesProposta.getVenda().getPropostaDcms(), dataInicial, dataFinal);
+
+        if (fichaFinanciera != null) {
+            detalhesProposta.setFichaFinanciera(fichaFinanciera.getFichaFinanciera());
+            model.addAttribute("fichaFinanciera", detalhesProposta.getFichaFinanciera());
+            model.addAttribute("codigoDoAssociado", detalhesProposta.getVenda().getPropostaDcms());
+            model.addAttribute("dataInicial", dataInicial);
+            model.addAttribute("dataFinal", dataFinal);
+        } else {
+            model.addAttribute("fichaFinanciera", new ArrayList<>());
+        }
+
+
         return new ModelAndView("resumo_pf_proposta_detalhes", "detalhesPlano", detalhesProposta);
     }
+
+    @RequestMapping(value = "detalhesBoleto")
+    public FichaFinanceiraResponse detalhesBoleto(String detalhes, String dtIni, String dtFim) throws ParseException {
+
+        DetalhesBoletoResponse boletoResponse = new DetalhesBoletoResponse();
+        boletoResponse.setDataInicial(dtIni);
+        boletoResponse.setDataFinal(dtFim);
+        boletoResponse.setCodigo(detalhes);
+
+        FichaFinanceiraResponse detalhesBoleto = propostaService.listarBoleto(boletoResponse);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd 00:00:00-03:00");
+        Date dtHj = new Date();
+        String dataHoje = sdf.format(dtHj).replace(" ", "T");
+
+        if (detalhesBoleto != null) {
+            List<FichaFinanciera> financieraList = detalhesBoleto.getFichaFinanciera();
+            for (FichaFinanciera ficha : financieraList) {
+                String dataRenegociacao = ficha.getDataRenegociacao();
+                Integer temp = dataRenegociacao.compareTo(dataHoje);
+
+                if (temp >= 0){
+                    ficha.getCompetencia();
+                    ficha.getDataRenegociacao();
+                    ficha.getDiasDeAtraso();
+                    ficha.getFatura();
+                    ficha.getIsencaoMultaJuros();
+                    ficha.getMultaRescisoria();
+                    ficha.getNotificacao();
+                    ficha.getParcela();
+                    ficha.getPercentualJuros();
+                    ficha.getPercentualMulta();
+                    ficha.getPermiteIsencaoMultaJuros();
+                    ficha.getQuantidadeDiasAtraso();
+                    ficha.getStatusPagamento();
+                    ficha.getValorAtualJuros();
+                    ficha.getValorAtualMulta();
+                    ficha.getValorAtualParcelaCalculado();
+                    ficha.getValorEstorno();
+                    ficha.getValorJurosPago();
+                    ficha.getValorMultaPago();
+                    ficha.getValorNaoAplicado();
+                    ficha.getValorPago();
+                    ficha.getValorParcela();
+                    ficha.getVencimentoOriginal();
+                }
+            }
+        }
+        return detalhesBoleto;
+    }
+
+    @RequestMapping(value = "downloadBoleto", method = {RequestMethod.GET})
+    public void downloadBoleto(Model model, HttpServletResponse response,
+                               @RequestParam(value = "id") String id) throws IOException, ParseException {
+
+        SimpleDateFormat dtIni = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat dtFim = new SimpleDateFormat("yyyy-MM-dd");
+
+        String dataInicial = dtIni.format((dtIni.parse("2018-03-01")));
+        Date dtFinal = new Date();
+        String dataFinal = dtFim.format((dtFinal));
+
+        String[] temp = id.split("-");
+        detalhesBoleto(temp[1], dataInicial, dataFinal);
+
+        String idx = temp[0].substring(1);
+        Integer t = Integer.valueOf(idx) - 1;
+        FichaFinanciera financiera = fichaFinanciera.getFichaFinanciera().get(t);
+
+        //Dados para download
+        FichaFinancieraBoleto financieraBoleto = new FichaFinancieraBoleto();
+        financieraBoleto.setCodigoDoAssociado(temp[1]);
+        financieraBoleto.setDataVencimentoOriginal(financiera.getVencimentoOriginal());
+        financieraBoleto.setNumeroParcela(financiera.getParcela());
+
+        Date dataVencimento = new Date();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(dataVencimento);
+        cal.add(Calendar.DATE, 5); // +5 DIAS
+        dataVencimento = cal.getTime();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd 00:00:00-03:00");
+        financieraBoleto.setDataVencimento(sdf.format(dataVencimento).replace(" ", "T"));
+
+        financieraBoleto.setTipoBoleto("PDF");
+        financieraBoleto.setCodigoSistema("0");
+        financieraBoleto.setRealizarRenegociacao("N"); //TODO: Verificar regra de negócio para "S" e "N" @JeanAntunes
+
+        byte[] file = propostaService.gerarBoleto(financieraBoleto);
+
+        if (file == null) {
+            model.addAttribute("error", "Não foi possível gerar boleto, porfavor tente novamente.");
+        } else {
+            response.setContentType(String.valueOf(MediaType.APPLICATION_PDF));
+            String headerKey = "Content-Disposition";
+            String headerValue = String.format("attachment; filename=\"%s\"", "boleto.pdf");
+            response.setHeader(headerKey, headerValue);
+            response.getWriter().write(new String(file, "UTF-8"));
+            response.getWriter().flush();
+        }
+    }
+
 
 }
