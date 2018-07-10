@@ -28,9 +28,6 @@ public class PropostaService {
     @Value("${odontoprev.detalhes.proposta}")
     private String metodo;
 
-    @Value("${odontoprev.detalhes.boleto}")
-    private String detalhesBoleto;
-
     @Autowired
     private ApiManagerTokenService apiManagerTokenService;
 
