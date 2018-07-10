@@ -82,7 +82,7 @@ public class CorretoraController {
 
 
         corretora.setPropostas(dashsConverter);
-        Long aprovada = propostas.filter(p -> p.getStatusVenda().equals("Aprovado")).count();
+        Long aprovada = propostas.filter(p -> p.getStatusVenda().equals("Proposta concluida com sucesso")).count();
         Long criticadas = propostasPF.size() + propostasPME.size() - aprovada;
 
         corretora.setPropostaPF(propostasPME);
