@@ -2084,17 +2084,3 @@ input[type=checkbox] {
 }
 
 /*********************************** End Dropdown ****************************************/
-/* COPA */
-.slickCopaTxt{
-    color: #82bc3c;
-}
-.infoCopa {
-    font-family: Roboto-Medium;
-    background-color: #fddc58;
-    color: #1D75C9;
-    padding: 6px;
-    padding-left: 11px;
-    padding-right: 11px;
-    text-align: center;
-}
-/* COPA */
