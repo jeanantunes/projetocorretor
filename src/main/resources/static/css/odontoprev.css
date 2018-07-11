@@ -880,7 +880,7 @@ h5, .subListBox {
     text-align: center;
     margin-bottom: 15%;
     padding: 5px;
-    height: 30%;
+    height: 22%;
 }
 
 .pVPlanoVenda p {
@@ -895,7 +895,7 @@ h5, .subListBox {
     margin-bottom: 20%;
     padding: 5px;
     height: 45%;
-    margin-top: 15%;
+    margin-top: 25%;
 }
 
 .pVPlanoVendaPME p {
@@ -1558,12 +1558,12 @@ h5, .subListBox {
 
 @media screen and (min-width: 800px) {
     .boxPlanos {
-        height: 750px !important;
+        height: 520px !important;
     }
 }
 
 .boxPlanos {
-    height: 750px;
+    height: 520px;
 
     border: 1px solid #EDEDED;
     border-radius: 18px;
