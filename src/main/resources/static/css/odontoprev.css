@@ -1188,6 +1188,15 @@ h5, .subListBox {
     text-align: center;
 }
 
+#alertaPlano {
+    margin-top: 2%;
+    background-color: #F9B40A;
+    color: white;
+    border-radius: 2%;
+    font-size: 10pt;
+    text-align: center;
+}
+
 .selectListCidadeBlur {
     font-family: Roboto-Medium;
     padding: 0px;
