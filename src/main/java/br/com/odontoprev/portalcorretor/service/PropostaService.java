@@ -74,7 +74,7 @@ public class PropostaService {
         //https://api-it3.odontoprev.com.br:8243/corretor/boleto/1.0/financeiro/gerarboleto
         //https://api-it3.odontoprev.com.br:8243/corretor/boleto/1.0/financeiro/gerarboletofile
 
-        String url = ConfigurationUtils.getURLGetToken().replaceAll("/token","/financeiro/obterfichafinanceira/numeroproposta");
+        String url = ConfigurationUtils.getURLGetToken().replaceAll("/token","/corretor/boleto/1.0/financeiro/obterfichafinanceira/numeroproposta");
         //String url = requestBase + boleto;
 
         RestTemplate restTemplate = new RestTemplate();
@@ -109,7 +109,8 @@ public class PropostaService {
 
         log.info("GERAR BOLETO ->>> gerarBoleto");
 
-        String url = "http://172.18.203.21:8090/est-corretorboletoebs-api-rs-1.0/financeiro/gerarboleto";
+        String url = ConfigurationUtils.getURLGetToken().replaceAll("/token","/corretor/boleto/1.0/financeiro/gerarboleto");
+        //String url = "http://172.18.203.21:8090/est-corretorboletoebs-api-rs-1.0/financeiro/gerarboleto";
 
         RestTemplate restTemplate = new RestTemplate();
         MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
