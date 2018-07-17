@@ -1,5 +1,6 @@
 package br.com.odontoprev.portalcorretor.service;
 
+import br.com.odontoprev.api.manager.client.token.util.ConfigurationUtils;
 import br.com.odontoprev.portalcorretor.model.DetalhesBoletoResponse;
 import br.com.odontoprev.portalcorretor.model.DetalhesPropostaResponse;
 import br.com.odontoprev.portalcorretor.model.FichaFinanceiraResponse;
@@ -27,6 +28,9 @@ public class PropostaService {
 
     @Value("${odontoprev.detalhes.proposta}")
     private String metodo;
+
+    @Value("${odontoprev.detalhes.proposta.boleto}")
+    private String boleto;
 
     @Autowired
     private ApiManagerTokenService apiManagerTokenService;
@@ -70,7 +74,8 @@ public class PropostaService {
         //https://api-it3.odontoprev.com.br:8243/corretor/boleto/1.0/financeiro/gerarboleto
         //https://api-it3.odontoprev.com.br:8243/corretor/boleto/1.0/financeiro/gerarboletofile
 
-        String url = "http://172.18.203.20:7001/est-corretorboletoebs-api-rs-1.0/financeiro/obterfichafinanceira/numeroproposta";
+        String url = ConfigurationUtils.getURLGetToken().replaceAll("/token","/financeiro/obterfichafinanceira/numeroproposta");
+        //String url = requestBase + boleto;
 
         RestTemplate restTemplate = new RestTemplate();
         try {
