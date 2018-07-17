@@ -77,7 +77,7 @@ function setIdPlano() {
 
     if (conexao.producaoLigado){
     
-        var plano = planos.filter(function (x) { if (x.nome == "DENTAL ORTO ANUAL S/CARENCIA") { return x.nome; } });
+        var plano = planos.filter(function (x) { if (x.nome == "DENTAL ORTO ANUAL") { return x.nome; } });
         $("#ortoAnualSCarencia").attr("data-id", plano[0].cdPlano);
     
         var plano = planos.filter(function (x) { if (x.nome == "DENTAL ESTETICA ANUAL S/CARENCIA") { return x.nome; } });
@@ -86,9 +86,8 @@ function setIdPlano() {
         var plano = planos.filter(function (x) { if (x.nome == "DENTAL VIP ANUAL S/CARENCIA") { return x.nome; } });
         $("#vipAnualSCarencia").attr("data-id", plano[0].cdPlano);
 
-        //TODO: Descomentar após PROMO COPA
-        //var plano = planos.filter(function (x) { if (x.nome == "DENTAL BEM-ESTAR ANUAL S/CARENCIA") { return x.nome; } });
-        //$("#bemEstarAnualSCarencia").attr("data-id", plano[0].cdPlano);
+        var plano = planos.filter(function (x) { if (x.nome == "DENTAL BEM-ESTAR ANUAL S/CARENCIA") { return x.nome; } });
+        $("#bemEstarAnualSCarencia").attr("data-id", plano[0].cdPlano);
     
         return;
     }

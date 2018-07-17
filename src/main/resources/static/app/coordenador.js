@@ -297,8 +297,6 @@ function setPlanosProd() {
 
     planos.push(plano);
 
-    //TODO Descomentar após PLANO COPA
-    /*
     plano = getRepository("plano");
     plano.cdPlano = 67;
     plano.nome = "DENTAL BEM-ESTAR";
@@ -331,30 +329,6 @@ function setPlanosProd() {
     plano.css = "colorSlick3";
     
     planos.push(plano);
-*/
-
-    plano = getRepository("plano");
-    plano.cdPlano = 84;
-    plano.nome = "DENTAL BEM-ESTAR";
-    plano.valor = "45";
-    plano.centavo = "60";
-    plano.valorFloat = 45.60;
-    plano.desc = "Mensal";
-    plano.css = "slickCopaTxt";
-
-    planos.push(plano);
-
-    plano = getRepository("plano");
-    plano.cdPlano = 85;
-    plano.nome = "DENTAL BEM-ESTAR";
-    plano.valor = "456";
-    plano.centavo = "00";
-    plano.valorFloat = 456.00;
-    plano.desc = "Anual";
-    plano.css = "slickCopaTxt";
-
-    planos.push(plano);
-
 
     //plano = getRepository("plano");
     //plano.cdPlano = 6;
@@ -496,8 +470,6 @@ function setPlanosProdCod() {
 
     ////// CODIGO PLANOS DENTAL BEM - ESTAR ////////
 
-    //TODO: Descomentar após PROMO COPA
-    /*
     var plano = new Object();
     plano.cdPlano = 67;
     plano.nome = "DENTAL BEM-ESTAR MENSAL";
@@ -512,17 +484,7 @@ function setPlanosProdCod() {
     plano.cdPlano = 68;
     plano.nome = "DENTAL BEM-ESTAR ANUAL S/CARENCIA";
     planos.push(plano);
-    */
 
-    var plano = new Object();
-    plano.cdPlano = 84;
-    plano.nome = "DENTAL BEM-ESTAR MENSAL";
-    planos.push(plano);
-
-    var plano = new Object();
-    plano.cdPlano = 85;
-    plano.nome = "DENTAL BEM-ESTAR ANUAL";
-    planos.push(plano);
 
     //////// CODIGO PLANOS DENTAL ESTETICA /////////
 
