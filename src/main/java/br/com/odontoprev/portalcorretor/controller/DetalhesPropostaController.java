@@ -122,10 +122,23 @@ public class DetalhesPropostaController {
         dtFinal = cal.getTime();
         String dataFinal = dtFim.format((dtFinal));
 
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd 00:00:00-03:00");
+        Date dtHj = new Date();
+        String dataHoje = sdf.format(dtHj).replace(" ", "T");
+
         fichaFinanciera = detalhesBoleto(detalhesProposta.getVenda().getPropostaDcms(), dataInicial, dataFinal);
 
-        if (fichaFinanciera != null) {
-            detalhesProposta.setFichaFinanciera(fichaFinanciera.getFichaFinanciera());
+        detalhesProposta.setFichaFinanciera(new ArrayList<>());
+        for (FichaFinanciera f : fichaFinanciera.getFichaFinanciera()) {
+            if (f.getDataRenegociacao().compareTo(dataHoje) >= 0 &&
+                    (f.getStatusPagamento().equals("RENEGOCIADO") ||
+                            f.getStatusPagamento().equals("INCLUSAO DE TITULO"))) {
+                detalhesProposta.getFichaFinanciera().add(f);
+            }
+        }
+
+        if (detalhesProposta.getFichaFinanciera().size() > 0) {
+            //detalhesProposta.setFichaFinanciera(fichaFinanciera.getFichaFinanciera());
             model.addAttribute("fichaFinanciera", detalhesProposta.getFichaFinanciera());
             model.addAttribute("codigoDoAssociado", detalhesProposta.getVenda().getPropostaDcms());
             model.addAttribute("dataInicial", dataInicial);
@@ -158,7 +171,7 @@ public class DetalhesPropostaController {
                 String dataRenegociacao = ficha.getDataRenegociacao();
                 Integer temp = dataRenegociacao.compareTo(dataHoje);
 
-                if (temp >= 0){
+                if (temp >= 0) {
                     ficha.getCompetencia();
                     ficha.getDataRenegociacao();
                     ficha.getDiasDeAtraso();
@@ -200,10 +213,10 @@ public class DetalhesPropostaController {
         String dataFinal = dtFim.format((dtFinal));
 
         String[] temp = id.split("-");
-        detalhesBoleto(temp[1], dataInicial, dataFinal);
+        //detalhesBoleto(temp[1], dataInicial, dataFinal);
 
         String idx = temp[0].substring(1);
-        Integer t = Integer.valueOf(idx) - 1;
+        Integer t = Integer.valueOf(idx);
         FichaFinanciera financiera = fichaFinanciera.getFichaFinanciera().get(t);
 
         //Dados para download
@@ -212,6 +225,7 @@ public class DetalhesPropostaController {
         financieraBoleto.setDataVencimentoOriginal(financiera.getVencimentoOriginal());
         financieraBoleto.setNumeroParcela(financiera.getParcela());
 
+        /*
         Date dataVencimento = new Date();
         Calendar cal = Calendar.getInstance();
         cal.setTime(dataVencimento);
@@ -219,6 +233,7 @@ public class DetalhesPropostaController {
         dataVencimento = cal.getTime();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd 00:00:00-03:00");
         financieraBoleto.setDataVencimento(sdf.format(dataVencimento).replace(" ", "T"));
+        */
 
         financieraBoleto.setTipoBoleto("PDF");
         financieraBoleto.setCodigoSistema("0");
