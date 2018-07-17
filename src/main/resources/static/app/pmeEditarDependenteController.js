@@ -31,7 +31,7 @@ function SalvarDependentes() {
         }
 
         if (!ValidaNome($(".nome-dependente").val())) {
-            swal("Ops!", $(".depends").html() + ": nome inválido", "error");
+            swal("Ops!", $(".depends").html() + ": nome invÃ¡lido", "error");
             stop = true;
             return false;
         }
@@ -67,21 +67,38 @@ function SalvarDependentes() {
         if (menor >= 18) {
             if ($(".cpf").val() == "") {
                 console.log("Validando cpf");
-                swal("Ops!", "CPF está inválido", "error");
+                swal("Ops!", "CPF estÃ¡ invÃ¡lido", "error");
                 stop = true;
                 return;
             }
         }
 
         if ($(".cpf").val() != "" && !TestaCPF($(".cpf").val().replace(/\D/g, ''))) {
-            swal("Ops!", "CPF está inválido", "error");
+            swal("Ops!", "CPF estÃ¡ invÃ¡lido", "error");
             stop = true;
             return;
         }
 
+        let cpfsProposta = listCpfPropostaPme();
+
+        if (cpfsProposta.length > 0) {
+
+            let cpfPesquisa = get("beneficiarioEmEdicao").cpf;
+
+            let removeCpfEdicao = cpfsProposta.filter(function (x) { return x != cpfPesquisa });
+            let checkCpf = removeCpfEdicao.filter(function (x) { return x == $(".cpf").val() });
+
+            if (checkCpf.length > 0) {
+
+                swal("Ops!", "CPF jÃ¡ informado anteriormente.", "error");
+                stop = true;
+                return;
+            }
+        }
+
         var benef = get("beneficiario");
         if ($(".cpf").val() != "" && benef.cpf == $(".cpf").val()) {
-            swal("Conflito!", "Você informou o mesmo CPF do titular para este dependente, por favor verifique.", "error");
+            swal("Conflito!", "VocÃª informou o mesmo CPF do titular para este dependente, por favor verifique.", "error");
             stop = true;
             return;
         }
@@ -92,7 +109,7 @@ function SalvarDependentes() {
 
         if (checkSeDependenteExiste.length > 0 && cpfAtual != beneficiarioEmEdicao.cpf) {
 
-            swal("Conflito!", "Você informou o mesmo CPF de outro dependente para este dependente, por favor verifique.", "error");
+            swal("Conflito!", "VocÃª informou o mesmo CPF de outro dependente para este dependente, por favor verifique.", "error");
             stop = true;
             return;
         }
@@ -106,7 +123,7 @@ function SalvarDependentes() {
             var dependsCpf = false;
 
             if (oe.length >= 1 && cpfAtual != "") {
-                swal("Conflito!", "Você informou o mesmo CPF de outro titular para este dependente, por favor verifique.", "error");
+                swal("Conflito!", "VocÃª informou o mesmo CPF de outro titular para este dependente, por favor verifique.", "error");
                 stop = true;
                 return;
             }
@@ -131,20 +148,20 @@ function SalvarDependentes() {
             });
 
             if (dependsCpf) {
-                swal("Conflito!", "Você informou o mesmo CPF de outro Dependente para este dependente, por favor verifique.", "error");
+                swal("Conflito!", "VocÃª informou o mesmo CPF de outro Dependente para este dependente, por favor verifique.", "error");
                 stop = true;
                 return;
             }
         }
 
         if ($(".nome-mae").val() == "") {
-            swal("Ops!", "Preencha o Nome da Mãe do " + $(".depends").html(), "error");
+            swal("Ops!", "Preencha o Nome da MÃ£e do " + $(".depends").html(), "error");
             stop = true;
             return;
         }
 
         if (!ValidaNome($(".nome-mae").val())) {
-            swal("Ops!", $(".depends").html() + ": nome da mãe inválido", "error");
+            swal("Ops!", $(".depends").html() + ": nome da mÃ£e invÃ¡lido", "error");
             stop = true;
             return false;
         }
