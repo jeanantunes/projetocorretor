@@ -41,7 +41,6 @@ public class DetalhesPropostaController {
         for (Beneficiarios beneficiario : dadosTitulares) {
             Integer cdTitular = beneficiario.getCdTitular();
             if (cdTitular == 0) {
-
                 //Titular
                 model.addAttribute("cdTitular", beneficiario.getCdTitular());
                 model.addAttribute("celular", beneficiario.getCelular());
@@ -237,7 +236,7 @@ public class DetalhesPropostaController {
 
         financieraBoleto.setTipoBoleto("PDF");
         financieraBoleto.setCodigoSistema("0");
-        financieraBoleto.setRealizarRenegociacao("N"); //TODO: Verificar regra de negócio para "S" e "N" @JeanAntunes
+        financieraBoleto.setRealizarRenegociacao("N");
 
         byte[] file = propostaService.gerarBoleto(financieraBoleto);
 
