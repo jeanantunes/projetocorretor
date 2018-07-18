@@ -216,14 +216,21 @@ public class DetalhesPropostaController {
         //detalhesBoleto(temp[1], dataInicial, dataFinal);
 
         String idx = temp[0];
-        Integer t = Integer.valueOf(idx);
-        FichaFinanciera financiera = fichaFinanciera.getFichaFinanciera().get(t-1);
+        String t = idx;
 
-        //Dados para download
         FichaFinancieraBoleto financieraBoleto = new FichaFinancieraBoleto();
-        financieraBoleto.setCodigoDoAssociado(temp[1]);
-        financieraBoleto.setDataVencimentoOriginal(financiera.getVencimentoOriginal());
-        financieraBoleto.setNumeroParcela(financiera.getParcela());
+        for (FichaFinanciera f : fichaFinanciera.getFichaFinanciera()) {
+            f.getCompetencia().replaceAll("/","");
+            if (f.getCompetencia().contains(t)){
+                //Dados para download
+                financieraBoleto.setCodigoDoAssociado(temp[1]);
+                financieraBoleto.setDataVencimentoOriginal(f.getVencimentoOriginal());
+                financieraBoleto.setNumeroParcela(f.getParcela());
+                financieraBoleto.setTipoBoleto("PDF");
+                financieraBoleto.setCodigoSistema("0");
+                financieraBoleto.setRealizarRenegociacao("N");
+            }
+        }
 
         /*
         Date dataVencimento = new Date();
@@ -234,10 +241,6 @@ public class DetalhesPropostaController {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd 00:00:00-03:00");
         financieraBoleto.setDataVencimento(sdf.format(dataVencimento).replace(" ", "T"));
         */
-
-        financieraBoleto.setTipoBoleto("PDF");
-        financieraBoleto.setCodigoSistema("0");
-        financieraBoleto.setRealizarRenegociacao("N");
 
         byte[] file = propostaService.gerarBoleto(financieraBoleto);
 
