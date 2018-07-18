@@ -127,6 +127,8 @@ public class DetalhesPropostaController {
 
         fichaFinanciera = detalhesBoleto(detalhesProposta.getVenda().getPropostaDcms(), dataInicial, dataFinal);
 
+
+        if (fichaFinanciera != null) {
         detalhesProposta.setFichaFinanciera(new ArrayList<>());
         for (FichaFinanciera f : fichaFinanciera.getFichaFinanciera()) {
             if (f.getDataRenegociacao().compareTo(dataHoje) >= 0 &&
@@ -136,7 +138,6 @@ public class DetalhesPropostaController {
             }
         }
 
-        if (detalhesProposta.getFichaFinanciera().size() > 0) {
             //detalhesProposta.setFichaFinanciera(fichaFinanciera.getFichaFinanciera());
             model.addAttribute("fichaFinanciera", detalhesProposta.getFichaFinanciera());
             model.addAttribute("codigoDoAssociado", detalhesProposta.getVenda().getPropostaDcms());
@@ -214,15 +215,22 @@ public class DetalhesPropostaController {
         String[] temp = id.split("-");
         //detalhesBoleto(temp[1], dataInicial, dataFinal);
 
-        String idx = temp[0].substring(1);
-        Integer t = Integer.valueOf(idx);
-        FichaFinanciera financiera = fichaFinanciera.getFichaFinanciera().get(t);
+        String idx = temp[0];
+        String t = idx;
 
-        //Dados para download
         FichaFinancieraBoleto financieraBoleto = new FichaFinancieraBoleto();
-        financieraBoleto.setCodigoDoAssociado(temp[1]);
-        financieraBoleto.setDataVencimentoOriginal(financiera.getVencimentoOriginal());
-        financieraBoleto.setNumeroParcela(financiera.getParcela());
+        for (FichaFinanciera f : fichaFinanciera.getFichaFinanciera()) {
+            f.getCompetencia().replaceAll("/","");
+            if (f.getCompetencia().contains(t)){
+                //Dados para download
+                financieraBoleto.setCodigoDoAssociado(temp[1]);
+                financieraBoleto.setDataVencimentoOriginal(f.getVencimentoOriginal());
+                financieraBoleto.setNumeroParcela(f.getParcela());
+                financieraBoleto.setTipoBoleto("PDF");
+                financieraBoleto.setCodigoSistema("0");
+                financieraBoleto.setRealizarRenegociacao("N");
+            }
+        }
 
         /*
         Date dataVencimento = new Date();
@@ -233,10 +241,6 @@ public class DetalhesPropostaController {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd 00:00:00-03:00");
         financieraBoleto.setDataVencimento(sdf.format(dataVencimento).replace(" ", "T"));
         */
-
-        financieraBoleto.setTipoBoleto("PDF");
-        financieraBoleto.setCodigoSistema("0");
-        financieraBoleto.setRealizarRenegociacao("N");
 
         byte[] file = propostaService.gerarBoleto(financieraBoleto);
 

@@ -371,7 +371,7 @@
                             <div class="box-proposta" th:each="proposta : ${detalhesPlano.getFichaFinanciera()}">
                                 <label class="container">
                                     <input type="radio" th:field="*{detalhesPlano.id}" class="conteudo"
-                                           th:value="${#ids.seq(0)}"
+                                           th:value="${proposta.competencia}"
                                            th:text="${proposta.competencia}"/>
                                     <span class="checkmark"></span>
                                 </label>
