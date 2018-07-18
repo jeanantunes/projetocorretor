@@ -127,6 +127,23 @@ function SalvarDependentes() {
             return;
         }
 
+        let cpfsProposta = listCpfPropostaPme();
+
+        if (cpfsProposta.length > 0) {
+
+            let cpfPesquisa = $(this).find(".cpf").val();
+
+            let checkCpf = cpfsProposta.filter(function (x) { return x == cpfPesquisa });
+
+            if (checkCpf.length > 0) {
+
+                swal("Ops!", "CPF do "+ $(this).find(".depends").html().toLowerCase() +" já informado anteriormente.", "error");
+                stop = true;
+                return;
+            }
+
+        }
+
         var benefs = get("beneficiarios");
         if (benefs != null) {
             var cpfAtual = $(this).find(".cpf").val();

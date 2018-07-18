@@ -383,6 +383,33 @@ function adicionarBenefMemoria() {
         return;
     }
 
+    let cpfsProposta = listCpfPropostaPme();
+
+    let cpfEmEdicao = get("cpfEmEdicaoPME");
+
+    if (cpfEmEdicao == null && cpfsProposta.length > 0) {
+
+        let checkCpf = cpfsProposta.filter(function (x) { return x == $("#cpf").val() });
+
+        if (checkCpf.length > 0) {
+
+            swal("Ops!", "CPF já informado anteriormente.", "error");
+            return;
+        }
+
+    } else if (cpfEmEdicao != null && cpfsProposta.length > 0) {
+
+        let removeCpfEdicao = cpfsProposta.filter(function (x) { return x != cpfEmEdicao });
+        let checkCpf = removeCpfEdicao.filter(function (x) { return x == $("#cpf").val() });
+
+        if (checkCpf.length > 0) {
+
+            swal("Ops!", "CPF já informado anteriormente.", "error");
+            return;
+        }
+
+    }
+
 
 
     //if (menor < 18) {
