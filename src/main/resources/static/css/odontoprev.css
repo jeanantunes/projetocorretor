@@ -708,6 +708,13 @@ h1, .titleListBox {
     cursor: pointer;
 }
 
+#linkBlue{
+    color: blue;
+    font-family: Roboto-Regular;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 .subTitleOdontSucess {
     font-family: Roboto-Regular;
     color: #1974CE;

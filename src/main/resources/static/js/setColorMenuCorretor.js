@@ -30,4 +30,6 @@ function setColorMenu() {
         $("a[href='/corretora/equipe']").addClass('nav-active');
     else if (url.indexOf("/corretora/home") !== -1)
         $("a[href='/corretora/home']").addClass('nav-active');
+    else if (url.indexOf("/material-divulgacao") !== -1)
+        $("a[href='/material-divulgacao']").addClass('nav-active');
 }
