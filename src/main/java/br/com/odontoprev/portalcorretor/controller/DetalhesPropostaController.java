@@ -127,6 +127,8 @@ public class DetalhesPropostaController {
 
         fichaFinanciera = detalhesBoleto(detalhesProposta.getVenda().getPropostaDcms(), dataInicial, dataFinal);
 
+
+        if (fichaFinanciera != null) {
         detalhesProposta.setFichaFinanciera(new ArrayList<>());
         for (FichaFinanciera f : fichaFinanciera.getFichaFinanciera()) {
             if (f.getDataRenegociacao().compareTo(dataHoje) >= 0 &&
@@ -136,7 +138,6 @@ public class DetalhesPropostaController {
             }
         }
 
-        if (detalhesProposta.getFichaFinanciera().size() > 0) {
             //detalhesProposta.setFichaFinanciera(fichaFinanciera.getFichaFinanciera());
             model.addAttribute("fichaFinanciera", detalhesProposta.getFichaFinanciera());
             model.addAttribute("codigoDoAssociado", detalhesProposta.getVenda().getPropostaDcms());
@@ -214,9 +215,9 @@ public class DetalhesPropostaController {
         String[] temp = id.split("-");
         //detalhesBoleto(temp[1], dataInicial, dataFinal);
 
-        String idx = temp[0].substring(1);
+        String idx = temp[0];
         Integer t = Integer.valueOf(idx);
-        FichaFinanciera financiera = fichaFinanciera.getFichaFinanciera().get(t);
+        FichaFinanciera financiera = fichaFinanciera.getFichaFinanciera().get(t-1);
 
         //Dados para download
         FichaFinancieraBoleto financieraBoleto = new FichaFinancieraBoleto();
