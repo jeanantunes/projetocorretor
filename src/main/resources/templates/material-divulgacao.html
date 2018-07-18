@@ -121,8 +121,9 @@
                      th:if="*{categorias.nome != null}" th:text="${categorias.nome}"/>
             </div>
             <div class="row col-xs-12">
-                <div class="text-silver space-bottom-30" th:if="${categorias.descricao != null}"
-                     th:text="${categorias.descricao}"/>
+                <div th:if="${categorias.descricao != null}">
+                    <label class="space-top-30" th:text="${categorias.descricao}"
+                           style="color: #828282;font-size: 19px;font-family: Roboto-Bold;"></label></div>
             </div>
 
             <!-- <div class="text-odonto" th:text="${categorias.subCategoriasMaterialDivulgacao}"></div> -->
@@ -133,8 +134,10 @@
                          th:if="${subCategorias.nome != null}" th:text="${subCategorias.nome}"/>
                 </div>
                 <div class="row col-xs-12">
-                    <div class="text-silver space-bottom-30"
-                         th:if="${subCategorias.descricao != null}" th:text="${subCategorias.descricao}"/>
+                    <div th:if="${subCategorias.descricao != null}">
+                        <label class="space-top-30" th:text="${subCategorias.descricao}"
+                               style="color: #828282;font-size: 19px;font-family: Roboto-Bold;"/>
+                    </div>
                 </div>
                 <!-- <div class="text-odonto" th:text="${subCategorias.ativo}"></div> -->
                 <!-- <div class="text-odonto" th:text="${subCategorias.app}"></div> -->
@@ -155,7 +158,8 @@
                                            th:attr="data-id=${materiais.codigoMaterialDivulgacao}"
                                            type="button" data-toggle="modal" class="thumb"
                                            th:attrappend="data-target='#' + ${materiais.codigoMaterialDivulgacao}">
-                                            <img class="imgFace" th:if="*{materiais.thumbnail != null}"
+                                            <img class="imgFace img-responsive" id="linkBlue"
+                                                 th:if="*{materiais.thumbnail != null}"
                                                  th:src="@{'data:image/jpg;base64,' + *{T(org.springframework.util.Base64Utils).encodeToString(materiais.thumbnail)}}"/></a>
                                         <!-- INICIO - Modal -->
                                         <div class="modal fade" th:attr="id=${materiais.codigoMaterialDivulgacao}"
@@ -196,7 +200,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <span class="text-odonto" th:text="${materiais.nome}"/></td>
+                                        <span class="text-odonto" th:if="${materiais.nome != null}" th:text="${materiais.nome}"/></td>
                                 </tr>
                                 <tr>
                                     <td>
