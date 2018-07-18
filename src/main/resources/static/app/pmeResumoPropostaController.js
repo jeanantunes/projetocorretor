@@ -341,15 +341,33 @@ function enviarPropostaPme() {
 
     put("empresas", JSON.stringify(todosExcetoExclusao));
 
-    var parametroEmpresa = [];
-    parametroEmpresa.push(proposta);
+
+
+    consultarSerasa(function (dataProposta) {
+
+
+
+        if (dataProposta == "error") {
+
+            proposta.status = "DIGITANDO";
+            atualizarEmpresas(proposta);
+            put("proposta", JSON.stringify(proposta));
+
+            return;
+        };
+
+        proposta = dataProposta;
+
+        var parametroEmpresa = [];
+        parametroEmpresa.push(proposta);
+
 
     sincronizarPME(function (dataVendaPme) {
 
         if (dataVendaPme.id != undefined) {
 
             if (dataVendaPme.id == 0) {
-                proposta.status = "CRITICADA";
+                proposta.status = "DIGITANDO";
                 atualizarEmpresas(proposta);
             }
             else {
@@ -379,4 +397,6 @@ function enviarPropostaPme() {
         }
 
     }, parametroEmpresa, beneficiarios);
+
+    }, proposta);
 }

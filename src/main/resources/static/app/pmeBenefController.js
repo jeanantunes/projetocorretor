@@ -21,8 +21,12 @@ $(document).ready(function () {
 
         adicionarBenefMemoria();
 
-        if (problema)
+        if (problema) {
+
+            $(".dependentes").val(0);
             return;
+
+        }
 
         var proposta = get("proposta");
         var benef = get("beneficiario");
@@ -33,10 +37,11 @@ $(document).ready(function () {
 
         put("proposta", JSON.stringify(proposta));
         put("beneficiario", JSON.stringify(benef));
+        put("numeroDependentes", $(".dependentes").val());
+
+        if ($(".dependentes").val() == 0) return;
 
         window.location.href = "venda_pme_dependentes.html";
-
-        put("numeroDependentes", $(".dependentes").val());
     });
 });
 

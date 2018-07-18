@@ -1610,7 +1610,6 @@ function sincronizarPf(callback, pessoa) {
             data: json,
             headers: {
                 "Content-Type": "application/json",
-                "Cache-Control": "no-cache",
                 "Authorization": "Bearer " + dataToken.access_token
             },
             //data: "{ \r\n   \"cdForcaVenda\":\"" + forcaVenda.codigo + "\",\r\n   \"cdPlano\":\"" + 4 + "\",\r\n   \"titulares\":[ \r\n      { \r\n         \"celular\":\"" + pessoa.celular + "\",\r\n         \"contatoEmpresa\":" + pessoa.contatoEmpresa + ",\r\n         \"cpf\":\"" + pessoa.cpf + "\",\r\n         \"dadosBancarios\":{ \r\n            \"agencia\":\"" + pessoa.dadosBancarios.agencia + "\",\r\n            \"codigoBanco\":\"" + pessoa.dadosBancarios.codigoBanco + "\",\r\n            \"conta\":\"" + pessoa.dadosBancarios.conta + "\",\r\n            \"tipoConta\":\"" + pessoa.dadosBancarios.tipoConta + "\"\r\n         },\r\n         \"dependentes\":[ \r\n \r\n         ],\r\n         \"email\":\"" + pessoa.email + "\",\r\n         \"endereco\":{ \r\n            \"bairro\":\"" + pessoa.endereco.bairro + "\",\r\n            \"cep\":\"" + pessoa.endereco.cep + "\",\r\n            \"cidade\":\"" + pessoa.endereco.cidade + "\",\r\n            \"complemento\":\"" + pessoa.endereco.complemento + "\",\r\n            \"logradouro\":\"" + pessoa.endereco.logradouro + "\",\r\n            \"estado\":\"" + pessoa.endereco.estado + "\",\r\n            \"numero\":\"" + pessoa.endereco.numero + "\"\r\n         },\r\n         \"dataNascimento\":\"" + pessoa.dataNascimento + "\",\r\n         \"nomeMae\":\"" + pessoa.nomeMae + "\",\r\n         \"nome\":\"" + pessoa.nome + "\",\r\n         \"sexo\":\"" + pessoa.sexo +"\",\r\n         \"status\":\"PRONTA\",\r\n         \"titular\":true\r\n      }\r\n   ]\r\n}\r\n",
@@ -1778,7 +1777,6 @@ function sincronizarPME(callback, proposta, beneficiarios) {
             dataType: "json",
             headers: {
                 "Content-Type": "application/json",
-                "Cache-Control": "no-cache",
                 "Authorization": "Bearer " + dataToken.access_token
             },
             success: function (result) {
@@ -1789,5 +1787,167 @@ function sincronizarPME(callback, proposta, beneficiarios) {
                 //swal.close();
             }
         });
+    });
+}
+
+function consultarSerasa(callback, propostaPme) {
+
+    if (propostaPme.consultadaSerasa) {
+        callback(propostaPme);
+        return;
+    }
+
+    callTokenVendas(function (dataToken) {
+
+        postSerasa(function (dataConsultaSerasa) {
+
+            try {
+                try {
+                    var situacaoEmpresa = dataConsultaSerasa.getElementsByTagName("situacao")[0].textContent;
+                    var situacao = situacaoEmpresa.indexOf("ATIVA");
+                } catch (Exception) { }
+
+                try {
+                    var naturezaJuridica = dataConsultaSerasa.getElementsByTagName("codigo")[0].textContent;
+                    var dataAbertura = dataConsultaSerasa.getElementsByTagName("dataAbertura")[0].textContent;
+
+                    if (naturezaJuridica == "2135") {
+                        var date = toDateSplitHifenSerasa(dataAbertura);
+
+                        if (!validateDataMei(date)) {
+
+                            swal("Ops", "Venda não autorizada para Empresa MEI com menos de 6 meses", "info");
+                            callback("error");
+                            return;
+                        }
+                    }
+
+                } catch (Exception) { }
+
+                if (situacao == undefined) {
+
+
+                    callback(propostaPme);// enviar proposta com dados preenchidos pelo força
+                    return;
+                }
+
+                if (!situacao == 0) {
+
+                    swal("Ops", "Não é possível seguir com a contratação para esta empresa. Consulte o CNPJ e tente novamente.", "info");
+                    callback("error");
+                    return;
+                }
+            } catch (Exception) { }
+
+            console.log(dataConsultaSerasa);
+
+            try {
+                console.log(dataConsultaSerasa.getElementsByTagName("razaoSocial")[0].textContent.trim())
+                propostaPme.razaoSocial = dataConsultaSerasa.getElementsByTagName("razaoSocial")[0].textContent.trim(); // RAZAO SOCIAL
+
+            } catch (Exception) {
+
+            }
+
+            try {
+                console.log(dataConsultaSerasa.getElementsByTagName("descricao")[0].textContent.trim())
+                propostaPme.ramoAtividade = dataConsultaSerasa.getElementsByTagName("descricao")[0].textContent.trim(); // RAMO DE ATIVIDADE
+
+            } catch (Exception) {
+
+            }
+
+            try {
+
+                propostaPme.representanteLegal = dataConsultaSerasa.getElementsByTagName("nome")[0].textContent.trim(); // NOME REPRESENTANTE LEGAL
+
+            } catch (Exception) {
+
+            }
+
+            try {
+
+                propostaPme.cpfRepresentante = dataConsultaSerasa.getElementsByTagName("documento")[0].textContent.trim(); // CPF REPRESENTANTE LEGAL
+
+            } catch (Exception) {
+
+            }
+
+            try {
+
+                propostaPme.nomeFantasia = dataConsultaSerasa.getElementsByTagName("nomeFantasia")[0].textContent.trim(); // NOME FANTASIA
+
+            } catch (Exception) {
+
+            }
+
+            try {
+                propostaPme.cnae = dataConsultaSerasa.getElementsByTagName("codigo")[1].textContent.trim(); // CNAE
+
+            } catch (Exception) { }
+
+            try {
+                propostaPme.enderecoEmpresa.cep = dataConsultaSerasa.getElementsByTagName("cep")[0].textContent.trim(); // CEP
+            } catch (Exception) { }
+
+            try {
+                propostaPme.enderecoEmpresa.logradouro = dataConsultaSerasa.getElementsByTagName("Nome")[0].textContent.trim(); // CEP
+            } catch (Exception) { }
+
+            try {
+                propostaPme.enderecoEmpresa.estado = dataConsultaSerasa.getElementsByTagName("uf")[0].textContent.trim(); // ESTADO
+            } catch (Exception) { }
+
+            try {
+                propostaPme.enderecoEmpresa.cidade = dataConsultaSerasa.getElementsByTagName("cidade")[0].textContent.trim(); // CIDADE
+            } catch (Exception) { }
+
+            try {
+                propostaPme.enderecoEmpresa.bairro = dataConsultaSerasa.getElementsByTagName("bairro")[0].textContent.trim(); // BAIRRO
+            } catch (Exception) { }
+
+            try {
+                propostaPme.enderecoEmpresa.numero = dataConsultaSerasa.getElementsByTagName("Numero")[0].textContent.trim(); // NUMERO
+            } catch (Exception) { }
+
+            try {
+                propostaPme.enderecoEmpresa.complemento = dataConsultaSerasa.getElementsByTagName("Complemento")[0].textContent.trim(); // COMPLEMENTO
+            } catch (Exception) { }
+
+            callback(propostaPme);
+
+        }, dataToken.access_token, propostaPme.cnpj);
+    });
+}
+
+function validateDataMei(date) {
+
+    var eightYearsAgo = moment().subtract(6, "months");
+    var birthday = moment(date);
+
+    if (!birthday.isValid()) {
+        // INVALID DATE
+    } else if (eightYearsAgo.isAfter(birthday)) return true;
+
+    return false;
+}
+
+function postSerasa(callback, tokenSerasa, cnpj) {
+
+    $.ajax({
+        async: true,
+        url: URLBase + "/serasa/consulta/1.0/",
+        method: "POST",
+        headers: {
+            "Content-Type": "application/xml",
+            "Authorization": "Bearer " + tokenSerasa
+        },
+        data: "<soapenv:Envelope\r\n                xmlns:dat=\"http://services.experian.com.br/DataLicensing/DataLicensingService/\"\r\n                xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n                <soapenv:Header>\r\n               <wsse:Security\r\n                               xmlns:wsse=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd\"\r\n                               xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\">\r\n               <wsse:UsernameToken wsu:Id=\"UsernameToken-E26E52D53AB0F9B54115201256503949\">\r\n              <wsse:Username>51990098</wsse:Username>\r\n              <wsse:Password Type=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText\">Prj@2018</wsse:Password>\r\n              <wsse:Nonce EncodingType=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary\">3UoD2HzDrcGo5qh9W16B6A==</wsse:Nonce>\r\n              <wsu:Created>2018-03-04T01:07:30.394Z</wsu:Created>\r\n               </wsse:UsernameToken>\r\n               </wsse:Security>\r\n                </soapenv:Header>\r\n                <soapenv:Body>\r\n               <dat:ConsultarPJ>\r\n         <parameters>\r\n            <cnpj>" + cnpj + "</cnpj>\r\n            <RetornoPJ>\r\n               <razaoSocial>true</razaoSocial>\r\n               <nomeFantasia>true</nomeFantasia>\r\n               <dataAbertura>true</dataAbertura>\r\n               <naturezaJuridica>true</naturezaJuridica>\r\n <cnae>true</cnae>\r\n               <endereco>true</endereco>\r\n               <telefone>true</telefone>\r\n               <situacaoCadastral>HISTORICO</situacaoCadastral>\r\n               <representanteLegal>true</representanteLegal>\r\n               <simplesNacional>true</simplesNacional>\r\n               <Pacote>PJ1</Pacote>\r\n            </RetornoPJ>\r\n         </parameters>\r\n      </dat:ConsultarPJ>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>",
+        success: function (resp) {
+            callback(resp);
+        },
+        error: function (resp) {
+            callback(resp);
+        }
     });
 }

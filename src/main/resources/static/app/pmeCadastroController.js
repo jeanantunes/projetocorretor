@@ -330,20 +330,6 @@ function verificarSePropostaExiste() {
     }
 }
 
-
-
-function validateDataMei(date) {
-
-    var eightYearsAgo = moment().subtract(6, "months");
-    var birthday = moment(date);
-
-    if (!birthday.isValid()) {
-        // INVALID DATE
-    } else if (eightYearsAgo.isAfter(birthday)) return true;
-
-    return false;
-}
-
 function buscarEmpresa() {
     
     var cnpjValidado = $('#cnpjEmpresa').val().replace(/\D/g, '');
@@ -404,7 +390,7 @@ function buscarEmpresa() {
                         $("#representante-legal").prop('disabled', false);
                         $("#cpf-representante").prop('disabled', false);
                         $("#nome-fantasia").prop('disabled', false);
-
+                        $("#cnae").prop('disabled', false);
                         swal.close();
                         return;
                     }
@@ -419,6 +405,7 @@ function buscarEmpresa() {
                         $("#representante-legal").val("");
                         $("#cpf-representante").val("");
                         $("#nome-fantasia").val("");
+                        $("#cnae").val("");
                         //$("#razao-social").removeProp("disabled", true);
                         return;
                     }
@@ -434,7 +421,7 @@ function buscarEmpresa() {
                     try { $("#representante-legal").val(dataConsulta.getElementsByTagName("nome")[0].textContent); } catch (Exception) { $("#representante-legal").prop('disabled', false); }
                     try { $("#cpf-representante").val(dataConsulta.getElementsByTagName("documento")[0].textContent); } catch (Exception) { $("#cpf-representante").prop('disabled', false); }
                     try { $("#nome-fantasia").val(dataConsulta.getElementsByTagName("nomeFantasia")[0].textContent); } catch (Exception) { $("#nome-fantasia").prop('disabled', false); }
-                    try { $("#cnae").val(dataConsulta.getElementsByTagName("codigo")[1].textContent); } catch (Exception) { }
+                    try { $("#cnae").val(dataConsulta.getElementsByTagName("codigo")[1].textContent.trim()); } catch (Exception) { $("#cnae").prop('disabled', false);  }
                     try { $("#cep").val(dataConsulta.getElementsByTagName("cep")[0].textContent); } catch (Exception) { }
                     try { $("#uf").val(dataConsulta.getElementsByTagName("uf")[0].textContent); } catch (Exception) { }
                     try { $("#cidade").val(dataConsulta.getElementsByTagName("cidade")[0].textContent); } catch (Exception) { }
@@ -442,7 +429,9 @@ function buscarEmpresa() {
                     try { $("#numeroEndereco").val(dataConsulta.getElementsByTagName("Numero")[0].textContent); } catch (Exception) { }
                     try { $("#complemento").val(dataConsulta.getElementsByTagName("Complemento")[0].textContent); } catch (Exception) { }
 
-                    //29294771000110
+                    let adicionarValidacaoSerasa = get("proposta");
+                    adicionarValidacaoSerasa.consultadaSerasa = true;
+                    put("proposta", JSON.stringify(adicionarValidacaoSerasa));
 
                     swal.close();
 
@@ -459,6 +448,7 @@ function bloquearCampos() {
     $("#representante-legal").prop('disabled', true);
     $("#cpf-representante").prop('disabled', true);
     $("#nome-fantasia").prop('disabled', true);
+    $("#cnae").prop('disabled', true);
 
 }
 
@@ -469,6 +459,7 @@ function desbloqCampos() {
     $("#representante-legal").prop('disabled', false);
     $("#cpf-representante").prop('disabled', false);
     $("#nome-fantasia").prop('disabled', false);
+    $("#cnae").prop('disabled', false);
 
 }
 
@@ -477,6 +468,11 @@ function salvarRascunho() {
     if ($("#cnpjEmpresa").val() == "") {
         swal("Ops!", "Preencha o CNPJ", "error");
 
+        return;
+    }
+
+    if ($("#cnae").val().length < 7) {
+        swal("Ops!", "O CNAE deve conter 7 dígitos", "error");
         return;
     }
     
@@ -581,7 +577,7 @@ function salvarRascunhoMemoria() {
     proposta.enderecoEmpresa.bairro = $("#bairro").val();
     proposta.enderecoEmpresa.cidade = $("#cidade").val();
     proposta.enderecoEmpresa.estado = $("#uf").val();
-    proposta.cnae = $("#cnae").val();
+    proposta.cnae = $("#cnae").val().trim();
     proposta.cpfRepresentante = $("#cpf-representante").val();
     proposta.contatoEmpresa = true;
 
@@ -632,6 +628,9 @@ function carregarProposta() {
 
     if (proposta.representanteLegal == "" && $("#cnpjEmpresa").val() != "") $("#representante-legal").prop('disabled', false);
     $("#representante-legal").val(proposta.representanteLegal);
+
+    if (proposta.cnae == "" && $("#cnpjEmpresa").val() != "") $("#cnae").prop('disabled', false);
+    $("#cnae").val(proposta.cnae.trim());
 
     if (proposta.contatoEmpresa) {
         $("#squaredOne").attr("checked", true);
@@ -819,8 +818,5 @@ function limparCampos() {
     $("#bairro").val("");
     $("#cidade").val("");
     $("#uf").val("");
-
+    $("#cnae").val("");
 }
-
-
-
