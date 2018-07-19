@@ -37,6 +37,21 @@
 
         $(document).ready(function () {
             $(".thumb").click(function () {
+
+                swal({
+                    title: "Aguarde",
+                    text: 'Estamos carregando sua imagem',
+                    content: "input",
+                    imageUrl: "img/load.gif",
+                    showCancelButton: false,
+                    showConfirmButton: false,
+                    icon: "info",
+                    button: {
+                        text: "...",
+                        closeModal: false,
+                    },
+                });
+
                 //TODO: Implementar chamada no controller
                 let codMat = $(this).data("id");
                 console.log("metodo - callfilefull");
@@ -48,8 +63,8 @@
                         "Cache-Control": "no-cache",
                     },
                     success: function (resp) {
-
-                        $("." + codMat).attr("src", "data:image/jpg;base64, " + resp);
+                            $("." + codMat).attr("src", "data:image/jpg;base64, " + resp);
+                        swal.close();
                     },
                     error: function (xhr) {
                         console.log(xhr)
@@ -62,7 +77,7 @@
     <style type="text/css">
         .scrolly {
             width: 99%;
-            height: 450px;
+            height: auto;
             overflow: auto;
             overflow-y: hidden;
             white-space: nowrap;
@@ -113,11 +128,16 @@
 
     <div class="container-logado padding-logado">
 
+        <div class="row col-xs-12">
+            <div class="uppercase font-blue title-section-odonto space-top-30 space-bottom-30">
+                <label>MATERIAIS DE DIVULGAÇÃO</label>
+            </div>
+        </div>
         <!-- TODO: Materiais Divulgação @JotaIT -->
         <div th:each="categorias : ${materiaisDivulgacao.categoriasMaterialDivulgacao} ">
             <!-- <div class="text-odonto" th:text="${categorias.codigoCategoria}"></div> -->
             <div class="row col-xs-12">
-                <div class="uppercase font-blue title-section-odonto space-top-30"
+                <div class="uppercase font-blue title-section-odonto space-top-30 space-bottom-30"
                      th:if="*{categorias.nome != null}" th:text="${categorias.nome}"/>
             </div>
             <div class="row col-xs-12">
@@ -130,8 +150,9 @@
             <div th:each="subCategorias : ${categorias.subCategoriasMaterialDivulgacao} ">
                 <!-- <div class="text-odonto" th:text="${subCategorias.codigoSubCategoria}"></div> -->
                 <div class="row col-xs-12">
-                    <div class="uppercase font-blue title-section-odonto space-top-30"
-                         th:if="${subCategorias.nome != null}" th:text="${subCategorias.nome}"/>
+                    <div th:if="${subCategorias.nome != null}">
+                        <label class="text-silver space-top-30" th:text="${subCategorias.nome}"
+                               style="font-size: 19px;"></label></div>
                 </div>
                 <div class="row col-xs-12">
                     <div th:if="${subCategorias.descricao != null}">
@@ -156,9 +177,9 @@
                                     <td>
                                         <a href="#" id="linkBlue"
                                            th:attr="data-id=${materiais.codigoMaterialDivulgacao}"
-                                           type="button" data-toggle="modal" class="thumb"
+                                           data-toggle="modal" class="thumb"
                                            th:attrappend="data-target='#' + ${materiais.codigoMaterialDivulgacao}">
-                                            <img class="imgFace img-responsive" id="linkBlue"
+                                            <img class="imgFace" id="linkBlue"
                                                  th:if="*{materiais.thumbnail != null}"
                                                  th:src="@{'data:image/jpg;base64,' + *{T(org.springframework.util.Base64Utils).encodeToString(materiais.thumbnail)}}"/></a>
                                         <!-- INICIO - Modal -->
@@ -175,7 +196,7 @@
                                                         <div style="position: relative">
                                                             <table>
                                                                 <tr>
-                                                                    <td><img
+                                                                    <td><img class="img-responsive"
                                                                             th:class="${materiais.codigoMaterialDivulgacao}"
                                                                             th:src="@{'data:image/jpg;base64,' + *{T(org.springframework.util.Base64Utils).encodeToString(file)}}"/>
                                                                     </td>
@@ -200,7 +221,8 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <span class="text-odonto" th:if="${materiais.nome != null}" th:text="${materiais.nome}"/></td>
+                                        <span class="text-odonto" th:if="${materiais.nome != null}"
+                                              th:text="${materiais.nome}"/></td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -218,6 +240,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
         <!-- TODO: Materiais Divulgação @JotaIT -->
 
