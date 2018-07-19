@@ -35,8 +35,7 @@ public class MateriaisDivulgacaoService {
 
         log.info("Materiais Divulgacao ->>> Lista");
 
-        //String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", "/" + materiais);
-        String url = "http://localhost:8090/materiaisdivulgacao/web"; //TODO: Aguardando rota API-IT3 @JeanAntunes
+        String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", "/" + materiais);
 
         RestTemplate restTemplate = new RestTemplate();
         MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
@@ -68,8 +67,8 @@ public class MateriaisDivulgacaoService {
 
         log.info("Materiais Divulgacao ->>> Download");
 
-        //String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", "/" + download + id);
-        String url = "http://localhost:8090/materialdivulgacao/" + id; //TODO: Aguardando rota API-IT3 @JeanAntunes
+        String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", "/" + download + id);
+        //String url = "http://localhost:8090/materialdivulgacao/" + id;
 
         RestTemplate restTemplate = new RestTemplate();
         try {

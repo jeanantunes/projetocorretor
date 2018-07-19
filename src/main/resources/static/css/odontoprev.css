@@ -713,6 +713,7 @@ h1, .titleListBox {
     font-family: Roboto-Regular;
     text-decoration: underline;
     cursor: pointer;
+    outline: none;
 }
 
 .subTitleOdontSucess {
