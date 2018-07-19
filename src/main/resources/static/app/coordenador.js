@@ -158,14 +158,6 @@ function callTokenProdSemMsgErro(callback) {
     });
 };
 
-//$(function () {
-//    var regex = new RegExp('[^ a-zA-ZÁÉÍÓÚÀÈÌÒÙàèìòùáéíóúâêîôûãõ\b]', 'g');
-//    // repare a flag "g" de global, para substituir todas as ocorrências
-//    $('.nome').bind('input', function () {
-//        $(this).val($(this).val().replace(/^[a-zA-ZÁÉÍÓÚÀÈÌÒÙàèìòùáéíóúâêîôûãõ']+$/g, ''));
-//    });
-//});
-
 $(function () {
     var regex = new RegExp('[^0-9\]', 'g');
     // repare a flag "g" de global, para substituir todas as ocorrências

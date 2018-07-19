@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-
+    $("#cpfcnpj").mask("000.000.000-00");
     defineConexao();
 });
 
@@ -8,7 +8,7 @@ var URLBase = "";
 function defineConexao() {
 
     $.ajax({
-        url: "config/connection.json",
+        url: "/config/connection.json",
         type: "get",
         async: false,
         success: function (result) {
@@ -28,20 +28,50 @@ function defineConexao() {
     }
 }
 
-$("#continuarRecuperacaoDeSenha").click(function () {
+$("#cpfcnpj").keyup(function() {
 
-    if (!TestaCPF($("#cpf").val())) {
+    let caracteres = $(this).val().replace(/\D/g, '');
 
-        swal("Ops!", "CPF inválido", "error");
-        return;
+    if(caracteres.length <= 11){
+        $("#cpfcnpj").mask("000.000.000-000");
+    } else{
+        $("#cpfcnpj").mask("00.000.000/0000-00");
     }
 
-    callTokenProd(function (dataToken) {
-        callRecuperarSenha(function (dataRecuperar) {
+});
 
-            swal.close();
-            $("#loadingRecuperacaoSenha").addClass('hide');
-            $("#senhaEnviada").removeClass('hide');
+
+
+$("#continuarRecuperacaoDeSenha").click(function () {
+
+    let cpfAndCnpj = $("#cpfcnpj").val().replace(/\D/g, '');
+
+    if(cpfAndCnpj == ""){
+
+        swal("Ops!", "Por favor digite um CPF/CNPJ", "error");
+        return;
+
+    }
+
+   if(cpfAndCnpj.length <= 11) {
+       if (!TestaCPF($("#cpfcnpj").val())) {
+
+           swal("Ops!", "CPF inválido", "error");
+           return;
+       }
+   } else {
+
+       if (!validaCnpj(cpfAndCnpj)) {
+
+           swal("Ops!", "CNPJ inválido", "error");
+           return;
+       }
+
+   }
+
+    callTokenProd(function (dataToken) {
+
+        callRecuperarSenha(function (dataRecuperar) {
 
             var position = dataRecuperar.mensagem.indexOf(":");
             var email = dataRecuperar.mensagem.substring(position + 2, dataRecuperar.mensagem.length);
@@ -56,16 +86,21 @@ $("#continuarRecuperacaoDeSenha").click(function () {
             }
 
             $("#emailRecuperacao").html(email.replace(emailSemDominio, emailComAsterisco));
-        }, dataToken.token, $("#cpf").val().replace(/\D/g, ''));
+
+            swal.close();
+
+            $("#loadingRecuperacaoSenha").addClass('hide');
+            $("#senhaEnviada").removeClass('hide');
+
+        }, dataToken.token, cpfAndCnpj);
     });
 
 });
 
 
 
-function callRecuperarSenha(callback, token, cpf) {
+function callRecuperarSenha(callback, token, cpfCnpj) {
 
-    var json = { "cpf": cpf };
 
     swal({
         title: "Aguarde",
@@ -91,7 +126,7 @@ function callRecuperarSenha(callback, token, cpf) {
             "Content-Type": "application/json"
         },
         processData: false,
-        data: JSON.stringify({ "cpf": cpf }),
+        data: JSON.stringify({ "cpfCnpj": cpfCnpj }),
         success: function (resp) {
            callback(resp);
         },
