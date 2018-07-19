@@ -179,7 +179,7 @@
                                            th:attr="data-id=${materiais.codigoMaterialDivulgacao}"
                                            data-toggle="modal" class="thumb"
                                            th:attrappend="data-target='#' + ${materiais.codigoMaterialDivulgacao}">
-                                            <img class="imgFace" id="linkBlue"
+                                            <img class="imgFace img-responsive" id="linkBlue"
                                                  th:if="*{materiais.thumbnail != null}"
                                                  th:src="@{'data:image/jpg;base64,' + *{T(org.springframework.util.Base64Utils).encodeToString(materiais.thumbnail)}}"/></a>
                                         <!-- INICIO - Modal -->
@@ -196,8 +196,8 @@
                                                         <div style="position: relative">
                                                             <table>
                                                                 <tr>
-                                                                    <td><img class="img-responsive"
-                                                                            th:class="${materiais.codigoMaterialDivulgacao}"
+                                                                    <td><img class="img-responsive "
+                                                                            th:attrappend="class=${materiais.codigoMaterialDivulgacao}"
                                                                             th:src="@{'data:image/jpg;base64,' + *{T(org.springframework.util.Base64Utils).encodeToString(file)}}"/>
                                                                     </td>
                                                                 </tr>
