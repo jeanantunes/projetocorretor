@@ -101,20 +101,40 @@ $("#continuarRecuperacaoDeSenha").click(function () {
 
 function callRecuperarSenha(callback, token, cpfCnpj) {
 
+    let cpfAndCnpj = cpfCnpj.replace(/\D/g, '');
 
-    swal({
-        title: "Aguarde",
-        text: 'Estamos buscando seu CPF',
-        content: "input",
-        imageUrl: "img/load.gif",
-        showCancelButton: false,
-        showConfirmButton: false,
-        icon: "info",
-        button: {
-            text: "...",
-            closeModal: false,
-        },
-    });
+    if(cpfAndCnpj.length <= 11) {
+        swal({
+            title: "Aguarde",
+            text: 'Estamos buscando seu CPF',
+            content: "input",
+            imageUrl: "img/load.gif",
+            showCancelButton: false,
+            showConfirmButton: false,
+            icon: "info",
+            button: {
+                text: "...",
+                closeModal: false,
+            },
+        });
+    } else {
+        swal({
+            title: "Aguarde",
+            text: 'Estamos buscando seu CNPJ',
+            content: "input",
+            imageUrl: "img/load.gif",
+            showCancelButton: false,
+            showConfirmButton: false,
+            icon: "info",
+            button: {
+                text: "...",
+                closeModal: false,
+            },
+        });
+
+    }
+
+
 
     $.ajax({
 

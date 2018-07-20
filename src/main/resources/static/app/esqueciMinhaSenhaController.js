@@ -122,8 +122,7 @@ function callPutCorretora(callback, token, cdCorretora, senha) {
 
     $.ajax({
         async: true,
-        url: "https://api-it3.odontoprev.com.br:8243/corretorservicos/1.0/corretora/login",
-        //url: "http://localhost:8090/corretora/login",
+        url: "https://api.odontoprev.com.br:8243/corretorservicos/1.0/corretora/login",
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -138,6 +137,7 @@ function callPutCorretora(callback, token, cdCorretora, senha) {
 
         }
     });
+    
 }
 
 function callTokenProd(callback) {
@@ -163,7 +163,7 @@ function callEsqueciMinhaSenha(callback, token) {
     $.ajax({
 
         async: true,
-        url:  "https://api-it3.odontoprev.com.br:8243/corretorservicos/1.0/esqueciMinhaSenha/" + chaveRedefinirSenha,
+        url:  "https://api.odontoprev.com.br:8243/corretorservicos/1.0/esqueciMinhaSenha/" + chaveRedefinirSenha,
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -185,7 +185,7 @@ function callPutForcaVenda(callback, token, codForca, nome, celular, email, senh
 
     $.ajax({
         async: true,
-        url: "https://api-it3.odontoprev.com.br:8243/corretorservicos/1.0/forcavenda/login",
+        url: "https://api.odontoprev.com.br:8243/corretorservicos/1.0/forcavenda/login",
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
