@@ -1270,6 +1270,7 @@ function sincronizarPessoa(callback, pessoa, reSync) { // caso a proposta esteja
         var json = {
             "cdForcaVenda": forcaVenda.codigo,
             "cdPlano": cdPlano,
+            "plataforma": "WEB",
             "titulares": [
                 {
                     "nome": removerAcentosMinusculo(pessoa[0].nome),
@@ -1323,6 +1324,7 @@ function sincronizarPessoa(callback, pessoa, reSync) { // caso a proposta esteja
         var json = {
             "cdForcaVenda": forcaVenda.codigo,
             "cdPlano": cdPlano,
+            "plataforma": "WEB",
             "titulares": [
                 {
                     "nome": removerAcentosMinusculo(pessoa[0].nome),
@@ -1480,6 +1482,7 @@ function sincronizarPf(callback, pessoa) {
         var json = {
             "cdForcaVenda": forcaVenda.codigo,
             "cdPlano": cdPlano,
+            "plataforma": "WEB",
             "titulares": [
                 {
                     "nome": removerAcentosMinusculo(pessoa.nome),
@@ -1533,6 +1536,7 @@ function sincronizarPf(callback, pessoa) {
         var json = {
             "cdForcaVenda": forcaVenda.codigo,
             "cdPlano": cdPlano,
+            "plataforma": "WEB",
             "titulares": [
                 {
                     "nome": removerAcentosMinusculo(pessoa.nome),
@@ -1628,7 +1632,7 @@ function sincronizarEmpresa(callback, proposta, beneficiarios) {
 
     var dadosUsuario = get("dadosUsuario");
     var pdata = [];
-    var json = "{ \"cdForcaVenda\":" + dadosUsuario.codigo + ", \"empresas\": " + JSON.stringify(proposta) + ", \"titulares\":" + JSON.stringify(beneficiarios) + "}";
+    var json = "{ \"cdForcaVenda\":" + dadosUsuario.codigo + ", \"plataforma\": \"WEB\", \"empresas\": " + JSON.stringify(proposta) + ", \"titulares\":" + JSON.stringify(beneficiarios) + "}";
 
     console.log(json);
 
@@ -1750,7 +1754,7 @@ function sincronizarPME(callback, proposta, beneficiarios) {
 
     var dadosUsuario = get("dadosUsuario");
     var pdata = [];
-    var json = "{ \"cdForcaVenda\":" + dadosUsuario.codigo + ", \"empresas\": " + JSON.stringify(proposta) + ", \"titulares\":" + JSON.stringify(beneficiarios) + "}";
+    var json = "{ \"cdForcaVenda\":" + dadosUsuario.codigo + ", \"plataforma\": \"WEB\", \"empresas\": " + JSON.stringify(proposta) + ", \"titulares\":" + JSON.stringify(beneficiarios) + "}";
 
     console.log(json);
 
