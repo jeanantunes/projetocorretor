@@ -103,7 +103,10 @@ function callRecuperarSenha(callback, token, cpfCnpj) {
 
     let cpfAndCnpj = cpfCnpj.replace(/\D/g, '');
 
+    let json;
+
     if(cpfAndCnpj.length <= 11) {
+
         swal({
             title: "Aguarde",
             text: 'Estamos buscando seu CPF',
@@ -117,7 +120,11 @@ function callRecuperarSenha(callback, token, cpfCnpj) {
                 closeModal: false,
             },
         });
+
+        json = { "cpf": cpfCnpj };
+
     } else {
+
         swal({
             title: "Aguarde",
             text: 'Estamos buscando seu CNPJ',
@@ -132,30 +139,32 @@ function callRecuperarSenha(callback, token, cpfCnpj) {
             },
         });
 
+        json = { "cnpj": cpfCnpj };
     }
-
-
 
     $.ajax({
 
         async: true,
-        url:   URLBase + "/corretorservicos/1.0/esqueciMinhaSenha",//"https://api.odontoprev.com.br:8243/corretorservicos/1.0/esqueciMinhaSenha",
+        url:   URLBase + "/corretorservicos/1.0/esqueciMinhaSenha",
         method: "POST",
         headers: {
             "Authorization": "Bearer " + token,
             "Content-Type": "application/json"
         },
         processData: false,
-        data: JSON.stringify({ "cpfCnpj": cpfCnpj }),
+        data: JSON.stringify(json),
         success: function (resp) {
            callback(resp);
         },
         error: function (xhr) {
 
             if (xhr.status == 500) {
-                swal("Ops!", "Não encontramos seu CPF", "error");
+
+                if(cpfAndCnpj.length <= 11) swal("Ops!", "Não encontramos seu CPF", "error");
+                    else swal("Ops!", "Não encontramos a corretora", "error");
+
             } else swal.close();
-            
+
         }
     });
 }
@@ -175,6 +184,3 @@ function callTokenProd(callback) {
         }
     });
 };
-
-// Um link para redefinir sua senha foi enviado para o e-mail ***@hotmail.com.
-// Acesse e finalize o processo
