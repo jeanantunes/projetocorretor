@@ -2,6 +2,7 @@ var URLBase = "";
 
 $(document).ready(function () {
 
+
     $("#confirmarLogin").click(function(){
 
         if($("#senha").val().length < 8){
@@ -20,27 +21,124 @@ $(document).ready(function () {
 
             callEsqueciMinhaSenha(function (dataEsqueciMinhaSenha) {
 
-                var cdForca = dataEsqueciMinhaSenha.cdForcaVenda;
-                var nome = dataEsqueciMinhaSenha.nome;
-                var celular = dataEsqueciMinhaSenha.celular;
-                var email = dataEsqueciMinhaSenha.email;
-                var senha = $("#senha").val();
+                let cdCorretora = dataEsqueciMinhaSenha.cdCorretora;
+                let cdForca = dataEsqueciMinhaSenha.cdForcaVenda;
+                let nome = dataEsqueciMinhaSenha.nome;
+                let celular = dataEsqueciMinhaSenha.celular;
+                let email = dataEsqueciMinhaSenha.email;
+                let senha = $("#senha").val();
 
-                callPutForcaVenda(function (dataPutSenha) {
-                    swal({
-                            title: "Feito!",
-                            text: "Senha alterada com sucesso!",
+                if(cdCorretora && cdForca) {
+
+                    swal(
+                        {
+                            title: "Atencao!",
+                            text: "Situacao ineXperada!",
                             type: "success"
                         },
                         function (isConfirm) {
                             window.location.href = "/login";
-                        });
-                }, dataToken.token, cdForca, nome, celular, email, senha);
+                        }
+                    );
+
+                } else if(cdForca){
+
+                    callPutForcaVenda(
+                        function (dataPutSenha) {
+                            swal(
+                                {
+                                    title: "Feito!",
+                                    text: "Senha alterada com sucesso!",
+                                    type: "success"
+                                },
+                                function (isConfirm) {
+                                    window.location.href = "/login";
+                                }
+                            );
+                        },
+                        dataToken.token,
+                        cdForca,
+                        nome,
+                        celular,
+                        email,
+                        senha
+                    );
+
+                }else if(cdCorretora) {
+
+                    callPutCorretora(function (dataPutSenha) {
+
+                            swal(
+                                {
+                                    title: "Feito!",
+                                    text: "Senha Corretora alterada com sucesso!",
+                                    type: "success"
+                                },
+                                function (isConfirm) {
+                                    window.location.href = "/login";
+                                }
+                            );
+                        },
+                        dataToken.token,
+                        cdCorretora,
+                        senha
+                    );
+
+                }
+
+
             }, dataToken.token);
         });
     });
 
 });
+
+function defineConexao() {
+
+    $.ajax({
+        url: "config/connection.json",
+        type: "get",
+        async: false,
+        success: function (result) {
+            conexao = eval(result);
+        },
+        error: function () {
+
+        }
+    });
+
+    if (conexao.producaoLigado) {
+        URLBase = conexao.producaoURL;
+    }
+    else {
+        URLBase = conexao.homologacaoURL;
+        console.log(URLBase);
+    }
+}
+
+function callPutCorretora(callback, token, cdCorretora, senha) {
+
+    let json = {"cdCorretora": cdCorretora, "senha": senha};
+
+    $.ajax({
+        async: true,
+        url: "https://api.odontoprev.com.br:8243/corretorservicos/1.0/corretora/login",
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token
+        },
+        processData: false,
+        data: JSON.stringify(json),
+        success: function (resp) {
+            callback(resp);
+        },
+        error: function (xhr) {
+
+        }
+    });
+    
+}
 
 function callTokenProd(callback) {
 

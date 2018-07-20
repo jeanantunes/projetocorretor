@@ -1,66 +1,68 @@
+
+
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="pt-br"
       xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
     <title>Redefinir Senha | OdontoPrev</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="../img/odpv.PNG" type="image/png">
-    
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/main.css" rel="stylesheet">   
-    <link href="../css/style.css" rel="stylesheet">
-	<link href="../css/odontoprev.css" rel="stylesheet">
-    <link href="../css/sweetalert.css" rel="stylesheet">
-    
-    <script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../js/jquery.mask.min.js"></script>
-    <script type="text/javascript" src="../js/odonto-Valida.js"></script>
-    <script type="text/javascript" src="../app/esqueciMinhaSenhaController.js"></script>
-    <script type="text/javascript" src="../js/sweetalert.min.js"></script>
 
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/odontoprev.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/sweetalert.css}"/>
 </head>
-<body><center>
-<div class="container-fluid nomargin container-odonto" style="padding-left: 0px; height:100%;">
-    <div>
-        <div class="confirmacao-proposta">
-           	<div class="row header-odonto">
-		        <div class="col-xs-12 padding-header">
-		           <h2 class="uppercase title-donto nomargin font-blue space-top-30 text-center">REDEFINA SUA SENHA</h2>
-		        </div>
-	   		</div>
-            
-            <div class="space-top-30">
-                <p class="text-center subtitle-odonto nomargin r-light">Sua nova senha precisa ter no minimo 8 dígitos </p>
-                 <div class="col-xs-offset-4 col-xs-4 space-top-30">
-                    <div>
-                        <label class=" labelOdontBlur">Nova senha</label>
-                    </div>
-                    <div>
-                        <input type="password" class="inputLabelBlur" id="senha" maxlength="12">
-                    </div>
-                    
-                    <div>
-                        <label class="labelOdontBlur">Confirmar senha</label>
-                    </div>
-                    <div>
-                        <input type="password" class="inputLabelBlur" id="confirmarSenha" maxlength="12">
-                    </div>                              
-                 
-                 </div>
+<body>
+<!-- Bloco 1 -->
+<div class="container-fluid" id="loadingRecuperacaoSenha">
 
-                <div class="col-xs-offset-4 col-xs-4 space-top-30  text-center">
-                	<a type="button" class="btn btnBlue btn-width-custom space-top-10 uppercase" id="confirmarLogin"> CONTINUAR </a>
-            	</div>          
+    <div class="row">
+        <div class="col-md-12 odontBoxCenter">
+            <h1 class="titleOdont text-center">
+                REDEFINA SUA SENHA
+            </h1>
+
+            <h2 class="subTitleOdont text-center">
+                Sua nova senha precisa ter no minimo 8 dígitos
+            </h2>
+            <div class="col-sm-offset-4 col-sm-4 boxLabInput">
+                <div>
+                    <label class="label-cpf labelOdontBlur">Nova senha</label>
+                </div>
+                <div>
+                    <input type="password" class="inputLabelBlur" id="senha" maxlength="12">
+                </div>
+
+                <div>
+                    <label class="label-cpf labelOdontBlur">Confirmar senha</label>
+                </div>
+                <div>
+                    <input type="password" class="inputLabelBlur" id="confirmarSenha" maxlength="12">
+                </div>
             </div>
-            
-        </div></center>
-    <!--</div>
-    <div class="footer-odonto">
-        <span><img class="img-logo-odonto" src="../img/logo-mobile.png"></span>
-    </div>-->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-offset-4 col-sm-4">
+
+            <a class="btn btn-lg btn-block btnOdont" style="margin-top: 50px;" id="confirmarLogin"
+               role="button">CONTINUAR</a>
+        </div>
+    </div>
 </div>
+<!-- End Bloco 1 -->
+
+<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/jquery.mask.min.js"></script>
+<script type="text/javascript" src="../js/odonto-Valida.js"></script>
+<script type="text/javascript" src="../app/esqueciMinhaSenhaController.js"></script>
+<script type="text/javascript" src="../js/sweetalert.min.js"></script>
+
 </body>
 </html>
