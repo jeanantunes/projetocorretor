@@ -29,7 +29,7 @@ public class ForcaVendaController {
 
     @Autowired
     private DashService dashService;
-    
+
     @Autowired
     private ForcaVendaService forcaVendaService;
 
@@ -47,8 +47,14 @@ public class ForcaVendaController {
 
         Stream<Proposta> concat = Stream.concat(propostasPF.stream(), propostasPME.stream());
 
-        Long aprovada = concat.filter(p -> p.getStatusVenda().equals("Proposta concluida com sucesso")).count();
-        Long criticadas = propostasPF.size() + propostasPME.size() - aprovada;
+        Long aprovada = concat.filter(a -> a.getStatusVenda().equals("Proposta concluida com sucesso")).count();
+        DashboardPropostas criticadasPF = dashService.ObterListaPropostaPF(FiltroStatusProposta.CRITICADO, usuario.getDocumento());
+        DashboardPropostas criticadasPME = dashService.ObterListaPropostaPME(FiltroStatusProposta.CRITICADO, usuario.getDocumento());
+        ListaPropostas listaCriticadas = new ListaPropostas();
+        List<Proposta> criticadaPME = criticadasPME.getDashboardPropostasPME();
+        List<Proposta> criticadaPF = criticadasPF.getDashboardPropostasPF();
+
+        Long criticadas = Long.valueOf(criticadaPF.size() + criticadaPME.size());
 
         corretora.setPropostaPF(propostasPME);
         corretora.setPropostaPME(propostasPF);
@@ -83,7 +89,7 @@ public class ForcaVendaController {
     		return new ModelAndView("forcavenda/cadastro/editar", "forcaVenda", forcaVendaParam);
 
     	} else {
-    		
+
     		if (!forcaVendaParam.getSenha().equals(forcaVendaParam.getConfirmaSenha())) {
     			return new ModelAndView("forcavenda/cadastro/editar", "forcaVenda", forcaVendaParam);
     		}
@@ -96,20 +102,20 @@ public class ForcaVendaController {
             forcaVenda.setSenha(forcaVendaParam.getSenha());
 
             forcaVendaService.Alterar(forcaVenda);
-            
+
             return this.home(session);
     	}
     }
-    
+
     @RequestMapping(value = "alertas/{statusProposta}", method = RequestMethod.GET)
     public ModelAndView Proposta(@PathVariable String statusProposta, HttpSession session) {
-    	    	
+
     	 UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
 
          ListaPropostas listaPropostas = new ListaPropostas();
-         
+
          DashboardPropostas propostaPME = dashService.ObterListaPropostaPME(statusProposta.toUpperCase().equals("APROVADO") ? FiltroStatusProposta.APROVADO : FiltroStatusProposta.CRITICADO, usuario.getDocumento());
-         
+
          List<Proposta> dashboardPropostasPME = propostaPME.getDashboardPropostasPME();
          listaPropostas.setPropostaPME(dashboardPropostasPME);
          listaPropostas.setTotalPME(dashboardPropostasPME.size());
@@ -120,7 +126,7 @@ public class ForcaVendaController {
          listaPropostas.setTotalPF(dashboardPropostasPF.size());
 
          listaPropostas.setTotal(dashboardPropostasPF.size() + dashboardPropostasPME.size());
-         
-         return new ModelAndView("lista-propostas", "listaPropostas", listaPropostas);    	
+
+         return new ModelAndView("lista-propostas", "listaPropostas", listaPropostas);
     }
 }
