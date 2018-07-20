@@ -20,6 +20,8 @@ $(document).ready(function () {
         //buscarEmpresa();
     });
 
+    resizeIframe('frame_pf');
+
 });
 
 

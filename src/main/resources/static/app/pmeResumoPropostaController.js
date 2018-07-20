@@ -5,6 +5,7 @@ $(document).ready(function () {
     carregarLista();
     setTotalProposta();
     isEffectiveDate();
+    resizeIframe('frame_pf');
 });
 
 function carregarDadosProposta()

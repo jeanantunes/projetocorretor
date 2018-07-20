@@ -7,7 +7,7 @@
     benef.dependentes = [];
 
     $('.cpf').off('blur');
-    
+
 });
 
 function carregarForm() {
@@ -56,6 +56,8 @@ function carregarForm() {
             }
         }
     });
+
+    resizeIframe('frame_pf');
 }
 
 function SalvarDependentes() {
