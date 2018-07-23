@@ -35,6 +35,8 @@ function carregarLista() {
         $("#lista").html("Você ainda não possui beneficiários cadastrados");
     }
 
+    resizeIframe('frame_pf');
+
 }
 
 function excluirBenef(obj) {
@@ -58,6 +60,8 @@ function excluirBenef(obj) {
     if (beneficiarios.length == 0) {
         $("#lista").html("Você ainda não possui beneficiários cadastrados");
     }
+
+    resizeIframe('frame_pf');
 }
 
 function editarBeneficiario(obj) {

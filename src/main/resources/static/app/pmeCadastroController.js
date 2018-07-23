@@ -660,6 +660,8 @@ function carregarProposta() {
     $("#uf").val(proposta.enderecoEmpresa.estado);
     $("#cnae").val(proposta.cnae);
 
+    resizeIframe('frame_pf');
+
 }
 
 function validarProposta() {
