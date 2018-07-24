@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="pt-br"
       xmlns="http://www.w3.org/1999/xhtml">
 
-<head>
+<head><title>OdontoPrev</title>
     <meta charset="UTF-8">
     <!--<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -173,8 +173,7 @@
                                         <div class="border-left" style="clear: both;">
                                             <p class="text-odonto" th:text="${proposta.statusVenda}">aguardando
                                                 aprovação</p>
-                                            <!-- TODO: Sprint7 Ver Detalhes Proposta Status Aprovado -->
-                                            <div th:style="${proposta.statusVenda} == 'Proposta concluida com sucesso' ? 'display:inline-block;text-align:center' : 'display:none'">
+                                            <div th:style="${proposta.statusVenda} != null OR ''  ? 'display:inline-block;text-align:center' : 'display:none'">
                                                 <a href="#" th:href="@{/detalhesProposta(cdVenda=${proposta.cdVenda})}"><span
                                                         class="text-black">ver detalhes </span><span
                                                         class="font-pink"><h4 style="display: inline-block; font: bold">></h4></span></a>
@@ -223,6 +222,11 @@
                                         <div class="border-left" style="clear: both;">
                                             <p class="text-odonto" th:text="${proposta.statusVenda}">aguardando
                                                 aprovação</p>
+                                            <div th:style="${proposta.statusVenda} == 'Proposta concluida com sucesso' OR 'Proposta enviada para a OdontoPrev' ? 'display:inline-block;text-align:center' : 'display:none'">
+                                                <a href="#" th:href="@{/detalhesProposta(cdVenda=${proposta.cdVenda})}"><span
+                                                        class="text-black">ver detalhes </span><span
+                                                        class="font-pink"><h4 style="display: inline-block; font: bold">></h4></span></a>
+                                            </div>
                                             <!--<p class="text-odonto">-->
                                             <!--Ver detalhes<span class="font-pink"> <strong>></strong></span>-->
                                             <!--</p>-->

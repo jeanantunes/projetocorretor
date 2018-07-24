@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="pt-br"
       xmlns="http://www.w3.org/1999/xhtml">
 
-<head>
+<head><title>OdontoPrev</title>
     <meta charset="UTF-8">
     <!--<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -42,6 +42,15 @@
             box-shadow: 2px 5px 15px 0px #EDEDED;
             margin-left: 0px;
             margin-right: 0px;
+        }
+
+        .boxNroProposta {
+            height: auto;
+            width: 97%;
+            background-color: #46D5C6;
+            text-align: center;
+            position: relative;
+            font-size: 18px;
         }
 
         /* TODO: RadioButton style */
@@ -118,6 +127,10 @@
         .text-successo {
             color: #82bc3b;
         }
+
+        .text-critica {
+            color: #ff0000;
+        }
     </style>
 
 
@@ -147,6 +160,22 @@
                     </div>
                     <div class="subTitleResumoProp">
                         Confira o plano escolhido e os dados do cliente abaixo
+                    </div>
+                    <div class="space-top-30 space-bottom-30">
+                        <div th:style="${criticas.size() == 0} ? 'display:none' : 'display:inline-block'">
+                            <span class="text-critica"><b>Erros encontrados</b></span>
+                        </div>
+                        <ul th:each="critica : ${detalhesPlano.getVenda().getCriticas()}">
+                            <li class="text-critica" th:text="${critica.nome}"></li>
+                            <li class="text-critica" th:text="${critica.dsErroRegistro}"></li>
+                        </ul>
+                    </div>
+                    <div class="space-top-30 space-bottom-30 boxNroProposta">
+                        <div th:style="${detalhesPlano.getVenda().getPropostaDcms()} == null ? 'display:none' : 'display:inline-block'">
+                            <span style="color: #FFFFFF;">Número da proposta</span><br/>
+                            <h3><b><span style="color: #FFFFFF;"
+                                         th:text="${detalhesPlano.getVenda().getPropostaDcms()}"></span></b></h3>
+                        </div>
                     </div>
                 </div>
             </div>
