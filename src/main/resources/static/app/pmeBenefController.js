@@ -174,6 +174,8 @@ function listarDependentes() {
         dep = dep.replace("{NOME-DEP}", item.nome);
         $("#listaDep").append(dep);
     });
+
+    resizeIframe('frame_pf');
 }
 
 /*function adicionarBenefMemoria() {
