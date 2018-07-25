@@ -63,7 +63,7 @@
                         "Cache-Control": "no-cache",
                     },
                     success: function (resp) {
-                            $("." + codMat).attr("src", "data:image/jpg;base64, " + resp);
+                        $("." + codMat).attr("src", "data:image/jpg;base64, " + resp);
                         swal.close();
                     },
                     error: function (xhr) {
@@ -133,44 +133,30 @@
                 <label>MATERIAIS DE DIVULGAÇÃO</label>
             </div>
         </div>
-        <!-- TODO: Materiais Divulgação @JotaIT -->
         <div th:each="categorias : ${materiaisDivulgacao.categoriasMaterialDivulgacao} ">
-            <!-- <div class="text-odonto" th:text="${categorias.codigoCategoria}"></div> -->
             <div class="row col-xs-12">
-                <div class="uppercase font-blue title-section-odonto space-top-30 space-bottom-30"
+                <div class="uppercase font-blue title-section-odonto space-top-30 space-bottom-10"
                      th:if="*{categorias.nome != null}" th:text="${categorias.nome}"/>
             </div>
             <div class="row col-xs-12">
                 <div th:if="${categorias.descricao != null}">
-                    <label class="text-silver space-top-30" th:text="${categorias.descricao}"
+                    <label class="text-silver space-top-10" th:text="${categorias.descricao}"
                            style="font-size: 19px;"></label></div>
             </div>
 
-            <!-- <div class="text-odonto" th:text="${categorias.subCategoriasMaterialDivulgacao}"></div> -->
             <div th:each="subCategorias : ${categorias.subCategoriasMaterialDivulgacao} ">
-                <!-- <div class="text-odonto" th:text="${subCategorias.codigoSubCategoria}"></div> -->
                 <div class="row col-xs-12">
-                    <div th:if="${subCategorias.nome != null}">
-                        <label class="text-silver space-top-30" th:text="${subCategorias.nome}"
-                               style="font-size: 19px;"></label></div>
-                </div>
-                <div class="row col-xs-12">
-                    <div th:if="${subCategorias.descricao != null}">
-                        <label class="text-silver space-top-30" th:text="${subCategorias.descricao}"
-                               style="font-size: 19px;"/>
+                    <div th:if="${subCategorias.nome != null}" class="text-categoria space-top-30 space-bottom-10"
+                         th:text="${subCategorias.nome}">
                     </div>
                 </div>
-                <!-- <div class="text-odonto" th:text="${subCategorias.ativo}"></div> -->
-                <!-- <div class="text-odonto" th:text="${subCategorias.app}"></div> -->
-                <!-- <div class="text-odonto" th:text="${subCategorias.web}"></div> -->
-                <!-- <div class="text-odonto" th:text="${subCategorias.materiaisDivulgacao}"></div> -->
-                <div class="scrolly">
+                <div class="row col-xs-12">
+                    <div th:if="${subCategorias.descricao != null}" class="text-categoria space-top-30"
+                         th:text="${subCategorias.descricao}">
+                    </div>
+                </div>
+                <div class="scrolly space-bottom-60">
                     <div th:each="materiais : ${subCategorias.materiaisDivulgacao} ">
-                        <!-- div class="text-odonto" th:text="${materiais.codigoMaterialDivulgacao}"></div> -->
-                        <!-- <div class="text-odonto" th:text="${materiais.codigoCategoria}"></div> -->
-                        <!-- <div class="text-odonto" th:text="${materiais.codigoSubCategoria}"></div> -->
-                        <!-- <div class="text-odonto" th:text="${materiais.tipoConteudo}"></div> -->
-                        <!-- <div class="text-odonto" th:text="${materiais.thumbnail}"></div> -->
                         <div style="float: left; display: inline-block">
                             <table>
                                 <tr>
@@ -197,8 +183,8 @@
                                                             <table>
                                                                 <tr>
                                                                     <td><img class="img-responsive "
-                                                                            th:attrappend="class=${materiais.codigoMaterialDivulgacao}"
-                                                                            th:src="@{'data:image/jpg;base64,' + *{T(org.springframework.util.Base64Utils).encodeToString(file)}}"/>
+                                                                             th:attrappend="class=${materiais.codigoMaterialDivulgacao}"
+                                                                             th:src="@{'data:image/jpg;base64,' + *{T(org.springframework.util.Base64Utils).encodeToString(file)}}"/>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
@@ -228,21 +214,13 @@
                                     <td>
                                         <a th:href="@{materiaisDownload/(id=${materiais.codigoMaterialDivulgacao})}">
                                             <label th:text="Download" id="linkBlue"/></a>
-                                        <!-- <span class="text-odonto" th:text="${materiais.descricao}"/></td> -->
                                 </tr>
                             </table>
                         </div>
-                        <!-- <div class="text-odonto" th:text="${materiais.tamanhoThumbnail}"></div> -->
-                        <!-- <div class="text-odonto" th:text="${materiais.arquivo}"></div> -->
-                        <!-- <div class="text-odonto" th:text="${materiais.tamanhoArquivo}"></div> -->
-                        <!-- <div class="text-odonto" th:text="${materiais.ativo}"></div> -->
-                        <!-- <div class="text-odonto" th:text="${materiais.caminhoCarga}"></div> -->
                     </div>
                 </div>
             </div>
-
         </div>
-        <!-- TODO: Materiais Divulgação @JotaIT -->
 
     </div>
 

@@ -2650,7 +2650,15 @@ button.picker__today:focus,button.picker__clear:focus,button.picker__close:focus
 }
 
 .text-silver{
-	color: #C1C1C1!important;
+	color: #8E8E8E !important;
+	font-family: Roboto-Regular;
+	font-size: 16px;
+}
+
+.text-categoria{
+	color: #8E8E8E !important;
+	font-family: Roboto-Bold;
+	font-size: 20px;
 }
 
 .box-plano-select {
@@ -2686,6 +2694,11 @@ button.picker__today:focus,button.picker__clear:focus,button.picker__close:focus
 .space-bottom-30{
 	margin-bottom: 30px!important;
 }
+
+.space-bottom-60{
+	margin-bottom: 60px!important;
+}
+
 
 .width-form5{
 	width: 40%
