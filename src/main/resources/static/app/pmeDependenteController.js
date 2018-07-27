@@ -129,13 +129,13 @@ function SalvarDependentes() {
             return;
         }
 
-        let cpfsProposta = listCpfPropostaPme();
+        var cpfsProposta = listCpfPropostaPme();
 
         if (cpfsProposta.length > 0) {
 
-            let cpfPesquisa = $(this).find(".cpf").val();
+            var cpfPesquisa = $(this).find(".cpf").val();
 
-            let checkCpf = cpfsProposta.filter(function (x) { return x == cpfPesquisa });
+            var checkCpf = cpfsProposta.filter(function (x) { return x == cpfPesquisa });
 
             if (checkCpf.length > 0) {
 
