@@ -45,7 +45,7 @@ $(document).ready(function () {
 function atualizarFatura() {
 
     var proposta = get("proposta");
-    let vencimento = isEffectiveDate($(".selectListBlur").val());
+    var vencimento = isEffectiveDate($(".selectListBlur").val());
     proposta.vencimentoFatura = $(".selectListBlur").val();
     proposta.dataVigencia = vencimento.dataVencimento.format("DD/MM/YYYY");
     proposta.dataMovimentacao = vencimento.dataMovimentacao.format("DD/MM/YYYY");

@@ -431,7 +431,7 @@ function buscarEmpresa() {
                     try { $("#numeroEndereco").val(dataConsulta.getElementsByTagName("Numero")[0].textContent); } catch (Exception) { }
                     try { $("#complemento").val(dataConsulta.getElementsByTagName("Complemento")[0].textContent); } catch (Exception) { }
 
-                    let adicionarValidacaoSerasa = get("proposta");
+                    var adicionarValidacaoSerasa = get("proposta");
                     adicionarValidacaoSerasa.consultadaSerasa = true;
                     put("proposta", JSON.stringify(adicionarValidacaoSerasa));
 
