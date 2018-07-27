@@ -8,6 +8,7 @@ public class Proposta {
     private String cpf;
     private String propostaDcms;
     private String nome;
+    private String nomeFantasia;
     private String statusVenda;
     private String atendimento;
     private String empresa;
@@ -61,6 +62,14 @@ public class Proposta {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getNomeFantasia() {
+        return nomeFantasia;
+    }
+
+    public void setNomeFantasia(String nomeFantasia) {
+        this.nomeFantasia = nomeFantasia;
     }
 
     public String getTipoPlano() {

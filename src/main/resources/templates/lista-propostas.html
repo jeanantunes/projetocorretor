@@ -4,7 +4,6 @@
 
 <head><title>OdontoPrev</title>
     <meta charset="UTF-8">
-    <!--<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="shortcut icon" th:href="@{/img/odpv.PNG}" type="image/png"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
@@ -169,7 +168,6 @@
                                             <strong th:text="${proposta.nome}">Maria Angela da Silva</strong>
                                         <div th:text="${proposta.cdVenda}" th:hidden="true"/>
                                         </p>
-                                        <!--<span class="pull-right font-blue">HÃ¡ 16 horas</span>-->
                                         <div class="border-left" style="clear: both;">
                                             <p class="text-odonto" th:text="${proposta.statusVenda}">aguardando
                                                 aprovação</p>
@@ -178,9 +176,6 @@
                                                         class="text-black">ver detalhes </span><span
                                                         class="font-pink"><h4 style="display: inline-block; font: bold">></h4></span></a>
                                             </div>
-                                            <!--<p class="text-odonto">-->
-                                            <!--Ver detalhes<span class="font-pink"> <strong>></strong></span>-->
-                                            <!--</p>-->
                                         </div>
                                     </div>
 
@@ -215,6 +210,9 @@
                                         <div th:class="${#strings.equals(proposta.statusVenda,'Proposta concluida com sucesso')}?  point-green : '' "></div>
                                         <div th:class="${#strings.equals(proposta.statusVenda,'Proposta enviada para a OdontoPrev')}?  point-blue : '' "></div>
                                         <div th:class="${#strings.equals(proposta.statusVenda,'Proposta criticada')}?  point-red : '' "></div>
+                                        <p class="title-name text-odonto pull-left
+                                            <strong th:if="${proposta.nomeFantasia != null}" th:text="${proposta.nomeFantasia}">Fantasia no Ar</strong>
+                                        </p>
                                         <p class="title-name text-odonto pull-left">
                                             <strong th:text="${proposta.nome}">Maria Angela da Silva</strong>
                                         </p>
@@ -223,7 +221,8 @@
                                             <p class="text-odonto" th:text="${proposta.statusVenda}">aguardando
                                                 aprovação</p>
                                             <div th:style="${proposta.statusVenda} == 'Proposta concluida com sucesso' OR 'Proposta enviada para a OdontoPrev' ? 'display:inline-block;text-align:center' : 'display:none'">
-                                                <a href="#" th:href="@{/detalhesProposta(cdVenda=${proposta.cdVenda})}"><span
+                                                <a href="#"
+                                                   th:href="@{/detalhesPropostaPME(cdEmpresa=${proposta.cdEmpresa})}"><span
                                                         class="text-black">ver detalhes </span><span
                                                         class="font-pink"><h4 style="display: inline-block; font: bold">></h4></span></a>
                                             </div>
