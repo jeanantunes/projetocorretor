@@ -2,6 +2,7 @@
     carregarLista();
     localStorage.removeItem("cpfEmEdicaoPME");
     localStorage.removeItem("beneficiario");
+    resizeIframe('frame_pf');
 });
 
 function carregarLista() {

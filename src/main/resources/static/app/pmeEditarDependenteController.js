@@ -79,14 +79,14 @@ function SalvarDependentes() {
             return;
         }
 
-        let cpfsProposta = listCpfPropostaPme();
+        var cpfsProposta = listCpfPropostaPme();
 
         if (cpfsProposta.length > 0) {
 
-            let cpfPesquisa = get("beneficiarioEmEdicao").cpf;
+            var cpfPesquisa = get("beneficiarioEmEdicao").cpf;
 
-            let removeCpfEdicao = cpfsProposta.filter(function (x) { return x != cpfPesquisa });
-            let checkCpf = removeCpfEdicao.filter(function (x) { return x == $(".cpf").val() });
+            var removeCpfEdicao = cpfsProposta.filter(function (x) { return x != cpfPesquisa });
+            var checkCpf = removeCpfEdicao.filter(function (x) { return x == $(".cpf").val() });
 
             if (checkCpf.length > 0) {
 

@@ -174,6 +174,8 @@ function listarDependentes() {
         dep = dep.replace("{NOME-DEP}", item.nome);
         $("#listaDep").append(dep);
     });
+
+    resizeIframe('frame_pf');
 }
 
 /*function adicionarBenefMemoria() {
@@ -388,13 +390,13 @@ function adicionarBenefMemoria() {
         return;
     }
 
-    let cpfsProposta = listCpfPropostaPme();
+    var cpfsProposta = listCpfPropostaPme();
 
-    let cpfEmEdicao = get("cpfEmEdicaoPME");
+    var cpfEmEdicao = get("cpfEmEdicaoPME");
 
     if (cpfEmEdicao == null && cpfsProposta.length > 0) {
 
-        let checkCpf = cpfsProposta.filter(function (x) { return x == $("#cpf").val() });
+        var checkCpf = cpfsProposta.filter(function (x) { return x == $("#cpf").val() });
 
         if (checkCpf.length > 0) {
 
@@ -404,8 +406,8 @@ function adicionarBenefMemoria() {
 
     } else if (cpfEmEdicao != null && cpfsProposta.length > 0) {
 
-        let removeCpfEdicao = cpfsProposta.filter(function (x) { return x != cpfEmEdicao });
-        let checkCpf = removeCpfEdicao.filter(function (x) { return x == $("#cpf").val() });
+        var removeCpfEdicao = cpfsProposta.filter(function (x) { return x != cpfEmEdicao });
+        var checkCpf = removeCpfEdicao.filter(function (x) { return x == $("#cpf").val() });
 
         if (checkCpf.length > 0) {
 

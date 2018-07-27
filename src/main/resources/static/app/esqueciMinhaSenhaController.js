@@ -21,12 +21,12 @@ $(document).ready(function () {
 
             callEsqueciMinhaSenha(function (dataEsqueciMinhaSenha) {
 
-                let cdCorretora = dataEsqueciMinhaSenha.cdCorretora;
-                let cdForca = dataEsqueciMinhaSenha.cdForcaVenda;
-                let nome = dataEsqueciMinhaSenha.nome;
-                let celular = dataEsqueciMinhaSenha.celular;
-                let email = dataEsqueciMinhaSenha.email;
-                let senha = $("#senha").val();
+                var cdCorretora = dataEsqueciMinhaSenha.cdCorretora;
+                var cdForca = dataEsqueciMinhaSenha.cdForcaVenda;
+                var nome = dataEsqueciMinhaSenha.nome;
+                var celular = dataEsqueciMinhaSenha.celular;
+                var email = dataEsqueciMinhaSenha.email;
+                var senha = $("#senha").val();
 
                 if(cdCorretora && cdForca) {
 
@@ -118,7 +118,7 @@ function defineConexao() {
 
 function callPutCorretora(callback, token, cdCorretora, senha) {
 
-    let json = {"cdCorretora": cdCorretora, "senha": senha};
+    var json = {"cdCorretora": cdCorretora, "senha": senha};
 
     $.ajax({
         async: true,

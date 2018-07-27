@@ -213,9 +213,9 @@ function ValidaNome(fieldValue) {
 
     var totalWords = splittedName.length
 
-    let firstName = splittedName[0]
+    var firstName = splittedName[0]
 
-    let lastName = splittedName[totalWords - 1]
+    var lastName = splittedName[totalWords - 1]
 
     if (!fieldValue) return false
 
@@ -235,7 +235,7 @@ function ValidaNome(fieldValue) {
     }
 
     // Se o nome possuir conectivos que não 'e' ou 'y', é inválido
-    for (let i in splittedName) {
+    for (var i in splittedName) {
 
         // Se o nome estiver vazio, é invalido
         if (splittedName[i] == "") return false
@@ -801,12 +801,14 @@ function setPlanosHml() {
 
 function listCpfPropostaPme() {
 
-    let cnpjDaProposta = get("proposta");
-    let beneficiarios = get("beneficiarios");
+    var cnpjDaProposta = get("proposta");
+    var beneficiarios = get("beneficiarios");
 
-    let beneficiariosDaProposta = beneficiarios.filter(function (x) { return x.cnpj == cnpjDaProposta.cnpj });
+    var cpfs = [];
 
-    let cpfs = [];
+    if (beneficiarios == undefined) return cpfs;
+
+    var beneficiariosDaProposta = beneficiarios.filter(function (x) { return x.cnpj == cnpjDaProposta.cnpj });
 
     $.each(beneficiariosDaProposta, function (indiceBeneficiario, itemBeneficiario) {
 
@@ -1173,8 +1175,8 @@ function enviarPropostaPf() {
         return;
     }
 
-    let proposta = get("propostaPf");
-    let propostas = get("pessoas");
+    var proposta = get("propostaPf");
+    var propostas = get("pessoas");
 
     if (proposta != null) {
 
@@ -1237,7 +1239,7 @@ function enviarPropostaPf() {
                     }
                 } else {
 
-                    let atualizarProposta = get("propostaPf");
+                    var atualizarProposta = get("propostaPf");
                     atualizarProposta.status = "PRONTA";
                     put("propostaPf", JSON.stringify(atualizarProposta));
                     atualizarPessoas(atualizarProposta);

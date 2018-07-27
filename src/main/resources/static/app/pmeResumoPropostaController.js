@@ -390,7 +390,7 @@ function enviarPropostaPme() {
 
         } else {
 
-            let atualizarProposta = get("proposta");
+            var atualizarProposta = get("proposta");
             atualizarProposta.status = "PRONTA";
             put("proposta", JSON.stringify(atualizarProposta));
             atualizarEmpresas(atualizarProposta);

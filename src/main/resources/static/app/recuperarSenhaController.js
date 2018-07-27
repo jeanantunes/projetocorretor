@@ -30,7 +30,7 @@ function defineConexao() {
 
 $("#cpfcnpj").keyup(function() {
 
-    let caracteres = $(this).val().replace(/\D/g, '');
+    var caracteres = $(this).val().replace(/\D/g, '');
 
     if(caracteres.length <= 11){
         $("#cpfcnpj").mask("000.000.000-000");
@@ -44,7 +44,7 @@ $("#cpfcnpj").keyup(function() {
 
 $("#continuarRecuperacaoDeSenha").click(function () {
 
-    let cpfAndCnpj = $("#cpfcnpj").val().replace(/\D/g, '');
+    var cpfAndCnpj = $("#cpfcnpj").val().replace(/\D/g, '');
 
     if(cpfAndCnpj == ""){
 
@@ -101,9 +101,9 @@ $("#continuarRecuperacaoDeSenha").click(function () {
 
 function callRecuperarSenha(callback, token, cpfCnpj) {
 
-    let cpfAndCnpj = cpfCnpj.replace(/\D/g, '');
+    var cpfAndCnpj = cpfCnpj.replace(/\D/g, '');
 
-    let json;
+    var json;
 
     if(cpfAndCnpj.length <= 11) {
 
