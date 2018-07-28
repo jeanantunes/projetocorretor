@@ -2,6 +2,8 @@ package br.com.odontoprev.portalcorretor.controller;
 
 import br.com.odontoprev.portalcorretor.model.*;
 import br.com.odontoprev.portalcorretor.service.PropostaService;
+import br.com.odontoprev.portalcorretor.service.dto.BeneficiariosPropostaResponsePagination;
+import br.com.odontoprev.portalcorretor.service.dto.EmpresaPropostaResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
@@ -129,14 +132,14 @@ public class DetalhesPropostaController {
 
 
         if (fichaFinanciera != null) {
-        detalhesProposta.setFichaFinanciera(new ArrayList<>());
-        for (FichaFinanciera f : fichaFinanciera.getFichaFinanciera()) {
-            if (f.getDataRenegociacao().compareTo(dataHoje) >= 0 &&
-                    (f.getStatusPagamento().equals("RENEGOCIADO") ||
-                            f.getStatusPagamento().equals("INCLUSAO DE TITULO"))) {
-                detalhesProposta.getFichaFinanciera().add(f);
+            detalhesProposta.setFichaFinanciera(new ArrayList<>());
+            for (FichaFinanciera f : fichaFinanciera.getFichaFinanciera()) {
+                if (f.getDataRenegociacao().compareTo(dataHoje) >= 0 &&
+                        (f.getStatusPagamento().equals("RENEGOCIADO") ||
+                                f.getStatusPagamento().equals("INCLUSAO DE TITULO"))) {
+                    detalhesProposta.getFichaFinanciera().add(f);
+                }
             }
-        }
 
             //detalhesProposta.setFichaFinanciera(fichaFinanciera.getFichaFinanciera());
             model.addAttribute("fichaFinanciera", detalhesProposta.getFichaFinanciera());
@@ -220,8 +223,8 @@ public class DetalhesPropostaController {
 
         FichaFinancieraBoleto financieraBoleto = new FichaFinancieraBoleto();
         for (FichaFinanciera f : fichaFinanciera.getFichaFinanciera()) {
-            f.getCompetencia().replaceAll("/","");
-            if (f.getCompetencia().contains(t)){
+            f.getCompetencia().replaceAll("/", "");
+            if (f.getCompetencia().contains(t)) {
                 //Dados para download
                 financieraBoleto.setCodigoDoAssociado(temp[1]);
                 financieraBoleto.setDataVencimentoOriginal(f.getVencimentoOriginal());
@@ -256,5 +259,88 @@ public class DetalhesPropostaController {
         }
     }
 
+    @RequestMapping(value = "detalhesPropostaPME", method = RequestMethod.GET)
+    @ResponseBody
+    public ModelAndView detalhesPropostaPME(Model model, @RequestParam("cdEmpresa") String cdEmpresa) throws IOException, ParseException {
 
+        EmpresaPropostaResponse detalhesPropostaPME = propostaService.detalhesPropostaPME(cdEmpresa);
+
+        model.addAttribute("cnpj", detalhesPropostaPME.getCnpj());
+        model.addAttribute("razaoSocial", detalhesPropostaPME.getRazaoSocial());
+        model.addAttribute("incEstadual", detalhesPropostaPME.getIncEstadual());
+        model.addAttribute("ramoAtividade", detalhesPropostaPME.getRamoAtividade());
+        model.addAttribute("nomeFantasia", detalhesPropostaPME.getNomeFantasia());
+        model.addAttribute("representanteLegal", detalhesPropostaPME.getRepresentanteLegal());
+        model.addAttribute("contatoEmpresa", detalhesPropostaPME.isContatoEmpresa());
+        model.addAttribute("telefone", detalhesPropostaPME.getTelefone());
+        model.addAttribute("celular", detalhesPropostaPME.getCelular());
+        model.addAttribute("email", detalhesPropostaPME.getEmail());
+        model.addAttribute("vencimentoFatura", detalhesPropostaPME.getVencimentoFatura());
+        model.addAttribute("cnae", detalhesPropostaPME.getCnae());
+        model.addAttribute("dataVencimentoFatura", detalhesPropostaPME.getDataVencimentoFatura());
+        model.addAttribute("enderecoEmpresa", detalhesPropostaPME.getEnderecoEmpresa());
+        model.addAttribute("planos", detalhesPropostaPME.getPlanos());
+        model.addAttribute("cnpjCorretora", detalhesPropostaPME.getCnpjCorretora());
+        model.addAttribute("nomeCorretora", detalhesPropostaPME.getNomeCorretora());
+        model.addAttribute("contactEmpresa", detalhesPropostaPME.getContactEmpresa());
+        model.addAttribute("dataVigencia", detalhesPropostaPME.getDataVigencia());
+        model.addAttribute("dataMovimentacao", detalhesPropostaPME.getDataMovimentacao());
+        model.addAttribute("cdEmpresa", detalhesPropostaPME.getCdEmpresa());
+        model.addAttribute("empDcms", detalhesPropostaPME.getEmpDcms());
+        model.addAttribute("cpfRepresentante", detalhesPropostaPME.getCpfRepresentante());
+
+        Long numpag = 1l;
+        Long tampag = 4l;
+
+        paginacaoBeneficiario(model, cdEmpresa, numpag, tampag);
+
+        return new ModelAndView("resumo_pme_proposta_detalhes", "detalhesPlanoPME", detalhesPropostaPME);
+    }
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @ResponseBody
+    public ModelAndView paginacaoBeneficiario(Model model,
+                                              @RequestParam("cdEmpresa") String cdEmpresa,
+                                              @RequestParam("numpag") Long numpag,
+                                              @RequestParam("tampag") Long tampag) {
+
+        EmpresaPropostaResponse detalhesPropostaPME = propostaService.detalhesPropostaPME(cdEmpresa);
+
+        model.addAttribute("cnpj", detalhesPropostaPME.getCnpj());
+        model.addAttribute("razaoSocial", detalhesPropostaPME.getRazaoSocial());
+        model.addAttribute("incEstadual", detalhesPropostaPME.getIncEstadual());
+        model.addAttribute("ramoAtividade", detalhesPropostaPME.getRamoAtividade());
+        model.addAttribute("nomeFantasia", detalhesPropostaPME.getNomeFantasia());
+        model.addAttribute("representanteLegal", detalhesPropostaPME.getRepresentanteLegal());
+        model.addAttribute("contatoEmpresa", detalhesPropostaPME.isContatoEmpresa());
+        model.addAttribute("telefone", detalhesPropostaPME.getTelefone());
+        model.addAttribute("celular", detalhesPropostaPME.getCelular());
+        model.addAttribute("email", detalhesPropostaPME.getEmail());
+        model.addAttribute("vencimentoFatura", detalhesPropostaPME.getVencimentoFatura());
+        model.addAttribute("cnae", detalhesPropostaPME.getCnae());
+        model.addAttribute("dataVencimentoFatura", detalhesPropostaPME.getDataVencimentoFatura());
+        model.addAttribute("enderecoEmpresa", detalhesPropostaPME.getEnderecoEmpresa());
+        model.addAttribute("planos", detalhesPropostaPME.getPlanos());
+        model.addAttribute("cnpjCorretora", detalhesPropostaPME.getCnpjCorretora());
+        model.addAttribute("nomeCorretora", detalhesPropostaPME.getNomeCorretora());
+        model.addAttribute("contactEmpresa", detalhesPropostaPME.getContactEmpresa());
+        model.addAttribute("dataVigencia", detalhesPropostaPME.getDataVigencia());
+        model.addAttribute("dataMovimentacao", detalhesPropostaPME.getDataMovimentacao());
+        model.addAttribute("cdEmpresa", detalhesPropostaPME.getCdEmpresa());
+        model.addAttribute("empDcms", detalhesPropostaPME.getEmpDcms());
+        model.addAttribute("cpfRepresentante", detalhesPropostaPME.getCpfRepresentante());
+
+        List<BeneficiariosPropostaResponsePagination> beneficiarios = propostaService.detalhesBeneficiarioPropostaPME(Long.valueOf(cdEmpresa), numpag, tampag);
+        for (BeneficiariosPropostaResponsePagination p : beneficiarios) {
+            model.addAttribute("selectedPageSize", p.getTamPagina());
+            model.addAttribute("numpag", p.getNumPagina());
+            model.addAttribute("totalPages", p.getQtdPaginas());
+            model.addAttribute("qtdRegistros", p.getQtdRegistros());
+            model.addAttribute("tampags", p.getTamPagina());
+            model.addAttribute("titulares", p.getTitulares());
+        }
+        model.addAttribute("beneficiarios", beneficiarios);
+
+        return new ModelAndView("resumo_pme_proposta_detalhes", "detalhesPlanoPME", beneficiarios);
+    }
 }

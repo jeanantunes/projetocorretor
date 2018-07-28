@@ -5,6 +5,9 @@ import br.com.odontoprev.portalcorretor.model.DetalhesBoletoResponse;
 import br.com.odontoprev.portalcorretor.model.DetalhesPropostaResponse;
 import br.com.odontoprev.portalcorretor.model.FichaFinanceiraResponse;
 import br.com.odontoprev.portalcorretor.model.FichaFinancieraBoleto;
+import br.com.odontoprev.portalcorretor.service.dto.BeneficiarioPropostaResponse;
+import br.com.odontoprev.portalcorretor.service.dto.BeneficiariosPropostaResponsePagination;
+import br.com.odontoprev.portalcorretor.service.dto.EmpresaPropostaResponse;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.logging.Log;
@@ -17,6 +20,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Service
 public class PropostaService {
@@ -64,6 +68,64 @@ public class PropostaService {
         }
     }
 
+    public EmpresaPropostaResponse detalhesPropostaPME(String cdEmpresa) {
+        EmpresaPropostaResponse empresaPropostaResponse = null;
+
+        //String url = requestBase + metodo + cdEmpresa;
+        String url = ConfigurationUtils.getURLGetToken().replaceAll("/token","/corretorservicos/1.0/empresa/" + cdEmpresa);
+        //String url = "http://localhost:8090/empresa/" + cdEmpresa;
+
+        RestTemplate restTemplate = new RestTemplate();
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
+            HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
+            ResponseEntity<EmpresaPropostaResponse> retorno = restTemplate.exchange(url, HttpMethod.GET, entity, EmpresaPropostaResponse.class);
+
+            if (retorno.getStatusCode() == HttpStatus.OK) {
+                log.info("EmpresaPropostaService ->>> " + retorno.getStatusCode());
+                empresaPropostaResponse = retorno.getBody();
+                return empresaPropostaResponse;
+            } else {
+                log.error("EmpresaPropostaService ->>> " + retorno.getStatusCode() + "\n" + retorno.getBody());
+                return null;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("EmpresaPropostaService ->>> " + e);
+            return null;
+        }
+    }
+
+    public List<BeneficiariosPropostaResponsePagination> detalhesBeneficiarioPropostaPME(Long cdEmpresa, Long numPag, Long tamPag) {
+
+        //String url = requestBase + metodo + cdEmpresa;
+        String url = ConfigurationUtils.getURLGetToken().replaceAll("/token","/corretorservicos/1.0/beneficiarios/empresa/" + cdEmpresa + "?numPag=" + numPag + "&tamPag=" + tamPag);
+        //String url = "http://localhost:8090/beneficiarios/empresa/" + cdEmpresa + "?numpag=" + numPag + "&tampag=" + tamPag;
+
+        RestTemplate restTemplate = new RestTemplate();
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
+            HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
+            ResponseEntity<BeneficiariosPropostaResponsePagination> retorno = restTemplate.exchange(url, HttpMethod.GET, entity, BeneficiariosPropostaResponsePagination.class);
+
+            if (retorno.getStatusCode() == HttpStatus.OK) {
+                log.info("BeneficiarioPropostaService ->>> " + retorno.getStatusCode());
+                return Arrays.asList(retorno.getBody());
+            } else {
+                log.error("BeneficiarioPropostaService ->>> " + retorno.getStatusCode() + "\n" + retorno.getBody());
+                return Arrays.asList(new BeneficiariosPropostaResponsePagination[0]);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("BeneficiarioPropostaService ->>> " + e);
+            return Arrays.asList(new BeneficiariosPropostaResponsePagination[0]);
+        }
+    }
+
     public FichaFinanceiraResponse listarBoleto(DetalhesBoletoResponse detalhesBoletoResponse) {
         FichaFinanceiraResponse financeiraResponse = null;
 
@@ -74,7 +136,7 @@ public class PropostaService {
         //https://api-it3.odontoprev.com.br:8243/corretor/boleto/1.0/financeiro/gerarboleto
         //https://api-it3.odontoprev.com.br:8243/corretor/boleto/1.0/financeiro/gerarboletofile
 
-        String url = ConfigurationUtils.getURLGetToken().replaceAll("/token","/corretor/boleto/1.0/financeiro/obterfichafinanceira/numeroproposta");
+        String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", "/corretor/boleto/1.0/financeiro/obterfichafinanceira/numeroproposta");
         //String url = requestBase + boleto;
 
         RestTemplate restTemplate = new RestTemplate();
@@ -109,7 +171,7 @@ public class PropostaService {
 
         log.info("GERAR BOLETO ->>> gerarBoleto");
 
-        String url = ConfigurationUtils.getURLGetToken().replaceAll("/token","/corretor/boleto/1.0/financeiro/gerarboleto");
+        String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", "/corretor/boleto/1.0/financeiro/gerarboleto");
         //String url = "http://172.18.203.21:8090/est-corretorboletoebs-api-rs-1.0/financeiro/gerarboleto";
 
         RestTemplate restTemplate = new RestTemplate();

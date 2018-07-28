@@ -1,0 +1,426 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br"
+      xmlns="http://www.w3.org/1999/xhtml">
+
+<head><title>OdontoPrev</title>
+    <meta charset="UTF-8">
+    <!--<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="shortcut icon" th:href="@{/img/odpv.PNG}" type="image/png"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-theme.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/odontoprev.css}"/>
+
+    <script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.mask.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/odonto-Valida.js}"></script>
+
+    <script type="text/javascript" th:src="@{/js/menu.js}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script>
+        $(function () {
+            $(".button-collapse").sideNav();
+        });
+
+        $(document).ready(function () {
+            /*
+            $(".conteudo").click(function () {
+                $("#dados").attr("data-id", $(this).val());
+                $('.custom-url').attr('href', '/downloadBoleto?id=' + $("#dados").attr("data-id") + "-" + $("#dados").attr("data-value"));
+            });
+            */
+
+            $('#accordion .panel-collapse').on('shown.bs.collapse', function () {
+                $(this).prev().find(".glyphicon").removeClass("glyphicon-plus").addClass("glyphicon-minus");
+            });
+
+            //The reverse of the above on hidden event:
+            $('#accordion .panel-collapse').on('hidden.bs.collapse', function () {
+                $(this).prev().find(".glyphicon").removeClass("glyphicon-minus").addClass("glyphicon-plus");
+            });
+        });
+
+    </script>
+
+    <style type="text/css">
+
+        /* TODO: Mudar cor acordeon -> #FFFFFF to #1a75cf */
+        .panel-default > .panel-heading {
+            background-image: -webkit-linear-gradient(top, #FFFFFF 0, #FFFFFF 100%);
+            background-image: -o-linear-gradient(top, #FFFFFF 0, #FFFFFF 100%);
+            background-image: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#FFFFFF));
+            background-image: linear-gradient(to bottom, #FFFFFF 0, #FFFFFF 100%);
+        }
+
+        /*
+        .panel-default > .panel-heading > .panel-title > .collapsed {
+            background-image: -webkit-linear-gradient(top, #FFFFFF 0, #FFFFFF 100%);
+            background-image: -o-linear-gradient(top, #FFFFFF 0, #FFFFFF 100%);
+            background-image: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#FFFFFF));
+            background-image: linear-gradient(to bottom, #FFFFFF 0, #FFFFFF 100%);
+        }
+
+        .panel-default > .panel-heading > .panel-title > :not(.collapsed) {
+            background-image: -webkit-linear-gradient(top, #1a75cf 0, #1a75cf 100%);
+            background-image: -o-linear-gradient(top, #1a75cf 0, #1a75cf 100%);
+            background-image: -webkit-gradient(linear, left top, left bottom, from(#1a75cf), to(#1a75cf));
+            background-image: linear-gradient(to bottom, #1a75cf 0, #1a75cf 100%);
+        }
+        */
+    </style>
+
+
+</head>
+
+<body style="min-width: 100% !important;">
+
+<div class="container-fluid nopadding">
+
+    <div th:switch="${session.usuario.perfil}">
+        <div th:case="'Corretor'">
+            <div th:replace="fragments/menu-corretor :: menu-corretor">&nbsp;</div>
+            <div th:replace="fragments/header-corretor :: header-corretor">&nbsp;</div>
+        </div>
+        <div th:case="'Corretora'">
+            <div th:replace="fragments/menu-corretora :: menu-corretora">&nbsp;</div>
+            <div th:replace="fragments/header-corretora :: header-corretora">&nbsp;</div>
+        </div>
+    </div>
+
+    <div class="container-logado padding-logado">
+        <div class="row">
+            <div class="col-md-6 odontBoxCenter">
+                <div>
+                    <div class="subTitleResumoProp">
+                        VENDA PME
+                    </div>
+
+                    <div class="titleResumoProp">
+                        RESUMO DA PROPOSTA
+                    </div>
+                    <!--
+                    <div class="space-top-30 space-bottom-30">
+                        <div th:style="${criticas.size() == 0} ? 'display:none' : 'display:inline-block'">
+                            <span class="text-critica"><b>Erros encontrados</b></span>
+                        </div>
+                        <ul th:each="critica : ${detalhesPlano.getVenda().getCriticas()}">
+                            <li class="text-critica" th:text="${critica.nome}"></li>
+                            <li class="text-critica" th:text="${critica.dsErroRegistro}"></li>
+                        </ul>
+                    </div>
+                    -->
+                    <!--
+                    <div class="space-top-30 space-bottom-30 boxNroProposta">
+                        <div th:style="${detalhesPlano.getVenda().getPropostaDcms()} == null ? 'display:none' : 'display:inline-block'">
+                            <span style="color: #FFFFFF;">Número da proposta</span><br/>
+                            <h3><b><span style="color: #FFFFFF;"
+                                         th:text="${detalhesPlano.getVenda().getPropostaDcms()}"></span></b></h3>
+                        </div>
+                    </div>
+                    -->
+                </div>
+            </div>
+        </div>
+
+        <!--
+        <div class="col-xs-6 row">
+            <div class="boxDadosPropostaResumo">
+                <div th:name="${titulo}" class="titlePlanoResumoProp" th:text="${titulo}"></div>
+                <label class="valorPlanoResumoProp" style="display:inline;margin-left: 150px;">R$
+                    <div th:text="${#numbers.formatDecimal(valor, 0,  'POINT', 2, 'COMMA')}"
+                         th:name="${valor}" class="valorPlanoResumoProp"></div>
+                </label>
+                <div class="tipoPlano" th:text="${tipoPlano}"></div>
+                <div class="valorTotalPlanoLabel">Total da proposta: R$</div>
+                <div class="valorTotalPlano" th:text="${#numbers.formatDecimal(valorTotal, 0,  'POINT', 2, 'COMMA')}"/>
+            </div>
+        </div>
+        -->
+
+        <div class="col-xs-12 row">
+            <div class="titleResumoPropBlue"><p>DADOS DA EMPRESA</p></div>
+            <table class="col-xs-12">
+                <tr>
+                    <td>
+                        <label class="label-odont">CNPJ</label><br/>
+                        <div class="p-odont" th:name="${cnpj}" th:text="${cnpj}"></div>
+                    </td>
+                    <td>
+                        <label class="label-odont">Razão social</label><br/>
+                        <div class="p-odont" th:name="${razaoSocial}" th:text="${razaoSocial}"></div>
+                    </td>
+                    <td>
+                        <label class="label-odont">Nome fantasia</label><br/>
+                        <div class="p-odont" th:name="${nomeFantasia}" th:text="${nomeFantasia}"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="label-odont">Ramo de atividade</label><br/>
+                        <div class="p-odont" th:name="${ramoAtividade}" th:text="${ramoAtividade}"></div>
+                    </td>
+                    <td>
+                        <label class="label-odont">Representante legal</label><br/>
+                        <div class="p-odont" th:name="${representanteLegal}" th:text="${representanteLegal}"></div>
+                    </td>
+                    <td>
+                        <label class="label-odont">CPF</label><br/>
+                        <div class="p-odont" th:name="${cpfRepresentante}" th:text="${cpfRepresentante}"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="label-odont">Telefone</label><br/>
+                        <div class="p-odont" th:name="${telefone}" th:text="${telefone}"></div>
+                    </td>
+                    <td>
+                        <label class="label-odont">Celular</label><br/>
+                        <div class="p-odont" th:name="${celular}" th:text="${celular}"></div>
+                    </td>
+                    <td>
+                        <label class="label-odont">E-mail</label><br/>
+                        <div class="p-odont" th:name="${email}" th:text="${email}"></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-xs-12 row">
+            <div class="titleResumoPropBlue"><p>ENDEREÇO DA EMPRESA</p></div>
+            <table class="col-xs-12">
+                <tr>
+                    <td colspan="3">
+                        <label class="label-odont">CEP</label><br/>
+                        <div class="p-odont" th:name="${enderecoEmpresa.getCep()}"
+                             th:text="${enderecoEmpresa.getCep()}"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="label-odont">Endereço</label><br/>
+                        <div class="p-odont" th:name="${enderecoEmpresa.getLogradouro()}"
+                             th:text="${enderecoEmpresa.getLogradouro()}"></div>
+                    </td>
+                    <td>
+                        <label class="label-odont">Número</label><br/>
+                        <div class="p-odont" th:name="${enderecoEmpresa.getNumero()}"
+                             th:text="${enderecoEmpresa.getNumero()}"></div>
+                    </td>
+                    <td>
+                        <label class="label-odont">Complemento</label><br/>
+                        <div class="p-odont" th:name="${enderecoEmpresa.getComplemento()}"
+                             th:text="${enderecoEmpresa.getComplemento()}"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="label-odont">Bairro</label><br/>
+                        <div class="p-odont" th:name="${enderecoEmpresa.getBairro()}"
+                             th:text="${enderecoEmpresa.getBairro()}"></div>
+                    </td>
+                    <td>
+                        <label class="label-odont">Cidade</label><br/>
+                        <div class="p-odont" th:name="${enderecoEmpresa.getCidade()}"
+                             th:text="${enderecoEmpresa.getCidade()}"></div>
+                    </td>
+                    <td>
+                        <label class="label-odont">ESTADO</label><br/>
+                        <div class="p-odont" th:name="${enderecoEmpresa.getEstado()}"
+                             th:text="${enderecoEmpresa.getEstado()}"></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-xs-12 row">
+            <div class="titleResumoPropBlue"><p>DATAS CONTRATUAIS</p></div>
+            <table class="col-xs-12">
+                <tr>
+                    <td>
+                        <label class="label-odont">Data de vencimento da fatura</label><br/>
+                        <div class="p-odont" th:name="${dataVencimentoFatura}" th:text="${dataVencimentoFatura}"></div>
+                    </td>
+                    <td>
+                        <label class="label-odont">Data de corte da movimentação</label><br/>
+                        <div class="p-odont" th:name="${dataMovimentacao}" th:text="${dataMovimentacao}"></div>
+                    </td>
+                    <td>
+                        <label class="label-odont">Data de vigência</label><br/>
+                        <div class="p-odont" th:name="${dataVigencia}" th:text="${dataVigencia}"></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+        <!-- div th:replace="fragments/beneficiario :: beneficiario">&nbsp;</div -->
+        <!-- TODO: Fragment Beneficiarios - INICIO -->
+        <div class="col-xs-12 row">
+            <div class="titleResumoPropBlue"><p>BENEFICIÁRIOS</p></div>
+            <div th:each="beneficiario : ${beneficiarios}">
+                <div class="panel-group" id="accordion">
+                    <div th:each="titular : ${beneficiario.titulares}">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion"
+                                       th:href="'#collapse'+${titular.cdVida}">
+                                        <div class="text-titular">
+                                            <table width="100%">
+                                                <tr>
+                                                    <td>
+                                                        <span class="" th:text="${titular.nome}"
+                                                              th:value="${titular.nome}"/>
+                                                    </td>
+                                                    <td>
+                                                        Dependentes: <span class=""
+                                                                           th:text="${titular.dependentes.size()}"
+                                                                           th:value="${titular.dependentes.size()}"/>
+                                                    </td>
+                                                    <td>
+                                                        <span class="text-dependenteSize glyphicon glyphicon-plus"
+                                                              aria-hidden="true"/>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div th:id="'collapse'+${titular.cdVida}" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <div class="text-titular">
+                                        <table width="100%">
+                                            <tr>
+                                                <td>
+                                                    <div><b>Sexo: </b><span th:text="${titular.sexo}"
+                                                                            th:value="${titular.sexo}"></span></div>
+                                                </td>
+                                                <td>
+                                                    <div><b>Nome da mãe: </b><span th:text="${titular.nomeMae}"
+                                                                                   th:value="${titular.nomeMae}"></span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div><b>Data de nascimento: </b><span
+                                                            th:text="${titular.dataNascimento}"
+                                                            th:value="${titular.dataNascimento}"></span></div>
+                                                </td>
+                                                <td>
+                                                    <div><b>Plano: </b><span th:text="${titular.cdPlano}"
+                                                                             th:value="${titular.cdPlano}"></span></div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div><b>CPF: </b><span th:text="${titular.cpf}"
+                                                                           th:value="${titular.cpf}"></span></div>
+                                                </td>
+                                                <td>
+                                                    <div><b>Dependentes: </b>
+                                                        <div th:each="dependente : ${titular.dependentes}">
+                                                            <span th:text="${dependente.nome}"
+                                                                  th:value="${dependente.nome}"/>&nbsp;
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row col-md-12">
+                <div class="form-group col-md-1">
+                    <select class="form-control pagination" id="pageSizeSelect">
+                        <option th:each="tampag : ${tampags}" th:text="${tampag}" th:value="${tampag}"
+                                th:selected="${tampag} == ${selectedPageSize}"></option>
+                    </select>
+                </div>
+                <div th:if="${totalPages != 1}" class="form-group col-md-11 pagination-centered">
+                    <ul class="pagination">
+                        <li th:class="${numpag == 1} ? disabled">
+                            <a class="pageLink"
+                               th:href="@{/(cdEmpresa=${cdEmpresa}, numpag=1,tampag=${selectedPageSize})}">&laquo;</a>
+                        </li>
+                        <li th:class="${numpag == 1} ? disabled">
+                            <a class="pageLink"
+                               th:href="@{/(cdEmpresa=${cdEmpresa}, numpag=${numpag - 1}, tampag=${selectedPageSize})}">&larr;</a>
+                        </li>
+                        <li th:class="${numpag == (numpag - 1)} ? 'active pointer-disabled'"
+                            th:each="numpag : ${#numbers.sequence(numpag, totalPages)}">
+                            <a class="pageLink"
+                               th:href="@{/(cdEmpresa=${cdEmpresa}, numpag=${numpag}, tampag=${selectedPageSize})}"
+                               th:text="${numpag}"></a>
+                        </li>
+                        <li th:class="${numpag == totalPages} ? disabled">
+                            <a class="pageLink"
+                               th:href="@{/(cdEmpresa=${cdEmpresa}, numpag=${numpag + 1}, tampag=${selectedPageSize})}">&rarr;</a>
+                        </li>
+                        <li th:class="${numpag == totalPages} ? disabled">
+                            <a class="pageLink"
+                               th:href="@{/(cdEmpresa=${cdEmpresa}, numpag=${totalPages}, tampag=${selectedPageSize})}">&raquo;</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row col-md-12">
+                <table border="1">
+                    <thead>
+                    <div th:each="beneficiario: ${beneficiarios}">
+                        <div>
+                            <td>
+                                <div>tampag: <span th:text="${beneficiario.tamPagina}"></span></div>
+                            </td>
+                            <td>
+                                <div>numpag: <span th:text="${beneficiario.numPagina}"></span></div>
+                            </td>
+                            <td>
+                                <div>qtdPaginas: <span th:text="${beneficiario.qtdPaginas}"></span></div>
+                            </td>
+                            <td>
+                                <div>qtdRegistros: <span th:text="${beneficiario.qtdRegistros}"></span></div>
+                            </td>
+                        </div>
+                        <!--
+                        <div th:each="titular: ${beneficiario.titulares}">
+                            <tr>
+                                <th scope="dependente" th:text="${titular.nome}"></th>
+                                <th th:text="${titular.dependentes.size()}"></th>
+                                <th><span class="text-dependenteSize glyphicon glyphicon-plus" aria-hidden="true"/></th>
+                            </tr>
+                            <div th:each="dependente: ${titular.dependentes}">
+                                <tr>
+                                    <th th:text="${dependente.nome}"></th>
+                                    <th th:text="${dependente.cpf}"></th>
+                                </tr>
+                            </div>
+                        </div>
+                        -->
+                    </div>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <!-- TODO: Fragment Beneficiarios - FIM -->
+
+
+        <div class="row"></div>
+    </div>
+
+    <div th:replace="fragments/footer :: footer">&nbsp;</div>
+</div>
+
+</body>
+</html>

@@ -3347,6 +3347,22 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
     font-size: 20px;
 }
 
+/* Acordion - Proposta detalhes - INICIO */
+.text-titular{
+    color: #747474 !important;
+    font-family: Roboto-Regular;
+    font-size: 14px;
+    display: inline-block;
+    width: 100%;
+}
+.text-dependenteSize{
+    color: #747474 !important;
+    font-family: Roboto-Regular;
+    font-size: 14px;
+    display: inline-block;
+}
+/* Acordion - Proposta detalhes - FIM */
+
 .text-black {
     color: #000000 !important;
     text-decoration: none;
@@ -3885,7 +3901,7 @@ transform
 }
 
 .panel-body {
-    padding: 35px !important;
+    padding: 15px !important;
 }
 
 .box-proposta .title-name {
