@@ -210,7 +210,7 @@
                                         <div th:class="${#strings.equals(proposta.statusVenda,'Proposta concluida com sucesso')}?  point-green : '' "></div>
                                         <div th:class="${#strings.equals(proposta.statusVenda,'Proposta enviada para a OdontoPrev')}?  point-blue : '' "></div>
                                         <div th:class="${#strings.equals(proposta.statusVenda,'Proposta criticada')}?  point-red : '' "></div>
-                                        <p class="title-name text-odonto pull-left
+                                        <p class="title-name text-odonto pull-left">
                                             <strong th:if="${proposta.nomeFantasia != null}" th:text="${proposta.nomeFantasia}">Fantasia no Ar</strong>
                                         </p>
                                         <p class="title-name text-odonto pull-left">
