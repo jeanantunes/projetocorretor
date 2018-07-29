@@ -165,8 +165,7 @@ function callEsqueciMinhaSenha(callback, token) {
     $.ajax({
 
         async: true,
-        url: "http://localhost:8090/esqueciMinhaSenha/" + chaveRedefinirSenha,
-        //url:  "https://api.odontoprev.com.br:8243/corretorservicos/1.0/esqueciMinhaSenha/" + chaveRedefinirSenha,
+        url:  "https://api.odontoprev.com.br:8243/corretorservicos/1.0/esqueciMinhaSenha/" + chaveRedefinirSenha,
         method: "GET",
         headers: {
             "Content-Type": "application/json",
