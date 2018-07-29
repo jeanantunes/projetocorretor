@@ -27,6 +27,7 @@ $(document).ready(function () {
                 var celular = dataEsqueciMinhaSenha.celular;
                 var email = dataEsqueciMinhaSenha.email;
                 var senha = $("#senha").val();
+                var cdCorretoraForcaVenda = dataEsqueciMinhaSenha.cdCorretoraForcaVenda;
 
                 if(cdCorretora && cdForca) {
 
@@ -81,7 +82,8 @@ $(document).ready(function () {
                         },
                         dataToken.token,
                         cdCorretora,
-                        senha
+                        senha,
+                        cdCorretoraForcaVenda
                     );
 
                 }
@@ -163,7 +165,8 @@ function callEsqueciMinhaSenha(callback, token) {
     $.ajax({
 
         async: true,
-        url:  "https://api.odontoprev.com.br:8243/corretorservicos/1.0/esqueciMinhaSenha/" + chaveRedefinirSenha,
+        url: "http://localhost:8090/esqueciMinhaSenha/" + chaveRedefinirSenha,
+        //url:  "https://api.odontoprev.com.br:8243/corretorservicos/1.0/esqueciMinhaSenha/" + chaveRedefinirSenha,
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -179,13 +182,24 @@ function callEsqueciMinhaSenha(callback, token) {
     });
 }
 
-function callPutForcaVenda(callback, token, codForca, nome, celular, email, senha) {
+function callPutForcaVenda(callback, token, codForca, nome, celular, email, senha, cdCorretora) {
 
-    var json = {"cdForcaVenda": codForca, "nome": nome, "celular": celular, "email": email, "senha": senha};
+
+    var json = {
+        "cdForcaVenda": codForca,
+        "nome": nome,
+        "celular": celular,
+        "email": email,
+        "senha": senha,
+        "corretora": {
+            "cdCorretora": cdCorretora
+        }
+    };
+
 
     $.ajax({
         async: true,
-        url: "https://api.odontoprev.com.br:8243/corretorservicos/1.0/forcavenda/login",
+        url: "https://api-it3.odontoprev.com.br:8243/corretorservicos/1.0/forcavenda",
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
