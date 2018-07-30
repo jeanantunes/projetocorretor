@@ -288,6 +288,7 @@ public class DetalhesPropostaController {
         model.addAttribute("cdEmpresa", detalhesPropostaPME.getCdEmpresa());
         model.addAttribute("empDcms", detalhesPropostaPME.getEmpDcms());
         model.addAttribute("cpfRepresentante", detalhesPropostaPME.getCpfRepresentante());
+        model.addAttribute("cdEmpresa", detalhesPropostaPME.getCdEmpresa());
 
         Long numpag = 1l;
         Long tampag = 4l;
@@ -329,14 +330,17 @@ public class DetalhesPropostaController {
         model.addAttribute("cdEmpresa", detalhesPropostaPME.getCdEmpresa());
         model.addAttribute("empDcms", detalhesPropostaPME.getEmpDcms());
         model.addAttribute("cpfRepresentante", detalhesPropostaPME.getCpfRepresentante());
+        model.addAttribute("cdEmpresa", detalhesPropostaPME.getCdEmpresa());
 
-        List<BeneficiariosPropostaResponsePagination> beneficiarios = propostaService.detalhesBeneficiarioPropostaPME(Long.valueOf(cdEmpresa), numpag, tampag);
+
+        List<BeneficiariosPropostaResponsePagination> beneficiarios = propostaService.detalhesBeneficiarioPropostaPME(detalhesPropostaPME.getCdEmpresa(), numpag, tampag);
         for (BeneficiariosPropostaResponsePagination p : beneficiarios) {
+            //model.addAttribute("cdEmpresa", p.getCodEmpresa());
+            model.addAttribute("tampags", p.getTamPagina());
             model.addAttribute("selectedPageSize", p.getTamPagina());
             model.addAttribute("numpag", p.getNumPagina());
             model.addAttribute("totalPages", p.getQtdPaginas());
             model.addAttribute("qtdRegistros", p.getQtdRegistros());
-            model.addAttribute("tampags", p.getTamPagina());
             model.addAttribute("titulares", p.getTitulares());
         }
         model.addAttribute("beneficiarios", beneficiarios);

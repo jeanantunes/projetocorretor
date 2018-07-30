@@ -5,7 +5,6 @@ import br.com.odontoprev.portalcorretor.model.DetalhesBoletoResponse;
 import br.com.odontoprev.portalcorretor.model.DetalhesPropostaResponse;
 import br.com.odontoprev.portalcorretor.model.FichaFinanceiraResponse;
 import br.com.odontoprev.portalcorretor.model.FichaFinancieraBoleto;
-import br.com.odontoprev.portalcorretor.service.dto.BeneficiarioPropostaResponse;
 import br.com.odontoprev.portalcorretor.service.dto.BeneficiariosPropostaResponsePagination;
 import br.com.odontoprev.portalcorretor.service.dto.EmpresaPropostaResponse;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -43,7 +42,6 @@ public class PropostaService {
         DetalhesPropostaResponse detalhesPropostaResponse = null;
 
         String url = requestBase + metodo + cdVenda;
-        //String url = "http://localhost:9090/proposta/dados/critica/venda/" + cdVenda;
 
         RestTemplate restTemplate = new RestTemplate();
         try {
@@ -71,9 +69,7 @@ public class PropostaService {
     public EmpresaPropostaResponse detalhesPropostaPME(String cdEmpresa) {
         EmpresaPropostaResponse empresaPropostaResponse = null;
 
-        //String url = requestBase + metodo + cdEmpresa;
-        String url = ConfigurationUtils.getURLGetToken().replaceAll("/token","/corretorservicos/1.0/empresa/" + cdEmpresa);
-        //String url = "http://localhost:8090/empresa/" + cdEmpresa;
+        String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", "/corretorservicos/1.0/empresa/" + cdEmpresa);
 
         RestTemplate restTemplate = new RestTemplate();
         try {
@@ -100,8 +96,7 @@ public class PropostaService {
 
     public List<BeneficiariosPropostaResponsePagination> detalhesBeneficiarioPropostaPME(Long cdEmpresa, Long numPag, Long tamPag) {
 
-        //String url = requestBase + metodo + cdEmpresa;
-        String url = ConfigurationUtils.getURLGetToken().replaceAll("/token","/corretorservicos/1.0/beneficiarios/empresa/" + cdEmpresa + "?numPag=" + numPag + "&tamPag=" + tamPag);
+        String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", "/corretorservicos/1.0/beneficiarios/empresa/" + cdEmpresa + "?numPag=" + numPag + "&tamPag=" + tamPag);
         //String url = "http://localhost:8090/beneficiarios/empresa/" + cdEmpresa + "?numpag=" + numPag + "&tampag=" + tamPag;
 
         RestTemplate restTemplate = new RestTemplate();
@@ -137,7 +132,6 @@ public class PropostaService {
         //https://api-it3.odontoprev.com.br:8243/corretor/boleto/1.0/financeiro/gerarboletofile
 
         String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", "/corretor/boleto/1.0/financeiro/obterfichafinanceira/numeroproposta");
-        //String url = requestBase + boleto;
 
         RestTemplate restTemplate = new RestTemplate();
         try {
@@ -172,7 +166,6 @@ public class PropostaService {
         log.info("GERAR BOLETO ->>> gerarBoleto");
 
         String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", "/corretor/boleto/1.0/financeiro/gerarboleto");
-        //String url = "http://172.18.203.21:8090/est-corretorboletoebs-api-rs-1.0/financeiro/gerarboleto";
 
         RestTemplate restTemplate = new RestTemplate();
         MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();

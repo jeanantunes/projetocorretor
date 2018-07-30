@@ -3395,6 +3395,9 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
     margin-left: 10px;
 }
 
+.space-left-60 {
+    margin-left: 60px;
+}
 .space-bottom-0 {
     margin-bottom: 0 !important;
 }

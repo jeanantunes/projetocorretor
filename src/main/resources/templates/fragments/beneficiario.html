@@ -19,16 +19,16 @@
                                     <div class="text-titular">
                                         <table width="100%">
                                             <tr>
-                                                <td>
+                                                <td width="50%">
                                                         <span class="" th:text="${titular.nome}"
                                                               th:value="${titular.nome}"/>
                                                 </td>
-                                                <td>
+                                                <td width="40%">
                                                     Dependentes: <span class=""
-                                                                       th:text="${titular.dependentes.size()}"
-                                                                       th:value="${titular.dependentes.size()}"/>
+                                                                       th:text="${titular.qtdDependentes}"
+                                                                       th:value="${titular.qtdDependentes}"/>
                                                 </td>
-                                                <td>
+                                                <td width="10%">
                                                         <span class="text-dependenteSize glyphicon glyphicon-plus"
                                                               aria-hidden="true"/>
                                                 </td>
@@ -71,9 +71,75 @@
                                             </td>
                                             <td>
                                                 <div><b>Dependentes: </b>
-                                                    <div th:each="dependente : ${titular.dependentes}">
-                                                            <span th:text="${dependente.nome}"
-                                                                  th:value="${dependente.nome}"/>&nbsp;
+                                                    <div th:if="*{titular.dependentes != null}"
+                                                         th:each="dependente : ${titular.dependentes}">
+                                                        <a href="#" type="button" data-toggle="modal"
+                                                           th:attrappend="data-target='#' + ${dependente.cdVida}"
+                                                           th:style="${dependente.cdTitular != 0} ? 'display:inline-block' : 'display:none'">
+                                                            <label th:name="${dependente.cdVida}"
+                                                                   th:text="${dependente.nome}"
+                                                                   class="linkDepBlue"></label>
+                                                        </a>
+                                                        <!-- INICIO - Modal -->
+                                                        <div class="modal fade" th:attr="id=${dependente.cdVida}"
+                                                             role="dialog">
+                                                            <div class="modal-dialog" style="width: 350px">
+                                                                <div class="imgBtnExcluir"
+                                                                     id="closeModalDependentes">
+                                                                    <img th:src="@{/img/btn-excluir.png}"
+                                                                         class="btnExcluir" data-dismiss="modal">
+                                                                </div>
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h4 class="modal-title font-blue">DADOS DO
+                                                                            DEPENDENTE</h4>
+                                                                    </div>
+                                                                    <div class="modal-body md-form">
+                                                                        <table>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <label class="label-odont">Nome</label><br/>
+                                                                                    <div class="p-odont"
+                                                                                         th:text="${dependente.nome}"></div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <label class="label-odont">CPF</label><br/>
+                                                                                    <div class="p-odont"
+                                                                                         th:text="${dependente.cpf}"></div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <label class="label-odont">Data
+                                                                                        de Nascimento</label><br/>
+                                                                                    <div class="p-odont"
+                                                                                         th:text="${dependente.dataNascimento}"></div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <label class="label-odont">Sexo</label><br/>
+                                                                                    <div class="p-odont"
+                                                                                         th:text="${dependente.sexo}"></div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <label class="label-odont">Nome
+                                                                                        da Mãe</label><br/>
+                                                                                    <div class="p-odont"
+                                                                                         th:text="${dependente.nomeMae}"></div>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </div>
+                                                                    <div class="modal-footer">&nbsp;</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- FIM -->
                                                     </div>
                                                 </div>
                                             </td>
@@ -88,50 +154,50 @@
         </div>
 
         <div class="row col-md-12">
-            <div class="form-group col-md-1">
+            <!-- div class="form-group col-md-1">
                 <select class="form-control pagination" id="pageSizeSelect">
-                    <option th:each="tamPag : ${tamPags}" th:text="${tamPag}" th:value="${tamPag}"
-                            th:selected="${tamPag} == ${selectedPageSize}"></option>
+                    <option th:each="tampag : ${tampags}" th:text="${tampag}" th:value="${tampag}"
+                            th:selected="${tampag} == ${selectedPageSize}"></option>
                 </select>
-            </div>
-            <div th:if="${totalPages != 1}" class="form-group col-md-11 pagination-centered">
+            </div -->
+            <div th:if="${totalPages != 1}" class="form-group col-md-12 text-center">
                 <ul class="pagination">
-                    <li th:class="${numPag == 1} ? disabled">
+                    <li th:class="${numpag == 1} ? disabled">
                         <a class="pageLink"
-                           th:href="@{/(cdEmpresa=${cdEmpresa}, numPag=1,tamPag=${selectedPageSize})}">&laquo;</a>
+                           th:href="@{/(cdEmpresa=${cdEmpresa}, numpag=1,tampag=${selectedPageSize})}">&laquo;</a>
                     </li>
-                    <li th:class="${numPag == 1} ? disabled">
+                    <li th:class="${numpag == 1} ? disabled">
                         <a class="pageLink"
-                           th:href="@{/(cdEmpresa=${cdEmpresa}, numPag=${numPag - 1}, tamPag=${selectedPageSize})}">&larr;</a>
+                           th:href="@{/(cdEmpresa=${cdEmpresa}, numpag=${numpag - 1}, tampag=${selectedPageSize})}">&larr;</a>
                     </li>
-                    <li th:class="${numPag == (numPag - 1)} ? 'active pointer-disabled'"
-                        th:each="numPag : ${#numbers.sequence(numPag, totalPages)}">
+                    <li th:class="${numpag == (numpag - 1)} ? 'active pointer-disabled'"
+                        th:each="numpag : ${#numbers.sequence(numpag, totalPages)}">
                         <a class="pageLink"
-                           th:href="@{/(cdEmpresa=${cdEmpresa}, numPag=${numPag}, tamPag=${selectedPageSize})}"
-                           th:text="${numPag}"></a>
+                           th:href="@{/(cdEmpresa=${cdEmpresa}, numpag=${numpag}, tampag=${selectedPageSize})}"
+                           th:text="${numpag}"></a>
                     </li>
-                    <li th:class="${numPag == totalPages} ? disabled">
+                    <li th:class="${numpag == totalPages} ? disabled">
                         <a class="pageLink"
-                           th:href="@{/(cdEmpresa=${cdEmpresa}, numPag=${numPag + 1}, tamPag=${selectedPageSize})}">&rarr;</a>
+                           th:href="@{/(cdEmpresa=${cdEmpresa}, numpag=${numpag + 1}, tampag=${selectedPageSize})}">&rarr;</a>
                     </li>
-                    <li th:class="${numPag == totalPages} ? disabled">
+                    <li th:class="${numpag == totalPages} ? disabled">
                         <a class="pageLink"
-                           th:href="@{/(cdEmpresa=${cdEmpresa}, numPag=${totalPages}, tamPag=${selectedPageSize})}">&raquo;</a>
+                           th:href="@{/(cdEmpresa=${cdEmpresa}, numpag=${totalPages}, tampag=${selectedPageSize})}">&raquo;</a>
                     </li>
                 </ul>
             </div>
         </div>
-
+        <!--
         <div class="row col-md-12">
             <table border="1">
                 <thead>
                 <div th:each="beneficiario: ${beneficiarios}">
                     <div>
                         <td>
-                            <div>tamPag: <span th:text="${beneficiario.tamPagina}"></span></div>
+                            <div>tampag: <span th:text="${beneficiario.tamPagina}"></span></div>
                         </td>
                         <td>
-                            <div>numPag: <span th:text="${beneficiario.numPagina}"></span></div>
+                            <div>numpag: <span th:text="${beneficiario.numPagina}"></span></div>
                         </td>
                         <td>
                             <div>qtdPaginas: <span th:text="${beneficiario.qtdPaginas}"></span></div>
@@ -140,25 +206,11 @@
                             <div>qtdRegistros: <span th:text="${beneficiario.qtdRegistros}"></span></div>
                         </td>
                     </div>
-                    <!--
-                    <div th:each="titular: ${beneficiario.titulares}">
-                        <tr>
-                            <th scope="dependente" th:text="${titular.nome}"></th>
-                            <th th:text="${titular.dependentes.size()}"></th>
-                            <th><span class="text-dependenteSize glyphicon glyphicon-plus" aria-hidden="true"/></th>
-                        </tr>
-                        <div th:each="dependente: ${titular.dependentes}">
-                            <tr>
-                                <th th:text="${dependente.nome}"></th>
-                                <th th:text="${dependente.cpf}"></th>
-                            </tr>
-                        </div>
-                    </div>
-                    -->
                 </div>
                 </thead>
             </table>
         </div>
+        -->
     </div>
     <!-- TODO: Fragment Beneficiarios - FIM -->
 
