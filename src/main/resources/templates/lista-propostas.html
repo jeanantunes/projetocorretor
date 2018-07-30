@@ -211,10 +211,10 @@
                                         <div th:class="${#strings.equals(proposta.statusVenda,'Proposta enviada para a OdontoPrev')}?  point-blue : '' "></div>
                                         <div th:class="${#strings.equals(proposta.statusVenda,'Proposta criticada')}?  point-red : '' "></div>
                                         <p class="title-name text-odonto pull-left">
-                                            <strong th:if="${proposta.nomeFantasia != null}" th:text="${proposta.nomeFantasia}">Fantasia no Ar</strong>
+                                            <strong th:text="${proposta.nome}">Maria Angela da Silva</strong>
                                         </p>
                                         <p class="title-name text-odonto pull-left">
-                                            <strong th:text="${proposta.nome}">Maria Angela da Silva</strong>
+                                            <strong th:if="${proposta.nomeFantasia != null}" th:text="${proposta.nomeFantasia}">Fantasia no Ar</strong>
                                         </p>
                                         <!--<span class="pull-right font-blue">HÃ¡ 16 horas</span>-->
                                         <div class="border-left" style="clear: both;">
