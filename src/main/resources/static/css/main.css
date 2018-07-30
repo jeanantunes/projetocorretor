@@ -3356,7 +3356,7 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
     width: 100%;
 }
 .text-dependenteSize{
-    color: #747474 !important;
+    color: #747474;
     font-family: Roboto-Regular;
     font-size: 14px;
     display: inline-block;
@@ -3631,8 +3631,8 @@ tr th {
 }
 
 tr td {
-    padding: 13px !important;
-    color: #ACAAA5 !important;
+    padding: 13px;
+    color: #ACAAA5;
 }
 
 thead {

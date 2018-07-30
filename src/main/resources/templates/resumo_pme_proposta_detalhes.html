@@ -34,14 +34,46 @@
             });
             */
 
-            $('#accordion .panel-collapse').on('shown.bs.collapse', function () {
-                $(this).prev().find(".glyphicon").removeClass("glyphicon-plus").addClass("glyphicon-minus");
-            });
+           // $('#accordion .panel-collapse').on('shown.bs.collapse', function () {
+           //     $(this).prev().find(".glyphicon").removeClass("glyphicon-plus").addClass("glyphicon-minus");
+           //     $(this).css('background-color', '#1a75cf');
+           //     $(this).find(".nomeDependente").css('color', '#FFFFFF !important');
+//
+           // });
+//
+           // //The reverse of the above on hidden event:
+           // $('#accordion .panel-collapse').on('hidden.bs.collapse', function () {
+           //     $(this).prev().find(".glyphicon").removeClass("glyphicon-minus").addClass("glyphicon-plus");
+           //     $(this).css('background-color', '#FFFFFF');
+           //     $(this).find(".nomeDependente").css('color', '#ACAAA5 !important');
+//
+           // });
 
-            //The reverse of the above on hidden event:
-            $('#accordion .panel-collapse').on('hidden.bs.collapse', function () {
-                $(this).prev().find(".glyphicon").removeClass("glyphicon-minus").addClass("glyphicon-plus");
-            });
+
+           $(".clickAccordeon").click(function(){
+
+               var taAberto = $(this).attr('data-aberto');
+               console.log(taAberto);
+
+               if(taAberto == 'false'){
+                   $(this).find(".glyphicon").removeClass("glyphicon-plus").addClass("glyphicon-minus");
+                   $(this).find(".glyphicon-minus").css('color', '#FFFFFF');
+                   $(this).css('background-color', '#1a75cf');
+                   $(this).find(".nomeDependente").css('color', '#FFFFFF');
+                   $(this).attr('data-aberto', 'true');
+
+               } else {
+                   $(this).find(".glyphicon").removeClass("glyphicon-minus").addClass("glyphicon-plus");
+                   $(this).find(".glyphicon-plus").css('color', '#ACAAA5');
+                   $(this).css('background-color', '#FFFFFF');
+                   $(this).find(".nomeDependente").css('color', '#ACAAA5');
+                   $(this).attr('data-aberto', 'false');
+               }
+
+           });
+
+
+
         });
 
     </script>

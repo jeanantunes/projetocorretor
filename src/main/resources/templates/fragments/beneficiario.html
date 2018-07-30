@@ -12,24 +12,24 @@
             <div class="panel-group" id="accordion">
                 <div th:each="titular : ${beneficiario.titulares}">
                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <div class="panel-title">
+                        <div class="panel-heading" style="padding: 0px !important;">
+                            <div class="panel-title clickAccordeon" data-aberto='false' style="padding: 10px !important;">
                                 <a data-toggle="collapse" data-parent="#accordion"
                                    th:href="'#collapse'+${titular.cdVida}">
                                     <div class="text-titular">
                                         <table width="100%">
                                             <tr>
                                                 <td width="50%">
-                                                        <span class="" th:text="${titular.nome}"
+                                                        <span class="nomeDependente" th:text="${titular.nome}"
                                                               th:value="${titular.nome}"/>
                                                 </td>
-                                                <td width="40%">
-                                                    Dependentes: <span class=""
+                                                <td width="40%" class="nomeDependente">
+                                                    Dependentes: <span class="nomeDependente"
                                                                        th:text="${titular.qtdDependentes}"
                                                                        th:value="${titular.qtdDependentes}"/>
                                                 </td>
                                                 <td width="10%">
-                                                        <span class="text-dependenteSize glyphicon glyphicon-plus"
+                                                        <span class="nomeDependente text-dependenteSize glyphicon glyphicon-plus"
                                                               aria-hidden="true"/>
                                                 </td>
                                             </tr>
