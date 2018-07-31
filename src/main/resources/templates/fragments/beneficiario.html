@@ -69,17 +69,17 @@
                                                 <div><b>CPF: </b><span th:text="${titular.cpf}"
                                                                        th:value="${titular.cpf}"></span></div>
                                             </td>
-                                            <td>
+                                            <td th:style="${titular.qtdDependentes == 0} ? 'display:none' : 'display:inline-block'">
                                                 <div><b>Dependentes: </b>
-                                                    <div th:if="*{titular.dependentes != null}"
+                                                    <div th:if="*{titular.dependentes != null}" style="display: inline-block"
                                                          th:each="dependente : ${titular.dependentes}">
                                                         <a href="#" type="button" data-toggle="modal"
                                                            th:attrappend="data-target='#' + ${dependente.cdVida}"
-                                                           th:style="${dependente.cdTitular != 0} ? 'display:inline-block' : 'display:none'">
+                                                           th:style="${dependente.cdTitular != null} ? 'display:inline-block' : 'display:none'">
                                                             <label th:name="${dependente.cdVida}"
                                                                    th:text="${dependente.nome}"
                                                                    class="linkDepBlue"></label>
-                                                        </a>
+                                                        </a>,
                                                         <!-- INICIO - Modal -->
                                                         <div class="modal fade" th:attr="id=${dependente.cdVida}"
                                                              role="dialog">

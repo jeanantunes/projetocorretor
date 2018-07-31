@@ -261,7 +261,7 @@ public class DetalhesPropostaController {
     public ModelAndView detalhesPropostaPME(Model model, @ModelAttribute("cdEmpresa") String cdEmpresa) throws IOException, ParseException {
 
         Long numpag = 1l;
-        Long tampag = 4l;
+        Long tampag = 8l;
 
         paginacaoBeneficiario(model, cdEmpresa, numpag, tampag);
 
