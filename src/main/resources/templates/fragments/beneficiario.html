@@ -13,7 +13,7 @@
                 <div th:each="titular : ${beneficiario.titulares}">
                     <div class="panel panel-default">
                         <div class="panel-heading" style="padding: 0px !important;">
-                            <div class="panel-title clickAccordeon" data-aberto='false' style="padding: 10px !important;">
+                            <div class="panel-title clickAccordeon" data-aberto='false' style="padding: 0px !important;">
                                 <a data-toggle="collapse" data-parent="#accordion"
                                    th:href="'#collapse'+${titular.cdVida}">
                                     <div class="text-titular">
@@ -29,7 +29,7 @@
                                                                        th:value="${titular.qtdDependentes}"/>
                                                 </td>
                                                 <td width="10%">
-                                                        <span class="nomeDependente text-dependenteSize glyphicon glyphicon-plus"
+                                                        <span class="nomeDependente text-dependenteSize glyphicon glyphicon-plus" style="font-size: 2.5em"
                                                               aria-hidden="true"/>
                                                 </td>
                                             </tr>

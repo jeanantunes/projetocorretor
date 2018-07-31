@@ -4,7 +4,6 @@
 
 <head><title>OdontoPrev</title>
     <meta charset="UTF-8">
-    <!--<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="shortcut icon" th:href="@{/img/odpv.PNG}" type="image/png"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
@@ -34,82 +33,31 @@
             });
             */
 
-           // $('#accordion .panel-collapse').on('shown.bs.collapse', function () {
-           //     $(this).prev().find(".glyphicon").removeClass("glyphicon-plus").addClass("glyphicon-minus");
-           //     $(this).css('background-color', '#1a75cf');
-           //     $(this).find(".nomeDependente").css('color', '#FFFFFF !important');
-//
-           // });
-//
-           // //The reverse of the above on hidden event:
-           // $('#accordion .panel-collapse').on('hidden.bs.collapse', function () {
-           //     $(this).prev().find(".glyphicon").removeClass("glyphicon-minus").addClass("glyphicon-plus");
-           //     $(this).css('background-color', '#FFFFFF');
-           //     $(this).find(".nomeDependente").css('color', '#ACAAA5 !important');
-//
-           // });
+            $(".clickAccordeon").click(function () {
 
+                var taAberto = $(this).attr('data-aberto');
+                console.log(taAberto);
 
-           $(".clickAccordeon").click(function(){
+                if (taAberto == 'false') {
+                    $(this).find(".glyphicon").removeClass("glyphicon-plus").addClass("glyphicon-minus");
+                    $(this).find(".glyphicon-minus").css('color', '#FFFFFF');
+                    $(this).css('background-color', '#1a75cf');
+                    $(this).find(".nomeDependente").css('color', '#FFFFFF');
+                    $(this).attr('data-aberto', 'true');
 
-               var taAberto = $(this).attr('data-aberto');
-               console.log(taAberto);
-
-               if(taAberto == 'false'){
-                   $(this).find(".glyphicon").removeClass("glyphicon-plus").addClass("glyphicon-minus");
-                   $(this).find(".glyphicon-minus").css('color', '#FFFFFF');
-                   $(this).css('background-color', '#1a75cf');
-                   $(this).find(".nomeDependente").css('color', '#FFFFFF');
-                   $(this).attr('data-aberto', 'true');
-
-               } else {
-                   $(this).find(".glyphicon").removeClass("glyphicon-minus").addClass("glyphicon-plus");
-                   $(this).find(".glyphicon-plus").css('color', '#ACAAA5');
-                   $(this).css('background-color', '#FFFFFF');
-                   $(this).find(".nomeDependente").css('color', '#ACAAA5');
-                   $(this).attr('data-aberto', 'false');
-               }
-
-           });
-
-
-
+                } else {
+                    $(this).find(".glyphicon").removeClass("glyphicon-minus").addClass("glyphicon-plus");
+                    $(this).find(".glyphicon-plus").css('color', '#ACAAA5');
+                    $(this).css('background-color', '#FFFFFF');
+                    $(this).find(".nomeDependente").css('color', '#ACAAA5');
+                    $(this).attr('data-aberto', 'false');
+                }
+            });
         });
-
     </script>
-
-    <style type="text/css">
-
-        /* TODO: Mudar cor acordeon -> #FFFFFF to #1a75cf */
-        .panel-default > .panel-heading {
-            background-image: -webkit-linear-gradient(top, #FFFFFF 0, #FFFFFF 100%);
-            background-image: -o-linear-gradient(top, #FFFFFF 0, #FFFFFF 100%);
-            background-image: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#FFFFFF));
-            background-image: linear-gradient(to bottom, #FFFFFF 0, #FFFFFF 100%);
-        }
-
-        /*
-        .panel-default > .panel-heading > .panel-title > .collapsed {
-            background-image: -webkit-linear-gradient(top, #FFFFFF 0, #FFFFFF 100%);
-            background-image: -o-linear-gradient(top, #FFFFFF 0, #FFFFFF 100%);
-            background-image: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#FFFFFF));
-            background-image: linear-gradient(to bottom, #FFFFFF 0, #FFFFFF 100%);
-        }
-
-        .panel-default > .panel-heading > .panel-title > :not(.collapsed) {
-            background-image: -webkit-linear-gradient(top, #1a75cf 0, #1a75cf 100%);
-            background-image: -o-linear-gradient(top, #1a75cf 0, #1a75cf 100%);
-            background-image: -webkit-gradient(linear, left top, left bottom, from(#1a75cf), to(#1a75cf));
-            background-image: linear-gradient(to bottom, #1a75cf 0, #1a75cf 100%);
-        }
-        */
-    </style>
-
-
 </head>
 
 <body style="min-width: 100% !important;">
-
 <div class="container-fluid nopadding">
 
     <div th:switch="${session.usuario.perfil}">
@@ -134,44 +82,9 @@
                     <div class="titleResumoProp">
                         RESUMO DA PROPOSTA
                     </div>
-                    <!--
-                    <div class="space-top-30 space-bottom-30">
-                        <div th:style="${criticas.size() == 0} ? 'display:none' : 'display:inline-block'">
-                            <span class="text-critica"><b>Erros encontrados</b></span>
-                        </div>
-                        <ul th:each="critica : ${detalhesPlano.getVenda().getCriticas()}">
-                            <li class="text-critica" th:text="${critica.nome}"></li>
-                            <li class="text-critica" th:text="${critica.dsErroRegistro}"></li>
-                        </ul>
-                    </div>
-                    -->
-                    <!--
-                    <div class="space-top-30 space-bottom-30 boxNroProposta">
-                        <div th:style="${detalhesPlano.getVenda().getPropostaDcms()} == null ? 'display:none' : 'display:inline-block'">
-                            <span style="color: #FFFFFF;">Número da proposta</span><br/>
-                            <h3><b><span style="color: #FFFFFF;"
-                                         th:text="${detalhesPlano.getVenda().getPropostaDcms()}"></span></b></h3>
-                        </div>
-                    </div>
-                    -->
                 </div>
             </div>
         </div>
-
-        <!--
-        <div class="col-xs-6 row">
-            <div class="boxDadosPropostaResumo">
-                <div th:name="${titulo}" class="titlePlanoResumoProp" th:text="${titulo}"></div>
-                <label class="valorPlanoResumoProp" style="display:inline;margin-left: 150px;">R$
-                    <div th:text="${#numbers.formatDecimal(valor, 0,  'POINT', 2, 'COMMA')}"
-                         th:name="${valor}" class="valorPlanoResumoProp"></div>
-                </label>
-                <div class="tipoPlano" th:text="${tipoPlano}"></div>
-                <div class="valorTotalPlanoLabel">Total da proposta: R$</div>
-                <div class="valorTotalPlano" th:text="${#numbers.formatDecimal(valorTotal, 0,  'POINT', 2, 'COMMA')}"/>
-            </div>
-        </div>
-        -->
 
         <div class="col-xs-12 row">
             <div class="titleResumoPropBlue"><p>DADOS DA EMPRESA</p></div>
@@ -288,13 +201,9 @@
             </table>
         </div>
 
-
-        <!-- TODO: Fragment Beneficiarios - INICIO -->
         <div class="col-xs-12 row">
             <div th:replace="fragments/beneficiario :: beneficiario">&nbsp;</div>
         </div>
-        <!-- TODO: Fragment Beneficiarios - FIM -->
-
 
         <div class="row"></div>
     </div>
