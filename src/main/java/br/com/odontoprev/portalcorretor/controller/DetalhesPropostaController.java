@@ -265,31 +265,6 @@ public class DetalhesPropostaController {
 
         EmpresaPropostaResponse detalhesPropostaPME = propostaService.detalhesPropostaPME(cdEmpresa);
 
-        model.addAttribute("cnpj", detalhesPropostaPME.getCnpj());
-        model.addAttribute("razaoSocial", detalhesPropostaPME.getRazaoSocial());
-        model.addAttribute("incEstadual", detalhesPropostaPME.getIncEstadual());
-        model.addAttribute("ramoAtividade", detalhesPropostaPME.getRamoAtividade());
-        model.addAttribute("nomeFantasia", detalhesPropostaPME.getNomeFantasia());
-        model.addAttribute("representanteLegal", detalhesPropostaPME.getRepresentanteLegal());
-        model.addAttribute("contatoEmpresa", detalhesPropostaPME.isContatoEmpresa());
-        model.addAttribute("telefone", detalhesPropostaPME.getTelefone());
-        model.addAttribute("celular", detalhesPropostaPME.getCelular());
-        model.addAttribute("email", detalhesPropostaPME.getEmail());
-        model.addAttribute("vencimentoFatura", detalhesPropostaPME.getVencimentoFatura());
-        model.addAttribute("cnae", detalhesPropostaPME.getCnae());
-        model.addAttribute("dataVencimentoFatura", detalhesPropostaPME.getDataVencimentoFatura());
-        model.addAttribute("enderecoEmpresa", detalhesPropostaPME.getEnderecoEmpresa());
-        model.addAttribute("planos", detalhesPropostaPME.getPlanos());
-        model.addAttribute("cnpjCorretora", detalhesPropostaPME.getCnpjCorretora());
-        model.addAttribute("nomeCorretora", detalhesPropostaPME.getNomeCorretora());
-        model.addAttribute("contactEmpresa", detalhesPropostaPME.getContactEmpresa());
-        model.addAttribute("dataVigencia", detalhesPropostaPME.getDataVigencia());
-        model.addAttribute("dataMovimentacao", detalhesPropostaPME.getDataMovimentacao());
-        model.addAttribute("cdEmpresa", detalhesPropostaPME.getCdEmpresa());
-        model.addAttribute("empDcms", detalhesPropostaPME.getEmpDcms());
-        model.addAttribute("cpfRepresentante", detalhesPropostaPME.getCpfRepresentante());
-        model.addAttribute("cdEmpresa", detalhesPropostaPME.getCdEmpresa());
-
         Long numpag = 1l;
         Long tampag = 4l;
 
