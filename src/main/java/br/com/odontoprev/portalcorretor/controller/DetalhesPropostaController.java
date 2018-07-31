@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
@@ -261,16 +258,14 @@ public class DetalhesPropostaController {
 
     @RequestMapping(value = "detalhesPropostaPME", method = RequestMethod.GET)
     @ResponseBody
-    public ModelAndView detalhesPropostaPME(Model model, @RequestParam("cdEmpresa") String cdEmpresa) throws IOException, ParseException {
-
-        EmpresaPropostaResponse detalhesPropostaPME = propostaService.detalhesPropostaPME(cdEmpresa);
+    public ModelAndView detalhesPropostaPME(Model model, @ModelAttribute("cdEmpresa") String cdEmpresa) throws IOException, ParseException {
 
         Long numpag = 1l;
         Long tampag = 4l;
 
         paginacaoBeneficiario(model, cdEmpresa, numpag, tampag);
 
-        return new ModelAndView("resumo_pme_proposta_detalhes", "detalhesPlanoPME", detalhesPropostaPME);
+        return new ModelAndView("resumo_pme_proposta_detalhes", "detalhesPlanoPME", cdEmpresa);
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -310,7 +305,6 @@ public class DetalhesPropostaController {
 
         List<BeneficiariosPropostaResponsePagination> beneficiarios = propostaService.detalhesBeneficiarioPropostaPME(detalhesPropostaPME.getCdEmpresa(), numpag, tampag);
         for (BeneficiariosPropostaResponsePagination p : beneficiarios) {
-            //model.addAttribute("cdEmpresa", p.getCodEmpresa());
             model.addAttribute("tampags", p.getTamPagina());
             model.addAttribute("selectedPageSize", p.getTamPagina());
             model.addAttribute("numpag", p.getNumPagina());
