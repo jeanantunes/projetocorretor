@@ -13,7 +13,8 @@
                 <div th:each="titular : ${beneficiario.titulares}">
                     <div class="panel panel-default">
                         <div class="panel-heading" style="padding: 0px !important;">
-                            <div class="panel-title clickAccordeon" data-aberto='false' style="padding: 0px !important;">
+                            <div class="panel-title clickAccordeon" data-aberto='false'
+                                 style="padding: 0px !important;">
                                 <a data-toggle="collapse" data-parent="#accordion"
                                    th:href="'#collapse'+${titular.cdVida}">
                                     <div class="text-titular">
@@ -29,7 +30,8 @@
                                                                        th:value="${titular.qtdDependentes}"/>
                                                 </td>
                                                 <td width="10%">
-                                                        <span class="nomeDependente text-dependenteSize glyphicon glyphicon-plus" style="font-size: 2.5em"
+                                                        <span class="nomeDependente text-dependenteSize glyphicon glyphicon-plus"
+                                                              style="font-size: 2.5em"
                                                               aria-hidden="true"/>
                                                 </td>
                                             </tr>
@@ -60,8 +62,14 @@
                                                         th:value="${titular.dataNascimento}"></span></div>
                                             </td>
                                             <td>
-                                                <div><b>Plano: </b><span th:text="${titular.cdPlano}"
-                                                                         th:value="${titular.cdPlano}"></span></div>
+                                                <div><b>Plano: </b>
+                                                    <span th:style="${titular.cdPlano == 101} ? 'display:inline-block' : 'display:none'"
+                                                        th:text="'Integral DOC PME LE'"
+                                                        th:value="${titular.cdPlano}"></span>
+                                                    <span th:style="${titular.cdPlano == 102} ? 'display:inline-block' : 'display:none'"
+                                                          th:text="'Master PME LE 1'"
+                                                          th:value="${titular.cdPlano}"></span>
+                                                </div>
                                             </td>
                                         </tr>
                                         <tr>
@@ -71,7 +79,8 @@
                                             </td>
                                             <td th:style="${titular.qtdDependentes == 0} ? 'display:none' : 'display:inline-block'">
                                                 <div><b>Dependentes: </b>
-                                                    <div th:if="*{titular.dependentes != null}" style="display: inline-block"
+                                                    <div th:if="*{titular.dependentes != null}"
+                                                         style="display: inline-block"
                                                          th:each="dependente : ${titular.dependentes}">
                                                         <a href="#" type="button" data-toggle="modal"
                                                            th:attrappend="data-target='#' + ${dependente.cdVida}"
