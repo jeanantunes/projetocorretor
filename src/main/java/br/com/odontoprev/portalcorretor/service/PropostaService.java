@@ -94,10 +94,10 @@ public class PropostaService {
         }
     }
 
-    public List<BeneficiariosPropostaResponsePagination> detalhesBeneficiarioPropostaPME(Long cdEmpresa, Long numPag, Long tamPag) {
+    public List<BeneficiariosPropostaResponsePagination> detalhesBeneficiarioPropostaPME(Long cdEmpresa, Long numpag, Long tampag) {
 
-        String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", "/corretorservicos/1.0/beneficiarios/empresa/" + cdEmpresa + "?numPag=" + numPag + "&tamPag=" + tamPag);
-        //String url = "http://localhost:8090/beneficiarios/empresa/" + cdEmpresa + "?numpag=" + numPag + "&tampag=" + tamPag;
+        String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", "/corretorservicos/1.0/beneficiarios/empresa/" + cdEmpresa + "?numpag=" + numpag + "&tampag=" + tampag);
+        //String url = "http://localhost:8090/beneficiarios/empresa/" + cdEmpresa + "?numpag=" + numpag + "&tampag=" + tampag;
 
         RestTemplate restTemplate = new RestTemplate();
         try {
