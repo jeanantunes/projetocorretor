@@ -937,6 +937,13 @@ h5, .subListBox {
     margin-bottom: 30px;
 }
 
+.subTitleResumoPMEProp {
+    font-family: Roboto-Light;
+    font-size: 12pt;
+    color: #1974CE;
+    margin-top: 15px;
+}
+
 .tipoPlano {
     font-family: Roboto-Light;
     font-size: 11pt;
