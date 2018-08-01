@@ -63,8 +63,8 @@ function defineConexao() {
         },
         success: function (result) {
             URLBase = eval(result).url;
-            if (URLBase.indexOf("api-it1") !== -1) {
-                setPlanosHml();
+            if (URLBase.indexOf("api-it3") !== -1) {
+                setPlanosProd();
 
             } else {
                 setPlanosProd();
@@ -188,6 +188,17 @@ function validarData(data) {
     return !(/\D/.test(String(d))) && d > 0 && d <= daysInMonth[--m];
 }
 
+function menorQueSeteAnos(date) {
+
+    var eightYearsAgo = moment().subtract(7, "years");
+    var birthday = moment(date);
+
+    if (!birthday.isValid()) {
+        // INVALID DATE
+    } else if (!eightYearsAgo.isAfter(birthday)) return true;
+
+    return false;
+}
 
 $(".data").blur(function () {
 
@@ -1146,6 +1157,39 @@ function removerAcentos(newStringComAcento) {
     }
 
     return string;
+}
+
+function listCpfPropostaPf() {
+
+    let propostaPf = get("propostaPf");
+
+    let cpfs = [];
+
+    cpfs.push({ "cpf": propostaPf.cpf, "nome": propostaPf.nome, "dataNascimento": propostaPf.dataNascimento, "tipo" : "titular" });
+
+    if (propostaPf.responsavelContratual.cpf != "") {
+        cpfs.push(
+            {
+                "cpf": propostaPf.responsavelContratual.cpf,
+                "nome": propostaPf.responsavelContratual.nome,
+                "dataNascimento": propostaPf.responsavelContratual.dataNascimento,
+                "tipo": "responsavelContratual"
+            });
+    }
+
+    $.each(propostaPf.dependentes, function (indiceDependente, itemDependente) {
+
+        cpfs.push({
+            "cpf": itemDependente.cpf,
+            "nome": itemDependente.nome,
+            "dataNascimento": itemDependente.dataNascimento,
+            "tipo": "dependente"
+        });
+
+    });
+
+    return cpfs;
+
 }
 
 function removerAcentosMinusculo(newStringComAcento) {

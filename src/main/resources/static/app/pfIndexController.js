@@ -75,8 +75,6 @@ function setIdPlano() {
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    if (conexao.producaoLigado){
-    
         var plano = planos.filter(function (x) { if (x.nome == "DENTAL ORTO ANUAL") { return x.nome; } });
         $("#ortoAnualSCarencia").attr("data-id", plano[0].cdPlano);
     
@@ -90,13 +88,7 @@ function setIdPlano() {
         $("#bemEstarAnualSCarencia").attr("data-id", plano[0].cdPlano);
     
         return;
-    }
 
-    $("#divBemEstar").addClass('hide');
-    $("#divEstetica").addClass('hide');
-    $("#divVip").addClass('hide');
-    $("#divOrto").addClass('hide');
-    return;
 }
 
 function iniciarProposta(cdPlano) {

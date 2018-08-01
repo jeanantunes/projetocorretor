@@ -4,6 +4,7 @@ $(document).ready(function () {
     buscarPlanosSelecionados();
     carregarProposta();
     localStorage.removeItem("dependentePfEmEdicao");
+    resizeIframe('frame_pf');
 });
 
 function addDependente() {
@@ -226,6 +227,7 @@ function buscarPlanosSelecionados() {
     });
 
     $(".labelQuantidadeBeneficiarios").addClass('hide');
+    resizeIframe('frame_pf');
 }
 
 //$("#cpf").blur(function () {
@@ -244,10 +246,12 @@ $("#dataNascimentoTitular").blur(function () {
     if (isMaiorDeIdade(date)) {
 
         $(".representanteContratual").addClass('hide');
+        resizeIframe('frame_pf');
         return;
     }
 
     $(".representanteContratual").removeClass('hide');
+    resizeIframe('frame_pf');
 
 });
 
@@ -621,6 +625,9 @@ function listarDependentes() {
         dep = dep.replace("{CPF-DESC}", item.cpf);
         dep = dep.replace("{NOME}", item.nome);
         dep = dep.replace("{NOME-DEP}", item.nome);
+        dep = dep.replace("{NASCIMENTO-EDITAR}", item.dataNascimento);
+        dep = dep.replace("{NASCIMENTO-EXCLUIR}", item.dataNascimento);
+        dep = dep.replace("{NASCIMENTOBOX}", item.dataNascimento);
         $("#listaDep").append(dep);
     });
 
@@ -629,12 +636,12 @@ function listarDependentes() {
 
 function editarDependente(obj) {
 
-    var container = $(".div-excluir[data-id='" + $(obj).attr("data-id") + "']");
+    var container = $(".div-excluir[data-id='" + $(obj).attr("data-id") + "'][data-nascimento='" + $(obj).attr("data-nascimento") + "']");
     var beneficiario = get("propostaPf");
 
     var beneficiarioEmEdicao = beneficiario.dependentes.filter(function (x) {
 
-        if (container.attr("data-id") == container.attr("data-nome")) return x.nome == container.attr("data-nome")
+        if (container.attr("data-id") == container.attr("data-nome")) return x.nome == container.attr("data-nome") && x.dataNascimento == container.attr("data-nascimento")
 
         return x.cpf == container.attr("data-id")
     });
@@ -647,7 +654,7 @@ function editarDependente(obj) {
 
 function excluirDep(obj) {
 
-    var container = $(".div-excluir[data-id='" + $(obj).attr("data-id") + "']");
+    var container = $(".div-excluir[data-id='" + $(obj).attr("data-id") + "'][data-nascimento='" + $(obj).attr("data-nascimento") + "']");
 
     //if (container.length == 0) {
     //
@@ -657,7 +664,7 @@ function excluirDep(obj) {
 
     var propostaExcetoExcluido = proposta.dependentes.filter(function (x) {
 
-        if (container.attr("data-id") == container.attr("data-nome")) return x.nome != container.attr("data-nome")
+        if (container.attr("data-id") == container.attr("data-nome")) return x.nome != container.attr("data-nome") || x.dataNascimento != container.attr("data-nascimento")
 
         return x.cpf != container.attr("data-id")
     });
@@ -670,7 +677,7 @@ function excluirDep(obj) {
 
     put("propostaPf", JSON.stringify(proposta));
     container.remove();
-
+    resizeIframe('frame_pf');
     atualizarPessoas(proposta);
 }
 
@@ -703,5 +710,6 @@ function verificarInputs() {
 
     // Habilite, ou não, o <button>, dependendo da variável:
     $("#continuarVendaPf").removeClass('disabled'); //,
+    resizeIframe('frame_pf');
     return true;
 }
