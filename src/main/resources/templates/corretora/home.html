@@ -345,19 +345,19 @@
         <div class="row" sec:authorize="hasRole('Corretora')">
             <div class="col-xs-12">
                 <div class=" space-top-30 btn-header-web" style="display: inline-block; margin-left: 0px;">
-                    <a href="#" type="button" data-toggle="modal" data-target="#uploadModalPF"
+                    <a href="#" type="button" data-toggle="modal" data-target="#downloadPF"
                        class="btn uppercase btnPink btn-width-custom space-top-10 navbar-left">BAIXAR RELATÓRIO PF
                     </a>
                 </div>
                 <div class=" space-top-30 btn-header-web" style="display: inline-block; margin-left: 20px;">
-                    <a href="#" type="button" data-toggle="modal" data-target="#uploadModalPME"
+                    <a href="#" type="button" data-toggle="modal" data-target="#downloadPME"
                        class="btn uppercase btnBlue btn-width-custom space-top-10 navbar-left">BAIXAR RELATÓRIO PME
                     </a>
                 </div>
             </div>
 
             <!-- INICIO - Modal -->
-            <div class="modal fade" id="uploadModalPF" role="dialog">
+            <div class="modal fade" id="downloadPF" role="dialog">
                 <div class="modal-dialog">
                     <div class="imgBtnExcluir" id="closeModalPF">
                         <img th:src="@{/img/btn-excluir.png}" class="btnExcluir" data-dismiss="modal">
@@ -384,7 +384,7 @@
             <!-- FIM -->
 
             <!-- INICIO - Modal -->
-            <div class="modal fade" id="uploadModalPME" role="dialog">
+            <div class="modal fade" id="downloadPME" role="dialog">
                 <div class="modal-dialog">
                     <div class="imgBtnExcluir" id="closeModalPME">
                         <img th:src="@{/img/btn-excluir.png}" class="btnExcluir" data-dismiss="modal">
