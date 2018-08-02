@@ -30,9 +30,7 @@ public class DetalhesPropostaController {
     FichaFinanceiraResponse fichaFinanciera;
 
     @RequestMapping(value = "detalhesProposta", method = RequestMethod.GET)
-    public ModelAndView detalhesProposta(Model model, @RequestParam("cdVenda") String cdVenda, HttpSession session) throws IOException, ParseException {
-
-        UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
+    public ModelAndView detalhesProposta(Model model, @RequestParam("cdVenda") String cdVenda) throws IOException, ParseException {
 
         DetalhesPropostaResponse detalhesProposta = propostaService.detalhesProposta(cdVenda);
 
@@ -40,7 +38,7 @@ public class DetalhesPropostaController {
 
         for (Beneficiarios beneficiario : dadosTitulares) {
             Integer cdTitular = beneficiario.getCdTitular();
-            if (cdTitular == 0) {
+            if (cdTitular == null) {
                 //Titular
                 model.addAttribute("cdTitular", beneficiario.getCdTitular());
                 model.addAttribute("celular", beneficiario.getCelular());
@@ -80,9 +78,7 @@ public class DetalhesPropostaController {
                 model.addAttribute("cidade", beneficiario.getEndereco().getCidade());
                 model.addAttribute("estado", beneficiario.getEndereco().getEstado());
             } else {
-                if (cdTitular == beneficiario.getCdTitular()) {
-                    detalhesProposta.setDependentes(dadosTitulares);
-                }
+                detalhesProposta.setDependentes(dadosTitulares);
             }
         }
 
