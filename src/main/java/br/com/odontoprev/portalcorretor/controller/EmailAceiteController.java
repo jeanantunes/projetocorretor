@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,18 +24,21 @@ public class EmailAceiteController {
 	
 	 @Autowired
 	 EmailAceiteService emailAceiteService;
-	
+
 	 @RequestMapping(value = "/termoAceite/{token}", method = RequestMethod.GET)
 	 public ModelAndView confirmarEmailAceite(@PathVariable String token, HttpServletRequest request) {
 		 
 		 LOGGER.info("###### confirmarEmailAceite ######");
 		 
-		 String ip = capturarIP(request);
-		 
 		 TokenAceite tokenAceite = emailAceiteService.ObterDadosTokenAceite(token);
-		 
-		 confirmaEmailAceite(ip, tokenAceite);
-   		 
+
+		 String ip = capturarIP(request);
+
+		 if(tokenAceite.getId() == 200){
+
+			 confirmaEmailAceite(ip, tokenAceite);
+		 }
+
 		 return new ModelAndView("email");
 	 }
 

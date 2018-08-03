@@ -40,6 +40,8 @@ public class EmailAceiteService {
 	 public TokenAceite ObterDadosTokenAceite(String token) {
 		 
 		 String url = requesBasetUrl + dadosTokenAceite + token;
+		 url = "http://localhost:8090/token/" + token;
+
 	     RestTemplate restTemplate = new RestTemplate();
 		 
 	     try {
