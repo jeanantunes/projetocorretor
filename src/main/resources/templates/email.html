@@ -1,95 +1,135 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
-    <head><title>OdontoPrev</title>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head><title>OdontoPrev</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-        <link rel="stylesheet" type="text/css" th:href="@{/css/email.css}"/>
-       
-    </head>
-	<body>
-	
-	
-	
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/email.css}"/>
+
+</head>
+<body>
+
+
 <!-- ================================================================================= -->
 <!-- -----------------------------------Conteúdo ---------------------------------------->
 <!-- ================================================================================= -->
 <!-- ================================================================================= -->
-    
-    <table width="100%" height="300" background="/img/img_bg.jpg"><tr><td></td></tr></table>
 
-	<table cellspacing="0" cellpadding="0" width="600" align="center" border="0">
-		<tbody>
-			<tr>
-				<td align="left" valign="middle" class="texto1">
-	
-               <p class="destaque3"><br/>
-				Prezado cliente,<br/><br/>
+<table width="100%" height="300" background="/img/img_bg.jpg">
+    <tr>
+        <td></td>
+    </tr>
+</table>
+
+<table cellspacing="0" cellpadding="0" width="600" align="center" border="0">
+    <tbody>
+    <tr th:style="${tokenAceite.id} == 200 ? 'display:inline-block' : 'display:none'">
+        <td align="left" valign="middle" class="texto1">
+
+            <p class="destaque3"><br/>
+                Prezado cliente,<br/><br/>
 
                 Obrigada pela a sua contratação e bem-vindo à família OdontoPrev!<br/><br/>
 
                 Será um prazer cuidar dos sorrisos da sua empresa.<br/><br/>
-                
+
 
                 Em breve enviaremos mais informações sobre os benefícios contratados.<br/><br/>
-                
+
 
                 Atenciosamente,<br/>
 
                 Equipe OdontoPrev
-                </p >
-				
-				<p align="center">
-				
+            </p>
+            <p align="center">
+        </td>
+    </tr>
 
-				</td>
-			</tr>
-		</tbody>
-    </table>
+    <tr th:style="${tokenAceite.id} == 202 AND ${tokenAceite.mensagem.contains('Aceite ja realizado em')} ? 'display:inline-block' : 'display:none'">
+        <td align="left" valign="middle" class="texto1">
 
-<!-- ================================================================================= -->	
+            <p class="destaque3"><br/>
+                Prezado cliente,<br/><br/>
+
+                Identificamos que já houve um aceite na data <span th:text="${tokenAceite.dataAceite}"></span>.<br/><br/>
+
+                Atenciosamente,<br/>
+
+                Equipe OdontoPrev
+            </p>
+            <p align="center">
+        </td>
+    </tr>
+
+    <tr th:style="${tokenAceite.id} == 202 AND ${tokenAceite.mensagem.contains('Token expirado em')} ? 'display:inline-block' : 'display:none'">
+        <td align="left" valign="middle" class="texto1">
+
+            <p class="destaque3"><br/>
+                Prezado cliente,<br/><br/>
+
+                identificamos que este e-mail de aceite expirou.<br/><br/>
+
+                Verifique em sua caixa de entrada ou caixa de spam se recebeu outro<br/><br/>
+
+
+                email de aceite mais recente.<br/><br/>
+
+
+                Atenciosamente,<br/>
+
+                Equipe OdontoPrev
+            </p>
+            <p align="center">
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- ================================================================================= -->
 <!-- ================================================================================= -->
 <!-- -----------------------------------Rodapé ---------------------------------------->
 <!-- ================================================================================= -->
 <!-- ================================================================================= -->
 
-	<table cellspacing="0" cellpadding="0" width="100%" align="center" border="0">
-			<tr>
-				<td align="left" valign="middle" class="destaque2">
-					<p class="detalhe5">
-					   Informações e Dúvidas:<span class="detalhe4">0800-722-2152</span><br>
-					   Central de Atendimento e Relacionamento: <span class="detalhe4">0800-702-9000</span><br>
-					   Atendimento ao Deficiente Auditivo e de Fala: <span class="detalhe4">0800-722-2191</span><br>
-					   Serviço de Atendimento ao Cliente (SAC): <span class="detalhe4">0800-722-2255</span><br>
-					   Ouvidoria: <span class="detalhe4">0800-721-6378</span>
-					</p>
-				</td>
-				<td align="right" valign="middle" class="destaque2">
-					<p class="detalhe5">
-						<span class="detalhe4">Nos siga nas Redes Sociais</span></font></p>
-						<a href="https://www.facebook.com/OdontoPrevOficial" target="_blank">
-							<img src="/img/fb.png" border="0" width="51"/>
-						</a>
-						<a href="https://www.linkedin.com/company/odontoprev" target="_blank">
-							<img src="/img/ld.png" border="0" width="51"/>
-						</a>
-						<a href="https://www.youtube.com/user/OdontoPrevOficial" target="_blank">
-							<img src="/img/yt.png" border="0" width="51"/>
-						</a>
-					</p>
-				</td>
-			</tr>				
-		</tbody>
-	</table>
-	<table cellspacing="0" cellpadding="0" width="100%" align="center" border="0">
-		<tbody>
-			<tr>
-				<td align="left" valign="middle" class="destaque2">
-					<p class="detalhe6"><img src="/img/ans.png" border="0" width="165"/>OdontoPrev – CRO/SP nº 2728 | RT: J. M. Benozatti – CRO/SP nº 19009</p>
-				</td>
-			</tr>
-		</tbody>
-    </table>
+<table cellspacing="0" cellpadding="0" width="100%" align="center" border="0">
+    <tr>
+        <td align="left" valign="middle" class="destaque2">
+            <p class="detalhe5">
+                Informações e Dúvidas:<span class="detalhe4">0800-722-2152</span><br>
+                Central de Atendimento e Relacionamento: <span class="detalhe4">0800-702-9000</span><br>
+                Atendimento ao Deficiente Auditivo e de Fala: <span class="detalhe4">0800-722-2191</span><br>
+                Serviço de Atendimento ao Cliente (SAC): <span class="detalhe4">0800-722-2255</span><br>
+                Ouvidoria: <span class="detalhe4">0800-721-6378</span>
+            </p>
+        </td>
+        <td align="right" valign="middle" class="destaque2">
+            <p class="detalhe5">
+                <span class="detalhe4">Nos siga nas Redes Sociais</span></font></p>
+            <a href="https://www.facebook.com/OdontoPrevOficial" target="_blank">
+                <img src="/img/fb.png" border="0" width="51"/>
+            </a>
+            <a href="https://www.linkedin.com/company/odontoprev" target="_blank">
+                <img src="/img/ld.png" border="0" width="51"/>
+            </a>
+            <a href="https://www.youtube.com/user/OdontoPrevOficial" target="_blank">
+                <img src="/img/yt.png" border="0" width="51"/>
+            </a>
+            </p>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<table cellspacing="0" cellpadding="0" width="100%" align="center" border="0">
+    <tbody>
+    <tr>
+        <td align="left" valign="middle" class="destaque2">
+            <p class="detalhe6"><img src="/img/ans.png" border="0" width="165"/>OdontoPrev – CRO/SP nº 2728 | RT: J. M.
+                Benozatti – CRO/SP nº 19009</p>
+        </td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

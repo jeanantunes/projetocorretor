@@ -39,8 +39,8 @@ public class EmailAceiteService {
 	 
 	 public TokenAceite ObterDadosTokenAceite(String token) {
 		 
-		 String url = requesBasetUrl + dadosTokenAceite + token;
-		 url = "http://localhost:8090/token/" + token;
+		 //String url = requesBasetUrl + dadosTokenAceite + token;
+		 String url = "http://localhost:8090/token/" + token;
 
 	     RestTemplate restTemplate = new RestTemplate();
 		 
@@ -66,7 +66,8 @@ public class EmailAceiteService {
 		 
 		 	log.info("Confirmar Token Aceite - Email ");
 		 
-	        String url = requesBasetUrl + "/" + metodoTokenAceiteConfirmacao_PUT;
+	        //String url = requesBasetUrl + "/" + metodoTokenAceiteConfirmacao_PUT;
+	        String url = "localhost:8090/token";
 	        RestTemplate restTemplate = new RestTemplate();
 	        //EmailAceiteResponse result = null;
 	        
