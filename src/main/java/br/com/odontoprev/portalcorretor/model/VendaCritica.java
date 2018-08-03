@@ -1,6 +1,7 @@
 package br.com.odontoprev.portalcorretor.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class VendaCritica extends Venda implements Serializable {
@@ -21,6 +22,9 @@ public class VendaCritica extends Venda implements Serializable {
     }
 
     public List<TxtImportacao> getCriticas() {
+        if(criticas == null){
+            criticas = new ArrayList<>();
+        }
         return criticas;
     }
 

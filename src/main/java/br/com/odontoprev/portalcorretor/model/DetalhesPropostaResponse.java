@@ -1,6 +1,7 @@
 package br.com.odontoprev.portalcorretor.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DetalhesPropostaResponse implements Serializable {
@@ -36,6 +37,9 @@ public class DetalhesPropostaResponse implements Serializable {
     }
 
     public List<FichaFinanciera> getFichaFinanciera() {
+        if (fichaFinanciera == null) {
+            fichaFinanciera = new ArrayList<>();
+        }
         return fichaFinanciera;
     }
 

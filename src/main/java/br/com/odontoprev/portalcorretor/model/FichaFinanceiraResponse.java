@@ -7,7 +7,7 @@ public class FichaFinanceiraResponse extends FichaFinanciera {
 
     public List<FichaFinanciera> getFichaFinanciera() {
         if (fichaFinanciera == null) {
-            new ArrayList<>();
+            fichaFinanciera = new ArrayList<>();
         }
         return fichaFinanciera;
     }

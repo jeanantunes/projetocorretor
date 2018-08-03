@@ -172,7 +172,7 @@
                                             <p class="text-odonto" th:text="${proposta.statusVenda}">aguardando
                                                 aprovação</p>
                                             <div th:style="${proposta.statusVenda} != null OR ''  ? 'display:inline-block;text-align:center' : 'display:none'">
-                                                <a href="#" th:href="@{/detalhesProposta(cdVenda=${proposta.cdVenda})}"><span
+                                                <a href="#" th:href="@{/detalhesPropostaPF(cdVenda=${proposta.cdVenda})}"><span
                                                         class="text-black">ver detalhes </span><span
                                                         class="font-pink"><h4 style="display: inline-block; font: bold">></h4></span></a>
                                             </div>

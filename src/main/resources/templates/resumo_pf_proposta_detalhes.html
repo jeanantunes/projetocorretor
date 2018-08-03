@@ -162,19 +162,19 @@
                         Confira o plano escolhido e os dados do cliente abaixo
                     </div>
                     <div class="space-top-30 space-bottom-30">
-                        <div th:style="${criticas.size() == 0} ? 'display:none' : 'display:inline-block'">
+                        <div th:style="${detalhesPropostaPF.venda.criticas.size() == 0} ? 'display:none' : 'display:inline-block'">
                             <span class="text-critica"><b>Erros encontrados</b></span>
                         </div>
-                        <ul th:each="critica : ${detalhesPlano.getVenda().getCriticas()}">
+                        <ul th:each="critica : ${detalhesPropostaPF.venda.criticas}">
                             <li class="text-critica" th:text="${critica.nome}"></li>
                             <li class="text-critica" th:text="${critica.dsErroRegistro}"></li>
                         </ul>
                     </div>
                     <div class="space-top-30 space-bottom-30 boxNroProposta">
-                        <div th:style="${detalhesPlano.getVenda().getPropostaDcms()} == null ? 'display:none' : 'display:inline-block'">
+                        <div th:style="${detalhesPropostaPF.venda.propostaDcms} == null ? 'display:none' : 'display:inline-block'">
                             <span style="color: #FFFFFF;">Número da proposta</span><br/>
                             <h3><b><span style="color: #FFFFFF;"
-                                         th:text="${detalhesPlano.getVenda().getPropostaDcms()}"></span></b></h3>
+                                         th:text="${detalhesPropostaPF.venda.propostaDcms}"></span></b></h3>
                         </div>
                     </div>
                 </div>
@@ -237,7 +237,7 @@
                         <label class="p-odont" th:value="${depNome}" th:text="${depNome}"
                                th:style="${depNome} == null ? 'display:none' : 'display:inline-block'"/>
                         <div th:style="${dependente.cdTitular != null} ? 'display:inline-block' : 'display:none'"
-                             th:each="dependente : ${detalhesPlano.dependentes}">
+                             th:each="dependente : ${detalhesPropostaPF.dependentes}">
                             <a href="#" type="button" data-toggle="modal"
                                th:attrappend="data-target='#' + ${dependente.cdVida}"
                                th:style="${dependente.cdTitular != 0} ? 'display:inline-block' : 'display:none'">
@@ -361,22 +361,32 @@
             <table class="col-xs-12">
                 <tr>
                     <td>
-                        <div class="p-odont" th:name="${tipoPgmto}" th:text="${tipoPgmto}"></div>
+                        <div class="p-odont"
+                             th:style="${detalhesPropostaPF.venda.dadosBancariosVenda == null} ? 'display:inline-block' : 'display:none'">
+                            <label class="p-odont">Boleto</label>
+                        </div>
+                        <div class="p-odont"
+                             th:style="${detalhesPropostaPF.venda.dadosBancariosVenda != null} ? 'display:inline-block' : 'display:none'">
+                            <label class="p-odont">Débito em Conta</label>
+                        </div>
                     </td>
                 </tr>
             </table>
         </div>
-
-        <div class="col-xs-12 row">
+        <div class="col-xs-12 row"
+             th:style="${detalhesPropostaPF.venda.dadosBancariosVenda == null} ? 'display:inline-block' : 'display:none'">
             <div class=" space-top-10 btn-header-web" style="display: inline-block; margin-left: 0px;">
-                <a href="#" type="button" data-toggle="modal" data-target="#uploadModalBoleto"
-                   class="btn uppercase btnBlue btn-width-custom space-top-10 navbar-left">CONSULTAR BOLETOS EM ABERTO
+                <a href="#"
+                   th:href="@{detalhesBoleto(codigoDoAssociado=${codigoDoAssociado}, dataInicial=${dataInicial}, dataFinal=${dataFinal})}"
+                   type="button" data-toggle="modal" data-target="#detalhesBoleto"
+                   class="btn uppercase btnBlue btn-width-custom space-top-10 navbar-left">CONSULTAR BOLETOS EM
+                    ABERTO
                 </a>
             </div>
         </div>
 
         <!-- INICIO - Modal -->
-        <div class="modal fade" id="uploadModalBoleto" role="dialog">
+        <div class="modal fade" id="detalhesBoleto" role="dialog">
             <div class="modal-dialog" style="width:350px">
                 <div class="imgBtnExcluir" id="closeModalBoleto">
                     <img th:src="@{/img/btn-excluir.png}" class="btnExcluir" data-dismiss="modal">
@@ -384,23 +394,24 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title font-blue"
-                            th:style="${fichaFinanciera.size()} == 0 ? 'display:none' : 'display:inline-block' ">BOLETOS
+                            th:style="${detalhesPropostaPF.fichaFinanciera.size()} == 0 ? 'display:none' : 'display:inline-block' ">
+                            BOLETOS
                             EM ABERTO</h4>
                     </div>
                     <div class="modal-body md-form">
                         <div class="text-silver"
-                             th:style="${fichaFinanciera.size()} == 0 ? 'display:none' : 'display:inline-block' ">
+                             th:style="${detalhesPropostaPF.fichaFinanciera.size()} == 0 ? 'display:none' : 'display:inline-block' ">
                             Selecione o boleto que gostaria de emitir a segunda via.
                         </div>
                         <div class="text-successo">
-                            <h2 th:style="${fichaFinanciera.size()} == 0 ? 'display:inline-block;text-align:center' : 'display:none'">
+                            <h2 th:style="${detalhesPropostaPF.fichaFinanciera.size()} == 0 ? 'display:inline-block;text-align:center' : 'display:none'">
                                 <i class="fa fa-check-circle-o" style="font-size:60px;color:#82bc3b"></i><br/>Este
                                 cliente não possui boletos em aberto</h2>
                         </div>
                         <div class="text-silver">
-                            <div class="box-proposta" th:each="proposta : ${detalhesPlano.getFichaFinanciera()}">
+                            <div class="box-proposta" th:each="proposta : ${detalhesPropostaPF.fichaFinanciera}">
                                 <label class="container">
-                                    <input type="radio" th:field="*{detalhesPlano.id}" class="conteudo"
+                                    <input type="radio" th:field="*{detalhesPropostaPF.id}" class="conteudo"
                                            th:value="${proposta.competencia}"
                                            th:text="${proposta.competencia}"/>
                                     <span class="checkmark"></span>
@@ -422,7 +433,7 @@
                             <!-- TODO: Não entra na sprint8 -->
                             <div>&nbsp;</div>
                             <div class="col-xs-12"
-                                 th:style="${fichaFinanciera.size()} == 0 ? 'display:none' : 'display:inline-block' ">
+                                 th:style="${detalhesPropostaPF.fichaFinanciera.size()} == 0 ? 'display:none' : 'display:inline-block' ">
                                 <div class="col-xs-12" style="border: 2px solid #cccccc;">
                                     <p><h4 class="modal-title font-blue" style="margin-top: 8px;">Baixar o
                                     boleto</h4></p>

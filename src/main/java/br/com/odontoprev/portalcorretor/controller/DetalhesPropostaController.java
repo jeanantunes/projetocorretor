@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -29,12 +28,12 @@ public class DetalhesPropostaController {
 
     FichaFinanceiraResponse fichaFinanciera;
 
-    @RequestMapping(value = "detalhesProposta", method = RequestMethod.GET)
-    public ModelAndView detalhesProposta(Model model, @RequestParam("cdVenda") String cdVenda) throws IOException, ParseException {
+    @RequestMapping(value = "detalhesPropostaPF", method = RequestMethod.GET)
+    public ModelAndView detalhesPropostaPF(Model model, @RequestParam("cdVenda") String cdVenda) throws IOException, ParseException {
 
-        DetalhesPropostaResponse detalhesProposta = propostaService.detalhesProposta(cdVenda);
+        DetalhesPropostaResponse detalhesPropostaPF = propostaService.detalhesProposta(cdVenda);
 
-        List<Beneficiarios> dadosTitulares = detalhesProposta.getVenda().getTitulares();
+        List<Beneficiarios> dadosTitulares = detalhesPropostaPF.getVenda().getTitulares();
 
         for (Beneficiarios beneficiario : dadosTitulares) {
             Integer cdTitular = beneficiario.getCdTitular();
@@ -57,14 +56,6 @@ public class DetalhesPropostaController {
                 model.addAttribute("cdPlano", beneficiario.getCdPlano());
                 model.addAttribute("cdVenda", beneficiario.getCdVenda());
 
-                //Se dados bancarios for null ou vazio -->>> forma de pgmto é boleto senão debito em conta
-                if (beneficiario.getDadosBancarios() == null) {
-                    //tipo pgmto
-                    model.addAttribute("tipoPgmto", "Boleto");
-                } else {
-                    model.addAttribute("tipoPgmto", "Débito em Conta");
-                }
-
                 //Endereço titular
                 model.addAttribute("cep", beneficiario.getEndereco().getCep());
                 model.addAttribute("logradouro", beneficiario.getEndereco().getLogradouro());
@@ -78,25 +69,25 @@ public class DetalhesPropostaController {
                 model.addAttribute("cidade", beneficiario.getEndereco().getCidade());
                 model.addAttribute("estado", beneficiario.getEndereco().getEstado());
             } else {
-                detalhesProposta.setDependentes(dadosTitulares);
+                detalhesPropostaPF.setDependentes(dadosTitulares);
             }
         }
 
         //Lista dependentes
-        List<Beneficiarios> listDependentes = detalhesProposta.getDependentes();
+        List<Beneficiarios> listDependentes = detalhesPropostaPF.getDependentes();
         if (listDependentes == null) {
             model.addAttribute("depNome", "Não há dependentes");
         }
 
         //Criticas
-        model.addAttribute("criticas", detalhesProposta.getVenda().getCriticas());
+        //model.addAttribute("criticas", detalhesPropostaPF.getVenda().getCriticas());
 
         //Detalhes plano
-        model.addAttribute("titulo", detalhesProposta.getVenda().getPlano().getTitulo());
-        model.addAttribute("valor", detalhesProposta.getVenda().getPlano().getValor());
-        model.addAttribute("valorTotal", dadosTitulares.size() * detalhesProposta.getVenda().getPlano().getValor());
+        model.addAttribute("titulo", detalhesPropostaPF.getVenda().getPlano().getTitulo());
+        model.addAttribute("valor", detalhesPropostaPF.getVenda().getPlano().getValor());
+        model.addAttribute("valorTotal", dadosTitulares.size() * detalhesPropostaPF.getVenda().getPlano().getValor());
 
-        String tipoPlano = detalhesProposta.getVenda().getPlano().getTipo();
+        String tipoPlano = detalhesPropostaPF.getVenda().getPlano().getTipo();
         if (tipoPlano.equals("2")) {
             model.addAttribute("tipoPlano", "Anual");
         } else {
@@ -121,39 +112,36 @@ public class DetalhesPropostaController {
         Date dtHj = new Date();
         String dataHoje = sdf.format(dtHj).replace(" ", "T");
 
-        fichaFinanciera = detalhesBoleto(detalhesProposta.getVenda().getPropostaDcms(), dataInicial, dataFinal);
-
+        model.addAttribute("codigoDoAssociado", detalhesPropostaPF.getVenda().getPropostaDcms());
+        model.addAttribute("dataInicial", dataInicial);
+        model.addAttribute("dataFinal", dataFinal);
 
         if (fichaFinanciera != null) {
-            detalhesProposta.setFichaFinanciera(new ArrayList<>());
+            detalhesPropostaPF.setFichaFinanciera(new ArrayList<>());
             for (FichaFinanciera f : fichaFinanciera.getFichaFinanciera()) {
                 if (f.getDataRenegociacao().compareTo(dataHoje) >= 0 &&
                         (f.getStatusPagamento().equals("RENEGOCIADO") ||
                                 f.getStatusPagamento().equals("INCLUSAO DE TITULO"))) {
-                    detalhesProposta.getFichaFinanciera().add(f);
+                    detalhesPropostaPF.getFichaFinanciera().add(f);
                 }
             }
-
-            //detalhesProposta.setFichaFinanciera(fichaFinanciera.getFichaFinanciera());
-            model.addAttribute("fichaFinanciera", detalhesProposta.getFichaFinanciera());
-            model.addAttribute("codigoDoAssociado", detalhesProposta.getVenda().getPropostaDcms());
-            model.addAttribute("dataInicial", dataInicial);
-            model.addAttribute("dataFinal", dataFinal);
         } else {
             model.addAttribute("fichaFinanciera", new ArrayList<>());
         }
 
 
-        return new ModelAndView("resumo_pf_proposta_detalhes", "detalhesPlano", detalhesProposta);
+        return new ModelAndView("resumo_pf_proposta_detalhes", "detalhesPropostaPF", detalhesPropostaPF);
     }
 
     @RequestMapping(value = "detalhesBoleto")
-    public FichaFinanceiraResponse detalhesBoleto(String detalhes, String dtIni, String dtFim) throws ParseException {
+    public FichaFinanceiraResponse detalhesBoleto(@RequestParam("codigoDoAssociado") String codigoDoAssociado,
+                                                  @RequestParam("dataInicial") String dataInicial,
+                                                  @RequestParam("dataFinal") String dataFinal) throws ParseException {
 
         DetalhesBoletoResponse boletoResponse = new DetalhesBoletoResponse();
-        boletoResponse.setDataInicial(dtIni);
-        boletoResponse.setDataFinal(dtFim);
-        boletoResponse.setCodigo(detalhes);
+        boletoResponse.setDataInicial(dataInicial);
+        boletoResponse.setDataFinal(dataFinal);
+        boletoResponse.setCodigo(codigoDoAssociado);
 
         FichaFinanceiraResponse detalhesBoleto = propostaService.listarBoleto(boletoResponse);
 
