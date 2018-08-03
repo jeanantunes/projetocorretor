@@ -116,6 +116,8 @@ public class DetalhesPropostaController {
         model.addAttribute("dataInicial", dataInicial);
         model.addAttribute("dataFinal", dataFinal);
 
+        fichaFinanciera = detalhesBoleto(detalhesPropostaPF.getVenda().getPropostaDcms(), dataInicial, dataFinal);
+
         if (fichaFinanciera != null) {
             detalhesPropostaPF.setFichaFinanciera(new ArrayList<>());
             for (FichaFinanciera f : fichaFinanciera.getFichaFinanciera()) {

@@ -1,7 +1,11 @@
-package br.com.odontoprev.portalcorretor.model;
+package br.com.odontoprev.portal.corretor.dto;
+
+import br.com.odontoprev.portalcorretor.model.DadosBancariosVenda;
+import br.com.odontoprev.portalcorretor.model.Plano;
+import br.com.odontoprev.portalcorretor.model.TxtImportacao;
+import br.com.odontoprev.portalcorretor.model.Venda;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 public class VendaCritica extends Venda implements Serializable {
@@ -22,9 +26,6 @@ public class VendaCritica extends Venda implements Serializable {
     }
 
     public List<TxtImportacao> getCriticas() {
-        if(criticas == null){
-            criticas = new ArrayList<>();
-        }
         return criticas;
     }
 
@@ -35,7 +36,6 @@ public class VendaCritica extends Venda implements Serializable {
     public String getPropostaDcms() {
         return propostaDcms;
     }
-
     public void setPropostaDcms(String propostaDcms) {
         this.propostaDcms = propostaDcms;
     }
@@ -43,18 +43,21 @@ public class VendaCritica extends Venda implements Serializable {
     public DadosBancariosVenda getDadosBancariosVenda() {
         return dadosBancariosVenda;
     }
-
     public void setDadosBancariosVenda(DadosBancariosVenda dadosBancariosVenda) {
         this.dadosBancariosVenda = dadosBancariosVenda;
     }
 
     @Override
     public String toString() {
-        return "VendaCritica{" +
-                "plano=" + plano +
-                ", criticas=" + criticas +
-                ", propostaDcms='" + propostaDcms + '\'' +
-                ", dadosBancariosVenda=" + dadosBancariosVenda +
-                '}';
+        return "Venda2 ["
+                + "Venda=" + super.toString()
+                + ", propostaDcms=" + propostaDcms
+                + ", dadosBancariosVenda=" + dadosBancariosVenda
+                + "]";
     }
+
+
 }
+
+
+

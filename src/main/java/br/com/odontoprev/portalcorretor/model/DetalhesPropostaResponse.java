@@ -1,5 +1,7 @@
 package br.com.odontoprev.portalcorretor.model;
 
+import br.com.odontoprev.portal.corretor.dto.VendaCritica;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
