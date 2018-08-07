@@ -66,8 +66,8 @@ public class RelatorioGestaoVendaService {
         log.info("Relatorio Gestao de Venda PF - gerarCSV ");
 
         //TODO: Retornar para IT-3
-        //String url = requesBasetUrl + relatorioCsvPF + dataInicio + "/" + dataFim + "/" + cnpj;
-        String url = "http://localhost:8090/downloadxls/corretoratotalvidaspf/" + dataInicio + "/" + dataFim + "/" + cnpj;
+        String url = requesBasetUrl + relatorioCsvPF + dataInicio + "/" + dataFim + "/" + cnpj;
+        //String url = "http://localhost:8090/downloadxls/corretoratotalvidaspf/" + dataInicio + "/" + dataFim + "/" + cnpj;
 
         RestTemplate restTemplate = new RestTemplate();
         MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
