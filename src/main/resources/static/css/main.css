@@ -3899,6 +3899,14 @@ transform
     float: left;
 }
 
+.point-orange {
+    width: 20px;
+    height: 20px;
+    background-color: #F9B40A;
+    border-radius: 100px;
+    float: left;
+}
+
 .border-left {
     border-left: 1px solid #EDEDED;
     padding-left: 20px;
