@@ -235,7 +235,7 @@
                     </td>
                     <td>
                         <label class="label-odont">Dependentes</label><br/>
-                        <div th:style="${dependente.cdTitular == null} AND ${dependente.dependentes != null} ? 'display:inline-block' : 'display:none'"
+                        <div th:style="${dependente.cdTitular == null} AND ${detalhesPropostaPF.venda.titulares.size() == 1} ? 'display:inline-block' : 'display:none'"
                              th:each="dependente : ${detalhesPropostaPF.venda.titulares}">
                             <label class="p-odont">Não há dependentes</label>
                         </div>
