@@ -22,28 +22,28 @@ import br.com.odontoprev.portalcorretor.service.dto.TokenAceite;
 
 @Service
 public class EmailAceiteService {
-	
+
 	private static final Log log = LogFactory.getLog(EmailAceiteService.class);
-	 
+
 	 @Value("${odontoprec.service.base}")
 	 private String requesBasetUrl;
-	 
+
 	 @Value("${odontoprev.tokenAceite.confirmacao}")
 	 private String metodoTokenAceiteConfirmacao_PUT;
-	 
+
 	 @Value("${odontoprev.tokenAceite.token}")
 	 private String dadosTokenAceite;
-	 
+
 	 @Autowired
 	 private ApiManagerTokenService apiManagerTokenService;
-	 
+
 	 public TokenAceite ObterDadosTokenAceite(String token) {
-		 
+
 		 String url = requesBasetUrl + dadosTokenAceite + token;
 		 //String url = "http://localhost:8090/token/" + token;
 
 	     RestTemplate restTemplate = new RestTemplate();
-		 
+
 	     try {
             HttpHeaders headers = new HttpHeaders();
             headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
@@ -59,23 +59,23 @@ public class EmailAceiteService {
         } catch (Exception e) {
             e.printStackTrace();
             return new TokenAceite();
-        }		
+        }
 	 }
-	 
+
 	 public EmailAceiteResponse confirmarEmailAceite(EmailAceite emailAceite) {
-		 
+
 		 	log.info("Confirmar Token Aceite - Email ");
-		 
+
 	        String url = requesBasetUrl + "/" + metodoTokenAceiteConfirmacao_PUT;
 	        //String url = "http://localhost:8090/token";
 	        RestTemplate restTemplate = new RestTemplate();
 	        //EmailAceiteResponse result = null;
-	        
+
 	        try {
 	            HttpHeaders headers = new HttpHeaders();
 	            headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
 	            headers.setContentType(MediaType.APPLICATION_JSON);
-	            
+
 	            ObjectMapper mapper = new ObjectMapper();
 	            mapper.setSerializationInclusion(JsonInclude.Include.USE_DEFAULTS);
 	            String object = mapper.writeValueAsString(emailAceite);
@@ -84,9 +84,9 @@ public class EmailAceiteService {
 
 	            ResponseEntity<EmailAceiteResponse> retorno = restTemplate.exchange(url, HttpMethod.PUT, entityReq, EmailAceiteResponse.class);
 
-	            
+
 	            ///TODO: verificar validações
-	            
+
 	            if (retorno.getStatusCode() == HttpStatus.OK) {
 	                return retorno.getBody();
 	            } else {
