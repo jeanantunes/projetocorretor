@@ -194,8 +194,14 @@
                         <div class="p-odont" th:name="${dataMovimentacao}" th:text="${dataMovimentacao}"></div>
                     </td>
                     <td>
-                        <label class="label-odont">Data de vigência</label><br/>
-                        <div class="p-odont" th:name="${dataVigencia}" th:text="${dataVigencia}"></div>
+                        <div th:style="${cdStatusVenda == 5} ? 'display:inline-block' : 'display:none'">
+                            <label class="label-odont">Previsão de Início da Vigência</label><br/>
+                            <div class="p-odont" th:name="${dataVencimentoFatura}" th:text="${dataVigencia}"></div>
+                        </div>
+                        <div th:style="${cdStatusVenda != 5} ? 'display:inline-block' : 'display:none'">
+                            <label class="label-odont">Data de vigência</label><br/>
+                            <div class="p-odont" th:name="${dataVigencia}" th:text="${dataVigencia}"></div>
+                        </div>
                     </td>
                 </tr>
             </table>

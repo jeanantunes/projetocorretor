@@ -70,6 +70,7 @@ public class PropostaService {
         EmpresaPropostaResponse empresaPropostaResponse = null;
 
         String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", "/corretorservicos/1.0/empresa/" + cdEmpresa);
+        //String url = "localhost:8090/empresa/" + cdEmpresa;
 
         RestTemplate restTemplate = new RestTemplate();
         try {

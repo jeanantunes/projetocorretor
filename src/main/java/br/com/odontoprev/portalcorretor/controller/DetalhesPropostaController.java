@@ -282,6 +282,8 @@ public class DetalhesPropostaController {
         model.addAttribute("contactEmpresa", detalhesPropostaPME.getContactEmpresa());
         model.addAttribute("dataVigencia", detalhesPropostaPME.getDataVigencia());
         model.addAttribute("dataMovimentacao", detalhesPropostaPME.getDataMovimentacao());
+        //model.addAttribute("dataAceite", detalhesPropostaPME.getDataAceite());
+        model.addAttribute("cdStatusVenda", detalhesPropostaPME.getCdStatusVenda());
         model.addAttribute("cdEmpresa", detalhesPropostaPME.getCdEmpresa());
         model.addAttribute("empDcms", detalhesPropostaPME.getEmpDcms());
         model.addAttribute("cpfRepresentante", detalhesPropostaPME.getCpfRepresentante());

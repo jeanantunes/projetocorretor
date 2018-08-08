@@ -27,6 +27,8 @@ public class EmpresaPropostaResponse implements Serializable  {
 	private ContatoEmpresaPropostaResponse contactEmpresa;
 	private String dataVigencia;
 	private String dataMovimentacao;
+	private String dataAceite;
+	private Long cdStatusVenda;
 	private Long cdEmpresa;
 	private String empDcms;
 	private String cpfRepresentante;
@@ -199,6 +201,22 @@ public class EmpresaPropostaResponse implements Serializable  {
 		this.dataMovimentacao = dataMovimentacao;
 	}
 
+	public String getDataAceite() {
+		return dataAceite;
+	}
+
+	public void setDataAceite(String dataAceite) {
+		this.dataAceite = dataAceite;
+	}
+
+	public Long getCdStatusVenda() {
+		return cdStatusVenda;
+	}
+
+	public void setCdStatusVenda(Long cdStatusVenda) {
+		this.cdStatusVenda = cdStatusVenda;
+	}
+
 	public String getEmpDcms() {
 		return empDcms;
 	}
@@ -217,31 +235,33 @@ public class EmpresaPropostaResponse implements Serializable  {
 
 	@Override
 	public String toString() {
-		return "Empresa ["
-				+ "cnpj=" + cnpj
-				+ ", cdEmpresa=" + cdEmpresa
-				+ ", razaoSocial=" + razaoSocial
-				+ ", incEstadual=" + incEstadual
-				+ ", ramoAtividade=" + ramoAtividade
-				+ ", nomeFantasia=" + nomeFantasia
-				+ ", representanteLegal=" + representanteLegal
-				+ ", contatoEmpresa=" + contatoEmpresa
-				+ ", telefone=" + telefone
-				+ ", celular=" + celular
-				+ ", email=" + email
-				+ ", vencimentoFatura=" + vencimentoFatura
-				+ ", cnae=" + cnae
-				+ ", dataVencimentoFatura=" + dataVencimentoFatura
-				+ ", enderecoEmpresa=" + enderecoEmpresa
-				+ ", planos=" + planos
-				+ ", cnpjCorretora=" + cnpjCorretora
-				+ ", nomeCorretora=" + nomeCorretora
-				+ ", contactEmpresa=" + contactEmpresa
-				+ ", dataVigencia=" + dataVigencia
-				+ ", dataMovimentacao=" + dataMovimentacao
-				+ ", empDcms=" + empDcms
-				+ ", cpfRepresentante=" + cpfRepresentante
-				+ "]";
+		return "EmpresaPropostaResponse{" +
+				"cnpj='" + cnpj + '\'' +
+				", razaoSocial='" + razaoSocial + '\'' +
+				", incEstadual='" + incEstadual + '\'' +
+				", ramoAtividade='" + ramoAtividade + '\'' +
+				", nomeFantasia='" + nomeFantasia + '\'' +
+				", representanteLegal='" + representanteLegal + '\'' +
+				", contatoEmpresa=" + contatoEmpresa +
+				", telefone='" + telefone + '\'' +
+				", celular='" + celular + '\'' +
+				", email='" + email + '\'' +
+				", vencimentoFatura=" + vencimentoFatura +
+				", cnae='" + cnae + '\'' +
+				", dataVencimentoFatura='" + dataVencimentoFatura + '\'' +
+				", enderecoEmpresa=" + enderecoEmpresa +
+				", planos=" + planos +
+				", cnpjCorretora='" + cnpjCorretora + '\'' +
+				", nomeCorretora='" + nomeCorretora + '\'' +
+				", contactEmpresa=" + contactEmpresa +
+				", dataVigencia='" + dataVigencia + '\'' +
+				", dataMovimentacao='" + dataMovimentacao + '\'' +
+				", dataAceite='" + dataAceite + '\'' +
+				", cdStatusVenda=" + cdStatusVenda +
+				", cdEmpresa=" + cdEmpresa +
+				", empDcms='" + empDcms + '\'' +
+				", cpfRepresentante='" + cpfRepresentante + '\'' +
+				'}';
 	}
 
 
