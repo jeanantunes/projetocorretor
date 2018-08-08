@@ -634,7 +634,192 @@ function listarDependentes() {
     //$(".btnEditar").addClass('hide');
 }
 
+function validarCampos() {
+
+    if ($(".nome").val() == "") {
+        swal("Ops!", "Preencha o Nome", "error");
+        return false;
+    }
+
+    if (!ValidaNome($(".nome").val())) {
+        swal("Ops!", "Nome inválido", "error");
+        return false;
+    }
+
+    if ($(".email").val() == "") {
+        swal("Ops!", "Preencha o E-mail", "error");
+        return false;
+    }
+
+    if (!validateEmail($(".email").val())) {
+        swal("Ops!", "Email do titular inválido", "error");
+        return false;
+    }
+
+    if ($(".celular").val() == "") {
+        swal("Ops!", "Preencha o celular do titular", "error");
+        return false;
+    }
+
+    if ($(".celular").val().length < 14) {
+        swal("Ops!", "Preencha o celular do titular", "error");
+        return false;
+    }
+
+    if ($(".cpf").val() == "" || !TestaCPF($("#cpf").val().replace().replace(/\D/g, ''))) {
+
+        $("#cpf").focus();
+        swal("Ops!", "Preencha o CPF", "error");
+        return false;
+    }
+
+    if ($(".nascimento").val() == "") {
+        swal("Ops!", "Preencha a Data de Nascimento", "error");
+        return false;
+    }
+
+    if (!validarData($(".nascimento").val())) {
+        swal("Ops!", "Preencha uma data de nascimento correta", "error");
+        return false;
+    }
+
+    if ($("#radio-1").is(":checked") == false && $("#radio-2").is(":checked") == false) {
+        swal("Ops!", "Selecione o Sexo", "error");
+        $(".dependentes").val(0);
+        return false;
+    }
+
+    if ($(".nome-mae").val() == "") {
+        swal("Ops!", "Preencha Nome da Mãe", "error");
+        return false;
+    }
+
+    var date = toDate($("#dataNascimentoTitular").val());
+
+    if (!isMaiorDeIdade(date)) {
+
+        if ($("#nomeResponsavel").val() == "") {
+            swal("Ops!", "Preencha o nome do representante legal", "error");
+            return false;
+        }
+
+        if (!ValidaNome($("#nomeResponsavel").val())) {
+            swal("Ops!", "Nome do representante legal inválido", "error");
+            return false;
+        }
+
+        if ($("#emailRepresentanteLegal").val() == "") {
+            swal("Ops!", "Preencha o e-mail do representante legal", "error");
+            return false;
+        }
+
+        if (!validateEmail($("#emailRepresentanteLegal").val())) {
+            swal("Ops!", "Email do representante legal inválido", "error");
+            return false;
+        }
+
+        if ($(".celular-representante-legal").val() == "") {
+            swal("Ops!", "Preencha o celular do representante legal", "error");
+            return false;
+        }
+
+        if ($(".celular-representante-legal").val().length < 14) {
+            swal("Ops!", "Preencha o celular do representante legal", "error");
+            return false;
+        }
+
+        if ($("#cpf-representante").val() == "") {
+
+            swal("Ops!", "Preencha o CPF do representante legal", "error");
+            return false;
+        }
+
+        if (!TestaCPF($("#cpf-representante").val().replace().replace(/\D/g, ''))) {
+            swal("Ops!", "CPF do representante legal está inválido", "error");
+            return false;
+        }
+
+        if ($("#dataNascimentoResponsavel").val() == "") {
+            swal("Ops!", "Preencha a data de nascimento do responsável", "error");
+            return false;
+        }
+
+        var dateResponsavelLegal = toDate($("#dataNascimentoResponsavel").val());
+
+        if (!isMaiorDeIdade(dateResponsavelLegal)) {
+            swal("Ops!", "O responsável legal não pode ser menor de idade", "error");
+            return false;
+        }
+
+        if ($("#radio-3").is(":checked") == false && $("#radio-4").is(":checked") == false) {
+            swal("Ops!", "Selecione o sexo do responsável legal", "error");
+            $(".dependentes").val(0);
+            return false;
+        }
+    }
+
+    var proposta = get("propostaPf");
+
+    if (proposta.planos.length == 0) {
+
+        swal("Ops!", "Por favor, escolha um plano!", "error");
+        return false;
+    }
+
+    var planos = get("CodPlanos");
+    var plano = planos.filter(function (x) { return x.cdPlano == proposta.planos[0].cdPlano });
+
+
+
+    if (!menorQueSeteAnos(date) && plano[0].nome.indexOf("DENTE DE LEITE") !== -1) {
+
+        swal("Ops!", "No plano dente de leite o titular deve ter menos que 7 anos", "error");
+        return false;
+    }
+
+    if (!ValidaNome($("#nomeMae").val())) {
+        swal("Ops!", "Nome da mãe inválido", "error");
+        return false;
+    }
+
+    if ($(".cep").val() == "") {
+        swal("Ops!", "Preencha o cep", "error");
+        return false;
+    }
+
+    if ($("#rua").val() == "") {
+        swal("Ops!", "Preencha o endereço", "error");
+        return false;
+    }
+
+    if ($(".numero").val() == "") {
+        swal("Ops!", "Preencha o número do endereço", "error");
+        return false;
+    }
+
+    if ($("#bairro").val() == "") {
+        swal("Ops!", "Preencha o bairro", "error");
+        return false;
+    }
+
+    if ($(".cidade").val() == "") {
+        swal("Ops!", "Preencha o cidade", "error");
+        return false;
+    }
+
+    if ($(".estado").val() == "") {
+        swal("Ops!", "Preencha o estado", "error");
+        return false;
+    }
+
+    return true;
+
+}
+
 function editarDependente(obj) {
+
+    if (!validarCampos()) return;
+    salvarRascunhoMemoria();
 
     var container = $(".div-excluir[data-id='" + $(obj).attr("data-id") + "'][data-nascimento='" + $(obj).attr("data-nascimento") + "']");
     var beneficiario = get("propostaPf");
