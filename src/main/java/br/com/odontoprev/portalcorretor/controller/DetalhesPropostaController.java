@@ -31,12 +31,12 @@ public class DetalhesPropostaController {
     @RequestMapping(value = "detalhesPropostaPF", method = RequestMethod.GET)
     public ModelAndView detalhesPropostaPF(Model model, @RequestParam("cdVenda") String cdVenda) throws IOException, ParseException {
 
-        DetalhesPropostaResponse detalhesPropostaPF = propostaService.detalhesProposta(cdVenda);
+        PropostaCritica detalhesPropostaPF = propostaService.detalhesProposta(cdVenda);
 
-        List<Beneficiarios> dadosTitulares = detalhesPropostaPF.getVenda().getTitulares();
+        List<Beneficiario> dadosTitulares = detalhesPropostaPF.getVenda().getTitulares();
 
-        for (Beneficiarios beneficiario : dadosTitulares) {
-            Integer cdTitular = beneficiario.getCdTitular();
+        for (Beneficiario beneficiario : dadosTitulares) {
+            Long cdTitular = beneficiario.getCdTitular();
             if (cdTitular == null) {
                 //Titular
                 model.addAttribute("cdTitular", beneficiario.getCdTitular());
@@ -69,15 +69,15 @@ public class DetalhesPropostaController {
                 model.addAttribute("cidade", beneficiario.getEndereco().getCidade());
                 model.addAttribute("estado", beneficiario.getEndereco().getEstado());
             } else {
-                detalhesPropostaPF.setDependentes(dadosTitulares);
+                detalhesPropostaPF.getVenda().setTitulares(dadosTitulares);
             }
         }
 
         //Lista dependentes
-        List<Beneficiarios> listDependentes = detalhesPropostaPF.getDependentes();
-        if (listDependentes == null) {
-            model.addAttribute("depNome", "Não há dependentes");
-        }
+        //List<Beneficiario> listDependentes = detalhesPropostaPF.getVenda().getTitulares();
+        //if (listDependentes == null) {
+        //    model.addAttribute("depNome", "Não há dependentes");
+        //}
 
         //Criticas
         //model.addAttribute("criticas", detalhesPropostaPF.getVenda().getCriticas());
@@ -136,14 +136,13 @@ public class DetalhesPropostaController {
     }
 
     @RequestMapping(value = "detalhesBoleto")
-    public FichaFinanceiraResponse detalhesBoleto(@RequestParam("codigoDoAssociado") String codigoDoAssociado,
-                                                  @RequestParam("dataInicial") String dataInicial,
-                                                  @RequestParam("dataFinal") String dataFinal) throws ParseException {
+    public FichaFinanceiraResponse detalhesBoleto(String detalhes, String dtIni, String dtFim) throws ParseException {
+
 
         DetalhesBoletoResponse boletoResponse = new DetalhesBoletoResponse();
-        boletoResponse.setDataInicial(dataInicial);
-        boletoResponse.setDataFinal(dataFinal);
-        boletoResponse.setCodigo(codigoDoAssociado);
+        boletoResponse.setDataInicial(dtIni);
+        boletoResponse.setDataFinal(dtFim);
+        boletoResponse.setCodigo(detalhes);
 
         FichaFinanceiraResponse detalhesBoleto = propostaService.listarBoleto(boletoResponse);
 

@@ -2,7 +2,7 @@ package br.com.odontoprev.portalcorretor.service;
 
 import br.com.odontoprev.api.manager.client.token.util.ConfigurationUtils;
 import br.com.odontoprev.portalcorretor.model.DetalhesBoletoResponse;
-import br.com.odontoprev.portalcorretor.model.DetalhesPropostaResponse;
+import br.com.odontoprev.portalcorretor.model.PropostaCritica;
 import br.com.odontoprev.portalcorretor.model.FichaFinanceiraResponse;
 import br.com.odontoprev.portalcorretor.model.FichaFinancieraBoleto;
 import br.com.odontoprev.portalcorretor.service.dto.BeneficiariosPropostaResponsePagination;
@@ -38,8 +38,8 @@ public class PropostaService {
     @Autowired
     private ApiManagerTokenService apiManagerTokenService;
 
-    public DetalhesPropostaResponse detalhesProposta(String cdVenda) {
-        DetalhesPropostaResponse detalhesPropostaResponse = null;
+    public PropostaCritica detalhesProposta(String cdVenda) {
+        PropostaCritica propostaCritica = null;
 
         String url = requestBase + metodo + cdVenda;
 
@@ -48,12 +48,12 @@ public class PropostaService {
             HttpHeaders headers = new HttpHeaders();
             headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
             HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
-            ResponseEntity<DetalhesPropostaResponse> retorno = restTemplate.exchange(url, HttpMethod.GET, entity, DetalhesPropostaResponse.class);
+            ResponseEntity<PropostaCritica> retorno = restTemplate.exchange(url, HttpMethod.GET, entity, PropostaCritica.class);
 
             if (retorno.getStatusCode() == HttpStatus.OK) {
                 log.info("DetalhesPropostaService ->>> " + retorno.getStatusCode());
-                detalhesPropostaResponse = retorno.getBody();
-                return detalhesPropostaResponse;
+                propostaCritica = retorno.getBody();
+                return propostaCritica;
             } else {
                 log.error("DetalhesPropostaService ->>> " + retorno.getStatusCode() + "\n" + retorno.getBody());
                 return null;

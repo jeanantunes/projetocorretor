@@ -1,15 +1,13 @@
 package br.com.odontoprev.portalcorretor.controller;
 
-import static br.com.odontoprev.portalcorretor.service.dto.Plano.Integral_DOC_LE;
-import static br.com.odontoprev.portalcorretor.service.dto.Plano.Master_LALE;
-
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpSession;
-
+import br.com.odontoprev.portalcorretor.converter.ConverterCarrinhoForm;
+import br.com.odontoprev.portalcorretor.exceptions.SerasaConsultaException;
+import br.com.odontoprev.portalcorretor.model.*;
+import br.com.odontoprev.portalcorretor.service.EnderecoService;
+import br.com.odontoprev.portalcorretor.service.SerasaService;
+import br.com.odontoprev.portalcorretor.service.VendaPMEService;
+import br.com.odontoprev.portalcorretor.service.dto.omninetworking.wim.ws.*;
+import br.com.odontoprev.portalcorretor.service.dto.omninetworking.wim.ws.Endereco;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,33 +17,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.odontoprev.portalcorretor.converter.ConverterCarrinhoForm;
-import br.com.odontoprev.portalcorretor.exceptions.SerasaConsultaException;
-import br.com.odontoprev.portalcorretor.model.Beneficiario;
-import br.com.odontoprev.portalcorretor.model.Carrinho;
-import br.com.odontoprev.portalcorretor.model.Dependente;
-import br.com.odontoprev.portalcorretor.model.UsuarioSession;
-import br.com.odontoprev.portalcorretor.model.VendaPme;
-import br.com.odontoprev.portalcorretor.service.EnderecoService;
-import br.com.odontoprev.portalcorretor.service.SerasaService;
-import br.com.odontoprev.portalcorretor.service.VendaPMEService;
-import br.com.odontoprev.portalcorretor.service.dto.ConverterModelVendaPmeRequest;
-import br.com.odontoprev.portalcorretor.service.dto.omninetworking.wim.ws.ArrayOfEndereco;
-import br.com.odontoprev.portalcorretor.service.dto.omninetworking.wim.ws.ArrayOfTelefone;
-import br.com.odontoprev.portalcorretor.service.dto.omninetworking.wim.ws.Endereco;
-import br.com.odontoprev.portalcorretor.service.dto.omninetworking.wim.ws.PessoaJuridica;
-import br.com.odontoprev.portalcorretor.service.dto.omninetworking.wim.ws.RepresentanteLegal;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static br.com.odontoprev.portalcorretor.service.dto.Plano.Integral_DOC_LE;
+import static br.com.odontoprev.portalcorretor.service.dto.Plano.Master_LALE;
 
 @Controller
 public class VendaPmeController {
     private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(VendaPmeController.class);
-    
+
     @Autowired
     private EnderecoService enderecoService;
 
     @Autowired
     private VendaPMEService vendaPMEService;
-    
+
     @Autowired
     private SerasaService serasaService;
 
@@ -124,67 +114,67 @@ public class VendaPmeController {
     @RequestMapping(value = "/venda/pme/Escolha_um_plano/confirmacaoProposta", method = RequestMethod.POST, params = "action=save")
     public ModelAndView confirmacaoProposta(Carrinho carrinhoForm, HttpSession session) {
         Carrinho carrinho = (Carrinho) session.getAttribute("carrinho");
-        carrinho.setBeneficiarios(carrinhoForm.getBeneficiarios());        
+        carrinho.setBeneficiarios(carrinhoForm.getBeneficiarios());
 
-        vendaPMEService.vender(new ConverterCarrinhoForm().converter(carrinho,(UsuarioSession)session.getAttribute("usuario")));
+        vendaPMEService.vender(new ConverterCarrinhoForm().converter(carrinho, (UsuarioSession) session.getAttribute("usuario")));
         return new ModelAndView("venda/pme/4_confirmacao_proposta_pme");
     }
     // Fim -> Metodos de Fluxo de Tela
 
 
     @RequestMapping(value = "buscaCnpjPme")
-    public ModelAndView buscaCnpjPme(@RequestParam("cnpj") String cnpj, HttpSession session) {        
-         VendaPme vendaPme = new VendaPme();
+    public ModelAndView buscaCnpjPme(@RequestParam("cnpj") String cnpj, HttpSession session) {
+        VendaPme vendaPme = new VendaPme();
         Carrinho carrinho = (Carrinho) session.getAttribute("carrinho");
         try {
-			final PessoaJuridica pessoaJuridica = serasaService.consultaSerasaCNPJ(cnpj);			 
-	        vendaPme.setCnpj(pessoaJuridica.getCnpj());
-	        //TODO: Verificar
-	        //vendaPme.setInscricaoEstadual("");
-	        //vendaPme.setRamoDeAtividade(pessoaJuridica.);
-	        vendaPme.setRazaoSocial(pessoaJuridica.getRazaoSocial());
-	        vendaPme.setNomeFantasia(pessoaJuridica.getNomeFantasia());
-	        List<RepresentanteLegal> representantesLegais = pessoaJuridica.getRepresentanteLegal().getRepresentanteLegal();
-	        if(!representantesLegais.isEmpty()) {
-				RepresentanteLegal representanteLegal = representantesLegais.get(0);
-		        if(representanteLegal!=null) {
-					vendaPme.setRepresentanteLegal(representanteLegal.getNome());
-			        vendaPme.setCpf(representanteLegal.getDocumento());
-		        }
-	        }
-	        vendaPme.setRepresentanteEhContatoEmpresa(false);
-	        List<ArrayOfTelefone> telefonesList = pessoaJuridica.getTelefones();
-	        if(!telefonesList.isEmpty()) {
-				ArrayOfTelefone telefones = telefonesList.get(0);
-				if(telefonesList.isEmpty()) {
-			        	        	
-			        	vendaPme.setTelefone("");
-			        	vendaPme.setCelular("");
-			        	        
-				}
-	        }
-	        List<ArrayOfEndereco> enderecosList = pessoaJuridica.getEnderecos();
-	        if(!enderecosList.isEmpty()){
-				ArrayOfEndereco enderecos = enderecosList.get(0);
-		        List<Endereco> endereco = enderecos.getEndereco();
-				if(endereco!=null && endereco.get(0)!=null) {
-					vendaPme.setCep(endereco.get(0).getCep());
-			        vendaPme.setEndereco(endereco.get(0).getLogradouro().getNome());
-			        vendaPme.setNumero(endereco.get(0).getLogradouro().getNumero());
-			        vendaPme.setComplemento(endereco.get(0).getLogradouro().getComplemento());
-			        vendaPme.setBairro(endereco.get(0).getBairro());
-			        vendaPme.setCidade(endereco.get(0).getCidade());
-		        }
-	        }
-	        vendaPme.setEnderecoEhoMesmo(false);
-		} catch (SerasaConsultaException e) {
-			LOGGER.error("ERROR",e);
-		}
+            final PessoaJuridica pessoaJuridica = serasaService.consultaSerasaCNPJ(cnpj);
+            vendaPme.setCnpj(pessoaJuridica.getCnpj());
+            //TODO: Verificar
+            //vendaPme.setInscricaoEstadual("");
+            //vendaPme.setRamoDeAtividade(pessoaJuridica.);
+            vendaPme.setRazaoSocial(pessoaJuridica.getRazaoSocial());
+            vendaPme.setNomeFantasia(pessoaJuridica.getNomeFantasia());
+            List<RepresentanteLegal> representantesLegais = pessoaJuridica.getRepresentanteLegal().getRepresentanteLegal();
+            if (!representantesLegais.isEmpty()) {
+                RepresentanteLegal representanteLegal = representantesLegais.get(0);
+                if (representanteLegal != null) {
+                    vendaPme.setRepresentanteLegal(representanteLegal.getNome());
+                    vendaPme.setCpf(representanteLegal.getDocumento());
+                }
+            }
+            vendaPme.setRepresentanteEhContatoEmpresa(false);
+            List<ArrayOfTelefone> telefonesList = pessoaJuridica.getTelefones();
+            if (!telefonesList.isEmpty()) {
+                ArrayOfTelefone telefones = telefonesList.get(0);
+                if (telefonesList.isEmpty()) {
+
+                    vendaPme.setTelefone("");
+                    vendaPme.setCelular("");
+
+                }
+            }
+            List<ArrayOfEndereco> enderecosList = pessoaJuridica.getEnderecos();
+            if (!enderecosList.isEmpty()) {
+                ArrayOfEndereco enderecos = enderecosList.get(0);
+                List<Endereco> endereco = enderecos.getEndereco();
+                if (endereco != null && endereco.get(0) != null) {
+                    vendaPme.setCep(endereco.get(0).getCep());
+                    vendaPme.setEndereco(endereco.get(0).getLogradouro().getNome());
+                    vendaPme.setNumero(endereco.get(0).getLogradouro().getNumero());
+                    vendaPme.setComplemento(endereco.get(0).getLogradouro().getComplemento());
+                    vendaPme.setBairro(endereco.get(0).getBairro());
+                    vendaPme.setCidade(endereco.get(0).getCidade());
+                }
+            }
+            vendaPme.setEnderecoEhoMesmo(false);
+        } catch (SerasaConsultaException e) {
+            LOGGER.error("ERROR", e);
+        }
         //vendaPme = mockDados();
-        final Map<String,Object> model = new HashMap<String,Object>();
-        carrinho.setVendaPme(vendaPme);        
+        final Map<String, Object> model = new HashMap<String, Object>();
+        carrinho.setVendaPme(vendaPme);
         model.put("carrinho", carrinho);
-       
+
         return new ModelAndView("venda/pme/2_Plano_selecionado", model);
     }
 
@@ -206,9 +196,9 @@ public class VendaPmeController {
         beneficiario.setNome("Roberto Silva");
         beneficiario.setCpf("896.154.589.96");
         beneficiario.setDataNascimento("10/10/1959");
-        beneficiario.setNomeDaMae("Maria Mae do Roberto");
+        beneficiario.setNomeMae("Maria Mae do Roberto");
         beneficiario.setSexo("M");
-        beneficiario.setPlano("2");
+        beneficiario.setCdPlano(2l);
 
         return beneficiario;
     }
