@@ -20,6 +20,14 @@
     background-color: #F1F9FF;
 }
 
+.titleOdontVigencia {
+    font-family: Roboto-Regular;
+    color: #D9487F;
+    font-size: 22pt;
+    margin-top: 0px !important;
+    margin-bottom: 20px;
+}
+
 /* .circle{
     position: relative;
     top: -200px;

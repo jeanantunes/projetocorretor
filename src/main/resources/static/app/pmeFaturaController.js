@@ -83,11 +83,14 @@ function isEffectiveDate(dayDueDate) {
             else vencimento = dataVencimento;
 
             var dataDeCorteDeMovimentacao = moment(dataVencimento).add(-12, "days");
+            var dataPrevistaDeVigencia = moment(vencimento).add(-12, "days");
+            $("#dataVigenciaPrevista").html(vencimento.format("DD/MM/YYYY"));
+            $("#dataVigencia").html(dataPrevistaDeVigencia.format("DD/MM/YYYY"));
 
             //$("#corte").html('Data de corte de movimentação:<br>' + dataDeCorteDeMovimentacao.format("DD/MM/YYYY"));
             //$("#vencimento").html('Data de vencimento:<br>' + vencimento.format("DD/MM/YYYY"));
             //$("#vigencia").html('Data de vigência:<br>' + vencimento.format("DD/MM/YYYY"));
-            $("#dataVigencia").html(vencimento.format("DD/MM/YYYY"));
+
             var retornoDatas = { "dataMovimentacao": dataDeCorteDeMovimentacao, "dataVencimento" : vencimento }
             return retornoDatas;
 
@@ -101,11 +104,13 @@ function isEffectiveDate(dayDueDate) {
             else vencimento = dataVencimento;
 
             var dataDeCorteDeMovimentacao = moment(dataVencimento).add(-12, "days");
+            var dataPrevistaDeVigencia = moment(vencimento).add(-12, "days");
+            $("#dataVigenciaPrevista").html(vencimento.format("DD/MM/YYYY"));
+            $("#dataVigencia").html(dataPrevistaDeVigencia.format("DD/MM/YYYY"));
 
             //$("#corte").html('Data de corte de movimentação:<br>' + dataDeCorteDeMovimentacao.format("DD/MM/YYYY"));
             //$("#vencimento").html('Data de vencimento:<br>' + vencimento.format("DD/MM/YYYY"));
             //$("#vigencia").html('Data de vigência:<br>' + vencimento.format("DD/MM/YYYY"));
-            $("#dataVigencia").html(vencimento.format("DD/MM/YYYY"));
             var retornoDatas = { "dataMovimentacao": dataDeCorteDeMovimentacao, "dataVencimento" : vencimento }
             return retornoDatas;
 
@@ -119,11 +124,14 @@ function isEffectiveDate(dayDueDate) {
             else vencimento = dataVencimento;
 
             var dataDeCorteDeMovimentacao = moment(dataVencimento).add(-12, "days");
+            var dataPrevistaDeVigencia = moment(vencimento).add(-12, "days");
+            $("#dataVigenciaPrevista").html(vencimento.format("DD/MM/YYYY"));
+            $("#dataVigencia").html(dataPrevistaDeVigencia.format("DD/MM/YYYY"));
 
             //$("#corte").html('Data de corte de movimentação:<br>' + dataDeCorteDeMovimentacao.format("DD/MM/YYYY"));
             //$("#vencimento").html('Data de vencimento:<br>' + vencimento.format("DD/MM/YYYY"));
             //$("#vigencia").html('Data de vigência:<br>' + vencimento.format("DD/MM/YYYY"));
-            $("#dataVigencia").html(vencimento.format("DD/MM/YYYY"));
+
             var retornoDatas = { "dataMovimentacao": dataDeCorteDeMovimentacao, "dataVencimento" : vencimento }
             return retornoDatas;
 
