@@ -943,10 +943,17 @@ function getUrlParameter(sParam) {
 };
 
 function atualizarPessoas(proposta) {
-    var pessoas = get("pessoas");
-    var propostas = pessoas.filter(function (x) {
-        return x.cpf != proposta.cpf
-    });
+
+    var pessoas = get("pessoas"); // lista de propostas pf
+
+    var propostas = [];
+
+    if (pessoas != undefined) {
+
+        propostas = pessoas.filter(function (x) { return x.cpf != proposta.cpf });
+
+    }
+
     pessoas = []; //limpar
 
     $.each(propostas, function (i, item) {
