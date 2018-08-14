@@ -1,11 +1,556 @@
 ﻿var preenchidos = false;
 
 $(document).ready(function () {
+
     buscarPlanosSelecionados();
     carregarProposta();
     localStorage.removeItem("dependentePfEmEdicao");
     resizeIframe('frame_pf');
+
+    //Aqui comeca os steps de salvamento de cada campo
+    $("#cpf").blur(function () {
+
+        var propostasPfs = get("pessoas");
+        var propostaEmEdicao = get("propostaPf");
+
+        var propostaExistente = propostasPfs.filter(function (x) { return x.cpf == $('#cpf').val() });
+
+        if (propostasPfs.length > 0 && propostaExistente.length > 0) {
+
+            if (propostaExistente[0].cpf != propostaEmEdicao.cpf) {
+
+                verificarSePropostaPfExiste();
+
+            }
+
+        } else {
+
+            if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
+
+                var propostaPf = get("propostaPf");
+                propostaPf.status = "DIGITANDO";
+                propostaPf.cpf = $("#cpf").val();
+                atualizarPessoas(propostaPf);
+
+            }
+        }
+
+    });
+    
+    $(".nome").blur(function () {
+
+        $(".nome").val($(".nome").val().trim());
+
+        if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
+
+            var propostaPf = get("propostaPf");
+            propostaPf.nome = $(".nome").val().trim();
+            atualizarPessoas(propostaPf);
+
+        }
+
+    });
+    
+    $(".email").blur(function () {
+
+        $(".email").val($(".email").val().trim());
+
+        if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
+
+            var propostaPf = get("propostaPf");
+            propostaPf.email = $(".email").val().trim();
+            atualizarPessoas(propostaPf);
+
+        }
+
+    });
+
+    $(".celular").blur(function () {
+
+        $(".celular").val($(".celular").val().trim());
+
+        if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
+
+            var propostaPf = get("propostaPf");
+            propostaPf.celular = $(".celular").val().trim();
+            atualizarPessoas(propostaPf);
+
+        }
+
+    });
+
+    $("#dataNascimentoTitular").blur(function () {
+
+        if ($("#dataNascimentoTitular").val() == "") return false;
+
+        var date = toDate($("#dataNascimentoTitular").val());
+
+        if (isMaiorDeIdade(date)) {
+
+            $(".representanteContratual").addClass('hide');
+            if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
+
+                var propostaPf = get("propostaPf");
+                propostaPf.responsavelContratual.nome = "";
+                propostaPf.responsavelContratual.cpf = "";
+                propostaPf.responsavelContratual.nomeMae = "";
+                propostaPf.responsavelContratual.celular = "";
+                propostaPf.responsavelContratual.sexo = "";
+                propostaPf.responsavelContratual.email = "";
+                propostaPf.dataNascimento = $("#dataNascimentoTitular").val().trim();
+                limparCamposResponsavelLegal();
+                atualizarPessoas(propostaPf);
+
+            }
+
+            return false;
+        }
+
+        $(".representanteContratual").removeClass('hide');
+
+        if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
+
+            var propostaPf = get("propostaPf");
+            propostaPf.dataNascimento = $("#dataNascimentoTitular").val().trim();
+            atualizarPessoas(propostaPf);
+
+        }
+
+    });
+
+
+    $("#radio-1").click(function () {
+
+        if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
+
+            var propostaPf = get('propostaPf');
+            propostaPf.sexo = $("#radio-1").val();
+            atualizarPessoas(propostaPf);
+
+        }
+
+    });
+
+    $("#radio-2").click(function () {
+
+        if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
+
+            var propostaPf = get('propostaPf');
+            propostaPf.sexo = $("#radio-2").val();
+            atualizarPessoas(propostaPf);
+
+        }
+
+    });
+
+    $("#nomeMae").blur(function () {
+
+        if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
+
+            var propostaPf = get('propostaPf');
+            propostaPf.nomeMae = $('#nomeMae').val();
+            atualizarPessoas(propostaPf);
+
+        }
+
+    });
+
+    $("#nomeResponsavel").blur(function () {
+
+        if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
+
+            var propostaPf = get('propostaPf');
+            propostaPf.responsavelContratual.nome = $('#nomeResponsavel').val();
+            atualizarPessoas(propostaPf);
+
+        }
+
+    });
+
+    $("#emailRepresentanteLegal").blur(function () {
+
+        if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
+
+            var propostaPf = get('propostaPf');
+            propostaPf.responsavelContratual.email = $('#emailRepresentanteLegal').val();
+            atualizarPessoas(propostaPf);
+
+        }
+
+    });
+
+    $(".celular-representante-legal").blur(function () {
+
+        if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
+
+            var propostaPf = get('propostaPf');
+            propostaPf.responsavelContratual.celular = $('.celular-representante-legal').val();
+            atualizarPessoas(propostaPf);
+
+        }
+
+    });
+
+    $("#cpf-representante").blur(function () {
+
+        if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
+
+            var propostaPf = get('propostaPf');
+            propostaPf.responsavelContratual.cpf = $('#cpf-representante').val();
+            atualizarPessoas(propostaPf);
+
+        }
+
+    });
+
+    $("#dataNascimentoResponsavel").blur(function () {
+
+        if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
+
+            var propostaPf = get('propostaPf');
+            propostaPf.responsavelContratual.dataNascimento = $('#dataNascimentoResponsavel').val();
+            atualizarPessoas(propostaPf);
+
+        }
+
+    });
+
+    $("#radio-3").click(function () {
+
+        if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
+
+            var propostaPf = get('propostaPf');
+            propostaPf.responsavelContratual.sexo = $("#radio-3").val();
+            atualizarPessoas(propostaPf);
+
+        }
+
+    });
+
+    $("#radio-4").click(function () {
+
+        if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
+
+            var propostaPf = get('propostaPf');
+            propostaPf.responsavelContratual.sexo = $("#radio-4").val();
+            atualizarPessoas(propostaPf);
+
+        }
+
+    });
+
+    $("#cep-proposta-pf").blur(function () {
+
+        if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
+
+            var propostaPf = get('propostaPf');
+            propostaPf.endereco.cep = $("#cep-proposta-pf").val();
+            atualizarPessoas(propostaPf);
+
+        }
+
+    });
+
+    $("#rua").blur(function () {
+
+        if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
+
+            var propostaPf = get('propostaPf');
+            propostaPf.endereco.logradouro = $("#rua").val();
+            atualizarPessoas(propostaPf);
+
+        }
+
+    });
+
+    $(".numero").blur(function () {
+
+        if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
+
+            var propostaPf = get('propostaPf');
+            propostaPf.endereco.numero = $(".numero").val();
+            atualizarPessoas(propostaPf);
+
+        }
+
+    });
+
+    $(".complemento").blur(function () {
+
+        if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
+
+            var propostaPf = get('propostaPf');
+            propostaPf.endereco.complemento = $(".complemento").val();
+            atualizarPessoas(propostaPf);
+
+        }
+
+    });
+
+    $("#bairro").blur(function () {
+
+        if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
+
+            var propostaPf = get('propostaPf');
+            propostaPf.endereco.bairro = $("#bairro").val();
+            atualizarPessoas(propostaPf);
+
+        }
+
+    });
+
+    $("#uf").blur(function () {
+
+        if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
+
+            var propostaPf = get('propostaPf');
+            propostaPf.endereco.estado = $("#uf").val();
+            atualizarPessoas(propostaPf);
+
+        }
+
+    });
+
+    $("#cidade").blur(function () {
+
+        if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
+
+            var propostaPf = get('propostaPf');
+            propostaPf.endereco.cidade = $("#cidade").val();
+            atualizarPessoas(propostaPf);
+
+        }
+
+    });
+
+    $("#adicionarPlano").click(function () {
+
+        salvarRascunhoMemoria();
+        window.location.href = "venda_index_pf.html";
+
+    });
+
+    $("#cep-proposta-pf").keyup(function () {
+
+        if (!navigator.onLine) {
+            return;
+        }
+
+        //Nova variável "cep" somente com dígitos.
+        var cep = $('#cep-proposta-pf').val().replace(/\D/g, '');
+        //Verifica se campo cep possui valor informado.
+        if (cep != "" && cep.length == 8) {
+            //Expressão regular para validar o CEP.
+            var validacep = /^[0-9]{8}$/;
+            //Valida o formato do CEP.
+            if (validacep.test(cep)) {
+                //Preenche os campos com "..." enquanto consulta webservice.
+                $("#rua").val("");
+                $("#bairro").val("");
+                $("#cidade").val("");
+                $("#uf").val("");
+
+                swal({
+                    title: "Aguarde",
+                    text: 'Estamos procurando o endereço',
+                    content: "input",
+                    imageUrl: "img/load.gif",
+                    showCancelButton: false,
+                    showConfirmButton: false,
+                    icon: "info",
+                    button: {
+                        text: "...",
+                        closeModal: false,
+                    },
+                })
+
+                try {
+
+                    callTokenVendas(function (dataToken) {
+
+                        if (dataToken.status != undefined) {
+
+                            swal.close();
+                            return;
+
+                        }
+
+                        callApiCep(function (dataCep) {
+
+                            if (dataCep.status != undefined) {
+
+                                swal.close();
+                                return;
+
+                            }
+
+                            $("#bairro").val(dataCep[0].bairro);
+                            $("#cidade").val(dataCep[0].cidade);
+                            $("#rua").val(dataCep[0].logradouro);
+                            $("#uf").val(dataCep[0].estado);
+
+                            var propostaPf = get('propostaPf');
+                            propostaPf.endereco.logradouro = $("#rua").val();
+                            propostaPf.endereco.estado = $("#uf").val();
+                            propostaPf.endereco.bairro = $("#bairro").val();
+                            propostaPf.endereco.cidade = $("#cidade").val();
+                            propostaPf.endereco.complemento = $(".complemento").val();
+                            atualizarPessoas(propostaPf);
+
+                            swal.close();
+
+                        }, dataToken.access_token, cep);
+
+                    });
+
+                } catch (Erro) { }
+            } else {
+
+                limparCamposDoEndereco();
+
+                var propostaPf = get('propostaPf');
+                propostaPf.endereco.logradouro = $("#rua").val();
+                propostaPf.endereco.estado = $("#uf").val();
+                propostaPf.endereco.bairro = $("#bairro").val();
+                propostaPf.endereco.cidade = $("#cidade").val();
+                propostaPf.endereco.complemento = $(".complemento").val();
+                atualizarPessoas(propostaPf);
+
+            }
+
+        } else {
+
+            limparCamposDoEndereco();
+
+            var propostaPf = get('propostaPf');
+            propostaPf.endereco.logradouro = $("#rua").val();
+            propostaPf.endereco.estado = $("#uf").val();
+            propostaPf.endereco.bairro = $("#bairro").val();
+            propostaPf.endereco.cidade = $("#cidade").val();
+            propostaPf.endereco.complemento = $(".complemento").val();
+            atualizarPessoas(propostaPf);
+
+        }
+    });
+
 });
+
+
+
+function limparCamposResponsavelLegal() {
+
+    $("#nomeResponsavel").val("");
+    $("#cpf-representante").val("");
+    $("#dataNascimentoResponsavel").val("");
+    $("#emailRepresentanteLegal").val("");
+    $(".celular-representante-legal").val("");
+
+}
+
+function verificarSePropostaPfExiste() {
+
+    var propostasPf = get("pessoas");
+
+    if (propostasPf == null) {
+        return;
+    }
+
+    var propostaExistente = propostasPf.filter(function (x) { return x.cpf == $('#cpf').val() });
+
+    if (propostaExistente.length == 0) {
+        return;
+    }
+
+    if (propostaExistente.length == 1 && propostaExistente[0].status == "SYNC") {
+        swal("Ops!", "Você possui uma proposta com esse CPF em sincronismo", "error");
+        return;
+    }
+
+    var propostaPfEmEdicao = get("propostaPf");
+
+    if (propostaPfEmEdicao.cpf == propostaExistente[0].cpf) { // Caso a proposta existe mas esta em edicao;
+        return;
+    }
+
+    if (propostaExistente.length == 1 && propostaExistente[0].status != "ENVIADA") {
+
+        swal({
+            title: "Ops!",
+            text: "Você já tem uma proposta com esse CPF, selecione uma opção:",
+            type: "warning",
+            confirmButtonClass: "btn-danger",
+            confirmButtonColor: "#1974CE",
+            confirmButtonText: "Editar proposta existente",
+            cancelButtonText: "Excluir proposta",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+            function (isConfirm) {
+                if (isConfirm) {
+
+                    put("propostaPf", JSON.stringify(propostaExistente[0]));
+                    window.location.href = "venda_pf_dados_proposta.html";
+
+                } else {
+
+                    swal({
+                        title: "Ops!",
+                        text: "Tem certeza que deseja excluir a proposta?",
+                        type: "warning",
+                        confirmButtonClass: "btn-danger",
+                        confirmButtonColor: "#1974CE",
+                        confirmButtonText: "Sim",
+                        cancelButtonText: "Não",
+                        showCancelButton: true,
+                        closeOnConfirm: false,
+                        closeOnCancel: false
+                    },
+                        function (isConfirm) {
+                            if (isConfirm) {
+                                var propostasPfExcetoExcluidas = propostasPf.filter(function (x) { return x.cpf != $('#cpf').val() });
+
+                                put("pessoas", JSON.stringify(propostasPfExcetoExcluidas));
+                                window.location.href = "venda_pf_dados_proposta.html";
+                                //buscarEmpresa();
+                            } else {
+                                verificarSePropostaPfExiste();
+                            }
+                        });
+                }
+            });
+
+    }
+
+
+}
+
+function limparCamposDoEndereco() {
+    // Limpa valores do formulário de cep.
+    $("#rua").val("");
+    $("#bairro").val("");
+    $("#cidade").val("");
+    $("#uf").val("");
+}
+
+function callApiCep(callback, token, cep) {
+    $.ajax({
+        async: true,
+        url: URLBase + "/cep/1.1/por/cep/" + cep,
+        method: "GET",
+        headers: {
+            "Authorization": "Bearer " + token,
+            "Cache-Control": "no-cache",
+            "Content-Type": "application/json"
+        },
+        success: function (resp) {
+            callback(resp)
+        },
+        error: function (resp) {
+            callback(resp)
+        }
+    });
+}
 
 function addDependente() {
 

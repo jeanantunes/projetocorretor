@@ -16,7 +16,7 @@ $(document).ready(function () {
     }
 
 
-    function limpa_formulário_cep() {
+    function limpa_formulario_cep() {
         // Limpa valores do formulário de cep.
         $("#rua").val("");
         $("#bairro").val("");
@@ -101,13 +101,13 @@ $(document).ready(function () {
             } //end if.
             else {
                 //cep é inválido.
-                limpa_formulário_cep();
+                limpa_formulario_cep();
                 alert("Formato de CEP inválido.");
             }
         } //end if.
         else {
             //cep sem valor, limpa formulário.
-            limpa_formulário_cep();
+            limpa_formulario_cep();
         }
     }
     //Quando o campo cep perde o foco.
