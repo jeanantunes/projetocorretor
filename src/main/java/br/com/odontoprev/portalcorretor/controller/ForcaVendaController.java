@@ -158,6 +158,9 @@ public class ForcaVendaController {
         	UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
 
             ForcaVenda forcaVenda = forcaVendaService.ObterPorDocumento(usuario.getDocumento());
+            forcaVenda.setNome(forcaVendaParam.getNome());
+            forcaVenda.setCelular(forcaVendaParam.getCelular());
+            forcaVenda.setEmail(forcaVendaParam.getEmail());
 
             ForcaVenda forcaVendaAlterar = new ForcaVenda();
             forcaVendaAlterar.setCdForcaVenda(forcaVenda.getCdForcaVenda());
@@ -165,7 +168,8 @@ public class ForcaVendaController {
             forcaVendaAlterar.setCelular(forcaVendaParam.getCelular());
             forcaVendaAlterar.setEmail(forcaVendaParam.getEmail());
 
-            forcaVendaService.Alterar(forcaVendaAlterar);
+            forcaVendaService.Alterar(forcaVenda); //201808142015 - esert - passa dados de mais quebra no campo status que passa string ao inves de numero
+            //forcaVendaService.Alterar(forcaVendaAlterar); //passa dados de menos quebra na chamada dcss bad request
 
             //return this.home(session);
             forcaVenda = forcaVendaService.ObterPorDocumento(usuario.getDocumento());
