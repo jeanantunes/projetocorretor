@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:th="http://www.thymeleaf.org">
 
 <head><title>OdontoPrev</title>
     <meta charset="utf-8">
@@ -24,9 +22,55 @@
     <script type="text/javascript" th:src="@{/js/odonto-Valida.js}"></script>
     <script type="text/javascript" th:src="@{/js/scripts.js}"></script>
     <script type="text/javascript" th:src="@{/js/sweetalert.min.js}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#cpfcnpj").focus(function () {
+                $("#jsCpfCnpj").addClass("text-blue-cpfcnpj");
+                $("#cpfcnpj").addClass("text-blue-cpfcnpj");
+            }).blur(function () {
+                $('#jsCpfCnpj').removeClass('text-blue-cpfcnpj');
+                $('#cpfcnpj').removeClass('text-blue-cpfcnpj');
+            });
+
+            $('#senha-index').focus(function () {
+                $('#txtsenha').addClass("text-blue-cpfcnpj");
+                $('#senha-index').addClass("text-blue-cpfcnpj");
+            }).blur(function () {
+                $('#txtsenha').removeClass('text-blue-cpfcnpj');
+                $('#senha-index').removeClass('text-blue-cpfcnpj');
+            });
+
+            /*
+            $("#cpfcnpj").keyup(function () {
+
+                var caracteres = $(this).val().replace(/'\s'/g, '');
+
+                if (caracteres.length < 11) {
+                    $("#cpfcnpj").unmask();
+                } else if (caracteres.length >= 14) {
+                    $("#cpfcnpj").mask("00.000.000/0000-00");
+                } else {
+                    $("#cpfcnpj").mask("000.000.000-00");
+                }
+
+                // ajustando foco
+                var elem = this;
+                setTimeout(function(){
+                    // mudo a posição do seletor
+                    elem.selectionStart = elem.selectionEnd = 10000;
+                }, 0);
+                // reaplico o valor para mudar o foco
+                var currentValue = $(this).val();
+                $(this).val('');
+                $(this).val(currentValue);
+            });
+            */
+        });
+    </script>
 </head>
 <body>
-
 
 
 <form th:action="@{/login}" method="POST">
@@ -37,31 +81,36 @@
                 <strong>Bem-vindo</strong>
             </h1>
 
-            <div class="sub-title-index font-silver-index text-center">
+            <div class="sub-title-index text-center">
                 <p>ao Sistema de Vendas para Parceiros Exclusivos OdontoPrev</p>
             </div>
 
-            <div class="form-group width-form space-top-35">
-                <label class="label-cpfcnpj uppercase">cpf/cnpj </label>
-                <input type="text" id="cpfcnpj" class="cpfcnpj form-control" name="username"/>
+            <div class="form-group-login width-form">
+                <label class="text-cpfcnpj uppercase" id="jsCpfCnpj">cpf/cnpj </label>
+                <input type="text" id="cpfcnpj" class="form-control-login" name="username"/>
             </div>
 
-            <div class="form-group width-form space-top-15">
-                <label class="label-password">SENHA</label>
+            <div class="form-group-login width-form">
+                <label class="text-cpfcnpj uppercase" id="txtsenha">senha</label>
                 <div>
-                    <img th:src="@{/img/senha-1@2x.png}" class="img-senha" align="right">
-                    <input type="password" id="senha-index" class="password form-control" name="password"/>
+                    <img th:src="@{/img/senha-1@2x.png}" class="img-senha" />
+                    <input type="password" id="senha-index" class="password form-control-login" name="password"/>
                 </div>
             </div>
 
-            <div class="space-top-40">
-                <button type="submit" class="btn btn-entrar-index r-medium">ENTRAR</button>
+            <!-- div th:style="${usuario == null} ? 'display:inline-block' : 'display:none'" -->
+                <!-- label style="background-color: #FF4141; color: #FFFFFF">CPF, CNPJ ou senha incorreta.</label -->
+            <!-- /div -->
+
+            <div>
+                <button type="submit" class="btn btn-entrar-login r-medium">ENTRAR</button>
             </div>
-            <div class="space-top-15">
-                <a type="button" class="btn btn-meCadastrar-index r-medium" href="/cadastro">PRIMEIRO ACESSO</a>
+            <div>
+                <a type="button" class="btn btn-cadastro-login r-medium" href="/cadastro">MEU PRIMEIRO ACESSO</a>
             </div>
-            <div class="space-top-15">
-                <a type="button" class="btn btn-link btnEsqueciSenha r-medium" href="/recuperar_senha">Esqueci minha senha</a>
+            <div>
+                <a type="button" class="btn btn-link btnEsqueciSenha r-medium" href="/recuperar_senha">Esqueci minha
+                    senha</a>
             </div>
             <p></p>
         </div>
@@ -69,14 +118,14 @@
 </form>
 
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function () {
 
         try {
 
             let oBrowser = get_browser();
             let versionBroswer = parseFloat(oBrowser.version == null ? 0 : oBrowser.version);
 
-            if(oBrowser.name == "Chrome" && versionBroswer < 65) {
+            if (oBrowser.name == "Chrome" && versionBroswer < 65) {
 
                 swal({
                         title: "Ops!\n Navegador desatualizado",
@@ -106,12 +155,10 @@
 
         $( ".img-senha" ).mousedown(function() {
             $("#senha-index").attr('type', 'text');
-            console.log("display senha");
         });
 
         $( ".img-senha" ).mouseup(function() {
             $("#senha-index").attr("type", "password");
-            console.log("ocultar senha");
         });
 
 
@@ -139,7 +186,8 @@
                 name: M[0],
                 version: M[1]
             };
-        }catch (Exception){}
+        } catch (Exception) {
+        }
     }
 </script>
 
