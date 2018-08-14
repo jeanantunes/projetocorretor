@@ -106,6 +106,7 @@ public class ForcaVendaController {
             return this.home(session);
     	}
     }
+    
 
     @RequestMapping(value = "alertas/{statusProposta}", method = RequestMethod.GET)
     public ModelAndView Proposta(@PathVariable String statusProposta, HttpSession session) {
@@ -129,4 +130,47 @@ public class ForcaVendaController {
 
          return new ModelAndView("lista-propostas", "listaPropostas", listaPropostas);
     }
+    
+    //201808141702 - esert - COR-363 (Web - Model/View - Meus dados)
+    @RequestMapping(value = "forcavenda/meus-dados", method = RequestMethod.GET)
+    public ModelAndView meusDados(HttpSession session) {
+   	 	UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
+        ForcaVenda forcaVenda = forcaVendaService.ObterPorDocumento(usuario.getDocumento());
+        return new ModelAndView("forcavenda/editar/home", "forcaVenda", forcaVenda);
+    }
+    
+    //201808141815 - esert - COR-363 (Web - Model/View - Meus dados)
+    @RequestMapping(value = "forcavenda/meus-dados-editar", method = RequestMethod.POST)
+    public ModelAndView meusDadosEditar(HttpSession session) {
+   	 	UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
+        ForcaVenda forcaVenda = forcaVendaService.ObterPorDocumento(usuario.getDocumento());
+        return new ModelAndView("forcavenda/editar/editar", "forcaVenda", forcaVenda);
+    }
+    
+    //201808141820 - esert - COR-363 (Web - Model/View - Meus dados)
+    @RequestMapping(value = "forcavenda/editar/salvar", method = RequestMethod.POST)
+    public ModelAndView meusDadosSalvar(HttpSession session, @Valid @ModelAttribute("forcaVenda") ForcaVenda forcaVendaParam, BindingResult result) {
+
+    	if (result.hasErrors()) {
+    		return new ModelAndView("forcavenda/editar/editar", "forcaVenda", forcaVendaParam);
+    	} else {
+
+        	UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
+
+            ForcaVenda forcaVenda = forcaVendaService.ObterPorDocumento(usuario.getDocumento());
+
+            ForcaVenda forcaVendaAlterar = new ForcaVenda();
+            forcaVendaAlterar.setCdForcaVenda(forcaVenda.getCdForcaVenda());
+            forcaVendaAlterar.setNome(forcaVendaParam.getNome());
+            forcaVendaAlterar.setCelular(forcaVendaParam.getCelular());
+            forcaVendaAlterar.setEmail(forcaVendaParam.getEmail());
+
+            forcaVendaService.Alterar(forcaVendaAlterar);
+
+            //return this.home(session);
+            forcaVenda = forcaVendaService.ObterPorDocumento(usuario.getDocumento());
+            return new ModelAndView("forcavenda/editar/home", "forcaVenda", forcaVenda);
+    	}
+    }
+
 }
