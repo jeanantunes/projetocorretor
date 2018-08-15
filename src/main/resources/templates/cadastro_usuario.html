@@ -57,18 +57,28 @@
                     <h1 class="titleOdontCadastro text-center">
                         VAMOS COMEÇAR
                     </h1>
-                    <h2 class="subTitleOdont text-center">
-                        Para acessar, insira os dados abaixo
+                    <h2 class="subTitleOdont text-center" style="margin-top: 0px !important; margin-bottom: 70px !important;">
+                        Para acessar insira seu CPF
                     </h2>
                     <div>
                         <label class="label-cpf labelOdontBlur">CPF</label>
                     </div>
                     <div>
-                        <input type="tel" id="cpf" class="cpf inputLabelBlur">
+                        <div style="margin-right: 25px; text-align: right;">
+                            <img th:src="@{/img/x-mark-24.png}" class="img-erro-cpf" align="right" style="display: none"/>
+                        </div>
+                        <input type="tel" id="cpf" class="cpf inputLabelBlur validacaoDivErro">
                     </div>
 
-                    <div>
-                        <a class="btn btn-lg btn-block btnOdont" id="btnCpfOdont" role="button">CONTINUAR</a>
+                    <label></label>
+                    <div id="divErroCpf" style="display: none;">
+                        <p class="boxErroCadastro">
+                            O CPF que você inseriu não existe.
+                        </p>
+                    </div>
+
+                    <div class="margin-top-70">
+                        <a class="btn btn-lg btn-block btnOdontCinza disabled" id="btnCpfOdont" role="button">CONTINUAR</a>
                     </div>
                 </div>
 
@@ -79,22 +89,23 @@
     <!-- Bloco 2 -->
     <div class="container-fluid hide" id="celOdont">
         <div class="row">
-            <div class="col-md-12 boxHeader">
-                <div class="col-md-12 text-center imgLogoODPVHeader">
-                    <img src="img/logoODPV-header.png" class="" alt="Logo ODPV Header">
+            <div class="col-md-12 boxHeaderCadastro">
+                <img src="img/seta.png" class="seta-home" />
+                <div class="text-center">
+                    <img src="img/logoODPV-header.png" class="" alt="Logo ODPV Header" />
                 </div>
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-12 odontBoxCenter">
-                <h1 class="titleOdont text-center">
-                    CONFIRA SEUS DADOS
-                </h1>
-                <h2 class="subTitleOdont text-center">
-                    Corrija se necessário
-                </h2>
-                <div class="boxLabInput">
+                <div class="col-sm-offset-4 col-sm-4">
+                    <h1 class="titleOdont text-center">
+                        CONFIRA SEUS DADOS
+                    </h1>
+                    <h2 class="subTitleOdont text-center">
+                        Corrija se necessário
+                    </h2>
                     <div>
                         <label class="label-nome labelOdontFocus">Confirme seu nome</label>
                     </div>
@@ -113,13 +124,10 @@
                     <div>
                         <input type="text" class="email inputLabelFocus" id="emailPreCadastrado">
                     </div>
+                    <div class="col-md-12 btnPadBtm">
+                        <a href="" class="btn btn-lg btn-block btnOdont" id="btnCelOdont" role="button">CONTINUAR</a>
+                    </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12 btnPadBtm">
-                <a href="" class="btn btn-lg btn-block btnOdont" id="btnCelOdont" role="button">CONTINUAR</a>
             </div>
         </div>
     </div>
@@ -127,9 +135,10 @@
     <!-- Bloco 3 -->
     <div class="container-fluid hide" id="keyOdont">
         <div class="row">
-            <div class="col-md-12 boxHeader">
-                <div class="col-md-12 text-center imgLogoODPVHeader">
-                    <img src="img/logoODPV-header.png" class="" alt="Logo ODPV Header">
+            <div class="col-md-12 boxHeaderCadastro">
+                <img src="img/seta.png" class="seta-home" />
+                <div class="text-center">
+                    <img src="img/logoODPV-header.png" class="" alt="Logo ODPV Header" />
                 </div>
             </div>
         </div>
@@ -173,9 +182,10 @@
     <!-- Bloco 4 -->
     <div class="container-fluid hide" id="termoOdont">
         <div class="row">
-            <div class="col-md-12 boxHeader">
-                <div class="col-md-12 text-center imgLogoODPVHeader">
-                    <img src="img/logoODPV-header.png" class="" alt="Logo ODPV Header">
+            <div class="col-md-12 boxHeaderCadastro">
+                <img src="img/seta.png" class="seta-home" />
+                <div class="text-center">
+                    <img src="img/logoODPV-header.png" class="" alt="Logo ODPV Header" />
                 </div>
             </div>
         </div>
@@ -275,7 +285,7 @@
                     </p>
                 </div>
                 <div class="squaredOneTermoCadastrado">
-                    <input type="checkbox" value="None" id="squaredOneTermoCadastrado" name="check" class="checkbox inputLabelCheckFocus" disabled/>
+                    <input type="checkbox" value="None" id="squaredOneTermoCadastrado" name="check" class="checkbox inputLabelCheckFocus" disabled />
                     <label for="squaredOneTermoCadastrado" id="squaredOneTermoCadastradoLabel" class="Label-checkbox labelCheckOdontFocus checkbox-inline disabled">
                         <span class="spanCheckbox">
                             Aceito os termos de uso
@@ -298,9 +308,10 @@
  <!-- Bloco 6 -->
     <div class="container-fluid hide" id="termoOdontNCadastrado">
         <div class="row">
-            <div class="col-md-12 boxHeader">
-                <div class="col-md-12 text-center imgLogoODPVHeader">
-                    <img src="img/logoODPV-header.png" class="" alt="Logo ODPV Header">
+            <div class="col-md-12 boxHeaderCadastro">
+                <img src="img/seta.png" class="seta-home" />
+                <div class="text-center">
+                    <img src="img/logoODPV-header.png" class="" alt="Logo ODPV Header" />
                 </div>
             </div>
         </div>
@@ -400,8 +411,8 @@
                     </p>
                 </div>
                 <div class="squaredOne">
-                    <input type="checkbox" value="None" id="squaredOne" name="check" class="checkbox inputLabelCheckFocus" disabled/>
-                    <label for="squaredOne" id="squaredOneLabel" class="Label-checkbox labelCheckOdontFocus checkbox-inline disabled" >
+                    <input type="checkbox" value="None" id="squaredOne" name="check" class="checkbox inputLabelCheckFocus" disabled />
+                    <label for="squaredOne" id="squaredOneLabel" class="Label-checkbox labelCheckOdontFocus checkbox-inline disabled">
                         <span class="spanCheckbox">
                             Aceito os termos de uso
                         </span>
@@ -422,9 +433,10 @@
     <!-- Bloco 5 -->
     <div class="container-fluid hide" id="cadastroSucesso">
         <div class="row">
-            <div class="col-md-12 boxHeader">
-                <div class="col-md-12 text-center imgLogoODPVHeader">
-                    <img src="img/logoODPV-header.png" class="" alt="Logo ODPV Header">
+            <div class="col-md-12 boxHeaderCadastro">
+                <img src="img/seta.png" class="seta-home" />
+                <div class="text-center">
+                    <img src="img/logoODPV-header.png" class="" alt="Logo ODPV Header" />
                 </div>
             </div>
         </div>
@@ -468,49 +480,47 @@
     <!-- Bloco 1 -->
     <div class="container-fluid hide" id="divCadastroInativo">
         <div class="row">
-            <div class="col-md-12 boxHeader">
-                <div class="col-md-12 text-center imgLogoODPVHeader">
-                    <img src="img/logoODPV-header.png" class="" alt="Logo ODPV Header">
+            <div class="col-md-12 boxHeaderCadastro">
+                <img src="img/seta.png" class="seta-home" />
+                <div class="text-center">
+                    <img src="img/logoODPV-header.png" class="" alt="Logo ODPV Header" />
                 </div>
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-12 odontBoxCenter">
-                <h1 class="titleOdont text-center">
-                    CONFIRA SEUS DADOS
-                </h1>
-                <h2 class="subTitleOdont text-center">
-                    Corrija se necessário
-                </h2>
-                <div class="boxLabInput">
-                    <div>
-                        <label class="label-nome labelOdontFocus">Confirme seu nome</label>
-                    </div>
-                    <div>
-                        <input type="text" class="nome inputLabelFocus" id="nomeInativoCadastrado">
-                    </div>
-                    <div>
-                        <label class="label-celular labelOdontFocus">Confira o número do seu celular</label>
-                    </div>
-                    <div>
-                        <input type="text" class="celular inputLabelFocus" id="celularInativoCadastrado">
-                    </div>
-                    <div>
-                        <label class="label-email labelOdontFocus"> Confira seu e-mail</label>
-                    </div>
-                    <div>
-                        <input type="text" class="email inputLabelFocus" id="emailInativoCadastrado">
+                <div class="col-sm-offset-4 col-sm-4">
+                    <h1 class="titleOdont text-center">
+                        CONFIRA SEUS DADOS
+                    </h1>
+                    <h2 class="subTitleOdont text-center">
+                        Corrija se necessário
+                    </h2>
+                        <div>
+                            <label class="label-nome labelOdontFocus">Confirme seu nome</label>
+                        </div>
+                        <div>
+                            <input type="text" class="nome inputLabelFocus" id="nomeInativoCadastrado">
+                        </div>
+                        <div>
+                            <label class="label-celular labelOdontFocus">Confira o número do seu celular</label>
+                        </div>
+                        <div>
+                            <input type="text" class="celular inputLabelFocus" id="celularInativoCadastrado">
+                        </div>
+                        <div>
+                            <label class="label-email labelOdontFocus"> Confira seu e-mail</label>
+                        </div>
+                        <div>
+                            <input type="text" class="email inputLabelFocus" id="emailInativoCadastrado">
+                        </div>
+                        <div class="col-md-12 btnPadBtm">
+                            <a href="" class="btn btn-lg btn-block btnOdont" id="btnInativoCelOdont" role="button">CONTINUAR</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12 btnPadBtm">
-                <a href="" class="btn btn-lg btn-block btnOdont" id="btnInativoCelOdont" role="button">CONTINUAR</a>
-            </div>
-        </div>
     </div>
     <!-- End Bloco 1 -->
 	
@@ -518,9 +528,10 @@
     <!-- Bloco 1 -->
     <div class="container-fluid hide" id="celOdontCorretora">
         <div class="row">
-            <div class="col-md-12 boxHeader">
-                <div class="col-md-12 text-center imgLogoODPVHeader">
-                    <img src="img/logoODPV-header.png" class="" alt="Logo ODPV Header">
+            <div class="col-md-12 boxHeaderCadastro">
+                <img src="img/seta.png" class="seta-home" />
+                <div class="text-center">
+                    <img src="img/logoODPV-header.png" class="" alt="Logo ODPV Header" />
                 </div>
             </div>
         </div>
@@ -568,9 +579,10 @@
     <!-- Bloco 2 -->
     <div class="container-fluid hide" id="keyOdontCorretora">
         <div class="row">
-            <div class="col-md-12 boxHeader">
-                <div class="col-md-12 text-center imgLogoODPVHeader">
-                    <img src="img/logoODPV-header.png" class="" alt="Logo ODPV Header">
+            <div class="col-md-12 boxHeaderCadastro">
+                <img src="img/seta.png" class="seta-home" />
+                <div class="text-center">
+                    <img src="img/logoODPV-header.png" class="" alt="Logo ODPV Header" />
                 </div>
             </div>
         </div>
@@ -613,9 +625,10 @@
     <!-- Bloco 3 -->
     <div class="container-fluid hide" id="infoCorretora">
         <div class="row">
-            <div class="col-md-12 boxHeader">
-                <div class="col-md-12 text-center imgLogoODPVHeader">
-                    <img src="img/logoODPV-header.png" class="" alt="Logo ODPV Header">
+            <div class="col-md-12 boxHeaderCadastro">
+                <img src="img/seta.png" class="seta-home" />
+                <div class="text-center">
+                    <img src="img/logoODPV-header.png" class="" alt="Logo ODPV Header" />
                 </div>
             </div>
         </div>
@@ -657,9 +670,10 @@
     <!-- Bloco 4 -->
     <div class="container-fluid hide" id="cadastroSucessoCorretora">
         <div class="row">
-            <div class="col-md-12 boxHeader">
-                <div class="col-md-12 text-center imgLogoODPVHeader">
-                    <img src="img/logoODPV-header.png" class="" alt="Logo ODPV Header">
+            <div class="col-md-12 boxHeaderCadastro">
+                <img src="img/seta.png" class="seta-home" />
+                <div class="text-center">
+                    <img src="img/logoODPV-header.png" class="" alt="Logo ODPV Header" />
                 </div>
             </div>
         </div>
@@ -678,7 +692,7 @@
                 <div class="boxLabInput">
                     <div class="row">
                         <div class="col-md-12 btnPadBtmTop">
-                            <a href="/login" class="btn btn-lg btn-block btnOdont" role="button" >VOLTAR</a>
+                            <a href="/login" class="btn btn-lg btn-block btnOdont" role="button">VOLTAR</a>
                         </div>
                     </div>
                 </div>
