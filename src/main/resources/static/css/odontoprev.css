@@ -12,6 +12,10 @@
 
 /********* Novas classes cadastro *********/
 
+.modal-backdrop {
+    opacity: 0.16 !important;
+}
+
 .boxErroCadastro {
     font-family: Roboto-Medium;
     text-align: left;
@@ -1303,7 +1307,7 @@ h5, .subListBox {
 .btnOdontCinza {
     font-family: Roboto-Medium;
     font-size: 12pt;
-    background-color: #a0a0a0;
+    background-color: #a0a0a0 !important;
     color: #fff !important;
     padding: 16px;
 }
@@ -1392,6 +1396,33 @@ h5, .subListBox {
     color: #1974CE;
     font-size: 15pt;
     padding-top: 30px;
+    margin-bottom: 0px !important;
+}
+
+.modalContainerErros {
+    margin-left: 15px;
+    margin-right: 15px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    display: table;
+    max-width: 100%;
+    margin-top: 5%;
+}
+
+.closeModalErros {
+    margin: 0;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 23px;
+    height: 23px;
+    border-radius: 23px;
+    background-color: #00aeef;
+    color: #ffe300;
+    font-size: 9px;
+    opacity: 1;
 }
 
 .labelInfoOdontFocus {
@@ -1632,6 +1663,21 @@ h5, .subListBox {
     margin: auto;
     display: table;
     max-width: 90%;
+}
+
+.closeModaisCadastro {
+    margin: 0;
+    position: absolute;
+    top: -5px;
+    text-align: right;
+    right: -10px;
+    width: 30px;
+    border-radius: 23px;
+    background-color: #00aeef;
+    color: #ffe300;
+    font-size: 9px;
+    opacity: 1;
+    z-index: 10;
 }
 
 .closeModalMateriais {

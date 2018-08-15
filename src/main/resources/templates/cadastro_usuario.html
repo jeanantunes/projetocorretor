@@ -29,8 +29,8 @@
     <script type="text/javascript" src="app/odonto-Valida.js"></script>
     <script type="text/javascript" src="app/scripts.js"></script>
     <script type="text/javascript" src="app/coordenador.js"></script>
-    <script type="text/javascript" src="app/cadastroCoordenadorController.js"></script>
-    <script type="text/javascript" src="app/cadastroUsuarioController.js" charset="ISO-8859-1"></script>
+    <script type="text/javascript" src="app/cadastroCoordenadorController.js" charset="ISO-8859-1"></script>
+    <script type="text/javascript" src="app/cadastroUsuarioController.js" charset="UTF-8"></script>
     <script type="text/javascript" src="app/sweetalert.min.js"></script>
     <script type="text/javascript" src="app/odontoprev.js"></script>
 
@@ -51,8 +51,6 @@
 
         <div class="row">
             <div class="col-md-12 odontBoxCenter">
-
-
                 <div class="col-sm-offset-4 col-sm-4">
                     <h1 class="titleOdontCadastro text-center">
                         VAMOS COMEÇAR
@@ -65,7 +63,7 @@
                     </div>
                     <div>
                         <div style="margin-right: 25px; text-align: right;">
-                            <img th:src="@{/img/x-mark-24.png}" class="img-erro-cpf" align="right" style="display: none"/>
+                            <img th:src="@{/img/x-mark-24.png}" class="img-erro-cpf" align="right" style="display: none" />
                         </div>
                         <input type="tel" id="cpf" class="cpf inputLabelBlur validacaoDivErro">
                     </div>
@@ -78,7 +76,7 @@
                     </div>
 
                     <div class="margin-top-70">
-                        <a class="btn btn-lg btn-block btnOdontCinza disabled" id="btnCpfOdont" role="button">CONTINUAR</a>
+                        <a class="btn btnOdont btn-lg btn-block btnOdontCinza disabled" id="btnCpfOdont" role="button">CONTINUAR</a>
                     </div>
                 </div>
 
@@ -110,7 +108,7 @@
                         <label class="label-nome labelOdontFocus">Confirme seu nome</label>
                     </div>
                     <div>
-                        <input type="text" class="nome inputLabelFocus" id="nomePreCadastrado">
+                        <input type="text" class="nome inputLabelFocus" id="nomePreCadastrado" maxlength="255">
                     </div>
                     <div>
                         <label class="label-celular labelOdontFocus">Confira o número do seu celular</label>
@@ -122,10 +120,10 @@
                         <label class="label-email labelOdontFocus"> Confira seu e-mail</label>
                     </div>
                     <div>
-                        <input type="text" class="email inputLabelFocus" id="emailPreCadastrado">
+                        <input type="text" class="email inputLabelFocus" id="emailPreCadastrado" maxlength="80">
                     </div>
-                    <div class="col-md-12 btnPadBtm">
-                        <a href="" class="btn btn-lg btn-block btnOdont" id="btnCelOdont" role="button">CONTINUAR</a>
+                    <div class="btnPadBtm">
+                        <a class="btn btn-lg btn-block btnOdont" id="btnCelOdont" role="button">CONTINUAR</a>
                     </div>
                 </div>
             </div>
@@ -178,7 +176,6 @@
         </div>
     </div>
     <!-- End Bloco 3 -->
-    
     <!-- Bloco 4 -->
     <div class="container-fluid hide" id="termoOdont">
         <div class="row">
@@ -303,9 +300,7 @@
         </div>
     </div>
     <!-- End Bloco 4 -->
-
-
- <!-- Bloco 6 -->
+    <!-- Bloco 6 -->
     <div class="container-fluid hide" id="termoOdontNCadastrado">
         <div class="row">
             <div class="col-md-12 boxHeaderCadastro">
@@ -429,7 +424,6 @@
         </div>
     </div>
     <!-- End Bloco 6 -->
-
     <!-- Bloco 5 -->
     <div class="container-fluid hide" id="cadastroSucesso">
         <div class="row">
@@ -474,9 +468,7 @@
     <!-- End Bloco 5 -->
     <!-- End Cadastro Usuário CPF cadastrado -->
     <!-- ****************************************************************************************** -->
-	
-	<!-- Cadastro Usuário com CPF inativo ou reprovado -->
-
+    <!-- Cadastro Usuário com CPF inativo ou reprovado -->
     <!-- Bloco 1 -->
     <div class="container-fluid hide" id="divCadastroInativo">
         <div class="row">
@@ -497,34 +489,33 @@
                     <h2 class="subTitleOdont text-center">
                         Corrija se necessário
                     </h2>
-                        <div>
-                            <label class="label-nome labelOdontFocus">Confirme seu nome</label>
-                        </div>
-                        <div>
-                            <input type="text" class="nome inputLabelFocus" id="nomeInativoCadastrado">
-                        </div>
-                        <div>
-                            <label class="label-celular labelOdontFocus">Confira o número do seu celular</label>
-                        </div>
-                        <div>
-                            <input type="text" class="celular inputLabelFocus" id="celularInativoCadastrado">
-                        </div>
-                        <div>
-                            <label class="label-email labelOdontFocus"> Confira seu e-mail</label>
-                        </div>
-                        <div>
-                            <input type="text" class="email inputLabelFocus" id="emailInativoCadastrado">
-                        </div>
-                        <div class="col-md-12 btnPadBtm">
-                            <a href="" class="btn btn-lg btn-block btnOdont" id="btnInativoCelOdont" role="button">CONTINUAR</a>
-                        </div>
+                    <div>
+                        <label class="label-nome labelOdontFocus">Confirme seu nome</label>
+                    </div>
+                    <div>
+                        <input type="text" class="nome inputLabelFocus" id="nomeInativoCadastrado" maxlength="255">
+                    </div>
+                    <div>
+                        <label class="label-celular labelOdontFocus">Confira o número do seu celular</label>
+                    </div>
+                    <div>
+                        <input type="text" class="celular inputLabelFocus" id="celularInativoCadastrado">
+                    </div>
+                    <div>
+                        <label class="label-email labelOdontFocus"> Confira seu e-mail</label>
+                    </div>
+                    <div>
+                        <input type="text" class="email inputLabelFocus" id="emailInativoCadastrado" maxlength="80">
+                    </div>
+                    <div class="btnPadBtm">
+                        <a class="btn btn-lg btn-block btnOdont" id="btnInativoCelOdont" role="button">CONTINUAR</a>
                     </div>
                 </div>
             </div>
+        </div>
     </div>
     <!-- End Bloco 1 -->
-	
-	<!-- Cadastro Usuário CPF não cadastrado -->
+    <!-- Cadastro Usuário CPF não cadastrado -->
     <!-- Bloco 1 -->
     <div class="container-fluid hide" id="celOdontCorretora">
         <div class="row">
@@ -538,14 +529,14 @@
 
         <div class="row">
             <div class="col-md-12 odontBoxCenter">
-                <h1 class="titleOdont text-center">
-                    Preencha seus dados
-                </h1>
-                <h2 class="subTitleOdont text-center">
-                    Não identificamos seu CPF nos nossos registros, por favor informe seus dados.
-                </h2>
+                <div class="col-sm-offset-4 col-sm-4">
+                    <h1 class="titleOdont text-center margin-top-70">
+                        PREENCHA SEUS DADOS
+                    </h1>
+                    <h2 class="subTitleOdont text-center">
+                        Não identificamos seu CPF nos nossos registros, por favor informe seus dados.
+                    </h2>
 
-                <div class="boxLabInput">
                     <div>
                         <label class="label-nome labelOdontBlur">Nome</label>
                     </div>
@@ -562,20 +553,20 @@
                         <label class="label-email labelOdontBlur">E-mail</label>
                     </div>
                     <div>
-                        <input type="text" class="email inputLabelBlur" id="emailNaoCadastrado">
+                        <input type="text" class="email inputLabelBlur" id="emailNaoCadastrado" maxlength="80">
+                    </div>
+                    <div class="margin-top-70">
+                        <a class="btn btnOdont btn-lg btn-block btnOdontCinza disabled" id="btnCelOdontNCpf" role="button">CONTINUAR</a>
                     </div>
                 </div>
             </div>
-        </div>
+            </div>
 
         <div class="row">
-            <div class="col-md-12 btnPadBtm">
-                <a href="" class="btn btn-lg btn-block btnOdont disabled" id="btnCelOdontNCpf" role="button">CONTINUAR</a>
-            </div>
+
         </div>
     </div>
     <!-- End Bloco 1-->
-  
     <!-- Bloco 2 -->
     <div class="container-fluid hide" id="keyOdontCorretora">
         <div class="row">
@@ -701,12 +692,12 @@
     </div>
     <!-- End Bloco 4 -->
     <!-- Modal -->
-    <div class="modal fade" id="myModal" role="dialog">
+    <!--<div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog modalConteiner">
             <div class="modal-content">
                 <div class="modal-body modalBoxCenter">
                     <img th:src="@{/img/btn-excluir.png}" class="closeModal" data-dismiss="modal" class="btnExcluir" alt="">
-                       <div class="row">
+                    <div class="row">
                         <h1 class="titleOdont text-center">
                             ATENÇÃO
                         </h1>
@@ -722,8 +713,28 @@
                 </div>
             </div>
         </div>
+    </div>-->
+    <!-- End Modal -->
+
+    <!-- Modal -->
+    <div class="modal " id="modalErroCadastro" role="dialog">
+        <div class="modal-dialog modalContainerErros" style="margin: 20px !important" data-keyboard="false" data-backdrop="static">
+            <div class="modal-content" style="margin-top: 50%; border-radius: 0%; border: 0px !important; box-shadow: 0 3px 1px rgba(0,0,0,.16)">
+                <img src="img/btn-excluir.png" class="closeModaisCadastro btnExcluir" data-dismiss="modal" alt="" />
+                <div class="modal-body" style="margin-left: 30px; margin-right: 30px; margin-top: 10px; margin-bottom: 10px;">
+                    <label style="font-family: Roboto-Regular; color: #FF4141; text-align: center; font-size: 30px;">
+                        Você já está cadastrado
+                    </label>
+                    <label style="font-family: Roboto-Regular; color: #656565; text-align: center; font-size: 16px; margin-top: 10px;">
+                        Volte para a página inicial, insira seu CPF e senha e clique em entrar.
+                    </label>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- End Modal -->
+
+
     <!-- End Cadastro Usuário CPF não cadastrado -->
 
 </body>

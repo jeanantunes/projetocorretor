@@ -59,32 +59,33 @@ $(document).ready(function () {
                 callForcaVenda(function (dataDadosUsuario) {
 
                     if (dataDadosUsuario.statusForcaVenda == "Aguardando Aprovação") {
-                        console.log("Executou swal");
+
                         swal("Ops!", "Seu cadastro está aguardando aprovação!", "error");
-
-                        //window.location = "index.html";
-
                         return;
                     }
 
                     if (dataDadosUsuario.statusForcaVenda == "Ativo") {
-                        console.log("Executou swal");
-                        swal("Ops!", "Você já está cadastrado, clique em entrar!", "error");
 
-                        //window.location = "index.html";
+                        swal({
+                            title: "Você já está cadastrado",
+                            text: "Volte para a página inicial, insira seu CPF e senha e clique em entrar.",
+                            type: "error",
+                            showCancelButton: false,
+                            confirmButtonText: 'OK',
+                            closeOnConfirm: false,
+                            closeOnCancel: false
+                        });
 
                         return;
                     }
-                    // || dataDadosUsuario.statusForcaVenda.toUpperCase() == "INATIVO" || dataDadosUsuario.statusForcaVenda.toUpperCase() == "REPROVADO"
 
                     if (dataDadosUsuario.cdForcaVenda != null && dataDadosUsuario.statusForcaVenda.toUpperCase() == "PRÉ-CADASTRO") {
 
                         swal.close();
-                        console.log(dataDadosUsuario);
                         $("#celOdont").removeClass("hide");
                         $("#cpfOdont").addClass("hide");
                         $("#nomePreCadastrado").val(dataDadosUsuario.nome);
-                        $("#celularPreCadastrado").val(dataDadosUsuario.celular);
+                        $("#celularPreCadastrado").val(aplicarMascaraTelefone(dataDadosUsuario.celular));
                         $("#emailPreCadastrado").val(dataDadosUsuario.email);
 
                         localStorage.setItem("dadosUsuario", JSON.stringify(dataDadosUsuario));
@@ -95,11 +96,10 @@ $(document).ready(function () {
                     
                         swal.close();
                         put("reCadastro", true);
-                        console.log(dataDadosUsuario);
                         $("#divCadastroInativo").removeClass("hide");
                         $("#cpfOdont").addClass("hide");
                         $("#nomeInativoCadastrado").val(dataDadosUsuario.nome);
-                        $("#celularInativoCadastrado").val(dataDadosUsuario.celular);
+                        $("#celularInativoCadastrado").val(aplicarMascaraTelefone(dataDadosUsuario.celular));
                         $("#emailInativoCadastrado").val(dataDadosUsuario.email);
                     
                         localStorage.setItem("dadosUsuario", JSON.stringify(dataDadosUsuario));
@@ -107,7 +107,6 @@ $(document).ready(function () {
                     }
                     else if (dataDadosUsuario.cdForcaVenda == null) {
                         swal.close();
-                        console.log(dataDadosUsuario);
                         put("reCadastro", false);
                         $("#celOdontCorretora").removeClass("hide");
                         $("#cpfOdont").addClass("hide");
@@ -117,7 +116,6 @@ $(document).ready(function () {
             });
         }
     });
-
 
     $("#btnInfoCorretoraNCpf").click(function () {
 
@@ -129,12 +127,8 @@ $(document).ready(function () {
                 if (dataCorretora.cdCorretora == 0) {
          
                     $("#myModal").modal();
-
                     return;
                 }
-
-
-                //$("#termoOdontNCadastrado").removeClass('hide');
 
                 var reCadastro = get("reCadastro");
 
@@ -222,10 +216,6 @@ $(document).ready(function () {
         }
     });
 
-
-    // Aqui come�a a validacao dos campos de cadastro 
-
-
     $("#cpf").keyup(function () {
 
         if ($("#cpf").val().length == 14 && TestaCPF($("#cpf").val().replace(/\D/g, ''))) {
@@ -274,9 +264,6 @@ $(document).ready(function () {
 
         var dados = get("dadosUsuario");
 
-        console.log("Dados");
-        console.log(dados);
-
         var senha = $("#confirmar-senhaCpfTrue").val();
         var cpf = $("#cpf").val().replace(/\D/g, '');
         var nome = $("#nomePreCadastrado").val();
@@ -287,8 +274,6 @@ $(document).ready(function () {
         var cnpj = dados.corretora.cnpj;
         var nomeEmpresa = dados.corretora.razaoSocial;
         var codigoForca = dados.cdForcaVenda;
-
-        console.log(nomeEmpresa);
 
         callTokenProd(function (dataToken) {
 
@@ -301,9 +286,6 @@ $(document).ready(function () {
                 dados.cnpj = cnpj;
 
                 put("dadosUsuario", JSON.stringify(dados));
-
-                console.log(get("dadosUsuario"));
-
 
                 callForcaVenda(function (dataDadosUsuario) {
 
@@ -410,7 +392,6 @@ $(document).ready(function () {
 
         } else if (confirmarSenha == senha && confirmarSenha.length > 7 && senha.length > 7) {
 
-            console.log("Teste");
             $("#confirmar-senhaCpfTrue").css({ "border-color": "#3A94FB" });
             $("#confirmar-senhaCpfTrue").css("color", "#3A94FB");
             $(".label-password-confirm").css("color", "#3A94FB");
@@ -418,9 +399,7 @@ $(document).ready(function () {
         }
     });
 
-
-    // Valida�ao da pagina de cadastro nao associado a corretora
-
+    // Validaçao da pagina de cadastro nao associado a corretora
 
     $("#senhaCpfFalse").blur(function () {
 
@@ -652,7 +631,7 @@ function callCorretora(callback, token, cnpj) {
     });
 }
 
-// Aqui come�a validacao de campos
+// Aqui começa validacao de campos
 
 function validateEmail(email) {
     var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
