@@ -11,7 +11,9 @@ public class ForcaVenda implements Serializable {
 
     private String error;
     private Long cdForcaVenda;
-
+    
+    @NotBlank //201808141848 - esert - COR-362 - inc
+    @NotEmpty //201808141848 - esert - COR-362 - inc
     private String nome;
     
     @NotBlank
@@ -34,12 +36,12 @@ public class ForcaVenda implements Serializable {
     private String responsavel;
     private String rg;
     
-    @NotBlank
-    @NotEmpty
+	//@NotBlank //201808141848 - esert - COR-362 - exc - rota troca senha (forcavenda/cadastro/salvar) fora de uso
+	//@NotEmpty //201808141848 - esert - COR-362 - exc - rota troca senha (forcavenda/cadastro/salvar) fora de uso
     private String senha;
 
-    @NotBlank
-    @NotEmpty
+	//@NotBlank //201808141848 - esert - COR-362 - exc - rota troca senha (forcavenda/cadastro/salvar) fora de uso
+	//@NotEmpty //201808141848 - esert - COR-362 - exc - rota troca senha (forcavenda/cadastro/salvar) fora de uso
     private String confirmaSenha;
    
     private String canalVenda;
