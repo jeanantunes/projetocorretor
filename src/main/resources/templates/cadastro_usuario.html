@@ -51,8 +51,6 @@
 
         <div class="row">
             <div class="col-md-12 odontBoxCenter">
-
-
                 <div class="col-sm-offset-4 col-sm-4">
                     <h1 class="titleOdontCadastro text-center">
                         VAMOS COMEÇAR
@@ -78,7 +76,7 @@
                     </div>
 
                     <div class="margin-top-70">
-                        <a class="btn btn-lg btn-block btnOdontCinza disabled" id="btnCpfOdont" role="button">CONTINUAR</a>
+                        <a class="btn btnOdont btn-lg btn-block btnOdontCinza disabled" id="btnCpfOdont" role="button">CONTINUAR</a>
                     </div>
                 </div>
 
@@ -110,7 +108,7 @@
                         <label class="label-nome labelOdontFocus">Confirme seu nome</label>
                     </div>
                     <div>
-                        <input type="text" class="nome inputLabelFocus" id="nomePreCadastrado">
+                        <input type="text" class="nome inputLabelFocus" id="nomePreCadastrado" maxlength="255">
                     </div>
                     <div>
                         <label class="label-celular labelOdontFocus">Confira o número do seu celular</label>
@@ -122,7 +120,7 @@
                         <label class="label-email labelOdontFocus"> Confira seu e-mail</label>
                     </div>
                     <div>
-                        <input type="text" class="email inputLabelFocus" id="emailPreCadastrado">
+                        <input type="text" class="email inputLabelFocus" id="emailPreCadastrado" maxlength="80">
                     </div>
                     <div class="btnPadBtm">
                         <a class="btn btn-lg btn-block btnOdont" id="btnCelOdont" role="button">CONTINUAR</a>
@@ -495,7 +493,7 @@
                         <label class="label-nome labelOdontFocus">Confirme seu nome</label>
                     </div>
                     <div>
-                        <input type="text" class="nome inputLabelFocus" id="nomeInativoCadastrado">
+                        <input type="text" class="nome inputLabelFocus" id="nomeInativoCadastrado" maxlength="255">
                     </div>
                     <div>
                         <label class="label-celular labelOdontFocus">Confira o número do seu celular</label>
@@ -507,7 +505,7 @@
                         <label class="label-email labelOdontFocus"> Confira seu e-mail</label>
                     </div>
                     <div>
-                        <input type="text" class="email inputLabelFocus" id="emailInativoCadastrado">
+                        <input type="text" class="email inputLabelFocus" id="emailInativoCadastrado" maxlength="80">
                     </div>
                     <div class="btnPadBtm">
                         <a class="btn btn-lg btn-block btnOdont" id="btnInativoCelOdont" role="button">CONTINUAR</a>
@@ -531,14 +529,14 @@
 
         <div class="row">
             <div class="col-md-12 odontBoxCenter">
-                <h1 class="titleOdont text-center">
-                    Preencha seus dados
-                </h1>
-                <h2 class="subTitleOdont text-center">
-                    Não identificamos seu CPF nos nossos registros, por favor informe seus dados.
-                </h2>
+                <div class="col-sm-offset-4 col-sm-4">
+                    <h1 class="titleOdont text-center margin-top-70">
+                        PREENCHA SEUS DADOS
+                    </h1>
+                    <h2 class="subTitleOdont text-center">
+                        Não identificamos seu CPF nos nossos registros, por favor informe seus dados.
+                    </h2>
 
-                <div class="boxLabInput">
                     <div>
                         <label class="label-nome labelOdontBlur">Nome</label>
                     </div>
@@ -555,16 +553,17 @@
                         <label class="label-email labelOdontBlur">E-mail</label>
                     </div>
                     <div>
-                        <input type="text" class="email inputLabelBlur" id="emailNaoCadastrado">
+                        <input type="text" class="email inputLabelBlur" id="emailNaoCadastrado" maxlength="80">
+                    </div>
+                    <div class="margin-top-70">
+                        <a class="btn btnOdont btn-lg btn-block btnOdontCinza disabled" id="btnCelOdontNCpf" role="button">CONTINUAR</a>
                     </div>
                 </div>
             </div>
-        </div>
+            </div>
 
         <div class="row">
-            <div class="col-md-12 btnPadBtm">
-                <a href="" class="btn btn-lg btn-block btnOdont disabled" id="btnCelOdontNCpf" role="button">CONTINUAR</a>
-            </div>
+
         </div>
     </div>
     <!-- End Bloco 1-->

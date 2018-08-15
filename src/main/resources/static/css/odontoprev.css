@@ -1307,7 +1307,7 @@ h5, .subListBox {
 .btnOdontCinza {
     font-family: Roboto-Medium;
     font-size: 12pt;
-    background-color: #a0a0a0;
+    background-color: #a0a0a0 !important;
     color: #fff !important;
     padding: 16px;
 }
