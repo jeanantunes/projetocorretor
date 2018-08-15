@@ -1276,6 +1276,14 @@ h5, .subListBox {
     padding: 16px;
 }
 
+.btnOdontDisable {
+    font-family: Roboto-Medium;
+    font-size: 12pt;
+    background-color: #cccccc;
+    color: #fff !important;
+    padding: 16px;
+}
+
 .btnOdont:hover {
     color: #fff !important;
 }
