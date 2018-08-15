@@ -26,8 +26,7 @@ $(document).ready(function () {
     $("#termoNCadastrado").scroll(function () {
 
         if ($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight) {
-     
-             console.log("estou aqui");
+
              $("#squaredOne").prop('disabled', false);
              $("#squaredOneLabel").prop('disabled', false);
              
@@ -161,8 +160,6 @@ $(document).ready(function () {
 
                 } else {
 
-
-
                     var dadosUsuario = get("dadosUsuario");
                     var codCorretora = dataCorretora.cdCorretora;
                     var nome = $("#nomeInativoCadastrado").val();
@@ -181,8 +178,6 @@ $(document).ready(function () {
                     }, dataToken.token, dadosUsuario.cdForcaVenda, nome, celularTratado, email, senha, codCorretora);
 
                 }
-
-
 
 
             }, dataToken.token, cnpjValidado);

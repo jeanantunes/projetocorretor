@@ -1,3 +1,25 @@
+/********** SWEET ALERT ************/
+
+.swal-overlay {
+    background-color: rgba(43, 165, 137, 0.45);
+}
+
+/********** FIM SWEET ALERT ************/
+
+
+/********** SETA DE VOLTAR PARA PAGE ANTERIOR **********/
+
+.seta-home {
+    float: left;
+    max-width: 100%;
+    outline: none;
+    margin-left: 0% !important;
+    width: 20px;
+}
+
+/****************************************************/
+
+
 .nomeRegex {
     text-transform: uppercase;
 }
@@ -8,6 +30,10 @@
 
 .sweet-alert {
     margin-top: 10% !important;
+}
+
+.margin-bottom-btn {
+    margin-bottom: 10% !important;
 }
 
 .backTopOdont {
@@ -94,6 +120,12 @@
     box-shadow: 0px 0px 50px 0px #EFEFEF;
     padding: 50px 0px 0px 0px;
 
+}
+
+.boxHeaderCadastro {
+    border: 1px solid #fff;
+    box-shadow: 0px 0px 50px 0px #EFEFEF;
+    padding: 20px 0px 20px 0px;
 }
 
 .btnEnter {
