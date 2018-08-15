@@ -2474,6 +2474,13 @@ img.img-senha {
     color: #1974CE;
 }
 
+.seta-home {
+    float: left;
+    max-width: 100%;
+    outline: none;
+    margin-left: 35%;
+}
+
 .sub-title-index {
     color: #6A6A6A;
     font-weight: ligther;
