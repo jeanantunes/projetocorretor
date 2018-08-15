@@ -136,7 +136,8 @@ public class ForcaVendaController {
     public ModelAndView meusDados(HttpSession session) {
    	 	UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
         ForcaVenda forcaVenda = forcaVendaService.ObterPorDocumento(usuario.getDocumento());
-        return new ModelAndView("forcavenda/editar/home", "forcaVenda", forcaVenda);
+        //return new ModelAndView("forcavenda/editar/home", "forcaVenda", forcaVenda);
+        return new ModelAndView("forcavenda/editar/meus_dados", "forcaVenda", forcaVenda);
     }
     
     //201808141815 - esert - COR-363 (Web - Model/View - Meus dados)
@@ -144,7 +145,8 @@ public class ForcaVendaController {
     public ModelAndView meusDadosEditar(HttpSession session) {
    	 	UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
         ForcaVenda forcaVenda = forcaVendaService.ObterPorDocumento(usuario.getDocumento());
-        return new ModelAndView("forcavenda/editar/editar", "forcaVenda", forcaVenda);
+        //return new ModelAndView("forcavenda/editar/editar", "forcaVenda", forcaVenda);
+        return new ModelAndView("forcavenda/editar/meus_dados_edicao", "forcaVenda", forcaVenda);
     }
     
     //201808141820 - esert - COR-363 (Web - Model/View - Meus dados)
@@ -152,7 +154,8 @@ public class ForcaVendaController {
     public ModelAndView meusDadosSalvar(HttpSession session, @Valid @ModelAttribute("forcaVenda") ForcaVenda forcaVendaParam, BindingResult result) {
 
     	if (result.hasErrors()) {
-    		return new ModelAndView("forcavenda/editar/editar", "forcaVenda", forcaVendaParam);
+    		//return new ModelAndView("forcavenda/editar/editar", "forcaVenda", forcaVendaParam);
+    		return new ModelAndView("forcavenda/editar/meus_dados_edicao", "forcaVenda", forcaVendaParam);
     	} else {
 
         	UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
@@ -173,7 +176,8 @@ public class ForcaVendaController {
 
             //return this.home(session);
             forcaVenda = forcaVendaService.ObterPorDocumento(usuario.getDocumento());
-            return new ModelAndView("forcavenda/editar/home", "forcaVenda", forcaVenda);
+            //return new ModelAndView("forcavenda/editar/home", "forcaVenda", forcaVenda);
+            return new ModelAndView("forcavenda/editar/meus_dados", "forcaVenda", forcaVenda);
     	}
     }
 

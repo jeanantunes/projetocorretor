@@ -116,5 +116,15 @@ public class Corretora {
 
 	public void setConta(Conta conta) {
 		this.conta = conta;
+	}
+
+	//201808151456 - esert - COR-362
+	@Override
+	public String toString() {
+		return "Corretora [cdCorretora=" + cdCorretora + ", cnpj=" + cnpj + ", razaoSocial=" + razaoSocial + ", cnae="
+				+ cnae + ", telefone=" + telefone + ", celular=" + celular + ", email=" + email + ", statusCnpj="
+				+ statusCnpj + ", simplesNacional=" + simplesNacional + ", dataAbertura=" + dataAbertura
+				+ ", enderecoCorretora=" + enderecoCorretora + ", conta=" + conta + "]";
 	}    
+	
 }
