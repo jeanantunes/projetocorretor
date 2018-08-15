@@ -40,6 +40,33 @@ $("#cpfcnpj").keyup(function() {
 
 });
 
+$(".validacaoDivErro").blur(function () {
+
+    if ($("#cpfcnpj").val().length == 14 && TestaCPF($("#cpfcnpj").val().replace(/\D/g, ''))) {
+        $("#btnOdont").removeClass('disabled');
+        $("#btnOdont").removeClass('btnOdonCinza');
+        $("#btnOdont").addClass('btnOdont');
+        $(".img-erro-cpf").hide(250);
+        $("#divErroCpf").hide(250);
+        return;
+    }
+
+    if ($("#cpfcnpj").val().length == 18 && validaCnpj($("#cpfcnpj").val().replace(/\D/g, ''))) {
+        $("#btnOdont").removeClass('disabled');
+        $("#btnOdont").removeClass('btnOdontCinza');
+        $("#btnOdont").addClass('btnOdont');
+        $(".img-erro-cpf").hide(250);
+        $("#divErroCpf").hide(250);
+        return;
+    }
+
+    $(".img-erro-cpf").show(250);
+    $("#divErroCpf").show(250);
+    $("#btnOdont").addClass('disabled');
+    $("#btnOdont").addClass('btnOdontCinza');
+
+});
+
 
 
 $("#continuarRecuperacaoDeSenha").click(function () {

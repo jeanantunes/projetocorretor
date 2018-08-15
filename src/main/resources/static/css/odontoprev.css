@@ -4,7 +4,35 @@
     background-color: rgba(43, 165, 137, 0.45);
 }
 
+.sweet-alert {
+    margin-top: 05% !important;
+}
+
 /********** FIM SWEET ALERT ************/
+
+/********* Novas classes cadastro *********/
+
+.modal-backdrop {
+    opacity: 0.16 !important;
+}
+
+.boxErroCadastro {
+    font-family: Roboto-Medium;
+    text-align: left;
+    color: white;
+    background-color: red;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+img.img-erro-cpf {
+    position: absolute;
+    max-width: 100%;
+}
+
+/******************************/
 
 
 /********** SETA DE VOLTAR PARA PAGE ANTERIOR **********/
@@ -19,6 +47,13 @@
 
 /****************************************************/
 
+.margin-bottom-70 {
+    margin-bottom: 70px;
+}
+
+.margin-top-70 {
+    margin-top: 70px;
+}
 
 .nomeRegex {
     text-transform: uppercase;
@@ -26,10 +61,6 @@
 
 .backFrontOdont {
     background-color: #F1F9FF;
-}
-
-.sweet-alert {
-    margin-top: 10% !important;
 }
 
 .margin-bottom-btn {
@@ -1276,6 +1307,14 @@ h5, .subListBox {
     padding: 16px;
 }
 
+.btnOdontCinza {
+    font-family: Roboto-Medium;
+    font-size: 12pt;
+    background-color: #a0a0a0 !important;
+    color: #fff !important;
+    padding: 16px;
+}
+
 .btnOdont:hover {
     color: #fff !important;
 }
@@ -1359,7 +1398,34 @@ h5, .subListBox {
     font-family: Roboto-Medium;
     color: #1974CE;
     font-size: 15pt;
-    padding-top: 10%;
+    padding-top: 30px;
+    margin-bottom: 0px !important;
+}
+
+.modalContainerErros {
+    margin-left: 15px;
+    margin-right: 15px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    display: table;
+    max-width: 100%;
+    margin-top: 5%;
+}
+
+.closeModalErros {
+    margin: 0;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 23px;
+    height: 23px;
+    border-radius: 23px;
+    background-color: #00aeef;
+    color: #ffe300;
+    font-size: 9px;
+    opacity: 1;
 }
 
 .labelInfoOdontFocus {
@@ -1442,7 +1508,7 @@ h5, .subListBox {
     background: transparent;
     box-shadow: 0 0 0 0;
     border-radius: 0;
-    border-bottom: 1px solid #ACAAA5;
+    border-bottom: 2px solid #ACAAA5;
 }
 
 /*********************************** End Fonts ****************************************/
@@ -1600,6 +1666,21 @@ h5, .subListBox {
     margin: auto;
     display: table;
     max-width: 90%;
+}
+
+.closeModaisCadastro {
+    margin: 0;
+    position: absolute;
+    top: -5px;
+    text-align: right;
+    right: -10px;
+    width: 30px;
+    border-radius: 23px;
+    background-color: #00aeef;
+    color: #ffe300;
+    font-size: 9px;
+    opacity: 1;
+    z-index: 10;
 }
 
 .closeModalMateriais {

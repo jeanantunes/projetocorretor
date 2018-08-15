@@ -12,6 +12,10 @@ $(document).ready(function () {
 
     });
 
+    $(".seta-home").click(function () {
+        history.back();
+    });
+
     $("#nomeNaoCadastrado").keyup(function () {
 
         var capturandoEspaco = $("#nomeNaoCadastrado").val().substring($("#nomeNaoCadastrado").val().length - 2, $("#nomeNaoCadastrado").val().length);
@@ -54,33 +58,34 @@ $(document).ready(function () {
             callTokenProd(function (dataToken) {
                 callForcaVenda(function (dataDadosUsuario) {
 
-                    if (dataDadosUsuario.statusForcaVenda == "Aguardando AprovaÁ„o") {
-                        console.log("Executou swal");
-                        swal("Ops!", "Seu cadastro est· aguardando aprovaÁ„o!", "error");
+                    if (dataDadosUsuario.statusForcaVenda == "Aguardando Aprova√ß√£o") {
 
-                        //window.location = "index.html";
-
+                        swal("Ops!", "Seu cadastro est√° aguardando aprova√ß√£o!", "error");
                         return;
                     }
 
                     if (dataDadosUsuario.statusForcaVenda == "Ativo") {
-                        console.log("Executou swal");
-                        swal("Ops!", "VocÍ j· est· cadastrado, clique em entrar!", "error");
 
-                        //window.location = "index.html";
+                        swal({
+                            title: "Voc√™ j√° est√° cadastrado",
+                            text: "Volte para a p√°gina inicial, insira seu CPF e senha e clique em entrar.",
+                            type: "error",
+                            showCancelButton: false,
+                            confirmButtonText: 'OK',
+                            closeOnConfirm: false,
+                            closeOnCancel: false
+                        });
 
                         return;
                     }
-                    // || dataDadosUsuario.statusForcaVenda.toUpperCase() == "INATIVO" || dataDadosUsuario.statusForcaVenda.toUpperCase() == "REPROVADO"
 
-                    if (dataDadosUsuario.cdForcaVenda != null && dataDadosUsuario.statusForcaVenda.toUpperCase() == "PR…-CADASTRO") {
+                    if (dataDadosUsuario.cdForcaVenda != null && dataDadosUsuario.statusForcaVenda.toUpperCase() == "PR√â-CADASTRO") {
 
                         swal.close();
-                        console.log(dataDadosUsuario);
                         $("#celOdont").removeClass("hide");
                         $("#cpfOdont").addClass("hide");
                         $("#nomePreCadastrado").val(dataDadosUsuario.nome);
-                        $("#celularPreCadastrado").val(dataDadosUsuario.celular);
+                        $("#celularPreCadastrado").val(aplicarMascaraTelefone(dataDadosUsuario.celular));
                         $("#emailPreCadastrado").val(dataDadosUsuario.email);
 
                         localStorage.setItem("dadosUsuario", JSON.stringify(dataDadosUsuario));
@@ -91,11 +96,10 @@ $(document).ready(function () {
                     
                         swal.close();
                         put("reCadastro", true);
-                        console.log(dataDadosUsuario);
                         $("#divCadastroInativo").removeClass("hide");
                         $("#cpfOdont").addClass("hide");
                         $("#nomeInativoCadastrado").val(dataDadosUsuario.nome);
-                        $("#celularInativoCadastrado").val(dataDadosUsuario.celular);
+                        $("#celularInativoCadastrado").val(aplicarMascaraTelefone(dataDadosUsuario.celular));
                         $("#emailInativoCadastrado").val(dataDadosUsuario.email);
                     
                         localStorage.setItem("dadosUsuario", JSON.stringify(dataDadosUsuario));
@@ -103,7 +107,6 @@ $(document).ready(function () {
                     }
                     else if (dataDadosUsuario.cdForcaVenda == null) {
                         swal.close();
-                        console.log(dataDadosUsuario);
                         put("reCadastro", false);
                         $("#celOdontCorretora").removeClass("hide");
                         $("#cpfOdont").addClass("hide");
@@ -114,7 +117,6 @@ $(document).ready(function () {
         }
     });
 
-
     $("#btnInfoCorretoraNCpf").click(function () {
 
         var cnpjValidado = $("#cnpjNaoCadastrado").val().replace(/\D/g, '');
@@ -123,21 +125,14 @@ $(document).ready(function () {
             callCorretora(function (dataCorretora) {
 
                 if (dataCorretora.cdCorretora == 0) {
-                    console.log("Corretora nao encontrada");
+         
                     $("#myModal").modal();
-
                     return;
                 }
-
-
-                //$("#termoOdontNCadastrado").removeClass('hide');
 
                 var reCadastro = get("reCadastro");
 
                 if (!reCadastro) {
-
-
-
 
                     var codCorretora = dataCorretora.cdCorretora;
                     var nome = $("#nomeNaoCadastrado").val();
@@ -146,9 +141,6 @@ $(document).ready(function () {
                     var email = $("#emailNaoCadastrado").val();
                     var senha = $("#confirmar-senhaCpfFalse").val();
                     var dataNascimento = "12/09/2002";
-
-
-                    console.log(dataNascimento);
 
                     callInputForcaVenda(function (dataForcaVenda) {
 
@@ -179,7 +171,6 @@ $(document).ready(function () {
 
                 }
 
-
             }, dataToken.token, cnpjValidado);
         });
 
@@ -189,7 +180,6 @@ $(document).ready(function () {
 
         $("#termoOdontNCadastrado").addClass("hide");
         $("#infoCorretora").removeClass("hide")
-
 
     });
 
@@ -214,8 +204,7 @@ $(document).ready(function () {
         $("#btnCelOdontNCpf").addClass('disabled');
 
         if ($(this).val() != "" && $("#celularNaoCadastrado").val().length > 14 && $("#nomeNaoCadastrado").val() != "" && validateEmail($(this).val()) && ValidaNome($("#nomeNaoCadastrado").val())) {
-            console.log("Executando validaÁ„o email");
-            $("#btnCelOdontNCpf").removeClass('disabled');
+             $("#btnCelOdontNCpf").removeClass('disabled');
         }
     });
 
@@ -227,16 +216,46 @@ $(document).ready(function () {
         }
     });
 
-
-    // Aqui comeÁa a validacao dos campos de cadastro 
-
-
     $("#cpf").keyup(function () {
-
-        $("#btnCpfOdont").addClass('disabled');
 
         if ($("#cpf").val().length == 14 && TestaCPF($("#cpf").val().replace(/\D/g, ''))) {
             $("#btnCpfOdont").removeClass('disabled');
+            return;
+        }
+
+        $("#btnCpfOdont").addClass('disabled');
+
+    });
+
+    $(".validacaoDivErro").blur(function () {
+
+        if ($("#cpf").val().length == 14 && TestaCPF($("#cpf").val().replace(/\D/g, ''))) {
+            $("#btnCpfOdont").removeClass('disabled');
+            $(".img-erro-cpf").hide(250);
+            $("#divErroCpf").hide(250);
+            return;
+        }
+
+        $(".img-erro-cpf").show(250);
+        $("#divErroCpf").show(250);
+        $("#btnCpfOdont").addClass('disabled');
+
+    });
+
+    $(".validacaoDivErro").keyup(function () {
+
+        $(".img-erro-cpf").hide(250);
+        $("#divErroCpf").hide(250);
+
+    });
+
+    $(".validacaoDivErro").focus(function () {
+
+        if($(this).val() == ""){
+
+            $(".img-erro-cpf").hide(250);
+            $("#divErroCpf").hide(250);
+
         }
 
     });
@@ -244,9 +263,6 @@ $(document).ready(function () {
     $("#btnTermo").click(function () {
 
         var dados = get("dadosUsuario");
-
-        console.log("Dados");
-        console.log(dados);
 
         var senha = $("#confirmar-senhaCpfTrue").val();
         var cpf = $("#cpf").val().replace(/\D/g, '');
@@ -259,8 +275,6 @@ $(document).ready(function () {
         var nomeEmpresa = dados.corretora.razaoSocial;
         var codigoForca = dados.cdForcaVenda;
 
-        console.log(nomeEmpresa);
-
         callTokenProd(function (dataToken) {
 
             callPutForcaVenda(function (dataForcaVenda) {
@@ -272,9 +286,6 @@ $(document).ready(function () {
                 dados.cnpj = cnpj;
 
                 put("dadosUsuario", JSON.stringify(dados));
-
-                console.log(get("dadosUsuario"));
-
 
                 callForcaVenda(function (dataDadosUsuario) {
 
@@ -322,23 +333,6 @@ $(document).ready(function () {
         }
     });
 
-    // $(".password").blur(function(){
-    //      if($(this).val() == "")
-    //          {
-    //              $(this).css({"border-color" : "#F00"});
-    //              $(".label-password").css("color", "red");
-    //          }
-    //     });
-
-    //  $(".password").keyup(function(){
-    //  if($(this).val() != "")
-    //      {
-    //          $(this).css({"border-color" : "#3A94FB"});
-    //          $(".password").css("color", "#3A94FB");
-    //          $(".label-password").css("color", "#3A94FB");
-    //      }
-    //  });
-
     // sennha corfimar
 
     $(".password-confirm").focus(function () {
@@ -349,26 +343,7 @@ $(document).ready(function () {
         }
     });
 
-    //    $(".password-confirm").blur(function(){
-    //        if($(this).val() == "" || $(this).val() != $(".password").val())
-    //            {
-    //                $(this).css({"border-color" : "#F00"});
-    //                $(".label-password-confirm").css("color", "red"); // se estiver vazio fica vermelho
-    //            }
-    //       });
-
-    //    $(".password-confirm").keyup(function(){
-    //    if($(this).val() != "" && $(this).val() == $(".password").val())
-    //        {
-    //            $(this).css({"border-color" : "#3A94FB"});
-    //            $(".password-confirm").css("color", "#3A94FB");// se nao tiver vazio, fica azul
-    //            $(".label-password-confirm").css("color", "#3A94FB");
-    //        }
-    //    });
-
-
-
-    // ValidaÁao da pagina de cadastro associado a corretora
+    // Validacao da pagina de cadastro associado a corretora
 
     $("#senhaCpfTrue").blur(function () {
 
@@ -400,13 +375,6 @@ $(document).ready(function () {
             $(".label-password-confirm").css("color", "red");
         }
 
-        //if ($("#confirmar-senhaCpfFalse").val() != "" && $(this).val() != $("#confirmar-senhaCpfFalse").val()) {
-        //
-        //    $("#confirmar-senhaCpfFalse").css({ "border-color": "#F00" });
-        //    $(".password-confirm").css("color", "red");
-        //    $(".label-password-confirm").css("color", "red");
-        //
-        //}
     });
 
     $("#confirmar-senhaCpfTrue").blur(function () {
@@ -424,7 +392,6 @@ $(document).ready(function () {
 
         } else if (confirmarSenha == senha && confirmarSenha.length > 7 && senha.length > 7) {
 
-            console.log("Teste");
             $("#confirmar-senhaCpfTrue").css({ "border-color": "#3A94FB" });
             $("#confirmar-senhaCpfTrue").css("color", "#3A94FB");
             $(".label-password-confirm").css("color", "#3A94FB");
@@ -432,9 +399,7 @@ $(document).ready(function () {
         }
     });
 
-
-    // ValidaÁao da pagina de cadastro nao associado a corretora
-
+    // Valida√ßao da pagina de cadastro nao associado a corretora
 
     $("#senhaCpfFalse").blur(function () {
 
@@ -467,13 +432,6 @@ $(document).ready(function () {
             $(".label-password-confirm").css("color", "red");
         }
 
-        //if ($("#confirmar-senhaCpfFalse").val() != "" && $(this).val() != $("#confirmar-senhaCpfFalse").val()) {
-        //
-        //    $("#confirmar-senhaCpfFalse").css({ "border-color": "#F00" });
-        //    $(".password-confirm").css("color", "red");
-        //    $(".label-password-confirm").css("color", "red");
-        //
-        //}
     });
 
     $("#confirmar-senhaCpfFalse").blur(function () {
@@ -497,14 +455,7 @@ $(document).ready(function () {
             $("#btnkeyOdontNCpf").removeClass('disabled');
         }
     });
-
-
-
-
-
 });
-
-
 
 function callForcaVenda(callback, token, cpf) {
 
@@ -550,17 +501,13 @@ function callDadosUsuarios(callback, token, cpf) {
             "Authorization": "Bearer " + token
         },
         success: function (resp) {
-            //$("#loadingLogin").addClass('hide');
             callback(resp);
         },
         error: function (xhr) {
-            //$("#loadingLogin").addClass('hide');
             if (xhr.status == 0) {
                 $("#erroLogin").removeClass('hide');
-                $("#erroLogin").html("Sem conex„o, tente novamente.");
+                $("#erroLogin").html("Sem conex√£o, tente novamente.");
             }
-            //console.log(JSON.stringify(resp.statusText));
-            //ob.imprimirAlgo(JSON.stringify(resp.statusText));
         }
     });
 }
@@ -684,33 +631,7 @@ function callCorretora(callback, token, cnpj) {
     });
 }
 
-
-
-//$("#nomeNaoCadastrado").blur(function () {
-//
-//    var nome = $("#nomeNaoCadastrado").val();
-//
-//    var validaNome = isValidFullname(nome);
-//
-//    console.log(nome);
-//
-//    console.log(validaNome);
-//
-//})
-
-
-
-
-//$("#btnInfoCorretoraNCpf").click(function () {
-//    $("#infoCorretora").addClass("hide")
-//    $("#cadastroSucessoCorretora").removeClass("hide")
-//    return false;
-//});
-
-
-
-
-// Aqui comeÁa validacao de campos
+// Aqui come√ßa validacao de campos
 
 function validateEmail(email) {
     var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/

@@ -199,5 +199,42 @@ function logarETrazerDadosUsuario() {
 
     });
 
+    $("#cpfcnpj").keyup(function() {
+
+        var caracteres = $(this).val().replace(/\D/g, '');
+
+        if(caracteres.length <= 11){
+            $("#cpfcnpj").mask("000.000.000-000");
+        } else{
+            $("#cpfcnpj").mask("00.000.000/0000-00");
+        }
+
+    });
+
+    $(".validacaoDivErro").blur(function () {
+
+        if ($("#cpfcnpj").val().length == 14 && TestaCPF($("#cpfcnpj").val().replace(/\D/g, ''))) {
+            $("#btnOdont").removeClass('disabled');
+            $("#btnOdont").addClass('btnOdont');
+            $(".img-erro-cpf").hide(250);
+            $("#divErroCpf").hide(250);
+            return;
+        }
+
+        if ($("#cpfcnpj").val().length == 18 && validaCnpj($("#cpfcnpj").val().replace(/\D/g, ''))) {
+            $("#btnOdont").removeClass('disabled');
+            $("#btnOdont").addClass('btnOdont');
+            $(".img-erro-cpf").hide(250);
+            $("#divErroCpf").hide(250);
+            return;
+        }
+
+        $(".img-erro-cpf").show(250);
+        $("#divErroCpf").show(250);
+        $("#btnOdont").addClass('disabled');
+        $("#btnOdont").addClass('btnOdontCinza');
+
+    });
+
 }
 
