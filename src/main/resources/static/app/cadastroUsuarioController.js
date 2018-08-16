@@ -185,18 +185,31 @@ $(document).ready(function () {
 
     $("#nomeNaoCadastrado").keyup(function () {
 
-        $("#btnCelOdontNCpf").addClass('disabled');
         if ($(this).val() != "" && $("#emailNaoCadastrado").val() != "" && $("#celularNaoCadastrado").val().length > 14 && validateEmail($("#emailNaoCadastrado").val()) && ValidaNome($("#nomeNaoCadastrado").val())) {
+
+            $("#btnCelOdontNCpf").removeClass('background-color-cinza');
+            $("#btnCelOdontNCpf").addClass('background-color-azul');
             $("#btnCelOdontNCpf").removeClass('disabled');
+            return;
         }
+
+        $("#btnCelOdontNCpf").removeClass('background-color-azul');
+        $("#btnCelOdontNCpf").addClass('background-color-cinza');
+        $("#btnCelOdontNCpf").addClass('disabled');
     });
 
     $("#celularNaoCadastrado").keyup(function () {
 
-        $("#btnCelOdontNCpf").addClass('disabled');
         if ($(this).val().length > 14 && $("#emailNaoCadastrado").val() != "" && $("#nomeNaoCadastrado").val() != "" && validateEmail($("#emailNaoCadastrado").val()) && ValidaNome($("#nomeNaoCadastrado").val())) {
+            $("#btnCelOdontNCpf").removeClass('background-color-cinza');
+            $("#btnCelOdontNCpf").addClass('background-color-azul');
             $("#btnCelOdontNCpf").removeClass('disabled');
+            return;
         }
+
+        $("#btnCelOdontNCpf").removeClass('background-color-azul');
+        $("#btnCelOdontNCpf").addClass('background-color-cinza');
+        $("#btnCelOdontNCpf").addClass('disabled');
     });
 
     $("#emailNaoCadastrado").blur(function () {
@@ -219,10 +232,15 @@ $(document).ready(function () {
     $("#cpf").keyup(function () {
 
         if ($("#cpf").val().length == 14 && TestaCPF($("#cpf").val().replace(/\D/g, ''))) {
+
+            $("#btnCpfOdont").removeClass('background-color-cinza');
+            $("#btnCpfOdont").addClass('background-color-azul');
             $("#btnCpfOdont").removeClass('disabled');
             return;
         }
 
+        $("#btnCpfOdont").removeClass('background-color-azul');
+        $("#btnCpfOdont").addClass('background-color-cinza');
         $("#btnCpfOdont").addClass('disabled');
 
     });

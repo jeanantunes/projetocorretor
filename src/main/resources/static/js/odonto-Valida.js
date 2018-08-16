@@ -872,7 +872,7 @@ $(document).ready(function () {
 
     $(".nome").focus(function () {
         if ($(this).val() == "") {
-            $(this).css({ "border-color": "blue" });
+            $(this).css({ "border-color": "#1974CE" });
             $(".nome").css("color", "#1974CE");
             $(".label-nome").css("color", "#1974CE");
         }
@@ -1075,7 +1075,7 @@ $(document).ready(function () {
 
     $(".celular").focus(function () {
         if ($(this).val() == "") {
-            $(this).css({ "border-color": "blue" });
+            $(this).css({ "border-color": "#1974CE" });
             $(".celular").css("color", "#1974CE");
             $(".label-celular").css("color", "#1974CE");
         }
@@ -1299,7 +1299,7 @@ $(document).ready(function () {
     $(".email").focus(function () {
 
         if ($(this).val() == "") {
-            $(this).css({ "border-color": "blue" });
+            $(this).css({ "border-color": "#1974CE" });
             $(".email").css("color", "#1974CE");
             $(".label-email").css("color", "#1974CE");
         }

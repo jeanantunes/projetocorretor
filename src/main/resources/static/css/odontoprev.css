@@ -34,6 +34,13 @@ img.img-erro-cpf {
 
 /******************************/
 
+.background-color-azul {
+    background-color: #1974CE !important;
+}
+
+.background-color-cinza {
+    background-color: #ACAAA5 !important;
+}
 
 /********** SETA DE VOLTAR PARA PAGE ANTERIOR **********/
 
@@ -53,6 +60,10 @@ img.img-erro-cpf {
 
 .margin-top-70 {
     margin-top: 70px;
+}
+
+.margim-bottom-0 {
+    margin-bottom: 0px !important;
 }
 
 .nomeRegex {
@@ -1304,15 +1315,15 @@ h5, .subListBox {
     font-size: 12pt;
     background-color: #1974CE;
     color: #fff !important;
-    padding: 16px;
+    padding: 16px !important;
 }
 
 .btnOdontCinza {
     font-family: Roboto-Medium;
     font-size: 12pt;
-    background-color: #a0a0a0 !important;
+    background-color: #1974CE;
     color: #fff !important;
-    padding: 16px;
+    padding: 16px !important;
 }
 
 .btnOdont:hover {
@@ -1509,6 +1520,7 @@ h5, .subListBox {
     box-shadow: 0 0 0 0;
     border-radius: 0;
     border-bottom: 2px solid #ACAAA5;
+    padding-bottom: 2px;
 }
 
 /*********************************** End Fonts ****************************************/
