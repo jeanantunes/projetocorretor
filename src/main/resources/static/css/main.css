@@ -47,7 +47,7 @@ a:hover {
 .subtitle-odonto {
     font-family: Roboto-Light !important;
     font-size: 20px !important;
-    color: #ACAAA5 !important;
+    color: #6A6A6A !important;
 }
 
 .text-odonto {
@@ -68,7 +68,7 @@ a:hover {
 .form-group {
     font-family: Roboto-Medium !important;
     font-size: 15px !important;
-    color: #ACAAA5;
+    color: #6A6A6A;
 }
 
 label {
@@ -104,7 +104,7 @@ label {
 }
 
 .h3Index {
-    color: #ACAAA5;
+    color: #6A6A6A;
     font-weight: ligther;
     margin-top: -4%;
     font-size: 29px;
@@ -233,34 +233,34 @@ label {
 }
 
 .logRadiusCadastroForcaDeVenda {
-    color: #ACAAA5;
+    color: #6A6A6A;
     margin-top: 5%;
     font-weight: bold;
 }
 
 .lblCpfCadasForcaVenda {
-    color: #ACAAA5;
+    color: #6A6A6A;
     margin-top: 5%;
     font-weight: bold;
     margin-left: 8px;
 }
 
 .lblConfirNomeForcaVenda {
-    color: #ACAAA5;
+    color: #6A6A6A;
     margin-top: 5%;
     font-weight: bold;
     margin-left: 8px;
 }
 
 .lblConfirCelForcaVenda {
-    color: #ACAAA5;
+    color: #6A6A6A;
     margin-top: 5%;
     font-weight: bold;
     margin-left: 35%;
 }
 
 .lblConfirEmailForcaVenda {
-    color: #ACAAA5;
+    color: #6A6A6A;
     margin-top: 5%;
     font-weight: bold;
     margin-left: 8%;
@@ -383,7 +383,7 @@ label {
 .labelCadastro2DeSenhaDonoDeCorretora {
     margin-top: 1%;
     font-size: 15px;
-    color: #ACAAA5;
+    color: #6A6A6A;
 }
 
 .lblCepDonoDeCorretora {
@@ -420,7 +420,7 @@ label {
     margin-top: 2%;
     margin-left: -1%;
     margin-right: 1%;
-    color: #ACAAA5;
+    color: #6A6A6A;
 }
 
 .th {
@@ -435,7 +435,7 @@ label {
     height: 0;
     border-style: solid;
     border-width: 9px 5.5px 0 5.5px;
-    border-color: #ACAAA5 transparent transparent transparent;
+    border-color: #6A6A6A transparent transparent transparent;
 }
 
 .btnListEstadoBlur {
@@ -468,7 +468,7 @@ label {
 
 .glyphiconEditarTabelaDonoDeCorretora {
     /*color: #87CEFA;*/
-    color: #ACAAA5;
+    color: #6A6A6A;
     position: relative;
     right: 4;
     margin-right: 18%;
@@ -486,7 +486,7 @@ label {
 
 .glyphiconVisualizarTabelaDonoDeCorretora {
     /*color: #87CEFA;*/
-    color: #ACAAA5;
+    color: #6A6A6A;
     position: relative;
     right: 4;
     margin-right: 18%;
@@ -503,32 +503,32 @@ label {
 }
 
 .enviarTabelaDonoDeCorretora {
-    color: #ACAAA5;
+    color: #6A6A6A;
     text-decoration: none;
 }
 
 .enviarTabelaDonoDeCorretora:hover {
-    color: #ACAAA5;
+    color: #6A6A6A;
     text-decoration: none;
 }
 
 .editarTabelaDonoDeCorretora {
-    color: #ACAAA5;
+    color: #6A6A6A;
     text-decoration: none;
 }
 
 .editarTabelaDonoDeCorretora:hover {
-    color: #ACAAA5;
+    color: #6A6A6A;
     text-decoration: none;
 }
 
 .visualizarTabelaDonoDeCorretora {
-    color: #ACAAA5;
+    color: #6A6A6A;
     text-decoration: none;
 }
 
 .visualizarTabelaDonoDeCorretora:hover {
-    color: #ACAAA5;
+    color: #6A6A6A;
     text-decoration: none;
 }
 
@@ -1427,7 +1427,7 @@ nav:hover .forAnimate {
     .subTitleOdont {
         font-family: Roboto-Light;
         font-size: 11pt !important;
-        color: #ACAAA5;
+        color: #6A6A6A;
         margin-top: 2%;
     }
 
@@ -1471,7 +1471,7 @@ nav:hover .forAnimate {
     .subTitleOdont {
         font-family: Roboto-Light;
         font-size: 11pt !important;
-        color: #ACAAA5;
+        color: #6A6A6A;
         margin-top: 2%;
     }
 
@@ -1493,7 +1493,7 @@ nav:hover .forAnimate {
 
     .labelOdontBlur {
         font-family: Roboto-Medium;
-        color: #ACAAA5;
+        color: #6A6A6A;
         font-size: 15pt;
         padding-top: 6% !important;
     }
@@ -1539,7 +1539,7 @@ nav:hover .forAnimate {
     .subTitleOdont {
         font-family: Roboto-Light;
         font-size: 11pt !important;
-        color: #ACAAA5;
+        color: #6A6A6A;
         margin-top: 2%;
     }
 
@@ -1705,7 +1705,7 @@ nav:hover .forAnimate {
     .subTitleOdont {
         font-family: Roboto-Light;
         font-size: 11pt !important;
-        color: #ACAAA5;
+        color: #6A6A6A;
         margin-top: 2%;
     }
 
@@ -1846,7 +1846,7 @@ nav:hover .forAnimate {
     .subTitleOdont {
         font-family: Roboto-Light;
         font-size: 11pt !important;
-        color: #ACAAA5;
+        color: #6A6A6A;
         margin-top: 2%;
     }
 
@@ -1868,7 +1868,7 @@ nav:hover .forAnimate {
 
     .labelOdontBlur {
         font-family: Roboto-Medium;
-        color: #ACAAA5;
+        color: #6A6A6A;
         font-size: 15pt;
         padding-top: 6% !important;
     }
@@ -2035,7 +2035,7 @@ nav:hover .forAnimate {
     .subTitleOdont {
         font-family: Roboto-Light;
         font-size: 11pt !important;
-        color: #ACAAA5;
+        color: #6A6A6A;
         margin-top: 2%;
     }
 
@@ -2057,7 +2057,7 @@ nav:hover .forAnimate {
 
     .labelOdontBlur {
         font-family: Roboto-Medium;
-        color: #ACAAA5;
+        color: #6A6A6A;
         font-size: 15pt;
         padding-top: 10% !important;
     }
@@ -2205,7 +2205,7 @@ nav:hover .forAnimate {
     .subTitleOdont {
         font-family: Roboto-Light;
         font-size: 11pt !important;
-        color: #ACAAA5;
+        color: #6A6A6A;
         margin-top: 2%;
     }
 
@@ -2364,7 +2364,7 @@ nav:hover .forAnimate {
     .subTitleOdont {
         font-family: Roboto-Light;
         font-size: 11pt !important;
-        color: #ACAAA5;
+        color: #6A6A6A;
         margin-top: 2%;
     }
 
@@ -2534,7 +2534,7 @@ nav:hover .forAnimate {
     .subTitleOdont {
         font-family: Roboto-Light;
         font-size: 11pt !important;
-        color: #ACAAA5;
+        color: #6A6A6A;
         margin-top: 2%;
     }
 
@@ -2556,7 +2556,7 @@ nav:hover .forAnimate {
 
     .labelOdontBlur {
         font-family: Roboto-Medium;
-        color: #ACAAA5;
+        color: #6A6A6A;
         font-size: 15pt;
         padding-top: 6% !important;
     }
@@ -3032,7 +3032,7 @@ nav:hover .forAnimate {
 }
 
 .texto-termosCondicoes {
-    color: #ACAAA5;
+    color: #6A6A6A;
     overflow: auto;
     max-height: 500px;
     padding: 18px;
@@ -3210,7 +3210,7 @@ img.img-senha {
 .subTitleOdont {
     font-family: Roboto-Light;
     font-size: 15pt;
-    color: #ACAAA5;
+    color: #6A6A6A;
     margin-top: 2%;
 }
 
@@ -4508,7 +4508,7 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
     margin-top: 150px;
     font-size: 11px;
     font-family: roboto-light !important;
-    color: #ACAAA5 !important;
+    color: #6A6A6A !important;
 }
 
 .container-fluid {
@@ -4649,7 +4649,7 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 }
 
 .bg-silver {
-    background-color: #ACAAA5 !important;
+    background-color: #6A6A6A !important;
 }
 
 .bg-green {
@@ -4984,7 +4984,7 @@ tr th {
 
 tr td {
     padding: 13px;
-    color: #ACAAA5;
+    color: #6A6A6A;
 }
 
 thead {
@@ -5027,7 +5027,7 @@ transform
     position: relative;
     width: 80%;
     height: auto;
-    color: #ACAAA5;
+    color: #6A6A6A;
 }
 
 .barra-fondo {
@@ -5096,7 +5096,7 @@ transform
     position: absolute;
     right: -73px;
     top: 5px;
-    color: #ACAAA5
+    color: #6A6A6A
 }
 
 .space-top-5 {
@@ -5487,7 +5487,7 @@ transform
 }
 
 .radio {
-    color: #ACAAA5;
+    color: #6A6A6A;
     font-size: 15px;
     position: relative;
 }

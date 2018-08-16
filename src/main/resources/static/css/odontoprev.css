@@ -10,6 +10,7 @@
 
 /********** FIM SWEET ALERT ************/
 
+<<<<<<< Updated upstream
 /********* Novas classes cadastro *********/
 
 .modal-backdrop {
@@ -39,9 +40,36 @@ img.img-erro-cpf {
 }
 
 .background-color-cinza {
-    background-color: #ACAAA5 !important;
+    background-color: #6A6A6A !important;
 }
 
+=======
+/********* Novas classes cadastro *********/
+
+.modal-backdrop {
+    opacity: 0.16 !important;
+}
+
+.boxErroCadastro {
+    font-family: Roboto-Medium;
+    text-align: left;
+    color: white;
+    background-color: red;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+img.img-erro-cpf {
+    position: absolute;
+    max-width: 100%;
+}
+
+/******************************/
+
+
+>>>>>>> Stashed changes
 /********** SETA DE VOLTAR PARA PAGE ANTERIOR **********/
 
 .seta-home {
@@ -62,10 +90,17 @@ img.img-erro-cpf {
     margin-top: 70px;
 }
 
+<<<<<<< Updated upstream
+.margin-top-70 {
+    margin-top: 70px;
+}
+
 .margim-bottom-0 {
     margin-bottom: 0px !important;
 }
 
+=======
+>>>>>>> Stashed changes
 .nomeRegex {
     text-transform: uppercase;
 }
@@ -217,8 +252,8 @@ img.img-erro-cpf {
 }
 
 .boxAlerts {
-    border-top: 1px solid #ACAAA5;
-    border-bottom: 1px solid #ACAAA5;
+    border-top: 1px solid #6A6A6A;
+    border-bottom: 1px solid #6A6A6A;
 }
 
 .imagHead {
@@ -330,7 +365,7 @@ img.img-erro-cpf {
     position: absolute;
     top: 10px;
     right: 15px;
-    color: #ACAAA5;
+    color: #6A6A6A;
 }
 
 @media screen and (max-height: 450px) {
@@ -872,7 +907,7 @@ h1, .titleListBox {
 .labelMes {
     font-family: Roboto-Light;
     font-size: 14pt;
-    color: #ACAAA5;
+    color: #6A6A6A;
     position: absolute;
     margin-top: 50pt;
 }
@@ -886,7 +921,7 @@ h5, .subListBox {
 .labelTipo {
     font-family: Roboto-Light;
     font-size: 14pt;
-    color: #ACAAA5;
+    color: #6A6A6A;
     position: absolute;
     margin-top: 65pt;
 }
@@ -894,7 +929,7 @@ h5, .subListBox {
 .labelDependentes {
     font-family: Roboto-Light;
     font-size: 14pt;
-    color: #ACAAA5;
+    color: #6A6A6A;
     position: absolute;
     margin-top: 80pt;
     margin-bottom: 10pt;
@@ -903,7 +938,7 @@ h5, .subListBox {
 .labelBold {
     font-family: Roboto-Bold;
     font-size: 16pt;
-    color: #ACAAA5;
+    color: #6A6A6A;
 }
 
 .labelBoldPink {
@@ -923,7 +958,7 @@ h5, .subListBox {
 .labelLight {
     font-family: Roboto-Light;
     font-size: 16pt;
-    color: #ACAAA5;
+    color: #6A6A6A;
 }
 
 .spanLight {
@@ -946,7 +981,7 @@ h5, .subListBox {
 .labelBoldModalPlano {
     font-family: Roboto-Bold;
     font-size: 14pt;
-    color: #ACAAA5;
+    color: #6A6A6A;
     background-color: #DEDEDE;
     text-align: center;
 }
@@ -1008,13 +1043,13 @@ h5, .subListBox {
 .subTitleOdont {
     font-family: Roboto-Light;
     font-size: 15pt;
-    color: #ACAAA5;
+    color: #6A6A6A;
 }
 
 .subTitleResumoProp {
     font-family: Roboto-Light;
     font-size: 12pt;
-    color: #ACAAA5;
+    color: #6A6A6A;
     margin-top: 15px;
     margin-bottom: 30px;
 }
@@ -1029,14 +1064,14 @@ h5, .subListBox {
 .tipoPlano {
     font-family: Roboto-Light;
     font-size: 11pt;
-    color: #ACAAA5;
+    color: #6A6A6A;
     margin-left: 25px;
 }
 
 .valorTotalPlanoLabel {
     font-family: Roboto-Light;
     font-size: 11pt;
-    color: #ACAAA5;
+    color: #6A6A6A;
     margin-left: 25px;
     display: inline-block;
 }
@@ -1044,7 +1079,7 @@ h5, .subListBox {
 .valorTotalPlano {
     font-family: Roboto-Light;
     font-size: 11pt;
-    color: #ACAAA5;
+    color: #6A6A6A;
     display: inline-block;
 }
 
@@ -1069,7 +1104,7 @@ h5, .subListBox {
 .spanLightListOdont {
     font-family: Roboto-Light;
     font-size: 10pt;
-    color: #ACAAA5;
+    color: #6A6A6A;
     display: block;
 }
 
@@ -1082,7 +1117,7 @@ h5, .subListBox {
 .subTitleOdonth3 {
     font-family: Roboto-Light;
     font-size: 15pt;
-    color: #ACAAA5;
+    color: #6A6A6A;
 }
 
 .spanText {
@@ -1267,7 +1302,7 @@ h5, .subListBox {
     font-family: Roboto-Medium;
     box-shadow: 0 0 0 0 !important;
     padding: 0px;
-    color: #ACAAA5;
+    color: #6A6A6A;
     border: 0;
     border-radius: 0;
     outline: 0;
@@ -1299,14 +1334,14 @@ h5, .subListBox {
     font-family: Roboto-Medium;
     padding: 0px;
     box-shadow: 0 0 0 0 !important;
-    color: #ACAAA5;
+    color: #6A6A6A;
     border: 0;
     border-radius: 0;
     outline: 0;
     width: 100%;
     font-size: 20pt;
     background: transparent;
-    border-bottom: 1px solid #ACAAA5;
+    border-bottom: 1px solid #6A6A6A;
 
 }
 
@@ -1321,11 +1356,19 @@ h5, .subListBox {
 .btnOdontCinza {
     font-family: Roboto-Medium;
     font-size: 12pt;
+<<<<<<< Updated upstream
     background-color: #1974CE;
     color: #fff !important;
     padding: 16px !important;
 }
 
+=======
+    background-color: #a0a0a0 !important;
+    color: #fff !important;
+    padding: 16px;
+}
+
+>>>>>>> Stashed changes
 .btnOdont:hover {
     color: #fff !important;
 }
@@ -1400,7 +1443,7 @@ h5, .subListBox {
 
 .labelOdontBlur {
     font-family: Roboto-Medium;
-    color: #ACAAA5;
+    color: #6A6A6A;
     font-size: 15pt;
     padding-top: 4%;
 }
@@ -1489,11 +1532,25 @@ h5, .subListBox {
 
 .labelCheckOdontBlur {
     font-family: Roboto-Medium;
-    color: #ACAAA5;
+    color: #6A6A6A;
     font-size: 10pt;
     margin-top: 20px;
     margin-bottom: 20px;
     white-space: nowrap;
+}
+
+/*** input >>> erro, focus, blur ***/
+.inputLabelErro {
+    font-family: Roboto-Medium;
+    border: 0;
+    outline: 0;
+    width: 100%;
+    color: red;
+    font-size: 20pt;
+    background: transparent;
+    box-shadow: 0 0 0 0;
+    border-radius: 0;
+    border-bottom: 1px solid red;
 }
 
 .inputLabelFocus {
@@ -1511,7 +1568,7 @@ h5, .subListBox {
 
 .inputLabelBlur {
     font-family: Roboto-Medium;
-    color: #ACAAA5;
+    color: #6A6A6A;
     border: 0;
     outline: 0;
     width: 100%;
@@ -1519,9 +1576,10 @@ h5, .subListBox {
     background: transparent;
     box-shadow: 0 0 0 0;
     border-radius: 0;
-    border-bottom: 2px solid #ACAAA5;
+    border-bottom: 2px solid #6A6A6A;
     padding-bottom: 2px;
 }
+/*** input >>> erro, focus, blur ***/
 
 /*********************************** End Fonts ****************************************/
 
@@ -1620,8 +1678,8 @@ h5, .subListBox {
 .slick-next {
     right: 20px;
     padding: 1rem !important;
-    box-shadow: 1px -1px 0 1px #ACAAA5 inset;
-    -webkit-box-shadow: 2px -2px #ACAAA5 inset;
+    box-shadow: 1px -1px 0 1px #6A6A6A inset;
+    -webkit-box-shadow: 2px -2px #6A6A6A inset;
     border: solid transparent !important;
     border-width: 0 0 2rem 2rem;
     transition: 0.2s;
@@ -1631,8 +1689,8 @@ h5, .subListBox {
 .slick-prev {
     left: 20px;
     padding: 1rem !important;
-    box-shadow: 1px -1px 0 1px #ACAAA5 inset;
-    -webkit-box-shadow: 2px -2px #ACAAA5 inset;
+    box-shadow: 1px -1px 0 1px #6A6A6A inset;
+    -webkit-box-shadow: 2px -2px #6A6A6A inset;
     border: solid transparent !important;
     border-width: 0 0 2rem 2rem;
     transition: 0.2s;
@@ -1659,7 +1717,7 @@ h5, .subListBox {
     height: 0;
     border-style: solid;
     border-width: 9px 5.5px 0 5.5px;
-    border-color: #ACAAA5 transparent transparent transparent;
+    border-color: #6A6A6A transparent transparent transparent;
 }
 
 .boxVendas {
@@ -2159,13 +2217,13 @@ input[type=checkbox] {
     margin-bottom: 20px;
     height: 350px;
     overflow: auto;
-    border: 1px solid #ACAAA5;
+    border: 1px solid #6A6A6A;
 }
 
 .textTermoCondicao p {
     font-family: Roboto-Light;
     font-size: 12pt;
-    color: #ACAAA5;
+    color: #6A6A6A;
     padding: 10px;
 }
 
