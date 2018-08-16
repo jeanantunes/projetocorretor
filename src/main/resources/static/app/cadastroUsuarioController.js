@@ -214,11 +214,16 @@ $(document).ready(function () {
 
     $("#emailNaoCadastrado").blur(function () {
 
-        $("#btnCelOdontNCpf").addClass('disabled');
-
         if ($(this).val() != "" && $("#celularNaoCadastrado").val().length > 14 && $("#nomeNaoCadastrado").val() != "" && validateEmail($(this).val()) && ValidaNome($("#nomeNaoCadastrado").val())) {
-             $("#btnCelOdontNCpf").removeClass('disabled');
+            $("#btnCelOdontNCpf").removeClass('background-color-cinza');
+            $("#btnCelOdontNCpf").addClass('background-color-azul');
+            $("#btnCelOdontNCpf").removeClass('disabled');
+            return;
         }
+
+        $("#btnCelOdontNCpf").removeClass('background-color-azul');
+        $("#btnCelOdontNCpf").addClass('background-color-cinza');
+        $("#btnCelOdontNCpf").addClass('disabled');
     });
 
     $("#cnpjNaoCadastrado").keyup(function () {

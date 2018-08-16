@@ -1356,19 +1356,12 @@ h5, .subListBox {
 .btnOdontCinza {
     font-family: Roboto-Medium;
     font-size: 12pt;
-<<<<<<< Updated upstream
-    background-color: #1974CE;
-    color: #fff !important;
-    padding: 16px !important;
-}
-
-=======
-    background-color: #a0a0a0 !important;
+    background-color: #6A6A6A !important;
     color: #fff !important;
     padding: 16px;
 }
 
->>>>>>> Stashed changes
+
 .btnOdont:hover {
     color: #fff !important;
 }
