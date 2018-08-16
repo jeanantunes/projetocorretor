@@ -32,6 +32,28 @@ img.img-erro-cpf {
     max-width: 100%;
 }
 
+img.img-erro-email {
+    position: absolute;
+    max-width: 100%;
+}
+
+img.img-erro-senha-cpf-false {
+    position: absolute;
+    max-width: 100%;
+}
+
+@-webkit-keyframes autofill {
+    to {
+        color: #666;
+        background: transparent;
+    }
+}
+
+input:-webkit-autofill {
+    -webkit-animation-name: autofill;
+    -webkit-animation-fill-mode: both;
+}
+
 /******************************/
 
 .background-color-azul {
@@ -54,6 +76,8 @@ img.img-erro-cpf {
 
 /****************************************************/
 
+/*************** MARGIN E PADDING ****************/
+
 .margin-bottom-70 {
     margin-bottom: 70px;
 }
@@ -62,13 +86,27 @@ img.img-erro-cpf {
     margin-top: 70px;
 }
 
-.margin-top-70 {
-    margin-top: 70px;
-}
-
-.margim-bottom-0 {
+.margin-bottom-0 {
     margin-bottom: 0px !important;
 }
+
+.margin-bottom-10 {
+    margin-bottom: 10px !important;
+}
+
+.margin-bottom-20 {
+    margin-bottom: 20px !important;
+}
+
+.padding-top-40 {
+    padding-top: 40px !important;
+}
+
+.padding-top-0 {
+    padding-top: 0px !important;
+}
+
+/****************************************************/
 
 .nomeRegex {
     text-transform: uppercase;
@@ -806,7 +844,7 @@ h1, .titleListBox {
 .subTitleOdontSucess {
     font-family: Roboto-Regular;
     color: #1974CE;
-    font-size: 22pt;
+    font-size: 16pt;
 }
 
 @font-face {
@@ -1407,7 +1445,7 @@ h5, .subListBox {
     font-family: Roboto-Medium;
     color: #6A6A6A;
     font-size: 15pt;
-    padding-top: 4%;
+    padding-top: 40px;
 }
 
 .labelOdontFocus {
@@ -1447,7 +1485,7 @@ h5, .subListBox {
 .labelInfoOdontFocus {
     font-family: Roboto-Medium;
     color: #1974CE;
-    font-size: 12pt;
+    font-size: 10pt;
     padding-top: 10%;
 }
 
@@ -1534,7 +1572,7 @@ h5, .subListBox {
     border: 0;
     outline: 0;
     width: 100%;
-    font-size: 20pt;
+    font-size: 16pt;
     background: transparent;
     box-shadow: 0 0 0 0;
     border-radius: 0;
