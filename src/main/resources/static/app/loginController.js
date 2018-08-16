@@ -253,24 +253,6 @@ $(document).ready(function () {
             return;
         }
 
-        if ($("#cpfcnpj").val().length == 14 && TestaCPF($("#cpfcnpj").val().replace(/\D/g, ''))) {
-            $("#btnOdont").removeClass('disabled');
-            $(".img-erro-cpf").hide(250);
-            $("#divErroCpf").hide(250);
-            $("#jsCpfCnpj").removeClass("text-red-cpfcnpj");
-            $("#jsCpfCnpj").addClass("text-blue-cpfcnpj");
-            $("#cpfcnpj").removeClass("text-red-cpfcnpj");
-            $("#cpfcnpj").addClass("text-blue-cpfcnpj");
-            $("#cpfcnpj").removeClass("form-control-login-red");
-            $("#cpfcnpj").addClass("form-control-login-blue");
-
-            /*
-            $("#cpfcnpj").removeClass("inputLabelErro");
-            $("#cpfcnpj").addClass("inputLabelFocus");
-            */
-            return;
-        }
-
         if ($("#cpfcnpj").val().length == 18 && validaCnpj($("#cpfcnpj").val().replace(/\D/g, ''))) {
             $("#btnOdont").removeClass('disabled');
             $(".img-erro-cpf").hide(250);
