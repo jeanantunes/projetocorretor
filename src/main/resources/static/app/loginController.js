@@ -214,7 +214,7 @@ $(document).ready(function () {
         if (isNumeric(caracteres)) {
             if (caracteres.length == 11) {
                 $("#cpfcnpj").mask("000.000.000-000");
-            } else {
+            } else if (caracteres.length == 14) {
                 $("#cpfcnpj").mask("00.000.000/0000-00");
             }
         } else {

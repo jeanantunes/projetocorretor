@@ -3142,11 +3142,13 @@ input:-webkit-autofill {
     font-size: 20px;
 }
 
+/*
 .form-control-login:focus {
     border-bottom: 1px solid #2D6FCE !important;
     box-shadow: 0 1px 0 0 #2D6FCE !important;
     caret-color: #2D6FCE;
 }
+*/
 
 .text-cpfcnpj {
     font-family: Roboto-Bold;
