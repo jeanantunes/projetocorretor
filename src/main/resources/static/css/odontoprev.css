@@ -10,7 +10,6 @@
 
 /********** FIM SWEET ALERT ************/
 
-<<<<<<< Updated upstream
 /********* Novas classes cadastro *********/
 
 .modal-backdrop {
@@ -43,33 +42,6 @@ img.img-erro-cpf {
     background-color: #6A6A6A !important;
 }
 
-=======
-/********* Novas classes cadastro *********/
-
-.modal-backdrop {
-    opacity: 0.16 !important;
-}
-
-.boxErroCadastro {
-    font-family: Roboto-Medium;
-    text-align: left;
-    color: white;
-    background-color: red;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-bottom: 20px;
-    padding-top: 20px;
-}
-
-img.img-erro-cpf {
-    position: absolute;
-    max-width: 100%;
-}
-
-/******************************/
-
-
->>>>>>> Stashed changes
 /********** SETA DE VOLTAR PARA PAGE ANTERIOR **********/
 
 .seta-home {
@@ -90,7 +62,6 @@ img.img-erro-cpf {
     margin-top: 70px;
 }
 
-<<<<<<< Updated upstream
 .margin-top-70 {
     margin-top: 70px;
 }
@@ -99,8 +70,6 @@ img.img-erro-cpf {
     margin-bottom: 0px !important;
 }
 
-=======
->>>>>>> Stashed changes
 .nomeRegex {
     text-transform: uppercase;
 }
