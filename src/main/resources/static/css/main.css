@@ -3120,6 +3120,28 @@ input:-webkit-autofill {
     font-size: 20px;
 }
 
+.form-control-login-red {
+    background-color: transparent !important;
+    border: 0;
+    outline: 0;
+    border-bottom: 2px solid red !important;
+    border-radius: 0px !important;
+    box-shadow: 0px 0px !important;
+    width: 100%;
+    font-size: 20px;
+}
+
+.form-control-login-blue {
+    background-color: transparent !important;
+    border: 0;
+    outline: 0;
+    border-bottom: 2px solid #2D6FCE;
+    border-radius: 0px !important;
+    box-shadow: 0px 0px !important;
+    width: 100%;
+    font-size: 20px;
+}
+
 .form-control-login:focus {
     border-bottom: 1px solid #2D6FCE !important;
     box-shadow: 0 1px 0 0 #2D6FCE !important;
@@ -3130,6 +3152,18 @@ input:-webkit-autofill {
     font-family: Roboto-Bold;
     font-size: 16px;
     color: #6A6A6A;
+}
+
+.text-cpfcnpj-red {
+    font-family: Roboto-Bold;
+    font-size: 16px;
+    color: red;
+}
+
+.text-cpfcnpj-blue {
+    font-family: Roboto-Bold;
+    font-size: 16px;
+    color: #2D6FCE;
 }
 
 img.img-senha {
