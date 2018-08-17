@@ -1548,11 +1548,11 @@ h5, .subListBox {
     outline: 0;
     width: 100%;
     color: red;
-    font-size: 20pt;
+    font-size: 16pt;
     background: transparent;
     box-shadow: 0 0 0 0;
     border-radius: 0;
-    border-bottom: 1px solid red;
+    border-bottom: 2px solid red;
 }
 
 .inputLabelFocus {
@@ -1561,11 +1561,11 @@ h5, .subListBox {
     outline: 0;
     width: 100%;
     color: #1974CE;
-    font-size: 20pt;
+    font-size: 16pt;
     background: transparent;
     box-shadow: 0 0 0 0;
     border-radius: 0;
-    border-bottom: 1px solid #1974CE;
+    border-bottom: 2px solid #1974CE;
 }
 
 .inputLabelBlur {
