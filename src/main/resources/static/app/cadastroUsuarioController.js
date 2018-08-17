@@ -282,10 +282,17 @@ $(document).ready(function () {
 
     $("#cnpjNaoCadastrado").keyup(function () {
 
-        $("#btnInfoCorretoraNCpf").addClass('disabled');
         if ($("#cnpjNaoCadastrado").val().length == 18 && validaCnpj($("#cnpjNaoCadastrado").val().replace(/\D/g, ''))) {
+
+            $("#btnInfoCorretoraNCpf").removeClass('background-color-cinza');
+            $("#btnInfoCorretoraNCpf").addClass('background-color-azul');
             $("#btnInfoCorretoraNCpf").removeClass('disabled');
+            return;
         }
+
+        $("#btnInfoCorretoraNCpf").removeClass('background-color-azul');
+        $("#btnInfoCorretoraNCpf").addClass('background-color-cinza');
+        $("#btnInfoCorretoraNCpf").addClass('disabled');
     });
 
     $("#cpf").keyup(function () {
