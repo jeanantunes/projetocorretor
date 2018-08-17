@@ -103,6 +103,7 @@ function callDadosForcaVenda(callback, token, cpf) {
 // Mantêm os inputs em cache:
 var inputs = $('input');
 
+/*
 // Chama a função de verificação quando as entradas forem modificadas
 // Usei o 'keyup', mas 'change' ou 'keydown' são tambêm eventos úteis aqui
 inputs.on('keyup', verificarInputs);
@@ -126,7 +127,7 @@ function verificarInputs() {
     $('button').prop('disabled', !preenchidos); //,
     return true;
 }
-
+*/
 
 //$("#continuarLogin").click(function () {
 //
