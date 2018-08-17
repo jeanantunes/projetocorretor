@@ -198,7 +198,7 @@ function callPutForcaVenda(callback, token, codForca, nome, celular, email, senh
 
     $.ajax({
         async: true,
-        url: "https://api-it3.odontoprev.com.br:8243/corretorservicos/1.0/forcavenda",
+        url: "https://api.odontoprev.com.br:8243/corretorservicos/1.0/forcavenda",
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -230,3 +230,46 @@ function callTokenProd(callback) {
         }
     });
 };
+
+$(document).ready(function () {
+
+    $(".validacaoDivErro").blur(function () {
+
+        if ($("#confirmarSenha").val() == $("#senha").val() && $("#senha").val().length >= 8) {
+            $("#confirmarLogin").removeClass('disabled');
+            $(".img-erro-cpf").hide(250);
+            $("#divErroCpf").hide(250);
+            $("#confirmarLogin").removeClass("btnOdontCinza");
+            $("#confirmarLogin").addClass("btnOdont");
+            $("#senha").removeClass("inputLabelBlur");
+            $("#senha").removeClass("inputLabelErro");
+            $("#senha").addClass("inputLabelFocus");
+            $("#senhaTxt").removeClass("text-red-cpfcnpj");
+            $("#senhaTxt").addClass("text-blue-cpfcnpj");
+            $("#confirmaTxt").removeClass("text-red-cpfcnpj");
+            $("#confirmaTxt").addClass("text-blue-cpfcnpj");
+            $("#confirmarSenha").removeClass("inputLabelBlur");
+            $("#confirmarSenha").removeClass("inputLabelErro");
+            $("#confirmarSenha").addClass("inputLabelFocus");
+
+
+            return;
+        }
+
+        $(".img-erro-cpf").show(250);
+        $("#divErroCpf").show(250);
+        $("#confirmarLogin").addClass('disabled');
+        $("#confirmarLogin").removeClass("btnOdont");
+        $("#confirmarLogin").addClass("btnOdontCinza");
+        $("#senha").removeClass("inputLabelBlur");
+        $("#senha").removeClass("inputLabelFocus");
+        $("#senha").addClass("inputLabelErro");
+        $("#senhaTxt").removeClass("text-blue-cpfcnpj");
+        $("#senhaTxt").addClass("text-red-cpfcnpj");
+        $("#confirmaTxt").removeClass("text-blue-cpfcnpj");
+        $("#confirmaTxt").addClass("text-red-cpfcnpj");
+        $("#confirmarSenha").removeClass("inputLabelBlur");
+        $("#confirmarSenha").removeClass("inputLabelFocus");
+        $("#confirmarSenha").addClass("inputLabelErro");
+    });
+});
