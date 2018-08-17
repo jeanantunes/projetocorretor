@@ -2,6 +2,7 @@
 
 $(document).ready(function () {
     buscarPlanosSelecionados();
+    resizeIframe('frame_pf');
 });
 
 function buscarPlanosSelecionados() {
@@ -51,6 +52,8 @@ function buscarPlanosSelecionados() {
 
         $("#planos").append(plano);
     });
+
+    resizeIframe('frame_pf');
 }
 
 function pagarComBoleto()
