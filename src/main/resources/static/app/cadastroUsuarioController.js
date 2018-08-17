@@ -149,7 +149,6 @@ $(document).ready(function () {
 
                     }, dataToken.token, cpfTratado, celularTratado, email, codCorretora, nome, senha, dataNascimento);
 
-
                 } else {
 
                     var dadosUsuario = get("dadosUsuario");
@@ -185,27 +184,70 @@ $(document).ready(function () {
 
     $("#nomeNaoCadastrado").keyup(function () {
 
-        $("#btnCelOdontNCpf").addClass('disabled');
         if ($(this).val() != "" && $("#emailNaoCadastrado").val() != "" && $("#celularNaoCadastrado").val().length > 14 && validateEmail($("#emailNaoCadastrado").val()) && ValidaNome($("#nomeNaoCadastrado").val())) {
+
+            $("#btnCelOdontNCpf").removeClass('background-color-cinza');
+            $("#btnCelOdontNCpf").addClass('background-color-azul');
             $("#btnCelOdontNCpf").removeClass('disabled');
+            return;
         }
+
+        $("#btnCelOdontNCpf").removeClass('background-color-azul');
+        $("#btnCelOdontNCpf").addClass('background-color-cinza');
+        $("#btnCelOdontNCpf").addClass('disabled');
     });
 
     $("#celularNaoCadastrado").keyup(function () {
 
-        $("#btnCelOdontNCpf").addClass('disabled');
         if ($(this).val().length > 14 && $("#emailNaoCadastrado").val() != "" && $("#nomeNaoCadastrado").val() != "" && validateEmail($("#emailNaoCadastrado").val()) && ValidaNome($("#nomeNaoCadastrado").val())) {
+            $("#btnCelOdontNCpf").removeClass('background-color-cinza');
+            $("#btnCelOdontNCpf").addClass('background-color-azul');
             $("#btnCelOdontNCpf").removeClass('disabled');
+            return;
         }
+
+        $("#btnCelOdontNCpf").removeClass('background-color-azul');
+        $("#btnCelOdontNCpf").addClass('background-color-cinza');
+        $("#btnCelOdontNCpf").addClass('disabled');
     });
 
     $("#emailNaoCadastrado").blur(function () {
 
-        $("#btnCelOdontNCpf").addClass('disabled');
+        if (validateEmail($(this).val())) {
+            $(".img-erro-email").hide(250);
+            $(".divErroEmail").hide(250);
+        } else {
+            $(".img-erro-email").show(250);
+            $(".divErroEmail").show(250);
+        }
 
         if ($(this).val() != "" && $("#celularNaoCadastrado").val().length > 14 && $("#nomeNaoCadastrado").val() != "" && validateEmail($(this).val()) && ValidaNome($("#nomeNaoCadastrado").val())) {
-             $("#btnCelOdontNCpf").removeClass('disabled');
+            $("#btnCelOdontNCpf").removeClass('background-color-cinza');
+            $("#btnCelOdontNCpf").addClass('background-color-azul');
+            $("#btnCelOdontNCpf").removeClass('disabled');
+            return;
         }
+
+        $("#btnCelOdontNCpf").removeClass('background-color-azul');
+        $("#btnCelOdontNCpf").addClass('background-color-cinza');
+        $("#btnCelOdontNCpf").addClass('disabled');
+    });
+
+    $("#emailNaoCadastrado").keyup(function () {
+
+        $(".img-erro-email").hide(250);
+
+        if ($(this).val() != "" && $("#celularNaoCadastrado").val().length > 14 && $("#nomeNaoCadastrado").val() != "" && validateEmail($(this).val()) && ValidaNome($("#nomeNaoCadastrado").val())) {
+            $("#btnCelOdontNCpf").removeClass('background-color-cinza');
+            $("#btnCelOdontNCpf").addClass('background-color-azul');
+            $("#btnCelOdontNCpf").removeClass('disabled');
+            return;
+        }
+
+        $("#btnCelOdontNCpf").removeClass('background-color-azul');
+        $("#btnCelOdontNCpf").addClass('background-color-cinza');
+        $("#btnCelOdontNCpf").addClass('disabled');
+
     });
 
     $("#cnpjNaoCadastrado").keyup(function () {
@@ -219,10 +261,15 @@ $(document).ready(function () {
     $("#cpf").keyup(function () {
 
         if ($("#cpf").val().length == 14 && TestaCPF($("#cpf").val().replace(/\D/g, ''))) {
+
+            $("#btnCpfOdont").removeClass('background-color-cinza');
+            $("#btnCpfOdont").addClass('background-color-azul');
             $("#btnCpfOdont").removeClass('disabled');
             return;
         }
 
+        $("#btnCpfOdont").removeClass('background-color-azul');
+        $("#btnCpfOdont").addClass('background-color-cinza');
         $("#btnCpfOdont").addClass('disabled');
 
     });
@@ -345,6 +392,18 @@ $(document).ready(function () {
 
     // Validacao da pagina de cadastro associado a corretora
 
+    $("#senhaCpfTrue").focus(function () {
+
+        var senha = $(this).val();
+
+        $(this).css({ "border-color": "#1974CE" });
+        $(this).css("color", "#1974CE");
+        $(".label-password").css("color", "#1974CE");
+        $("#divErroSenhaCpfTrue").hide(250);
+        $(".label-password-confirm-8").css("color", "#1974CE");
+        $(".img-erro-senha-cpf-true").hide(250);
+    });
+
     $("#senhaCpfTrue").blur(function () {
 
         $("#btnkeyOdont").addClass('disabled');
@@ -354,52 +413,109 @@ $(document).ready(function () {
 
         if (senha.length < 8) {
 
-            $("#senhaCpfTrue").css({ "border-color": "#F00" });
-            $(".password").css("color", "red");
+            $(this).css({ "border-color": "red" });
+            $(this).css("color", "red");
             $(".label-password").css("color", "red");
             $(".label-password-confirm-8").css("color", "red");
+            $(".img-erro-senha-cpf-true").hide(250);
+            $("#btnkeyOdont").removeClass("background-color-azul");
+            $("#btnkeyOdont").addClass("background-color-cinza");
 
             return;
         }
-        else if (senha.length > 7 && (confirmarSenha == "")) {
-            $("#senhaCpfTrue").css({ "border-color": "#3A94FB" });
-            $(".password").css("color", "#3A94FB");
-            $(".label-password").css("color", "#3A94FB");
-            $(".label-password-confirm-8").css("color", "#3A94FB");
-            $("#btnkeyOdont").removeClass('disabled');
+        else if (senha.length > 7) {
 
-            return;
-        } else {
-            $("#confirmar-senhaCpfTrue").css({ "border-color": "#F00" });
-            $(".password-confirm").css("color", "red");
-            $(".label-password-confirm").css("color", "red");
+            $(this).css({ "border-color": "#1974CE" });
+            $(this).css("color", "#1974CE");
+            $(".label-password").css("color", "#1974CE");
+            $(".label-password-confirm-8").css("color", "#1974CE");
+            $("#btnkeyOdont").addClass('disabled');
+
+            if (confirmarSenha != "" && confirmarSenha != senha) {
+
+                $("#confirmar-senhaCpfTrue").css({ "border-color": "#F00" });
+                $(".password-confirm").css("color", "red");
+                $(".label-password-confirm").css("color", "red");
+                $("#btnkeyOdont").removeClass("background-color-azul");
+                $("#btnkeyOdont").addClass("background-color-cinza");
+                $("#btnkeyOdont").addClass('disabled');
+                $("#divErroSenhaCpfTrue").show(250);
+                $(".img-erro-senha-cpf-true").show(250);
+
+            } else {
+
+                $(".img-erro-senha-cpf-true").hide(250);
+
+                if (senha == confirmarSenha) {
+
+                    $("#confirmar-senhaCpfTrue").css({ "border-color": "#1974CE" });
+                    $("#confirmar-senhaCpfTrue").css("color", "#1974CE");
+                    $(".label-password-confirm").css("color", "#1974CE");
+                    $("#btnkeyOdont").removeClass("background-color-cinza");
+                    $("#btnkeyOdont").addClass("background-color-azul");
+                    $("#divErroSenhaCpfTrue").hide(250);
+                    $("#btnkeyOdont").removeClass('disabled');
+                }
+            }
         }
 
+    });
+
+    $("#confirmar-senhaCpfTrue").focus(function () {
+
+        $(this).css({ "border-color": "#1974CE" });
+        $(this).css("color", "#1974CE");
+        $(".label-password-confirm").css("color", "#1974CE");
+        $("#divErroSenhaCpfTrue").hide(250);
+        $(".img-erro-senha-cpf-true").hide(250);
     });
 
     $("#confirmar-senhaCpfTrue").blur(function () {
 
-        $("#btnkeyOdont").addClass('disabled');
+        $("#btnkeyOdontCpf").addClass('disabled');
 
         var confirmarSenha = $("#confirmar-senhaCpfTrue").val();
         var senha = $("#senhaCpfTrue").val();
 
-        if (confirmarSenha != senha || confirmarSenha.length < 8 || senha.length < 8) {
+        if (confirmarSenha != senha) {
 
-            $("#confirmar-senhaCpfTrue").css({ "border-color": "#F00" });
+            $(this).css({ "border-color": "#F00" });
             $(".password-confirm").css("color", "red");
             $(".label-password-confirm").css("color", "red");
+            $("#btnkeyOdont").removeClass("background-color-azul");
+            $("#btnkeyOdont").addClass("background-color-cinza");
+            $(".img-erro-senha-cpf-true").show(250);
+            $("#divErroSenhaCpfTrue").show(250);
 
         } else if (confirmarSenha == senha && confirmarSenha.length > 7 && senha.length > 7) {
 
-            $("#confirmar-senhaCpfTrue").css({ "border-color": "#3A94FB" });
-            $("#confirmar-senhaCpfTrue").css("color", "#3A94FB");
-            $(".label-password-confirm").css("color", "#3A94FB");
+            $(this).css({ "border-color": "#1974CE" });
+            $(this).css("color", "#1974CE");
+            $(".label-password-confirm").css("color", "#1974CE");
+            $("#btnkeyOdont").removeClass("background-color-cinza");
+            $("#btnkeyOdont").addClass("background-color-azul");
             $("#btnkeyOdont").removeClass('disabled');
+            $("#divErroSenhaCpfTrue").hide(250);
+            $(".img-erro-senha-cpf-true").hide(250);
         }
+
     });
 
     // Validaçao da pagina de cadastro nao associado a corretora
+
+    $("#senhaCpfFalse").focus(function () {
+
+        var senha = $(this).val();
+
+        $(this).css({ "border-color": "#1974CE" });
+        $(this).css("color", "#1974CE");
+        $(".label-password").css("color", "#1974CE");
+        $("#divErroSenhaCpfFalse").hide(250);
+        $(".label-password-confirm-8").css("color", "#1974CE");
+        $(".img-erro-senha-cpf-false").hide(250);
+    });
+
+
 
     $("#senhaCpfFalse").blur(function () {
 
@@ -408,30 +524,63 @@ $(document).ready(function () {
         var confirmarSenha = $("#confirmar-senhaCpfFalse").val();
         var senha = $("#senhaCpfFalse").val();
 
-
         if (senha.length < 8) {
 
-            $(this).css({ "border-color": "#F00" });
-            $(".password").css("color", "red");
+            $(this).css({ "border-color": "red" });
+            $(this).css("color", "red");
             $(".label-password").css("color", "red");
             $(".label-password-confirm-8").css("color", "red");
+            $(".img-erro-senha-cpf-false").hide(250);
+            $("#btnkeyOdontNCpf").removeClass("background-color-azul");
+            $("#btnkeyOdontNCpf").addClass("background-color-cinza");
 
             return;
         }
-        else if (senha.length > 7 && (confirmarSenha == "")) {
+        else if (senha.length > 7) {
 
-            $(this).css({ "border-color": "#3A94FB" });
-            $(".password").css("color", "#3A94FB");
-            $(".label-password").css("color", "#3A94FB");
-            $(".label-password-confirm-8").css("color", "#3A94FB");
+            $(this).css({ "border-color": "#1974CE" });
+            $(this).css("color", "#1974CE");
+            $(".label-password").css("color", "#1974CE");
+            $(".label-password-confirm-8").css("color", "#1974CE");
+            $("#btnkeyOdontNCpf").addClass('disabled');
 
-            return;
-        } else {
-            $("#confirmar-senhaCpfFalse").css({ "border-color": "#F00" });
-            $(".password-confirm").css("color", "red");
-            $(".label-password-confirm").css("color", "red");
+            if (confirmarSenha != "" && confirmarSenha != senha) {
+
+                $("#confirmar-senhaCpfFalse").css({ "border-color": "#F00" });
+                $(".password-confirm").css("color", "red");
+                $(".label-password-confirm").css("color", "red");
+                $("#btnkeyOdontNCpf").removeClass("background-color-azul");
+                $("#btnkeyOdontNCpf").addClass("background-color-cinza");
+                $("#btnkeyOdontNCpf").addClass('disabled');
+                $("#divErroSenhaCpfFalse").show(250);
+                $(".img-erro-senha-cpf-false").show(250);
+
+            } else {
+
+                $(".img-erro-senha-cpf-false").hide(250);
+
+                if (senha == confirmarSenha) {
+
+                    $("#confirmar-senhaCpfFalse").css({ "border-color": "#1974CE" });
+                    $("#confirmar-senhaCpfFalse").css("color", "#1974CE");
+                    $(".label-password-confirm").css("color", "#1974CE");
+                    $("#btnkeyOdontNCpf").removeClass("background-color-cinza");
+                    $("#btnkeyOdontNCpf").addClass("background-color-azul");
+                    $("#divErroSenhaCpfFalse").hide(250);
+                    $("#btnkeyOdontNCpf").removeClass('disabled');
+                }
+            }
         }
 
+    });
+
+    $("#confirmar-senhaCpfFalse").focus(function () {
+
+        $(this).css({ "border-color": "#1974CE" });
+        $(this).css("color", "#1974CE");
+        $(".label-password-confirm").css("color", "#1974CE");
+        $("#divErroSenhaCpfFalse").hide(250);
+        $(".img-erro-senha-cpf-false").hide(250);
     });
 
     $("#confirmar-senhaCpfFalse").blur(function () {
@@ -441,18 +590,26 @@ $(document).ready(function () {
         var confirmarSenha = $("#confirmar-senhaCpfFalse").val();
         var senha = $("#senhaCpfFalse").val();
 
-        if (confirmarSenha != senha || confirmarSenha.length < 8 || senha.length < 8) {
+        if (confirmarSenha != senha) {
 
             $(this).css({ "border-color": "#F00" });
             $(".password-confirm").css("color", "red");
             $(".label-password-confirm").css("color", "red");
+            $("#btnkeyOdontNCpf").removeClass("background-color-azul");
+            $("#btnkeyOdontNCpf").addClass("background-color-cinza");
+            $(".img-erro-senha-cpf-false").show(250);
+            $("#divErroSenhaCpfFalse").show(250);
 
         } else if (confirmarSenha == senha && confirmarSenha.length > 7 && senha.length > 7) {
 
-            $(this).css({ "border-color": "#3A94FB" });
-            $(this).css("color", "#3A94FB");
-            $(".label-password-confirm").css("color", "#3A94FB");
+            $(this).css({ "border-color": "#1974CE" });
+            $(this).css("color", "#1974CE");
+            $(".label-password-confirm").css("color", "#1974CE");
+            $("#btnkeyOdontNCpf").removeClass("background-color-cinza");
+            $("#btnkeyOdontNCpf").addClass("background-color-azul");
             $("#btnkeyOdontNCpf").removeClass('disabled');
+            $("#divErroSenhaCpfFalse").hide(250);
+            $(".img-erro-senha-cpf-false").hide(250);
         }
     });
 });

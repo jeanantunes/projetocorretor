@@ -8,11 +8,10 @@
     <title>OdontoPrev</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <meta charset="UTF-8">
+    <link rel="shortcut icon" th:href="@{/img/odpv.PNG}" type="image/png" />
     <meta http-equiv="Content-Language" content="pt-br" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1 shrink-to-fit=no" />
-
-
 
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="css/style.css" />
@@ -20,7 +19,6 @@
     <link rel="stylesheet" type="text/css" href="css/sweetalert.css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/main.css" />
     <link rel="stylesheet" type="text/css" href="css/cadastro.css" />
     <!-- 		<link href="css/estiloOdontoPrev.css" rel="stylesheet"> -->
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
@@ -50,7 +48,7 @@
         </div>
 
         <div class="row">
-            <div class="col-md-12 odontBoxCenter">
+            <div class="col-md-12">
                 <div class="col-sm-offset-4 col-sm-4">
                     <h1 class="titleOdontCadastro text-center">
                         VAMOS COMEÇAR
@@ -74,9 +72,9 @@
                             O CPF que você inseriu não existe.
                         </p>
                     </div>
-
+                    <label></label>
                     <div class="margin-top-70">
-                        <a class="btn btnOdont btn-lg btn-block btnOdontCinza disabled" id="btnCpfOdont" role="button">CONTINUAR</a>
+                        <a class="btn btnOdont btn-lg btn-block btnOdont background-color-cinza disabled" id="btnCpfOdont" role="button">CONTINUAR</a>
                     </div>
                 </div>
 
@@ -85,7 +83,7 @@
     </div>
     <!-- End Bloco 1 -->
     <!-- Bloco 2 -->
-    <div class="container-fluid hide" id="celOdont">
+    <div class="container-fluid margin-bottom-20 hide" id="celOdont">
         <div class="row">
             <div class="col-md-12 boxHeaderCadastro">
                 <img src="img/seta.png" class="seta-home" />
@@ -96,9 +94,9 @@
         </div>
 
         <div class="row">
-            <div class="col-md-12 odontBoxCenter">
+            <div class="col-md-12">
                 <div class="col-sm-offset-4 col-sm-4">
-                    <h1 class="titleOdont text-center">
+                    <h1 class="titleOdont text-center margin-top-70">
                         CONFIRA SEUS DADOS
                     </h1>
                     <h2 class="subTitleOdont text-center">
@@ -122,7 +120,8 @@
                     <div>
                         <input type="text" class="email inputLabelFocus" id="emailPreCadastrado" maxlength="80">
                     </div>
-                    <div class="btnPadBtm">
+                    <label></label>
+                    <div class="margin-top-70">
                         <a class="btn btn-lg btn-block btnOdont" id="btnCelOdont" role="button">CONTINUAR</a>
                     </div>
                 </div>
@@ -131,7 +130,7 @@
     </div>
     <!-- End Bloco 2 -->
     <!-- Bloco 3 -->
-    <div class="container-fluid hide" id="keyOdont">
+    <div class="container-fluid margin-bottom-20 hide" id="keyOdont">
         <div class="row">
             <div class="col-md-12 boxHeaderCadastro">
                 <img src="img/seta.png" class="seta-home" />
@@ -142,42 +141,48 @@
         </div>
 
         <div class="row">
-            <div class="col-md-12 odontBoxCenter">
-                <h1 class="titleOdont text-center">
-                    CRIE UMA SENHA
-                </h1>
-                <h2 class="subTitleOdont text-center">
-                    Crie uma senha para acessar suas vendas
-                </h2>
+            <div class="col-md-12">
+                <div class="col-sm-offset-4 col-sm-4">
+                    <h1 class="titleOdont text-center margin-top-70 margin-bottom-0">
+                        CRIE UMA SENHA
+                    </h1>
+                    <h2 class="subTitleOdont text-center">
+                        Crie uma senha para acessar suas vendas
+                    </h2>
 
-                <div class="boxLabInput">
-                    <div>
-                        <label class="label-password labelOdontBlur" id="senha">Criar senha</label>
+                    <div class="boxLabInput">
+                        <div>
+                            <label class="label-password labelOdontBlur margin-bottom-0" id="senha">Criar senha</label>
+                        </div>
+                        <div>
+                            <input type="password" class="password inputLabelBlur" maxlength="12" id="senhaCpfTrue">
+                        </div>
+                        <div>
+                            <label class="label-password-confirm labelOdontBlur margin-bottom-0 padding-top-40" id="">Confirmar senha</label>
+                        </div>
+                        <div>
+                            <div style="margin-right: 25px; text-align: right;">
+                                <img th:src="@{/img/x-mark-24.png}" class="img-erro-senha-cpf-true" align="right" style="display: none" />
+                            </div>
+                            <input type="password" class="password-confirm inputLabelBlur" maxlength="12" id="confirmar-senhaCpfTrue">
+                            <div id="divErroSenhaCpfTrue" style="display: none; margin-top: 20px;">
+                                <p class="boxErroCadastro">
+                                    A senhas que você digitou não são iguais.
+                                </p>
+                            </div>
+                            <label class="label-password-confirm-8 labelInfoOdontFocus" id="">Sua senha deve ter no mínimo 8 dígitos.</label>
+                        </div>
+                        <div class="margin-top-70">
+                            <a class="btn btn-lg btn-block btnOdont background-color-cinza disabled" id="btnkeyOdont" role="button">FINALIZAR</a>
+                        </div>
                     </div>
-                    <div>
-                        <input type="password" class="password inputLabelBlur" maxlength="12" id="senhaCpfTrue">
-                    </div>
-                    <div>
-                        <label class="label-password-confirm labelOdontBlur" id="">Confirmar senha</label>
-                    </div>
-                    <div>
-                        <input type="password" class="password-confirm inputLabelBlur" maxlength="12" id="confirmar-senhaCpfTrue">
-                        <label class="label-password-confirm-8 labelInfoOdontFocus" id="">Sua senha deve ter no mínimo 8 dígitos.</label>
                     </div>
                 </div>
-
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                <a class="btn btn-lg btn-block btnOdont disabled" href="#" id="btnkeyOdont" role="button">FINALIZAR</a>
-            </div>
-        </div>
     </div>
     <!-- End Bloco 3 -->
     <!-- Bloco 4 -->
-    <div class="container-fluid hide" id="termoOdont">
+    <div class="container-fluid margin-bottom-20 hide" id="termoOdont">
         <div class="row">
             <div class="col-md-12 boxHeaderCadastro">
                 <img src="img/seta.png" class="seta-home" />
@@ -301,7 +306,7 @@
     </div>
     <!-- End Bloco 4 -->
     <!-- Bloco 6 -->
-    <div class="container-fluid hide" id="termoOdontNCadastrado">
+    <div class="container-fluid margin-bottom-20 hide" id="termoOdontNCadastrado">
         <div class="row">
             <div class="col-md-12 boxHeaderCadastro">
                 <img src="img/seta.png" class="seta-home" />
@@ -425,7 +430,7 @@
     </div>
     <!-- End Bloco 6 -->
     <!-- Bloco 5 -->
-    <div class="container-fluid hide" id="cadastroSucesso">
+    <div class="container-fluid margin-bottom-20 hide" id="cadastroSucesso">
         <div class="row">
             <div class="col-md-12 boxHeaderCadastro">
                 <img src="img/seta.png" class="seta-home" />
@@ -470,7 +475,7 @@
     <!-- ****************************************************************************************** -->
     <!-- Cadastro Usuário com CPF inativo ou reprovado -->
     <!-- Bloco 1 -->
-    <div class="container-fluid hide" id="divCadastroInativo">
+    <div class="container-fluid margin-bottom-20 hide" id="divCadastroInativo">
         <div class="row">
             <div class="col-md-12 boxHeaderCadastro">
                 <img src="img/seta.png" class="seta-home" />
@@ -481,9 +486,9 @@
         </div>
 
         <div class="row">
-            <div class="col-md-12 odontBoxCenter">
+            <div class="col-md-12">
                 <div class="col-sm-offset-4 col-sm-4">
-                    <h1 class="titleOdont text-center">
+                    <h1 class="titleOdont text-center margin-top-70">
                         CONFIRA SEUS DADOS
                     </h1>
                     <h2 class="subTitleOdont text-center">
@@ -507,7 +512,8 @@
                     <div>
                         <input type="text" class="email inputLabelFocus" id="emailInativoCadastrado" maxlength="80">
                     </div>
-                    <div class="btnPadBtm">
+                    <label></label>
+                    <div class="margin-top-70">
                         <a class="btn btn-lg btn-block btnOdont" id="btnInativoCelOdont" role="button">CONTINUAR</a>
                     </div>
                 </div>
@@ -517,7 +523,7 @@
     <!-- End Bloco 1 -->
     <!-- Cadastro Usuário CPF não cadastrado -->
     <!-- Bloco 1 -->
-    <div class="container-fluid hide" id="celOdontCorretora">
+    <div class="container-fluid margin-bottom-20 hide" id="celOdontCorretora">
         <div class="row">
             <div class="col-md-12 boxHeaderCadastro">
                 <img src="img/seta.png" class="seta-home" />
@@ -528,35 +534,44 @@
         </div>
 
         <div class="row">
-            <div class="col-md-12 odontBoxCenter">
+            <div class="col-md-12">
                 <div class="col-sm-offset-4 col-sm-4">
                     <h1 class="titleOdont text-center margin-top-70">
                         PREENCHA SEUS DADOS
                     </h1>
-                    <h2 class="subTitleOdont text-center">
+                    <h2 class="subTitleOdont text-center margin-bottom-0">
                         Não identificamos seu CPF nos nossos registros, por favor informe seus dados.
                     </h2>
 
                     <div>
-                        <label class="label-nome labelOdontBlur">Nome</label>
+                        <label class="label-nome labelOdontBlur margin-bottom-0 margin-top-70">Nome</label>
                     </div>
                     <div>
-                        <input type="text" class="nome inputLabelBlur" id="nomeNaoCadastrado" required="required" pattern="^[a-zA-Z0-9]+$">
+                        <input type="text" class="nome inputLabelBlur" id="nomeNaoCadastrado" required="required" pattern="^[a-zA-Z0-9]+$" maxlength="255">
                     </div>
                     <div>
-                        <label class="label-celular labelOdontBlur">Celular</label>
+                        <label class="label-celular labelOdontBlur margin-bottom-0 padding-top-40">Celular</label>
                     </div>
                     <div>
                         <input type="tel" class="celular inputLabelBlur" id="celularNaoCadastrado">
                     </div>
                     <div>
-                        <label class="label-email labelOdontBlur">E-mail</label>
+                        <label class="label-email labelOdontBlur margin-bottom-0 padding-top-40">E-mail</label>
                     </div>
                     <div>
+                        <div style="margin-right: 25px; text-align: right;">
+                            <img th:src="@{/img/x-mark-24.png}" class="img-erro-email" align="right" style="display: none" />
+                        </div>
                         <input type="text" class="email inputLabelBlur" id="emailNaoCadastrado" maxlength="80">
                     </div>
+                    <label></label>
+                    <div class="divErroEmail" style="display: none;">
+                        <p class="boxErroCadastro">
+                            Formato de e-mail incorreto.
+                        </p>
+                    </div>
                     <div class="margin-top-70">
-                        <a class="btn btnOdont btn-lg btn-block btnOdontCinza disabled" id="btnCelOdontNCpf" role="button">CONTINUAR</a>
+                        <a class="btn btnOdont btn-lg btn-block btnOdont background-color-cinza margin-bottom-20 disabled" id="btnCelOdontNCpf" role="button">CONTINUAR</a>
                     </div>
                 </div>
             </div>
@@ -568,53 +583,59 @@
     </div>
     <!-- End Bloco 1-->
     <!-- Bloco 2 -->
-    <div class="container-fluid hide" id="keyOdontCorretora">
+    <div class="container-fluid margin-bottom-20 hide" id="keyOdontCorretora">
         <div class="row">
             <div class="col-md-12 boxHeaderCadastro">
                 <img src="img/seta.png" class="seta-home" />
                 <div class="text-center">
                     <img src="img/logoODPV-header.png" class="" alt="Logo ODPV Header" />
                 </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12 odontBoxCenter">
-                <h1 class="titleOdont text-center">
-                    CRIE UMA SENHA
-                </h1>
-                <h2 class="subTitleOdont text-center">
-                    Crie uma senha para acessar suas vendas
-                </h2>
-
-                <div class="boxLabInput">
-                    <div>
-                        <label class="label-password labelOdontBlur">Criar senha</label>
-                    </div>
-                    <div>
-                        <input type="password" class="password inputLabelBlur" maxlength="12" id="senhaCpfFalse">
-                    </div>
-                    <div>
-                        <label class="label-password-confirm labelOdontBlur" id="">Confirmar senha</label>
-                    </div>
-                    <div>
-                        <input type="password" class="password-confirm inputLabelBlur" maxlength="12" id="confirmar-senhaCpfFalse">
-                        <label class="label-password-confirm-8 labelInfoOdontFocus" id="">Sua senha deve ter no mínimo 8 dígitos.</label>
-                    </div>
-                </div>
-
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-12">
-                <a class="btn btn-lg btn-block btnOdont disabled" href="#" id="btnkeyOdontNCpf" role="button">FINALIZAR</a>
+                <div class="col-sm-offset-4 col-sm-4">
+                    <h1 class="titleOdont text-center margin-top-70 margin-bottom-0">
+                        CRIE UMA SENHA
+                    </h1>
+                    <h2 class="subTitleOdont text-center margin-bottom-0">
+                        Crie uma senha para acessar suas vendas
+                    </h2>
+
+                    <div class="boxLabInput">
+                        <div>
+                            <label class="label-password labelOdontBlur margin-bottom-0 margin-top-70 padding-top-0">Criar senha</label>
+                        </div>
+                        <div>
+                            <input type="password" class="inputLabelBlur" maxlength="12" id="senhaCpfFalse">
+                        </div>
+                        <div>
+                            <label class="label-password-confirm labelOdontBlur margin-bottom-0 padding-top-40" id="">Confirmar senha</label>
+                        </div>
+                        <div>
+                            <div style="margin-right: 25px; text-align: right;">
+                                <img th:src="@{/img/x-mark-24.png}" class="img-erro-senha-cpf-false" align="right" style="display: none" />
+                            </div>
+                            <input type="password" class="password-confirm inputLabelBlur" maxlength="12" id="confirmar-senhaCpfFalse">
+                            <div id="divErroSenhaCpfFalse" style="display: none; margin-top: 20px;">
+                                <p class="boxErroCadastro">
+                                    A senhas que você digitou não são iguais.
+                                </p>
+                            </div>
+                            <label class="label-password-confirm-8 labelInfoOdontFocus" id="">Sua senha deve ter no mínimo 8 dígitos.</label>
+                        </div>
+                        <div class="margin-top-70">
+                            <a class="btn btn-lg btn-block btnOdont disabled background-color-cinza" id="btnkeyOdontNCpf" role="button">FINALIZAR</a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
             </div>
-        </div>
     </div>
     <!-- End Bloco 2 -->
     <!-- Bloco 3 -->
-    <div class="container-fluid hide" id="infoCorretora">
+    <div class="container-fluid margin-bottom-20 hide" id="infoCorretora">
         <div class="row">
             <div class="col-md-12 boxHeaderCadastro">
                 <img src="img/seta.png" class="seta-home" />
@@ -625,7 +646,7 @@
         </div>
 
         <div class="row">
-            <div class="col-md-12 odontBoxCenter">
+            <div class="col-md-12">
                 <h1 class="titleOdont text-center">
                     Informe sua corretora
                 </h1>
@@ -659,7 +680,7 @@
     </div>
     <!-- End Bloco 3 -->
     <!-- Bloco 4 -->
-    <div class="container-fluid hide" id="cadastroSucessoCorretora">
+    <div class="container-fluid margin-bottom-20 hide" id="cadastroSucessoCorretora">
         <div class="row">
             <div class="col-md-12 boxHeaderCadastro">
                 <img src="img/seta.png" class="seta-home" />

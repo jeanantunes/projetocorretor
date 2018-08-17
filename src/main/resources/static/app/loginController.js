@@ -103,6 +103,7 @@ function callDadosForcaVenda(callback, token, cpf) {
 // Mantêm os inputs em cache:
 var inputs = $('input');
 
+/*
 // Chama a função de verificação quando as entradas forem modificadas
 // Usei o 'keyup', mas 'change' ou 'keydown' são tambêm eventos úteis aqui
 inputs.on('keyup', verificarInputs);
@@ -126,7 +127,7 @@ function verificarInputs() {
     $('button').prop('disabled', !preenchidos); //,
     return true;
 }
-
+*/
 
 //$("#continuarLogin").click(function () {
 //
@@ -190,7 +191,7 @@ function logarETrazerDadosUsuario() {
                 //Marcelo
                 //ob.salvarDadosUsuario(JSON.stringify(forca));
                 //ob.salvarDadosUsuario();
-               
+
                 window.location = "logado.html";
 
             }, dataToken.access_token, cpfTratado);
@@ -198,43 +199,92 @@ function logarETrazerDadosUsuario() {
         }, dataToken.access_token, cpfTratado, $("#password").val());
 
     });
+}
 
-    $("#cpfcnpj").keyup(function() {
+$(document).ready(function () {
 
-        var caracteres = $(this).val().replace(/\D/g, '');
+    $("#cpfcnpj").keyup(function () {
 
-        if(caracteres.length <= 11){
-            $("#cpfcnpj").mask("000.000.000-000");
-        } else{
-            $("#cpfcnpj").mask("00.000.000/0000-00");
+        var caracteres = $(this).val().replace(/'\s'/g, '');
+        var isNumeric = function (value) {
+            return /^\d+(?:\.\d+)?$/.test(value);
+        };
+
+        console.log(isNumeric(caracteres));
+
+        if (isNumeric(caracteres)) {
+            if (caracteres.length == 11) {
+                $("#cpfcnpj").mask("000.000.000-000");
+            } else if (caracteres.length == 14) {
+                $("#cpfcnpj").mask("00.000.000/0000-00");
+            }
+        } else {
+            $("#cpfcnpj").unmask();
         }
 
+        // ajustando foco
+        var elem = this;
+        setTimeout(function () {
+            // mudo a posição do seletor
+            elem.selectionStart = elem.selectionEnd = 10000;
+        }, 0);
+        // reaplico o valor para mudar o foco
+        var currentValue = $(this).val();
+        $(this).val('');
+        $(this).val(currentValue);
     });
 
     $(".validacaoDivErro").blur(function () {
 
         if ($("#cpfcnpj").val().length == 14 && TestaCPF($("#cpfcnpj").val().replace(/\D/g, ''))) {
             $("#btnOdont").removeClass('disabled');
-            $("#btnOdont").addClass('btnOdont');
             $(".img-erro-cpf").hide(250);
             $("#divErroCpf").hide(250);
+            $("#jsCpfCnpj").removeClass("text-red-cpfcnpj");
+            $("#jsCpfCnpj").addClass("text-blue-cpfcnpj");
+            $("#cpfcnpj").removeClass("text-red-cpfcnpj");
+            $("#cpfcnpj").addClass("text-blue-cpfcnpj");
+            $("#cpfcnpj").removeClass("form-control-login-red");
+            $("#cpfcnpj").addClass("form-control-login-blue");
+
+            /*
+            $("#cpfcnpj").removeClass("inputLabelErro");
+            $("#cpfcnpj").addClass("inputLabelFocus");
+            */
             return;
         }
 
         if ($("#cpfcnpj").val().length == 18 && validaCnpj($("#cpfcnpj").val().replace(/\D/g, ''))) {
             $("#btnOdont").removeClass('disabled');
-            $("#btnOdont").addClass('btnOdont');
             $(".img-erro-cpf").hide(250);
             $("#divErroCpf").hide(250);
+            $("#jsCpfCnpj").removeClass("text-red-cpfcnpj");
+            $("#jsCpfCnpj").addClass("text-blue-cpfcnpj");
+            $("#cpfcnpj").removeClass("text-red-cpfcnpj");
+            $("#cpfcnpj").addClass("text-blue-cpfcnpj");
+            $("#cpfcnpj").removeClass("form-control-login-red");
+            $("#cpfcnpj").addClass("form-control-login-blue");
+
+            /*
+            $("#cpfcnpj").removeClass("inputLabelErro");
+            $("#cpfcnpj").addClass("inputLabelFocus");
+            */
             return;
         }
 
         $(".img-erro-cpf").show(250);
         $("#divErroCpf").show(250);
         $("#btnOdont").addClass('disabled');
-        $("#btnOdont").addClass('btnOdontCinza');
+        $("#jsCpfCnpj").addClass("text-red-cpfcnpj");
+        $("#cpfcnpj").addClass("text-red-cpfcnpj");
+        $("#cpfcnpj").addClass("form-control-login-red");
+        $("#cpfcnpj").removeClass("form-control-login-blue");
+        /*
+        $("#cpfcnpj").removeClass("inputLabelBlur");
+        $("#cpfcnpj").removeClass("inputLabelFocus");
+        $("#cpfcnpj").addClass("inputLabelErro");
+        */
 
     });
-
-}
+});
 

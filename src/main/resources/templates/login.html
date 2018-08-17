@@ -23,53 +23,6 @@
     <script type="text/javascript" th:src="@{/js/scripts.js}"></script>
     <script type="text/javascript" th:src="@{/js/sweetalert.min.js}"></script>
     <script type="text/javascript" th:src="@{/app/loginController.js}"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-
-            $("#cpfcnpj").focus(function () {
-                $("#jsCpfCnpj").addClass("text-blue-cpfcnpj");
-                $("#cpfcnpj").addClass("text-blue-cpfcnpj");
-            }).blur(function () {
-                $('#jsCpfCnpj').removeClass('text-blue-cpfcnpj');
-                $('#cpfcnpj').removeClass('text-blue-cpfcnpj');
-            });
-
-            $('#senha-index').focus(function () {
-                $('#txtsenha').addClass("text-blue-cpfcnpj");
-                $('#senha-index').addClass("text-blue-cpfcnpj");
-            }).blur(function () {
-                $('#txtsenha').removeClass('text-blue-cpfcnpj');
-                $('#senha-index').removeClass('text-blue-cpfcnpj');
-            });
-
-            /*
-            $("#cpfcnpj").keyup(function () {
-
-                var caracteres = $(this).val().replace(/'\s'/g, '');
-
-                if (caracteres.length < 11) {
-                    $("#cpfcnpj").unmask();
-                } else if (caracteres.length >= 14) {
-                    $("#cpfcnpj").mask("00.000.000/0000-00");
-                } else {
-                    $("#cpfcnpj").mask("000.000.000-00");
-                }
-
-                // ajustando foco
-                var elem = this;
-                setTimeout(function(){
-                    // mudo a posição do seletor
-                    elem.selectionStart = elem.selectionEnd = 10000;
-                }, 0);
-                // reaplico o valor para mudar o foco
-                var currentValue = $(this).val();
-                $(this).val('');
-                $(this).val(currentValue);
-            });
-            */
-        });
-    </script>
 </head>
 <body>
 
@@ -88,19 +41,19 @@
 
             <div class="form-group-login width-form">
                 <label class="text-cpfcnpj uppercase" id="jsCpfCnpj">cpf/cnpj </label>
-                <input type="text" id="cpfcnpj" class="form-control-login" name="username"/>
+                <input type="text" id="cpfcnpj" class="form-control-login validacaoDivErro" name="username"/>
             </div>
 
             <div class="form-group-login width-form">
                 <label class="text-cpfcnpj uppercase" id="txtsenha">senha</label>
                 <div>
-                    <img th:src="@{/img/senha-1@2x.png}" class="img-senha" />
+                    <img th:src="@{/img/senha-1@2x.png}" class="img-senha"/>
                     <input type="password" id="senha-index" class="password form-control-login" name="password"/>
                 </div>
             </div>
 
             <!-- div th:style="${usuario == null} ? 'display:inline-block' : 'display:none'" -->
-                <!-- label style="background-color: #FF4141; color: #FFFFFF">CPF, CNPJ ou senha incorreta.</label -->
+            <!-- label style="background-color: #FF4141; color: #FFFFFF">CPF, CNPJ ou senha incorreta.</label -->
             <!-- /div -->
 
             <div>
@@ -154,11 +107,11 @@
         }
 
 
-        $( ".img-senha" ).mousedown(function() {
+        $(".img-senha").mousedown(function () {
             $("#senha-index").attr('type', 'text');
         });
 
-        $( ".img-senha" ).mouseup(function() {
+        $(".img-senha").mouseup(function () {
             $("#senha-index").attr("type", "password");
         });
 

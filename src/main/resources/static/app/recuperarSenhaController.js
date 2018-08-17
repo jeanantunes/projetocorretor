@@ -44,10 +44,17 @@ $(".validacaoDivErro").blur(function () {
 
     if ($("#cpfcnpj").val().length == 14 && TestaCPF($("#cpfcnpj").val().replace(/\D/g, ''))) {
         $("#btnOdont").removeClass('disabled');
-        $("#btnOdont").removeClass('btnOdonCinza');
+        $("#btnOdont").removeClass('btnOdontCinza');
         $("#btnOdont").addClass('btnOdont');
         $(".img-erro-cpf").hide(250);
         $("#divErroCpf").hide(250);
+            $("#jsCpfCnpj").removeClass("text-red-cpfcnpj");
+            $("#jsCpfCnpj").addClass("text-blue-cpfcnpj");
+            $("#cpfcnpj").removeClass("text-red-cpfcnpj");
+            $("#cpfcnpj").addClass("text-blue-cpfcnpj");
+            $("#cpfcnpj").removeClass("inputLabelErro");
+            $("#cpfcnpj").removeClass("inputLabelBlur");
+            $("#cpfcnpj").addClass("inputLabelFocus");
         return;
     }
 
@@ -57,6 +64,13 @@ $(".validacaoDivErro").blur(function () {
         $("#btnOdont").addClass('btnOdont');
         $(".img-erro-cpf").hide(250);
         $("#divErroCpf").hide(250);
+            $("#jsCpfCnpj").removeClass("text-red-cpfcnpj");
+            $("#jsCpfCnpj").addClass("text-blue-cpfcnpj");
+            $("#cpfcnpj").removeClass("text-red-cpfcnpj");
+            $("#cpfcnpj").addClass("text-blue-cpfcnpj");
+            $("#cpfcnpj").removeClass("inputLabelErro");
+            $("#cpfcnpj").removeClass("inputLabelBlur");
+            $("#cpfcnpj").addClass("inputLabelFocus");
         return;
     }
 
@@ -64,12 +78,17 @@ $(".validacaoDivErro").blur(function () {
     $("#divErroCpf").show(250);
     $("#btnOdont").addClass('disabled');
     $("#btnOdont").addClass('btnOdontCinza');
+        $("#jsCpfCnpj").addClass("text-red-cpfcnpj");
+        $("#cpfcnpj").addClass("text-red-cpfcnpj");
+        $("#cpfcnpj").removeClass("inputLabelBlur");
+        $("#cpfcnpj").removeClass("inputLabelFocus");
+        $("#cpfcnpj").addClass("inputLabelErro");
 
 });
 
 
 
-$("#continuarRecuperacaoDeSenha").click(function () {
+$("#btnOdont").click(function () {
 
     var cpfAndCnpj = $("#cpfcnpj").val().replace(/\D/g, '');
 
