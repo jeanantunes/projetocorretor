@@ -1,314 +1,314 @@
 <!DOCTYPE html>
-<html 
-lang="pt-br" 
-xmlns="http://www.w3.org/1999/xhtml" 
-xmlns:th="http://www.thymeleaf.org" 
->
-<!--201808171854-->
-	<head>
-		<title>OdontoPrev</title>
-	
-	    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	
-	    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
-	    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-theme.min.css}"/>
-	    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
-	    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
-	
-	    <!--<link href="css/estiloOdontoPrev.css" rel="stylesheet"> -->
-	    <script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
-	    <script type="text/javascript" th:src="@{/js/jquery.mask.min.js}"></script>
-	    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
-	    <script type="text/javascript" th:src="@{/js/sweetalert.min.js}"></script>
-	    <script type="text/javascript" th:src="@{/js/odonto-Valida.js}"></script>
-	    <script type="text/javascript" th:src="@{/js/menu.js}"></script>
-	    <!--th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js}"></script>-->
-	</head>
-	
-	<style>
-		/* #myProgress {
-		  width: 100%;
-		  background-color: #ddd;
-		} */
-		
-		#myBar {
-		  width: 0%;
-		  height: 20px;
-		  background-color: #4CAF50;
-		}
-	</style>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br"
+      xmlns="http://www.w3.org/1999/xhtml">
 
-	<body style="min-width: 100% !important;">
-	
-	    <!-- barra de progresso -->
-		<script>
-			function move() {
-			var elem = document.getElementById("myBar");   
-			var width = 1;
-			var id = setInterval(frame, 10);
-			function frame() {
-				if (width >= 100) {
-				clearInterval(id);
-				} else {
-				width++; 
-				elem.style.width = width + '%'; 
-				}
-			}
-			}
-		</script>
-		
-		<script>
-		    $(function () {
-		        $(".button-collapse").sideNav();
-		    });
-		
-		</script>
+<head><title>OdontoPrev</title>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" th:href="@{/img/odpv.PNG}" type="image/png"/>
 
-		<script type="text/javascript">
-		    $(document).ready(function () {
-		        $('.table-odonto tr:odd').css('background-color', '#EDEDED');
-		
-		        $('.table-odonto tr:even').css('background-color', '#fff');
-		    });
-		</script>
+    <meta http-equiv="Content-Language" content="pt-br">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1 shrink-to-fit=no">
 
-		<script type="text/javascript">
-		    $(document).ready(function () {
-		
-		        $('.barras').each(function () {
-		            var dataWidth = $(this).data('value');
-		            $(this).css("width", dataWidth + "%");
-		            $(this).css("max-width", "100%");
-		            if (dataWidth <= 25) {
-		                $(this).css("border-color", "transparent");
-		            }
-		            else if (dataWidth > 25 && dataWidth <= 50) {
-		                $(this).css("border-color", "transparent");
-		            }
-		            else if (dataWidth > 50 && dataWidth <= 75) {
-		                $(this).css("border-color", "transparent");
-		            }
-		            else if (dataWidth > 75 && dataWidth <= 100) {
-		                $(this).css("border-color", "transparent");
-		            }
-				});
-			
-				$("#salvarDados").click(function () {
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/odontoprev.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/sweetalert.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+</head>
 
-					var nomeCorretor = $("#nomeCorretorEdicao").val();
-					var emailCorretor = $("#emailCorretorEdicao").val();
-					var telefoneCorretor = $("#telefoneCorretorEdicao").val().replace(/\D/g, '');
-					var cdForcaVenda = $("#cdForcaVenda").val();
+<style>
+    /* #myProgress {
+      width: 100%;
+      background-color: #ddd;
+    } */
 
-					if (!ValidaNome(nomeCorretor)) {
+    #myBar {
+        width: 0%;
+        height: 20px;
+        background-color: #4CAF50;
+    }
+</style>
 
-						swal("Ops!", "Por favor preencha um nome válido", "error");
-						return false;
+<body style="min-width: 100% !important;">
 
-					}
+<!-- barra de progresso -->
+<script>
+    function move() {
+        var elem = document.getElementById("myBar");
+        var width = 1;
+        var id = setInterval(frame, 10);
 
-					if (telefoneCorretor.length < 10) {
-						swal("Ops!", "Por favor preencha um celular válido", "error");
-						return false;
-					}
+        function frame() {
+            if (width >= 100) {
+                clearInterval(id);
+            } else {
+                width++;
+                elem.style.width = width + '%';
+            }
+        }
+    }
+</script>
 
-					// if (!validateCelular(telefoneCorretor)) {
-					// 	swal("Ops!", "Por favor preencha um celular válido", "error");
-					// 	return false;
-					// }
+<script>
+    $(function () {
+        $(".button-collapse").sideNav();
+    });
 
-					if (!validateEmail(emailCorretor)) {
+</script>
 
-						swal("Ops!", "Por favor preencha um email válido", "error");
-						return false;
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.table-odonto tr:odd').css('background-color', '#EDEDED');
 
-					}
+        $('.table-odonto tr:even').css('background-color', '#fff');
+    });
+</script>
 
-					if (!navigator.onLine) {
+<script type="text/javascript">
+    $(document).ready(function () {
 
-						swal("Ops!", "Você precisa estar online para atualizar seus dados", "error");
-						return false;
+        $('.barras').each(function () {
+            var dataWidth = $(this).data('value');
+            $(this).css("width", dataWidth + "%");
+            $(this).css("max-width", "100%");
+            if (dataWidth <= 25) {
+                $(this).css("border-color", "transparent");
+            }
+            else if (dataWidth > 25 && dataWidth <= 50) {
+                $(this).css("border-color", "transparent");
+            }
+            else if (dataWidth > 50 && dataWidth <= 75) {
+                $(this).css("border-color", "transparent");
+            }
+            else if (dataWidth > 75 && dataWidth <= 100) {
+                $(this).css("border-color", "transparent");
+            }
+        });
 
-					}
+        $("#salvarDados").click(function () {
 
-					// swal({
-					// 	title: "Aguarde",
-					// 	text: 'Estamos atualizando seus dados',
-					// 	content: "input",
-					// 	imageUrl: "img/load.gif",
-					// 	showCancelButton: false,
-					// 	showConfirmButton: false,
-					// 	icon: "info",
-					// 	button: {
-					// 		text: "...",
-					// 		closeModal: false,
-					// 	},
-					// });
+            var nomeCorretor = $("#nomeCorretorEdicao").val();
+            var emailCorretor = $("#emailCorretorEdicao").val();
+            var telefoneCorretor = $("#telefoneCorretorEdicao").val().replace(/\D/g, '');
+            var cdForcaVenda = $("#cdForcaVenda").val();
 
-					// console.log("metodo - callfilefull");
-					// $.ajax({
-					// 	async: true,
-					// 	url: "/forcavenda",
-					// 	method: "POST",
-					// 	headers: {
-					// 		"Cache-Control": "no-cache",
-					// 	},
-					// 	success: function (resp) {
-					// 		$("." + codMat).attr("src", "data:image/jpg;base64, " + resp);
-					// 		swal.close();
-					// 	},
-					// 	error: function (xhr) {
-					// 		console.log(xhr)
-					// 	}
-					// });
+            if (!ValidaNome(nomeCorretor)) {
 
-					return true;
+                swal("Ops!", "Por favor preencha um nome válido", "error");
+                return false;
 
-				}); //$("#salvarDados").click
+            }
 
-			}); //$(document).ready
+            if (telefoneCorretor.length < 10) {
+                swal("Ops!", "Por favor preencha um celular válido", "error");
+                return false;
+            }
 
-			function ValidaNome(fieldValue) {
+            // if (!validateCelular(telefoneCorretor)) {
+            // 	swal("Ops!", "Por favor preencha um celular válido", "error");
+            // 	return false;
+            // }
 
-				var splittedName = fieldValue.trim().split(/[\ |\']+/) // Separa o nome por espaços e apóstrofos (')
+            if (!validateEmail(emailCorretor)) {
 
-				var splittedNameSpace = fieldValue.split(/[\ ]+/)
+                swal("Ops!", "Por favor preencha um email válido", "error");
+                return false;
 
-				var totalWords = splittedName.length
+            }
 
-				let firstName = splittedName[0]
+            if (!navigator.onLine) {
 
-				let lastName = splittedName[totalWords - 1]
+                swal("Ops!", "Você precisa estar online para atualizar seus dados", "error");
+                return false;
 
-				if (!fieldValue) {
-					return false
-				}
+            }
 
-				// Se o nome completo contiver um apóstrofo seguido de qualquer caractere que não seja a-z, é inválido
-				if (fieldValue.match(/'[^a-zà-ÿ ]/i)) {
-					return false
-				}
+            // swal({
+            // 	title: "Aguarde",
+            // 	text: 'Estamos atualizando seus dados',
+            // 	content: "input",
+            // 	imageUrl: "img/load.gif",
+            // 	showCancelButton: false,
+            // 	showConfirmButton: false,
+            // 	icon: "info",
+            // 	button: {
+            // 		text: "...",
+            // 		closeModal: false,
+            // 	},
+            // });
 
-				// Se o primeiro nome tiver só uma letra e ela não for D, I, O, U ou Y, é inválido
-				if (firstName.length === 1 && !firstName.match(/[D|I|O|U|Y]/i)) {
-					return false
-				}
+            // console.log("metodo - callfilefull");
+            // $.ajax({
+            // 	async: true,
+            // 	url: "/forcavenda",
+            // 	method: "POST",
+            // 	headers: {
+            // 		"Cache-Control": "no-cache",
+            // 	},
+            // 	success: function (resp) {
+            // 		$("." + codMat).attr("src", "data:image/jpg;base64, " + resp);
+            // 		swal.close();
+            // 	},
+            // 	error: function (xhr) {
+            // 		console.log(xhr)
+            // 	}
+            // });
 
-				// Se o último nome tiver só uma letra e ela não for I, O, U ou Y, é inválido
-				if (lastName.length === 1 && !lastName.match(/[I|O|U|Y]/i)) {
-					return false
-				}
+            return true;
 
-				// Se o nome possuir conectivos que não 'e' ou 'y', é inválido
-				for (let i in splittedName) {
+        }); //$("#salvarDados").click
 
-					// Se o nome estiver vazio, é invalido
-					if (splittedName[i] == "") {
-						return false
-					}
+    }); //$(document).ready
 
-					// Se o nome possuir caracteres especiais, exceto apostrofo, é invalido
-					if (!splittedName[i].match(/^[a-zA-ZÁÉÍÓÚÀÈÌÒÙàèìòùáéíóúâêîôûãõçÇ']+$/g)) {
-						return false
-					}
+    function ValidaNome(fieldValue) {
 
-					if (i === '0' || parseInt(i) === (totalWords - 1)) {
-						continue // Ignora o primeiro e o último nome
-					}
+        var splittedName = fieldValue.trim().split(/[\ |\']+/) // Separa o nome por espaços e apóstrofos (')
 
-					var nameWithApostrophe = splittedName[i] + "'" + splittedName[parseInt(i) + 1]
+        var splittedNameSpace = fieldValue.split(/[\ ]+/)
 
-					if (
-						splittedName[i].length === 1 
-						&& 
-						!splittedName[i].match(/[E|Y]/i) 
-						&& 
-						nameWithApostrophe != splittedNameSpace[i]
-					) {
-						return false
-					}
-				}
+        var totalWords = splittedName.length
 
-				// Se o nome completo contiver um apóstrofo e não houver pelo menos três palavras, é inválido
-				if (fieldValue.match(/'/i) && totalWords < 3) {
-					return false
-				}
+        let firstName = splittedName[0]
 
-				// Se o nome tiver só uma palavra, é inválido
-				if (totalWords === 1) {
-					return false
-				}
+        let lastName = splittedName[totalWords - 1]
 
-				return true
+        if (!fieldValue) {
+            return false
+        }
 
-			} //function ValidaNome
+        // Se o nome completo contiver um apóstrofo seguido de qualquer caractere que não seja a-z, é inválido
+        if (fieldValue.match(/'[^a-zà-ÿ ]/i)) {
+            return false
+        }
 
-			function validateEmail(email) {
-				var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
-				if (reg.test(email)) {
-					return true;
-				}
+        // Se o primeiro nome tiver só uma letra e ela não for D, I, O, U ou Y, é inválido
+        if (firstName.length === 1 && !firstName.match(/[D|I|O|U|Y]/i)) {
+            return false
+        }
 
-				return false;
-			}
+        // Se o último nome tiver só uma letra e ela não for I, O, U ou Y, é inválido
+        if (lastName.length === 1 && !lastName.match(/[I|O|U|Y]/i)) {
+            return false
+        }
 
-			// h t t p s : // gist .github .com /reggiegutter/5516382
-			function validateCelular(celular) {
-				var reg = /^(\(11\) (9\d{4})-\d{4})$/
-				if (reg.test(celular)) {
-					return true;
-				}
+        // Se o nome possuir conectivos que não 'e' ou 'y', é inválido
+        for (let i in splittedName) {
 
-				return false;
-			}
+            // Se o nome estiver vazio, é invalido
+            if (splittedName[i] == "") {
+                return false
+            }
 
-		</script>
+            // Se o nome possuir caracteres especiais, exceto apostrofo, é invalido
+            if (!splittedName[i].match(/^[a-zA-ZÁÉÍÓÚÀÈÌÒÙàèìòùáéíóúâêîôûãõçÇ']+$/g)) {
+                return false
+            }
 
-		<div class="container-fluid nopadding">
-		
-		    <div th:replace="fragments/menu-corretor :: menu-corretor">&nbsp;</div>
-		    <div th:replace="fragments/header-corretor :: header-corretor">&nbsp;</div>
-		
-			<form class="space-top-40" th:object="${forcaVenda}" th:action="@{/forcavenda/editar/salvar}" method="POST"> 			  
-			    <div class="container-logado padding-logado">
-			        <div class="col-xs-12">
-			        	<input  type="hidden" id="cdForcaVenda" class="nome form-group" th:field="*{cdForcaVenda}" name="cdForcaVenda">
-			        
-			            <div class="form-group space-right-140 space-top-20">
-			                <!-- <label class="label-nome">Nome</label> -->
-			                <img src="/img/icon-user.png" id="imgLabNome"><input type="text" id="nomeCorretorEdicao" class="nome form-group" th:field="*{nome}" name="nome">
-			            </div>
-			
-			            <div class="form-group space-right-140 space-top-20">
-			                <!-- <label class="label-email">E-mail</label> -->
-			                <img src="/img/email.png" id="imgLabEmail"><input type="text" id="emailCorretorEdicao" class="email form-group" th:field="*{email}" name="nome">
-			            </div>
-			            
-			            <div class="form-group space-right-140 space-top-20">
-			                <!-- <label class="label-celular">Celular</label> -->
-			                <img src="/img/celular.png" id="imgLabCel"><input type="text" id="telefoneCorretorEdicao" class="celular form-group" th:field="*{celular}" name="celular">
-			            </div>
-			        </div>
+            if (i === '0' || parseInt(i) === (totalWords - 1)) {
+                continue // Ignora o primeiro e o último nome
+            }
 
-			        <!-- <div class=" col-xs-12 space-top-30"> -->
-			            <!-- <a type="button" class="btn btnBlue btn-width-custom space-top-10 uppercase">EDITAR MEUS DADOS</a> -->
-			            <!--<button type="submit" class="btn btnBlue btn-width-custom space-top-10 uppercase">SALVAR MEUS DADOS</button>-->
-			        <!-- </div> -->			       
-                     
-                     <button type="submit" id="salvarDados" class="btn btnBlue btn-width-custom space-top-10 uppercase">SALVAR MEUS DADOS</button>
-					 <br>
-					 <br>
-					 <div id="myProgress" class="btn-width-custom">
-					  <div id="myBar"></div>
-					</div>
-		
-			    </div>
+            var nameWithApostrophe = splittedName[i] + "'" + splittedName[parseInt(i) + 1]
 
-			</form>
-		
-		    <div th:replace="fragments/footer :: footer">&nbsp;</div>
-		</div>
+            if (
+                splittedName[i].length === 1
+                &&
+                !splittedName[i].match(/[E|Y]/i)
+                &&
+                nameWithApostrophe != splittedNameSpace[i]
+            ) {
+                return false
+            }
+        }
 
-	</body>
+        // Se o nome completo contiver um apóstrofo e não houver pelo menos três palavras, é inválido
+        if (fieldValue.match(/'/i) && totalWords < 3) {
+            return false
+        }
 
+        // Se o nome tiver só uma palavra, é inválido
+        if (totalWords === 1) {
+            return false
+        }
+
+        return true
+
+    } //function ValidaNome
+
+    function validateEmail(email) {
+        var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
+        if (reg.test(email)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    // h t t p s : // gist .github .com /reggiegutter/5516382
+    function validateCelular(celular) {
+        var reg = /^(\(11\) (9\d{4})-\d{4})$/
+        if (reg.test(celular)) {
+            return true;
+        }
+
+        return false;
+    }
+
+</script>
+
+<div class="container-fluid nopadding">
+
+    <div th:replace="fragments/menu-corretor :: menu-corretor">&nbsp;</div>
+    <div th:replace="fragments/header-corretor :: header-corretor">&nbsp;</div>
+
+    <form class="space-top-40" th:object="${forcaVenda}" th:action="@{/forcavenda/editar/salvar}" method="POST">
+        <div class="container-logado padding-logado">
+            <div class="col-xs-12">
+                <div type="hidden" id="cdForcaVenda" class="nome form-group" th:field="*{cdForcaVenda}"
+                     name="cdForcaVenda"/>
+
+                <div class="space-top-20">
+                    <img src="/img/icon-user.png" id="imgLabNome"/>
+                    <input type="text" id="nomeCorretorEdicao" class="nome inputLabelBlur" th:field="*{nome}"
+                           name="nome" style="display: inline; width: 60%;"/>
+                </div>
+
+                <div class="space-top-20">
+                    <img src="/img/email.png" id="imgLabEmail"/>
+                    <input type="text" id="emailCorretorEdicao" class="email inputLabelBlur" th:field="*{email}"
+                           name="nome" style="display: inline; width: 60%;"/>
+                </div>
+
+                <div class="space-top-20">
+                    <img src="/img/celular.png" id="imgLabCel"/>
+                    <input type="text" id="telefoneCorretorEdicao" class="celular inputLabelBlur" th:field="*{celular}"
+                           name="celular" style="display: inline; width: 60%;"/>
+                </div>
+            </div>
+
+            <button type="submit" id="salvarDados" class="btn btnBlue btn-width-custom space-top-10 uppercase">SALVAR
+                MEUS DADOS
+            </button>
+
+            <div id="myProgress" class="btn-width-custom">
+                <div id="myBar"></div>
+            </div>
+        </div>
+    </form>
+
+    <div th:replace="fragments/footer :: footer">&nbsp;</div>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/scripts.js"></script>
+<script src="js/odontoprev.js"></script>
+<script src="js/jquery.3.2.1.js"></script>
+<script src="js/jquery.mask.min.js"></script>
+<script src="app/coordenador.js"></script>
+<script src="js/odonto-Valida.js"></script>
+<script src="js/menu.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/sweetalert.min.js"></script>
+</body>
 </html>
