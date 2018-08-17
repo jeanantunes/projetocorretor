@@ -5,7 +5,6 @@ import java.util.Locale;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Description;
 import org.springframework.context.support.ResourceBundleMessageSource;
@@ -57,7 +56,8 @@ public class CorretorWebConfig extends WebMvcConfigurerAdapter implements Applic
                  "/app/**", 
                  "/config/**", 
                  "/repositorio/**",
-                 "/slick/**")
+                 "/slick/**",
+                "/componente/**")
                 .addResourceLocations(
                         "classpath:/META-INF/resources/webjars/",
                         "classpath:/static/img/",
@@ -68,7 +68,8 @@ public class CorretorWebConfig extends WebMvcConfigurerAdapter implements Applic
                         "classpath:/static/app/", 
                         "classpath:/static/config/", 
                         "classpath:/static/repositorio/",
-                        "classpath:/static/slick/");
+                        "classpath:/static/slick/",
+                        "classpath:/static/componente/");
     }
         
     private TemplateEngine templateEngine(ITemplateResolver templateResolver) {
