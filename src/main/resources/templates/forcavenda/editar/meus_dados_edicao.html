@@ -4,7 +4,7 @@ lang="pt-br"
 xmlns="http://www.w3.org/1999/xhtml" 
 xmlns:th="http://www.thymeleaf.org" 
 >
-<!--201808171758-->
+<!--201808171854-->
 	<head>
 		<title>OdontoPrev</title>
 	
@@ -42,19 +42,19 @@ xmlns:th="http://www.thymeleaf.org"
 	
 	    <!-- barra de progresso -->
 		<script>
-		function move() {
-		  var elem = document.getElementById("myBar");   
-		  var width = 1;
-		  var id = setInterval(frame, 10);
-		  function frame() {
-		    if (width >= 100) {
-		      clearInterval(id);
-		    } else {
-		      width++; 
-		      elem.style.width = width + '%'; 
-		    }
-		  }
-		}
+			function move() {
+			var elem = document.getElementById("myBar");   
+			var width = 1;
+			var id = setInterval(frame, 10);
+			function frame() {
+				if (width >= 100) {
+				clearInterval(id);
+				} else {
+				width++; 
+				elem.style.width = width + '%'; 
+				}
+			}
+			}
 		</script>
 		
 		<script>
@@ -103,49 +103,66 @@ xmlns:th="http://www.thymeleaf.org"
 					if (!ValidaNome(nomeCorretor)) {
 
 						swal("Ops!", "Por favor preencha um nome válido", "error");
-						return;
+						return false;
 
 					}
 
-					// if (telefoneCorretor.length < 10) {
-					// 	swal("Ops!", "Por favor preencha um celular válido", "error");
-					// 	return;
-					// }
-
-					if (!validateCelular(telefoneCorretor)) {
-
+					if (telefoneCorretor.length < 10) {
 						swal("Ops!", "Por favor preencha um celular válido", "error");
-						return;
-
+						return false;
 					}
+
+					// if (!validateCelular(telefoneCorretor)) {
+					// 	swal("Ops!", "Por favor preencha um celular válido", "error");
+					// 	return false;
+					// }
 
 					if (!validateEmail(emailCorretor)) {
 
 						swal("Ops!", "Por favor preencha um email válido", "error");
-						return;
+						return false;
 
 					}
 
 					if (!navigator.onLine) {
 
 						swal("Ops!", "Você precisa estar online para atualizar seus dados", "error");
-						return;
+						return false;
 
 					}
 
-					swal({
-						title: "Aguarde",
-						text: 'Estamos atualizando seus dados',
-						content: "input",
-						imageUrl: "img/load.gif",
-						showCancelButton: false,
-						showConfirmButton: false,
-						icon: "info",
-						button: {
-							text: "...",
-							closeModal: false,
-						},
-					});
+					// swal({
+					// 	title: "Aguarde",
+					// 	text: 'Estamos atualizando seus dados',
+					// 	content: "input",
+					// 	imageUrl: "img/load.gif",
+					// 	showCancelButton: false,
+					// 	showConfirmButton: false,
+					// 	icon: "info",
+					// 	button: {
+					// 		text: "...",
+					// 		closeModal: false,
+					// 	},
+					// });
+
+					// console.log("metodo - callfilefull");
+					// $.ajax({
+					// 	async: true,
+					// 	url: "/forcavenda",
+					// 	method: "POST",
+					// 	headers: {
+					// 		"Cache-Control": "no-cache",
+					// 	},
+					// 	success: function (resp) {
+					// 		$("." + codMat).attr("src", "data:image/jpg;base64, " + resp);
+					// 		swal.close();
+					// 	},
+					// 	error: function (xhr) {
+					// 		console.log(xhr)
+					// 	}
+					// });
+
+					return true;
 
 				}); //$("#salvarDados").click
 
@@ -163,7 +180,9 @@ xmlns:th="http://www.thymeleaf.org"
 
 				let lastName = splittedName[totalWords - 1]
 
-				if (!fieldValue) return false
+				if (!fieldValue) {
+					return false
+				}
 
 				// Se o nome completo contiver um apóstrofo seguido de qualquer caractere que não seja a-z, é inválido
 				if (fieldValue.match(/'[^a-zà-ÿ ]/i)) {
@@ -184,16 +203,28 @@ xmlns:th="http://www.thymeleaf.org"
 				for (let i in splittedName) {
 
 					// Se o nome estiver vazio, é invalido
-					if (splittedName[i] == "") return false
+					if (splittedName[i] == "") {
+						return false
+					}
 
 					// Se o nome possuir caracteres especiais, exceto apostrofo, é invalido
-					if (!splittedName[i].match(/^[a-zA-ZÁÉÍÓÚÀÈÌÒÙàèìòùáéíóúâêîôûãõçÇ']+$/g)) return false
+					if (!splittedName[i].match(/^[a-zA-ZÁÉÍÓÚÀÈÌÒÙàèìòùáéíóúâêîôûãõçÇ']+$/g)) {
+						return false
+					}
 
-					if (i === '0' || parseInt(i) === (totalWords - 1)) continue // Ignora o primeiro e o último nome
+					if (i === '0' || parseInt(i) === (totalWords - 1)) {
+						continue // Ignora o primeiro e o último nome
+					}
 
 					var nameWithApostrophe = splittedName[i] + "'" + splittedName[parseInt(i) + 1]
 
-					if (splittedName[i].length === 1 && !splittedName[i].match(/[E|Y]/i) && nameWithApostrophe != splittedNameSpace[i]) {
+					if (
+						splittedName[i].length === 1 
+						&& 
+						!splittedName[i].match(/[E|Y]/i) 
+						&& 
+						nameWithApostrophe != splittedNameSpace[i]
+					) {
 						return false
 					}
 				}
@@ -241,21 +272,21 @@ xmlns:th="http://www.thymeleaf.org"
 			<form class="space-top-40" th:object="${forcaVenda}" th:action="@{/forcavenda/editar/salvar}" method="POST"> 			  
 			    <div class="container-logado padding-logado">
 			        <div class="col-xs-12">
-			        	<input  type="hidden" id="cdForcaVenda" class="nome form-control" th:field="*{cdForcaVenda}" name="cdForcaVenda">
+			        	<input  type="hidden" id="cdForcaVenda" class="nome form-group" th:field="*{cdForcaVenda}" name="cdForcaVenda">
 			        
 			            <div class="form-group space-right-140 space-top-20">
 			                <!-- <label class="label-nome">Nome</label> -->
-			                <img src="/img/icon-user.png" id="imgLabNome"><input type="text" id="nomeCorretorEdicao" class="nome form-control" th:field="*{nome}" name="nome">
+			                <img src="/img/icon-user.png" id="imgLabNome"><input type="text" id="nomeCorretorEdicao" class="nome form-group" th:field="*{nome}" name="nome">
 			            </div>
 			
 			            <div class="form-group space-right-140 space-top-20">
 			                <!-- <label class="label-email">E-mail</label> -->
-			                <img src="/img/email.png" id="imgLabEmail"><input type="text" id="emailCorretorEdicao" class="email form-control" th:field="*{email}" name="nome">
+			                <img src="/img/email.png" id="imgLabEmail"><input type="text" id="emailCorretorEdicao" class="email form-group" th:field="*{email}" name="nome">
 			            </div>
 			            
 			            <div class="form-group space-right-140 space-top-20">
 			                <!-- <label class="label-celular">Celular</label> -->
-			                <img src="/img/celular.png" id="imgLabCel"><input type="text" id="telefoneCorretorEdicao" class="celular form-control" th:field="*{celular}" name="celular">
+			                <img src="/img/celular.png" id="imgLabCel"><input type="text" id="telefoneCorretorEdicao" class="celular form-group" th:field="*{celular}" name="celular">
 			            </div>
 			        </div>
 
@@ -264,7 +295,7 @@ xmlns:th="http://www.thymeleaf.org"
 			            <!--<button type="submit" class="btn btnBlue btn-width-custom space-top-10 uppercase">SALVAR MEUS DADOS</button>-->
 			        <!-- </div> -->			       
                      
-                     <button type="button" id="salvarDados" class="btn btnBlue btn-width-custom space-top-10 uppercase">SALVAR MEUS DADOS</button>
+                     <button type="submit" id="salvarDados" class="btn btnBlue btn-width-custom space-top-10 uppercase">SALVAR MEUS DADOS</button>
 					 <br>
 					 <br>
 					 <div id="myProgress" class="btn-width-custom">
