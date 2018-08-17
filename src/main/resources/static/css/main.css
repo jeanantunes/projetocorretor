@@ -1527,7 +1527,7 @@ nav:hover .forAnimate {
     .labelOdontBlur {
         font-family: Roboto-Medium;
         color: #6A6A6A;
-        font-size: 15pt;
+        font-size: 12pt;
         padding-top: 6% !important;
     }
     /*** RECUPERAR SENHA ***/
@@ -1732,7 +1732,7 @@ nav:hover .forAnimate {
     .titleOdont {
         font-family: Roboto-Regular;
         color: #1974CE;
-        font-size: 19pt !important;
+        font-size: 19pt;
     }
 
     .subTitleOdont {
@@ -1752,6 +1752,15 @@ nav:hover .forAnimate {
         margin-top: -9%;
     }
     /*** RECUPERAR SENHA ***/
+
+    /*** COMPARTILHADO ***/
+    .titleOdont {
+        font-family: Roboto-Regular;
+        color: #1974CE;
+        font-size: 14pt;
+    }
+    /*** COMPARTILHADO ***/
+
 
 }
 
@@ -3293,6 +3302,14 @@ img.img-senha {
 }
 
 /*** RECUPERAR SENHA ***/
+
+/*** COMPARTILHADO ***/
+.titleOdont {
+    font-family: Roboto-Regular;
+    color: #1974CE;
+    font-size: 19pt;
+}
+/*** COMPARTILHADO ***/
 
 /********************** DEFAULT **********************/
 

@@ -235,7 +235,7 @@ $(document).ready(function () {
 
     $(".validacaoDivErro").blur(function () {
 
-        if ($("#confirmarSenha").val() == $("#senha").val()) {
+        if ($("#confirmarSenha").val() == $("#senha").val() && $("#senha").val().length >= 8) {
             $("#confirmarLogin").removeClass('disabled');
             $(".img-erro-cpf").hide(250);
             $("#divErroCpf").hide(250);
