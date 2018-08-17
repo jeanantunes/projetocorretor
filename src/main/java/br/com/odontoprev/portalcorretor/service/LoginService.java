@@ -80,8 +80,20 @@ public class LoginService {
 			headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
 			HttpEntity<Map<String, String>> entityReq = new HttpEntity<>(loginMap, headers);
 
-			ResponseEntity<LoginResponse> loginRetorno = restTemplate.exchange(url, HttpMethod.POST, entityReq,
-					LoginResponse.class);
+			ResponseEntity<LoginResponse> loginRetorno = restTemplate.exchange(url, HttpMethod.POST, entityReq, LoginResponse.class);
+			
+			//201808171100 - esert/rmarq - QG para contornar falha it3 - tratado com Roberto@ODPV
+//			LoginResponse loginResponse = new LoginResponse();
+//			loginResponse.setCodigoCorretora(21);
+//			loginResponse.setCodigoDcss(445);
+//			loginResponse.setCodigoUsuario(6);
+//			loginResponse.setDocumento("38330982874");
+//			loginResponse.setNomeCorretora("Teste Corretora HML");
+//			loginResponse.setNomeUsuario("FERNANDO SETAI");
+//			loginResponse.setPerfil("Corretor");
+//			ResponseEntity<LoginResponse> loginRetorno = new ResponseEntity<LoginResponse>(loginResponse, HttpStatus.OK);
+			
+			
 			if (loginRetorno.getStatusCode() == HttpStatus.OK) {
 				return new UsuarioSession().setDados(loginRetorno.getBody());
 			}
