@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html 
-lang="pt-br"
+lang="pt-br" 
+xmlns="http://www.w3.org/1999/xhtml" 
 xmlns:th="http://www.thymeleaf.org" 
-xmlns="http://www.w3.org/1999/xhtml"
 >
-
+<!--201808171758-->
 	<head>
 		<title>OdontoPrev</title>
 	
@@ -15,14 +15,13 @@ xmlns="http://www.w3.org/1999/xhtml"
 	    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
 	    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
 	
-	    <!-- 		<link href="css/estiloOdontoPrev.css" rel="stylesheet"> -->
+	    <!--<link href="css/estiloOdontoPrev.css" rel="stylesheet"> -->
 	    <script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
-	    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
 	    <script type="text/javascript" th:src="@{/js/jquery.mask.min.js}"></script>
+	    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+	    <script type="text/javascript" th:src="@{/js/sweetalert.min.js}"></script>
 	    <script type="text/javascript" th:src="@{/js/odonto-Valida.js}"></script>
-	
 	    <script type="text/javascript" th:src="@{/js/menu.js}"></script>
-	    <!--<script type="text/javascript"-->
 	    <!--th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js}"></script>-->
 	</head>
 	
@@ -92,8 +91,146 @@ xmlns="http://www.w3.org/1999/xhtml"
 		            else if (dataWidth > 75 && dataWidth <= 100) {
 		                $(this).css("border-color", "transparent");
 		            }
-		        });
-		    });
+				});
+			
+				$("#salvarDados").click(function () {
+
+					var nomeCorretor = $("#nomeCorretorEdicao").val();
+					var emailCorretor = $("#emailCorretorEdicao").val();
+					var telefoneCorretor = $("#telefoneCorretorEdicao").val().replace(/\D/g, '');
+					var cdForcaVenda = $("#cdForcaVenda").val();
+
+					if (!ValidaNome(nomeCorretor)) {
+
+						swal("Ops!", "Por favor preencha um nome válido", "error");
+						return;
+
+					}
+
+					// if (telefoneCorretor.length < 10) {
+					// 	swal("Ops!", "Por favor preencha um celular válido", "error");
+					// 	return;
+					// }
+
+					if (!validateCelular(telefoneCorretor)) {
+
+						swal("Ops!", "Por favor preencha um celular válido", "error");
+						return;
+
+					}
+
+					if (!validateEmail(emailCorretor)) {
+
+						swal("Ops!", "Por favor preencha um email válido", "error");
+						return;
+
+					}
+
+					if (!navigator.onLine) {
+
+						swal("Ops!", "Você precisa estar online para atualizar seus dados", "error");
+						return;
+
+					}
+
+					swal({
+						title: "Aguarde",
+						text: 'Estamos atualizando seus dados',
+						content: "input",
+						imageUrl: "img/load.gif",
+						showCancelButton: false,
+						showConfirmButton: false,
+						icon: "info",
+						button: {
+							text: "...",
+							closeModal: false,
+						},
+					});
+
+				}); //$("#salvarDados").click
+
+			}); //$(document).ready
+
+			function ValidaNome(fieldValue) {
+
+				var splittedName = fieldValue.trim().split(/[\ |\']+/) // Separa o nome por espaços e apóstrofos (')
+
+				var splittedNameSpace = fieldValue.split(/[\ ]+/)
+
+				var totalWords = splittedName.length
+
+				let firstName = splittedName[0]
+
+				let lastName = splittedName[totalWords - 1]
+
+				if (!fieldValue) return false
+
+				// Se o nome completo contiver um apóstrofo seguido de qualquer caractere que não seja a-z, é inválido
+				if (fieldValue.match(/'[^a-zà-ÿ ]/i)) {
+					return false
+				}
+
+				// Se o primeiro nome tiver só uma letra e ela não for D, I, O, U ou Y, é inválido
+				if (firstName.length === 1 && !firstName.match(/[D|I|O|U|Y]/i)) {
+					return false
+				}
+
+				// Se o último nome tiver só uma letra e ela não for I, O, U ou Y, é inválido
+				if (lastName.length === 1 && !lastName.match(/[I|O|U|Y]/i)) {
+					return false
+				}
+
+				// Se o nome possuir conectivos que não 'e' ou 'y', é inválido
+				for (let i in splittedName) {
+
+					// Se o nome estiver vazio, é invalido
+					if (splittedName[i] == "") return false
+
+					// Se o nome possuir caracteres especiais, exceto apostrofo, é invalido
+					if (!splittedName[i].match(/^[a-zA-ZÁÉÍÓÚÀÈÌÒÙàèìòùáéíóúâêîôûãõçÇ']+$/g)) return false
+
+					if (i === '0' || parseInt(i) === (totalWords - 1)) continue // Ignora o primeiro e o último nome
+
+					var nameWithApostrophe = splittedName[i] + "'" + splittedName[parseInt(i) + 1]
+
+					if (splittedName[i].length === 1 && !splittedName[i].match(/[E|Y]/i) && nameWithApostrophe != splittedNameSpace[i]) {
+						return false
+					}
+				}
+
+				// Se o nome completo contiver um apóstrofo e não houver pelo menos três palavras, é inválido
+				if (fieldValue.match(/'/i) && totalWords < 3) {
+					return false
+				}
+
+				// Se o nome tiver só uma palavra, é inválido
+				if (totalWords === 1) {
+					return false
+				}
+
+				return true
+
+			} //function ValidaNome
+
+			function validateEmail(email) {
+				var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
+				if (reg.test(email)) {
+					return true;
+				}
+
+				return false;
+			}
+
+			// h t t p s : // gist .github .com /reggiegutter/5516382
+			function validateCelular(celular) {
+				var reg = /^(\(11\) (9\d{4})-\d{4})$/
+				if (reg.test(celular)) {
+					return true;
+				}
+
+				return false;
+			}
+
 		</script>
 
 		<div class="container-fluid nopadding">
@@ -106,21 +243,20 @@ xmlns="http://www.w3.org/1999/xhtml"
 			        <div class="col-xs-12">
 			        	<input  type="hidden" id="cdForcaVenda" class="nome form-control" th:field="*{cdForcaVenda}" name="cdForcaVenda">
 			        
-			            <div class="form-group space-right-140 width-form1 space-top-20">
+			            <div class="form-group space-right-140 space-top-20">
 			                <!-- <label class="label-nome">Nome</label> -->
-			                <img src="/img/icon-user.png" id="imgLabNome"><input type="text" id="nome" class="nome form-control" th:field="*{nome}" name="nome">
+			                <img src="/img/icon-user.png" id="imgLabNome"><input type="text" id="nomeCorretorEdicao" class="nome form-control" th:field="*{nome}" name="nome">
 			            </div>
 			
-			            <div class="form-group space-right-140 width-form3 space-top-20">
+			            <div class="form-group space-right-140 space-top-20">
 			                <!-- <label class="label-email">E-mail</label> -->
-			                <img src="/img/email.png" id="imgLabEmail"><input type="text" id="emailMeusDados" class="email form-control" th:field="*{email}" name="nome">
+			                <img src="/img/email.png" id="imgLabEmail"><input type="text" id="emailCorretorEdicao" class="email form-control" th:field="*{email}" name="nome">
 			            </div>
 			            
-			            <div class="form-group space-right-140 width-form3 space-top-20">
+			            <div class="form-group space-right-140 space-top-20">
 			                <!-- <label class="label-celular">Celular</label> -->
-			                <img src="/img/celular.png" id="imgLabCel"><input type="text" id="celular" class="celular form-control" th:field="*{celular}" name="celular">
+			                <img src="/img/celular.png" id="imgLabCel"><input type="text" id="telefoneCorretorEdicao" class="celular form-control" th:field="*{celular}" name="celular">
 			            </div>
-			            
 			        </div>
 
 			        <!-- <div class=" col-xs-12 space-top-30"> -->
@@ -128,7 +264,7 @@ xmlns="http://www.w3.org/1999/xhtml"
 			            <!--<button type="submit" class="btn btnBlue btn-width-custom space-top-10 uppercase">SALVAR MEUS DADOS</button>-->
 			        <!-- </div> -->			       
                      
-                     <button type="submit" class="btn btnBlue btn-width-custom space-top-10 uppercase" onclick="move()">SALVAR MEUS DADOS</button>
+                     <button type="button" id="salvarDados" class="btn btnBlue btn-width-custom space-top-10 uppercase">SALVAR MEUS DADOS</button>
 					 <br>
 					 <br>
 					 <div id="myProgress" class="btn-width-custom">
@@ -143,4 +279,5 @@ xmlns="http://www.w3.org/1999/xhtml"
 		</div>
 
 	</body>
+
 </html>
