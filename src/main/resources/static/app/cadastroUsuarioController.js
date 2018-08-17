@@ -197,6 +197,36 @@ $(document).ready(function () {
         $("#btnCelOdontNCpf").addClass('disabled');
     });
 
+    $("#squaredOne").click(function (e) {
+        if ($("#squaredOne").is(":checked")) {
+
+            $("#btnTermoNCadastrado").removeClass('background-color-cinza');
+            $("#btnTermoNCadastrado").addClass('background-color-azul');
+            $("#btnTermoNCadastrado").removeClass('disabled');
+
+        } else {
+
+            $("#btnTermoNCadastrado").removeClass('background-color-azul');
+            $("#btnTermoNCadastrado").addClass('background-color-cinza');
+            $("#btnTermoNCadastrado").addClass('disabled');
+        }
+    });
+
+    $("#squaredOneTermoCadastrado").click(function (e) {
+        if ($("#squaredOneTermoCadastrado").is(":checked")) {
+
+            $("#btnTermo").removeClass('background-color-cinza');
+            $("#btnTermo").addClass('background-color-azul');
+            $("#btnTermo").removeClass("disabled");
+
+        } else {
+            $("#btnTermo").removeClass('background-color-azul');
+            $("#btnTermo").addClass('background-color-cinza');
+            $("#btnTermo").addClass("disabled");
+
+        }
+    });
+
     $("#celularNaoCadastrado").keyup(function () {
 
         if ($(this).val().length > 14 && $("#emailNaoCadastrado").val() != "" && $("#nomeNaoCadastrado").val() != "" && validateEmail($("#emailNaoCadastrado").val()) && ValidaNome($("#nomeNaoCadastrado").val())) {
@@ -277,15 +307,26 @@ $(document).ready(function () {
     $(".validacaoDivErro").blur(function () {
 
         if ($("#cpf").val().length == 14 && TestaCPF($("#cpf").val().replace(/\D/g, ''))) {
+            $("#btnCpfOdont").removeClass('background-color-cinza');
+            $("#btnCpfOdont").addClass('background-color-azul');
             $("#btnCpfOdont").removeClass('disabled');
             $(".img-erro-cpf").hide(250);
             $("#divErroCpf").hide(250);
             return;
         }
 
-        $(".img-erro-cpf").show(250);
-        $("#divErroCpf").show(250);
-        $("#btnCpfOdont").addClass('disabled');
+        if ($("#cpf").val() != "") {
+
+            $("#btnCpfOdont").addClass('background-color-cinza');
+            $("#btnCpfOdont").removeClass('background-color-azul');
+            $(".img-erro-cpf").show(250);
+            $("#divErroCpf").show(250);
+            $("#btnCpfOdont").addClass('disabled');
+            return;
+        }
+
+        $("#btnCpfOdont").addClass('background-color-cinza');
+        $("#btnCpfOdont").removeClass('background-color-azul');
 
     });
 
@@ -620,7 +661,7 @@ function callForcaVenda(callback, token, cpf) {
         title: "Aguarde",
         text: 'Estamos procurando seus dados',
         content: "input",
-        imageUrl: "img/load.gif",
+        imageUrl: "img/icon-aguarde.gif",
         showCancelButton: false,
         showConfirmButton: false,
         icon: "info",
@@ -759,7 +800,7 @@ function callCorretora(callback, token, cnpj) {
         title: "Aguarde",
         text: 'Estamos buscando a corretora',
         content: "input",
-        imageUrl: "img/load.gif",
+        imageUrl: "img/icon-aguarde.gif",
         showCancelButton: false,
         showConfirmButton: false,
         icon: "info",

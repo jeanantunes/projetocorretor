@@ -140,13 +140,8 @@
 
                 <div class="container pull-left panel-odonto nopadding space-right">
                     <div class="panel panel-default rosa">
-                        <div
-                                class="bg-pink text-silver text-center uppercase">pessoa
-                            física
-                        </div>
+                        <div class="bg-pink text-center uppercase">pessoa física</div>
                         <div class="panel-body">
-
-
                             <div class="row">
                                 <div class="col-xs-12">
                                     <h3 class="title-odonto font-pink text-center">
@@ -188,7 +183,7 @@
                     </div>
                 </div>
 
-                <div class="container pull-left panel-odonto nopadding">
+                <div class="container pull-left panel-odonto nopadding space-right">
                     <div class="panel panel-default azul">
                         <div class="bg-blue text-center uppercase">pme</div>
                         <div class="panel-body">
@@ -203,7 +198,7 @@
                             </div>
 
                             <div class="row space-top-30">
-                                <div class="col-xs-12">
+                                <div class="col-xs-12" style="margin-top: 2%">
 
 
                                     <div class="box-proposta" th:each="proposta : ${listaPropostas.propostaPME}">
@@ -214,7 +209,7 @@
                                         <p class="title-name text-odonto pull-left">
                                             <strong th:text="${proposta.nome}">Maria Angela da Silva</strong>
                                         </p>
-                                        <p class="title-name text-odonto pull-left">
+                                        <p class="title-name text-odonto pull-left border-left" style="clear: both;margin-left: 9px;margin-bottom: 0px">
                                             <strong th:if="${proposta.nomeFantasia != null}" th:text="${proposta.nomeFantasia}">Fantasia no Ar</strong>
                                         </p>
                                         <!--<span class="pull-right font-blue">HÃ¡ 16 horas</span>-->

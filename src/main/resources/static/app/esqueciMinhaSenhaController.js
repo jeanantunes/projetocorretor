@@ -235,12 +235,23 @@ $(document).ready(function () {
 
     $(".validacaoDivErro").blur(function () {
 
-        if ($("#confirmarSenha").val() == $("#senha").val()) {
+        if ($("#confirmarSenha").val() == $("#senha").val() && $("#senha").val().length >= 8) {
             $("#confirmarLogin").removeClass('disabled');
             $(".img-erro-cpf").hide(250);
             $("#divErroCpf").hide(250);
             $("#confirmarLogin").removeClass("btnOdontCinza");
             $("#confirmarLogin").addClass("btnOdont");
+            $("#senha").removeClass("inputLabelBlur");
+            $("#senha").removeClass("inputLabelErro");
+            $("#senha").addClass("inputLabelFocus");
+            $("#senhaTxt").removeClass("text-red-cpfcnpj");
+            $("#senhaTxt").addClass("text-blue-cpfcnpj");
+            $("#confirmaTxt").removeClass("text-red-cpfcnpj");
+            $("#confirmaTxt").addClass("text-blue-cpfcnpj");
+            $("#confirmarSenha").removeClass("inputLabelBlur");
+            $("#confirmarSenha").removeClass("inputLabelErro");
+            $("#confirmarSenha").addClass("inputLabelFocus");
+
 
             return;
         }
@@ -250,6 +261,15 @@ $(document).ready(function () {
         $("#confirmarLogin").addClass('disabled');
         $("#confirmarLogin").removeClass("btnOdont");
         $("#confirmarLogin").addClass("btnOdontCinza");
-
+        $("#senha").removeClass("inputLabelBlur");
+        $("#senha").removeClass("inputLabelFocus");
+        $("#senha").addClass("inputLabelErro");
+        $("#senhaTxt").removeClass("text-blue-cpfcnpj");
+        $("#senhaTxt").addClass("text-red-cpfcnpj");
+        $("#confirmaTxt").removeClass("text-blue-cpfcnpj");
+        $("#confirmaTxt").addClass("text-red-cpfcnpj");
+        $("#confirmarSenha").removeClass("inputLabelBlur");
+        $("#confirmarSenha").removeClass("inputLabelFocus");
+        $("#confirmarSenha").addClass("inputLabelErro");
     });
 });
