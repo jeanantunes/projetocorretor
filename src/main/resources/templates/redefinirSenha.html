@@ -1,12 +1,8 @@
-
-
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="pt-br"
       xmlns="http://www.w3.org/1999/xhtml">
 
 <head><title>OdontoPrev</title>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,11 +12,20 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/odontoprev.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/sweetalert.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
 </head>
 <body>
 <!-- Bloco 1 -->
 <div class="container-fluid" id="loadingRecuperacaoSenha">
 
+    <div class="row">
+        <div class="col-md-12 boxHeaderRecuperaSenha">
+            <a href="javascript:history.back()"><img src="../img/seta.png" class="seta-home" alt="Home"/></a>
+            <div class="text-center">
+                <img src="../img/logoODPV-header.png" class="" alt="OdontoPrev"/>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-12 odontBoxCenter">
             <h1 class="titleOdont text-center">
@@ -42,7 +47,7 @@
                     <label class="label-cpf labelOdontBlur">Confirmar senha</label>
                 </div>
                 <div>
-                    <input type="password" class="inputLabelBlur" id="confirmarSenha" maxlength="12">
+                    <input type="password" class="inputLabelBlur validacaoDivErro" id="confirmarSenha" maxlength="12">
                 </div>
             </div>
         </div>
@@ -50,7 +55,7 @@
     <div class="row">
         <div class="col-sm-offset-4 col-sm-4">
 
-            <a class="btn btn-lg btn-block btnOdont" style="margin-top: 50px;" id="confirmarLogin"
+            <a class="btn btn-lg btn-block btnOdontCinza disabled" id="confirmarLogin"
                role="button">CONTINUAR</a>
         </div>
     </div>
@@ -61,8 +66,7 @@
 <script type="text/javascript" src="../js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../js/jquery.mask.min.js"></script>
 <script type="text/javascript" src="../js/odonto-Valida.js"></script>
-<script type="text/javascript" src="../app/esqueciMinhaSenhaController.js"></script>
-<script type="text/javascript" src="../js/sweetalert.min.js"></script>
-
+<script type="text/javascript" charset="utf-8" src="../app/esqueciMinhaSenhaController.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/sweetalert.min.js"></script>
 </body>
 </html>

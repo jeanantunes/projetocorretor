@@ -198,7 +198,7 @@ function callPutForcaVenda(callback, token, codForca, nome, celular, email, senh
 
     $.ajax({
         async: true,
-        url: "https://api-it3.odontoprev.com.br:8243/corretorservicos/1.0/forcavenda",
+        url: "https://api.odontoprev.com.br:8243/corretorservicos/1.0/forcavenda",
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -230,3 +230,26 @@ function callTokenProd(callback) {
         }
     });
 };
+
+$(document).ready(function () {
+
+    $(".validacaoDivErro").blur(function () {
+
+        if ($("#confirmarSenha").val() == $("#senha").val()) {
+            $("#confirmarLogin").removeClass('disabled');
+            $(".img-erro-cpf").hide(250);
+            $("#divErroCpf").hide(250);
+            $("#confirmarLogin").removeClass("btnOdontCinza");
+            $("#confirmarLogin").addClass("btnOdont");
+
+            return;
+        }
+
+        $(".img-erro-cpf").show(250);
+        $("#divErroCpf").show(250);
+        $("#confirmarLogin").addClass('disabled');
+        $("#confirmarLogin").removeClass("btnOdont");
+        $("#confirmarLogin").addClass("btnOdontCinza");
+
+    });
+});

@@ -53,6 +53,7 @@ $(".validacaoDivErro").blur(function () {
             $("#cpfcnpj").removeClass("text-red-cpfcnpj");
             $("#cpfcnpj").addClass("text-blue-cpfcnpj");
             $("#cpfcnpj").removeClass("inputLabelErro");
+            $("#cpfcnpj").removeClass("inputLabelBlur");
             $("#cpfcnpj").addClass("inputLabelFocus");
         return;
     }
@@ -68,6 +69,7 @@ $(".validacaoDivErro").blur(function () {
             $("#cpfcnpj").removeClass("text-red-cpfcnpj");
             $("#cpfcnpj").addClass("text-blue-cpfcnpj");
             $("#cpfcnpj").removeClass("inputLabelErro");
+            $("#cpfcnpj").removeClass("inputLabelBlur");
             $("#cpfcnpj").addClass("inputLabelFocus");
         return;
     }
@@ -86,7 +88,7 @@ $(".validacaoDivErro").blur(function () {
 
 
 
-$("#continuarRecuperacaoDeSenha").click(function () {
+$("#btnOdont").click(function () {
 
     var cpfAndCnpj = $("#cpfcnpj").val().replace(/\D/g, '');
 
