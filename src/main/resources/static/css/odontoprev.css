@@ -42,6 +42,11 @@ img.img-erro-senha-cpf-false {
     max-width: 100%;
 }
 
+img.img-erro-senha-cpf-true {
+    position: absolute;
+    max-width: 100%;
+}
+
 @-webkit-keyframes autofill {
     to {
         color: #666;
