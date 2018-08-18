@@ -156,30 +156,33 @@
     <form class="space-top-40" th:object="${forcaVenda}" th:action="@{/forcavenda/editar/salvar}" method="POST">
         <div class="container-logado padding-logado">
             <div class="col-xs-12">
+                <div>
+                    <label class="titleOdont text-center">EDITAR MEUS DADOS</label>
+                </div>
                 <div type="hidden" id="cdForcaVenda" class="nome form-group" th:field="*{cdForcaVenda}"
                      name="cdForcaVenda"/>
 
                 <div class="space-top-20">
-                    <img src="/img/icon-user.png" id="imgLabNome"/>
+                    <label class="nome label-odont">Nome</label><br/>
                     <input type="text" id="nomeCorretorEdicao" class="nome inputLabelBlur" th:field="*{nome}"
                            name="nome" style="display: inline; width: 60%;"/>
                 </div>
 
                 <div class="space-top-20">
-                    <img src="/img/email.png" id="imgLabEmail"/>
+                    <label class="nome label-odont">E-mail</label><br/>
                     <input type="text" id="emailCorretorEdicao" class="email inputLabelBlur" th:field="*{email}"
                            name="nome" style="display: inline; width: 60%;"/>
                 </div>
 
                 <div class="space-top-20">
-                    <img src="/img/celular.png" id="imgLabCel"/>
+                    <label class="nome label-odont">Telefone</label><br/>
                     <input type="text" id="telefoneCorretorEdicao" class="celular inputLabelBlur" th:field="*{celular}"
                            name="celular" style="display: inline; width: 60%;"/>
                 </div>
             </div>
 
             <div>
-                <button type="submit" id="salvarDados" class="btn btnBlue btn-width-custom space-top-10 uppercase">
+                <button type="submit" id="salvarDados" class="btn btn-lg btn-block btnOdont">
                     SALVAR
                     MEUS DADOS
                 </button>

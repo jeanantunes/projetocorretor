@@ -1358,19 +1358,25 @@ h5, .subListBox {
 }
 
 .btnOdont {
-    font-family: Roboto-Medium;
+    font-family: Roboto-Bold;
     font-size: 12pt;
     background-color: #1974CE;
-    color: #fff !important;
-    padding: 16px !important;
+    color: #FFFFFF !important;
+    padding: 16px;
+    outline: none !important;
+    max-width: 330px !important;
+    max-height: 50px !important;
 }
 
 .btnOdontCinza {
-    font-family: Roboto-Medium;
+   font-family: Roboto-Bold;
     font-size: 12pt;
-    background-color: #6A6A6A !important;
-    color: #fff !important;
+    background-color: #6A6A6A;
+    color: #FFFFFF !important;
     padding: 16px;
+    outline: none !important;
+    max-width: 330px !important;
+    max-height: 50px !important;
 }
 
 

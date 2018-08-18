@@ -1,11 +1,12 @@
 ﻿.subtitulo-nome-corretora {
-    font-family: Roboto-Light;
-    color: #ACAAA5;
-    font-size: 14pt;
+    font-family: Roboto-Bold;
+    color: #6A6A6A;
+    font-size: 16pt;
 }
 
 .label-dados {
-    font-family: Roboto-Light;
-    color: #ACAAA5;
-    font-size: 14pt;
+    font-family: Roboto-Bold;
+    color: #6A6A6A;
+    font-size: 16pt;
+    padding-left: 15px;
 }
