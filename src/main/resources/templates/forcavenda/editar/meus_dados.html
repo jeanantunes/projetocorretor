@@ -18,76 +18,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
 </head>
 
-<style>
-    /* #myProgress {
-      width: 100%;
-      background-color: #ddd;
-    } */
-
-    #myBar {
-        width: 0%;
-        height: 20px;
-        background-color: #4CAF50;
-    }
-</style>
-
 <body style="min-width: 100% !important;">
-
-<!-- barra de progresso -->
-<script>
-    function move() {
-        var elem = document.getElementById("myBar");
-        var width = 1;
-        var id = setInterval(frame, 10);
-
-        function frame() {
-            if (width >= 100) {
-                clearInterval(id);
-            } else {
-                width++;
-                elem.style.width = width + '%';
-            }
-        }
-    }
-</script>
-
-<script>
-    $(function () {
-        $(".button-collapse").sideNav();
-    });
-
-</script>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.table-odonto tr:odd').css('background-color', '#EDEDED');
-
-        $('.table-odonto tr:even').css('background-color', '#fff');
-    });
-</script>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-
-        $('.barras').each(function () {
-            var dataWidth = $(this).data('value');
-            $(this).css("width", dataWidth + "%");
-            $(this).css("max-width", "100%");
-            if (dataWidth <= 25) {
-                $(this).css("border-color", "transparent");
-            }
-            else if (dataWidth > 25 && dataWidth <= 50) {
-                $(this).css("border-color", "transparent");
-            }
-            else if (dataWidth > 50 && dataWidth <= 75) {
-                $(this).css("border-color", "transparent");
-            }
-            else if (dataWidth > 75 && dataWidth <= 100) {
-                $(this).css("border-color", "transparent");
-            }
-        });
-    });
-</script>
 
 <div class="container-fluid nopadding">
 
@@ -105,37 +36,20 @@
                                                                          class="label-dados word-wrap-normal"
                                                                          id="nomeCorretor"
                                                                          th:text="*{nome}">nome</label>
-                    <!--
-                    <label class="label-nome">Nome</label>
-                    <input readonly type="text" id="nome" class="nome form-control" th:field="*{nome}" name="nome">
-                    -->
                 </div>
 
                 <div class="form-group space-right-140 space-top-20">
                     <img src="/img/email.png" id="imgLabEmail"><label type="text" class="label-dados word-wrap-normal"
                                                                       id="emailCorretor"
                                                                       th:text="*{email}">email</label>
-                    <!--
-                    <label class="label-email">E-mail</label>
-                    <input readonly type="text" id="emailMeusDados" class="email form-control" th:field="*{email}" name="email">
-                    -->
                 </div>
 
                 <div class="form-group space-right-140 space-top-20">
                     <img src="/img/celular.png" id="imgLabCel"><label type="text" class="label-dados word-wrap-normal"
                                                                       id="celularCorretor"
                                                                       th:text="*{celular}">celular</label>
-                    <!--
-                    <label class="label-celular">Celular</label>
-                    <input readonly type="text" id="celular" class="celular form-control" th:field="*{celular}" name="celular">
-                    -->
                 </div>
             </div>
-
-            <!-- <div class=" col-xs-12 space-top-30"> -->
-            <!-- <a type="button" class="btn btnBlue btn-width-custom space-top-10 uppercase">EDITAR MEUS DADOS</a> -->
-            <!--<button type="submit" class="btn btnBlue btn-width-custom space-top-10 uppercase">SALVAR MEUS DADOS</button>-->
-            <!-- </div> -->
 
             <button type="submit" class="btn btnBlue btn-width-custom space-top-10 uppercase" onclick="move()">EDITAR
                 MEUS DADOS
@@ -147,15 +61,14 @@
 </div>
 
 
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/scripts.js"></script>
-<script src="js/odontoprev.js"></script>
-<script src="js/jquery.3.2.1.js"></script>
-<script src="js/jquery.mask.min.js"></script>
-<script src="app/coordenador.js"></script>
-<script src="js/odonto-Valida.js"></script>
-<script src="js/menu.js"></script>
-<script type="text/javascript" charset="utf-8" src="js/sweetalert.min.js"></script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/scripts.js"></script>
+<script src="/js/odontoprev.js"></script>
+<script src="/js/jquery.3.2.1.js"></script>
+<script src="/js/jquery.mask.min.js"></script>
+<script src="/js/odonto-Valida.js"></script>
+<script src="/js/menu.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/sweetalert.min.js"></script>
 </body>
 </html>

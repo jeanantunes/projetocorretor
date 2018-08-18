@@ -17,74 +17,8 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
 </head>
 
-<style>
-    /* #myProgress {
-      width: 100%;
-      background-color: #ddd;
-    } */
-
-    #myBar {
-        width: 0%;
-        height: 20px;
-        background-color: #4CAF50;
-    }
-</style>
-
-<body style="min-width: 100% !important;">
-
-<!-- barra de progresso -->
-<script>
-    function move() {
-        var elem = document.getElementById("myBar");
-        var width = 1;
-        var id = setInterval(frame, 10);
-
-        function frame() {
-            if (width >= 100) {
-                clearInterval(id);
-            } else {
-                width++;
-                elem.style.width = width + '%';
-            }
-        }
-    }
-</script>
-
-<script>
-    $(function () {
-        $(".button-collapse").sideNav();
-    });
-
-</script>
-
 <script type="text/javascript">
     $(document).ready(function () {
-        $('.table-odonto tr:odd').css('background-color', '#EDEDED');
-
-        $('.table-odonto tr:even').css('background-color', '#fff');
-    });
-</script>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-
-        $('.barras').each(function () {
-            var dataWidth = $(this).data('value');
-            $(this).css("width", dataWidth + "%");
-            $(this).css("max-width", "100%");
-            if (dataWidth <= 25) {
-                $(this).css("border-color", "transparent");
-            }
-            else if (dataWidth > 25 && dataWidth <= 50) {
-                $(this).css("border-color", "transparent");
-            }
-            else if (dataWidth > 50 && dataWidth <= 75) {
-                $(this).css("border-color", "transparent");
-            }
-            else if (dataWidth > 75 && dataWidth <= 100) {
-                $(this).css("border-color", "transparent");
-            }
-        });
 
         $("#salvarDados").click(function () {
 
@@ -105,157 +39,114 @@
                 return false;
             }
 
-            // if (!validateCelular(telefoneCorretor)) {
-            // 	swal("Ops!", "Por favor preencha um celular válido", "error");
-            // 	return false;
-            // }
 
             if (!validateEmail(emailCorretor)) {
-
                 swal("Ops!", "Por favor preencha um email válido", "error");
                 return false;
-
             }
 
             if (!navigator.onLine) {
-
                 swal("Ops!", "Você precisa estar online para atualizar seus dados", "error");
                 return false;
-
             }
-
-            // swal({
-            // 	title: "Aguarde",
-            // 	text: 'Estamos atualizando seus dados',
-            // 	content: "input",
-            // 	imageUrl: "img/load.gif",
-            // 	showCancelButton: false,
-            // 	showConfirmButton: false,
-            // 	icon: "info",
-            // 	button: {
-            // 		text: "...",
-            // 		closeModal: false,
-            // 	},
-            // });
-
-            // console.log("metodo - callfilefull");
-            // $.ajax({
-            // 	async: true,
-            // 	url: "/forcavenda",
-            // 	method: "POST",
-            // 	headers: {
-            // 		"Cache-Control": "no-cache",
-            // 	},
-            // 	success: function (resp) {
-            // 		$("." + codMat).attr("src", "data:image/jpg;base64, " + resp);
-            // 		swal.close();
-            // 	},
-            // 	error: function (xhr) {
-            // 		console.log(xhr)
-            // 	}
-            // });
-
             return true;
 
-        }); //$("#salvarDados").click
+        });
 
-    }); //$(document).ready
 
-    function ValidaNome(fieldValue) {
+        function ValidaNome(fieldValue) {
 
-        var splittedName = fieldValue.trim().split(/[\ |\']+/) // Separa o nome por espaços e apóstrofos (')
+            var splittedName = fieldValue.trim().split(/[\ |\']+/) // Separa o nome por espaços e apóstrofos (')
+            var splittedNameSpace = fieldValue.split(/[\ ]+/)
+            var totalWords = splittedName.length
+            let firstName = splittedName[0]
+            let lastName = splittedName[totalWords - 1]
 
-        var splittedNameSpace = fieldValue.split(/[\ ]+/)
-
-        var totalWords = splittedName.length
-
-        let firstName = splittedName[0]
-
-        let lastName = splittedName[totalWords - 1]
-
-        if (!fieldValue) {
-            return false
-        }
-
-        // Se o nome completo contiver um apóstrofo seguido de qualquer caractere que não seja a-z, é inválido
-        if (fieldValue.match(/'[^a-zà-ÿ ]/i)) {
-            return false
-        }
-
-        // Se o primeiro nome tiver só uma letra e ela não for D, I, O, U ou Y, é inválido
-        if (firstName.length === 1 && !firstName.match(/[D|I|O|U|Y]/i)) {
-            return false
-        }
-
-        // Se o último nome tiver só uma letra e ela não for I, O, U ou Y, é inválido
-        if (lastName.length === 1 && !lastName.match(/[I|O|U|Y]/i)) {
-            return false
-        }
-
-        // Se o nome possuir conectivos que não 'e' ou 'y', é inválido
-        for (let i in splittedName) {
-
-            // Se o nome estiver vazio, é invalido
-            if (splittedName[i] == "") {
+            if (!fieldValue) {
                 return false
             }
 
-            // Se o nome possuir caracteres especiais, exceto apostrofo, é invalido
-            if (!splittedName[i].match(/^[a-zA-ZÁÉÍÓÚÀÈÌÒÙàèìòùáéíóúâêîôûãõçÇ']+$/g)) {
+            // Se o nome completo contiver um apóstrofo seguido de qualquer caractere que não seja a-z, é inválido
+            if (fieldValue.match(/'[^a-zà-ÿ ]/i)) {
                 return false
             }
 
-            if (i === '0' || parseInt(i) === (totalWords - 1)) {
-                continue // Ignora o primeiro e o último nome
-            }
-
-            var nameWithApostrophe = splittedName[i] + "'" + splittedName[parseInt(i) + 1]
-
-            if (
-                splittedName[i].length === 1
-                &&
-                !splittedName[i].match(/[E|Y]/i)
-                &&
-                nameWithApostrophe != splittedNameSpace[i]
-            ) {
+            // Se o primeiro nome tiver só uma letra e ela não for D, I, O, U ou Y, é inválido
+            if (firstName.length === 1 && !firstName.match(/[D|I|O|U|Y]/i)) {
                 return false
             }
+
+            // Se o último nome tiver só uma letra e ela não for I, O, U ou Y, é inválido
+            if (lastName.length === 1 && !lastName.match(/[I|O|U|Y]/i)) {
+                return false
+            }
+
+            // Se o nome possuir conectivos que não 'e' ou 'y', é inválido
+            for (let i in splittedName) {
+
+                // Se o nome estiver vazio, é invalido
+                if (splittedName[i] == "") {
+                    return false
+                }
+
+                // Se o nome possuir caracteres especiais, exceto apostrofo, é invalido
+                if (!splittedName[i].match(/^[a-zA-ZÁÉÍÓÚÀÈÌÒÙàèìòùáéíóúâêîôûãõçÇ']+$/g)) {
+                    return false
+                }
+
+                if (i === '0' || parseInt(i) === (totalWords - 1)) {
+                    continue // Ignora o primeiro e o último nome
+                }
+
+                var nameWithApostrophe = splittedName[i] + "'" + splittedName[parseInt(i) + 1]
+
+                if (
+                    splittedName[i].length === 1
+                    &&
+                    !splittedName[i].match(/[E|Y]/i)
+                    &&
+                    nameWithApostrophe != splittedNameSpace[i]
+                ) {
+                    return false
+                }
+            }
+
+            // Se o nome completo contiver um apóstrofo e não houver pelo menos três palavras, é inválido
+            if (fieldValue.match(/'/i) && totalWords < 3) {
+                return false
+            }
+
+            // Se o nome tiver só uma palavra, é inválido
+            if (totalWords === 1) {
+                return false
+            }
+
+            return true
+
+        } //function ValidaNome
+
+        function validateEmail(email) {
+            var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
+            if (reg.test(email)) {
+                return true;
+            }
+
+            return false;
         }
 
-        // Se o nome completo contiver um apóstrofo e não houver pelo menos três palavras, é inválido
-        if (fieldValue.match(/'/i) && totalWords < 3) {
-            return false
+        // h t t p s : // gist .github .com /reggiegutter/5516382
+        function validateCelular(celular) {
+            var reg = /^(\(11\) (9\d{4})-\d{4})$/
+            if (reg.test(celular)) {
+                return true;
+            }
+
+            return false;
         }
-
-        // Se o nome tiver só uma palavra, é inválido
-        if (totalWords === 1) {
-            return false
-        }
-
-        return true
-
-    } //function ValidaNome
-
-    function validateEmail(email) {
-        var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
-        if (reg.test(email)) {
-            return true;
-        }
-
-        return false;
-    }
-
-    // h t t p s : // gist .github .com /reggiegutter/5516382
-    function validateCelular(celular) {
-        var reg = /^(\(11\) (9\d{4})-\d{4})$/
-        if (reg.test(celular)) {
-            return true;
-        }
-
-        return false;
-    }
-
+    });
 </script>
+
+<body style="min-width: 100% !important;">
 
 <div class="container-fluid nopadding">
 
@@ -287,28 +178,26 @@
                 </div>
             </div>
 
-            <button type="submit" id="salvarDados" class="btn btnBlue btn-width-custom space-top-10 uppercase">SALVAR
-                MEUS DADOS
-            </button>
-
-            <div id="myProgress" class="btn-width-custom">
-                <div id="myBar"></div>
+            <div>
+                <button type="submit" id="salvarDados" class="btn btnBlue btn-width-custom space-top-10 uppercase">
+                    SALVAR
+                    MEUS DADOS
+                </button>
             </div>
         </div>
     </form>
-
+</div>
+<div>
     <div th:replace="fragments/footer :: footer">&nbsp;</div>
 </div>
 
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/scripts.js"></script>
-<script src="js/odontoprev.js"></script>
-<script src="js/jquery.3.2.1.js"></script>
-<script src="js/jquery.mask.min.js"></script>
-<script src="app/coordenador.js"></script>
-<script src="js/odonto-Valida.js"></script>
-<script src="js/menu.js"></script>
-<script type="text/javascript" charset="utf-8" src="js/sweetalert.min.js"></script>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/scripts.js"></script>
+<script type="text/javascript" src="/js/odontoprev.js"></script>
+<script type="text/javascript" src="/js/jquery.mask.min.js"></script>
+<script type="text/javascript" src="/js/odonto-Valida.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/sweetalert.min.js"></script>
 </body>
 </html>
