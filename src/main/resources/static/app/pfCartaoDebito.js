@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $(".bancos").change(function () {
         if ($(this).val() == "341") {
-            swal("Aten��o!", "Lembre o seu cliente de que o Ita� exige libera��o para o d�bito em conta.", "info");
+            swal("Atenção!", "Lembre o seu cliente de que o Itaú exige liberação para o débito em conta.", "info");
         }
     });
 });
@@ -9,7 +9,6 @@ $(document).ready(function () {
 $("#contaDebito").keyup(function () {
 
     $("#continuarPfDebito").addClass('disabled');
-    console.log("Validacao conta");
     if ($(this).val() == "" || $("#agenciaDebito").val() == "") {
         return;
     }
@@ -21,6 +20,9 @@ $(function () {
     var regex = new RegExp('[^0-9]', 'g');
     // repare a flag "g" de global, para substituir todas as ocorr�ncias
     $('.agencia').bind('input', function () {
+        $(this).val($(this).val().replace(regex, ''));
+    });
+    $('.conta').bind('input', function () {
         $(this).val($(this).val().replace(regex, ''));
     });
 });
@@ -36,7 +38,6 @@ $(function () {
 $("#agenciaDebito").keyup(function () {
 
     $("#continuarPfDebito").addClass('disabled');
-    console.log("Validacao agencia");
     if ($(this).val() == "" || $("#contaDebito").val() == "") {
 
         return;
@@ -47,24 +48,28 @@ $("#agenciaDebito").keyup(function () {
 
 function cadastrarConta() {
 
-    if ($(".bancos").val() == "Selecione...") {
+    if ($(".bancos").val() == " ") {
         swal("Ops!", "Selecione o banco", "error");
+        $(".bancos").focus();
         return;
     }
 
     if ($(".agencia").val() == "") {
         swal("Ops!", "Preencha a agencia", "error");
+        $(".agencia").focus();
         return;
     }
 
-    if ($(".conta-corrente").val() == "") {
+    if ($("#conta-corrente").val() == "") {
         swal("Ops!", "Preencha a conta corrente", "error");
+        $("#conta-corrente").focus();
         return;
     }
 
     var proposta = get("propostaPf");
     var cdBanco = $(".bancos").val();
     var agencia = $("#agenciaDebito").val();
+    var conta = $("#contaDebito").val();
 
     while (agencia.length < 4) {
         agencia = "0" + agencia;
@@ -72,7 +77,7 @@ function cadastrarConta() {
 
     proposta.dadosBancarios.codigoBanco = cdBanco;
     proposta.dadosBancarios.agencia = agencia;
-    proposta.dadosBancarios.conta = $("#contaDebito").val();
+    proposta.dadosBancarios.conta = conta;
     proposta.dadosBancarios.tipoConta = "CC";
 
     proposta.status = "PRONTA";

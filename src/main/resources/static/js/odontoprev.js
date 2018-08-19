@@ -169,7 +169,7 @@ $(".btnExcluir").click(function(){
             var dataWidth = $(this).data('value');
             $(this).css("width", dataWidth + "%");
             $(this).css("max-width", "100%");
-            if (dataWidth <=25) { $(this).css("background-color", "red"); }
+            if (dataWidth <=25) { $(this).css("background-color", "#FF4141"); }
             else if (dataWidth >25 && dataWidth <=50){ $(this).css("background-color", "#FF4141"); }
             else if (dataWidth >50 && dataWidth <=75) { $(this).css("background-color", "#4ED6FF"); }
             else if (dataWidth >75 && dataWidth <=100) { $(this).css("background-color", "#C3EB3B"); } 

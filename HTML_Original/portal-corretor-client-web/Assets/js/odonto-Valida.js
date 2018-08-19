@@ -171,19 +171,19 @@ console.log(valor);
         
              if($(this).val() == "" || TestaCPF(stringteste) == false)
                  {
-                     $(this).css({"border-color" : "#F00"});
-                     $(".label-cpf").css("color", "red");
-                     $(".cpf").css("color", "red");
+                     $(this).css({"border-color" : "#FF4141"});
+                     $(".label-cpf").css("color", "#FF4141");
+                     $(".cpf").css("color", "#FF4141");
                  }
              });
 
                 $(".cpf").keyup(function(){
              if($(this).val() != "")
                  {
-                     $(this).css({"border-color" : "#3A94FB"});
-                     $(".cpf").css("color", "#3A94FB");
-                     $(".label-cpf").css("color", "#3A94FB");
-                     $("input:-webkit-autofill").css("color", "#3A94FB");
+                     $(this).css({"border-color" : "#1974CE"});
+                     $(".cpf").css("color", "#1974CE");
+                     $(".label-cpf").css("color", "#1974CE");
+                     $("input:-webkit-autofill").css("color", "#1974CE");
                  }
              });
 
@@ -204,17 +204,17 @@ console.log(valor);
             $(".sexo").blur(function(){
             if($(this).val() == "")
                  {
-                     $(this).css({"border-color" : "#F00"});
-                     $(".label-sexo").css("color", "red");
+                     $(this).css({"border-color" : "#FF4141"});
+                     $(".label-sexo").css("color", "#FF4141");
                  }
              });
 
             $(".sexo").keyup(function(){
              if($(this).val() != "")
                  {
-                     $(this).css({"border-color" : "#3A94FB"});
-                     $(".sexo").css("color", "#3A94FB");
-                     $(".label-sexo").css("color", "#3A94FB");
+                     $(this).css({"border-color" : "#1974CE"});
+                     $(".sexo").css("color", "#1974CE");
+                     $(".label-sexo").css("color", "#1974CE");
                  }
              });
 
@@ -233,17 +233,17 @@ console.log(valor);
             $(".mensagem").blur(function(){
             if($(this).val() == "")
                  {
-                     $(this).css({"border-color" : "#F00"});
-                     $(".label-mensagem").css("color", "red");
+                     $(this).css({"border-color" : "#FF4141"});
+                     $(".label-mensagem").css("color", "#FF4141");
                  }
              });
 
             $(".mensagem").keyup(function(){
              if($(this).val() != "")
                  {
-                     $(this).css({"border-color" : "#3A94FB"});
-                     $(".mensagem").css("color", "#3A94FB");
-                     $(".label-mensagem").css("color", "#3A94FB");
+                     $(this).css({"border-color" : "#1974CE"});
+                     $(".mensagem").css("color", "#1974CE");
+                     $(".label-mensagem").css("color", "#1974CE");
                  }
              });
 
@@ -268,17 +268,17 @@ console.log(valor);
             $(".nascimento").blur(function(){
             if($(this).val() == "")
                  {
-                     $(this).css({"border-color" : "#F00"});
-                     $(".label-nascimento").css("color", "red");
+                     $(this).css({"border-color" : "#FF4141"});
+                     $(".label-nascimento").css("color", "#FF4141");
                  }
              });
 
             $(".nascimento").keyup(function(){
              if($(this).val() != "")
                  {
-                     $(this).css({"border-color" : "#3A94FB"});
-                     $(".nascimento").css("color", "#3A94FB");
-                     $(".label-nascimento").css("color", "#3A94FB");
+                     $(this).css({"border-color" : "#1974CE"});
+                     $(".nascimento").css("color", "#1974CE");
+                     $(".label-nascimento").css("color", "#1974CE");
                  }
              });
 
@@ -297,17 +297,17 @@ console.log(valor);
             $(".dependente").blur(function(){
             if($(this).val() == "")
                  {
-                     $(this).css({"border-color" : "#F00"});
-                     $(".label-dependente").css("color", "red");
+                     $(this).css({"border-color" : "#FF4141"});
+                     $(".label-dependente").css("color", "#FF4141");
                  }
              });
 
             $(".dependente").keyup(function(){
              if($(this).val() != "")
                  {
-                     $(this).css({"border-color" : "#3A94FB"});
-                     $(".dependente").css("color", "#3A94FB");
-                     $(".label-dependente").css("color", "#3A94FB");
+                     $(this).css({"border-color" : "#1974CE"});
+                     $(".dependente").css("color", "#1974CE");
+                     $(".label-dependente").css("color", "#1974CE");
                  }
              });
 
@@ -327,17 +327,17 @@ console.log(valor);
             $(".nome-mae").blur(function(){
             if($(this).val() == "")
                  {
-                     $(this).css({"border-color" : "#F00"});
-                     $(".label-nome-mae").css("color", "red");
+                     $(this).css({"border-color" : "#FF4141"});
+                     $(".label-nome-mae").css("color", "#FF4141");
                  }
              });
 
             $(".nome-mae").keyup(function(){
              if($(this).val() != "")
                  {
-                     $(this).css({"border-color" : "#3A94FB"});
-                     $(".nome-mae").css("color", "#3A94FB");
-                     $(".label-nome-mae").css("color", "#3A94FB");
+                     $(this).css({"border-color" : "#1974CE"});
+                     $(".nome-mae").css("color", "#1974CE");
+                     $(".label-nome-mae").css("color", "#1974CE");
                  }
              });
 
@@ -361,18 +361,18 @@ console.log(valor);
                 stringteste = stringteste.replace(".","");
             if($(this).val() == "" || isCNPJValid(stringteste) == false )
                  {
-                     $(this).css({"border-color" : "red"});
-                     $(".cnpj").css("color", "red");
-                     $(".label-cnpj").css("color", "red");
+                     $(this).css({"border-color" : "#FF4141"});
+                     $(".cnpj").css("color", "#FF4141");
+                     $(".label-cnpj").css("color", "#FF4141");
                  }
              });
 
             $(".cnpj").keyup(function(){
              if($(this).val() != "")
                  {
-                     $(this).css({"border-color" : "#3A94FB"});
-                     $(".cnpj").css("color", "#3A94FB");
-                     $(".label-cnpj").css("color", "#3A94FB");
+                     $(this).css({"border-color" : "#1974CE"});
+                     $(".cnpj").css("color", "#1974CE");
+                     $(".label-cnpj").css("color", "#1974CE");
                  }
              });
 
@@ -390,17 +390,17 @@ console.log(valor);
              $(".nome").blur(function(){
              if($(this).val() == "")
                  {
-                     $(this).css({"border-color" : "#F00"});
-                     $(".label-nome").css("color", "red");
+                     $(this).css({"border-color" : "#FF4141"});
+                     $(".label-nome").css("color", "#FF4141");
                  }
              });
 
              $(".nome").keyup(function(){
              if($(this).val() != "")
                  {
-                     $(this).css({"border-color" : "#3A94FB"});
-                     $(".nome").css("color", "#3A94FB");
-                     $(".label-nome").css("color", "#3A94FB");
+                     $(this).css({"border-color" : "#1974CE"});
+                     $(".nome").css("color", "#1974CE");
+                     $(".label-nome").css("color", "#1974CE");
                  }
               });
 
@@ -419,17 +419,17 @@ console.log(valor);
             $(".telefone").blur(function(){
              if($(this).val() == "")
                  {
-                     $(this).css({"border-color" : "#F00"});
-                     $(".label-telefone").css("color", "red");
+                     $(this).css({"border-color" : "#FF4141"});
+                     $(".label-telefone").css("color", "#FF4141");
                  }
               });
 
             $(".telefone").keyup(function(){
              if($(this).val() != "")
                  {
-                     $(this).css({"border-color" : "#3A94FB"});
-                     $(".telefone").css("color", "#3A94FB");
-                     $(".label-telefone").css("color", "#3A94FB");
+                     $(this).css({"border-color" : "#1974CE"});
+                     $(".telefone").css("color", "#1974CE");
+                     $(".label-telefone").css("color", "#1974CE");
                  }
               });
 
@@ -448,8 +448,8 @@ console.log(valor);
              $(".celular").blur(function(){
              if($(this).val() == "")
                  {
-                     $(this).css({"border-color" : "#F00"});
-                     $(".label-celular").css("color", "red");
+                     $(this).css({"border-color" : "#FF4141"});
+                     $(".label-celular").css("color", "#FF4141");
                  }
              });
 
@@ -457,9 +457,9 @@ console.log(valor);
              $(".celular").keyup(function(){
              if($(this).val() != "")
                  {
-                     $(this).css({"border-color" : "#3A94FB"});
-                     $(".celular").css("color", "#3A94FB");
-                     $(".label-celular").css("color", "#3A94FB");
+                     $(this).css({"border-color" : "#1974CE"});
+                     $(".celular").css("color", "#1974CE");
+                     $(".label-celular").css("color", "#1974CE");
                  }
             });
 
@@ -477,17 +477,17 @@ console.log(valor);
             $(".cep").blur(function(){
              if($(this).val() == "")
                  {
-                     $(this).css({"border-color" : "#F00"});
-                     $(".label-cep").css("color", "red");
+                     $(this).css({"border-color" : "#FF4141"});
+                     $(".label-cep").css("color", "#FF4141");
                  }
             });
 
             $(".cep").keyup(function(){
              if($(this).val() != "")
                  {
-                     $(this).css({"border-color" : "#3A94FB"});
-                     $(".cep").css("color", "#3A94FB");
-                     $(".label-cep").css("color", "#3A94FB");
+                     $(this).css({"border-color" : "#1974CE"});
+                     $(".cep").css("color", "#1974CE");
+                     $(".label-cep").css("color", "#1974CE");
                  }
              });
 
@@ -505,17 +505,17 @@ console.log(valor);
              $(".razao-social").blur(function(){
              if($(this).val() == "")
                  {
-                     $(this).css({"border-color" : "#F00"});
-                     $(".label-razao-social").css("color", "red");
+                     $(this).css({"border-color" : "#FF4141"});
+                     $(".label-razao-social").css("color", "#FF4141");
                  }
              });
 
              $(".razao-social").keyup(function(){
              if($(this).val() != "")
                  {
-                     $(this).css({"border-color" : "#3A94FB"});
-                     $(".razao-social").css("color", "#3A94FB");
-                     $(".label-razao-social").css("color", "#3A94FB");
+                     $(this).css({"border-color" : "#1974CE"});
+                     $(".razao-social").css("color", "#1974CE");
+                     $(".label-razao-social").css("color", "#1974CE");
                  }
              });
 
@@ -532,17 +532,17 @@ console.log(valor);
             $(".endereco").blur(function(){
              if($(this).val() == "")
                  {
-                     $(this).css({"border-color" : "#F00"});
-                     $(".label-endereco").css("color", "red");
+                     $(this).css({"border-color" : "#FF4141"});
+                     $(".label-endereco").css("color", "#FF4141");
                  }
             });
 
             $(".endereco").keyup(function(){
              if($(this).val() != "")
                  {
-                     $(this).css({"border-color" : "#3A94FB"});
-                     $(".endereco").css("color", "#3A94FB");
-                     $(".label-endereco").css("color", "#3A94FB");
+                     $(this).css({"border-color" : "#1974CE"});
+                     $(".endereco").css("color", "#1974CE");
+                     $(".label-endereco").css("color", "#1974CE");
                  }
             });
 
@@ -560,8 +560,8 @@ console.log(valor);
              $(".numero").blur(function(){
                  if($(this).val() == "")
                      {
-                         $(this).css({"border-color" : "#F00"});   
-                         $(".label-numero").css("color", "red");
+                         $(this).css({"border-color" : "#FF4141"});
+                         $(".label-numero").css("color", "#FF4141");
                          
                      }
              });
@@ -569,9 +569,9 @@ console.log(valor);
              $(".numero").keyup(function(){
              if($(this).val() != "")
                  {
-                     $(this).css({"border-color" : "#3A94FB"});
-                     $(".numero").css("color", "#3A94FB");
-                     $(".label-numero").css("color", "#3A94FB");
+                     $(this).css({"border-color" : "#1974CE"});
+                     $(".numero").css("color", "#1974CE");
+                     $(".label-numero").css("color", "#1974CE");
                  }
              });
 
@@ -597,16 +597,16 @@ console.log(valor);
 
             if(!(emailFilter.test(sEmail))||sEmail.match(illegalChars)){
               
-              $(".label-email").css("color", "red");
-              $(".email").css("color", "red");
-              $(".email").css("border-color", "red");
+              $(".label-email").css("color", "#FF4141");
+              $(".email").css("color", "#FF4141");
+              $(".email").css("border-color", "#FF4141");
             }
 
             else{
 
-              $(".label-email").css("color", "#3A94FB");
-              $(".email").css("color", "#3A94FB");
-              $(".email").css("border-color", "#3A94FB");
+              $(".label-email").css("color", "#1974CE");
+              $(".email").css("color", "#1974CE");
+              $(".email").css("border-color", "#1974CE");
 
             }
 
@@ -615,9 +615,9 @@ console.log(valor);
              $(".email").keyup(function(){
              if($(this).val() != "")
                  {
-                     $(this).css({"border-color" : "#3A94FB"});
-                     $(".email").css("color", "#3A94FB");
-                     $(".label-email").css("color", "#3A94FB");
+                     $(this).css({"border-color" : "#1974CE"});
+                     $(".email").css("color", "#1974CE");
+                     $(".label-email").css("color", "#1974CE");
                  }
             });
 
@@ -634,17 +634,17 @@ console.log(valor);
 
             if(!(emailFilter.test(sEmail))||sEmail.match(illegalChars)){
               
-              $(".label-email").css("color", "red");
-              $(".email").css("color", "red");
-              $(".label-email").css("color", "red");
+              $(".label-email").css("color", "#FF4141");
+              $(".email").css("color", "#FF4141");
+              $(".label-email").css("color", "#FF4141");
             }
 
 
             else{
 
-              $(".label-email").css("color", "#3A94FB");
-              $(".email").css("color", "#3A94FB");
-              $(".label-email").css("color", "#3A94FB");
+              $(".label-email").css("color", "#1974CE");
+              $(".email").css("color", "#1974CE");
+              $(".label-email").css("color", "#1974CE");
 
              }
 
@@ -664,17 +664,17 @@ console.log(valor);
              $(".complemento").blur(function(){
                  if($(this).val() == "")
                      {
-                         $(this).css({"border-color" : "#F00"});
-                         $(".label-complemento").css("color", "red");
+                         $(this).css({"border-color" : "#FF4141"});
+                         $(".label-complemento").css("color", "#FF4141");
                      }
                 });
 
              $(".complemento").keyup(function(){
              if($(this).val() != "")
                  {
-                     $(this).css({"border-color" : "#3A94FB"});
-                     $(".complemento").css("color", "#3A94FB");
-                     $(".label-complemento").css("color", "#3A94FB");
+                     $(this).css({"border-color" : "#1974CE"});
+                     $(".complemento").css("color", "#1974CE");
+                     $(".label-complemento").css("color", "#1974CE");
                  }
              });
 
@@ -691,17 +691,17 @@ console.log(valor);
              $(".bairro").blur(function(){
                  if($(this).val() == "")
                      {
-                         $(this).css({"border-color" : "#F00"});
-                         $(".label-bairro").css("color", "red");
+                         $(this).css({"border-color" : "#FF4141"});
+                         $(".label-bairro").css("color", "#FF4141");
                      }
                 });
 
              $(".bairro").keyup(function(){
              if($(this).val() != "")
                  {
-                     $(this).css({"border-color" : "#3A94FB"});
-                     $(".bairro").css("color", "#3A94FB");
-                     $(".label-bairro").css("color", "#3A94FB");
+                     $(this).css({"border-color" : "#1974CE"});
+                     $(".bairro").css("color", "#1974CE");
+                     $(".label-bairro").css("color", "#1974CE");
                  }
              });
 
@@ -719,17 +719,17 @@ console.log(valor);
              $(".password").blur(function(){
                  if($(this).val() == "")
                      {
-                         $(this).css({"border-color" : "#F00"});
-                         $(".label-password").css("color", "red");
+                         $(this).css({"border-color" : "#FF4141"});
+                         $(".label-password").css("color", "#FF4141");
                      }
                 });
 
              $(".password").keyup(function(){
              if($(this).val() != "")
                  {
-                     $(this).css({"border-color" : "#3A94FB"});
-                     $(".password").css("color", "#3A94FB");
-                     $(".label-password").css("color", "#3A94FB");
+                     $(this).css({"border-color" : "#1974CE"});
+                     $(".password").css("color", "#1974CE");
+                     $(".label-password").css("color", "#1974CE");
                  }
              });
 
@@ -748,17 +748,17 @@ console.log(valor);
               $(".cidade").blur(function(){
                  if($(this).val() == "")
                      {
-                         $(this).css({"border-color" : "#F00"});
-                         $(".label-cidade").css("color", "red");
+                         $(this).css({"border-color" : "#FF4141"});
+                         $(".label-cidade").css("color", "#FF4141");
                      }
                });
 
                $(".cidade").keyup(function(){
                if($(this).val() != "")
                    {
-                       $(this).css({"border-color" : "#3A94FB"});
-                       $(".cidade").css("color", "#3A94FB");
-                       $(".label-cidade").css("color", "#3A94FB");
+                       $(this).css({"border-color" : "#1974CE"});
+                       $(".cidade").css("color", "#1974CE");
+                       $(".label-cidade").css("color", "#1974CE");
                    }
                });
 
@@ -776,17 +776,17 @@ console.log(valor);
                  $(".nomeMae").blur(function(){
                     if($(this).val() == "")
                         {
-                            $(this).css({"border-color" : "#F00"});
-                            $(".label-nomeMae").css("color", "red");
+                            $(this).css({"border-color" : "#FF4141"});
+                            $(".label-nomeMae").css("color", "#FF4141");
                         }
                   });
    
                   $(".nomeMae").keyup(function(){
                   if($(this).val() != "")
                       {
-                          $(this).css({"border-color" : "#3A94FB"});
-                          $(".nomeMae").css("color", "#3A94FB");
-                          $(".label-nomeMae").css("color", "#3A94FB");
+                          $(this).css({"border-color" : "#1974CE"});
+                          $(".nomeMae").css("color", "#1974CE");
+                          $(".label-nomeMae").css("color", "#1974CE");
                       }
                   });
 
@@ -804,17 +804,17 @@ console.log(valor);
                  $(".dataNascimento").blur(function(){
                     if($(this).val() == "")
                         {
-                            $(this).css({"border-color" : "#F00"});
-                            $(".label-dataNascimento").css("color", "red");
+                            $(this).css({"border-color" : "#FF4141"});
+                            $(".label-dataNascimento").css("color", "#FF4141");
                         }
                   });
    
                   $(".dataNascimento").keyup(function(){
                   if($(this).val() != "")
                       {
-                          $(this).css({"border-color" : "#3A94FB"});
-                          $(".dataNascimento").css("color", "#3A94FB");
-                          $(".label-dataNascimento").css("color", "#3A94FB");
+                          $(this).css({"border-color" : "#1974CE"});
+                          $(".dataNascimento").css("color", "#1974CE");
+                          $(".label-dataNascimento").css("color", "#1974CE");
                       }
                   });
 
@@ -832,17 +832,17 @@ console.log(valor);
                  $(".estado").blur(function(){
                     if($(this).val() == "")
                         {
-                            $(this).css({"border-color" : "#F00"});
-                            $(".label-estado").css("color", "red");
+                            $(this).css({"border-color" : "#FF4141"});
+                            $(".label-estado").css("color", "#FF4141");
                         }
                   });
    
                   $(".estado").keyup(function(){
                   if($(this).val() != "")
                       {
-                          $(this).css({"border-color" : "#3A94FB"});
-                          $(".estado").css("color", "#3A94FB");
-                          $(".label-estado").css("color", "#3A94FB");
+                          $(this).css({"border-color" : "#1974CE"});
+                          $(".estado").css("color", "#1974CE");
+                          $(".label-estado").css("color", "#1974CE");
                       }
                   });
                   // departamento
@@ -859,17 +859,17 @@ console.log(valor);
                  $(".departamento").blur(function(){
                     if($(this).val() == "")
                         {
-                            $(this).css({"border-color" : "#F00"});
-                            $(".label-departamento").css("color", "red");
+                            $(this).css({"border-color" : "#FF4141"});
+                            $(".label-departamento").css("color", "#FF4141");
                         }
                   });
    
                   $(".departamento").keyup(function(){
                   if($(this).val() != "")
                       {
-                          $(this).css({"border-color" : "#3A94FB"});
-                          $(".departamento").css("color", "#3A94FB");
-                          $(".label-departamento").css("color", "#3A94FB");
+                          $(this).css({"border-color" : "#1974CE"});
+                          $(".departamento").css("color", "#1974CE");
+                          $(".label-departamento").css("color", "#1974CE");
                       }
                   });
 
@@ -887,17 +887,17 @@ console.log(valor);
                  $(".cargo").blur(function(){
                     if($(this).val() == "")
                         {
-                            $(this).css({"border-color" : "#F00"});
-                            $(".label-cargo").css("color", "red");
+                            $(this).css({"border-color" : "#FF4141"});
+                            $(".label-cargo").css("color", "#FF4141");
                         }
                   });
    
                   $(".cargo").keyup(function(){
                   if($(this).val() != "")
                       {
-                          $(this).css({"border-color" : "#3A94FB"});
-                          $(".cargo").css("color", "#3A94FB");
-                          $(".label-cargo").css("color", "#3A94FB");
+                          $(this).css({"border-color" : "#1974CE"});
+                          $(".cargo").css("color", "#1974CE");
+                          $(".label-cargo").css("color", "#1974CE");
                       }
                   });
 
@@ -920,18 +920,18 @@ console.log(valor);
                 
                if($(this).val() == "" || isCNPJValid(stringteste) == false )
                     {
-                        $(this).css({"border-color" : "#F00"});
-                        $(".cnpjCadastroSouDono").css("color", "red");
-                        $(".label-cnpjCadastroSouDono").css("color", "red");
+                        $(this).css({"border-color" : "#FF4141"});
+                        $(".cnpjCadastroSouDono").css("color", "#FF4141");
+                        $(".label-cnpjCadastroSouDono").css("color", "#FF4141");
                     }
                 });
    
                $(".cnpjCadastroSouDono").keyup(function(){
                 if($(this).val() != "")
                     {
-                        $(this).css({"border-color" : "#3A94FB"});
-                        $(".cnpjCadastroSouDono").css("color", "#3A94FB");
-                        $(".label-cnpjCadastroSouDono").css("color", "#3A94FB");
+                        $(this).css({"border-color" : "#1974CE"});
+                        $(".cnpjCadastroSouDono").css("color", "#1974CE");
+                        $(".label-cnpjCadastroSouDono").css("color", "#1974CE");
                     }
                 });
 
@@ -949,17 +949,17 @@ console.log(valor);
                $(".cnpjCadastroNaoSouDono").blur(function(){
                if($(this).val() == "" )
                     {
-                        $(this).css({"border-color" : "#F00"});
-                        $(".label-cnpjCadastroNaoSouDono").css("color", "red");
+                        $(this).css({"border-color" : "#FF4141"});
+                        $(".label-cnpjCadastroNaoSouDono").css("color", "#FF4141");
                     }
                 });
    
                $(".cnpjCadastroNaoSouDono").keyup(function(){
                 if($(this).val() != "")
                     {
-                        $(this).css({"border-color" : "#3A94FB"});
-                        $(".cnpjCadastroNaoSouDono").css("color", "#3A94FB");
-                        $(".label-cnpjCadastroNaoSouDono").css("color", "#3A94FB");
+                        $(this).css({"border-color" : "#1974CE"});
+                        $(".cnpjCadastroNaoSouDono").css("color", "#1974CE");
+                        $(".label-cnpjCadastroNaoSouDono").css("color", "#1974CE");
                     }
                 });
 
@@ -977,17 +977,17 @@ console.log(valor);
                $(".cnae").blur(function(){
                if($(this).val() == "")
                     {
-                        $(this).css({"border-color" : "#F00"});
-                        $(".label-cnae").css("color", "red");
+                        $(this).css({"border-color" : "#FF4141"});
+                        $(".label-cnae").css("color", "#FF4141");
                     }
                 });
    
                $(".cnae").keyup(function(){
                 if($(this).val() != "")
                     {
-                        $(this).css({"border-color" : "#3A94FB"});
-                        $(".cnae").css("color", "#3A94FB");
-                        $(".label-cnae").css("color", "#3A94FB");
+                        $(this).css({"border-color" : "#1974CE"});
+                        $(".cnae").css("color", "#1974CE");
+                        $(".label-cnae").css("color", "#1974CE");
                     }
                 });
 
@@ -1005,17 +1005,17 @@ console.log(valor);
                $(".simplesNacional").blur(function(){
                if($(this).val() == "")
                     {
-                        $(this).css({"border-color" : "#F00"});
-                        $(".label-simplesNacional").css("color", "red");
+                        $(this).css({"border-color" : "#FF4141"});
+                        $(".label-simplesNacional").css("color", "#FF4141");
                     }
                 });
    
                $(".simplesNacional").keyup(function(){
                 if($(this).val() != "")
                     {
-                        $(this).css({"border-color" : "#3A94FB"});
-                        $(".simplesNacional").css("color", "#3A94FB");
-                        $(".label-simplesNacional").css("color", "#3A94FB");
+                        $(this).css({"border-color" : "#1974CE"});
+                        $(".simplesNacional").css("color", "#1974CE");
+                        $(".label-simplesNacional").css("color", "#1974CE");
                     }
                 });
 
@@ -1033,17 +1033,17 @@ console.log(valor);
                $(".dataAbertura").blur(function(){
                if($(this).val() == "")
                     {
-                        $(this).css({"border-color" : "#F00"});
-                        $(".label-dataAbertura").css("color", "red");
+                        $(this).css({"border-color" : "#FF4141"});
+                        $(".label-dataAbertura").css("color", "#FF4141");
                     }
                 });
    
                $(".dataAbertura").keyup(function(){
                 if($(this).val() != "")
                     {
-                        $(this).css({"border-color" : "#3A94FB"});
-                        $(".dataAbertura").css("color", "#3A94FB");
-                        $(".label-dataAbertura").css("color", "#3A94FB");
+                        $(this).css({"border-color" : "#1974CE"});
+                        $(".dataAbertura").css("color", "#1974CE");
+                        $(".label-dataAbertura").css("color", "#1974CE");
                     }
                 });
 
@@ -1061,17 +1061,17 @@ console.log(valor);
                $(".statusCnpjCadastroSouDono").blur(function(){
                if($(this).val() == "")
                     {
-                        $(this).css({"border-color" : "#F00"});
-                        $(".label-statusCnpjCadastroSouDono").css("color", "red");
+                        $(this).css({"border-color" : "#FF4141"});
+                        $(".label-statusCnpjCadastroSouDono").css("color", "#FF4141");
                     }
                 });
    
                $(".statusCnpjCadastroSouDono").keyup(function(){
                 if($(this).val() != "")
                     {
-                        $(this).css({"border-color" : "#3A94FB"});
-                        $(".statusCnpjCadastroSouDono").css("color", "#3A94FB");
-                        $(".label-statusCnpjCadastroSouDono").css("color", "#3A94FB");
+                        $(this).css({"border-color" : "#1974CE"});
+                        $(".statusCnpjCadastroSouDono").css("color", "#1974CE");
+                        $(".label-statusCnpjCadastroSouDono").css("color", "#1974CE");
                     }
                 });
 
@@ -1089,17 +1089,17 @@ console.log(valor);
                $(".nomeRepresentanteCadastroSouDono").blur(function(){
                if($(this).val() == "")
                     {
-                        $(this).css({"border-color" : "#F00"});
-                        $(".label-nomeRepresentanteCadastroSouDono").css("color", "red");
+                        $(this).css({"border-color" : "#FF4141"});
+                        $(".label-nomeRepresentanteCadastroSouDono").css("color", "#FF4141");
                     }
                 });
    
                $(".nomeRepresentanteCadastroSouDono").keyup(function(){
                 if($(this).val() != "")
                     {
-                        $(this).css({"border-color" : "#3A94FB"});
-                        $(".nomeRepresentanteCadastroSouDono").css("color", "#3A94FB");
-                        $(".label-nomeRepresentanteCadastroSouDono").css("color", "#3A94FB");
+                        $(this).css({"border-color" : "#1974CE"});
+                        $(".nomeRepresentanteCadastroSouDono").css("color", "#1974CE");
+                        $(".label-nomeRepresentanteCadastroSouDono").css("color", "#1974CE");
                     }
                 });
 
@@ -1122,18 +1122,18 @@ console.log(valor);
                 stringteste = stringteste.replace(".","");
                if($(this).val() == "" || TestaCPF(stringteste) == false)
                     {
-                        $(this).css({"border-color" : "red"});
-                        $(".cpfCadastroSouDono").css("color", "red");
-                        $(".label-cpfCadastroSouDono").css("color", "red");
+                        $(this).css({"border-color" : "#FF4141"});
+                        $(".cpfCadastroSouDono").css("color", "#FF4141");
+                        $(".label-cpfCadastroSouDono").css("color", "#FF4141");
                     }
                 });
    
                $(".cpfCadastroSouDono").keyup(function(){
                 if($(this).val() != "")
                     {
-                        $(this).css({"border-color" : "#3A94FB"});
-                        $(".cpfCadastroSouDono").css("color", "#3A94FB");
-                        $(".label-cpfCadastroSouDono").css("color", "#3A94FB");
+                        $(this).css({"border-color" : "#1974CE"});
+                        $(".cpfCadastroSouDono").css("color", "#1974CE");
+                        $(".label-cpfCadastroSouDono").css("color", "#1974CE");
                     }
                 });
 
@@ -1154,18 +1154,18 @@ console.log(valor);
                     stringteste = stringteste.replace(".","");
                    if($(this).val() == "" || TestaCPF(stringteste) == false)
                         {
-                            $(this).css({"border-color" : "red"});
-                            $(".cpfCadastroNaoSouDono").css("color", "red");
-                            $(".label-cpfCadastroNaoSouDono").css("color", "red");
+                            $(this).css({"border-color" : "#FF4141"});
+                            $(".cpfCadastroNaoSouDono").css("color", "#FF4141");
+                            $(".label-cpfCadastroNaoSouDono").css("color", "#FF4141");
                         }
                     });
    
                $(".cpfCadastroNaoSouDono").keyup(function(){
                 if($(this).val() != "")
                     {
-                        $(this).css({"border-color" : "#3A94FB"});
-                        $(".cpfCadastroNaoSouDono").css("color", "#3A94FB");
-                        $(".label-cpfCadastroNaoSouDono").css("color", "#3A94FB");
+                        $(this).css({"border-color" : "#1974CE"});
+                        $(".cpfCadastroNaoSouDono").css("color", "#1974CE");
+                        $(".label-cpfCadastroNaoSouDono").css("color", "#1974CE");
                     }
                 });
 
@@ -1183,17 +1183,17 @@ console.log(valor);
                $(".nomeSubCadastroSouDono").blur(function(){
                if($(this).val() == "")
                     {
-                        $(this).css({"border-color" : "#F00"});
-                        $(".label-nomeSubCadastroSouDono").css("color", "red");
+                        $(this).css({"border-color" : "#FF4141"});
+                        $(".label-nomeSubCadastroSouDono").css("color", "#FF4141");
                     }
                 });
    
                $(".nomeSubCadastroSouDono").keyup(function(){
                 if($(this).val() != "")
                     {
-                        $(this).css({"border-color" : "#3A94FB"});
-                        $(".nomeSubCadastroSouDono").css("color", "#3A94FB");
-                        $(".label-nomeSubCadastroSouDono").css("color", "#3A94FB");
+                        $(this).css({"border-color" : "#1974CE"});
+                        $(".nomeSubCadastroSouDono").css("color", "#1974CE");
+                        $(".label-nomeSubCadastroSouDono").css("color", "#1974CE");
                     }
                 });
 
@@ -1211,17 +1211,17 @@ console.log(valor);
                $(".cpfSubCadastroSouDono").blur(function(){
                if($(this).val() == "")
                     {
-                        $(this).css({"border-color" : "#F00"});
-                        $(".label-cpfSubCadastroSouDono").css("color", "red");
+                        $(this).css({"border-color" : "#FF4141"});
+                        $(".label-cpfSubCadastroSouDono").css("color", "#FF4141");
                     }
                 });
    
                $(".cpfSubCadastroSouDono").keyup(function(){
                 if($(this).val() != "")
                     {
-                        $(this).css({"border-color" : "#3A94FB"});
-                        $(".cpfSubCadastroSouDono").css("color", "#3A94FB");
-                        $(".label-cpfSubCadastroSouDono").css("color", "#3A94FB");
+                        $(this).css({"border-color" : "#1974CE"});
+                        $(".cpfSubCadastroSouDono").css("color", "#1974CE");
+                        $(".label-cpfSubCadastroSouDono").css("color", "#1974CE");
                     }
                 });
 
@@ -1239,17 +1239,17 @@ console.log(valor);
                $(".celularCadastroNaoSouDono").blur(function(){
                if($(this).val() == "")
                     {
-                        $(this).css({"border-color" : "#F00"});
-                        $(".label-celularCadastroNaoSouDono").css("color", "red");
+                        $(this).css({"border-color" : "#FF4141"});
+                        $(".label-celularCadastroNaoSouDono").css("color", "#FF4141");
                     }
                 });
    
                $(".celularCadastroNaoSouDono").keyup(function(){
                 if($(this).val() != "")
                     {
-                        $(this).css({"border-color" : "#3A94FB"});
-                        $(".celularCadastroNaoSouDono").css("color", "#3A94FB");
-                        $(".label-celularCadastroNaoSouDono").css("color", "#3A94FB");
+                        $(this).css({"border-color" : "#1974CE"});
+                        $(".celularCadastroNaoSouDono").css("color", "#1974CE");
+                        $(".label-celularCadastroNaoSouDono").css("color", "#1974CE");
                     }
                 });
 
@@ -1267,18 +1267,18 @@ console.log(valor);
                $(".celularCadastroSouDono").blur(function(){
                if($(this).val() == "")
                     {
-                        $(this).css({"border-color" : "red"});
-                        $(".celularCadastroSouDono").css("color", "red");
-                        $(".label-celularCadastroSouDono").css("color", "red");
+                        $(this).css({"border-color" : "#FF4141"});
+                        $(".celularCadastroSouDono").css("color", "#FF4141");
+                        $(".label-celularCadastroSouDono").css("color", "#FF4141");
                     }
                 });
    
                $(".celularCadastroSouDono").keyup(function(){
                 if($(this).val() != "")
                     {
-                        $(this).css({"border-color" : "#3A94FB"});
-                        $(".celularCadastroSouDono").css("color", "#3A94FB");
-                        $(".label-celularCadastroSouDono").css("color", "#3A94FB");
+                        $(this).css({"border-color" : "#1974CE"});
+                        $(".celularCadastroSouDono").css("color", "#1974CE");
+                        $(".label-celularCadastroSouDono").css("color", "#1974CE");
                     }
                 });
 
@@ -1287,7 +1287,7 @@ console.log(valor);
                  //   banco
 
              $(".banco").focus(function(){
-                if($(this).val() == "")
+                if($(this).val() != " ")
                     {
                         $(this).css({"border-color" : "#1974CE"});
                         $(".banco").css("color", "#1974CE");
@@ -1296,19 +1296,20 @@ console.log(valor);
                 });
    
                $(".banco").blur(function(){
-               if($(this).val() == "")
+               if($(this).val() == " ")
                     {
-                        $(this).css({"border-color" : "#F00"});
-                        $(".label-banco").css("color", "red");
+                        $(this).css({"border-color" : "#FF4141"});
+                        $(".banco").css("color", "#FF4141");
+                        $(".label-banco").css("color", "#FF4141");
                     }
                 });
    
                $(".banco").keyup(function(){
-                if($(this).val() != "")
+                if($(this).val() != " ")
                     {
-                        $(this).css({"border-color" : "#3A94FB"});
-                        $(".banco").css("color", "#3A94FB");
-                        $(".label-banco").css("color", "#3A94FB");
+                        $(this).css({"border-color" : "#1974CE"});
+                        $(".banco").css("color", "#1974CE");
+                        $(".label-banco").css("color", "#1974CE");
                     }
                 });
 
@@ -1327,17 +1328,17 @@ console.log(valor);
                $(".conta").blur(function(){
                if($(this).val() == "")
                     {
-                        $(this).css({"border-color" : "#F00"});
-                        $(".label-conta").css("color", "red");
+                        $(this).css({"border-color" : "#FF4141"});
+                        $(".label-conta").css("color", "#FF4141");
                     }
                 });
    
                $(".conta").keyup(function(){
                 if($(this).val() != "")
                     {
-                        $(this).css({"border-color" : "#3A94FB"});
-                        $(".conta").css("color", "#3A94FB");
-                        $(".label-conta").css("color", "#3A94FB");
+                        $(this).css({"border-color" : "#1974CE"});
+                        $(".conta").css("color", "#1974CE");
+                        $(".label-conta").css("color", "#1974CE");
                     }
                 });
 
@@ -1355,17 +1356,17 @@ console.log(valor);
                $(".agencia").blur(function(){
                if($(this).val() == "")
                     {
-                        $(this).css({"border-color" : "#F00"});
-                        $(".label-agencia").css("color", "red");
+                        $(this).css({"border-color" : "#FF4141"});
+                        $(".label-agencia").css("color", "#FF4141");
                     }
                 });
    
                $(".agencia").keyup(function(){
                 if($(this).val() != "")
                     {
-                        $(this).css({"border-color" : "#3A94FB"});
-                        $(".agencia").css("color", "#3A94FB");
-                        $(".label-agencia").css("color", "#3A94FB");
+                        $(this).css({"border-color" : "#1974CE"});
+                        $(".agencia").css("color", "#1974CE");
+                        $(".label-agencia").css("color", "#1974CE");
                     }
                 });
 
@@ -1384,17 +1385,17 @@ console.log(valor);
                $(".nomeCadastroNaoSouDono").blur(function(){
                if($(this).val() == "")
                     {
-                        $(this).css({"border-color" : "#F00"});
-                        $(".label-nomeCadastroNaoSouDono").css("color", "red");
+                        $(this).css({"border-color" : "#FF4141"});
+                        $(".label-nomeCadastroNaoSouDono").css("color", "#FF4141");
                     }
                 });
    
                $(".nomeCadastroNaoSouDono").keyup(function(){
                 if($(this).val() != "")
                     {
-                        $(this).css({"border-color" : "#3A94FB"});
-                        $(".nomeCadastroNaoSouDono").css("color", "#3A94FB");
-                        $(".label-nomeCadastroNaoSouDono").css("color", "#3A94FB");
+                        $(this).css({"border-color" : "#1974CE"});
+                        $(".nomeCadastroNaoSouDono").css("color", "#1974CE");
+                        $(".label-nomeCadastroNaoSouDono").css("color", "#1974CE");
                     }
                 });
                 // nomeCadastroSouDono
@@ -1411,17 +1412,17 @@ console.log(valor);
                    $(".nomeCadastroSouDono").blur(function(){
                    if($(this).val() == "")
                         {
-                            $(this).css({"border-color" : "#F00"});
-                            $(".label-nomeCadastroSouDono").css("color", "red");
+                            $(this).css({"border-color" : "#FF4141"});
+                            $(".label-nomeCadastroSouDono").css("color", "#FF4141");
                         }
                     });
        
                    $(".nomeCadastroSouDono").keyup(function(){
                     if($(this).val() != "")
                         {
-                            $(this).css({"border-color" : "#3A94FB"});
-                            $(".nomeCadastroSouDono").css("color", "#3A94FB");
-                            $(".label-nomeCadastroSouDono").css("color", "#3A94FB");
+                            $(this).css({"border-color" : "#1974CE"});
+                            $(".nomeCadastroSouDono").css("color", "#1974CE");
+                            $(".label-nomeCadastroSouDono").css("color", "#1974CE");
                         } });
                 
                  //   sennhaCadastroSouDono  
@@ -1438,17 +1439,17 @@ console.log(valor);
                $(".sennhaCadastroSouDono").blur(function(){
                if($(this).val() == "")
                     {
-                        $(this).css({"border-color" : "#F00"});
-                        $(".label-sennhaCadastroSouDono").css("color", "red");
+                        $(this).css({"border-color" : "#FF4141"});
+                        $(".label-sennhaCadastroSouDono").css("color", "#FF4141");
                     }
                 });
    
                $(".sennhaCadastroSouDono").keyup(function(){
                 if($(this).val() != "")
                     {
-                        $(this).css({"border-color" : "#3A94FB"});
-                        $(".sennhaCadastroSouDono").css("color", "#3A94FB");
-                        $(".label-sennhaCadastroSouDono").css("color", "#3A94FB");
+                        $(this).css({"border-color" : "#1974CE"});
+                        $(".sennhaCadastroSouDono").css("color", "#1974CE");
+                        $(".label-sennhaCadastroSouDono").css("color", "#1974CE");
                     }
                 });
                 
@@ -1466,17 +1467,17 @@ console.log(valor);
                $(".senhaCadastroNaoSouDono").blur(function(){
                if($(this).val() == "")
                     {
-                        $(this).css({"border-color" : "#F00"});
-                        $(".label-senhaCadastroNaoSouDono").css("color", "red");
+                        $(this).css({"border-color" : "#FF4141"});
+                        $(".label-senhaCadastroNaoSouDono").css("color", "#FF4141");
                     }
                 });
    
                $(".senhaCadastroNaoSouDono").keyup(function(){
                 if($(this).val() != "")
                     {
-                        $(this).css({"border-color" : "#3A94FB"});
-                        $(".senhaCadastroNaoSouDono").css("color", "#3A94FB");
-                        $(".label-senhaCadastroNaoSouDono").css("color", "#3A94FB");
+                        $(this).css({"border-color" : "#1974CE"});
+                        $(".senhaCadastroNaoSouDono").css("color", "#1974CE");
+                        $(".label-senhaCadastroNaoSouDono").css("color", "#1974CE");
                     }
                 });
 
@@ -1494,17 +1495,17 @@ console.log(valor);
                $(".cpfCadastroNaoSouDonoSP").blur(function(){
                if($(this).val() == "")
                     {
-                        $(this).css({"border-color" : "#F00"});
-                        $(".label-cpfCadastroNaoSouDonoSP").css("color", "red");
+                        $(this).css({"border-color" : "#FF4141"});
+                        $(".label-cpfCadastroNaoSouDonoSP").css("color", "#FF4141");
                     }
                 });
    
                $(".cpfCadastroNaoSouDonoSP").keyup(function(){
                 if($(this).val() != "")
                     {
-                        $(this).css({"border-color" : "#3A94FB"});
-                        $(".cpfCadastroNaoSouDonoSP").css("color", "#3A94FB");
-                        $(".label-cpfCadastroNaoSouDonoSP").css("color", "#3A94FB");
+                        $(this).css({"border-color" : "#1974CE"});
+                        $(".cpfCadastroNaoSouDonoSP").css("color", "#1974CE");
+                        $(".label-cpfCadastroNaoSouDonoSP").css("color", "#1974CE");
                     }
                 });
 
@@ -1522,17 +1523,17 @@ console.log(valor);
                $(".cpfCadastroNaoSouDonoSP").blur(function(){
                if($(this).val() == "")
                     {
-                        $(this).css({"border-color" : "#F00"});
-                        $(".label-cpfCadastroNaoSouDonoSP").css("color", "red");
+                        $(this).css({"border-color" : "#FF4141"});
+                        $(".label-cpfCadastroNaoSouDonoSP").css("color", "#FF4141");
                     }
                 });
    
                $(".cpfCadastroNaoSouDonoSP").keyup(function(){
                 if($(this).val() != "")
                     {
-                        $(this).css({"border-color" : "#3A94FB"});
-                        $(".cpfCadastroNaoSouDonoSP").css("color", "#3A94FB");
-                        $(".label-cpfCadastroNaoSouDonoSP").css("color", "#3A94FB");
+                        $(this).css({"border-color" : "#1974CE"});
+                        $(".cpfCadastroNaoSouDonoSP").css("color", "#1974CE");
+                        $(".label-cpfCadastroNaoSouDonoSP").css("color", "#1974CE");
                     }
                 });
 
@@ -1550,17 +1551,17 @@ console.log(valor);
                $(".ConfirmeNomeCadastroNaoSouDonoSP").blur(function(){
                if($(this).val() == "")
                     {
-                        $(this).css({"border-color" : "#F00"});
-                        $(".label-ConfirmeNomeCadastroNaoSouDonoSP").css("color", "red");
+                        $(this).css({"border-color" : "#FF4141"});
+                        $(".label-ConfirmeNomeCadastroNaoSouDonoSP").css("color", "#FF4141");
                     }
                 });
    
                $(".ConfirmeNomeCadastroNaoSouDonoSP").keyup(function(){
                 if($(this).val() != "")
                     {
-                        $(this).css({"border-color" : "#3A94FB"});
-                        $(".ConfirmeNomeCadastroNaoSouDonoSP").css("color", "#3A94FB");
-                        $(".label-ConfirmeNomeCadastroNaoSouDonoSP").css("color", "#3A94FB");
+                        $(this).css({"border-color" : "#1974CE"});
+                        $(".ConfirmeNomeCadastroNaoSouDonoSP").css("color", "#1974CE");
+                        $(".label-ConfirmeNomeCadastroNaoSouDonoSP").css("color", "#1974CE");
                     }
                 });
 
@@ -1578,17 +1579,17 @@ console.log(valor);
                $(".confirmeNomeCadastroNaoSouDonoSP").blur(function(){
                if($(this).val() == "")
                     {
-                        $(this).css({"border-color" : "#F00"});
-                        $(".label-confirmeNomeCadastroNaoSouDonoSP").css("color", "red");
+                        $(this).css({"border-color" : "#FF4141"});
+                        $(".label-confirmeNomeCadastroNaoSouDonoSP").css("color", "#FF4141");
                     }
                 });
    
                $(".confirmeNomeCadastroNaoSouDonoSP").keyup(function(){
                 if($(this).val() != "")
                     {
-                        $(this).css({"border-color" : "#3A94FB"});
-                        $(".confirmeNomeCadastroNaoSouDonoSP").css("color", "#3A94FB");
-                        $(".label-confirmeNomeCadastroNaoSouDonoSP").css("color", "#3A94FB");
+                        $(this).css({"border-color" : "#1974CE"});
+                        $(".confirmeNomeCadastroNaoSouDonoSP").css("color", "#1974CE");
+                        $(".label-confirmeNomeCadastroNaoSouDonoSP").css("color", "#1974CE");
                     }
                 });
                  // confirmeEmailCadastroNaoSouDonoSP
@@ -1605,17 +1606,17 @@ console.log(valor);
                $(".confirmeCelularCadastroNaoSouDonoSP").blur(function(){
                if($(this).val() == "")
                     {
-                        $(this).css({"border-color" : "#F00"});
-                        $(".label-confirmeCelularCadastroNaoSouDonoSP").css("color", "red");
+                        $(this).css({"border-color" : "#FF4141"});
+                        $(".label-confirmeCelularCadastroNaoSouDonoSP").css("color", "#FF4141");
                     }
                 });
    
                $(".confirmeCelularCadastroNaoSouDonoSP").keyup(function(){
                 if($(this).val() != "")
                     {
-                        $(this).css({"border-color" : "#3A94FB"});
-                        $(".confirmeCelularCadastroNaoSouDonoSP").css("color", "#3A94FB");
-                        $(".label-confirmeCelularCadastroNaoSouDonoSP").css("color", "#3A94FB");
+                        $(this).css({"border-color" : "#1974CE"});
+                        $(".confirmeCelularCadastroNaoSouDonoSP").css("color", "#1974CE");
+                        $(".label-confirmeCelularCadastroNaoSouDonoSP").css("color", "#1974CE");
                     }
                 });
 
@@ -1633,17 +1634,17 @@ console.log(valor);
                $(".confirmeEmailCadastroNaoSouDonoSP").blur(function(){
                if($(this).val() == "")
                     {
-                        $(this).css({"border-color" : "#F00"});
-                        $(".label-confirmeEmailCadastroNaoSouDonoSP").css("color", "red");
+                        $(this).css({"border-color" : "#FF4141"});
+                        $(".label-confirmeEmailCadastroNaoSouDonoSP").css("color", "#FF4141");
                     }
                 });
    
                $(".confirmeEmailCadastroNaoSouDonoSP").keyup(function(){
                 if($(this).val() != "")
                     {
-                        $(this).css({"border-color" : "#3A94FB"});
-                        $(".confirmeEmailCadastroNaoSouDonoSP").css("color", "#3A94FB");
-                        $(".label-confirmeEmailCadastroNaoSouDonoSP").css("color", "#3A94FB");
+                        $(this).css({"border-color" : "#1974CE"});
+                        $(".confirmeEmailCadastroNaoSouDonoSP").css("color", "#1974CE");
+                        $(".label-confirmeEmailCadastroNaoSouDonoSP").css("color", "#1974CE");
                     }
                 });
 
@@ -1662,17 +1663,17 @@ console.log(valor);
                $(".cnjpCadastroNaoSouDonoSP").blur(function(){
                if($(this).val() == "")
                     {
-                        $(this).css({"border-color" : "#F00"});
-                        $(".label-cnjpCadastroNaoSouDonoSP").css("color", "red");
+                        $(this).css({"border-color" : "#FF4141"});
+                        $(".label-cnjpCadastroNaoSouDonoSP").css("color", "#FF4141");
                     }
                 });
    
                $(".cnjpCadastroNaoSouDonoSP").keyup(function(){
                 if($(this).val() != "")
                     {
-                        $(this).css({"border-color" : "#3A94FB"});
-                        $(".cnjpCadastroNaoSouDonoSP").css("color", "#3A94FB");
-                        $(".label-cnjpCadastroNaoSouDonoSP").css("color", "#3A94FB");
+                        $(this).css({"border-color" : "#1974CE"});
+                        $(".cnjpCadastroNaoSouDonoSP").css("color", "#1974CE");
+                        $(".label-cnjpCadastroNaoSouDonoSP").css("color", "#1974CE");
                     }
                 });
 
@@ -1690,17 +1691,17 @@ console.log(valor);
                $(".nomeCorretoraCadastroNaoSouDonoSP").blur(function(){
                if($(this).val() == "")
                     {
-                        $(this).css({"border-color" : "#F00"});
-                        $(".label-nomeCorretoraCadastroNaoSouDonoSP").css("color", "red");
+                        $(this).css({"border-color" : "#FF4141"});
+                        $(".label-nomeCorretoraCadastroNaoSouDonoSP").css("color", "#FF4141");
                     }
                 });
    
                $(".nomeCorretoraCadastroNaoSouDonoSP").keyup(function(){
                 if($(this).val() != "")
                     {
-                        $(this).css({"border-color" : "#3A94FB"});
-                        $(".nomeCorretoraCadastroNaoSouDonoSP").css("color", "#3A94FB");
-                        $(".label-nomeCorretoraCadastroNaoSouDonoSP").css("color", "#3A94FB");
+                        $(this).css({"border-color" : "#1974CE"});
+                        $(".nomeCorretoraCadastroNaoSouDonoSP").css("color", "#1974CE");
+                        $(".label-nomeCorretoraCadastroNaoSouDonoSP").css("color", "#1974CE");
                     }
                 });
                   //  senhaCadastroNaoSouDonoSP  
@@ -1717,17 +1718,17 @@ console.log(valor);
                $(".senhaCadastroNaoSouDonoSP").blur(function(){
                if($(this).val() == "")
                     {
-                        $(this).css({"border-color" : "#F00"});
-                        $(".label-senhaCadastroNaoSouDonoSP").css("color", "red");
+                        $(this).css({"border-color" : "#FF4141"});
+                        $(".label-senhaCadastroNaoSouDonoSP").css("color", "#FF4141");
                     }
                 });
    
                $(".senhaCadastroNaoSouDonoSP").keyup(function(){
                 if($(this).val() != "")
                     {
-                        $(this).css({"border-color" : "#3A94FB"});
-                        $(".senhaCadastroNaoSouDonoSP").css("color", "#3A94FB");
-                        $(".label-senhaCadastroNaoSouDonoSP").css("color", "#ACAAA3A94FB5");
+                        $(this).css({"border-color" : "#1974CE"});
+                        $(".senhaCadastroNaoSouDonoSP").css("color", "#1974CE");
+                        $(".label-senhaCadastroNaoSouDonoSP").css("color", "#ACAAA1974CE5");
                     }
                 });
 
@@ -1745,17 +1746,17 @@ console.log(valor);
                $(".validade").blur(function(){
                if($(this).val() == "")
                     {
-                        $(this).css({"border-color" : "#F00"});
-                        $(".label-validade").css("color", "red");
+                        $(this).css({"border-color" : "#FF4141"});
+                        $(".label-validade").css("color", "#FF4141");
                     }
                 });
    
                $(".validade").keyup(function(){
                 if($(this).val() != "")
                     {
-                        $(this).css({"border-color" : "#3A94FB"});
-                        $(".validade").css("color", "#3A94FB");
-                        $(".label-validade").css("color", "#3A94FB");
+                        $(this).css({"border-color" : "#1974CE"});
+                        $(".validade").css("color", "#1974CE");
+                        $(".label-validade").css("color", "#1974CE");
                     }
                 });
 
@@ -1773,17 +1774,17 @@ console.log(valor);
                $(".cvv").blur(function(){
                if($(this).val() == "")
                     {
-                        $(this).css({"border-color" : "#F00"});
-                        $(".label-cvv").css("color", "red");
+                        $(this).css({"border-color" : "#FF4141"});
+                        $(".label-cvv").css("color", "#FF4141");
                     }
                 });
    
                $(".cvv").keyup(function(){
                 if($(this).val() != "")
                     {
-                        $(this).css({"border-color" : "#3A94FB"});
-                        $(".cvv").css("color", "#3A94FB");
-                        $(".label-cvv").css("color", "#3A94FB");
+                        $(this).css({"border-color" : "#1974CE"});
+                        $(".cvv").css("color", "#1974CE");
+                        $(".label-cvv").css("color", "#1974CE");
                     }
                 });
 
@@ -1801,17 +1802,17 @@ console.log(valor);
                $(".numeroCartaoCredito").blur(function(){
                if($(this).val() == "")
                     {
-                        $(this).css({"border-color" : "#F00"});
-                        $(".label-numeroCartaoCredito").css("color", "red");
+                        $(this).css({"border-color" : "#FF4141"});
+                        $(".label-numeroCartaoCredito").css("color", "#FF4141");
                     }
                 });
    
                $(".numeroCartaoCredito").keyup(function(){
                 if($(this).val() != "")
                     {
-                        $(this).css({"border-color" : "#3A94FB"});
-                        $(".numeroCartaoCredito").css("color", "#3A94FB");
-                        $(".label-numeroCartaoCredito").css("color", "#3A94FB");
+                        $(this).css({"border-color" : "#1974CE"});
+                        $(".numeroCartaoCredito").css("color", "#1974CE");
+                        $(".label-numeroCartaoCredito").css("color", "#1974CE");
                     }
                 });
 
@@ -1829,17 +1830,17 @@ console.log(valor);
     $(".nomeModalPF").blur(function(){
     if($(this).val() == "")
         {
-            $(this).css({"border-color" : "#F00"});
-            $(".label-nomeModalPF").css("color", "red");
+            $(this).css({"border-color" : "#FF4141"});
+            $(".label-nomeModalPF").css("color", "#FF4141");
         }
     });
 
     $(".nomeModalPF").keyup(function(){
     if($(this).val() != "")
         {
-            $(this).css({"border-color" : "#3A94FB"});
-            $(".nomeModalPF").css("color", "#3A94FB");
-            $(".label-nomeModalPF").css("color", "#3A94FB");
+            $(this).css({"border-color" : "#1974CE"});
+            $(".nomeModalPF").css("color", "#1974CE");
+            $(".label-nomeModalPF").css("color", "#1974CE");
         }
     });
         //   cpfModalPF
@@ -1861,18 +1862,18 @@ console.log(valor);
             stringteste = stringteste.replace(".","");
         if($(this).val() == "" || TestaCPF(stringteste) == false)
                 {
-                    $(this).css({"border-color" : "red"});
-                    $(".cpfModalPF").css("color", "red");
-                    $(".label-cpfModalPF").css("color", "red");
+                    $(this).css({"border-color" : "#FF4141"});
+                    $(".cpfModalPF").css("color", "#FF4141");
+                    $(".label-cpfModalPF").css("color", "#FF4141");
                 }
             });
 
         $(".cpfModalPF").keyup(function(){
             if($(this).val() != "")
                 {
-                    $(this).css({"border-color" : "#3A94FB"});
-                    $(".cpfModalPF").css("color", "#3A94FB");
-                    $(".label-cpfModalPF").css("color", "#3A94FB");
+                    $(this).css({"border-color" : "#1974CE"});
+                    $(".cpfModalPF").css("color", "#1974CE");
+                    $(".label-cpfModalPF").css("color", "#1974CE");
                 }
             });
                // dataNascimentoModalPF
@@ -1889,17 +1890,17 @@ console.log(valor);
          $(".dataNascimentoModalPF").blur(function(){
             if($(this).val() == "")
                 {
-                    $(this).css({"border-color" : "#F00"});
-                    $(".label-dataNascimentoModalPF").css("color", "red");
+                    $(this).css({"border-color" : "#FF4141"});
+                    $(".label-dataNascimentoModalPF").css("color", "#FF4141");
                 }
           });
 
           $(".dataNascimentoModalPF").keyup(function(){
           if($(this).val() != "")
               {
-                  $(this).css({"border-color" : "#3A94FB"});
-                  $(".dataNascimentoModalPF").css("color", "#3A94FB");
-                  $(".label-dataNascimentoModalPF").css("color", "#3A94FB");
+                  $(this).css({"border-color" : "#1974CE"});
+                  $(".dataNascimentoModalPF").css("color", "#1974CE");
+                  $(".label-dataNascimentoModalPF").css("color", "#1974CE");
               }
           });
 
@@ -1917,17 +1918,17 @@ $(".nomeMaeModalPF").focus(function(){
     $(".nomeMaeModalPF").blur(function(){
     if($(this).val() == "")
         {
-            $(this).css({"border-color" : "#F00"});
-            $(".label-nomeMaeModalPF").css("color", "red");
+            $(this).css({"border-color" : "#FF4141"});
+            $(".label-nomeMaeModalPF").css("color", "#FF4141");
         }
     });
 
     $(".nomeMaeModalPF").keyup(function(){
     if($(this).val() != "")
         {
-            $(this).css({"border-color" : "#3A94FB"});
-            $(".nomeMaeModalPF").css("color", "#3A94FB");
-            $(".label-nomeMaeModalPF").css("color", "#3A94FB");
+            $(this).css({"border-color" : "#1974CE"});
+            $(".nomeMaeModalPF").css("color", "#1974CE");
+            $(".label-nomeMaeModalPF").css("color", "#1974CE");
         }
     });
      // celularModalPF
@@ -1945,8 +1946,8 @@ $(".nomeMaeModalPF").focus(function(){
         $(".celularModalPF").blur(function(){
         if($(this).val() == "")
             {
-                $(this).css({"border-color" : "#F00"});
-                $(".label-celularModalPF").css("color", "red");
+                $(this).css({"border-color" : "#FF4141"});
+                $(".label-celularModalPF").css("color", "#FF4141");
             }
         });
 
@@ -1954,9 +1955,9 @@ $(".nomeMaeModalPF").focus(function(){
         $(".celularModalPF").keyup(function(){
         if($(this).val() != "")
             {
-                $(this).css({"border-color" : "#3A94FB"});
-                $(".celularModalPF").css("color", "#3A94FB");
-                $(".label-celularModalPF").css("color", "#3A94FB");
+                $(this).css({"border-color" : "#1974CE"});
+                $(".celularModalPF").css("color", "#1974CE");
+                $(".label-celularModalPF").css("color", "#1974CE");
             }
        });
         // emailModalPF
@@ -1981,16 +1982,16 @@ $(".nomeMaeModalPF").focus(function(){
 
        if(!(emailFilter.test(sEmail))||sEmail.match(illegalChars)){
          
-         $(".label-emailModalPF").css("color", "red");
-         $(".emailModalPF").css("color", "red");
-         $(".emailModalPF").css("border-color", "red");
+         $(".label-emailModalPF").css("color", "#FF4141");
+         $(".emailModalPF").css("color", "#FF4141");
+         $(".emailModalPF").css("border-color", "#FF4141");
        }
 
        else{
 
-         $(".label-emailModalPF").css("color", "#3A94FB");
-         $(".emailModalPF").css("color", "#3A94FB");
-         $(".emailModalPF").css("border-color", "#3A94FB");
+         $(".label-emailModalPF").css("color", "#1974CE");
+         $(".emailModalPF").css("color", "#1974CE");
+         $(".emailModalPF").css("border-color", "#1974CE");
 
        }
 
@@ -1999,9 +2000,9 @@ $(".nomeMaeModalPF").focus(function(){
         $(".emailModalPF").keyup(function(){
         if($(this).val() != "")
             {
-                $(this).css({"border-color" : "#3A94FB"});
-                $(".emailModalPF").css("color", "#3A94FB");
-                $(".label-emailModalPF").css("color", "#3A94FB");
+                $(this).css({"border-color" : "#1974CE"});
+                $(".emailModalPF").css("color", "#1974CE");
+                $(".label-emailModalPF").css("color", "#1974CE");
             }
        });
 
@@ -2018,17 +2019,17 @@ $(".nomeMaeModalPF").focus(function(){
 
        if(!(emailFilter.test(sEmail))||sEmail.match(illegalChars)){
          
-         $(".label-emailModalPF").css("color", "red");
-         $(".emailModalPF").css("color", "red");
-         $(".label-emailModalPF").css("color", "red");
+         $(".label-emailModalPF").css("color", "#FF4141");
+         $(".emailModalPF").css("color", "#FF4141");
+         $(".label-emailModalPF").css("color", "#FF4141");
        }
 
 
        else{
 
-         $(".label-emailModalPF").css("color", "#3A94FB");
-         $(".emailModalPF").css("color", "#3A94FB");
-         $(".label-emailModalPF").css("color", "#3A94FB");
+         $(".label-emailModalPF").css("color", "#1974CE");
+         $(".emailModalPF").css("color", "#1974CE");
+         $(".label-emailModalPF").css("color", "#1974CE");
 
         }
 
@@ -2058,16 +2059,16 @@ $(".nomeMaeModalPF").focus(function(){
    
                if(!(emailFilter.test(sEmail))||sEmail.match(illegalChars)){
                  
-                 $(".label-emailCadastroNaoSouDono").css("color", "red");
-                 $(".emailCadastroNaoSouDono").css("color", "red");
-                 $(".emailCadastroNaoSouDono").css("border-color", "red");
+                 $(".label-emailCadastroNaoSouDono").css("color", "#FF4141");
+                 $(".emailCadastroNaoSouDono").css("color", "#FF4141");
+                 $(".emailCadastroNaoSouDono").css("border-color", "#FF4141");
                }
    
                else{
    
-                 $(".label-emailCadastroNaoSouDono").css("color", "#3A94FB");
-                 $(".emailCadastroNaoSouDono").css("color", "#3A94FB");
-                 $(".emailCadastroNaoSouDono").css("border-color", "#3A94FB");
+                 $(".label-emailCadastroNaoSouDono").css("color", "#1974CE");
+                 $(".emailCadastroNaoSouDono").css("color", "#1974CE");
+                 $(".emailCadastroNaoSouDono").css("border-color", "#1974CE");
    
                }
    
@@ -2076,9 +2077,9 @@ $(".nomeMaeModalPF").focus(function(){
                 $(".emailCadastroNaoSouDono").keyup(function(){
                 if($(this).val() != "")
                     {
-                        $(this).css({"border-color" : "#3A94FB"});
-                        $(".emailCadastroNaoSouDono").css("color", "#3A94FB");
-                        $(".label-emailCadastroNaoSouDono").css("color", "#3A94FB");
+                        $(this).css({"border-color" : "#1974CE"});
+                        $(".emailCadastroNaoSouDono").css("color", "#1974CE");
+                        $(".label-emailCadastroNaoSouDono").css("color", "#1974CE");
                     }
                });
    
@@ -2095,17 +2096,17 @@ $(".nomeMaeModalPF").focus(function(){
    
                if(!(emailFilter.test(sEmail))||sEmail.match(illegalChars)){
                  
-                 $(".label-emailCadastroNaoSouDono").css("color", "red");
-                 $(".emailCadastroNaoSouDono").css("color", "red");
-                 $(".label-emailCadastroNaoSouDono").css("color", "red");
+                 $(".label-emailCadastroNaoSouDono").css("color", "#FF4141");
+                 $(".emailCadastroNaoSouDono").css("color", "#FF4141");
+                 $(".label-emailCadastroNaoSouDono").css("color", "#FF4141");
                }
    
    
                else{
    
-                 $(".label-emailCadastroNaoSouDono").css("color", "#3A94FB");
-                 $(".emailCadastroNaoSouDono").css("color", "#3A94FB");
-                 $(".label-emailCadastroNaoSouDono").css("color", "#3A94FB");
+                 $(".label-emailCadastroNaoSouDono").css("color", "#1974CE");
+                 $(".emailCadastroNaoSouDono").css("color", "#1974CE");
+                 $(".label-emailCadastroNaoSouDono").css("color", "#1974CE");
    
                 }
    
@@ -2134,16 +2135,16 @@ $(".nomeMaeModalPF").focus(function(){
 
                 if(!(emailFilter.test(sEmail))||sEmail.match(illegalChars)){
                     
-                    $(".label-emailCadastroSouDono").css("color", "red");
-                    $(".emailCadastroSouDono").css("color", "red");
-                    $(".emailCadastroSouDono").css("border-color", "red");
+                    $(".label-emailCadastroSouDono").css("color", "#FF4141");
+                    $(".emailCadastroSouDono").css("color", "#FF4141");
+                    $(".emailCadastroSouDono").css("border-color", "#FF4141");
                 }
 
                 else{
 
-                    $(".label-emailCadastroSouDono").css("color", "#3A94FB");
-                    $(".emailCadastroSouDono").css("color", "#3A94FB");
-                    $(".emailCadastroSouDono").css("border-color", "#3A94FB");
+                    $(".label-emailCadastroSouDono").css("color", "#1974CE");
+                    $(".emailCadastroSouDono").css("color", "#1974CE");
+                    $(".emailCadastroSouDono").css("border-color", "#1974CE");
 
                 }
 
@@ -2152,9 +2153,9 @@ $(".nomeMaeModalPF").focus(function(){
                     $(".emailCadastroSouDono").keyup(function(){
                     if($(this).val() != "")
                         {
-                            $(this).css({"border-color" : "#3A94FB"});
-                            $(".emailCadastroSouDono").css("color", "#3A94FB");
-                            $(".label-emailCadastroSouDono").css("color", "#3A94FB");
+                            $(this).css({"border-color" : "#1974CE"});
+                            $(".emailCadastroSouDono").css("color", "#1974CE");
+                            $(".label-emailCadastroSouDono").css("color", "#1974CE");
                         }
                 });
 
@@ -2171,17 +2172,17 @@ $(".nomeMaeModalPF").focus(function(){
 
                 if(!(emailFilter.test(sEmail))||sEmail.match(illegalChars)){
                     
-                    $(".label-emailCadastroSouDono").css("color", "red");
-                    $(".emailCadastroSouDono").css("color", "red");
-                    $(".label-emailCadastroSouDono").css("color", "red");
+                    $(".label-emailCadastroSouDono").css("color", "#FF4141");
+                    $(".emailCadastroSouDono").css("color", "#FF4141");
+                    $(".label-emailCadastroSouDono").css("color", "#FF4141");
                 }
 
 
                 else{
 
-                    $(".label-emailCadastroSouDono").css("color", "#3A94FB");
-                    $(".emailCadastroSouDono").css("color", "#3A94FB");
-                    $(".label-emailCadastroSouDono").css("color", "#3A94FB");
+                    $(".label-emailCadastroSouDono").css("color", "#1974CE");
+                    $(".emailCadastroSouDono").css("color", "#1974CE");
+                    $(".label-emailCadastroSouDono").css("color", "#1974CE");
 
                     }
 
@@ -2295,11 +2296,11 @@ $(".nomeMaeModalPF").focus(function(){
 
 
 
-                $(this).css({"border-color" : "#F00"});
+                $(this).css({"border-color" : "#FF4141"});
 
-                $(".label-cpfcnpj").css("color", "red");
+                $(".label-cpfcnpj").css("color", "#FF4141");
 
-                $(".cpfcnpj").css("color", "red");
+                $(".cpfcnpj").css("color", "#FF4141");
 
                 }
 
@@ -2313,13 +2314,13 @@ $(".nomeMaeModalPF").focus(function(){
 
                 {
 
-                $(this).css({"border-color" : "#3A94FB"});
+                $(this).css({"border-color" : "#1974CE"});
 
-                $(".cpfcnpj").css("color", "#3A94FB");
+                $(".cpfcnpj").css("color", "#1974CE");
 
-                $(".label-cpfcnpj").css("color", "#3A94FB");
+                $(".label-cpfcnpj").css("color", "#1974CE");
 
-                $("input:-webkit-autofill").css("color", "#3A94FB");
+                $("input:-webkit-autofill").css("color", "#1974CE");
 
                 }
 

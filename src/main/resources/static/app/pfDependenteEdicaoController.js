@@ -12,9 +12,9 @@ function carregarProposta() {
 
     var dependenteEmEdicao = get("dependentePfEmEdicao");
 
-    $("#nomeDependente").val(dependenteEmEdicao.nome);
+    $("#nome").val(dependenteEmEdicao.nome);
     $(".email").val(dependenteEmEdicao.email);
-    $("#celularDependenteEdicao").val(dependenteEmEdicao.celular);
+    $("#celular").val(dependenteEmEdicao.celular);
     $(".nascimento").val(dependenteEmEdicao.dataNascimento);
     $(".cpf").val(dependenteEmEdicao.cpf);
     $("#nomeMae").val(dependenteEmEdicao.nomeMae);
@@ -33,29 +33,69 @@ function SalvarDependente() {
     var idade = $(".nascimento").val().split("/");
     var menor = currentYear - idade[2];
 
-    if ($(".nome").val() == "") {
-        swal("Ops!", "Preencha o Nome", "error");
+    if ($("#nome").val() == "" || !ValidaNome($("#nome").val())) {
+        swal("Ops!", "Preencha nome completo do dependente", "error");
+        $("#nome").focus();
         return;
     }
 
-    if (!ValidaNome($("#nomeDependente").val())) {
-        swal("Ops!", "Nome inválido", "error");
+    if ($("#email").val() == "" || !validateEmail($("#email").val())) {
+        swal("Ops!", "Preencha um E-mail válido", "error");
+        $("#email").focus();
+        return;
+    }
+
+    if ($("#celular").val() == "") {
+        swal("Ops!", "Preencha o Celular", "error");
+        $("#celular").focus();
+        return;
+    }
+
+    if ($("#nascimento").val() == "" || !validarData($("#nascimento").val())) {
+        swal("Ops!", "Preencha uma data de nascimento correta", "error");
+        $("#nascimento").focus();
+        return;
+    }
+
+    var dateNascimento = $("#nascimento").val();
+
+    if ($("#cpf").val() == "" && isMaiorDeIdade(dateNascimento)) {
+        swal("Ops!", "CPF Obrigatório para maiores de idade", "error");
+        $("#cpf").focus();
+        return;
+    }
+
+
+    var benef = get("propostaPf");
+    if (benef.cpf == $("#cpf").val() && $("#cpf").val() != "") {
+        swal("Conflito!", "Você informou o mesmo CPF do titular para este dependente, por favor verifique.", "error");
+        $("#cpf").focus();
+        return;
+    }
+
+    var proposta = get("propostaPf");
+    var planos = get("CodPlanos");
+    var plano = planos.filter(function (x) {
+        return x.cdPlano == proposta.planos[0].cdPlano
+    });
+
+    if (!menorQueSeteAnos(dateNascimento) && plano[0].nome.indexOf("DENTE DE LEITE") !== -1) {
+
+        swal("Ops!", "No plano dente de leite o dependente deve ter menos que 7 anos", "error");
+        $("#nascimento").focus();
         return false;
     }
 
-    if ($(".email").val() == "") {
-        swal("Ops!", "Preencha o E-mail", "error");
-        return;
+    if ($("#radio-1").is(":checked") != true && $("#radio-2").is(":checked") != true) {
+        swal("Ops!", "Selecione o sexo do dependente", "error");
+        $("#radio-1").focus();
+        return false;
     }
 
-    if (!validateEmail($(".email").val())) {
-        swal("Ops!", "Preencha um E-mail válido", "error");
-        return;
-    }
-
-    if ($(".celular").val() == "") {
-        swal("Ops!", "Preencha o Celular", "error");
-        return;
+    if ($("#nomeMae").val() == "" || !ValidaNome($("#nomeMae").val())) {
+        swal("Ops!", "Nome da mãe inválido", "error");
+        $("#nomeMae").focus();
+        return false;
     }
 
     var benef = get("propostaPf");
@@ -178,7 +218,7 @@ function SalvarDependente() {
         dependente.sexo = $("#radio-2").val();
     }
 
-    dependente.celular = $("#celularDependenteEdicao").val();
+    dependente.celular = $("#celular").val();
 
     if (proposta.dependentes.length == 0) {
         proposta.dependentes = [];
@@ -242,9 +282,9 @@ $(".cpf").focusout(function () {
         console.log(stringteste);
 
         if ($(this).val() == "" || TestaCPF(stringteste) == false) {
-            $(this).css({ "border-color": "#F00" });
-            $(".label-cpf").css("color", "red");
-            $(".cpf").css("color", "red");
+            $(this).css({ "border-color": "#FF4141" });
+            $(".label-cpf").css("color", "#FF4141");
+            $(".cpf").css("color", "#FF4141");
         }
     }
 });

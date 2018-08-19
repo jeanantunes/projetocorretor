@@ -1,228 +1,264 @@
 ﻿<!DOCTYPE html>
-<html lang="pt-br">
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br"
+      xmlns="http://www.w3.org/1999/xhtml">
+
 <head><title>OdontoPrev</title>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" th:href="@{/img/odpv.PNG}" type="image/png"/>
     <meta http-equiv="Content-Language" content="pt-br">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
-
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/odontoprev.css" rel="stylesheet">
-    <link href="css/sweetalert.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{css/style.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{css/odontoprev.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{css/sweetalert.css}"/>
 </head>
 
 <body>
-    <!-- Bloco 1 -->
-    <div class="container-fluid">
-        <div class="col-md-12 odontBoxCenter">
-            <div class="row">
-                <div class="text-center">
-                    <div>
-                        <h1 class="titleOdont text-center">
-                            DADOS DA PROPOSTA
-                        </h1>
-                        <h2 class="subTitleOdont text-center">
-                            Confira o plano escolhido e preencha os dados do cliente abaixo
-                        </h2>
-                    </div>
+<!-- Bloco 1 -->
+<div class="container-fluid">
+    <div class="col-sm-12 odontBoxCenter">
+        <div class="row">
+            <div class="text-center">
+                <div>
+                    <h1 class="titleOdont text-center">
+                        DADOS DA PROPOSTA
+                    </h1>
+                    <h2 class="subTitleOdont text-center">
+                        Confira o plano escolhido e preencha os dados do cliente abaixo
+                    </h2>
                 </div>
             </div>
+        </div>
 
-            <div id="planos" style="margin-bottom:20px;">
+        <div id="planos" style="margin-bottom:20px;">
+        </div>
+
+        <div class="row boxLabInput">
+            <div>
+                <label class="labelBlue">TITULAR DO PLANO</label>
+            </div>
+            <div>
+                <label class="label-cpf labelOdontBlur">CPF</label>
+            </div>
+            <div>
+                <input type="tel" class="cpf inputLabelBlur" id="cpf">
+            </div>
+            <div>
+                <label class="label-nome labelOdontBlur">Nome</label>
+            </div>
+            <div>
+                <input type="text" class="nome inputLabelBlur nomeRegex" id="nome" maxlength="100">
+            </div>
+            <div>
+                <label class="label-email labelOdontBlur">E-mail</label>
+            </div>
+            <div>
+                <input type="email" class="email inputLabelBlur" id="email" maxlength="50">
+            </div>
+            <div>
+                <label class="label-celular labelOdontBlur">Celular</label>
+            </div>
+            <div>
+                <input type="tel" class="celular inputLabelBlur" id="celular" maxlength="15">
+            </div>
+            <div>
+                <label class="label-nascimento labelOdontBlur">Data de nascimento</label>
+            </div>
+            <div>
+                <input type="tel" class="nascimento data inputLabelBlur" id="dataNascimentoTitular">
+            </div>
+            <div>
+                <label class="label-sexo labelOdontBlur">Sexo</label>
+            </div>
+            <div>
+                <div class="radio">
+                    <input id="radio-1" name="radio" type="radio" class="sexo" value="f">
+                    <label for="radio-1" class=" radio-inline radio-label label-sexo labelOdontBlur">Feminino</label>
+                </div>
+                <div class="radio">
+                    <input id="radio-2" name="radio" type="radio" class="sexo" value="m">
+                    <label for="radio-2" class="radio-inline radio-label label-sexo labelOdontBlur">Masculino</label>
+                </div>
+            </div>
+            <div>
+                <label class="label-nome-mae labelOdontBlur">Nome da mãe</label>
+            </div>
+            <div>
+                <input type="text" class="nome-mae inputLabelBlur nomeRegex" id="nomeMae" maxlength="50">
             </div>
 
-            <div class="row boxLabInput">
+            <!--Bloco Responsavel -->
+            <div class="representanteContratual hide">
+
+                <div id="divProximoMes" style="margin-top: 20px;">
+                    <p style="font-family:Roboto-Light; text-align: left; color:white; background-color: #F9B40A; padding-right: 10px; padding-left: 20px; padding-bottom: 20px; padding-top: 20px;">
+                        <span style="font-family: Roboto-Medium !important;">ATENÇÃO</span><br/>
+                        Para titulares menores de dezoito anos é necessário preencher os dados do responsável legal pelo
+                        plano.
+                    </p>
+                </div>
+
                 <div>
-                    <label class="labelBlue">TITULAR DO PLANO</label>
+                    <label class="labelBlue" style="margin-top: 20px;">RESPONSÁVEL LEGAL</label>
                 </div>
                 <div>
-                    <label class="label-cpf labelOdontBlur">CPF</label>
+                    <label class="label-nome-responsavel-legal labelOdontBlur">Nome</label>
                 </div>
                 <div>
-                    <input type="tel" class="cpf inputLabelBlur" id="cpf">
+                    <input type="text" class="nome-responsavel inputLabelBlur nomeRegex" id="nomeResponsavel"
+                           maxlength="250">
                 </div>
                 <div>
-                    <label class="label-nome labelOdontBlur">Nome</label>
+                    <label class="email-representante-legal labelOdontBlur">E-mail</label>
                 </div>
                 <div>
-                    <input type="text" class=" nome inputLabelBlur nomeRegex" id="nomeBeneficiario" maxlength="100">
+                    <input type="email" class="email-representante-legal inputLabelBlur text-lowercase"
+                           id="emailRepresentanteLegal" maxlength="50">
                 </div>
                 <div>
-                    <label class="label-email labelOdontBlur">E-mail</label>
+                    <label class="label-celular-representante-legal labelOdontBlur">Celular</label>
                 </div>
                 <div>
-                    <input type="email" class="email inputLabelBlur" maxlength="50">
+                    <input type="tel" class="celular-representante-legal inputLabelBlur">
                 </div>
                 <div>
-                    <label class="label-celular labelOdontBlur">Celular</label>
+                    <label class="label-cpf-representante-legal labelOdontBlur">CPF</label>
                 </div>
                 <div>
-                    <input type="tel" class="celular inputLabelBlur" maxlength="15">
+                    <input type="tel" class="cpf-representante-legal inputLabelBlur" id="cpf-representante">
                 </div>
                 <div>
-                    <label class="label-nascimento labelOdontBlur">Data de nascimento</label>
+                    <label class="label-nascimento-representante-legal labelOdontBlur">Data de nascimento</label>
                 </div>
                 <div>
-                    <input type="tel" class="nascimento data inputLabelBlur" id="dataNascimentoTitular">
+                    <input type="tel" class="nascimento-representante-legal data-responsavel inputLabelBlur"
+                           id="dataNascimentoResponsavel">
                 </div>
                 <div>
                     <label class="label-sexo labelOdontBlur">Sexo</label>
                 </div>
                 <div>
                     <div class="radio">
-                        <input id="radio-1" name="radio" type="radio" class="sexo" value="f">
-                        <label for="radio-1" class=" radio-inline radio-label label-sexo labelOdontBlur">Feminino</label>
+                        <input id="radio-3" name="radioResponsavel" type="radio" class="sexo" value="f">
+                        <label for="radio-3"
+                               class=" radio-inline radio-label label-sexo labelOdontBlur">Feminino</label>
                     </div>
                     <div class="radio">
-                        <input id="radio-2" name="radio" type="radio" class="sexo" value="m">
-                        <label for="radio-2" class="radio-inline radio-label label-sexo labelOdontBlur">Masculino</label>
+                        <input id="radio-4" name="radioResponsavel" type="radio" class="sexo" value="m">
+                        <label for="radio-4"
+                               class="radio-inline radio-label label-sexo labelOdontBlur">Masculino</label>
                     </div>
-                </div>
-                <div>
-                    <label class="label-nome-mae labelOdontBlur">Nome da mãe</label>
-                </div>
-                <div>
-                    <input type="text" class="nome-mae inputLabelBlur nomeRegex" id="nomeMae" maxlength="50">
-                </div>
-
-                <!--Bloco Responsavel -->
-                <div class="representanteContratual hide">
-
-                    <div id="divProximoMes" style="margin-top: 20px;">
-                        <p style="font-family:Roboto-Light; text-align: left; color:white; background-color: #F9B40A; padding-right: 10px; padding-left: 20px; padding-bottom: 20px; padding-top: 20px;">
-                            <span style="font-family: Roboto-Medium !important;">ATENÇÃO</span><br />
-                            Para titulares menores de dezoito anos é necessário preencher os dados do responsável legal pelo plano.
-                        </p>
-                    </div>
-
-                    <div>
-                        <label class="labelBlue" style="margin-top: 20px;">RESPONSÁVEL LEGAL</label>
-                    </div>
-                    <div>
-                        <label class="label-nome-responsavel-legal labelOdontBlur">Nome</label>
-                    </div>
-                    <div>
-                        <input type="text" class="nome-responsavel inputLabelBlur nomeRegex" id="nomeResponsavel" maxlength="250">
-                    </div>
-                    <div>
-                        <label class="email-representante-legal labelOdontBlur">E-mail</label>
-                    </div>
-                    <div>
-                        <input type="email" class="email-representante-legal inputLabelBlur" id="emailRepresentanteLegal" maxlength="50">
-                    </div>
-                    <div>
-                        <label class="label-celular-representante-legal labelOdontBlur">Celular</label>
-                    </div>
-                    <div>
-                        <input type="tel" class="celular-representante-legal inputLabelBlur">
-                    </div>
-                    <div>
-                        <label class="label-cpf-representante-legal labelOdontBlur">CPF</label>
-                    </div>
-                    <div>
-                        <input type="tel" class="cpf-representante-legal inputLabelBlur" id="cpf-representante">
-                    </div>
-                    <div>
-                        <label class="label-nascimento-representante-legal labelOdontBlur">Data de nascimento</label>
-                    </div>
-                    <div>
-                        <input type="tel" class="nascimento-representante-legal data-responsavel inputLabelBlur" id="dataNascimentoResponsavel">
-                    </div>
-                    <div>
-                        <label class="label-sexo labelOdontBlur">Sexo</label>
-                    </div>
-                    <div>
-                        <div class="radio">
-                            <input id="radio-3" name="radioResponsavel" type="radio" class="sexo" value="f">
-                            <label for="radio-3" class=" radio-inline radio-label label-sexo labelOdontBlur">Feminino</label>
-                        </div>
-                        <div class="radio">
-                            <input id="radio-4" name="radioResponsavel" type="radio" class="sexo" value="m">
-                            <label for="radio-4" class="radio-inline radio-label label-sexo labelOdontBlur">Masculino</label>
-                        </div>
-                    </div>
-                </div>
-                <br />
-                <!--End Bloco responsavel -->
-                <div>
-                    <label class="label-cep labelOdontBlur">CEP</label>
-                </div>
-                <div>
-                    <input type="tel" class="cep inputLabelBlur" id="cep-proposta-pf">
-                </div>
-                <div>
-                    <label class="label-endereco labelOdontBlur">Endereço</label>
-                </div>
-                <div>
-                    <input type="text" class="endereco inputLabelBlur" id="rua">
-                </div>
-                <div>
-                    <label class="label-numero labelOdontBlur">Número</label>
-                </div>
-                <div>
-                    <input type="tel" class="numero inputLabelBlur" maxlength="10">
-                </div>
-                <div>
-                    <label class="label-complemento labelOdontBlur">Complemento</label>
-                </div>
-                <div>
-                    <input type="text" class="complemento inputLabelBlur" maxlength="20">
-                </div>
-                <div>
-                    <label class="label-bairro labelOdontBlur">Bairro</label>
-                </div>
-                <div>
-                    <input type="text" class="bairro inputLabelBlur" id="bairro" maxlength="150">
-                </div>
-                <div>
-                    <label class="label-estado labelOdontBlur">Estado</label>
-                </div>
-                <div>
-                    <input type="text" class="estado inputLabelBlur" id="uf" maxlength="2">
-                </div>
-                <div>
-                    <label class="label-cidade labelOdontBlur">Cidade</label>
-                </div>
-                <div>
-                    <input type="text" class="cidade inputLabelBlur" id="cidade" maxlength="150">
                 </div>
             </div>
+            <br/>
+            <!--End Bloco responsavel -->
+            <div>
+                <label class="label-cep labelOdontBlur">CEP</label>
+            </div>
+            <div>
+                <input type="tel" class="cep inputLabelBlur" id="cep-proposta-pf">
+            </div>
+            <div>
+                <label class="label-endereco labelOdontBlur">Endereço</label>
+            </div>
+            <div>
+                <input type="text" class="endereco inputLabelBlur nomeRegex" id="rua">
+            </div>
+            <div>
+                <label class="label-numero labelOdontBlur">Número</label>
+            </div>
+            <div>
+                <input type="tel" class="numero inputLabelBlur" maxlength="10" id="numeroEndereco">
+            </div>
+            <div>
+                <label class="label-complemento labelOdontBlur">Complemento</label>
+            </div>
+            <div>
+                <input type="text" class="complemento inputLabelBlur uppercase" maxlength="20">
+            </div>
+            <div>
+                <label class="label-bairro labelOdontBlur">Bairro</label>
+            </div>
+            <div>
+                <input type="text" class="bairro inputLabelBlur nomeRegex" id="bairro" maxlength="150">
+            </div>
+            <div>
+                <label class="label-estado labelOdontBlur">Estado</label>
+            </div>
+            <div>
+                <!-- input type="text" class="estado inputLabelBlur" id="uf" maxlength="2" -->
+                <select name="estados-brasil" class="estado inputLabelBlur" style="background-color: transparent"
+                        id="uf" maxlength="2">
+                    <option value=" "></option>
+                    <option value="AC">Acre</option>
+                    <option value="AL">Alagoas</option>
+                    <option value="AP">Amapá</option>
+                    <option value="AM">Amazonas</option>
+                    <option value="BA">Bahia</option>
+                    <option value="CE">Ceará</option>
+                    <option value="DF">Distrito Federal</option>
+                    <option value="ES">Espírito Santo</option>
+                    <option value="GO">Goiás</option>
+                    <option value="MA">Maranhão</option>
+                    <option value="MT">Mato Grosso</option>
+                    <option value="MS">Mato Grosso do Sul</option>
+                    <option value="MG">Minas Gerais</option>
+                    <option value="PA">Pará</option>
+                    <option value="PB">Paraíba</option>
+                    <option value="PR">Paraná</option>
+                    <option value="PE">Pernambuco</option>
+                    <option value="PI">Piauí</option>
+                    <option value="RJ">Rio de Janeiro</option>
+                    <option value="RN">Rio Grande do Norte</option>
+                    <option value="RS">Rio Grande do Sul</option>
+                    <option value="RO">Rondônia</option>
+                    <option value="RR">Roraima</option>
+                    <option value="SC">Santa Catarina</option>
+                    <option value="SP">São Paulo</option>
+                    <option value="SE">Sergipe</option>
+                    <option value="TO">Tocantins</option>
+                </select>
+            </div>
+            <div>
+                <label class="label-cidade labelOdontBlur">Cidade</label>
+            </div>
+            <div>
+                <input type="text" class="cidade inputLabelBlur nomeRegex" id="cidade" maxlength="150">
+            </div>
+        </div>
 
-            <div id="listaDep"></div>
+        <div id="listaDep"></div>
 
-            <br />
-            <br />
+        <br/>
+        <br/>
 
-            <div class="row">
-                <div class="col-md-12 btnPadBtm">
-                    <div href="venda_index_pf.html" class="btn btn-lg btn-block btnOdont" id="" onclick="addDependente()" role="button">ADICIONAR DEPENDENTE</div>
-                    <!-- <div class="row">
-                        <div class="text-center">
-                            <a href=""><label for="senha" class="linkOdontSalvar">SALVAR E FINALIZAR PROPOSTA DEPOIS</label></a>
-                        </div>
-                    </div> -->
+        <div class="row">
+            <div class="col-sm-12 btnPadBtm">
+                <div href="venda_index_pf.html" class="btn btn-lg btn-block btnOdont" id="" onclick="addDependente()"
+                     role="button">ADICIONAR DEPENDENTE
                 </div>
-                <div class="col-md-12 btnPadBtm">
-                    <div class="btn btn-lg btn-block btnOdont" id="" role="button" onclick="salvarRascunho()">CONTINUAR</div>
+            </div>
+            <div class="col-sm-12 btnPadBtm">
+                <div class="btn btn-lg btn-block btnOdont" id="" role="button" onclick="salvarRascunho()">CONTINUAR
                 </div>
             </div>
         </div>
     </div>
-    <!-- End Bloco 1 -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/scripts.js"></script>
-    <script src="js/odontoprev.js"></script>
-    <script src="js/jquery.3.2.1.js"></script>
-    <script src="js/jquery.mask.min.js"></script>
-    <script src="js/odonto-Valida.js"></script>
-    <script src="js/sweetalert.min.js"></script>
-    <script src="app/coordenador.js"></script>
-    <script src="app/pfCadastroController.js"></script>
-    <script src="js/moment.js"></script>
-    <script> resizeIframe('frame_pf');</script>
+</div>
+<!-- End Bloco 1 -->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/scripts.js"></script>
+<script src="js/odontoprev.js"></script>
+<script src="js/jquery.3.2.1.js"></script>
+<script src="js/jquery.mask.min.js"></script>
+<script src="js/odonto-Valida.js"></script>
+<script src="js/sweetalert.min.js"></script>
+<script src="app/coordenador.js"></script>
+<script src="app/pfCadastroController.js"></script>
+<script src="js/moment.js"></script>
+<script> resizeIframe('frame_pf');</script>
 </body>
 </html>

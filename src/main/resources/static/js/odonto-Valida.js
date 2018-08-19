@@ -111,7 +111,7 @@ $(document).ready(function () {
         }
     }
     //Quando o campo cep perde o foco.
-    
+
     //Verica se o checkbox esta ativo e retira o "disabled"//
 
     $(document).ready(function () {
@@ -133,7 +133,7 @@ $(document).ready(function () {
 
             } else {
                 $("#btnTermo").addClass("disabled");
-       
+
             }
         });
 
@@ -293,9 +293,9 @@ $(document).ready(function () {
         console.log(stringteste);
 
         if ($(this).val() == "" || TestaCPF(stringteste) == false) {
-            $(this).css({ "border-color": "#F00" });
-            $(".label-cpf").css("color", "red");
-            $(".cpf").css("color", "red");
+            $(this).css({ "border-color": "#FF4141" });
+            $(".label-cpf").css("color", "#FF4141");
+            $(".cpf").css("color", "#FF4141");
         }
     });
 
@@ -307,7 +307,7 @@ $(document).ready(function () {
             $("input:-webkit-autofill").css("color", "#1974CE");
         }
     });
-    
+
  // NOME SEGUNDO CONTATO
 
     $(".segundo-contato").focus(function () {
@@ -320,8 +320,9 @@ $(document).ready(function () {
 
     $(".segundo-contato").blur(function () {
         if ($(this).val() == "") {
-            $(this).css({ "border-color": "#F00" });
-            $(".label-nome-segundo-contato").css("color", "red");
+            $(this).css({ "border-color": "#FF4141" });
+            $(".nome-segundo-contato").css("color", "#FF4141");
+            $(".label-nome-segundo-contato").css("color", "#FF4141");
         }
     });
 
@@ -346,8 +347,8 @@ $(document).ready(function () {
 
     $(".celular-segundo-contato").blur(function () {
         if ($(this).val() == "") {
-            $(this).css({ "border-color": "#F00" });
-            $(".label-celular-segundo-contato").css("color", "red");
+            $(this).css({ "border-color": "#FF4141" });
+            $(".label-celular-segundo-contato").css("color", "#FF4141");
         }
     });
 
@@ -373,8 +374,8 @@ $(document).ready(function () {
 
     $(".telefone-segundo-contato").blur(function () {
         if ($(this).val() == "") {
-            $(this).css({ "border-color": "#F00" });
-            $(".label-telefone-segundo-contato").css("color", "red");
+            $(this).css({ "border-color": "#FF4141" });
+            $(".label-telefone-segundo-contato").css("color", "#FF4141");
         }
     });
 
@@ -409,9 +410,9 @@ $(document).ready(function () {
             return;
         }
 
-        $(".label-email-segundo-contato").css("color", "red");
-        $(".email-segundo-contato").css("color", "red");
-        $(".email-segundo-contato").css("border-color", "red");
+        $(".label-email-segundo-contato").css("color", "#FF4141");
+        $(".email-segundo-contato").css("color", "#FF4141");
+        $(".email-segundo-contato").css("border-color", "#FF4141");
 
     });
 
@@ -444,9 +445,9 @@ $(document).ready(function () {
         console.log(stringteste);
 
         if ($(this).val() == "" || TestaCPF(stringteste) == false) {
-            $(this).css({ "border-color": "#F00" });
-            $(".label-cpf-representante-legal").css("color", "red");
-            $(".cpf-representante-legal").css("color", "red");
+            $(this).css({ "border-color": "#FF4141" });
+            $(".label-cpf-representante-legal").css("color", "#FF4141");
+            $(".cpf-representante-legal").css("color", "#FF4141");
         }
     });
 
@@ -471,9 +472,9 @@ $(document).ready(function () {
 
     $(".cnpj").blur(function () {
         if ($(this).val() == "" || validaCnpj($(".cnpj").val()) == false) {
-            $(this).css({ "border-color": "#F00" });
-            $(".label-cnpj").css("color", "red");
-            $(".cnpj").css("color", "red");
+            $(this).css({ "border-color": "#FF4141" });
+            $(".label-cnpj").css("color", "#FF4141");
+            $(".cnpj").css("color", "#FF4141");
         }
     });
 
@@ -497,9 +498,9 @@ $(document).ready(function () {
 
     $(".cnae").blur(function () {
         if ($(this).val().length < 7) {
-            $(this).css({ "border-color": "#F00" });
-            $(".label-cnae").css("color", "red");
-            $(".cnae").css("color", "red");
+            $(this).css({ "border-color": "#FF4141" });
+            $(".label-cnae").css("color", "#FF4141");
+            $(".cnae").css("color", "#FF4141");
         }
     });
 
@@ -523,8 +524,9 @@ $(document).ready(function () {
 
     $(".razao-social").blur(function () {
         if ($(this).val() == "") {
-            $(this).css({ "border-color": "#F00" });
-            $(".label-razao-social").css("color", "red");
+            $(this).css({ "border-color": "#FF4141" });
+            $(".razao-social").css("color", "#FF4141");
+            $(".label-razao-social").css("color", "#FF4141");
         }
     });
 
@@ -548,8 +550,9 @@ $(document).ready(function () {
 
     $(".nome-fantasia").blur(function () {
         if ($(this).val() == "") {
-            $(this).css({ "border-color": "#F00" });
-            $(".label-nome-fantasia").css("color", "red");
+            $(this).css({ "border-color": "#FF4141" });
+            $(".nome-fantasia").css("color", "#FF4141");
+            $(".label-nome-fantasia").css("color", "#FF4141");
         }
     });
 
@@ -573,8 +576,9 @@ $(document).ready(function () {
 
     $(".ramo-atividade").blur(function () {
         if ($(this).val() == "") {
-            $(this).css({ "border-color": "#F00" });
-            $(".label-ramo-atividade").css("color", "red");
+            $(this).css({ "border-color": "#FF4141" });
+            $(".ramo-atividade").css("color", "#FF4141");
+            $(".label-ramo-atividade").css("color", "#FF4141");
         }
     });
 
@@ -598,9 +602,9 @@ $(document).ready(function () {
 
     $(".mensagem").blur(function () {
         if ($(this).val() == "") {
-            $(this).css({ "border-color": "#F00" });
-            $(".label-mensagem").css("color", "red");
-          
+            $(this).css({ "border-color": "#FF4141" });
+            $(".label-mensagem").css("color", "#FF4141");
+
         }
     });
 
@@ -655,8 +659,9 @@ $(document).ready(function () {
 
     $(".inscricao-estadual").blur(function () {
         if ($(this).val() == "") {
-            $(this).css({ "border-color": "#F00" });
-            $(".label-inscricao-estadual").css("color", "red");
+            $(this).css({ "border-color": "#FF4141" });
+            $(".inscricao-estadual").css("color", "#FF4141");
+            $(".label-inscricao-estadual").css("color", "#FF4141");
         }
     });
 
@@ -680,8 +685,9 @@ $(document).ready(function () {
 
     $(".representante-legal").blur(function () {
         if ($(this).val() == "") {
-            $(this).css({ "border-color": "#F00" });
-            $(".label-representante-legal").css("color", "red");
+            $(this).css({ "border-color": "#FF4141" });
+            $(".representante-legal").css("color", "#FF4141");
+            $(".label-representante-legal").css("color", "#FF4141");
         }
     });
 
@@ -705,8 +711,9 @@ $(document).ready(function () {
 
     $(".cartao").blur(function () {
         if ($(this).val() == "") {
-            $(this).css({ "border-color": "#F00" });
-            $(".label-cartao").css("color", "red");
+            $(this).css({ "border-color": "#FF4141" });
+            $(".cartao").css("color", "#FF4141");
+            $(".label-cartao").css("color", "#FF4141");
         }
     });
 
@@ -730,8 +737,9 @@ $(document).ready(function () {
 
     $(".nome-cartao").blur(function () {
         if ($(this).val() == "") {
-            $(this).css({ "border-color": "#F00" });
-            $(".label-nome-cartao").css("color", "red");
+            $(this).css({ "border-color": "#FF4141" });
+            $(".nome-cartao").css("color", "#FF4141");
+            $(".label-nome-cartao").css("color", "#FF4141");
         }
     });
 
@@ -755,8 +763,9 @@ $(document).ready(function () {
 
     $(".validade").blur(function () {
         if ($(this).val() == "") {
-            $(this).css({ "border-color": "#F00" });
-            $(".label-validade").css("color", "red");
+            $(this).css({ "border-color": "#FF4141" });
+            $(".validade").css("color", "#FF4141");
+            $(".label-validade").css("color", "#FF4141");
         }
     });
 
@@ -780,8 +789,9 @@ $(document).ready(function () {
 
     $(".cvv").blur(function () {
         if ($(this).val() == "") {
-            $(this).css({ "border-color": "#F00" });
-            $(".label-cvv").css("color", "red");
+            $(this).css({ "border-color": "#FF4141" });
+            $(".cvv").css("color", "#FF4141");
+            $(".label-cvv").css("color", "#FF4141");
         }
     });
 
@@ -805,8 +815,9 @@ $(document).ready(function () {
 
     $(".corretora").blur(function () {
         if ($(this).val() == "") {
-            $(this).css({ "border-color": "#F00" });
-            $(".label-corretora").css("color", "red");
+            $(this).css({ "border-color": "#FF4141" });
+            $(".corretora").css("color", "#FF4141");
+            $(".label-corretora").css("color", "#FF4141");
         }
     });
 
@@ -830,8 +841,9 @@ $(document).ready(function () {
 
     $(".cidade").blur(function () {
         if ($(this).val() == "") {
-            $(this).css({ "border-color": "#F00" });
-            $(".label-cidade").css("color", "red");
+            $(this).css({ "border-color": "#FF4141" });
+            $(".cidade").css("color", "#FF4141");
+            $(".label-cidade").css("color", "#FF4141");
         }
     });
 
@@ -844,24 +856,24 @@ $(document).ready(function () {
     });
 
     // ESTADO
-
-    $(".estado").focus(function () {
-        if ($(this).val() == "") {
-            $(this).css({ "border-color": "blue" });
+    $("#uf").focus(function () {
+        if ($(this).val() != " ") {
+            $(this).css({ "border-color": "#1974CE" });
             $(".estado").css("color", "#1974CE");
             $(".label-estado").css("color", "#1974CE");
         }
     });
 
-    $(".estado").blur(function () {
-        if ($(this).val() == "") {
-            $(this).css({ "border-color": "#F00" });
-            $(".label-estado").css("color", "red");
+    $("#uf").blur(function () {
+        if ($(this).val() == " ") {
+            $(this).css({ "border-color": "#FF4141" });
+            $(".estado").css("color", "#FF4141");
+            $(".label-estado").css("color", "#FF4141");
         }
     });
 
-    $(".estado").keyup(function () {
-        if ($(this).val() != "") {
+    $("#uf").keyup(function () {
+        if ($(this).val() != " ") {
             $(this).css({ "border-color": "#1974CE" });
             $(".estado").css("color", "#1974CE");
             $(".label-estado").css("color", "#1974CE");
@@ -869,8 +881,7 @@ $(document).ready(function () {
     });
 
     // NOME
-
-    $(".nome").focus(function () {
+    $("#nome").focus(function () {
         if ($(this).val() == "") {
             $(this).css({ "border-color": "#1974CE" });
             $(".nome").css("color", "#1974CE");
@@ -878,14 +889,15 @@ $(document).ready(function () {
         }
     });
 
-    $(".nome").blur(function () {
+    $("#nome").blur(function () {
         if ($(this).val() == "") {
-            $(this).css({ "border-color": "#F00" });
-            $(".label-nome").css("color", "red");
+            $(this).css({ "border-color": "#FF4141" });
+            $(".nome").css("color", "#FF4141");
+            $(".label-nome").css("color", "#FF4141");
         }
     });
 
-    $(".nome").keyup(function () {
+    $("#nome").keyup(function () {
         if ($(this).val() != "") {
             $(this).css({"border-color": "#1974CE"});
             $(".nome").css("color", "#1974CE");
@@ -905,8 +917,9 @@ $(document).ready(function () {
 
     $(".nome-mae").blur(function () {
         if ($(this).val() == "") {
-            $(this).css({ "border-color": "red" });
-            $(".label-nome-mae").css("color", "red");
+            $(this).css({ "border-color": "#FF4141" });
+            $(".nome-mae").css("color", "#FF4141");
+            $(".label-nome-mae").css("color", "#FF4141");
 
         }
     });
@@ -931,8 +944,9 @@ $(document).ready(function () {
 
     $(".nome-responsavel").blur(function () {
         if ($(this).val() == "") {
-            $(this).css({ "border-color": "#F00" });
-            $(".label-nome-responsavel-legal").css("color", "red");
+            $(this).css({ "border-color": "#FF4141" });
+            $(".nome-responsavel-legal").css("color", "#FF4141");
+            $(".label-nome-responsavel-legal").css("color", "#FF4141");
         }
     });
 
@@ -956,8 +970,9 @@ $(document).ready(function () {
 
     $(".especialidade").blur(function () {
         if ($(this).val() == "") {
-            $(this).css({ "border-color": "#F00" });
-            $(".label-especialidade").css("color", "red");
+            $(this).css({ "border-color": "#FF4141" });
+            $(".especialidade").css("color", "#FF4141");
+            $(".label-especialidade").css("color", "#FF4141");
         }
     });
 
@@ -982,8 +997,9 @@ $(document).ready(function () {
 
     $(".dependentes").blur(function () {
         if ($(this).val() == "") {
-            $(this).css({ "border-color": "#F00" });
-            $(".label-dependentes").css("color", "red");
+            $(this).css({ "border-color": "#FF4141" });
+            $(".dependentes").css("color", "#FF4141");
+            $(".label-dependentes").css("color", "#FF4141");
         }
     });
 
@@ -1007,8 +1023,9 @@ $(document).ready(function () {
 
     $(".nome-dependente").blur(function () {
         if ($(this).val() == "") {
-            $(this).css({ "border-color": "#F00" });
-            $(".label-nome-dependente").css("color", "red");
+            $(this).css({ "border-color": "#FF4141" });
+            $(".nome-dependente").css("color", "#FF4141");
+            $(".label-nome-dependente").css("color", "#FF4141");
         }
     });
 
@@ -1032,8 +1049,9 @@ $(document).ready(function () {
 
     $(".parentesco").blur(function () {
         if ($(this).val() == "") {
-            $(this).css({ "border-color": "#F00" });
-            $(".label-parentesco").css("color", "red");
+            $(this).css({ "border-color": "#FF4141" });
+            $(".parentesco").css("color", "#FF4141");
+            $(".label-parentesco").css("color", "#FF4141");
         }
     });
 
@@ -1058,8 +1076,9 @@ $(document).ready(function () {
 
     $(".telefone").blur(function () {
         if ($(this).val() == "") {
-            $(this).css({ "border-color": "#F00" });
-            $(".label-telefone").css("color", "red");
+            $(this).css({ "border-color": "#FF4141" });
+            $(".telefone").css("color", "#FF4141");
+            $(".label-telefone").css("color", "#FF4141");
         }
     });
 
@@ -1084,9 +1103,9 @@ $(document).ready(function () {
 
     $(".celular").blur(function () {
         if ($(this).val() == "" || $(this).val().length < 15) {
-            $(this).css({ "border-color": "red" });
-            $(this).css({ "color": "red" });
-            $(".label-celular").css("color", "red");
+            $(this).css({ "border-color": "#FF4141" });
+            $(this).css({ "color": "#FF4141" });
+            $(".label-celular").css("color", "#FF4141");
         }
     });
 
@@ -1111,8 +1130,9 @@ $(document).ready(function () {
 
     $(".celular-representante-legal").blur(function () {
         if ($(this).val() == "") {
-            $(this).css({ "border-color": "#F00" });
-            $(".label-celular-representante-legal").css("color", "red");
+            $(this).css({ "border-color": "#FF4141" });
+            $(".celular-representante-legal").css("color", "#FF4141");
+            $(".label-celular-representante-legal").css("color", "#FF4141");
         }
     });
 
@@ -1137,8 +1157,9 @@ $(document).ready(function () {
 
     $(".cep").blur(function () {
         if ($(this).val() == "") {
-            $(this).css({ "border-color": "#F00" });
-            $(".label-cep").css("color", "red");
+            $(this).css({ "border-color": "#FF4141" });
+            $(".cep").css("color", "#FF4141");
+            $(".label-cep").css("color", "#FF4141");
         }
     });
 
@@ -1162,8 +1183,9 @@ $(document).ready(function () {
 
     $(".razao-social").blur(function () {
         if ($(this).val() == "") {
-            $(this).css({ "border-color": "#F00", "padding": "2px" });
-            $(".label-razao-social").css("color", "red");
+            $(this).css({ "border-color": "#FF4141", "padding": "2px" });
+            $(".razao-social").css("color", "#FF4141");
+            $(".label-razao-social").css("color", "#FF4141");
         }
     });
 
@@ -1186,8 +1208,9 @@ $(document).ready(function () {
 
     $(".endereco").blur(function () {
         if ($(this).val() == "") {
-            $(this).css({ "border-color": "#F00" });
-            $(".label-endereco").css("color", "red");
+            $(this).css({ "border-color": "#FF4141" });
+            $(".endereco").css("color", "#FF4141");
+            $(".label-endereco").css("color", "#FF4141");
         }
     });
 
@@ -1211,8 +1234,9 @@ $(document).ready(function () {
 
     $(".numero").blur(function () {
         if ($(this).val() == "") {
-            $(this).css({ "border-color": "#F00" });
-            $(".label-numero").css("color", "red");
+            $(this).css({ "border-color": "#FF4141" });
+            $(".numero").css("color", "#FF4141");
+            $(".label-numero").css("color", "#FF4141");
         }
     });
 
@@ -1254,9 +1278,9 @@ $(document).ready(function () {
             return;
         }
 
-        $(".label-email-representante-legal").css("color", "red");
-        $(".email-representante-legal").css("color", "red");
-        $(".email-representante-legal").css("border-color", "red");
+        $(".label-email-representante-legal").css("color", "#FF4141");
+        $(".email-representante-legal").css("color", "#FF4141");
+        $(".email-representante-legal").css("border-color", "#FF4141");
 
     });
 
@@ -1281,9 +1305,9 @@ $(document).ready(function () {
             return;
         }
 
-        $(".label-email").css("color", "red");
-        $(".email").css("color", "red");
-        $(".email").css("border-color", "red");
+        $(".label-email").css("color", "#FF4141");
+        $(".email").css("color", "#FF4141");
+        $(".email").css("border-color", "#FF4141");
 
     });
 
@@ -1311,9 +1335,9 @@ $(document).ready(function () {
             return;
         }
 
-        $(".label-email").css("color", "red");
-        $(".email").css("color", "red");
-        $(".email").css("border-color", "red");
+        $(".label-email").css("color", "#FF4141");
+        $(".email").css("color", "#FF4141");
+        $(".email").css("border-color", "#FF4141");
     });
 
     $(".email").keyup(function () {
@@ -1326,28 +1350,29 @@ $(document).ready(function () {
 
 
     // COMPLEMENTO
-    //$(".complemento").focus(function () {
-    //    if ($(this).val() == "") {
-    //        $(this).css({ "border-color": "blue" });
-    //        $(".complemento").css("color", "#1974CE");
-    //        $(".label-complemento").css("color", "#1974CE");
-    //    }
-    //});
-    //
-    //$(".complemento").blur(function () {
-    //    if ($(this).val() == "") {
-    //        $(this).css({ "border-color": "#F00" });
-    //        $(".label-complemento").css("color", "red");
-    //    }
-    //});
-    //
-    //$(".complemento").keyup(function () {
-    //    if ($(this).val() != "") {
-    //        $(this).css({ "border-color": "#1974CE" });
-    //        $(".complemento").css("color", "#1974CE");
-    //        $(".label-complemento").css("color", "#1974CE");
-    //    }
-    //});
+    $(".complemento").focus(function () {
+        if ($(this).val() == "") {
+            $(this).css({ "border-color": "#1974CE" });
+            $(".complemento").css("color", "#1974CE");
+            $(".label-complemento").css("color", "#1974CE");
+        }
+    });
+
+    $(".complemento").blur(function () {
+        if ($(this).val() == "") {
+            $(this).css({ "border-color": "#FF4141" });
+            $(".complemento").css("color", "#FF4141");
+            $(".label-complemento").css("color", "#FF4141");
+        }
+    });
+
+    $(".complemento").keyup(function () {
+        if ($(this).val() != "") {
+            $(this).css({ "border-color": "#1974CE" });
+            $(".complemento").css("color", "#1974CE");
+            $(".label-complemento").css("color", "#1974CE");
+        }
+    });
 
     // BAIRRO
     $(".bairro").focus(function () {
@@ -1360,12 +1385,10 @@ $(document).ready(function () {
 
     $(".bairro").blur(function () {
         if ($(this).val() == "") {
-            $(this).css({ "border-color": "#F00" });
-            $(".label-bairro").css("color", "red");
+            $(this).css({ "border-color": "#FF4141" });
+            $(".bairro").css("color", "#FF4141");
+            $(".label-bairro").css("color", "#FF4141");
         }
-        $(this).css({ "border-color": "#1974CE" });
-        $(".bairro").css("color", "#1974CE");
-        $(".label-bairro").css("color", "#1974CE");
     });
 
     $(".bairro").keyup(function () {
@@ -1377,7 +1400,6 @@ $(document).ready(function () {
     });
 
     // CIDADE
-
     $(".cidade").focus(function () {
         if ($(this).val() == "") {
             $(this).css({ "border-color": "#1974CE" });
@@ -1388,8 +1410,9 @@ $(document).ready(function () {
 
     $(".cidade").blur(function () {
         if ($(this).val() == "") {
-            $(this).css({ "border-color": "#F00" });
-            $(".label-cidade").css("color", "red");
+            $(this).css({ "border-color": "#FF4141" });
+            $(".cidade").css("color", "#FF4141");
+            $(".label-cidade").css("color", "#FF4141");
         }
     });
 
@@ -1405,57 +1428,59 @@ $(document).ready(function () {
 
 // BANCOS 
 
-$(".bancos").focus(function () {
-    if ($(this).val() == "") {
+$("#bancos").focus(function () {
+    if ($(this).val() != " ") {
         $(this).css({ "border-color": "#1974CE" });
         $(".bancos").css("color", "#1974CE");
         $(".label-bancos").css("color", "#1974CE");
     }
 });
 
-$(".bancos").blur(function () {
-    if ($(this).val() == "") {
-        $(this).css({ "border-color": "#F00" });
-        $(".label-bancos").css("color", "red");
+$("#bancos").blur(function () {
+    if ($(this).val() == " ") {
+        $(this).css({ "border-color": "#FF4141" });
+        $(".bancos").css("color", "#FF4141");
+        $(".label-bancos").css("color", "#FF4141");
     }
 });
 
-$(".bancos").keyup(function () {
-    if ($(this).val() != "") {
+$("#bancos").keyup(function () {
+    if ($(this).val() != " ") {
         $(this).css({ "border-color": "#1974CE" });
         $(".bancos").css("color", "#1974CE");
-        $(".bancos").css("color", "#1974CE");
+        $(".label-bancos").css("color", "#1974CE");
     }
 });
 
 // AGENCIA 
 
-$(".agencia").focus(function () {
-    if ($(this).val() == "") {
+$("#agenciaDebito").focus(function () {
+    if ($(this).val() != " ") {
         $(this).css({ "border-color": "#1974CE" });
         $(".agencia").css("color", "#1974CE");
         $(".label-agencia").css("color", "#1974CE");
     }
 });
 
-$(".agencia").blur(function () {
-    if ($(this).val() == "") {
-        $(this).css({ "border-color": "#F00" });
-        $(".label-agencia").css("color", "red");
+$("#agenciaDebito").blur(function () {
+    if ($(this).val() == " ") {
+        $(this).css({ "border-color": "#FF4141" });
+        $(".agencia").css("color", "#FF4141");
+        $(".label-agencia").css("color", "#FF4141");
     }
 });
 
-$(".agencia").keyup(function () {
-    if ($(this).val() != "") {
+$("#agenciaDebito").keyup(function () {
+    if ($(this).val() != " ") {
         $(this).css({ "border-color": "#1974CE" });
         $(".agencia").css("color", "#1974CE");
-        $(".agencia").css("color", "#1974CE");
+        $(".label-agencia").css("color", "#1974CE");
     }
 });
 
 // CONTA-CORRENTE 
 
-$(".conta-corrente").focus(function () {
+$("#contaDebito").focus(function () {
     if ($(this).val() == "") {
         $(this).css({ "border-color": "#1974CE" });
         $(".conta-corrente").css("color", "#1974CE");
@@ -1463,24 +1488,24 @@ $(".conta-corrente").focus(function () {
     }
 });
 
-$(".conta-corrente").blur(function () {
+$("#contaDebito").blur(function () {
     if ($(this).val() == "") {
-        $(this).css({ "border-color": "#F00" });
-        $(".label-conta-corrente").css("color", "red");
+        $(this).css({ "border-color": "#FF4141" });
+        $(".conta-corrente").css("color", "#FF4141");
+        $(".label-conta-corrente").css("color", "#FF4141");
     }
 });
 
-$(".conta-corrente").keyup(function () {
+$("#contaDebito").keyup(function () {
     if ($(this).val() != "") {
         $(this).css({ "border-color": "#1974CE" });
         $(".conta-corrente").css("color", "#1974CE");
-        $(".conta-corrente").css("color", "#1974CE");
+        $(".label-conta-corrente").css("color", "#1974CE");
     }
 });
 
 // DATA NASCIMENTO
-
-$(".nascimento").focus(function () {
+$("#nascimento").focus(function () {
     if ($(this).val() == "") {
         $(this).css({ "border-color": "#1974CE" });
         $(".nascimento").css("color", "#1974CE");
@@ -1488,14 +1513,15 @@ $(".nascimento").focus(function () {
     }
 });
 
-$(".nascimento").blur(function () {
+$("#nascimento").blur(function () {
     if ($(this).val() == "") {
-        $(this).css({ "border-color": "#F00" });
-        $(".label-nascimento").css("color", "red");
+        $(this).css({ "border-color": "#FF4141" });
+        $(".nascimento").css("color", "#FF4141");
+        $(".label-nascimento").css("color", "#FF4141");
     }
 });
 
-$(".nascimento").keyup(function () {
+$("#nascimento").keyup(function () {
     if ($(this).val() != "") {
         $(this).css({ "border-color": "#1974CE" });
         $(".nascimento").css("color", "#1974CE");
@@ -1516,8 +1542,9 @@ $(".nascimento-representante-legal").focus(function () {
 
 $(".nascimento-representante-legal").blur(function () {
     if ($(this).val() == "") {
-        $(this).css({ "border-color": "#F00" });
-        $(".label-nascimento-representante-legal").css("color", "red");
+        $(this).css({ "border-color": "#FF4141" });
+        $(".nascimento-representante-legal").css("color", "#FF4141");
+        $(".label-nascimento-representante-legal").css("color", "#FF4141");
     }
 });
 
@@ -1540,9 +1567,9 @@ $(".nascimento-representante-legal").blur(function () {
         return;
     }
 
-    $(".nascimento-representante-legal").css("border-color", "red" );
-    $(".nascimento-representante-legal").css("color", "red");
-    $(".label-nascimento-representante-legal").css("color", "red");
+    $(".nascimento-representante-legal").css("border-color", "#FF4141" );
+    $(".nascimento-representante-legal").css("color", "#FF4141");
+    $(".label-nascimento-representante-legal").css("color", "#FF4141");
 
 });
 
@@ -1558,8 +1585,9 @@ $(".sexo").focus(function () {
 
 $(".sexo").blur(function () {
     if ($(this).val() == "") {
-        $(this).css({ "border-color": "#F00" });
-        $(".label-sexo").css("color", "red");
+        $(this).css({ "border-color": "#FF4141" });
+        $(".sexo").css("color", "#FF4141");
+        $(".label-sexo").css("color", "#FF4141");
     }
 });
 
@@ -1584,8 +1612,9 @@ $(".checkbox").focus(function () {
 
 $(".checkbox").blur(function () {
     if ($(this).val() == "") {
-        $(this).css({ "border-color": "#F00" });
-        $(".label-checkbox").css("color", "red");
+        $(this).css({ "border-color": "#FF4141" });
+        $(".checkbox").css("color", "#FF4141");
+        $(".label-checkbox").css("color", "#FF4141");
     }
 });
 

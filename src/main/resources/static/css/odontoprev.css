@@ -1358,7 +1358,7 @@ h5, .subListBox {
 }
 
 .btnOdont {
-    font-family: Roboto-Bold;
+    font-family: Roboto-Medium;
     font-size: 12pt;
     background-color: #1974CE;
     color: #FFFFFF !important;
@@ -1369,7 +1369,7 @@ h5, .subListBox {
 }
 
 .btnOdontCinza {
-   font-family: Roboto-Bold;
+   font-family: Roboto-Medium;
     font-size: 12pt;
     background-color: #6A6A6A;
     color: #FFFFFF !important;

@@ -50,9 +50,9 @@ function carregarForm() {
             console.log(stringteste);
 
             if ($(this).val() == "" || TestaCPF(stringteste) == false) {
-                $(this).css({ "border-color": "#F00" });
-                $(".label-cpf").css("color", "red");
-                $(".cpf").css("color", "red");
+                $(this).css({ "border-color": "#FF4141" });
+                $(".label-cpf").css("color", "#FF4141");
+                $(".cpf").css("color", "#FF4141");
             }
         }
     });

@@ -204,15 +204,15 @@ $(".data").blur(function () {
 
     if (validarData($(".data").val())) {
 
-        $(this).css({"border-color": "#3A94FB"});
-        $(".nascimento").css("color", "#3A94FB");
-        $(".label-nascimento").css("color", "#3A94FB");
+        $(this).css({"border-color": "#1974CE"});
+        $(".nascimento").css("color", "#1974CE");
+        $(".label-nascimento").css("color", "#1974CE");
         return;
     }
 
-    $(".data").css("border-color", "red");
-    $(".nascimento").css("color", "red");
-    $(".label-nascimento").css("color", "red");
+    $(".data").css("border-color", "#FF4141");
+    $(".nascimento").css("color", "#FF4141");
+    $(".label-nascimento").css("color", "#FF4141");
 
 });
 
@@ -330,7 +330,7 @@ function setPlanosProd() {
     plano.valorFloat = 547.20;
     plano.desc = "Anual";
     plano.css = "colorSlick3";
-    
+
     planos.push(plano);
 
     //plano = getRepository("plano");

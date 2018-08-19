@@ -1,124 +1,129 @@
 ﻿<!DOCTYPE html>
-<html lang="pt-br">
-	<head><title>OdontoPrev</title>
-		<meta charset="utf-8">
-		<meta http-equiv="Content-Language" content="pt-br">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br"
+      xmlns="http://www.w3.org/1999/xhtml">
 
+<head><title>OdontoPrev</title>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" th:href="@{/img/odpv.PNG}" type="image/png"/>
+    <meta http-equiv="Content-Language" content="pt-br">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{css/style.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{css/odontoprev.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{css/sweetalert.css}"/>
+</head>
 
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-		<link href="css/style.css" rel="stylesheet">
-		<link href="css/odontoprev.css" rel="stylesheet">
-        <link href="css/sweetalert.css" rel="stylesheet" />
-	</head>
-	
-    <body>
-            <div class="col-md-12 odontBoxCenter">
-                <div class="row">
-                    <div class="text-center">
-                        <div>
-                            <h1 class="titleOdont text-center">
-                                DADOS DO DEPENDENTE
-                            </h1>
-                            <h2 class="subTitleOdont text-center">
-                                Preencha os dados do dependente
-                            </h2>
-                        </div>
-                    </div>
-                </div>
-               
-                <div class="row boxDependente">
-                    <div>
-                        <label class="labelBlue">DEPENDENTE</label>
-                    </div>
-                    <div>
-                        <label class="label-nome labelOdontBlur">Nome</label>
-                    </div>
-                    <div>
-                        <input type="text" class="nome inputLabelBlur nomeRegex" id="nomeDependente" style="text-transform: uppercase;">
-                    </div>
-                    <div>
-                        <label class="label-email labelOdontBlur">E-mail</label>
-                    </div>
-                    <div>
-                        <input type="email" class="email inputLabelBlur">
-                    </div>
-                    <div>
-                        <label class="label-celular labelOdontBlur">Celular</label>
-                    </div>
-                    <div>
-                        <input type="tel" id="celularDependente" class="celular inputLabelBlur">
-                    </div>
-                    <div>
-                        <label class="label-nascimento labelOdontBlur">Data de nascimento</label>
-                    </div>
-                    <div>
-                        <input type="tel" class="nascimento data inputLabelBlur">
-                    </div>
-                    <div>
-                        <label class="label-cpf labelOdontBlur">CPF</label>
-                    </div>
-                    <div>
-                        <input type="tel" class="cpf inputLabelBlur" id="cpf">
-                    </div>
-              
-                    <div>
-                        <label class="label-sexo labelOdontBlur">Sexo</label>
-                    </div>
-                    <div>
-                        <div class="radio">
-                            <input id="radio-1" name="radio" type="radio" class="sexo" value="f">
-                            <label for="radio-1" class=" radio-inline radio-label label-sexo labelOdontBlur">Feminino</label>
-                        </div>
-                        <div class="radio">
-                            <input id="radio-2" name="radio" type="radio" class="sexo" value="m">
-                            <label for="radio-2" class="radio-inline radio-label label-sexo labelOdontBlur">Masculino</label>
-                        </div>
-                    </div>
-                    <div>
-                        <label class="label-nome-mae labelOdontBlur">Nome da mãe</label>
-                    </div>
-                    <div>
-                        <input type="text" class="nome-mae inputLabelBlur nomeRegex" id="nomeMae" style="text-transform: uppercase;">
-                    </div>
-
-                    <div class="squaredOne" style="display:none">
-                        <input type="checkbox" value="None" id="squaredOne" name="check" class="checkbox inputLabelCheckFocus" />
-                        <label for="squaredOne" class="Label-checkbox labelCheckOdontFocus checkbox-inline">
-                            <span class="spanCheckbox">
-                                O endereço é o mesmo do titular
-                            </span>
-                        </label>
-                    </div>
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 btnPadBtm">
-                    <div class="btn btn-lg btn-block btnOdont" id="" onclick="salvarEContinuar()" role="button">ADICIONAR OUTRO DEPENDENTE</div>
-                </div>
-                <div class="col-md-12 btnPadBtm">
-                    <div class="btn btn-lg btn-block btnOdont" id="" role="button" onclick="salvarEVoltar()">SALVAR</div>
-
-                    <a href="venda_pf_dados_proposta.html" class="btn btn-lg btn-block btnOdont" style="background:#a0a0a0" id="" role="button">CANCELAR</a>
+<body>
+<div class="container-fluid">
+    <div class="col-sm-12 odontBoxCenter">
+        <div class="row">
+            <div class="text-center">
+                <div>
+                    <h1 class="titleOdont text-center">
+                        DADOS DO DEPENDENTE
+                    </h1>
+                    <h2 class="subTitleOdont text-center">
+                        Preencha os dados do dependente
+                    </h2>
                 </div>
             </div>
         </div>
-        <!-- End Bloco 1 -->
+    </div>
 
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/scripts.js"></script>
-        <script src="js/odontoprev.js"></script>
-        <script src="js/jquery.3.2.1.js"></script>
-        <script src="js/jquery.mask.min.js"></script>
-        <script src="js/odonto-Valida.js"></script>
-        <script src="js/sweetalert.min.js"></script>
-        <script src="app/coordenador.js"></script>
-        <script src="app/pfDependenteController.js"></script>
-        <script src="js/moment.js"></script>
-        <script> resizeIframe('frame_pf');</script>
-    </body>
+    <div class="row boxLabInput">
+        <div>
+            <label class="labelBlue">DEPENDENTE</label>
+        </div>
+        <div>
+            <label class="label-nome labelOdontBlur">Nome</label>
+        </div>
+        <div>
+            <input type="text" class="nome inputLabelBlur nomeRegex" id="nome">
+        </div>
+        <div>
+            <label class="label-email labelOdontBlur">E-mail</label>
+        </div>
+        <div>
+            <input type="email" class="email inputLabelBlur" id="email">
+        </div>
+        <div>
+            <label class="label-celular labelOdontBlur">Celular</label>
+        </div>
+        <div>
+            <input type="tel" class="celular inputLabelBlur" id="celular">
+        </div>
+        <div>
+            <label class="label-nascimento labelOdontBlur">Data de nascimento</label>
+        </div>
+        <div>
+            <input type="tel" class="nascimento data inputLabelBlur" id="nascimento">
+        </div>
+        <div>
+            <label class="label-cpf labelOdontBlur">CPF</label>
+        </div>
+        <div>
+            <input type="tel" class="cpf inputLabelBlur" id="cpf">
+        </div>
+
+        <div>
+            <label class="label-sexo labelOdontBlur">Sexo</label>
+        </div>
+        <div>
+            <div class="radio">
+                <input id="radio-1" name="radio" type="radio" class="sexo" value="f">
+                <label for="radio-1" class=" radio-inline radio-label label-sexo labelOdontBlur">Feminino</label>
+            </div>
+            <div class="radio">
+                <input id="radio-2" name="radio" type="radio" class="sexo" value="m">
+                <label for="radio-2" class="radio-inline radio-label label-sexo labelOdontBlur">Masculino</label>
+            </div>
+        </div>
+        <div>
+            <label class="label-nome-mae labelOdontBlur">Nome da mãe</label>
+        </div>
+        <div>
+            <input type="text" class="nome-mae inputLabelBlur nomeRegex" id="nomeMae">
+        </div>
+
+        <div class="squaredOne" style="display:none">
+            <input type="checkbox" value="None" id="squaredOne" name="check" class="checkbox inputLabelCheckFocus"/>
+            <label for="squaredOne" class="Label-checkbox labelCheckOdontFocus checkbox-inline">
+                        <span class="spanCheckbox">
+                            O endereço é o mesmo do titular
+                        </span>
+            </label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 btnPadBtm">
+            <div class="btn btn-lg btn-block btnOdont" id="" onclick="salvarEContinuar()" role="button">ADICIONAR OUTRO
+                DEPENDENTE
+            </div>
+        </div>
+        <div class="col-sm-12 btnPadBtm">
+            <div class="btn btn-lg btn-block btnOdont" id="" role="button" onclick="salvarEVoltar()">SALVAR</div>
+
+            <a href="venda_pf_dados_proposta.html" class="btn btn-lg btn-block btnOdont" style="background:#6A6A6A"
+               id=""
+               role="button">CANCELAR</a>
+        </div>
+    </div>
+</div>
+<!-- End Bloco 1 -->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/scripts.js"></script>
+<script src="js/odontoprev.js"></script>
+<script src="js/jquery.3.2.1.js"></script>
+<script src="js/jquery.mask.min.js"></script>
+<script src="js/odonto-Valida.js"></script>
+<script src="js/sweetalert.min.js"></script>
+<script src="app/coordenador.js"></script>
+<script src="app/pfDependenteController.js"></script>
+<script src="js/moment.js"></script>
+<script> resizeIframe('frame_pf');</script>
+</body>
 </html>

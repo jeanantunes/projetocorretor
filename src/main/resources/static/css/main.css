@@ -322,7 +322,7 @@ label {
 
 .logRadiusCadastroDonoDeCorretora {
     padding-left: 4%;
-    color: #3A94FB;
+    color: #1974CE;
     padding-top: 0%;
 }
 
@@ -658,7 +658,7 @@ nav.sidebar, .main {
 
     /*adiciona borda para caixas de navegaÃ§Ã£o inferiores*/
     nav.sidebar .navbar-nav > li {
-        border-bottom: 1px #3A94FB solid;
+        border-bottom: 1px #1974CE solid;
     }
 
     /* Caixa suspensa de cores / estilo*/
@@ -693,14 +693,14 @@ nav.sidebar, .main {
         float: left;
         z-index: 8000;
         margin-bottom: 0px;
-        background: #3A94FB;
+        background: #1974CE;
 
     }
 
     /*give sidebar 100% width;*/
     nav.sidebar li {
         width: 100%;
-        background: #3A94FB;
+        background: #1974CE;
 
     }
 
@@ -813,7 +813,7 @@ nav:hover .forAnimate {
 
 /*=================================================VENDER PME================================================================*/
 .h4VenderPME {
-    color: #3A94FB;
+    color: #1974CE;
     margin-top: 100px;
     margin-left: 4%;
     font-weight: bold;
@@ -1253,7 +1253,28 @@ nav:hover .forAnimate {
 
 }*/
 
+@media screen and (max-width: 1024px) {
+
+    .padding-logado {
+        padding-left: 0px !important;
+        padding-top: 40px;
+        min-height: 600px;
+        position: relative !important;
+        margin-bottom: 150px;
+        padding-bottom: 100px;
+    }
+}
+
 @media screen and (max-width: 1024px) and (min-width: 1024px) {
+
+    .padding-logado {
+        padding-left: 220px !important;
+        padding-top: 40px;
+        min-height: 600px;
+        position: relative !important;
+        margin-bottom: 150px;
+        padding-bottom: 100px;
+    }
 
     .container-imagem {
         display: none;
@@ -1350,7 +1371,28 @@ nav:hover .forAnimate {
     }
 }
 
+@media screen and (max-width: 568px) and (min-width: 568px) {
+
+    .padding-logado {
+        padding-left: 0px !important;
+        padding-top: 40px;
+        min-height: 600px;
+        position: relative !important;
+        margin-bottom: 150px;
+        padding-bottom: 100px;
+    }
+}
+
 @media screen and (max-width: 568px) {
+
+    .padding-logado {
+        padding-left: 122px !important;
+        padding-top: 40px;
+        min-height: 600px;
+        position: relative !important;
+        margin-bottom: 150px;
+        padding-bottom: 100px;
+    }
 
     /*** LOGIN ***/
     .ajuste-forme {
@@ -1437,8 +1479,8 @@ nav:hover .forAnimate {
         outline: none !important;
         float: right;
     }
-    /*** LOGIN ***/
 
+    /*** LOGIN ***/
     /*** RECUPERAR SENHA ***/
     .boxHeaderRecuperaSenha {
         border: 1px solid #fff;
@@ -1469,10 +1511,24 @@ nav:hover .forAnimate {
         margin-top: -3% !important;
         color: #3197EE;
     }
+
     /*** RECUPERAR SENHA ***/
 }
 
 @media screen and (max-width: 480px) and (min-width: 320px) {
+
+    /*** VENDA INDEX PF ***/
+    .pVPlanoVenda {
+        font-family: Roboto-Light;
+        font-size: 100%;
+        color: #656565;
+        text-align: center;
+        margin-bottom: 22% !important;
+        padding: 5px;
+        height: 22%;
+    }
+
+    /*** VENDA INDEX PF ***/
     /*** RECUPERAR SENHA ***/
     .boxHeaderRecuperaSenha {
         border: 1px solid #fff;
@@ -1510,10 +1566,20 @@ nav:hover .forAnimate {
         font-size: 12pt;
         padding-top: 6% !important;
     }
+
     /*** RECUPERAR SENHA ***/
 }
 
 @media screen and (max-width: 480px) and (min-width: 480px) {
+
+    .padding-logado {
+        padding-left: 77px !important;
+        padding-top: 40px;
+        min-height: 600px;
+        position: relative !important;
+        margin-bottom: 150px;
+        padding-bottom: 100px;
+    }
 
     /*** LOGIN ***/
     .btn-cadastro-login {
@@ -1529,8 +1595,8 @@ nav:hover .forAnimate {
         float: right;
         margin-top: -8.5% !important;
     }
-    /*** LOGIN ***/
 
+    /*** LOGIN ***/
     /*** RECUPERAR SENHA ***/
     .boxHeaderRecuperaSenha {
         border: 1px solid #fff;
@@ -1555,6 +1621,7 @@ nav:hover .forAnimate {
         color: #6A6A6A;
         margin-top: 2%;
     }
+
     /*** RECUPERAR SENHA ***/
 }
 
@@ -1564,6 +1631,18 @@ nav:hover .forAnimate {
         margin-left: 90% !important;
         max-width: 100%;
         display: none;
+    }
+}
+
+@media screen and (max-width: 640px) and (min-width: 640px) {
+
+    .padding-logado {
+        padding-left: 156px !important;
+        padding-top: 40px;
+        min-height: 600px;
+        position: relative !important;
+        margin-bottom: 150px;
+        padding-bottom: 100px;
     }
 }
 
@@ -1685,8 +1764,8 @@ nav:hover .forAnimate {
 
         margin: 20px 0 0 20px !important;
     }
-    /*** LOGIN ***/
 
+    /*** LOGIN ***/
     /*** RECUPERAR SENHA ***/
     .boxHeaderRecuperaSenha {
         border: 1px solid #fff;
@@ -1711,20 +1790,29 @@ nav:hover .forAnimate {
         color: #6A6A6A;
         margin-top: 2%;
     }
-    /*** RECUPERAR SENHA ***/
 
+    /*** RECUPERAR SENHA ***/
     /*** COMPARTILHADO ***/
     .titleOdont {
         font-family: Roboto-Regular;
         color: #1974CE;
         font-size: 14pt;
     }
-    /*** COMPARTILHADO ***/
 
+    /*** COMPARTILHADO ***/
 
 }
 
 @media screen and (max-width: 667px) and (min-width: 667px) {
+
+    .padding-logado {
+        padding-left: 156px !important;
+        padding-top: 40px;
+        min-height: 600px;
+        position: relative !important;
+        margin-bottom: 150px;
+        padding-bottom: 100px;
+    }
 
     /*** LOGIN ***/
     .font-sucesso {
@@ -1825,8 +1913,8 @@ nav:hover .forAnimate {
         outline: none !important;
         margin-top: 2% !important;
     }
-    /*** LOGIN ***/
 
+    /*** LOGIN ***/
     /*** RECUPERAR SENHA ***/
     .boxHeaderRecuperaSenha {
         border: 1px solid #fff;
@@ -1864,6 +1952,7 @@ nav:hover .forAnimate {
         font-size: 15pt;
         padding-top: 6% !important;
     }
+
     /*** RECUPERAR SENHA ***/
 }
 
@@ -1881,6 +1970,15 @@ nav:hover .forAnimate {
 }
 
 @media screen and (max-width: 812px) and (min-width: 812px) {
+
+    .padding-logado {
+        padding-left: 0px !important;
+        padding-top: 40px;
+        min-height: 600px;
+        position: relative !important;
+        margin-bottom: 150px;
+        padding-bottom: 100px;
+    }
 
     /*** LOGIN ***/
     .font-sucesso {
@@ -2004,8 +2102,8 @@ nav:hover .forAnimate {
         outline: none !important;
         margin-top: 2% !important;
     }
-    /*** LOGIN ***/
 
+    /*** LOGIN ***/
     /*** RECUPERAR SENHA ***/
     .boxHeaderRecuperaSenha {
         border: 1px solid #fff;
@@ -2043,10 +2141,32 @@ nav:hover .forAnimate {
         font-size: 15pt;
         padding-top: 10% !important;
     }
+
     /*** RECUPERAR SENHA ***/
 }
 
+@media screen and (max-width: 411px) {
+
+    .padding-logado {
+        padding-left: 35px !important;
+        padding-top: 40px;
+        min-height: 600px;
+        position: relative !important;
+        margin-bottom: 150px;
+        padding-bottom: 100px;
+    }
+}
+
 @media screen and (max-width: 731px) and (min-width: 731px) {
+
+    .padding-logado {
+        padding-left: 180px !important;
+        padding-top: 40px;
+        min-height: 600px;
+        position: relative !important;
+        margin-bottom: 150px;
+        padding-bottom: 100px;
+    }
 
     /*** LOGIN ***/
     .ajuste-forme {
@@ -2164,8 +2284,8 @@ nav:hover .forAnimate {
 
         margin: 20px 0 0 20px !important;
     }
-    /*** LOGIN ***/
 
+    /*** LOGIN ***/
     /*** RECUPERAR SENHA ***/
     .boxHeaderRecuperaSenha {
         border: 1px solid #fff;
@@ -2190,12 +2310,21 @@ nav:hover .forAnimate {
         color: #6A6A6A;
         margin-top: 2%;
     }
+
     /*** RECUPERAR SENHA ***/
 
 }
 
-
 @media screen and (max-width: 823px) and (min-width: 823px) {
+
+    .padding-logado {
+        padding-left: 0px !important;
+        padding-top: 40px;
+        min-height: 600px;
+        position: relative !important;
+        margin-bottom: 150px;
+        padding-bottom: 100px;
+    }
 
     /*** LOGIN ***/
     .ajuste-forme {
@@ -2313,8 +2442,8 @@ nav:hover .forAnimate {
 
         margin: 20px 0 0 20px !important;
     }
-    /*** LOGIN ***/
 
+    /*** LOGIN ***/
     /*** RECUPERAR SENHA ***/
     .boxHeaderRecuperaSenha {
         border: 1px solid #fff;
@@ -2339,13 +2468,21 @@ nav:hover .forAnimate {
         color: #6A6A6A;
         margin-top: 2%;
     }
+
     /*** RECUPERAR SENHA ***/
 
 }
 
-
-
 @media screen and (max-width: 736px) and (min-width: 736px) {
+
+    .padding-logado {
+        padding-left: 180px !important;
+        padding-top: 40px;
+        min-height: 600px;
+        position: relative !important;
+        margin-bottom: 150px;
+        padding-bottom: 100px;
+    }
 
     /*** LOGIN ***/
     .width-form1 {
@@ -2474,7 +2611,6 @@ nav:hover .forAnimate {
     }
 
     /*** LOGIN ***/
-
     /*** RECUPERAR SENHA ***/
     .boxHeaderRecuperaSenha {
         border: 1px solid #fff;
@@ -2512,6 +2648,7 @@ nav:hover .forAnimate {
         font-size: 15pt;
         padding-top: 6% !important;
     }
+
     /*** RECUPERAR SENHA ***/
 }
 
@@ -2567,6 +2704,15 @@ nav:hover .forAnimate {
 }
 
 @media screen and (max-width: 414px) and (max-width: 414px) {
+
+    .padding-logado {
+        padding-left: 0px !important;
+        padding-top: 40px;
+        min-height: 600px;
+        position: relative !important;
+        margin-bottom: 150px;
+        padding-bottom: 100px;
+    }
 
     .form-group-login {
         font-family: Roboto-Medium !important;
@@ -2811,6 +2957,15 @@ nav:hover .forAnimate {
 }
 
 @media screen and (max-width: 375px) and (min-width: 375px) {
+
+    .padding-logado {
+        padding-left: 0px !important;
+        padding-top: 40px;
+        min-height: 600px;
+        position: relative !important;
+        margin-bottom: 150px;
+        padding-bottom: 100px;
+    }
 
     .ajuste-forme {
         position: absolute;
@@ -3221,6 +3376,7 @@ img.img-senha {
     color: #1974CE;
     font-size: 19pt;
 }
+
 /*** COMPARTILHADO ***/
 
 /********************** DEFAULT **********************/
@@ -3584,6 +3740,18 @@ nav .brand-logo.center {
         width: 100% !important;
     }
 
+    /*** venda_index_pf ***/
+    .pVPlanoVenda {
+        font-family: Roboto-Light;
+        font-size: 100%;
+        color: #656565;
+        text-align: center;
+        margin-bottom: 32%;
+        padding: 5px;
+        height: 22%;
+    }
+
+    /*** venda_index_pf ***/
     nav .brand-logo {
         left: 50%;
         -webkit-transform: translateX(-50%);
@@ -4376,7 +4544,7 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
     }
 
     .padding-logado {
-        padding-left: 35px !important;
+        padding-left: 35px;
     }
 
     .perfil-mobile .circle-perfil {

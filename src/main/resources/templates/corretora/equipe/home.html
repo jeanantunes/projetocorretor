@@ -39,7 +39,7 @@
                 $(this).css("width", dataWidth + "%");
                 $(this).css("max-width", "100%");
                 if (dataWidth <= 25) {
-                    $(this).css("background-color", "red");
+                    $(this).css("background-color", "#FF4141");
                 }
                 else if (dataWidth > 25 && dataWidth <= 50) {
                     $(this).css("background-color", "orange");
@@ -206,7 +206,7 @@
             <div class="row" style="display:none;"
                  th:style="${mensagemError} != null  ? 'display:block' : 'display:none'">
                 <div class="col-xs-12">
-                    <h2><span class="label bg-red col-md-12">
+                    <h2><span class="label bg-red col-sm-12">
                     <strong th:text="${mensagemError}">Necessário selecionar arquivo para upload</strong>&nbsp;</span>
                     </h2>
                 </div>
@@ -214,7 +214,7 @@
             <div class="row" style="display:none;"
                  th:style="${mensagemSucesso} != null  ? 'display:block' : 'display:none'">
                 <div class="col-xs-12">
-                    <h2><span class="label bg-green col-md-12">
+                    <h2><span class="label bg-green col-sm-12">
                     <strong th:text="${mensagemSucesso}">Upload realizado com sucesso</strong>&nbsp;</span></h2>
                 </div>
             </div>
@@ -304,7 +304,7 @@
 
             <div class="row">
                 <div class="col-xs-12">
-                    <h2><span class="label bg-gold col-md-12">
+                    <h2><span class="label bg-gold col-sm-12">
                     <i style="font-size:18px" class="fa">&#xf0a2;</i>&nbsp;
                     <strong th:text="${listaForca.totalForca}">2</strong>&nbsp;
                     Corretores aguardando sua aprovação</span></h2>

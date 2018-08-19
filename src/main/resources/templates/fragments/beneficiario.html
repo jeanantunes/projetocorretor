@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
 </head>
 <body>
-<div class="row col-md-12" th:fragment="beneficiario">
+<div class="row col-sm-12" th:fragment="beneficiario">
 
     <!-- TODO: Fragment Beneficiarios - INICIO -->
     <div class="col-xs-12 row">
@@ -162,14 +162,14 @@
             </div>
         </div>
 
-        <div class="row col-md-12">
+        <div class="row col-sm-12">
             <!-- div class="form-group col-md-1">
                 <select class="form-control pagination" id="pageSizeSelect">
                     <option th:each="tampag : ${tampags}" th:text="${tampag}" th:value="${tampag}"
                             th:selected="${tampag} == ${selectedPageSize}"></option>
                 </select>
             </div -->
-            <div th:if="${totalPages != 1}" class="form-group col-md-12 text-center">
+            <div th:if="${totalPages != 1}" class="form-group col-sm-12 text-center">
                 <ul class="pagination">
                     <li th:class="${numpag == 1} ? disabled">
                         <a class="pageLink"
@@ -197,7 +197,7 @@
             </div>
         </div>
         <!--
-        <div class="row col-md-12">
+        <div class="row col-sm-12">
             <table border="1">
                 <thead>
                 <div th:each="beneficiario: ${beneficiarios}">

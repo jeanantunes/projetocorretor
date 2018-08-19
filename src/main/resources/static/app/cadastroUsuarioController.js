@@ -432,7 +432,7 @@ $(document).ready(function () {
 
     $(".password-confirm").focus(function () {
         if ($(this).val() == "") {
-            $(this).css({ "border-color": "3A94FB" });
+            $(this).css({ "border-color": "1974CE" });
             $(".password").css("color", "#1974CE"); // se clicar dentro fica azul
             $(".label-password-confirm").css("color", "#1974CE");
         }
@@ -461,10 +461,10 @@ $(document).ready(function () {
 
         if (senha.length < 8) {
 
-            $(this).css({ "border-color": "red" });
-            $(this).css("color", "red");
-            $(".label-password").css("color", "red");
-            $(".label-password-confirm-8").css("color", "red");
+            $(this).css({ "border-color": "#FF4141" });
+            $(this).css("color", "#FF4141");
+            $(".label-password").css("color", "#FF4141");
+            $(".label-password-confirm-8").css("color", "#FF4141");
             $(".img-erro-senha-cpf-true").hide(250);
             $("#btnkeyOdont").removeClass("background-color-azul");
             $("#btnkeyOdont").addClass("background-color-cinza");
@@ -481,9 +481,9 @@ $(document).ready(function () {
 
             if (confirmarSenha != "" && confirmarSenha != senha) {
 
-                $("#confirmar-senhaCpfTrue").css({ "border-color": "#F00" });
-                $(".password-confirm").css("color", "red");
-                $(".label-password-confirm").css("color", "red");
+                $("#confirmar-senhaCpfTrue").css({ "border-color": "#FF4141" });
+                $(".password-confirm").css("color", "#FF4141");
+                $(".label-password-confirm").css("color", "#FF4141");
                 $("#btnkeyOdont").removeClass("background-color-azul");
                 $("#btnkeyOdont").addClass("background-color-cinza");
                 $("#btnkeyOdont").addClass('disabled');
@@ -527,9 +527,9 @@ $(document).ready(function () {
 
         if (confirmarSenha != senha) {
 
-            $(this).css({ "border-color": "#F00" });
-            $(".password-confirm").css("color", "red");
-            $(".label-password-confirm").css("color", "red");
+            $(this).css({ "border-color": "#FF4141" });
+            $(".password-confirm").css("color", "#FF4141");
+            $(".label-password-confirm").css("color", "#FF4141");
             $("#btnkeyOdont").removeClass("background-color-azul");
             $("#btnkeyOdont").addClass("background-color-cinza");
             $(".img-erro-senha-cpf-true").show(250);
@@ -574,10 +574,10 @@ $(document).ready(function () {
 
         if (senha.length < 8) {
 
-            $(this).css({ "border-color": "red" });
-            $(this).css("color", "red");
-            $(".label-password").css("color", "red");
-            $(".label-password-confirm-8").css("color", "red");
+            $(this).css({ "border-color": "#FF4141" });
+            $(this).css("color", "#FF4141");
+            $(".label-password").css("color", "#FF4141");
+            $(".label-password-confirm-8").css("color", "#FF4141");
             $(".img-erro-senha-cpf-false").hide(250);
             $("#btnkeyOdontNCpf").removeClass("background-color-azul");
             $("#btnkeyOdontNCpf").addClass("background-color-cinza");
@@ -594,9 +594,9 @@ $(document).ready(function () {
 
             if (confirmarSenha != "" && confirmarSenha != senha) {
 
-                $("#confirmar-senhaCpfFalse").css({ "border-color": "#F00" });
-                $(".password-confirm").css("color", "red");
-                $(".label-password-confirm").css("color", "red");
+                $("#confirmar-senhaCpfFalse").css({ "border-color": "#FF4141" });
+                $(".password-confirm").css("color", "#FF4141");
+                $(".label-password-confirm").css("color", "#FF4141");
                 $("#btnkeyOdontNCpf").removeClass("background-color-azul");
                 $("#btnkeyOdontNCpf").addClass("background-color-cinza");
                 $("#btnkeyOdontNCpf").addClass('disabled');
@@ -640,9 +640,9 @@ $(document).ready(function () {
 
         if (confirmarSenha != senha) {
 
-            $(this).css({ "border-color": "#F00" });
-            $(".password-confirm").css("color", "red");
-            $(".label-password-confirm").css("color", "red");
+            $(this).css({ "border-color": "#FF4141" });
+            $(".password-confirm").css("color", "#FF4141");
+            $(".label-password-confirm").css("color", "#FF4141");
             $("#btnkeyOdontNCpf").removeClass("background-color-azul");
             $("#btnkeyOdontNCpf").addClass("background-color-cinza");
             $(".img-erro-senha-cpf-false").show(250);
