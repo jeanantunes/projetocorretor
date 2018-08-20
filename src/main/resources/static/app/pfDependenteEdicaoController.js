@@ -57,12 +57,24 @@ function SalvarDependente() {
         return;
     }
 
-    var dateNascimento = $("#nascimento").val();
+    if (isMaiorDeIdade(dateNascimento)) {
 
-    if ($("#cpf").val() == "" && isMaiorDeIdade(dateNascimento)) {
-        swal("Ops!", "CPF Obrigatório para maiores de idade", "error");
-        $("#cpf").focus();
-        return;
+        if ($("#cpf").val() == "") {
+
+            swal("Ops!", "CPF Obrigatório para maiores de idade", "error");
+            $("#cpf").focus();
+            return;
+
+        }
+
+        if (!TestaCPF($("#cpf").val())) {
+
+            swal("Ops!", "CPF inválido", "error");
+            $("#cpf").focus();
+            return;
+
+        }
+
     }
 
 
