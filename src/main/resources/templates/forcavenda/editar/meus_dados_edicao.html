@@ -17,135 +17,6 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
 </head>
 
-<script type="text/javascript">
-    $(document).ready(function () {
-
-        $("#salvarDados").click(function () {
-
-            var nomeCorretor = $("#nomeCorretorEdicao").val();
-            var emailCorretor = $("#emailCorretorEdicao").val();
-            var telefoneCorretor = $("#telefoneCorretorEdicao").val().replace(/\D/g, '');
-            var cdForcaVenda = $("#cdForcaVenda").val();
-
-            if (!ValidaNome(nomeCorretor)) {
-
-                swal("Ops!", "Por favor preencha um nome válido", "error");
-                return false;
-
-            }
-
-            if (telefoneCorretor.length < 10) {
-                swal("Ops!", "Por favor preencha um celular válido", "error");
-                return false;
-            }
-
-
-            if (!validateEmail(emailCorretor)) {
-                swal("Ops!", "Por favor preencha um email válido", "error");
-                return false;
-            }
-
-            if (!navigator.onLine) {
-                swal("Ops!", "Você precisa estar online para atualizar seus dados", "error");
-                return false;
-            }
-            return true;
-
-        });
-
-
-        function ValidaNome(fieldValue) {
-
-            var splittedName = fieldValue.trim().split(/[\ |\']+/) // Separa o nome por espaços e apóstrofos (')
-            var splittedNameSpace = fieldValue.split(/[\ ]+/)
-            var totalWords = splittedName.length
-            let firstName = splittedName[0]
-            let lastName = splittedName[totalWords - 1]
-
-            if (!fieldValue) {
-                return false
-            }
-
-            // Se o nome completo contiver um apóstrofo seguido de qualquer caractere que não seja a-z, é inválido
-            if (fieldValue.match(/'[^a-zà-ÿ ]/i)) {
-                return false
-            }
-
-            // Se o primeiro nome tiver só uma letra e ela não for D, I, O, U ou Y, é inválido
-            if (firstName.length === 1 && !firstName.match(/[D|I|O|U|Y]/i)) {
-                return false
-            }
-
-            // Se o último nome tiver só uma letra e ela não for I, O, U ou Y, é inválido
-            if (lastName.length === 1 && !lastName.match(/[I|O|U|Y]/i)) {
-                return false
-            }
-
-            // Se o nome possuir conectivos que não 'e' ou 'y', é inválido
-            for (let i in splittedName) {
-
-                // Se o nome estiver vazio, é invalido
-                if (splittedName[i] == "") {
-                    return false
-                }
-
-                // Se o nome possuir caracteres especiais, exceto apostrofo, é invalido
-                if (!splittedName[i].match(/^[a-zA-ZÁÉÍÓÚÀÈÌÒÙàèìòùáéíóúâêîôûãõçÇ']+$/g)) {
-                    return false
-                }
-
-                if (i === '0' || parseInt(i) === (totalWords - 1)) {
-                    continue // Ignora o primeiro e o último nome
-                }
-
-                var nameWithApostrophe = splittedName[i] + "'" + splittedName[parseInt(i) + 1]
-
-                if (
-                    splittedName[i].length === 1
-                    &&
-                    !splittedName[i].match(/[E|Y]/i)
-                    &&
-                    nameWithApostrophe != splittedNameSpace[i]
-                ) {
-                    return false
-                }
-            }
-
-            // Se o nome completo contiver um apóstrofo e não houver pelo menos três palavras, é inválido
-            if (fieldValue.match(/'/i) && totalWords < 3) {
-                return false
-            }
-
-            // Se o nome tiver só uma palavra, é inválido
-            if (totalWords === 1) {
-                return false
-            }
-
-            return true
-
-        } //function ValidaNome
-
-        function validateEmail(email) {
-            var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
-            if (reg.test(email)) {
-                return true;
-            }
-
-            return false;
-        }
-
-        // h t t p s : // gist .github .com /reggiegutter/5516382
-        function validateCelular(celular) {
-            var reg = /^(\(11\) (9\d{4})-\d{4})$/
-            if (reg.test(celular)) {
-                return true;
-            }
-
-            return false;
-        }
-    });
-</script>
-
 <body style="min-width: 100% !important;">
 
 <div class="container-fluid nopadding">
@@ -163,19 +34,19 @@
                      name="cdForcaVenda"/>
 
                 <div class="space-top-20">
-                    <label class="nome label-odont">Nome</label><br/>
-                    <input type="text" id="nomeCorretorEdicao" class="nome inputLabelBlur" th:field="*{nome}"
+                    <label class="label-nome">Nome</label><br/>
+                    <input type="text" id="nomeCorretorEdicao" class="nome inputLabelBlur nomeRegex" th:field="*{nome}"
                            name="nome" />
                 </div>
 
                 <div class="space-top-20">
-                    <label class="nome label-odont">E-mail</label><br/>
-                    <input type="text" id="emailCorretorEdicao" class="email inputLabelBlur" th:field="*{email}"
-                           name="nome" />
+                    <label class="label-email">E-mail</label><br/>
+                    <input type="text" id="emailCorretorEdicao" class="email inputLabelBlur text-lowercase" th:field="*{email}"
+                           name="email" />
                 </div>
 
                 <div class="space-top-20">
-                    <label class="nome label-odont">Telefone</label><br/>
+                    <label class="label-celular">Celular</label><br/>
                     <input type="text" id="telefoneCorretorEdicao" class="celular inputLabelBlur" th:field="*{celular}"
                            name="celular" />
                 </div>
@@ -201,6 +72,7 @@
 <script type="text/javascript" src="/js/jquery.mask.min.js"></script>
 <script type="text/javascript" src="/js/odonto-Valida.js"></script>
 <script type="text/javascript" src="/js/menu.js"></script>
+<script charset="ISO-8859-1" src="/app/meusDadosController.js"></script>
 <script type="text/javascript" charset="utf-8" src="/js/sweetalert.min.js"></script>
 </body>
 </html>
