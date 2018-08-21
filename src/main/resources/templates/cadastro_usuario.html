@@ -73,7 +73,7 @@
                         </p>
                     </div>
                     <label></label>
-                    <div class="margin-top-70">
+                    <div class="margin-top-70 wrapper">
                         <a class="btn btnOdont btn-lg btn-block btnOdont background-color-cinza disabled" id="btnCpfOdont" role="button">CONTINUAR</a>
                     </div>
                 </div>
@@ -121,7 +121,7 @@
                         <input type="text" class="email inputLabelFocus" id="emailPreCadastrado" maxlength="80">
                     </div>
                     <label></label>
-                    <div class="margin-top-70">
+                    <div class="margin-top-70 wrapper">
                         <a class="btn btn-lg btn-block btnOdont" id="btnCelOdont" role="button">CONTINUAR</a>
                     </div>
                 </div>
@@ -172,7 +172,7 @@
                             </div>
                             <label class="label-password-confirm-8 labelInfoOdontFocus" id="">Sua senha deve ter no mínimo 8 dígitos.</label>
                         </div>
-                        <div class="margin-top-70">
+                        <div class="margin-top-70 wrapper">
                             <a class="btn btn-lg btn-block btnOdont background-color-cinza disabled" id="btnkeyOdont" role="button">FINALIZAR</a>
                         </div>
                     </div>
@@ -215,7 +215,7 @@
         </div>
 
         <div class="row">
-            <div class="col-sm-12 btnPadBtm">
+            <div class="col-sm-12 btnPadBtm wrapper">
                 <a class="btn btn-lg btn-block btnOdont disabled" id="btnTermo" role="button">FINALIZAR</a>
             </div>
         </div>
@@ -255,7 +255,7 @@
         </div>
 
         <div class="row">
-            <div class="col-sm-12 btnPadBtm">
+            <div class="col-sm-12 btnPadBtm wrapper">
                 <a class="btn btn-lg btn-block btnOdont background-color-cinza disabled" id="btnTermoNCadastrado" role="button">FINALIZAR</a>
             </div>
         </div>
@@ -294,7 +294,7 @@
         </div>
 
         <div class="row">
-            <div class="col-sm-12 btnPadBtm">
+            <div class="col-sm-12 btnPadBtm wrapper">
                 <a class="btn btn-lg btn-block btnOdont" href="/login" role="button">COMEÇAR A USAR</a>
                 <div class="text-center">
                     <a><label for="senha" class="linkOdontSucess">NÃO TRABALHO COM ESTA CORRETORA</label></a>
@@ -345,7 +345,7 @@
                         <input type="text" class="email inputLabelFocus" id="emailInativoCadastrado" maxlength="80">
                     </div>
                     <label></label>
-                    <div class="margin-top-70">
+                    <div class="margin-top-70 wrapper">
                         <a class="btn btn-lg btn-block btnOdont" id="btnInativoCelOdont" role="button">CONTINUAR</a>
                     </div>
                 </div>
@@ -402,7 +402,7 @@
                             Formato de e-mail incorreto.
                         </p>
                     </div>
-                    <div class="margin-top-70">
+                    <div class="margin-top-70 wrapper">
                         <a class="btn btnOdont btn-lg btn-block btnOdont background-color-cinza margin-bottom-20 disabled" id="btnCelOdontNCpf" role="button">CONTINUAR</a>
                     </div>
                 </div>
@@ -457,7 +457,7 @@
                             </div>
                             <label class="label-password-confirm-8 labelInfoOdontFocus" id="">Sua senha deve ter no mínimo 8 dígitos.</label>
                         </div>
-                        <div class="margin-top-70">
+                        <div class="margin-top-70 wrapper">
                             <a class="btn btn-lg btn-block btnOdont disabled background-color-cinza" id="btnkeyOdontNCpf" role="button">FINALIZAR</a>
                         </div>
                     </div>
@@ -479,35 +479,38 @@
 
         <div class="row">
             <div class="col-sm-12">
-                <h1 class="titleOdont text-center margin-top-70">
-                    INFORME SUA CORRETORA
-                </h1>
-                <h2 class="subTitleOdont text-center padding-top-20 margin-bottom-70">
-                    Você precisa estar associado a uma corretora para ter acesso à plataforma.
-                </h2>
+                <div class="col-sm-offset-4 col-sm-4">
+                    <h1 class="titleOdont text-center margin-top-70">
+                        INFORME SUA CORRETORA
+                    </h1>
+                    <h2 class="subTitleOdont text-center padding-top-20 margin-bottom-70">
+                        Você precisa estar associado a uma corretora para ter acesso à plataforma.
+                    </h2>
 
-                <div class="boxLabInput">
-                    <div>
-                        <label class="label-cnpj labelOdontBlur">CNPJ</label>
+                    <div class="boxLabInput">
+                        <div>
+                            <label class="label-cnpj labelOdontBlur">CNPJ</label>
+                        </div>
+                        <div>
+                            <input type="tel" class="cnpj inputLabelBlur" id="cnpjNaoCadastrado">
+                        </div>
                     </div>
-                    <div>
-                        <input type="tel" class="cnpj inputLabelBlur" id="cnpjNaoCadastrado">
-                    </div>
-                </div>
 
-                <div class="margin-bottom-70">
-                    <a class="btn btn-lg btn-block btnOdont background-color-cinza disabled" id="btnInfoCorretoraNCpf" role="button">CONTINUAR</a>
-                    <div class="text-center">
+                    <div class="wrapper">
+                        <a class="btn btn-lg btn-block btnOdont background-color-cinza disabled" id="btnInfoCorretoraNCpf" role="button">CONTINUAR</a>
+                    </div>
+
+                    <div class="text-center margin-bottom-70 padding-top-40">
                         <a href="" id="linkBuscarCorretora" data-toggle="modal" data-target="#myModal">
                             <label for="senha" class="linkOdont padding-top-0 padding-top-40">
                                 NÃO TENHO UMA CORRETORA
                             </label>
                         </a>
                     </div>
-                </div>
 
+                </div>
+                </div>
             </div>
-        </div>
 
         <div class="row">
 
@@ -538,7 +541,7 @@
                 </h3>
                 <div class="boxLabInput">
                     <div class="row">
-                        <div class="col-sm-12 btnPadBtmTop">
+                        <div class="col-sm-12 btnPadBtmTop wrapper">
                             <a href="/login" class="btn btn-lg btn-block btnOdont" role="button">VOLTAR</a>
                         </div>
                     </div>
@@ -547,30 +550,6 @@
         </div>
     </div>
     <!-- End Bloco 4 -->
-    <!-- Modal -->
-    <!--<div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog modalConteiner">
-            <div class="modal-content">
-                <div class="modal-body modalBoxCenter">
-                    <img th:src="@{/img/btn-excluir.png}" class="closeModal" data-dismiss="modal" class="btnExcluir" alt="">
-                    <div class="row">
-                        <h1 class="titleOdont text-center">
-                            ATENÇÃO
-                        </h1>
-                        <h2 class="subTitleOdont text-center">
-                            <p>
-                                Você precisa estar associado a uma corretora para ter acesso à platoforma.
-                            </p>
-                            <p>
-                                Preencha o CNPJ para finalizar o seu cadastro.
-                            </p>
-                        </h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>-->
-    <!-- End Modal -->
 
     <!-- Modal -->
     <div class="modal " id="modalErroCadastro" role="dialog">
