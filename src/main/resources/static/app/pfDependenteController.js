@@ -60,7 +60,6 @@ function SalvarDependente() {
 
     }
 
-
     var benef = get("propostaPf");
     if (benef.cpf == $("#cpf").val() && $("#cpf").val() != "") {
         swal("Conflito!", "Você informou o mesmo CPF do titular para este dependente, por favor verifique.", "error");

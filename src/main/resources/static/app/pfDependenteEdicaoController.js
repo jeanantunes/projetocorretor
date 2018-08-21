@@ -57,6 +57,8 @@ function SalvarDependente() {
         return;
     }
 
+    var dateNascimento = toDate(("#nascimento").val());
+
     if (isMaiorDeIdade(dateNascimento)) {
 
         if ($("#cpf").val() == "") {
@@ -76,7 +78,6 @@ function SalvarDependente() {
         }
 
     }
-
 
     var benef = get("propostaPf");
     if (benef.cpf == $("#cpf").val() && $("#cpf").val() != "") {
