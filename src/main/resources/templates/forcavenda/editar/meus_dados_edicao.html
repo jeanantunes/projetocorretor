@@ -36,13 +36,13 @@
                 <div class="space-top-20">
                     <label class="label-nome">Nome</label><br/>
                     <input type="text" id="nomeCorretorEdicao" class="nome inputLabelBlur nomeRegex" th:field="*{nome}"
-                           name="nome" />
+                           name="nome" maxlength="255" />
                 </div>
 
                 <div class="space-top-20">
                     <label class="label-email">E-mail</label><br/>
                     <input type="text" id="emailCorretorEdicao" class="email inputLabelBlur text-lowercase" th:field="*{email}"
-                           name="email" maxlength="50"/>
+                           name="email" maxlength="80"/>
                 </div>
 
                 <div class="space-top-20">
