@@ -38,23 +38,6 @@ function carregarForm() {
             return;
         }
 
-        var currentYear = (new Date).getFullYear();
-        var idade = $(".nascimento").val().split("/");
-        var menor = currentYear - idade[2];
-
-        if (menor >= 18) {
-            var stringteste = $(this).val().replace(".", "");
-            stringteste = stringteste.replace("-", "");
-            stringteste = stringteste.replace(".", "");
-
-            console.log(stringteste);
-
-            if ($(this).val() == "" || TestaCPF(stringteste) == false) {
-                $(this).css({ "border-color": "#FF4141" });
-                $(".label-cpf").css("color", "#FF4141");
-                $(".cpf").css("color", "#FF4141");
-            }
-        }
     });
 
     resizeIframe('frame_pf');
@@ -106,13 +89,16 @@ function SalvarDependentes() {
         var idade = $(this).find(".nascimento").val().split("/");
         var menor = currentYear - idade[2];
 
-        if (menor >= 18) {
+        var dateNascimento = toDate($(this).find(".nascimento").val());
+
+        if (isMaiorDeIdade(dateNascimento)) {
+
             if ($(this).find(".cpf").val() == "") {
-                console.log("Validando cpf");
-                swal("Ops!", "CPF está inválido", "error");
+                swal("Ops!", "O CPF do " + $(this).find(".depends").html() + " é inválido.", "error");
                 stop = true;
                 return;
             }
+
         }
 
         if ($(this).find(".cpf").val() != "" && !TestaCPF($(this).find(".cpf").val().replace(/\D/g, ''))) {
