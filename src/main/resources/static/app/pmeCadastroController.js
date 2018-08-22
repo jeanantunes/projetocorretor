@@ -278,6 +278,12 @@ function verificarSePropostaExiste() {
         return;
     }
 
+    var propostaPme = get('proposta');
+
+    if ($('#cnpjEmpresa').val() == propostaPme.cnpj) {
+        return;
+    }
+
     if (editado.length == 1 && editado[0].status != "ENVIADA") {
 
         swal({
