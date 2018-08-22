@@ -1869,6 +1869,13 @@ function consultarSerasa(callback, propostaPme) {
 
         postSerasa(function (dataConsultaSerasa) {
 
+            if (dataConsultaSerasa.status != undefined) {
+
+                callback("error");
+                return;
+
+            }
+
             try {
                 try {
                     var situacaoEmpresa = dataConsultaSerasa.getElementsByTagName("situacao")[0].textContent;

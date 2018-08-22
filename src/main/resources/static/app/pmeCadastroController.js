@@ -364,11 +364,11 @@ function buscarEmpresa() {
         
         callSerasaPme(function (dataConsulta) {
 
-                if(dataConsulta.status != undefined){
-                    desbloqCampos();
-                    swal.close();
-                    return;
-                }
+            if (dataConsulta.status != undefined) {
+                desbloqCampos();
+                swal("Ops!", "Não conseguimos trazer os dados desta empresa, mas você pode continuar preenchendo manualmente", "error");
+                return;
+            }
 
                 try {
                     try {

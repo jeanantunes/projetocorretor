@@ -350,8 +350,9 @@ function enviarPropostaPme() {
 
         if (dataProposta == "error") {
 
-            proposta.status = "DIGITANDO";
+            proposta.status = "PRONTA";
             atualizarEmpresas(proposta);
+            swal("Ops!", "Erro na consulta do CNPJ, mas sua proposta está salva.\n\nTente envia-la mais tarde.", "error");
             put("proposta", JSON.stringify(proposta));
 
             return;
