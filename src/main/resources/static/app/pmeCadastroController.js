@@ -639,6 +639,9 @@ function carregarProposta() {
     if (proposta.cnae == "" && $("#cnpjEmpresa").val() != "") $("#cnae").prop('disabled', false);
     $("#cnae").val(proposta.cnae.trim());
 
+    if (proposta.cpfRepresentante == "" && $("#cnpjEmpresa").val() != "") $("#cpfRepresentantecpfRepresentante").prop('disabled', false);
+    $("#cpfRepresentante").val(proposta.cpfRepresentante.trim());
+
     if (proposta.contatoEmpresa || proposta.contatoEmpresa == "") {
         $("#squaredOne").attr("checked", true);
         $("#divSegundoContato").addClass('hide');
@@ -701,6 +704,11 @@ function validarProposta() {
     if ($("#razao-social").val() == "") {
         swal("Ops!", "Preencha a razäo social", "error");
         $("#cnpjEmpresa").focus();
+        return;
+    }
+
+    if ($("#cnae").val().length < 7) {
+        swal("Ops!", "O CNAE deve conter 7 dígitos", "error");
         return;
     }
 
