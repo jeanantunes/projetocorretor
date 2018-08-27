@@ -3377,6 +3377,26 @@ img.img-senha {
     font-size: 19pt;
 }
 
+.btnListaProposta {
+    color: #D9487F !important;
+    font-family: Roboto, auto;
+    font-size: 14pt;
+    color: #D9487F !important;
+    margin-top: 20px !important;
+    outline: none !important;
+    display: contents;
+}
+
+.btnListaProposta:hover {
+    color: #D9487F !important;
+    font-family: Roboto, auto;
+    color: #D9487F !important;
+    font-size: 14pt;
+    margin-top: 20px !important;
+    outline: none !important;
+    display: contents;
+}
+
 /*** COMPARTILHADO ***/
 
 /********************** DEFAULT **********************/

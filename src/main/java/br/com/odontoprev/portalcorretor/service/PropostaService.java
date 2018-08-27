@@ -1,10 +1,7 @@
 package br.com.odontoprev.portalcorretor.service;
 
 import br.com.odontoprev.api.manager.client.token.util.ConfigurationUtils;
-import br.com.odontoprev.portalcorretor.model.DetalhesBoletoResponse;
-import br.com.odontoprev.portalcorretor.model.PropostaCritica;
-import br.com.odontoprev.portalcorretor.model.FichaFinanceiraResponse;
-import br.com.odontoprev.portalcorretor.model.FichaFinancieraBoleto;
+import br.com.odontoprev.portalcorretor.model.*;
 import br.com.odontoprev.portalcorretor.service.dto.BeneficiariosPropostaResponsePagination;
 import br.com.odontoprev.portalcorretor.service.dto.EmpresaPropostaResponse;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -180,6 +177,37 @@ public class PropostaService {
 
             HttpEntity<FichaFinancieraBoleto> entity = new HttpEntity<>(financieraBoleto, headers);
             ResponseEntity<String> retorno = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
+
+            if (retorno.getStatusCode() == HttpStatus.OK) {
+                return retorno.getBody().getBytes();
+            } else {
+                return new byte[0];
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new byte[0];
+        }
+    }
+
+    public byte[] gerarArquivoContratacao(Long cdEmpresa) {
+        log.info("GERAR BOLETO ->>> gerarBoleto");
+
+        //String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", "/corretor/boleto/1.0/arquivocontratacao/empresa/" + cdEmpresa + "/arquivo");
+        String url = "http://localhost:8090/arquivocontratacao/empresa/" + cdEmpresa + "/arquivo";
+
+        RestTemplate restTemplate = new RestTemplate();
+        MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
+        mappingJackson2HttpMessageConverter.setSupportedMediaTypes(Arrays.asList(
+                new MediaType("application", "json")));
+        restTemplate.getMessageConverters().add(mappingJackson2HttpMessageConverter);
+
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
+
+            HttpEntity<Long> entity = new HttpEntity<>(cdEmpresa, headers);
+            ResponseEntity<String> retorno = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
 
             if (retorno.getStatusCode() == HttpStatus.OK) {
                 return retorno.getBody().getBytes();

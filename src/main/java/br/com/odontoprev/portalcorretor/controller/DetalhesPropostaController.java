@@ -303,4 +303,23 @@ public class DetalhesPropostaController {
 
         return new ModelAndView("resumo_pme_proposta_detalhes", "detalhesPlanoPME", beneficiarios);
     }
+
+    @RequestMapping(value = "/downloadContratacao", method = RequestMethod.GET)
+    @ResponseBody
+    public void downloadContratacao(Model model, HttpServletResponse response, @RequestParam("cdEmpresa") String cdEmpresa) throws IOException {
+
+        byte[] file = propostaService.gerarArquivoContratacao(Long.parseLong(cdEmpresa));
+
+        if (file == null) {
+            model.addAttribute("error", "Não foi possível gerar arquivo, porfavor tente novamente.");
+        } else {
+            response.setContentType(String.valueOf(MediaType.APPLICATION_PDF));
+            String headerKey = "Content-Disposition";
+            String headerValue = String.format("attachment; filename=\"%s\"", "Contratacao.pdf");
+            response.setHeader(headerKey, headerValue);
+            response.getWriter().write(new String(file, "UTF-8"));
+            response.getWriter().flush();
+        }
+
+    }
 }

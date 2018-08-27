@@ -364,41 +364,44 @@ function enviarPropostaPme() {
         parametroEmpresa.push(proposta);
 
 
-    sincronizarPME(function (dataVendaPme) {
+        sincronizarPME(function (dataVendaPme) {
 
-        if (dataVendaPme.id != undefined) {
+            if (dataVendaPme.id != undefined) {
 
-            if (dataVendaPme.id == 0) {
-                proposta.status = "DIGITANDO";
-                atualizarEmpresas(proposta);
+                if (dataVendaPme.id == 0) {
+
+                    proposta.status = "CRITICADA";
+                    atualizarEmpresas(proposta);
+
+                }
+                else {
+
+                    var empresas = get("empresas");
+                    var todosExcetoExclusao = empresas.filter(function (x) { return x.cnpj != proposta.cnpj });
+
+                    proposta.status = "ENVIADA";
+
+                    todosExcetoExclusao.push(proposta);
+
+                    put("empresas", JSON.stringify(todosExcetoExclusao));
+
+                    atualizarDashBoard();
+                    swal.close();
+
+                    window.location.href = "proposta_pme_enviada.html?cdEmpresa=" + dataVendaPme.cdEmpresa;
+
+                }
+
+            } else {
+
+                let atualizarProposta = get("proposta");
+                atualizarProposta.status = "PRONTA";
+                put("proposta", JSON.stringify(atualizarProposta));
+                atualizarEmpresas(atualizarProposta);
+                swal("Ops!", "Algo deu errado. Por favor, tente enviar outra vez a proposta.", "error");
             }
-            else {
-                var empresas = get("empresas");
-                var todosExcetoExclusao = empresas.filter(function (x) { return x.cnpj != proposta.cnpj });
 
-                proposta.status = "ENVIADA";
-
-                todosExcetoExclusao.push(proposta);
-
-                put("empresas", JSON.stringify(todosExcetoExclusao));
-
-                atualizarDashBoard();
-                swal.close();
-
-                window.location.href = "proposta_pme_enviada.html";
-
-            }
-
-        } else {
-
-            var atualizarProposta = get("proposta");
-            atualizarProposta.status = "PRONTA";
-            put("proposta", JSON.stringify(atualizarProposta));
-            atualizarEmpresas(atualizarProposta);
-            swal("Ops!", "Erro no Envio da Sua Proposta. Os dados preenchidos ficarão salvos, acesse a venda PME e digite o CNPJ da empresa para carregar os dados.", "error");
-        }
-
-    }, parametroEmpresa, beneficiarios);
+        }, parametroEmpresa, beneficiarios);
 
     }, proposta);
 }
