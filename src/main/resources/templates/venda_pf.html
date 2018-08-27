@@ -16,7 +16,7 @@
     <script type="text/javascript" th:src="@{/js/jquery.mask.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/odonto-Valida.js}"></script>
     <script type="text/javascript" th:src="@{/js/menu.js}"></script>
-
+    <script> resizeIframe('frame_pf');</script>
 
     <!--<script type="text/javascript" th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js}"></script>-->
 
@@ -73,8 +73,8 @@
 	  </div>
 	</div>
 
-    <div class="col-sm-12 container-logado padding-logado">
-        <iframe src="/venda_index_pf.html" class="col-sm-12" height="" id="frame_pf" frameBorder="0" > </iframe>
+    <div class="padding-logado">
+        <iframe src="/venda_index_pf.html" height="" id="frame_pf" frameBorder="0" style="width: 100% !important;"> </iframe>
     </div>
 
     <div th:replace="fragments/footer :: footer">&nbsp;</div>

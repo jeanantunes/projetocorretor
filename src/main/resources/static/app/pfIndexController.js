@@ -1,6 +1,7 @@
 ﻿$(document).ready(function () {
     localStorage.removeItem('propostaPf')
     setIdPlano();
+    resizeIframe('frame_pf');
 });
 
 function setIdPlano() {
