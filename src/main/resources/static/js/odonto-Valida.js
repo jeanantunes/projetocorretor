@@ -958,33 +958,6 @@ $(document).ready(function () {
         }
     });
 
-    // ESPECIALIDADE
-
-    $(".especialidade").focus(function () {
-        if ($(this).val() == "") {
-            $(this).css({ "border-color": "#1974CE" });
-            $(".especialidade").css("color", "#1974CE");
-            $(".label-especialidade").css("color", "#1974CE");
-        }
-    });
-
-    $(".especialidade").blur(function () {
-        if ($(this).val() == "") {
-            $(this).css({ "border-color": "#FF4141" });
-            $(".especialidade").css("color", "#FF4141");
-            $(".label-especialidade").css("color", "#FF4141");
-        }
-    });
-
-    $(".especialidade").keyup(function () {
-        if ($(this).val() != "") {
-            $(this).css({ "border-color": "#1974CE" });
-            $(".especialidade").css("color", "#1974CE");
-            $(".label-especialidade").css("color", "#1974CE");
-        }
-    });
-
-
     // DEPENDENTES
 
     $(".dependentes").focus(function () {

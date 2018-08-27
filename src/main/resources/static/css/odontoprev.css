@@ -98,6 +98,14 @@ input:-webkit-autofill {
     margin-bottom: 70px;
 }
 
+.margin-bottom-30 {
+    margin-bottom: 30px;
+}
+
+.margin-top-30 {
+    margin-top: 30px;
+}
+
 .margin-top-70 {
     margin-top: 70px;
 }
@@ -975,7 +983,7 @@ h5, .subListBox {
     font-family: Roboto-Bold;
     font-size: 16pt;
     color: #787878;
-    top: -40px;
+    top: 0px;
     position: relative;
 }
 
@@ -1325,7 +1333,7 @@ h5, .subListBox {
 .selectListBlur {
     font-family: Roboto-Medium;
     box-shadow: 0 0 0 0 !important;
-    padding: 0px;
+    padding-left: 0px;
     color: #6A6A6A;
     border: 0;
     border-radius: 0;
@@ -1333,7 +1341,8 @@ h5, .subListBox {
     width: 100%;
     font-size: 15pt;
     background: transparent;
-    border-bottom: 1px solid #3197EE;
+    border-bottom: 2px solid #6A6A6A;
+    padding-bottom: 2px;
 }
 
 #proximoMes {
@@ -1614,8 +1623,8 @@ h5, .subListBox {
 }
 
 .modal-body-OdontMed {
-    padding-bottom: 60px;
-    padding-top: 60px;
+    padding-bottom: 30px;
+    padding-top: 30px;
     background-color: #F8F8F8;
     text-align: center;
 }
@@ -1813,11 +1822,6 @@ h5, .subListBox {
     border: 1px solid #EDEDED;
     border-radius: 18px;
     box-shadow: 2px 5px 15px 0px #EDEDED;
-}
-
-#map {
-    height: 400px;
-    width: 100%;
 }
 
 .font-moeda {

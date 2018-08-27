@@ -6,46 +6,30 @@
     <meta charset="UTF-8">
     <link rel="shortcut icon" th:href="@{/img/odpv.PNG}" type="image/png"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
-	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
-	<link rel="stylesheet" type="text/css" th:href="@{/css/odontoprev.css}"/>
-	<link rel="stylesheet" type="text/css" th:href="@{/css/sweetalert.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-theme.min.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
-	<link rel="stylesheet" type="text/css" th:href="@{/css/jquery-ui.css}"/>
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link href="/css/odontoprev.css" rel="stylesheet">
-    <link href="/css/sweetalert.css" rel="stylesheet" />
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-    <script src="/js/jquery.3.2.1.js"></script>
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/scripts.js"></script>
-    <script src="/js/odontoprev.js"></script>
-    <script src="/js/jquery.mask.min.js"></script>
-    <script src="/js/odonto-Valida.js"></script>
-    <script src="/js/sweetalert.min.js"></script>
-    <script src="/app/coordenador.js"></script>
-    <script src="/app/redeCredenciadaController.js"></script>
-    <script src="/js/jquery-ui.js"></script>
-    <script type="text/javascript" th:src="@{/js/menu.js}"></script>
-    <!--<script type="text/javascript" th:src="@{/js/jquery-3.2.1.js}"></script>
-    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
-    <script type="text/javascript" th:src="@{/js/jquery.mask.min.js}"></script>
-    <script type="text/javascript" th:src="@{/js/odonto-Valida.js}"></script>
-    <script type="text/javascript" th:src="@{/js/menu.js}"></script>
-	<script type="text/javascript" th:src="@{js/jquery.min.js}"></script>
-    <script type="text/javascript" th:src="@{js/odontoprev.js}"></script>
-    <script type="text/javascript" th:src="@{js/sweetalert.min.js}"></script>
-    <script type="text/javascript" th:src="@{app/coordenador.js}"></script>
-    <script type="text/javascript" th:src="@{app/redeCredenciadaController.js}"></script>
-	<script type="text/javascript" th:src="@{app/jquery-ui.js}"></script>-->
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/sweetalert.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/jquery-ui.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/odontoprev.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/rede-credenciada.css"/>
+
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/jquery-ui.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/setColorMenuCorretor.js}"></script>
+    <script src="../js/jquery.mask.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/odontoprev.js"></script>
+    <script src="../js/odonto-Valida.js"></script>
+    <script src="../js/sweetalert.min.js"></script>
+    <script src="../app/coordenador.js"></script>
+    <script src="../app/redeCredenciadaController.js"></script>
+
     <script type="text/javascript">
 
-	
-	
         function mapa(abc) {
 
             var latlng = { lat: -23.5432147, lng: -46.7356894 };
@@ -55,14 +39,14 @@
 
             if (abc == null) {
                 var map = new google.maps.Map(document.getElementById('map'), {
-                    zoom: 4,
+                    zoom: 5,
                     center: latlng,
                     disableDefaultUI: true
                 });
             }
             else if (abc != null) {
                 map = new google.maps.Map(document.getElementById('map'), {
-                    zoom: 13,
+                    zoom: 14,
                     center: { lat: parseFloat(abc.dentistas[0].endereco.cidade.latitude), lng: parseFloat(abc.dentistas[0].endereco.cidade.longitude) },
                     disableDefaultUI: true
                 });
@@ -98,34 +82,14 @@
                             marker.setIcon('img/pin_rosa.png');
                             selectedMarker = marker;
 
-
-                            //console.log("Dentro da funcão Click:  " + contentString[i]);
-                            //infowindow.setContent('<div><strong>' + abc.dentistas[i].nomeDentista + '</strong><br>');
-                            //infowindow.open(map, marker);
-
                             $("#nomeDentista").html("Dr(a). " + abc.dentistas[i].nomeDentista);
-                            $("#croDentista").html(abc.dentistas[i].numeroCRO);
-
+                            $("#croDentista").html("CRO: " + abc.dentistas[i].numeroCRO);
                             $("#especialidadeDentista").html(abc.dentistas[i].especialidade.descricaoEspecialidade);
-
                             var especialidades = abc.dentistas[i].especialidade.descricaoEspecialidade.split(",");
-
                             $("#enderecoDentista").html(abc.dentistas[i].endereco.enderecoCompleto);
                             $("#cepDentista").html(abc.dentistas[i].endereco.cep);
                             $("#telefoneDentista").html(abc.dentistas[i].numeroFone);
                             $("#tipoPessoaDentista").html(abc.dentistas[i].tipoPrestador);
-
-                            //document.getElementById('nomeDentista').innerHTML = abc.dentistas[i].nomeDentista;
-
-                            //document.getElementById('croDentista').innerHTML = abc.dentistas[i].numeroCRO;
-                            //document.getElementById('especialidadeDentista1').innerHTML = abc.dentistas[i].especialidade.descricaoEspecialidade;
-                            //document.getElementById('especialidadeDentista1').innerHTML = abc.dentistas[i].especialidade.descricaoEspecialidade;
-                            //document.getElementById('enderecoDentista').innerHTML = abc.dentistas[i].endereco.enderecoCompleto;
-                            //document.getElementById('cepDentista').innerHTML = abc.dentistas[i].endereco.cep;
-                            //document.getElementById('telefoneDentista').innerHTML = abc.dentistas[i].numeroFone;
-                            //document.getElementById('tipoPessoaDentista').innerHTML = abc.dentistas[i].tipoPrestador;
-
-
                             $('#myModal').modal('show');
 
                         }
@@ -139,9 +103,6 @@
 <body style="min-width: 100% !important;">
 
     <script>
-        $(function () {
-            $(".button-collapse").sideNav();
-        });
 
     </script>
     
@@ -159,64 +120,50 @@
         </div>
     </div>
     
-        <div class="container-logado padding-logado">
+        <div class="container-logado padding-logado padding-top-0">
         
-        <div class="row">
-            <div class="col-sm-12 odontBoxCenter">
-                <div class="text-center">
+        <div>
+            <div class="">
+                <div class="text-right">
                     <div>
-                        <h1 class="titleOdont text-center">
+                        <h4 class="titleOdontH4 align-text margin-bottom-30 margin-top-30">
                             REDE CREDENCIADA
-                        </h1>
-                        <h2 class="subTitleOdont text-center">
-                            Encontre um dentista para o seu cliente
-                        </h2>
+                        </h4>
                     </div>
                 </div>
 
-                <div class="boxLabInput">
+                <div class="">
 
-                    <!--<div>
-                        <label class="label-cep labelOdontBlur">CEP</label>
-                        <label class="col-md-6 text-right"><span class=""><h5 id="labelCep"></h5></span></label>
-                    </div>
-                    <div>
-                        <input type="text" class=" cep inputLabelBlur" id="cep">
-                    </div>-->
-                    <!--<div>
-                        <label class="label-bairro labelOdontBlur">BAIRRO</label>
-                    </div>
-                    <div>
-                        <input type="text" class="bairro inputLabelBlur" id="bairro">
-                    </div>-->
-                    <!--<div>
-                        <label class="label-cidade labelOdontBlur">CIDADE</label>
-                    </div>
-                    <div>
-                        <input type="text" class="cidade inputLabelBlur" id="cidade">
-                    </div>-->
+                    <div class="form-group col-sm-6 input-rede-credenciada padding-left-rede" >
 
-                    <div class="form-group">
-                        <label for="" class="label-especialidade labelOdontBlur">ESPECIALIDADES</label>
-                        <select class="form-control especialidade selectListBlur" id="especs"></select>
+                        <label for="" class="label-especialidade labelOdontRede control-label padding-top-0">ESPECIALIDADES</label>
+                        <div>
+                            <select class="especialidade selectListBlur" id="especs"></select>
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="" class="label-estado labelOdontBlur">ESTADO</label>
-                        <select class="form-control estado selectListBlur" id="estados"></select>
+                    <div class="form-group col-sm-6 input-rede-credenciada padding-left-rede" >
+                        <label for="" class="label-estado labelOdontRede control-label padding-top-0">ESTADO</label>
+                        <div><select class="estado selectListBlur" id="estados"></select></div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="" class="label-cidade labelOdontBlur">CIDADE</label>
-                        <input type="text" class="form-control cidade selectListBlur autocomplete" id="cidades" />
+                    <div class="form-group col-sm-6 input-rede-credenciada padding-left-rede" >
+                        <label for="" class="label-cidade labelOdontRede control-label padding-top-0">CIDADE</label>
+                        <div>
+                        <input type="text" class="cidade selectListBlur autocomplete nomeRegex" id="cidades" />
+                        </div>
 
                     </div>
 
-                    <div class="form-group">
-                        <label for="" class="label-bairro labelOdontBlur">BAIRRO</label>
-                        <input class="form-control bairro selectListBlur autocomplete" id="bairros" />
+                    <div class="form-group col-sm-6 input-rede-credenciada padding-left-rede" >
+                        <label for="" class="label-bairro labelOdontRede padding-top-0">BAIRRO</label>
+                        <div>
+                        <input class="bairro selectListBlur autocomplete nomeRegex" id="bairros" />
+                        </div>
+                    </div>
 
-                        <!--<select class="form-control bairro selectListBlur" id="bairros"></select>-->
+                    <div class="form-group col-sm-6 input-rede-credenciada padding-left-rede padding-right-button padding-top-btn" >
+                        <button class="btn btn-lg btn-block btnOdont max-witdh-btn" id="btnBuscar">BUSCAR</button>
                     </div>
 
                 </div>
@@ -224,14 +171,7 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-sm-12 btnPadBtm">
-                <!--<a class="btn btn-lg btn-block btnOdont" id="" data-toggle="modal" data-target="#myModal" role="button">BUSCAR</a>-->
-                <button class="btn btn-lg btn-block btnOdont" id="btnBuscar">BUSCAR</button>
-            </div>
-        </div>
-
-        <div id="map" class="nopadding">
+        <div id="map" class="nopadding height-maps">
             <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYhoOl5Kervzx0pOvSAL8qIIWcPHg5Zyk&callback=mapa">
             </script>
         </div>
@@ -245,68 +185,56 @@
 
 
     <!-- End Bloco 1 -->
-    <!--<button type="button" class="btnModal" data-backdrop="static" style="border:1px solid white; color:transparent; background-color: transparent;" id="btnModal" data-toggle="modal" data-target="#myModal" BotaoModal</button>-->
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog modalConteiner">
             <div class="imgBtnExcluir" id="closeModalRedeCredenciada">
                 <img src="img/btn-excluir.png" class="btnExcluir" alt="">
             </div>
-            <div class="modal-content">
+            <div class="">
                 <div class="modal-header-OdontMed">
                     <div class="">
                         <span class="labelBoldModal"><h2 id="nomeDentista"></h2></span>
                     </div>
                     <div>
-                        <span class="labelLightModal">CRO:<h5 id="croDentista"></h5></span>
+                        <span class="labelLightModal"><h5 id="croDentista"></h5></span>
                         <label class="labelLightModal"><h5 id="tipoPessoaDentista"></h5></label>
                         <!--<span class="labelLightModal">Pessoa Física</span>-->
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-12 labelBoldModalPlano"><span></span></div>
-            <div class="modal-body-OdontMed">
-                <div class="row">
-                    <label class="labelBoldTitleModal">Especialidades</label>
-                    <div class="text-center">
-                        <label><img src="img/Protese.png" class="" alt=""><p><h5 id="especialidadeDentista" style="color:gray"></h5></p></label>
 
-                        <!--<label><img src="img/Ortodontia.png" class="" alt=""><p>_</p></label>-->
-                        <!--<label><img src="img/Consulta.png" class="" alt=""><p>_</p></label>-->
-                        <!--<label><img src="img/Cirurgia.png" class="" alt=""><p>_</p></label>-->
-
+                <div class="col-sm-12 labelBoldModalPlano"><span></span></div>
+                <div class="modal-body-OdontMed">
+                    <div class="row">
+                        <label class="labelBoldTitleModal">Especialidades</label>
+                        <div class="text-center">
+                            <label><img src="img/Protese.png" class="" alt=""><p><h5 id="especialidadeDentista" style="color:gray"></h5></p></label>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer-OdontMed">
-                <div>
-                    <label class="labelBoldPink">Endereço</label>
-                    <p class="labelBold"><h5 id="enderecoDentista" style="color:gray"></h5></p>
-                    <p class="labelBold"><h5 id="cepDentista" style="color:gray"></h5></p>
+                <div class="modal-footer-OdontMed">
+                    <div>
+                        <label class="labelBoldPink">Endereço</label>
+                        <p class="labelBold"><h5 id="enderecoDentista" style="color:gray"></h5></p>
+                        <p class="labelBold"><h5 id="cepDentista" style="color:gray"></h5></p>
+                    </div>
+                    <div>
+                        <label class="labelBoldPink">Contato</label>
+                        <p class="labelBold"><h5 id="telefoneDentista" style="color:gray"></h5></p>
+                    </div>
+                    <br />
                 </div>
-                <div>
-                    <label class="labelBoldPink">Contato</label>
-                    <p class="labelBold"><h5 id="telefoneDentista" style="color:gray"></h5></p>
-                    <!--<p class="labelBold">contato@doutorajuliana.com.br</p>-->
-                    <!--<p class="labelBold">www.doutorajuliana.com.br</p>-->
-                </div>
-                <br />
             </div>
+
         </div>
     </div>
     <!-- End Modal -->
 
 
     <style>
-        .ui-autocomplete {
-            max-height: 350px;
-            overflow-y: auto;
-            /* prevent horizontal scrollbar */
-            overflow-x: hidden;
-            /* add padding to account for vertical scrollbar */
-            padding-right: 20px;
-        }
+
+
     </style>
 
-    <script type="text/javascript" th:src="@{/js/setColorMenuCorretor.js}"></script>
+
 </body>
 </html>

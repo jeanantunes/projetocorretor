@@ -1,4 +1,9 @@
-﻿$(document).ready(function () {
+﻿var estadoSelecionado = "";
+var cidadeSelecionada = "";
+var bairroSelecionado = "";
+
+
+$(document).ready(function () {
     especialidades();
     estados();
 
@@ -9,7 +14,27 @@
 
     });
 
+    $("#estados").click(function () {
+
+        $(this).css("color", "#1974CE");
+        $(this).css("border-bottom", "2px solid #1974CE");
+        $(".label-estado").css("color", "#1974CE");
+
+    });
+
+    $("#especs").click(function () {
+
+        $(this).css("color", "#1974CE");
+        $(this).css("border-bottom", "2px solid #1974CE");
+        $(".label-especialidade").css("color", "#1974CE");
+
+    });
+
     $("#estados").change(function () {
+
+        $(this).css("color", "#1974CE");
+        $(this).css("border-bottom", "2px solid #1974CE");
+        $(".label-estado").css("color", "#1974CE");
 
         $('#cidades').val("");
         $('#bairros').val("");
@@ -19,6 +44,22 @@
         autoCompleteCidades = [];
 
         var uf = $("#estados").val().trim();
+
+        if(uf == "selecione"){
+
+            $("#cidades").val("");
+            $("#bairros").val("");
+
+            autoCompleteCidades = [];
+            dadosCidades = [];
+            autoCompleteBairros = [];
+            dadosBairros = [];
+            return;
+        }
+
+        if(uf == estadoSelecionado) return;
+
+        estadoSelecionado = uf;
 
         callTokenProd(function (dataToken) {
 
@@ -65,10 +106,7 @@
 
                 $("#cidades").autocomplete({
                     source: autoCompleteCidades,
-                    minLength: 0,
-                    search: function (event, ui) {
-                        $(this).val(removerAcentos($(this).val().toUpperCase()));
-                    }
+                    minLength: 0
                 }).focus(function () {
 
                     $(this).autocomplete("search");
@@ -81,10 +119,10 @@
         });
     });
 
-    $("#cidades").keyup(function () {
-
-        if ($("#estados").val() == "selecione") swal("Ops!", "Escolha um estado", "info");
-
+    $("#especs").change(function () {
+        $(this).css("color", "#1974CE");
+        $(this).css("border-bottom", "2px solid #1974CE");
+        $(".label-especialidade").css("color", "#1974CE");
     });
 
     $("#cidades").focus(function () {
@@ -93,7 +131,13 @@
 
     $("#cidades").blur(function () {
 
-        if ($("#cidades").val() == "") return;
+        var cidade = $("#cidades").val();
+
+        if (cidade == "") return;
+
+        if(cidade == cidadeSelecionada) return;
+
+        cidadeSelecionada = cidade;
 
         var cidade = dadosCidades.filter(function (x) { if (x.nome == $("#cidades").val().trim()) { return x.nome; } });
 
@@ -148,11 +192,7 @@
 
                 $("#bairros").autocomplete({
                     source: autoCompleteBairros,
-                    minLength: 0,
-                    search: function (event, ui) {
-                        $(this).val(removerAcentos($(this).val().toUpperCase()));
-                    }
-
+                    minLength: 0
                 }).focus(function () {
 
                     $(this).autocomplete("search");
@@ -170,13 +210,16 @@
 
         if ($("#estados").val() == "selecione") {
 
-            swal("Ops!", "Selecione um estado", "info");
+            swal("Ops!", "Selecione um estado", "error");
             return;
         }
 
         if ($('#cidades').val() == "") {
 
-            swal("Ops!", "Digite uma cidade", "info");
+            swal("Ops!", "Digite uma cidade", "error");
+            $("#cidades").css("color", "#FF4141");
+            $("#cidades").css("border-bottom", "2px solid #FF4141");
+            $(".label-cidade").css("color", "#FF4141");
             return;
         }
 
@@ -391,6 +434,14 @@ function especialidades() {
 
             var sel = document.getElementById('especs');
 
+            var opt = document.createElement('option');
+            //console.log(dataEspecialidades[i].descricao);
+            opt.setAttribute('value', 0);
+            //console.log(dataEspecialidades[i].codigo);
+            var selecione = "Todas";
+            opt.appendChild(document.createTextNode(selecione));
+            sel.appendChild(opt);
+
             for (var i = 0; i < dataEspecialidades.length; i++) {
 
                 var opt = document.createElement('option');
@@ -402,14 +453,6 @@ function especialidades() {
             }
 
             var especialidade = 0;
-
-            var opt = document.createElement('option');
-            //console.log(dataEspecialidades[i].descricao);
-            opt.setAttribute('value', 0);
-            //console.log(dataEspecialidades[i].codigo);
-            var selecione = "Todas";
-            opt.appendChild(document.createTextNode(selecione));
-            sel.appendChild(opt);
 
             document.getElementById('especs').value = especialidade;
 

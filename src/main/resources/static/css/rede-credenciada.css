@@ -1,0 +1,125 @@
+/*********** NOVAS CLASSES REDE CREDENCIADA ********/
+
+.input-rede-credenciada{
+    max-width: 300px !important;
+    padding-right: 20px
+}
+
+.ui-autocomplete {
+    max-height: 350px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+    /* add padding to account for vertical scrollbar */
+    padding-right: 20px;
+}
+
+.ui-menu .ui-menu-item a {
+    color: #ACAAA5 !important;
+    font-family: Roboto-Medium !important;
+}
+
+.max-witdh-btn {
+    max-width: 330px !important;
+}
+
+.padding-left-rede{
+    padding-left: 0px !important;
+}
+
+.padding-top-rede{
+    padding-top: 0px !important;
+}
+
+.padding-right-button{
+    padding-left: 0px !important;
+}
+
+.selectListBlur{
+    text-transform: uppercase;
+}
+
+.labelOdontRede {
+    font-family: Roboto-Medium;
+    color: #6A6A6A;
+    font-size: 12pt !important;
+}
+
+.align-text{
+    text-align: left;
+}
+
+.titleOdontH4 {
+    font-family: Roboto-Bold;
+    color: #1974CE;
+    font-size: 20pt;
+}
+
+.padding-top-btn{
+    padding-top: 10px;
+}
+
+.height-maps{
+    height: 600px;
+    width: 100%;
+}
+
+select::-webkit-scrollbar {
+    width: 12px;
+}
+
+select::-webkit-scrollbar-track {
+    border-radius: 0px;
+    background-color: #EAEAEA;
+}
+
+select::-webkit-scrollbar-thumb {
+    border-radius: 0px;
+    background: #1974CE;
+}
+
+select::-webkit-scrollbar-thumb:hover {
+    border-radius: 8px;
+    border: 1px solid #1974CE;
+    background: #EAEAEA;
+}
+
+@media screen and (max-width: 993px) {
+
+    .input-rede-credenciada{
+        max-width: 100% !important;
+        padding-right: 20px;
+    }
+
+    .container-logado{
+        width: 100% !important;
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+
+    .padding-top-rede{
+        padding-top: 15px !important;
+    }
+
+    .padding-left-rede{
+        padding-left: 15px !important;
+    }
+
+    .padding-right-button{
+        padding-left: 15px !important;
+    }
+
+    .align-text{
+        text-align: center;
+    }
+
+    .max-witdh-btn {
+        max-width: 100% !important;
+    }
+
+    .height-maps{
+       height: 400px;
+        width: 100%;
+    }
+}
+

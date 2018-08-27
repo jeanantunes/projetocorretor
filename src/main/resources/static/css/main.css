@@ -4640,7 +4640,7 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 .container-logado {
     width: 98%;
     padding-left: 15px;
-    padding-right: 20px !important;
+    padding-right: 20px;
 }
 
 .padding-logado {
