@@ -31,6 +31,13 @@
                 $("#dados").attr("data-id", $(this).val());
                 $('.custom-url').attr('href', '/downloadBoleto?id=' + $("#dados").attr("data-id") + "-" + $("#dados").attr("data-value"));
             });
+
+            $("#radioClick").click(function () {
+                $("#dados").addClass('background-color-azul');
+                $("#dados").removeClass('background-color-cinza');
+                $("#dados").removeClass('disabled');
+
+            });
         });
     </script>
 
@@ -380,7 +387,7 @@
              th:style="${detalhesPropostaPF.venda.dadosBancariosVenda == null} ? 'display:inline-block' : 'display:none'">
             <div class=" space-top-10 btn-header-web" style="display: inline-block; margin-left: 0px;">
                 <a href="#" type="button" data-toggle="modal" data-target="#detalhesBoleto"
-                   class="btn uppercase btnBlue btn-width-custom space-top-10 navbar-left">CONSULTAR BOLETOS EM
+                   class="btn btn-lg btn-block btnOdont space-top-10">CONSULTAR BOLETOS EM
                     ABERTO
                 </a>
             </div>
@@ -412,7 +419,7 @@
                         <div class="text-silver">
                             <div class="box-proposta" th:each="proposta : ${detalhesPropostaPF.fichaFinanciera}">
                                 <label class="container">
-                                    <input type="radio" th:field="*{detalhesPropostaPF.id}" class="conteudo"
+                                    <input type="radio" th:field="*{detalhesPropostaPF.id}" class="conteudo" id="radioClick"
                                            th:value="${proposta.competencia}"
                                            th:text="${proposta.competencia}"/>
                                     <span class="checkmark"></span>
@@ -435,13 +442,11 @@
                             <div>&nbsp;</div>
                             <div class="col-xs-12"
                                  th:style="${detalhesPropostaPF.fichaFinanciera.size()} == 0 ? 'display:none' : 'display:inline-block' ">
-                                <div class="col-xs-12" style="border: 2px solid #cccccc;">
-                                    <p><h4 class="modal-title font-blue" style="margin-top: 8px;">Baixar o
-                                    boleto</h4></p>
-                                    <div class="space-top-10 space-bottom-10 text-center">
+                                <div class="col-xs-12">
+                                    <div class="space-top-10 space-bottom-10 text-center wrapper">
                                         <a href="#" data-id="" th:attr="data-value=${codigoDoAssociado}" id="dados"
-                                           class="btn uppercase btnBlue space-top-10 position-relative custom-url"
-                                           style="width: 200px; margin-bottom: 10px;">BAIXAR</a>
+                                           class="btn btn-lg btn-block btnOdont background-color-cinza disabled"
+                                           style="width: 200px; margin-bottom: 10px;">BAIXAR BOLETO</a>
                                     </div>
                                     <!-- div th:style="${error} == null ? 'display:none' : 'display:inline-block' "></div -->
                                 </div>
