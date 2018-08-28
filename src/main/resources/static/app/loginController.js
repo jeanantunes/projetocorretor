@@ -286,5 +286,24 @@ $(document).ready(function () {
         */
 
     });
+
+    $(".validacaoDivErro").keyup(function () {
+        $(".img-erro-cpf").hide(250);
+        $("#divErroCpf").hide(250);
+    });
+
+    $(".validacaoDivErro").focus(function () {
+        if($(this).val() == ""){
+            $(".img-erro-cpf").hide(250);
+            $("#divErroCpf").hide(250);
+        }
+    });
+
+    $(".img-erro-cpf").click(function () {
+        $(".img-erro-cpf").hide(250);
+        $("#divErroCpf").hide(250);
+
+    });
+
 });
 
