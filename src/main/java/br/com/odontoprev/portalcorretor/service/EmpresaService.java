@@ -63,9 +63,8 @@ public class EmpresaService {
     public EmpresaResponse reenvioEmailAceite(CnpjDadosAceiteResponse cnpjDadosAceiteResponse) {
         EmpresaResponse empresaResponse = null;
 
-        cnpjDadosAceiteResponse.getCnpj().replace(".", "").replace("/", "").replace("-", "");
-        String url = requesBasetUrl + dadosEmpresaAceite;
-        //String url = "https://172.18.203.20:7001/empresa-dadosaceite/";
+        String url = requesBasetUrl + reenvioEmailAceite;
+        //String url = "http://localhost:8090/empresa-emailaceite";
         RestTemplate restTemplate = new RestTemplate();
 
         try {
