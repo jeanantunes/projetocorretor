@@ -8,7 +8,7 @@ public class ArquivoContratacao implements Serializable {
     private static final long serialVersionUID = 7605496331918144311L;
 
     private Long codigoEmpresa;
-    private Date dataCriacao;
+    private String dataCriacao;
     private String nomeArquivo;
     private Long tamanhoArquivo;
     private String tipoConteudo;
@@ -26,11 +26,11 @@ public class ArquivoContratacao implements Serializable {
         this.codigoEmpresa = codigoEmpresa;
     }
 
-    public Date getDataCriacao() {
+    public String getDataCriacao() {
         return dataCriacao;
     }
 
-    public void setDataCriacao(Date dataCriacao) {
+    public void setDataCriacao(String dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
 
