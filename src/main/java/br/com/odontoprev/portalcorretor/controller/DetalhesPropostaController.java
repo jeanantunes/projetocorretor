@@ -1,17 +1,5 @@
 package br.com.odontoprev.portalcorretor.controller;
 
-import br.com.odontoprev.portalcorretor.model.*;
-import br.com.odontoprev.portalcorretor.service.PropostaService;
-import br.com.odontoprev.portalcorretor.service.dto.BeneficiariosPropostaResponsePagination;
-import br.com.odontoprev.portalcorretor.service.dto.EmpresaPropostaResponse;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -19,6 +7,29 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import br.com.odontoprev.portalcorretor.model.Beneficiario;
+import br.com.odontoprev.portalcorretor.model.DetalhesBoletoResponse;
+import br.com.odontoprev.portalcorretor.model.FichaFinanceiraResponse;
+import br.com.odontoprev.portalcorretor.model.FichaFinanciera;
+import br.com.odontoprev.portalcorretor.model.FichaFinancieraBoleto;
+import br.com.odontoprev.portalcorretor.model.PropostaCritica;
+import br.com.odontoprev.portalcorretor.service.PropostaService;
+import br.com.odontoprev.portalcorretor.service.dto.BeneficiariosPropostaResponsePagination;
+import br.com.odontoprev.portalcorretor.service.dto.EmpresaPropostaResponse;
 
 @Controller
 public class DetalhesPropostaController {
