@@ -45,7 +45,7 @@ public class ArquivoContratacaoTest {
     public void test200ArqContratacao() throws Exception {
         ArquivoContratacao arqContratacao = new ArquivoContratacao();
         Long codigoEmpresa = 2547L;
-        Date dataCriacao = new Date();
+        String dataCriacao = "2018-07-01 12:00:00";
         String nomeArquivo = "arquivoContratacao";
         Long tamanhoArquivo = 123L;
         String tipoConteudo = "text/pdf";
