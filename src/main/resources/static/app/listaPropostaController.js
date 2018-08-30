@@ -177,7 +177,7 @@ function carregarListaOnline() {
         content: "input",
         showCancelButton: false,
         showConfirmButton: false,
-        imageUrl: "img/load.gif",
+        imageUrl: "img/icon-aguarde.gif",
         icon: "info",
         button: {
             text: "...",
