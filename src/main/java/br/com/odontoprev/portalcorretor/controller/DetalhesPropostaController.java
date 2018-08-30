@@ -3,13 +3,11 @@ package br.com.odontoprev.portalcorretor.controller;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import javax.servlet.http.HttpServletResponse;
 
+import br.com.odontoprev.portalcorretor.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -21,12 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.odontoprev.portalcorretor.model.Beneficiario;
-import br.com.odontoprev.portalcorretor.model.DetalhesBoletoResponse;
-import br.com.odontoprev.portalcorretor.model.FichaFinanceiraResponse;
-import br.com.odontoprev.portalcorretor.model.FichaFinanciera;
-import br.com.odontoprev.portalcorretor.model.FichaFinancieraBoleto;
-import br.com.odontoprev.portalcorretor.model.PropostaCritica;
 import br.com.odontoprev.portalcorretor.service.PropostaService;
 import br.com.odontoprev.portalcorretor.service.dto.BeneficiariosPropostaResponsePagination;
 import br.com.odontoprev.portalcorretor.service.dto.EmpresaPropostaResponse;
@@ -315,6 +307,7 @@ public class DetalhesPropostaController {
         return new ModelAndView("resumo_pme_proposta_detalhes", "detalhesPlanoPME", beneficiarios);
     }
 
+    /*
     @RequestMapping(value = "/downloadContratacao", method = RequestMethod.GET)
     @ResponseBody
     public void downloadContratacao(Model model, HttpServletResponse response, @RequestParam("cdEmpresa") String cdEmpresa) throws IOException {
@@ -329,6 +322,28 @@ public class DetalhesPropostaController {
             String headerValue = String.format("attachment; filename=\"%s\"", "Contratacao.pdf");
             response.setHeader(headerKey, headerValue);
             response.getWriter().write(new String(file, "UTF-8"));
+            response.getWriter().flush();
+        }
+
+    }
+    */
+
+    @RequestMapping(value = "/downloadContratacao", method = RequestMethod.GET)
+    @ResponseBody
+    public void downloadContratacao(Model model, HttpServletResponse response, @RequestParam("cdEmpresa") String cdEmpresa) throws IOException {
+
+        ArquivoContratacao file = propostaService.gerarArquivoContratacaoJson(Long.parseLong(cdEmpresa));
+        byte[] decodedString = Base64.getDecoder().decode(new String(file.getArquivoBase64()).getBytes("UTF-8"));
+
+
+        if (file == null) {
+            model.addAttribute("error", "Não foi possível gerar arquivo, porfavor tente novamente.");
+        } else {
+            response.setContentType(String.valueOf(MediaType.APPLICATION_PDF));
+            String headerKey = "Content-Disposition";
+            String headerValue = String.format("attachment; filename=\"%s\"", file.getNomeArquivo());
+            response.setHeader(headerKey, headerValue);
+            response.getWriter().write(new String(decodedString, "UTF-8"));
             response.getWriter().flush();
         }
 
