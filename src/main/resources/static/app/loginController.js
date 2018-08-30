@@ -287,7 +287,7 @@ $(document).ready(function () {
 
     var urlAtual = window.location.href.toString();
 
-    if(urlAtual === 'http://localhost:8080/login?error'){
+    if(urlAtual.indexOf('login?error') != -1){
         $(".img-erro-cpf").show(250);
         $("#divErroCpf").show(250);
     }
