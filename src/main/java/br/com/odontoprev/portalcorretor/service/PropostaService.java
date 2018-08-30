@@ -190,11 +190,11 @@ public class PropostaService {
         }
     }
 
-    public byte[] gerarArquivoContratacao(Long cdEmpresa) {
+    public ResponseEntity<String> gerarArquivoContratacao(Long cdEmpresa) {
         log.info("GERAR ARQUIVO CONTRATACAO ->>> gerarArquivoContratacao");
 
-        //String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", "/corretorservicos/1.0/arquivocontratacao/empresa/" + cdEmpresa + "/arquivo");
-        String url = "http://localhost:8090/arquivocontratacao/empresa/" + cdEmpresa + "/arquivo";
+        String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", "/corretorservicos/1.0/arquivocontratacao/empresa/" + cdEmpresa + "/arquivo");
+        //String url = "http://localhost:8090/arquivocontratacao/empresa/" + cdEmpresa + "/arquivo";
 
         RestTemplate restTemplate = new RestTemplate();
         MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
@@ -210,14 +210,14 @@ public class PropostaService {
             ResponseEntity<String> retorno = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
 
             if (retorno.getStatusCode() == HttpStatus.OK) {
-                return retorno.getBody().getBytes();
+                return retorno;
             } else {
-                return new byte[0];
+                return null;
             }
 
         } catch (Exception e) {
             e.printStackTrace();
-            return new byte[0];
+            return null;
         }
     }
 

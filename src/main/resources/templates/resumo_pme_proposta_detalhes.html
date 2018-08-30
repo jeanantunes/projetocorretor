@@ -214,6 +214,9 @@
             <div class="col-sm-12 btnPadBtmTop">
                 <a th:href="@{downloadContratacao(cdEmpresa=${cdEmpresa})}" class="btn btn-lg btn-block btnOdont uppercase" id="" role="button" target="_parent">BAIXAR DETALHES DA CONTRATAçÃO</a>
             </div>
+            <div class="col-xs-12 row" th:style="${error != null} ? 'display:inline-block' : 'display:none'">
+                <label style="font-size: 14pt; color: #FF4141; margin-left: 15px" th:text="${error}" />
+            </div>
         </div>
     </div>
 
