@@ -272,8 +272,6 @@ $(document).ready(function () {
             return;
         }
 
-        $(".img-erro-cpf").show(250);
-        $("#divErroCpf").show(250);
         $("#btnOdont").addClass('disabled');
         $("#jsCpfCnpj").addClass("text-red-cpfcnpj");
         $("#cpfcnpj").addClass("text-red-cpfcnpj");
@@ -286,6 +284,13 @@ $(document).ready(function () {
         */
 
     });
+
+    var urlAtual = window.location.href.toString();
+
+    if(urlAtual === 'http://localhost:8080/login?error'){
+        $(".img-erro-cpf").show(250);
+        $("#divErroCpf").show(250);
+    }
 
     $(".validacaoDivErro").keyup(function () {
         $(".img-erro-cpf").hide(250);
