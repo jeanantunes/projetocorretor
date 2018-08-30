@@ -193,7 +193,7 @@ public class PropostaService {
     public byte[] gerarArquivoContratacao(Long cdEmpresa) {
         log.info("GERAR ARQUIVO CONTRATACAO ->>> gerarArquivoContratacao");
 
-        //String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", "/corretor/boleto/1.0/arquivocontratacao/empresa/" + cdEmpresa + "/arquivo");
+        //String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", "/corretorservicos/1.0/arquivocontratacao/empresa/" + cdEmpresa + "/arquivo");
         String url = "http://localhost:8090/arquivocontratacao/empresa/" + cdEmpresa + "/arquivo";
 
         RestTemplate restTemplate = new RestTemplate();
@@ -224,8 +224,8 @@ public class PropostaService {
     public ArquivoContratacao gerarArquivoContratacaoJson(Long cdEmpresa) {
         log.info("GERAR ARQUIVO CONTRATACAO ->>> gerarArquivoContratacao");
 
-        //String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", "/corretor/boleto/1.0/arquivocontratacao/empresa/" + cdEmpresa + "/json");
-        String url = "http://localhost:8090/arquivocontratacao/empresa/" + cdEmpresa + "/json";
+        String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", "/corretorservicos/1.0/arquivocontratacao/empresa/" + cdEmpresa + "/json");
+        //String url = "http://localhost:8090/arquivocontratacao/empresa/" + cdEmpresa + "/json";
 
         RestTemplate restTemplate = new RestTemplate();
         MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
