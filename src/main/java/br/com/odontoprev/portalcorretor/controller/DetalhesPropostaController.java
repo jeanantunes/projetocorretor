@@ -231,7 +231,7 @@ public class DetalhesPropostaController {
         byte[] file = propostaService.gerarBoleto(financieraBoleto);
 
         if (file == null) {
-            model.addAttribute("error", "Não foi possível gerar boleto, porfavor tente novamente.");
+            model.addAttribute("error", "Não foi possível gerar boleto, por favor tente novamente.");
         } else {
             response.setContentType(String.valueOf(MediaType.APPLICATION_PDF));
             String headerKey = "Content-Disposition";
@@ -314,7 +314,7 @@ public class DetalhesPropostaController {
 
         if (file == null) {
             detalhesPropostaPME(model, cdEmpresa);
-            model.addAttribute("error", "Não foi possível gerar arquivo, porfavor tente novamente.");
+            model.addAttribute("error", "O arquivo não foi encontrado em nosso sistema.");
             return new ModelAndView("resumo_pme_proposta_detalhes", "arquivoContratacao", file);
         } else {
             String fileName = file.getHeaders().get("Content-Disposition").get(0).split(";")[1].split("=")[1];
