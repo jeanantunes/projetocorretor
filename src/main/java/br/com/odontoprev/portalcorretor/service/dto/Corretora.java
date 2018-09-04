@@ -1,5 +1,7 @@
 package br.com.odontoprev.portalcorretor.service.dto;
 
+import java.util.List;
+
 public class Corretora {
 
     private Integer cdCorretora;
@@ -15,6 +17,8 @@ public class Corretora {
     private Endereco enderecoCorretora;
     private Conta conta;
 
+	private List<Representante> representantes; //201809041538 - esert - COR-690 pagina dados da corretora
+    
     public Corretora() {
     }
 
@@ -118,13 +122,37 @@ public class Corretora {
 		this.conta = conta;
 	}
 
+	public List<Representante> getRepresentantes() {
+		return representantes;
+	}
+
+	public void setRepresentantes(List<Representante> representantes) {
+		this.representantes = representantes;
+	}
+
 	//201808151456 - esert - COR-362
+	//201809041543 - esert - COR-690
 	@Override
 	public String toString() {
-		return "Corretora [cdCorretora=" + cdCorretora + ", cnpj=" + cnpj + ", razaoSocial=" + razaoSocial + ", cnae="
-				+ cnae + ", telefone=" + telefone + ", celular=" + celular + ", email=" + email + ", statusCnpj="
-				+ statusCnpj + ", simplesNacional=" + simplesNacional + ", dataAbertura=" + dataAbertura
-				+ ", enderecoCorretora=" + enderecoCorretora + ", conta=" + conta + "]";
+		StringBuffer sbRepresentantes = new StringBuffer("");
+		representantes.forEach((r)->{
+			sbRepresentantes.append(r.toString());
+		});
+		return "Corretora [" 
+				+ "cdCorretora=" + cdCorretora 
+				+ ", cnpj=" + cnpj 
+				+ ", razaoSocial=" + razaoSocial 
+				+ ", cnae=" + cnae 
+				+ ", telefone=" + telefone 
+				+ ", celular=" + celular 
+				+ ", email=" + email 
+				+ ", statusCnpj=" + statusCnpj 
+				+ ", simplesNacional=" + simplesNacional 
+				+ ", dataAbertura=" + dataAbertura
+				+ ", enderecoCorretora=" + enderecoCorretora 
+				+ ", conta=" + conta 
+				+ ", representantes=" + sbRepresentantes.toString() //201809041543 - esert - COR-690
+				+ "]";
 	}    
 	
 }
