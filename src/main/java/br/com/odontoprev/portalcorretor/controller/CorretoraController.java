@@ -79,11 +79,13 @@ public class CorretoraController {
                 .collect(Collectors.toList());
 
         Stream<Proposta> propostas = Stream.concat(propostasPF.stream().peek(i -> i.setTipoPlano("PF")), propostasPME.stream().peek(i -> i.setTipoPlano("PME")));
+        Stream<Proposta> propostas2 = Stream.concat(propostasPF.stream().peek(i -> i.setTipoPlano("PF")), propostasPME.stream().peek(i -> i.setTipoPlano("PME")));
 
 
         corretora.setPropostas(dashsConverter);
         Long aprovada = propostas.filter(p -> p.getStatusVenda().equals("Proposta concluida com sucesso")).count();
-        Long criticadas = propostasPF.size() + propostasPME.size() - aprovada;
+        Long criticadas = propostas2.filter(c -> c.getStatusVenda().equals("Proposta criticada")).count();
+        //Long criticadas = propostasPF.size() + propostasPME.size() - aprovada;
 
         corretora.setPropostaPF(propostasPME);
         corretora.setPropostaPME(propostasPF);
