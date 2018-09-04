@@ -1,7 +1,5 @@
 package br.com.odontoprev.portalcorretor.service;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +27,6 @@ public class CorretoraService {
 	 
 	 @Autowired
 	 private ApiManagerTokenService apiManagerTokenService;
-	 
 	 public Corretora ObterDadosCorretora(String cnpj) {
 		 
 		 String url = requesBasetUrl + dadosCorretora + cnpj;
