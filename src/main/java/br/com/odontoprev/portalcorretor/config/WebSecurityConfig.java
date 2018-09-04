@@ -25,7 +25,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("login","index", "/cadastro/**", "/img/**", "/css/**", "/js/**", "/fonts/**","/get_token/**", "/esqueci-minha-senha/**", "/recuperar_senha", "/propertie", "/propertie/**").permitAll()
                 .antMatchers( "/app/**", "/config/**", "/repositorio/**", "/slick/**", "/componente/**").permitAll()
                 .antMatchers("/termoAceite/**").permitAll()
-                .antMatchers("/**").hasAnyAuthority("Corretora","Corretor","Adiministrador")
                 .antMatchers("/corretora/**").hasAuthority("Corretora")
                 .antMatchers("/admin/**").hasAuthority("Adiministrador")
                 .antMatchers("/forcavenda/**").hasAuthority("Corretor")
