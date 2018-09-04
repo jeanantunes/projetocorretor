@@ -1,5 +1,9 @@
 package br.com.odontoprev.portalcorretor.service;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -15,6 +19,8 @@ import br.com.odontoprev.portalcorretor.service.dto.Corretora;
 @Service
 public class CorretoraService {
 	
+	 private static final Log log = LogFactory.getLog(CorretoraService.class);
+
 	 @Value("${odontoprev.servicebase.url}")
 	 private String requesBasetUrl;
 	 
@@ -42,7 +48,8 @@ public class CorretoraService {
 	            }
 
 	        } catch (Exception e) {
-	            e.printStackTrace();
+	            //e.printStackTrace();
+	            log.error(e); 
 	            return new Corretora();
 	        }				 
 	 }
