@@ -1,6 +1,7 @@
 package br.com.odontoprev.portalcorretor.controller;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -29,6 +30,7 @@ import br.com.odontoprev.portalcorretor.service.dto.DashResponse;
 import br.com.odontoprev.portalcorretor.service.dto.DashboardPropostas;
 import br.com.odontoprev.portalcorretor.service.dto.ForcaVenda;
 import br.com.odontoprev.portalcorretor.service.dto.Proposta;
+import br.com.odontoprev.portalcorretor.service.dto.Representante;
 import br.com.odontoprev.portalcorretor.service.entity.FiltroStatusProposta;
 
 @Controller
@@ -150,6 +152,7 @@ public class CorretoraController {
     }
 
 
+    //201809042005 - esert - COR-692 nova controller para ver dados corretora
     @RequestMapping(value = "corretora/editar/home", method = RequestMethod.GET)
 	public ModelAndView editarHome(HttpSession session) {
 	
@@ -157,6 +160,15 @@ public class CorretoraController {
 	
 	    Corretora corretora = corretoraService.ObterDadosCorretora(usuario.getDocumento());
 	
+	    //201809042005 - qg para ver doi2 representantes legais 
+	    corretora.setRepresentantes(new ArrayList<Representante>());
+	    corretora.getRepresentantes().add(new Representante());
+	    corretora.getRepresentantes().get(0).setNome("Nome Representante 1");;
+	    corretora.getRepresentantes().get(0).setCpf("Cpf Representante 1");;
+	    corretora.getRepresentantes().add(new Representante());
+	    corretora.getRepresentantes().get(1).setNome("Nome Representante 2");;
+	    corretora.getRepresentantes().get(1).setCpf("Cpf Representante 2");;
+	    
 	    return new ModelAndView("corretora/editar/meus_dados", "corretora", corretora);
 	}
 
