@@ -8,7 +8,7 @@ public class Corretora implements Serializable {
 
     private static final long serialVersionUID = 2180567984276302023L;
 
-    private long cdCorretora;
+    private Integer cdCorretora;
     private String cnpj;
     private String razaoSocial;
     private String cnae;
@@ -28,11 +28,17 @@ public class Corretora implements Serializable {
 
     private List<Representante> representantes;
 
-    public long getCdCorretora() {
+    public Corretora() {
+    }
+
+    public Corretora(Integer codigoCorretora) {
+    }
+
+    public Integer getCdCorretora() {
         return cdCorretora;
     }
 
-    public void setCdCorretora(long cdCorretora) {
+    public void setCdCorretora(Integer cdCorretora) {
         this.cdCorretora = cdCorretora;
     }
 
