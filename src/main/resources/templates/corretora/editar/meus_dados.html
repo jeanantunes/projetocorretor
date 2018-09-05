@@ -38,7 +38,6 @@
 		<div class="container-logado padding-logado">
 			<div class="row">
 				<div class="col-xs-12 row">
-
             		<div class="titleResumoPropBlue"><p>DADOS DA CORRETORA</p></div>
             		<table class="col-xs-12">
 		                <tr>
@@ -46,7 +45,7 @@
 								<label class="label-odont">CNPJ</label> 
 								<div class="p-odont" th:name="${corretora.cnpj}" th:text="${corretora.cnpj}"></div>
 		                	</td>
-		                </tr>
+		                </tr>		                
 		                <tr>
 		                    <td>
 								<label class="label-odont">RAZ&Atilde;O SOCIAL</label> 
@@ -101,118 +100,48 @@
 		                </tr>
 		            </table>
 		        </div>
+				<div class="col-xs-12 row">
+	           		<div class="titleResumoPropBlue"><p>ENDERE&Ccedil;O DA CORRETORA</p></div>
+	           		<table class="col-xs-12">
+		                <tr>
+							<td>
+								<label class="label-odont">CEP</label> 
+								<div class="p-odont" th:name="${corretora.enderecoCorretora.cep}" th:text="${corretora.enderecoCorretora.cep}"></div>
+		                	</td>
+		                </tr>
+		                <tr>
+							<td>
+								<label class="label-odont">ENDERE&Ccedil;O</label> 
+								<div class="p-odont" th:name="${corretora.enderecoCorretora.logradouro}" th:text="${corretora.enderecoCorretora.logradouro}"></div>
+		                	</td>
+							<td>
+								<label class="label-odont">N&Uacute;MERO</label> 
+								<div class="p-odont" th:name="${corretora.enderecoCorretora.numero}" th:text="${corretora.enderecoCorretora.numero}"></div>
+		                	</td>
+							<td>
+								<label class="label-odont">COMPLEMENTO</label> 
+								<div class="p-odont" th:name="${corretora.enderecoCorretora.complemento}" th:text="${corretora.enderecoCorretora.complemento}"></div>
+		                	</td>
+		                </tr>
+		                <tr>
+							<td>
+								<label class="label-odont">BAIRRO</label> 
+								<div class="p-odont" th:name="${corretora.enderecoCorretora.bairro}" th:text="${corretora.enderecoCorretora.bairro}"></div>
+		                	</td>
+							<td>
+								<label class="label-odont">CIDADE</label> 
+								<div class="p-odont" th:name="${corretora.enderecoCorretora.cidade}" th:text="${corretora.enderecoCorretora.cidade}"></div>
+		                	</td>
+							<td>
+								<label class="label-odont">ESTADO</label> 
+								<div class="p-odont" th:name="${corretora.enderecoCorretora.estado}" th:text="${corretora.enderecoCorretora.estado}"></div>
+		                	</td>
+		                </tr>
+	           		</table>
+				</div>
 		    </div>  
-
-<!--
-
-						<div class="col-xs-12">
-							<div class="form-group inline space-right width-form3">
-								<label class="label-email">E-MAIL </label> 
-								<input type="text" id="emailEditarCadastroSouDono" class="email form-control" th:field="*{email}">
-							</div>
-						</div>
-
-						<div class="col-xs-12">
-							<h4 class="labelEndCorretoraDonoDeCorretora sub-title space-top-60"> ENDEREÇO DA CORRETORA</h4>
-
-							<div class="form-group space-right width-form3 space-top-40">
-								<label class="label-cep space-top-40">CEP</label> 
-								<input type="text" id="cepEditarCadastroSouDono" class=" cep form-control" th:field="*{enderecoCorretora.cep}"> <a href=" "> 
-								<img th:src="@{/img/magnifie.png}" class="icone-revelar-senha" align="right">
-								</a>
-							</div>
-
-							<div class="form-group inline space-right width-form1 space-top-30">
-								<label class="label-endereco">ENDEREÇO</label> 
-								<input type="text" id="enderecoEditarCadastroSouDono" class="endereco form-control " th:field="*{enderecoCorretora.logradouro}">
-							</div>
-
-							<div class="form-group inline space-right width-form3">
-								<label class="label-numero">NÚMERO</label> 
-								<input type="text" id="numeroEditarCadastroSouDono" class="numero form-control " th:field="*{enderecoCorretora.numero}">
-							</div>
-						</div>
-
-						<div class="col-xs-12">
-							<div class="form-group inline space-right width-form3 space-top-30">
-								<label form="complemento" class="label-complemento">COMPLEMENTO</label>
-								<input type="text" id="complementoEditarCadastroSouDono" class="complemento form-control" th:field="*{enderecoCorretora.complemento}">
-							</div>
-
-							<div class="form-group inline space-right width-form3">
-								<label form="bairro" class="label-bairro">BAIRRO</label> 
-								<input type="text" id="bairroEditarCadastroSouDono" class=" bairro form-control " th:field="*{enderecoCorretora.bairro}">
-							</div>
-
-							<div class="form-group inline space-right width-form2">
-								<label form="cidade" class="label-cidade">CIDADE</label> 
-								<input type="text" id="cidadeEditarCadastroSouDono" class="cidade form-control" th:field="*{enderecoCorretora.cidade}">
-							</div>
-
-							<div class="form-group inline space-right">
-								<label class="label-estado">ESTADO</label> <select
-									class="form-control form-control-custom"
-									id="estado estadoEditarCadastroSouDono">
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-									<option>5</option>
-								</select>
-							</div>
-						</div>
-
-						<div class="col-xs-12">
-							<h4
-								class="labelEndCorretoraDonoDeCorretora sub-title space-top-60">
-								DADOS BANCÁRIOS</h4>
-
-							<div class="row">
-								<div class="col-xs-12">
-
-									<div class="form-group inline space-right width-form3 space-top-30">
-										<label form="complemento" class="label-banco">Banco</label> 
-										<input type="text" id="bancoEditarCadastroSouDono" class="banco form-control" th:field="*{conta.codigoBanco}"> <a href=" "> 
-										<img th:src="@{/img/magnifie.png}" class="icone-revelar-senha" align="right">
-										</a>
-									</div>
-									<div class="form-group inline space-right width-form3">
-										<label form="bairro" class="label-agencia">Agência</label> 
-										<input type="text" id="agenciaEditarCadastroSouDono" class="agencia form-control" th:field="*{conta.codigoAgencia}">
-									</div>
-
-									<div class="form-group inline space-right width-form2">
-										<label form="cidade" class="label-conta">Conta</label> 
-										<input type="text" id="contaEditarCadastroSouDono" class=" conta form-control" th:field="*{conta.numeroConta}">
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-xs-12">
-							<h4
-								class="labelCadastroDeSenhaDonoDeCorretora sub-title space-top-60">
-								SENHA</h4>
-							<div class="form-group width-form3 space-top-40">
-								<label class="label-sennhaCadastroSouDono space-top-60">
-									Editar senha</label> <input type="password"
-									id="senhaEditarCadastroSouDono"
-									class=" sennhaCadastroSouDono form-control"> <img
-									th:src="@{/img/senha-1@2x.png}"
-									id="icone-senhaEditarCadastroSouDono"
-									class="icone-revelar-senha" align="right">
-
-							</div>
-							<div class="space-top-30">
-								<a type="button"
-									class="btn btnBlue btn-width-custom space-top-10 uppercase">EDITAR
-									MEUS DADOS</a>
-							</div>
-						</div>
-
--->
-
 		</div>
+		
 		<div th:replace="fragments/footer :: footer">&nbsp;</div>
 	</div>
 	<script type="text/javascript" th:src="@{/js/setColorMenuCorretor.js}"></script>
