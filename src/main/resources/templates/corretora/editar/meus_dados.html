@@ -37,15 +37,15 @@
 
 		<div class="container-logado padding-logado">
 			<div class="row">
-				<div class="col-xs-12" row>
+				<div class="col-xs-12 row">
 
             		<div class="titleResumoPropBlue"><p>DADOS DA CORRETORA</p></div>
             		<table class="col-xs-12">
 		                <tr>
-		                    <td>
+							<td>
 								<label class="label-odont">CNPJ</label> 
 								<div class="p-odont" th:name="${corretora.cnpj}" th:text="${corretora.cnpj}"></div>
-		                    </td>
+		                	</td>
 		                </tr>
 		                <tr>
 		                    <td>
@@ -77,8 +77,26 @@
 								<div class="p-odont" th:name="${representante.nome}" th:text="${representante.nome}"></div>
 		                    </td>
 		                    <td>
+								<label class="label-odont"></label> 
+								<div class="p-odont"></div>
+		                    </td>
+		                    <td>
 								<label class="label-odont">CPF</label> 
 								<div class="p-odont" th:name="${representante.cpf}" th:text="${representante.cpf}"></div>
+		                    </td>
+		                </tr>
+		                <tr>
+		                    <td>
+								<label class="label-odont">TELEFONE</label> 
+								<div class="p-odont" th:name="${corretora.telefone}" th:text="${corretora.telefone}"></div>
+		                    </td>
+		                    <td>
+								<label class="label-odont">CELULAR</label> 
+								<div class="p-odont" th:name="${corretora.celular}" th:text="${corretora.celular}"></div>
+		                    </td>
+		                    <td>
+								<label class="label-odont">E-MAIL</label> 
+								<div class="p-odont" th:name="${corretora.email}" th:text="${corretora.email}"></div>
 		                    </td>
 		                </tr>
 		            </table>
@@ -86,37 +104,8 @@
 		    </div>  
 
 <!--
-						<div class="col-xs-12">
-							<div class="form-group inline space-right width-form1 space-top-30">
-								<label class="label-nomeCadastroSouDono">NOME DO REPRESENTATE LEGAL</label> 
-								<input type="text" id="nomeCadastroSouDono" class=" nomeCadastroSouDono form-control" readonly="readonly">
-							</div>
-							<div class="form-group inline width-form3">
-								<label class="label-cpf">CPF</label> 
-								<input type="text" id="cpEditarCadastroSouDono" class="cpf form-control " readonly="readonly">
-							</div>
-						</div>
 
 						<div class="col-xs-12">
-							<div class="form-group inline space-right width-form1 space-top-30">
-								<label class="label-nomeSubCadastroSouDono">NOME DO REPRESENTATE LEGAL</label> 
-								<input type="text" id="nomeSubEditarCadastroSouDono" class=" nomeSubCadastroSouDono form-control" readonly="readonly">
-							</div>
-							<div class="form-group inline width-form3">
-								<label class="label-cpfCadastroSouDono">CPF</label> 
-								<input type="text" id="cpfEditarCadastroSouDono" class="cpfCadastroSouDono form-control " readonly="readonly">
-							</div>
-						</div>
-
-						<div class="col-xs-12">
-							<div class="form-group inline space-right width-form3 space-top-30">
-								<label class="label-telefone">TELEFONE</label> 
-								<input type="text" id="telefoneEditarCadastroSouDono" class="telefone form-control" th:field="*{telefone}">
-							</div>
-							<div class="form-group inline space-right width-form3">
-								<label class="label-celularCadastroSouDono">CELULAR</label> 
-								<input type="text" id="celularEditarCadastroSouDono" class="celularCadastroSouDono form-control" th:field="*{celular}">
-							</div>
 							<div class="form-group inline space-right width-form3">
 								<label class="label-email">E-MAIL </label> 
 								<input type="text" id="emailEditarCadastroSouDono" class="email form-control" th:field="*{email}">
