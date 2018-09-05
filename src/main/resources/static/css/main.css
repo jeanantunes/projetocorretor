@@ -616,6 +616,10 @@ nav.sidebar, .main {
 /* exibiÃ§Ã£o do lado pequeno / mÃ©dio */
 @media (min-width: 768px) {
 
+    .modal-dialog {
+        width: 500px;
+    }
+
     /*Permitir que o principal seja ao lado de Nav*/
     .main {
         position: absolute;
@@ -1649,6 +1653,12 @@ nav:hover .forAnimate {
 @media screen and (max-width: 640px) {
 
     /*** LOGIN ***/
+
+    .modal-title {
+        margin-top:20px !important;
+        font-size: 16px !important;
+    }
+
     .ajuste-forme {
         position: absolute;
         top: 100px;
@@ -1659,8 +1669,8 @@ nav:hover .forAnimate {
     .font-blue {
         color: #1974CE;
         width: 90% !important;
-        margin-top: -40px !important;
-        font-size: 25px !important;
+        margin-top: -40px;
+        font-size: 25px;
     }
 
     img.img-senha {
@@ -1815,6 +1825,12 @@ nav:hover .forAnimate {
     }
 
     /*** LOGIN ***/
+
+    .modal-title {
+        margin-top:20px !important;
+        font-size: 16px !important;
+    }
+
     .font-sucesso {
         font-size: 16px;
     }
@@ -1839,8 +1855,8 @@ nav:hover .forAnimate {
     .font-blue {
         color: #1974CE;
         width: 90% !important;
-        margin-top: -40px !important;
-        font-size: 25px !important;
+        margin-top: -40px;
+        font-size: 25px;
     }
 
     img.img-senha {
@@ -1981,6 +1997,11 @@ nav:hover .forAnimate {
     }
 
     /*** LOGIN ***/
+    .modal-title {
+        margin-top:20px !important;
+        font-size: 16px !important;
+    }
+
     .font-sucesso {
         font-size: 16px;
     }
@@ -2028,8 +2049,8 @@ nav:hover .forAnimate {
     .font-blue {
         color: #1974CE;
         width: 90% !important;
-        margin-top: -40px !important;
-        font-size: 25px !important;
+        margin-top: -40px;
+        font-size: 25px;
     }
 
     img.img-senha {
@@ -2169,6 +2190,11 @@ nav:hover .forAnimate {
     }
 
     /*** LOGIN ***/
+    .modal-title {
+        margin-top:20px !important;
+        font-size: 16px !important;
+    }
+
     .ajuste-forme {
         position: absolute;
         top: 100px;
@@ -2179,8 +2205,8 @@ nav:hover .forAnimate {
     .font-blue {
         color: #1974CE;
         width: 90% !important;
-        margin-top: -40px !important;
-        font-size: 25px !important;
+        margin-top: -40px;
+        font-size: 25px;
     }
 
     img.img-senha {
@@ -2327,6 +2353,12 @@ nav:hover .forAnimate {
     }
 
     /*** LOGIN ***/
+
+    .modal-title {
+        margin-top:20px !important;
+        font-size: 16px !important;
+    }
+
     .ajuste-forme {
         position: absolute;
         top: 100px;
@@ -2337,8 +2369,8 @@ nav:hover .forAnimate {
     .font-blue {
         color: #1974CE;
         width: 90% !important;
-        margin-top: -40px !important;
-        font-size: 25px !important;
+        margin-top: -40px;
+        font-size: 25px;
     }
 
     img.img-senha {
@@ -2485,6 +2517,12 @@ nav:hover .forAnimate {
     }
 
     /*** LOGIN ***/
+
+    .modal-title {
+        margin-top:20px !important;
+        font-size: 16px !important;
+    }
+
     .width-form1 {
         width: 44%;
     }
@@ -2535,8 +2573,8 @@ nav:hover .forAnimate {
     .font-blue {
         color: #1974CE;
         width: 90% !important;
-        margin-top: -40px !important;
-        font-size: 25px !important;
+        margin-top: -40px;
+        font-size: 25px;
     }
 
     img.img-senha {
@@ -2704,6 +2742,11 @@ nav:hover .forAnimate {
 }
 
 @media screen and (max-width: 414px) and (max-width: 414px) {
+
+    .modal-title {
+        margin-top:20px !important;
+        font-size: 16px !important;
+    }
 
     .padding-logado {
         padding-left: 0px !important;

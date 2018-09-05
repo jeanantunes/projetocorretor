@@ -310,5 +310,9 @@ $(document).ready(function () {
 
     });
 
+    $(window).on('load',function(){
+        $('#modalAtualizaContrato').modal('show');
+    });
+
 });
 
