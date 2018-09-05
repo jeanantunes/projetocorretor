@@ -161,13 +161,13 @@ public class CorretoraController {
 	    Corretora corretora = corretoraService.ObterDadosCorretora(usuario.getDocumento());
 	
 	    //201809042005 - qg para ver doi2 representantes legais 
-	    corretora.setRepresentantes(new ArrayList<Representante>());
-	    corretora.getRepresentantes().add(new Representante());
-	    corretora.getRepresentantes().get(0).setNome("Nome Representante 1");
-	    corretora.getRepresentantes().get(0).setCpf("Cpf Representante 1");
-	    corretora.getRepresentantes().add(new Representante());
-	    corretora.getRepresentantes().get(1).setNome("Nome Representante 2");
-	    corretora.getRepresentantes().get(1).setCpf("Cpf Representante 2");
+//	    corretora.setRepresentantes(new ArrayList<Representante>());
+//	    corretora.getRepresentantes().add(new Representante());
+//	    corretora.getRepresentantes().get(0).setNome("Nome Representante 1");
+//	    corretora.getRepresentantes().get(0).setCpf("Cpf Representante 1");
+//	    corretora.getRepresentantes().add(new Representante());
+//	    corretora.getRepresentantes().get(1).setNome("Nome Representante 2");
+//	    corretora.getRepresentantes().get(1).setCpf("Cpf Representante 2");
 	    
 	    //201809051258 - esert - de/para simples nacional
 	    switch (corretora.getSimplesNacional()) {
