@@ -163,11 +163,39 @@ public class CorretoraController {
 	    //201809042005 - qg para ver doi2 representantes legais 
 	    corretora.setRepresentantes(new ArrayList<Representante>());
 	    corretora.getRepresentantes().add(new Representante());
-	    corretora.getRepresentantes().get(0).setNome("Nome Representante 1");;
-	    corretora.getRepresentantes().get(0).setCpf("Cpf Representante 1");;
+	    corretora.getRepresentantes().get(0).setNome("Nome Representante 1");
+	    corretora.getRepresentantes().get(0).setCpf("Cpf Representante 1");
 	    corretora.getRepresentantes().add(new Representante());
-	    corretora.getRepresentantes().get(1).setNome("Nome Representante 2");;
-	    corretora.getRepresentantes().get(1).setCpf("Cpf Representante 2");;
+	    corretora.getRepresentantes().get(1).setNome("Nome Representante 2");
+	    corretora.getRepresentantes().get(1).setCpf("Cpf Representante 2");
+	    
+	    //201809051258 - esert - de/para simples nacional
+	    switch (corretora.getSimplesNacional()) {
+		    case "S":
+		    	corretora.setSimplesNacional("Sim");
+		    	break;
+		    case "N":
+		    	corretora.setSimplesNacional("Não");
+		    	break;
+		    default:
+		    	//deixa como está =]
+		    	break;
+	    }
+	    
+	    //201809051005 - esert - de/para letras/palavras vide fernando@odpv
+	    switch (corretora.getStatusCnpj()) {
+			case "A":
+			case "S":
+				corretora.setStatusCnpj("Ativo");
+				break;
+			case "I":
+			case "N":
+				corretora.setStatusCnpj("Inativo");
+				break;
+			default:
+				//deixa como está =]
+				break;
+		}
 	    
 	    return new ModelAndView("corretora/editar/meus_dados", "corretora", corretora);
 	}
