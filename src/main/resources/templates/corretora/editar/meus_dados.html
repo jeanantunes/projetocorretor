@@ -37,114 +37,132 @@
 
 		<div class="container-logado padding-logado">
 			<div class="row">
-				<div class="col-xs-12 row">
-            		<div class="titleResumoPropBlue"><p>DADOS DA CORRETORA</p></div>
-            		<table class="col-xs-12">
-		                <tr>
-							<td>
-								<label class="label-odont">CNPJ</label> 
-								<div class="p-odont" th:name="${corretora.cnpj}" th:text="${corretora.cnpj}"></div>
-		                	</td>
-		                </tr>		                
-		                <tr>
-		                    <td>
-								<label class="label-odont">RAZ&Atilde;O SOCIAL</label> 
-								<div class="p-odont" th:name="${corretora.razaoSocial}" th:text="${corretora.razaoSocial}"></div>
-		                    </td>
-		                    <td>
-								<label class="label-odont">CNAE</label> 
-								<div class="p-odont" th:name="${corretora.cnae}" th:text="${corretora.cnae}"></div>
-		                    </td>
-		                    <td>
-								<label class="label-odont">SIMPLES NACIONAL</label> 
-								<div class="p-odont" th:name="${corretora.simplesNacional}" th:text="${corretora.simplesNacional}"></div>
-		                    </td>
-		                </tr>
-		                <tr>
-		                    <td>
-								<label class="label-odont">DATA DE ABERTURA</label> 
-								<div class="p-odont" th:name="${corretora.dataAbertura}" th:text="${corretora.dataAbertura}"></div>
-		                    </td>
-		                    <td>
-								<label class="label-odont">STATUS CNPJ</label> 
-								<div class="p-odont" th:name="${corretora.statusCnpj}" th:text="${corretora.statusCnpj}"></div>
-		                    </td>
-		                </tr>
-		                <tr th:each="representante,rowStat : ${corretora.representantes}">
-		                    <td>
-								<label class="label-odont">NOME DO REPRESENTATE LEGAL</label> 
-								<div class="p-odont" th:name="${representante.nome}" th:text="${representante.nome}"></div>
-		                    </td>
-		                    <td>
-								<label class="label-odont"></label> 
-								<div class="p-odont"></div>
-		                    </td>
-		                    <td>
-								<label class="label-odont">CPF</label> 
-								<div class="p-odont" th:name="${representante.cpf}" th:text="${representante.cpf}"></div>
-		                    </td>
-		                </tr>
-		                <tr>
-		                    <td>
-								<label class="label-odont">TELEFONE</label> 
-								<div class="p-odont" th:name="${corretora.telefone}" th:text="${corretora.telefone}"></div>
-		                    </td>
-		                    <td>
-								<label class="label-odont">CELULAR</label> 
-								<div class="p-odont" th:name="${corretora.celular}" th:text="${corretora.celular}"></div>
-		                    </td>
-		                    <td>
-								<label class="label-odont">E-MAIL</label> 
-								<div class="p-odont" th:name="${corretora.email}" th:text="${corretora.email}"></div>
-		                    </td>
-		                </tr>
-		            </table>
-		        </div>
-				<div class="col-xs-12 row">
-	           		<div class="titleResumoPropBlue"><p>ENDERE&Ccedil;O DA CORRETORA</p></div>
-	           		<table class="col-xs-12">
-		                <tr>
-							<td>
-								<label class="label-odont">CEP</label> 
-								<div class="p-odont" th:name="${corretora.enderecoCorretora.cep}" th:text="${corretora.enderecoCorretora.cep}"></div>
-		                	</td>
-		                </tr>
-		                <tr>
-							<td>
-								<label class="label-odont">ENDERE&Ccedil;O</label> 
-								<div class="p-odont" th:name="${corretora.enderecoCorretora.logradouro}" th:text="${corretora.enderecoCorretora.logradouro}"></div>
-		                	</td>
-							<td>
-								<label class="label-odont">N&Uacute;MERO</label> 
-								<div class="p-odont" th:name="${corretora.enderecoCorretora.numero}" th:text="${corretora.enderecoCorretora.numero}"></div>
-		                	</td>
-							<td>
-								<label class="label-odont">COMPLEMENTO</label> 
-								<div class="p-odont" th:name="${corretora.enderecoCorretora.complemento}" th:text="${corretora.enderecoCorretora.complemento}"></div>
-		                	</td>
-		                </tr>
-		                <tr>
-							<td>
-								<label class="label-odont">BAIRRO</label> 
-								<div class="p-odont" th:name="${corretora.enderecoCorretora.bairro}" th:text="${corretora.enderecoCorretora.bairro}"></div>
-		                	</td>
-							<td>
-								<label class="label-odont">CIDADE</label> 
-								<div class="p-odont" th:name="${corretora.enderecoCorretora.cidade}" th:text="${corretora.enderecoCorretora.cidade}"></div>
-		                	</td>
-							<td>
-								<label class="label-odont">ESTADO</label> 
-								<div class="p-odont" th:name="${corretora.enderecoCorretora.estado}" th:text="${corretora.enderecoCorretora.estado}"></div>
-		                	</td>
-		                </tr>
-	           		</table>
-				</div>
+				<div class="col-xs-12 ">
+            		<div class="form-group col-xs-12 titleResumoPropBlue"><p>DADOS DA CORRETORA</p></div>
+       				<div class="form-group col-xs-12 input-rede-credenciada padding-left-rede" >
+						<label class="label-odont">CNPJ</label> 
+						<div class="p-odont" th:name="${corretora.cnpj}" th:text="${corretora.cnpj}"></div>
+					</div>
+					<div>
+						<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
+							<label class="label-odont">RAZ&Atilde;O SOCIAL</label> 
+							<div class="p-odont" th:name="${corretora.razaoSocial}" th:text="${corretora.razaoSocial}"></div>
+	                    </div>
+						<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
+							<label class="label-odont">CNAE</label> 
+							<div class="p-odont" th:name="${corretora.cnae}" th:text="${corretora.cnae}"></div>
+	                    </div>
+						<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
+							<label class="label-odont">SIMPLES NACIONAL</label> 
+							<div class="p-odont" th:name="${corretora.simplesNacional}" th:text="${corretora.simplesNacional}"></div>
+	                    </div>
+						<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
+							<label class="label-odont">&nbsp;</label> 
+							<div class="p-odont">&nbsp;</div>
+	                    </div>
+					</div>
+	                <div>
+						<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
+							<label class="label-odont">DATA DE ABERTURA</label> 
+							<div class="p-odont" th:name="${corretora.dataAbertura}" th:text="${corretora.dataAbertura}"></div>
+	                    </div>
+						<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
+							<label class="label-odont">STATUS CNPJ</label> 
+							<div class="p-odont" th:name="${corretora.statusCnpj}" th:text="${corretora.statusCnpj}"></div>
+	                    </div>
+						<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
+							<label class="label-odont">&nbsp;</label> 
+							<div class="p-odont">&nbsp;</div>
+	                    </div>
+						<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
+							<label class="label-odont">&nbsp;</label> 
+							<div class="p-odont">&nbsp;</div>
+	                    </div>
+	                </div>
+	                <div th:each="representante,rowStat : ${corretora.representantes}">
+						<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
+							<label class="label-odont">NOME DO REPRESENTATE LEGAL</label> 
+							<div class="p-odont" th:name="${representante.nome}" th:text="${representante.nome}"></div>
+	                    </div>
+						<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
+							<label class="label-odont"></label> 
+							<div class="p-odont"></div>
+	                    </div>
+						<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
+							<label class="label-odont">CPF</label> 
+							<div class="p-odont" th:name="${representante.cpf}" th:text="${representante.cpf}"></div>
+	                    </div>
+						<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
+							<label class="label-odont">&nbsp;</label> 
+							<div class="p-odont">&nbsp;</div>
+	                    </div>
+	                </div>
+	                <div>
+						<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
+							<label class="label-odont">TELEFONE</label> 
+							<div class="p-odont" th:name="${corretora.telefone}" th:text="${corretora.telefone}"></div>
+	                    </div>
+						<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
+							<label class="label-odont">CELULAR</label> 
+							<div class="p-odont" th:name="${corretora.celular}" th:text="${corretora.celular}"></div>
+	                    </div>
+						<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
+							<label class="label-odont">E-MAIL</label> 
+							<div class="p-odont" th:name="${corretora.email}" th:text="${corretora.email}"></div>
+	                    </div>
+	                </div>
+            		<div class="form-group col-xs-12 titleResumoPropBlue"><p>ENDERE&Ccedil;O DA CORRETORA</p></div>
+       				<div class="form-group col-xs-12 input-rede-credenciada padding-left-rede" >
+						<label class="label-odont">CEP</label> 
+						<div class="p-odont" th:name="${corretora.enderecoCorretora.cep}" th:text="${corretora.enderecoCorretora.cep}"></div>
+	                </div>
+	                <div>
+	                	<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
+							<label class="label-odont">ENDERE&Ccedil;O</label> 
+							<div class="p-odont" th:name="${corretora.enderecoCorretora.logradouro}" th:text="${corretora.enderecoCorretora.logradouro}"></div>
+	                	</div>
+	                	<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
+							<label class="label-odont">N&Uacute;MERO</label> 
+							<div class="p-odont" th:name="${corretora.enderecoCorretora.numero}" th:text="${corretora.enderecoCorretora.numero}"></div>
+	                	</div>
+	                	<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
+							<label class="label-odont">COMPLEMENTO</label> 
+							<div class="p-odont" th:name="${corretora.enderecoCorretora.complemento}" th:text="${corretora.enderecoCorretora.complemento}"></div>
+	                	</div>
+						<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
+							<label class="label-odont">&nbsp;</label> 
+							<div class="p-odont">&nbsp;</div>
+	                    </div>
+	                </div>
+	                <div>
+	                	<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
+							<label class="label-odont">BAIRRO</label> 
+							<div class="p-odont" th:name="${corretora.enderecoCorretora.bairro}" th:text="${corretora.enderecoCorretora.bairro}"></div>
+	                	</div>
+	                	<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
+							<label class="label-odont">CIDADE</label> 
+							<div class="p-odont" th:name="${corretora.enderecoCorretora.cidade}" th:text="${corretora.enderecoCorretora.cidade}"></div>
+	                	</div>
+	                	<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
+							<label class="label-odont">ESTADO</label> 
+							<div class="p-odont" th:name="${corretora.enderecoCorretora.estado}" th:text="${corretora.enderecoCorretora.estado}"></div>
+	                	</div>
+						<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
+							<label class="label-odont">&nbsp;</label> 
+							<div class="p-odont">&nbsp;</div>
+	                    </div>
+						<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
+							<label class="label-odont">&nbsp;</label> 
+							<div class="p-odont">&nbsp;</div>
+	                    </div>
+	                </div>
+			    </div>  
 		    </div>  
 		</div>
 		
 		<div th:replace="fragments/footer :: footer">&nbsp;</div>
 	</div>
-	<script type="text/javascript" th:src="@{/js/setColorMenuCorretor.js}"></script>
+	<script type="text/javascript" th:src="@{/js/setColorMenuCorretora.js}"></script>
 </body>
 
 </html>
