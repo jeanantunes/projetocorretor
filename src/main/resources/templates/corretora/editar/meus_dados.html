@@ -5,12 +5,13 @@
 	<meta charset="UTF-8">
 	<!--<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<link rel="shortcut icon" th:href="@{/img/odpv.PNG}" type="image/png"/>
 	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
 	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-theme.min.css}"/>
 	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
 	<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
 	<link rel="stylesheet" type="text/css" th:href="@{/css/odontoprev.css}"/>
-	
+	<link rel="stylesheet" type="text/css" th:href="@{/css/meus_dados_corretora.css}"/>
 	<script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
 	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
 	<script type="text/javascript" th:src="@{/js/jquery.mask.min.js}"></script>
@@ -26,6 +27,12 @@
         });
 	</script>
 
+	<style>
+		label{
+			margin-bottom: 0px;
+		}
+	</style>
+
 </head>
 
 <body style="min-width: 100% !important;">
@@ -37,124 +44,116 @@
 
 		<div class="container-logado padding-logado">
 			<div class="row">
-				<div class="col-xs-12 ">
-            		<div class="form-group col-xs-12 titleResumoPropBlue"><p>DADOS DA CORRETORA</p></div>
-       				<div class="form-group col-xs-12 input-rede-credenciada padding-left-rede" >
+				<div class="col-xs-12 margin-top-0">
+            		<div class="form-group col-xs-12 titleResumoPropBlue margin-top-0"><p>DADOS DA CORRETORA</p></div>
+       				<div class="form-group col-xs-12 input-rede-credenciada " >
 						<label class="label-odont">CNPJ</label> 
 						<div class="p-odont" th:name="${corretora.cnpj}" th:text="${corretora.cnpj}"></div>
 					</div>
 					<div>
-						<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
+						<div class="form-group col-sm-3 input-rede-credenciada" >
 							<label class="label-odont">RAZ&Atilde;O SOCIAL</label> 
 							<div class="p-odont" th:name="${corretora.razaoSocial}" th:text="${corretora.razaoSocial}"></div>
 	                    </div>
-						<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
+						<div class="form-group col-sm-3 input-rede-credenciada" >
 							<label class="label-odont">CNAE</label> 
 							<div class="p-odont" th:name="${corretora.cnae}" th:text="${corretora.cnae}"></div>
 	                    </div>
-						<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
+						<div class="form-group col-sm-3 input-rede-credenciada" >
 							<label class="label-odont">SIMPLES NACIONAL</label> 
 							<div class="p-odont" th:name="${corretora.simplesNacional}" th:text="${corretora.simplesNacional}"></div>
 	                    </div>
-						<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
-							<label class="label-odont">&nbsp;</label> 
-							<div class="p-odont">&nbsp;</div>
+						<div class="form-group col-sm-3 input-rede-credenciada margin-bottom-0">
+							<div class="campo-vazio"><label></label></div>
 	                    </div>
 					</div>
 	                <div>
-						<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
+						<div class="form-group col-sm-3 input-rede-credenciada " >
 							<label class="label-odont">DATA DE ABERTURA</label> 
 							<div class="p-odont" th:name="${corretora.dataAbertura}" th:text="${corretora.dataAbertura}"></div>
 	                    </div>
-						<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
+						<div class="form-group col-sm-3 input-rede-credenciada" >
 							<label class="label-odont">STATUS CNPJ</label> 
 							<div class="p-odont" th:name="${corretora.statusCnpj}" th:text="${corretora.statusCnpj}"></div>
 	                    </div>
-						<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
-							<label class="label-odont">&nbsp;</label> 
-							<div class="p-odont">&nbsp;</div>
-	                    </div>
-						<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
-							<label class="label-odont">&nbsp;</label> 
-							<div class="p-odont">&nbsp;</div>
-	                    </div>
+						<div class="form-group col-sm-3 input-rede-credenciada margin-bottom-0">
+							<div class="campo-vazio"><label></label></div>
+						</div>
+						<div class="form-group col-sm-3 input-rede-credenciada margin-bottom-0">
+							<div class="campo-vazio"><label></label></div>
+						</div>
 	                </div>
 	                <div th:each="representante,rowStat : ${corretora.representantes}">
-						<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
+						<div class="form-group col-sm-3 input-rede-credenciada " >
 							<label class="label-odont">NOME DO REPRESENTATE LEGAL</label> 
 							<div class="p-odont" th:name="${representante.nome}" th:text="${representante.nome}"></div>
 	                    </div>
-						<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
-							<label class="label-odont"></label> 
-							<div class="p-odont"></div>
-	                    </div>
-						<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
+						<div class="form-group col-sm-3 input-rede-credenciada margin-bottom-0">
+							<div class="campo-vazio"><label></label></div>
+						</div>
+						<div class="form-group col-sm-3 input-rede-credenciada" >
 							<label class="label-odont">CPF</label> 
 							<div class="p-odont" th:name="${representante.cpf}" th:text="${representante.cpf}"></div>
 	                    </div>
-						<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
-							<label class="label-odont">&nbsp;</label> 
-							<div class="p-odont">&nbsp;</div>
-	                    </div>
+						<div class="form-group col-sm-3 input-rede-credenciada margin-bottom-0">
+							<div class="campo-vazio"><label></label></div>
+						</div>
 	                </div>
 	                <div>
-						<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
+						<div class="form-group col-sm-3 input-rede-credenciada " >
 							<label class="label-odont">TELEFONE</label> 
 							<div class="p-odont" th:name="${corretora.telefone}" th:text="${corretora.telefone}"></div>
 	                    </div>
-						<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
+						<div class="form-group col-sm-3 input-rede-credenciada " >
 							<label class="label-odont">CELULAR</label> 
 							<div class="p-odont" th:name="${corretora.celular}" th:text="${corretora.celular}"></div>
 	                    </div>
-						<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
+						<div class="form-group col-sm-3 input-rede-credenciada " >
 							<label class="label-odont">E-MAIL</label> 
 							<div class="p-odont" th:name="${corretora.email}" th:text="${corretora.email}"></div>
 	                    </div>
 	                </div>
             		<div class="form-group col-xs-12 titleResumoPropBlue"><p>ENDERE&Ccedil;O DA CORRETORA</p></div>
-       				<div class="form-group col-xs-12 input-rede-credenciada padding-left-rede" >
+       				<div class="form-group col-xs-12 input-rede-credenciada " >
 						<label class="label-odont">CEP</label> 
 						<div class="p-odont" th:name="${corretora.enderecoCorretora.cep}" th:text="${corretora.enderecoCorretora.cep}"></div>
 	                </div>
 	                <div>
-	                	<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
+	                	<div class="form-group col-sm-3 input-rede-credenciada " >
 							<label class="label-odont">ENDERE&Ccedil;O</label> 
 							<div class="p-odont" th:name="${corretora.enderecoCorretora.logradouro}" th:text="${corretora.enderecoCorretora.logradouro}"></div>
 	                	</div>
-	                	<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
+	                	<div class="form-group col-sm-3 input-rede-credenciada " >
 							<label class="label-odont">N&Uacute;MERO</label> 
 							<div class="p-odont" th:name="${corretora.enderecoCorretora.numero}" th:text="${corretora.enderecoCorretora.numero}"></div>
 	                	</div>
-	                	<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
+	                	<div class="form-group col-sm-3 input-rede-credenciada " >
 							<label class="label-odont">COMPLEMENTO</label> 
 							<div class="p-odont" th:name="${corretora.enderecoCorretora.complemento}" th:text="${corretora.enderecoCorretora.complemento}"></div>
 	                	</div>
-						<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
-							<label class="label-odont">&nbsp;</label> 
-							<div class="p-odont">&nbsp;</div>
-	                    </div>
+						<div class="form-group col-sm-3 input-rede-credenciada margin-bottom-0">
+							<div class="campo-vazio"><label></label></div>
+						</div>
 	                </div>
 	                <div>
-	                	<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
+	                	<div class="form-group col-sm-3 input-rede-credenciada " >
 							<label class="label-odont">BAIRRO</label> 
 							<div class="p-odont" th:name="${corretora.enderecoCorretora.bairro}" th:text="${corretora.enderecoCorretora.bairro}"></div>
 	                	</div>
-	                	<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
+	                	<div class="form-group col-sm-3 input-rede-credenciada " >
 							<label class="label-odont">CIDADE</label> 
 							<div class="p-odont" th:name="${corretora.enderecoCorretora.cidade}" th:text="${corretora.enderecoCorretora.cidade}"></div>
 	                	</div>
-	                	<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
+	                	<div class="form-group col-sm-3 input-rede-credenciada " >
 							<label class="label-odont">ESTADO</label> 
 							<div class="p-odont" th:name="${corretora.enderecoCorretora.estado}" th:text="${corretora.enderecoCorretora.estado}"></div>
 	                	</div>
-						<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
-							<label class="label-odont">&nbsp;</label> 
-							<div class="p-odont">&nbsp;</div>
-	                    </div>
-						<div class="form-group col-sm-3 input-rede-credenciada padding-left-rede" >
-							<label class="label-odont">&nbsp;</label> 
-							<div class="p-odont">&nbsp;</div>
-	                    </div>
+						<div class="form-group col-sm-3 input-rede-credenciada margin-bottom-0">
+							<div class="campo-vazio"><label></label></div>
+						</div>
+						<div class="form-group col-sm-3 input-rede-credenciada margin-bottom-0">
+							<div class="campo-vazio"><label></label></div>
+						</div>
 	                </div>
 			    </div>  
 		    </div>  
