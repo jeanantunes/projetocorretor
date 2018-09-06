@@ -169,10 +169,10 @@
                         Confira o plano escolhido e os dados do cliente abaixo
                     </div>
                     <div class="space-top-30 space-bottom-30">
-                        <div th:style="${detalhesPropostaPF.venda.cdStatusVenda == 1} ? 'display:inline-block' : 'display:none'">
+                        <div th:style="${detalhesPropostaPF.venda.cdStatusVenda == 1} OR ${detalhesPropostaPF.venda.cdStatusVenda == 4} ? 'display:inline-block' : 'display:none'">
                             <span class="text-critica"><b>Erros encontrados</b></span>
                         </div>
-                        <ul th:style="${detalhesPropostaPF.venda.cdStatusVenda == 1} ? 'display:inline-block' : 'display:none'"
+                        <ul th:style="${detalhesPropostaPF.venda.cdStatusVenda == 1} OR ${detalhesPropostaPF.venda.cdStatusVenda == 4} ? 'display:inline-block' : 'display:none'"
                             th:each="critica : ${detalhesPropostaPF.venda.criticas}">
                             <li class="text-critica" th:text="${critica.nome}"></li>
                             <li class="text-critica" th:text="${critica.dsErroRegistro}"></li>
