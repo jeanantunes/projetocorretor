@@ -57,7 +57,7 @@ public class CorretoraTest {
 
 	// 201809051900 - esert - COR-696 - tdd do web controller
 	@Test
-	public void testOk200OPutSalvarEmailCorretora() throws Exception {
+	public void testOk200PutSalvarEmailCorretora() throws Exception {
 		Integer cdCorretora = 21;
 		String email = "emailteste201809051902@corretora.com.br";
 
