@@ -22,11 +22,17 @@
 img.img-erro-email {
     position: absolute;
     max-width: 100%;
+    margin-top: 10px;
+}
+
+#inputEmail{
+    padding-right: 60px;
 }
 
 img.img-align-right {
     position: absolute;
     max-width: 100%;
+    margin-top: 8px;
 }
 
 .input-email-blue{

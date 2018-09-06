@@ -16,6 +16,9 @@ public class CorretoraResponse implements Serializable {
 		this.mensagem = mensagem;
 	}
 
+	public CorretoraResponse() {
+	}
+
 	public long getId() {
 		return id;
 	}

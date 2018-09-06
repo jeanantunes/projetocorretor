@@ -76,7 +76,17 @@ $(document).ready(function () {
             console.log(resp)
             if(resp!=undefined){
                 if(resp.status==undefined){
+                    memoriaInputEmail = $("#inputEmail").val();
                     swal("Parabéns!", "Email alterado com sucesso.", "success");
+                    $("#inputEmail").removeClass("input-email-blue");
+                    $("#inputEmail").removeClass("input-email-red");
+                    $("#inputEmail").addClass("input-email-gray");
+                    $("#btnConfirmarVerde").hide();
+                    $("#btnConfirmarCinza").hide();
+                    $("#btnCancelar").hide();
+                    $("#btnEditarEmail").show();
+                    $("#inputEmail").attr('disabled','disabled');
+
                 } else {
                     //erro
                     swal("Erro!", "Erro ao salvar email.(error)", "error");

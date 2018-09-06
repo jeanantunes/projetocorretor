@@ -76,9 +76,9 @@ public class CorretoraService {
             ObjectMapper mapper = new ObjectMapper();
             mapper.setSerializationInclusion(JsonInclude.Include.USE_DEFAULTS);
             String stringJson = mapper.writeValueAsString(corretora);
-            
+
 			HttpEntity<String> entity = new HttpEntity<String>(stringJson, headers);
-			
+
 			ResponseEntity<CorretoraResponse> retorno = restTemplate.exchange(url, HttpMethod.PUT, entity, CorretoraResponse.class);
 
 			if (retorno.getStatusCode() == HttpStatus.OK) {
