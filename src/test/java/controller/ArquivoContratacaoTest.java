@@ -1,9 +1,10 @@
 package controller;
 
-import br.com.odontoprev.portalcorretor.controller.DetalhesPropostaController;
-import br.com.odontoprev.portalcorretor.model.ArquivoContratacao;
-import br.com.odontoprev.portalcorretor.service.PropostaService;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import javax.ws.rs.core.MediaType;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,10 +19,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import javax.ws.rs.core.MediaType;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import br.com.odontoprev.portalcorretor.controller.DetalhesPropostaController;
+import br.com.odontoprev.portalcorretor.model.ArquivoContratacao;
+import br.com.odontoprev.portalcorretor.service.PropostaService;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = {DetalhesPropostaController.class})
@@ -68,6 +70,7 @@ public class ArquivoContratacaoTest {
                         String.format("attachment; filename=%s", arqContratacao.getNomeArquivo())
                 )
                 .body(arquivoBase64);
+
 
         Mockito.when(propostaService.gerarArquivoContratacao(codigoEmpresa)).thenReturn(arquivo);
         ObjectMapper mapper = new ObjectMapper();

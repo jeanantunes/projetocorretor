@@ -1,7 +1,6 @@
 package br.com.odontoprev.portalcorretor.controller;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -26,11 +25,11 @@ import br.com.odontoprev.portalcorretor.service.DashService;
 import br.com.odontoprev.portalcorretor.service.EnderecoService;
 import br.com.odontoprev.portalcorretor.service.ForcaVendaService;
 import br.com.odontoprev.portalcorretor.service.dto.Corretora;
+import br.com.odontoprev.portalcorretor.service.dto.CorretoraResponse;
 import br.com.odontoprev.portalcorretor.service.dto.DashResponse;
 import br.com.odontoprev.portalcorretor.service.dto.DashboardPropostas;
 import br.com.odontoprev.portalcorretor.service.dto.ForcaVenda;
 import br.com.odontoprev.portalcorretor.service.dto.Proposta;
-import br.com.odontoprev.portalcorretor.service.dto.Representante;
 import br.com.odontoprev.portalcorretor.service.entity.FiltroStatusProposta;
 
 @Controller
@@ -49,7 +48,6 @@ public class CorretoraController {
 
     @Autowired
     EnderecoService enderecoService;
-
 
     @RequestMapping(value = "corretora/home", method = RequestMethod.GET)
     public ModelAndView home(HttpSession session) {
@@ -122,7 +120,7 @@ public class CorretoraController {
 
         UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
 
-        Corretora corretora = corretoraService.ObterDadosCorretora(usuario.getDocumento());
+        Corretora corretora = corretoraService.obterDadosCorretora(usuario.getDocumento());
 
         return new ModelAndView("corretora/cadastro/editar", "corretora", corretora);
     }
@@ -151,23 +149,13 @@ public class CorretoraController {
 
     }
 
-
-    //201809042005 - esert - COR-692 nova controller para ver dados corretora
-    @RequestMapping(value = "corretora/editar/home", method = RequestMethod.GET)
+	//201809042005 - esert - COR-692 nova controller para ver dados corretora
+	@RequestMapping(value = "corretora/editar/home", method = RequestMethod.GET)
 	public ModelAndView editarHome(HttpSession session) {
 	
 	    UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
 	
-	    Corretora corretora = corretoraService.ObterDadosCorretora(usuario.getDocumento());
-	
-	    //201809042005 - qg para ver doi2 representantes legais 
-//	    corretora.setRepresentantes(new ArrayList<Representante>());
-//	    corretora.getRepresentantes().add(new Representante());
-//	    corretora.getRepresentantes().get(0).setNome("Nome Representante 1");
-//	    corretora.getRepresentantes().get(0).setCpf("Cpf Representante 1");
-//	    corretora.getRepresentantes().add(new Representante());
-//	    corretora.getRepresentantes().get(1).setNome("Nome Representante 2");
-//	    corretora.getRepresentantes().get(1).setCpf("Cpf Representante 2");
+	    Corretora corretora = corretoraService.obterDadosCorretora(usuario.getDocumento());
 	    
 	    //201809051258 - esert - de/para simples nacional
 	    switch (corretora.getSimplesNacional()) {
@@ -197,6 +185,24 @@ public class CorretoraController {
 				break;
 		}
 	    
+	    return new ModelAndView("corretora/editar/meus_dados", "corretora", corretora);
+	}
+
+
+    //201809051800 - esert - COR-695 nova controller para ver dados corretora
+    @RequestMapping(value = "corretora/salvaremail", method = RequestMethod.PUT)
+	public ModelAndView salvarEmail(HttpSession session, Corretora corretora) {
+	    log.info("salvarEmail - ini");
+	    log.info(corretora);
+	
+	    //UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
+	
+	    log.info("chamando corretoraService.salvarEmailCorretora()...");
+	    CorretoraResponse corretoraResponse = corretoraService.salvarEmailCorretora(corretora);
+	    log.info("retornou corretoraService.salvarEmailCorretora()...");
+	    log.info(corretoraResponse);
+
+	    log.info("salvarEmail - fim");	    
 	    return new ModelAndView("corretora/editar/meus_dados", "corretora", corretora);
 	}
 
