@@ -1010,11 +1010,9 @@ function salvarRascunhoMemoria() {
 
         if ($("#radio-3").is(":checked") == true) {
             proposta.responsavelContratual.sexo = $("#radio-3").val();
-        } else if ($("#radio-4").is(":checked") == true) {
+        }
+        else {
             proposta.responsavelContratual.sexo = $("#radio-4").val();
-        } else {
-            proposta.responsavelContratual.sexo = $("radio-3").css("radio", ":unchecked");
-            proposta.responsavelContratual.sexo = $("radio-4").css("radio", ":unchecked");
         }
 
         proposta.responsavelContratual.endereco.cep = $(".cep").val();
@@ -1039,12 +1037,10 @@ function salvarRascunhoMemoria() {
     proposta.endereco.estado = $(".estado").val();
 
     if ($("#radio-1").is(":checked") == true) {
-        proposta.responsavelContratual.sexo = $("#radio-1").val();
-    } else if ($("#radio-2").is(":checked") == true) {
-        proposta.responsavelContratual.sexo = $("#radio-2").val();
-    } else {
-        proposta.responsavelContratual.sexo = $("radio-1").css("radio", ":unchecked");
-        proposta.responsavelContratual.sexo = $("radio-2").css("radio", ":unchecked");
+        proposta.sexo = $("#radio-1").val();
+    }
+    else {
+        proposta.sexo = $("#radio-2").val();
     }
 
     var pessoas = get("pessoas");
