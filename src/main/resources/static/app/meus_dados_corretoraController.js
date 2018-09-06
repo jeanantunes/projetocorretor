@@ -119,6 +119,9 @@ function putEmailCorretora(callback) {
         async: true,
         url: metodoSalvarEmailCorretora,
         method: "PUT",
+        headers:{
+            "Content-Type": "application/json"
+        },
         data: JSON.stringify(jsonCorretora),
         success: function (resp) {
             callback(resp);

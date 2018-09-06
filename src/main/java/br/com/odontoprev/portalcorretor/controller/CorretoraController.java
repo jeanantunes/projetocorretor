@@ -15,10 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.odontoprev.portalcorretor.model.ListaPropostas;
@@ -195,7 +192,7 @@ public class CorretoraController {
 
     //201809051800 - esert - COR-695 nova controller para ver dados corretora
     @RequestMapping(value = "corretora/salvaremail", method = RequestMethod.PUT)
-	public ResponseEntity salvarEmail(Corretora corretora) {
+	public ResponseEntity salvarEmail(@RequestBody Corretora corretora) {
 	    log.info("salvarEmail - ini");
 	    log.info(corretora);
 	
