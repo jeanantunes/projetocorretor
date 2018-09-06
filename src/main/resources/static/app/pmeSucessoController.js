@@ -91,7 +91,6 @@ function getPropertie(callback, key){
         url: "/propertie?key=" + key,
         method: "GET",
         success: function (resp) {
-            console.log(resp[key]);
             callback(resp[key]);
         },
         error: function (xhr) {
