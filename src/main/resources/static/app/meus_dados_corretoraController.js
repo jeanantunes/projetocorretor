@@ -42,6 +42,32 @@ $(document).ready(function () {
 
     });
 
+    $("#inputEmail").keyup(function () {
+
+        if( validateEmail( $(this).val() ) ) {
+
+            $(this).removeClass("input-email-red");
+            $(this).removeClass("input-email-gray");
+            $(this).addClass("input-email-blue");
+            $("#btnConfirmarCinza").hide();
+            $("#btnConfirmarVerde").show();
+
+        } else {
+
+            $("#btnConfirmarVerde").hide();
+            $("#btnConfirmarCinza").show();
+
+        }
+
+    });
+
+    $("#inputEmail").focus(function () {
+        $(this).removeClass("input-email-gray");
+        $(this).removeClass("input-email-red");
+        $(this).addClass("input-email-blue");
+
+    });
+
     $("#btnCancelar").click(function () {
 
         $("#inputEmail").val(memoriaInputEmail);
@@ -64,7 +90,9 @@ $(document).ready(function () {
             content: "input",
             showCancelButton: false,
             showConfirmButton: false,
-            imageUrl: "img/icon-aguarde.gif",
+            imageUrl: "../../img/icon-aguarde.gif",
+            allowEscapeKey: false,
+            allowOutsideClick: false,
             icon: "info",
             button: {
                 text: "...",
@@ -73,7 +101,7 @@ $(document).ready(function () {
         });
 
         putEmailCorretora(function (resp) {
-            console.log(resp)
+
             if(resp!=undefined){
                 if(resp.status==undefined){
                     memoriaInputEmail = $("#inputEmail").val();
@@ -112,15 +140,7 @@ $(document).ready(function () {
         }
     });
 
-    //$("input").attr('disabled','disabled');
-    //To enable again, the proper method is to use .removeAttr()
-//
-    //$("input").removeAttr('disabled');
 });
-
-//odontoprev.web.salvaremail
-
-
 
 function putEmailCorretora(callback) {
     var emailCorretora = $("#inputEmail").val();
