@@ -12,10 +12,10 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.odontoprev.portalcorretor.model.ListaPropostas;
@@ -33,6 +33,7 @@ import br.com.odontoprev.portalcorretor.service.dto.Proposta;
 import br.com.odontoprev.portalcorretor.service.entity.FiltroStatusProposta;
 
 @Controller
+@RestController
 public class CorretoraController {
 
     private static final Log log = LogFactory.getLog(CorretoraController.class);
@@ -191,7 +192,7 @@ public class CorretoraController {
 
     //201809051800 - esert - COR-695 nova controller para ver dados corretora
     @RequestMapping(value = "corretora/salvaremail", method = RequestMethod.PUT)
-	public ModelAndView salvarEmail(HttpSession session, Corretora corretora) {
+	public ResponseEntity salvarEmail(@RequestBody Corretora corretora) {
 	    log.info("salvarEmail - ini");
 	    log.info(corretora);
 	
@@ -202,8 +203,12 @@ public class CorretoraController {
 	    log.info("retornou corretoraService.salvarEmailCorretora()...");
 	    log.info(corretoraResponse);
 
-	    log.info("salvarEmail - fim");	    
-	    return new ModelAndView("corretora/editar/meus_dados", "corretora", corretora);
+        if(corretoraResponse == null) {
+            return ResponseEntity.noContent().build();
+        }
+
+        log.info("salvarEmail - fim");
+        return ResponseEntity.ok(corretoraResponse);
 	}
 
 

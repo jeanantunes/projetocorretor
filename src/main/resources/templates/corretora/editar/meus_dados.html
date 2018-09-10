@@ -11,13 +11,16 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
 	<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
 	<link rel="stylesheet" type="text/css" th:href="@{/css/odontoprev.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/sweetalert.css}"/>
 	<link rel="stylesheet" type="text/css" th:href="@{/css/meus_dados_corretora.css}"/>
 	<script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
 	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
 	<script type="text/javascript" th:src="@{/js/jquery.mask.min.js}"></script>
 	<script type="text/javascript" th:src="@{/js/odonto-Valida.js}"></script>
-
+    <script type="text/javascript" th:src="@{/app/meus_dados_corretoraController.js}"></script>
+	<script type="text/javascript" th:src="@{/app/getPropertie.js}"></script>
 	<script type="text/javascript" th:src="@{/js/menu.js}"></script>
+	<script type="text/javascript" th:src="@{/js/sweetalert.min.js}"></script>
 	<!--<script type="text/javascript"
 			th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js}"></script>-->
 
@@ -49,6 +52,7 @@
        				<div class="form-group col-xs-12 input-rede-credenciada " >
 						<label class="label-odont">CNPJ</label> 
 						<div class="p-odont" th:name="${corretora.cnpj}" th:text="${corretora.cnpj}"></div>
+						<input type="hidden" id="hiddenCdCorretora" style="display: none" th:value="${corretora.cdCorretora}"/>
 					</div>
 					<div>
 						<div class="form-group col-sm-3 input-rede-credenciada" >
@@ -108,9 +112,27 @@
 							<label class="label-odont">CELULAR</label> 
 							<div class="p-odont" th:name="${corretora.celular}" th:text="${corretora.celular}"></div>
 	                    </div>
-						<div class="form-group col-sm-3 input-rede-credenciada " >
-							<label class="label-odont">E-MAIL</label> 
-							<div class="p-odont" th:name="${corretora.email}" th:text="${corretora.email}"></div>
+						<div class="form-group col-sm-4 input-rede-credenciada " >
+							<label class="label-odont">E-MAIL</label>
+
+							<div style="margin-right: 25px; text-align: right; display: none;" id="btnConfirmarCinza"> <!-- icon btn confirmar cinza -->
+								<img th:src="@{/img/Path -1.png}" class="img-align-right" align="right" style="" />
+							</div>
+
+                            <div style="margin-right: 25px; text-align: right; display:none;" id="btnConfirmarVerde"> <!-- icon btn confirmar verde -->
+                                <img th:src="@{/img/Path 1470.png}" class="img-align-right" align="right" style="" />
+                            </div>
+
+							<div style="margin-right: 55px; text-align: right; display: none;" id="btnCancelar">  <!-- icon btn cancelar -->
+								<img th:src="@{/img/ic_menu.png}" class="img-erro-email" align="right" style="" />
+							</div>
+
+							<div style="margin-right: 25px; text-align: right;" id="btnEditarEmail"> <!-- icon btn editar -->
+								<img th:src="@{/img/Group 4424.png}" class="img-align-right" align="right" style="" />
+							</div>
+
+							<input type="email disabled" class="inputLabelBlur" disabled="disabled" th:value="${corretora.email}" id="inputEmail" th:maxlength="80"/>
+
 	                    </div>
 	                </div>
             		<div class="form-group col-xs-12 titleResumoPropBlue"><p>ENDERE&Ccedil;O DA CORRETORA</p></div>

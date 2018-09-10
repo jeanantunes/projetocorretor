@@ -18,3 +18,34 @@
         height: 0px;
     }
 }
+
+img.img-erro-email {
+    position: absolute;
+    max-width: 100%;
+    margin-top: 10px;
+}
+
+#inputEmail{
+    padding-right: 60px;
+}
+
+img.img-align-right {
+    position: absolute;
+    max-width: 100%;
+    margin-top: 8px;
+}
+
+.input-email-blue{
+    color: #1974CE;
+    border-bottom: 2px solid #1974CE;
+}
+
+.input-email-red{
+    color: #FF4141;
+    border-bottom: 2px solid #FF4141;
+}
+
+.input-email-gray{
+    color: #6A6A6A;
+    border-bottom: 2px solid #6A6A6A;
+}
