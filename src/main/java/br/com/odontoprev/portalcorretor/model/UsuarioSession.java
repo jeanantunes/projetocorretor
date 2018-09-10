@@ -19,6 +19,7 @@ public class UsuarioSession implements Serializable {
 	private Integer codigoCorretora;
 	private String nomeCorretora;
 	private String perfil;
+	private String dtAceiteContrato;
 
 	public UsuarioSession setDados(LoginResponse response) {
 		this.setNomeUsuario(response.getNomeUsuario());
@@ -28,6 +29,7 @@ public class UsuarioSession implements Serializable {
 		this.setCodigoCorretora(response.getCodigoCorretora());
 		this.setNomeCorretora(response.getNomeCorretora());
 		this.setPerfil(response.getPerfil());
+		this.setDtAceiteContrato(response.getDtAceiteContrato());
 
 		return this;
 	}
@@ -91,5 +93,13 @@ public class UsuarioSession implements Serializable {
 
 	public void setPerfil(String perfil) {
 		this.perfil = perfil;
+	}
+
+	public String getDtAceiteContrato() {
+		return dtAceiteContrato;
+	}
+
+	public void setDtAceiteContrato(String dtAceiteContrato) {
+		this.dtAceiteContrato = dtAceiteContrato;
 	}
 }

@@ -1203,7 +1203,7 @@ nav:hover .forAnimate {
     content: '' !important;
     width: 12px !important;
     height: 12px !important;
-    background: #fff !important;
+    background: #1974CE !important;
     position: absolute !important;
     top: 1px !important;
     left: 4px !important;
@@ -4904,6 +4904,12 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 
 .text-silver {
     color: #8E8E8E !important;
+    font-family: Roboto-Regular;
+    font-size: 16px;
+}
+
+.text-blue-susep {
+    color: #1974CE !important;
     font-family: Roboto-Regular;
     font-size: 16px;
 }

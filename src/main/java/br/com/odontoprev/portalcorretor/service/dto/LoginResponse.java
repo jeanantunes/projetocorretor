@@ -9,6 +9,7 @@ public class LoginResponse {
     int codigoCorretora;
     String nomeCorretora;
     String perfil;
+    private String dtAceiteContrato;
 
     public long getCodigoDcss() {
         return codigoDcss;
@@ -64,5 +65,13 @@ public class LoginResponse {
 
     public void setPerfil(String perfil) {
         this.perfil = perfil;
+    }
+
+    public String getDtAceiteContrato() {
+        return dtAceiteContrato;
+    }
+
+    public void setDtAceiteContrato(String dtAceiteContrato) {
+        this.dtAceiteContrato = dtAceiteContrato;
     }
 }

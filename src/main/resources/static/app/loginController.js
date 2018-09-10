@@ -203,6 +203,8 @@ function logarETrazerDadosUsuario() {
 
 $(document).ready(function () {
 
+    localStorage.setItem("olhouModal", false);
+
     $("#cpfcnpj").keyup(function () {
 
         var caracteres = $(this).val().replace(/'\s'/g, '');

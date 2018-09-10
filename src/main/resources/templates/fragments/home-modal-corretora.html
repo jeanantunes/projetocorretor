@@ -1,0 +1,73 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
+<head><title>OdontoPrev</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="shortcut icon" th:href="@{/img/odpv.PNG}" type="image/png"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-theme.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/sweetalert.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/odontoprev.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+
+    <script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.mask.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/odonto-Valida.js}"></script>
+    <script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+    <script type="text/javascript" th:src="@{/js/sweetalert.min.js}"></script>
+    <script type="text/javascript" th:src="@{/app/homeController.js}"></script>
+
+
+    <script type="text/javascript" th:src="@{/js/menu.js}"></script>
+</head>
+<body>
+<div class="footer-logado" th:fragment="home-modal-corretora">
+    <div class="modal fade wrapper" id="modalCorretoraContrato" role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="imgBtnExcluir" id="closeModalSusep">
+                <img th:src="@{/img/btn-excluir.png}" class="btnExcluir" data-dismiss="modal">
+            </div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title font-blue" style="font-family: Roboto-bold"><b>ATUALIZAÇÃO DO CONTRATO</b></h4>
+                </div>
+                <div class="modal-body md-form">
+                    <div class="text-silver">
+                        Nosso relacionamento evoluiu! </br>
+                        Estamos mais digitais e cuidando das Pessoas Físicas, que tal oficializarmos esta
+                        nova
+                        fase?</br>
+                    </div>
+
+                    <div style="margin-left: 30px">
+                        <div class="radio margin-top-30 margin-bottom-20">
+                            <input id="radio-comSusep" name="susep" type="radio" class="susep" value="1"> <!-- 1 - COM SUSEP -->
+                            <label for="radio-comSusep" class=" radio-inline radio-label label-comSusep labelSusep">Minha corretora
+                                tem
+                                código SUSEP.</label>
+                        </div>
+                        <div>
+                            <label class="text-silver" id="label-codSusep" style="margin-left: 34px">Código SUSEP </label>
+                            <input type="text" id="codSusep" class="inputLabelSusepCinza disabled">
+                        </div>
+                        <div class="radio margin-top-30 margin-bottom-20">
+                            <input id="radio-semSusep" name="susep" type="radio" class="susep" value="2"> <!-- 2 - SEM SUSEP -->
+                            <label for="radio-semSusep" class="radio-inline radio-label label-semSusep labelSusep">Minha corretora
+                                não tem
+                                código SUSEP.</label>
+                        </div>
+                    </div>
+                    <div class="space-top-30 wrapper">
+                        <a type="button" id="btnSusep"
+                           class="btn btnBlue btn-width-custom space-top-10 uppercase">AVANÇAR</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

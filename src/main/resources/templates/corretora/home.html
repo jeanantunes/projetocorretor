@@ -8,14 +8,18 @@
     <link rel="shortcut icon" th:href="@{/img/odpv.PNG}" type="image/png"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-theme.min.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/sweetalert.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/odontoprev.css}"/>
 
     <script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/jquery.mask.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/odonto-Valida.js}"></script>
+    <script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+    <script type="text/javascript" th:src="@{/js/sweetalert.min.js}"></script>
+    <script type="text/javascript" th:src="@{/app/homeController.js}"></script>
+
 
     <script type="text/javascript" th:src="@{/js/menu.js}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -96,7 +100,6 @@
             });
 
         });
-
     </script>
 
 </head>
@@ -405,6 +408,19 @@
                                    style="padding-left: 8px; width: 200px;">BAIXAR RELATÓRIO</a></div>
                         </div>
                         <div class="modal-footer">&nbsp;</div>
+                    </div>
+                </div>
+            </div>
+            <!-- FIM -->
+
+            <div hidden="hidden">
+                <button type="button" id="btnModal" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modalCorretoraContrato" hidden="hidden">Open Modal</button>
+            </div>
+            <!-- INICIO - Modal -->
+            <div th:switch="${session.usuario.perfil}" class="col-xs-12 row wrapper">
+                <div th:case="'Corretora'">
+                    <div th:style="${session.usuario.dtAceiteContrato} == null ? 'display:inline' : 'display:none'">
+                        <div th:replace="fragments/home-modal-corretora :: home-modal-corretora">&nbsp;</div>
                     </div>
                 </div>
             </div>
