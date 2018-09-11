@@ -1,18 +1,25 @@
 package br.com.odontoprev.portalcorretor.service.dto;
 
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.Date;
 
 public class ContratoCorretora implements Serializable {
 
     private static final long serialVersionUID = 2180567984276302023L;
 
+    private Long cdContratoCorretora;
     private Long cdCorretora;
-    private Date dtAceiteContrato;
-    private Long tamArquivo;
-    private String tipoConteudo;
-    private byte[] arquivo;
+    private Long cdContratoModelo;
+    private String dtAceiteContrato;
+    private String cdSusep;
+
+    public Long getCdContratoCorretora() {
+        return cdContratoCorretora;
+    }
+
+    public void setCdContratoCorretora(Long cdContratoCorretora) {
+        this.cdContratoCorretora = cdContratoCorretora;
+    }
 
     public Long getCdCorretora() {
         return cdCorretora;
@@ -22,46 +29,38 @@ public class ContratoCorretora implements Serializable {
         this.cdCorretora = cdCorretora;
     }
 
-    public Date getDtAceiteContrato() {
+    public Long getCdContratoModelo() {
+        return cdContratoModelo;
+    }
+
+    public void setCdContratoModelo(Long cdContratoModelo) {
+        this.cdContratoModelo = cdContratoModelo;
+    }
+
+    public String getDtAceiteContrato() {
         return dtAceiteContrato;
     }
 
-    public void setDtAceiteContrato(Date dtAceiteContrato) {
+    public void setDtAceiteContrato(String dtAceiteContrato) {
         this.dtAceiteContrato = dtAceiteContrato;
     }
 
-    public Long getTamArquivo() {
-        return tamArquivo;
+    public String getCdSusep() {
+        return cdSusep;
     }
 
-    public void setTamArquivo(Long tamArquivo) {
-        this.tamArquivo = tamArquivo;
-    }
-
-    public String getTipoConteudo() {
-        return tipoConteudo;
-    }
-
-    public void setTipoConteudo(String tipoConteudo) {
-        this.tipoConteudo = tipoConteudo;
-    }
-
-    public byte[] getArquivo() {
-        return arquivo;
-    }
-
-    public void setArquivo(byte[] arquivo) {
-        this.arquivo = arquivo;
+    public void setCdSusep(String cdSusep) {
+        this.cdSusep = cdSusep;
     }
 
     @Override
     public String toString() {
         return "ContratoCorretora{" +
-                "cdCorretora=" + cdCorretora +
-                ", dtAceiteContrato=" + dtAceiteContrato +
-                ", tamArquivo=" + tamArquivo +
-                ", tipoConteudo='" + tipoConteudo + '\'' +
-                ", arquivo=" + Arrays.toString(arquivo) +
+                "cdContratoCorretora=" + cdContratoCorretora +
+                ", cdCorretora=" + cdCorretora +
+                ", cdContratoModelo=" + cdContratoModelo +
+                ", dtAceiteContrato='" + dtAceiteContrato + '\'' +
+                ", cdSusep='" + cdSusep + '\'' +
                 '}';
     }
 }
