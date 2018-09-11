@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
@@ -14,7 +15,6 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -210,6 +210,20 @@ public class CorretoraController {
         log.info("salvarEmail - fim");
         return ResponseEntity.ok(corretoraResponse);
 	}
+
+	@RequestMapping(value = "/corretora/contrato", method = RequestMethod.GET)
+    public String enviaSusep(@RequestParam("codSusep") String codSusep, HttpServletRequest request, HttpSession session){
+
+        UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
+
+        request.getSession().setAttribute("codSusep", codSusep);
+        request.getSession().setAttribute("codigoCorretora", usuario.getCodigoCorretora());
+
+        if (codSusep == ""){
+            return "redirect:/contrato/semSusep";
+        }
+        return "redirect:/contrato/comSusep";
+    }
 
 
 }

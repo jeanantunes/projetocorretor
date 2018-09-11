@@ -90,5 +90,14 @@ $(document).ready(function () {
     $("#codSusep").prop("disabled", true);
 
 
+
+    $("#btnSusep").click(function () {
+        if ($("#codSusep").val() != null) {
+            window.location.href = "/corretora/contrato?codSusep=" + $("#codSusep").val();
+        }else{
+            window.location.href = "/corretora/contrato";
+        }
+    });
+
 });
 
