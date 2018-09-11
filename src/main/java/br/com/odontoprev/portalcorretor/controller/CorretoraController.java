@@ -211,7 +211,7 @@ public class CorretoraController {
         return ResponseEntity.ok(corretoraResponse);
 	}
 
-	@RequestMapping(value = "/corretora/contrato", method = RequestMethod.GET)
+	@RequestMapping(value = "/corretora/contratoteste", method = RequestMethod.GET)
     public String enviaSusep(@RequestParam("codSusep") String codSusep, HttpServletRequest request, HttpSession session){
 
         UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");

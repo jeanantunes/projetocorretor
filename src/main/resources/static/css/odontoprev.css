@@ -12,6 +12,11 @@
 
 /********* Novas classes cadastro *********/
 
+.title-odonto {
+    font-family: Roboto-Bold;
+    font-size: 30px;
+}
+
 .wrapper {
     height: 100%;
     min-height: 100%;
@@ -136,6 +141,14 @@ input:-webkit-autofill {
 
 .padding-top-20 {
     padding-top: 20px !important;
+}
+
+.padding-bottom-20 {
+    padding-bottom: 20px !important;
+}
+
+.nopadding {
+    padding: 0 !important
 }
 
 /****************************************************/
@@ -304,6 +317,10 @@ input:-webkit-autofill {
 .checkbox input[type=checkbox], .checkbox-inline input[type=checkbox], .radio input[type=radio], .radio-inline input[type=radio] {
     margin-left: 24px;
     width: 22px;
+    height: 25px;
+}
+
+.checkbox{
     height: 25px;
 }
 
@@ -1571,6 +1588,15 @@ h5, .subListBox {
     white-space: nowrap;
 }
 
+.labelCheckOdontCorretora {
+    font-family: Roboto-Medium;
+    color: #1974CE;
+    font-size: 10pt;
+    padding-top: 0%;
+}
+
+
+
 .labelCheckOdontBlur {
     font-family: Roboto-Medium;
     color: #6A6A6A;
@@ -1896,6 +1922,10 @@ h5, .subListBox {
     padding-left: 10px;
 }
 
+.spanCheckCorretora {
+    padding-left: 30px;
+}
+
 /*********************************** Botão SAIR/EDITAR ****************************************/
 
 .edit {
@@ -1983,9 +2013,10 @@ input[type=checkbox] {
 /*********************************** SQUARED TERMO USUARIO PRE CADASTRADO ****************************************/
 
 .squaredOneTermoCadastrado {
-    width: 20px;
+    width: 30px;
     position: relative;
 }
+
 
     .squaredOneTermoCadastrado label {
         cursor: pointer;
@@ -2002,11 +2033,11 @@ input[type=checkbox] {
             opacity: 0;
             content: '';
             position: absolute;
-            width: 16px;
-            height: 10px;
+            width: 18px;
+            height: 12px;
             background: transparent;
-            top: 2px;
-            left: 2px;
+            top: 4px;
+            left: 4px;
             border: 3px solid #1974CE;
             border-top: none;
             border-right: none;
@@ -2261,14 +2292,39 @@ input[type=checkbox] {
     border: 1px solid #EAEAEA;
 }
 
-    .textTermoCondicao p {
-        font-family: Roboto-Light;
-        font-size: 12pt;
-        color: #6A6A6A;
-        padding: 10px;
-    }
+.textTermoContratoCorretora {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 500px;
+    overflow: auto;
+    border: 1px solid #EAEAEA;
+}
 
-/*********************************** End Textarea ****************************************/
+.textTermoContratoCorretora p {
+    font-family: Roboto-Light;
+    font-size: 12pt;
+    color: #6A6A6A;
+    padding: 10px;
+}
+
+.divTermoCondicao {
+    padding: 20px;
+    border: 1px solid #EAEAEA;
+}
+
+.textTermoCondicao p {
+    font-family: Roboto-Light;
+    font-size: 12pt;
+    color: #6A6A6A;
+    padding: 10px;
+}
+
+.marginTermo{
+    margin-right: 50px;
+    margin-left: 50px;
+}
+
+    /*********************************** End Textarea ****************************************/
 
 /*********************************** Dropdown ****************************************/
 
@@ -2341,3 +2397,70 @@ input[type=checkbox] {
 }
 
 /*********************************** End Dropdown ****************************************/
+
+
+/********************************** CheckBox ***********************************************/
+
+.container {
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 35px;
+    width: 35px;
+    background-color: white;
+    border: 2px solid #D9487F;
+    border-radius: 6px;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+    left: 10px;
+    top: 5px;
+    width: 10px;
+    height: 16px;
+    border: 2px solid #1974CE;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.labelCheckContrato{
+    font-family: Roboto-Light;
+    color: #1974CE;
+    padding-left: 10px;
+    font-size: 15px;
+
+}
