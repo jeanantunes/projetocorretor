@@ -43,19 +43,28 @@ $(document).ready(function () {
         $("#codSusep").addClass("inputLabelSusepAzul");
         $("#codSusep").prop("disabled", false);
         $("#codSusep").css("color", "#1974CE");
-        $("#codSusep").val("");
 
         $("#btnSusep").removeClass("background-color-azul");
         $("#btnSusep").addClass("background-color-cinza");
         $("#btnSusep").addClass('disabled');
 
         $("#codSusep").click(function () {
-            if ($("#codSusep").mask("00.00000000000-0")) {
+            $("#codSusep").mask("00.00000000000-0");
+        });
+
+        $("#codSusep").blur(function () {
+            if ($("#codSusep").val().length == 16) {
                 $("#btnSusep").addClass("background-color-azul");
                 $("#btnSusep").removeClass("background-color-cinza");
                 $("#btnSusep").removeClass('disabled');
+            }else {
+                $("#btnSusep").removeClass("background-color-azul");
+                $("#btnSusep").addClass("background-color-cinza");
+                $("#btnSusep").addClass('disabled');
             }
         });
+
+
     }));
 
     if ($("#radio-semSusep").click(function () {
