@@ -417,9 +417,9 @@
                 <button type="button" id="btnModal" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modalCorretoraContrato" hidden="hidden">Open Modal</button>
             </div>
             <!-- INICIO - Modal -->
-            <div th:switch="${session.usuario.perfil}" class="col-xs-12 row wrapper">
+            <div th:switch="${session.usuario.perfil}" class="col-xs-12 row wrapper" th:style="${session.usuario.dtAceiteContrato} == null ? '' : 'display:none'">
                 <div th:case="'Corretora'">
-                    <div th:style="${session.usuario.dtAceiteContrato} == null ? 'display:inline' : 'display:none'">
+                    <div th:style="${session.usuario.dtAceiteContrato} == null ? '' : 'display:none'">
                         <div th:replace="fragments/home-modal-corretora :: home-modal-corretora">&nbsp;</div>
                     </div>
                 </div>

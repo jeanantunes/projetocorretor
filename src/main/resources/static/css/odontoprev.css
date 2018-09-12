@@ -120,6 +120,19 @@ input:-webkit-autofill {
     margin-top: 70px;
 }
 
+.margin-top-140 {
+    margin-top: 140px;
+}
+
+.labelEmailAceito{
+
+    font-family: Roboto-Light;
+    color: #ACAAA5;
+    font-size: 20px;
+
+}
+
+
 .margin-bottom-0 {
     margin-bottom: 0px !important;
 }
@@ -146,6 +159,10 @@ input:-webkit-autofill {
 
 .padding-bottom-20 {
     padding-bottom: 20px !important;
+}
+
+.padding-bottom-40 {
+    padding-bottom: 40px !important;
 }
 
 .nopadding {

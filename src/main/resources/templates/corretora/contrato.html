@@ -8,9 +8,12 @@
     <meta http-equiv="Content-Language" content="pt-br" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1 shrink-to-fit=no" />
-    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/sweetalert.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/odontoprev.css"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/sweetalert.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/odontoprev.css}"/>
+    <script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/sweetalert.min.js}"></script>
+    <script type="text/javascript" th:src="@{/app/contratoCorretoraController.js}"></script>
 
 </head>
 <body>
@@ -27,38 +30,36 @@
                 </div>
             </div>
 
+            <label class="title-odonto marginTermo margin-top-70" th:style="${contratoAceito.codSusep} == '' ? 'display:none' : ''">ATUALIZAÇÃO DO CONTRATO DE CORRETAGEM</label>
 
-                <label class="title-odonto marginTermo margin-top-70" th:style="${contratoAceito.codSusep} == '' ? 'display:none' : ''">ATUALIZAÇÃO DO CONTRATO DE CORRETAGEM</label>
             <label class="title-odonto marginTermo margin-top-70" th:style="${contratoAceito.codSusep} != '' ? 'display:none' : ''">ATUALIZAÇÃO DO CONTRATO DE INTERMEDIAÇÃO</label>
-                <div class="divTermoCondicao marginTermo">
-                    <div class="textTermoContratoCorretora col-md-12 margin-top-0" id="termoCadastrado" style="border: 0px !important">
-                        <div th:remove="tag" th:utext="${contratoAceito.textoContrato}"></div>
-                    </div>
-                </div>
 
+            <div class="divTermoCondicao marginTermo">
+                <div class="textTermoContratoCorretora col-md-12 margin-top-0" id="termoCadastrado" style="border: 0px !important">
+                    <div th:remove="tag" th:utext="${contratoAceito.textoContrato}"></div>
+                </div>
+            </div>
 
             <div class="marginTermo margin-top-30">
 
-                <label class="container"><span class="labelCheckContrato">Aceito os termos e condições expostos no contratos para venda PME e PF.
-                </span><input type="checkbox" checked="checked">
+                <label class="container" id="labelAceitoTermos">
+                    <span class="labelCheckContrato">Aceito os termos e condições expostos no contratos para venda PME e PF.</span>
+                    <input type="checkbox" disabled="true" id="checkAceitoOsTermos"/>
                     <span class="checkmark"></span>
                 </label>
-                <label class="container"><span class="labelCheckContrato">Sou o representante legal da corretora.</span>
-                    <input type="checkbox">
+
+                <label class="container" id="labelRepresentante">
+                    <span class="labelCheckContrato">Sou o representante legal da corretora.</span>
+                    <input type="checkbox" disabled="true" id="checkSouRepresentante"/>
                     <span class="checkmark"></span>
                 </label>
 
                 <div class="margin-top-30 wrapper margin-bottom-30">
-                    <a class="btn btn-lg btn-block btnOdont" id="btnAvancar" role="button">AVANÇAR</a>
+                    <a class="btn btn-lg btn-block btnOdont background-color-cinza disabled" id="btnAvancar" role="button">AVANÇAR</a>
                 </div>
 
             </div>
         </div>
 
-    <div th:style="${contratoAceito.contratoAceito} == false ? 'display:none' : 'display:block'">
-
-
-        teste2
-    </div>
 </body>
 </html>

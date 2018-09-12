@@ -3,8 +3,6 @@ package br.com.odontoprev.portalcorretor.service;
 import br.com.odontoprev.portalcorretor.model.DadosContratoCorretora;
 import br.com.odontoprev.portalcorretor.service.dto.ContratoCorretora;
 import br.com.odontoprev.portalcorretor.service.dto.ContratoCorretoraPreenchido;
-import br.com.odontoprev.portalcorretor.service.dto.Corretora;
-import br.com.odontoprev.portalcorretor.service.dto.CorretoraResponse;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.logging.Log;
@@ -62,6 +60,53 @@ public class ContratoCorretoraService {
 
 		} catch (Exception e) {
 			// e.printStackTrace();
+			log.error(e);
+			return null;
+		}
+	}
+
+	public ContratoCorretora postContratoCorretora(DadosContratoCorretora dadosContratoCorretora) {
+
+		log.info("salvar contrato corretora - ini");
+		String cdSusep = dadosContratoCorretora.getCodSusep();
+		///CONTRATOCORRETORA/{CDCORRETORA}/TIPO/{CDTIPO}?susep={cdSusep}
+
+		String url = "http://localhost:8090/contratocorretora";
+
+
+		RestTemplate restTemplate = new RestTemplate();
+
+		try {
+
+			HttpHeaders headers = new HttpHeaders();
+			headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
+			headers.set("Content-Type", "application/json");
+
+			ContratoCorretora contratoCorretora = new ContratoCorretora();
+			contratoCorretora.setCdCorretora(dadosContratoCorretora.getCdCorretora());
+			contratoCorretora.setCdSusep(dadosContratoCorretora.getCodSusep());
+			Long cdContratoModelo = dadosContratoCorretora.getCodSusep() != "" ? 1L : 2L;
+			contratoCorretora.setCdContratoModelo(cdContratoModelo);
+
+			ObjectMapper mapper = new ObjectMapper();
+			mapper.setSerializationInclusion(JsonInclude.Include.USE_DEFAULTS);
+			String stringJson = mapper.writeValueAsString(contratoCorretora);
+
+			HttpEntity<String> entity = new HttpEntity<String>(stringJson, headers);
+
+			ResponseEntity<ContratoCorretora> retorno = restTemplate.exchange(url, HttpMethod.POST, entity, ContratoCorretora.class);
+
+			if (retorno.getStatusCode() == HttpStatus.OK) {
+				return retorno.getBody();
+			} else {
+				log.info("salvarContrato - erro");
+				log.error("Erro ao salvar contrato: Status{" + retorno.getStatusCode() + "}");
+				return null;
+			}
+
+		} catch (Exception e) {
+			// e.printStackTrace();
+			log.info("salvarContrato - erro");
 			log.error(e);
 			return null;
 		}
