@@ -28,6 +28,10 @@ $(document).ready(function () {
     if (olhouModal == "false") {
         $('#btnModal').click();
         localStorage.setItem("olhouModal", true);
+    } else if (olhouModal == "true"){
+        $("#modalCorretoraContrato").removeClass("modal");
+        $("#modalCorretoraContrato").removeClass("fade");
+        $("#modalCorretoraContrato").removeClass("wrapper");
     }
 
 
