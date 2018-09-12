@@ -211,18 +211,17 @@ public class CorretoraController {
         return ResponseEntity.ok(corretoraResponse);
 	}
 
-	@RequestMapping(value = "/corretora/contratoteste", method = RequestMethod.GET)
-    public String enviaSusep(@RequestParam("codSusep") String codSusep, HttpServletRequest request, HttpSession session){
+	@RequestMapping(value = "/corretora/redirecionarcontrato", method = RequestMethod.GET)
+    public ModelAndView enviaSusep(@RequestParam("codSusep") String codSusep, HttpServletRequest request, HttpSession session){
 
         UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
 
         request.getSession().setAttribute("codSusep", codSusep);
         request.getSession().setAttribute("codigoCorretora", usuario.getCodigoCorretora());
 
-        if (codSusep == ""){
-            return "redirect:/contrato/semSusep";
-        }
-        return "redirect:/contrato/comSusep";
+        String redirectUrl = "/corretora/contrato";
+        return new ModelAndView("redirect:" + redirectUrl);
+        //return new ModelAndView("corretora/contrato");
     }
 
 

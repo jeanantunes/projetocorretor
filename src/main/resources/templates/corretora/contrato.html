@@ -14,7 +14,7 @@
 
 </head>
 <body>
-        <div class="container-fluid nopadding" th:style="${contratoAceito} == true ? 'display:none' : 'display:block'">
+        <div class="container-fluid nopadding" th:style="${contratoAceito.contratoAceito} == true ? 'display:none' : 'display:block'">
             <div class="col-xs-12 text-center padding-top-20 padding-bottom-20" style="background-color: rgba(172,170,165, 0.12);">
                 <div class="col-xs-12">
                     <label class="title-odonto" style="color: #1974CE">SOMOS TRANSPARENTES!</label>
@@ -28,19 +28,11 @@
             </div>
 
 
-                <label class="title-odonto marginTermo margin-top-70" style="color: #1974CE">ATUALIZAÇÃO DO CONTRATO DE INTERMEDIAÇÃO</label>
-
+                <label class="title-odonto marginTermo margin-top-70" th:style="${contratoAceito.codSusep} == '' ? 'display:none' : ''">ATUALIZAÇÃO DO CONTRATO DE CORRETAGEM</label>
+            <label class="title-odonto marginTermo margin-top-70" th:style="${contratoAceito.codSusep} != '' ? 'display:none' : ''">ATUALIZAÇÃO DO CONTRATO DE INTERMEDIAÇÃO</label>
                 <div class="divTermoCondicao marginTermo">
                     <div class="textTermoContratoCorretora col-md-12 margin-top-0" id="termoCadastrado" style="border: 0px !important">
-
-                        <p>Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado. Se popularizou na década de 60, quando a Letraset lançou decalques contendo passagens de Lorem Ipsum, e mais recentemente quando passou a ser integrado a softwares de editoração eletrônica como Aldus PageMaker.</p>
-                        <p>Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado. Se popularizou na década de 60, quando a Letraset lançou decalques contendo passagens de Lorem Ipsum, e mais recentemente quando passou a ser integrado a softwares de editoração eletrônica como Aldus PageMaker.</p>
-                        <p>Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado. Se popularizou na década de 60, quando a Letraset lançou decalques contendo passagens de Lorem Ipsum, e mais recentemente quando passou a ser integrado a softwares de editoração eletrônica como Aldus PageMaker.</p>
-                        <p>Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado. Se popularizou na década de 60, quando a Letraset lançou decalques contendo passagens de Lorem Ipsum, e mais recentemente quando passou a ser integrado a softwares de editoração eletrônica como Aldus PageMaker.</p>
-                        <p>Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado. Se popularizou na década de 60, quando a Letraset lançou decalques contendo passagens de Lorem Ipsum, e mais recentemente quando passou a ser integrado a softwares de editoração eletrônica como Aldus PageMaker.</p>
-                        <p>Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado. Se popularizou na década de 60, quando a Letraset lançou decalques contendo passagens de Lorem Ipsum, e mais recentemente quando passou a ser integrado a softwares de editoração eletrônica como Aldus PageMaker.</p>
-                        <p>Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado. Se popularizou na década de 60, quando a Letraset lançou decalques contendo passagens de Lorem Ipsum, e mais recentemente quando passou a ser integrado a softwares de editoração eletrônica como Aldus PageMaker.</p>
-
+                        <div th:remove="tag" th:utext="${contratoAceito.textoContrato}"></div>
                     </div>
                 </div>
 
@@ -63,10 +55,7 @@
             </div>
         </div>
 
-
-
-
-    <div th:style="${contratoAceito} == false ? 'display:none' : 'display:block'">
+    <div th:style="${contratoAceito.contratoAceito} == false ? 'display:none' : 'display:block'">
 
 
         teste2
