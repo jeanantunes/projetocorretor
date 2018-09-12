@@ -93,9 +93,9 @@ $(document).ready(function () {
 
     $("#btnSusep").click(function () {
         if ($("#codSusep").val() != null) {
-            window.location.href = "/corretora/contrato?codSusep=" + $("#codSusep").val();
+            window.location.href = "/corretora/redirecionarcontrato?codSusep=" + $("#codSusep").val();
         }else{
-            window.location.href = "/corretora/contrato";
+            window.location.href = "/corretora/redirecionarcontrato";
         }
     });
 
