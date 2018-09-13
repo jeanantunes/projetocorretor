@@ -444,7 +444,7 @@
                                  th:style="${detalhesPropostaPF.fichaFinanciera.size()} == 0 ? 'display:none' : 'display:inline-block' ">
                                 <div class="col-xs-12">
                                     <div class="space-top-10 space-bottom-10 text-center wrapper">
-                                        <a href="#" data-id="" th:attr="data-value=${codigoDoAssociado}" id="dados"
+                                        <a th:href="@{downloadBoleto(id='1' + '-' + ${codigoDoAssociado})}" data-id="" th:attr="data-value=${codigoDoAssociado}" id="dados"
                                            class="btn btn-lg btn-block btnOdont background-color-cinza disabled"
                                            style="width: 200px; margin-bottom: 10px;">BAIXAR BOLETO</a>
                                     </div>
