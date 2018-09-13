@@ -1,5 +1,6 @@
 package br.com.odontoprev.portalcorretor.service;
 
+import br.com.odontoprev.api.manager.client.token.util.ConfigurationUtils;
 import br.com.odontoprev.portalcorretor.exceptions.ApiTokenException;
 import br.com.odontoprev.portalcorretor.service.dto.Corretora;
 import br.com.odontoprev.portalcorretor.service.dto.CorretoraResponse;
@@ -98,8 +99,8 @@ public class CorretoraService {
     public ResponseEntity<String> gerarContratoCorretora(Long cdCorretora) throws ApiTokenException {
         log.info("GERAR ARQUIVO CONTRATO CORRETORA ->>> gerarArquivoContratoCorretora");
 
-        //String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", "/corretorservicos/1.0/contratocorretora/" + cdCorretora + "/arquivo");
-        String url = "http://localhost:8090/contratocorretora/" + cdCorretora + "/arquivo";
+        String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", "/corretorservicos/1.0/contratocorretora/" + cdCorretora + "/arquivo");
+        //String url = "http://localhost:8090/contratocorretora/" + cdCorretora + "/arquivo";
 
         RestTemplate restTemplate = new RestTemplate();
         MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
@@ -116,6 +117,7 @@ public class CorretoraService {
         if (retorno.getStatusCode() == HttpStatus.OK) {
             return retorno;
         } else {
+            log.error("GERAR ARQUIVO CONTRATO CORRETORA ->>> gerarArquivoContratoCorretora");
             return null;
         }
     }

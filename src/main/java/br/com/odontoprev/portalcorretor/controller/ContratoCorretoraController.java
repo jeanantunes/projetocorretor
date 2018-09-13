@@ -1,35 +1,23 @@
 package br.com.odontoprev.portalcorretor.controller;
 
 
-import br.com.odontoprev.portalcorretor.model.Cadastro;
 import br.com.odontoprev.portalcorretor.exceptions.ApiTokenException;
-
 import br.com.odontoprev.portalcorretor.model.DadosContratoCorretora;
 import br.com.odontoprev.portalcorretor.model.UsuarioSession;
 import br.com.odontoprev.portalcorretor.service.ContratoCorretoraService;
 import br.com.odontoprev.portalcorretor.service.CorretoraService;
+import br.com.odontoprev.portalcorretor.service.dto.ContratoCorretora;
 import br.com.odontoprev.portalcorretor.service.dto.ContratoCorretoraPreenchido;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
-import java.util.ArrayList;
-import java.util.List;
-import br.com.odontoprev.portalcorretor.service.dto.ContratoCorretora;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -53,7 +41,7 @@ public class ContratoCorretoraController {
 
         Object acessoValido = session.getAttribute("acessouModalContrato");
 
-        if (acessoValido == null){
+        if (acessoValido == null) {
             String redirectUrl = "/corretora/home";
             return new ModelAndView("redirect:" + redirectUrl);
         }
@@ -85,7 +73,7 @@ public class ContratoCorretoraController {
     }
 
     @RequestMapping(value = "/corretora/aceitarcontrato", method = RequestMethod.POST)
-    public ResponseEntity postContratoCorretora(HttpSession session){
+    public ResponseEntity postContratoCorretora(HttpSession session) {
 
         try {
 
@@ -108,7 +96,7 @@ public class ContratoCorretoraController {
 
             return ResponseEntity.status(HttpStatus.OK).build();
 
-        } catch (Exception e){
+        } catch (Exception e) {
 
             log.info("salvarContrato - erro");
             log.error(e);
@@ -140,9 +128,9 @@ public class ContratoCorretoraController {
         ResponseEntity<String> file = corretoraService.gerarContratoCorretora(cdCorretora);
 
         if (file == null) {
-            downloadContratoCorretora(model, response, cdCorretora);
-            model.addAttribute("error", "O arquivo não foi encontrado em nosso sistema.");
-            return new ModelAndView("meus_dados", "meus_dados", file);
+            //model.addAttribute("error", "O arquivo não foi encontrado em nosso sistema.");
+            String redirectUrl = "/corretora/editar/home";
+            return new ModelAndView("redirect:" + redirectUrl);
         } else {
             String fileName = file.getHeaders().get("Content-Disposition").get(0).split(";")[1].split("=")[1];
 
@@ -154,8 +142,8 @@ public class ContratoCorretoraController {
             response.getWriter().flush();
         }
 
-        downloadContratoCorretora(model, response, cdCorretora);
-        return new ModelAndView("meus_dados", "meus_dados", file);
+        String redirectUrl = "/corretora/editar/home";
+        return new ModelAndView("redirect:" + redirectUrl);
     }
 
 }
