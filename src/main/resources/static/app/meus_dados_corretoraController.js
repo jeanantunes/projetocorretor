@@ -17,7 +17,7 @@ $(document).ready(function () {
         $("#btnConfirmarVerde").hide();
         $("#btnConfirmarCinza").show();
         $("#btnCancelar").show();
-
+        $("#divErroEmail").hide(250);
     });
 
     $("#inputEmail").blur(function () {
@@ -29,7 +29,7 @@ $(document).ready(function () {
             $(this).addClass("input-email-blue");
             $("#btnConfirmarCinza").hide();
             $("#btnConfirmarVerde").show();
-
+            $("#divErroEmail").hide(250);
         } else {
 
             $(this).removeClass("input-email-gray");
@@ -37,7 +37,7 @@ $(document).ready(function () {
             $(this).addClass("input-email-red");
             $("#btnConfirmarVerde").hide();
             $("#btnConfirmarCinza").show();
-
+            $("#divErroEmail").show(250);
         }
 
     });
@@ -51,7 +51,7 @@ $(document).ready(function () {
             $(this).addClass("input-email-blue");
             $("#btnConfirmarCinza").hide();
             $("#btnConfirmarVerde").show();
-
+            $("#divErroEmail").hide(250);
         } else {
 
             $("#btnConfirmarVerde").hide();
@@ -65,7 +65,7 @@ $(document).ready(function () {
         $(this).removeClass("input-email-gray");
         $(this).removeClass("input-email-red");
         $(this).addClass("input-email-blue");
-
+        $("#divErroEmail").hide(250);
     });
 
     $("#btnCancelar").click(function () {
@@ -79,7 +79,7 @@ $(document).ready(function () {
         $(this).hide();
         $("#btnEditarEmail").show();
         $("#inputEmail").attr('disabled','disabled');
-
+        $("#divErroEmail").hide(250);
     });
 
     $("#btnConfirmarVerde").click(function () {

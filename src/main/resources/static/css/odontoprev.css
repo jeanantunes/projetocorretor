@@ -44,6 +44,18 @@
     padding-top: 20px;
 }
 
+.boxErroEditarEmail {
+    font-family: Roboto-Medium;
+    text-align: left;
+    color: white;
+    background-color: red;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    font-size: 18px;
+}
+
 img.img-erro-cpf {
     position: absolute;
     max-width: 100%;
