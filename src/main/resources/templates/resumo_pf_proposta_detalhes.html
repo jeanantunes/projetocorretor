@@ -28,6 +28,10 @@
 
         $(document).ready(function () {
             $(".conteudo").click(function () {
+                $("#dados").removeClass('btnOdontCinza');
+                $("#dados").removeClass('disabled');
+                $("#dados").addClass('btnOdont');
+
                 $("#dados").attr("data-id", $(this).val());
                 $('.custom-url').attr('href', '/downloadBoleto?id=' + $("#dados").attr("data-id") + "-" + $("#dados").attr("data-value"));
             });
@@ -419,7 +423,7 @@
                         <div class="text-silver">
                             <div class="box-proposta" th:each="proposta : ${detalhesPropostaPF.fichaFinanciera}">
                                 <label class="container">
-                                    <input type="radio" th:field="*{detalhesPropostaPF.id}" class="conteudo" id="radioClick"
+                                    <input type="radio" th:field="*{detalhesPropostaPF.id}" class="conteudo"
                                            th:value="${proposta.competencia}"
                                            th:text="${proposta.competencia}"/>
                                     <span class="checkmark"></span>
@@ -444,8 +448,8 @@
                                  th:style="${detalhesPropostaPF.fichaFinanciera.size()} == 0 ? 'display:none' : 'display:inline-block' ">
                                 <div class="col-xs-12">
                                     <div class="space-top-10 space-bottom-10 text-center wrapper">
-                                        <a th:href="@{downloadBoleto(id='1' + '-' + ${codigoDoAssociado})}" data-id="" th:attr="data-value=${codigoDoAssociado}" id="dados"
-                                           class="btn btn-lg btn-block btnOdont background-color-cinza disabled"
+                                        <a href="#" data-id="" th:attr="data-value=${codigoDoAssociado}" id="dados"
+                                           class="btn uppercase btnOdontCinza disabled space-top-10 position-relative custom-url"
                                            style="width: 200px; margin-bottom: 10px;">BAIXAR BOLETO</a>
                                     </div>
                                     <!-- div th:style="${error} == null ? 'display:none' : 'display:inline-block' "></div -->
