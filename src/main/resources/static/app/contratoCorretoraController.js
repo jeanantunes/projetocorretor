@@ -1,5 +1,6 @@
 var metodoAceitar = "";
 var redirecionarAceite = "";
+var contratoLido = false;
 
 $(document).ready(function () {
 
@@ -51,6 +52,9 @@ $(document).ready(function () {
 
         if ($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight) {
 
+            if(contratoLido) return;
+
+            contratoLido = true;
             $("#checkAceitoOsTermos").prop('checked', true);
             $("#checkAceitoOsTermos").prop('disabled', false);
             $("#checkSouRepresentante").prop('disabled', false);
