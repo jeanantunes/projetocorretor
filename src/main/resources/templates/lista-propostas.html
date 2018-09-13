@@ -168,7 +168,7 @@
                                                 aprovação</p>
                                             <div th:style="${proposta.statusVenda} != null OR ''  ? 'display:inline-block;text-align:center' : 'display:none'">
                                                 <a href="#" th:href="@{/detalhesPropostaPF(cdVenda=${proposta.cdVenda})}"><span
-                                                        class="text-black">ver detalhes </span><span
+                                                        class="text-black" style="font-size: 10pt">ver detalhes </span><span
                                                         class="font-pink"><h4 style="display: inline-block; font: bold">></h4></span></a>
                                             </div>
                                         </div>
@@ -219,7 +219,7 @@
                                             <div th:style="${proposta.statusVenda} == 'Proposta concluida com sucesso' OR 'Proposta enviada para a OdontoPrev' ? 'display:inline-block;text-align:center' : 'display:none'">
                                                 <a href="#"
                                                    th:href="@{/detalhesPropostaPME(cdEmpresa=${proposta.cdEmpresa})}"><span
-                                                        class="text-black">ver detalhes </span><span
+                                                        class="text-black" style="font-size: 10pt">ver detalhes </span><span
                                                         class="font-pink"><h4 style="display: inline-block; font: bold">></h4></span></a>
                                             </div>
                                             <!--<p class="text-odonto">-->
