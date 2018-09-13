@@ -1,10 +1,25 @@
+var metodoAceitar = "";
+var redirecionarAceite = "";
+
 $(document).ready(function () {
+
+    getPropertie("odontoprev.contratocorretora.aceitarcontrato", function (key) {
+
+        metodoAceitar = key;
+
+        getPropertie("odontoprev.contratocorretora.contratoaceito", function (key) {
+
+            redirecionarAceite = key;
+
+        });
+
+    });
 
     $("#btnAvancar").click(function () {
 
         swal({
-            title: "",
-            text: "",
+            title: "Aguarde",
+            text: "\n",
             content: "input",
             showCancelButton: false,
             showConfirmButton: false,
@@ -20,10 +35,10 @@ $(document).ready(function () {
 
         $.ajax({
             async: true,
-            url: "/corretora/aceitarcontrato",
+            url: metodoAceitar,
             method: "POST",
             success: function (resp) {
-                window.location.href = "/corretora/contrato-aceito"
+                window.location.href = redirecionarAceite;
             },
             error: function (xhr) {
                 callback(xhr);
@@ -57,7 +72,6 @@ $(document).ready(function () {
 
         }
 
-
     });
 
     $("#labelRepresentante").click(function () {
@@ -72,9 +86,6 @@ $(document).ready(function () {
             $("#btnAvancar").addClass("disabled");
         }
 
-
     });
-
-
 
 });

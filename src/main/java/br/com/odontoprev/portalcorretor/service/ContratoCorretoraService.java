@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import br.com.odontoprev.portalcorretor.util.Constantes;
 
 @Service
 public class ContratoCorretoraService {
@@ -21,28 +22,24 @@ public class ContratoCorretoraService {
 	@Value("${odontoprev.servicebase.url}")
 	private String requesBasetUrl;
 
-	@Value("${odontoprev.corretoras.DadosCorretora}")
-	private String dadosCorretora;
+	@Value("${odontoprev.contratocorretora.susep}")
+	private String queryCdSusep;
 
-	@Value("${odontoprev.corretoras.salvarEmailCorretora}")
-	private String salvarEmailCorretora;
+	@Value("${odontoprev.contratocorretora.metodo}")
+	private String metodoContratoCorretora;
+
 
 	@Autowired
 	private ApiManagerTokenService apiManagerTokenService;
 
 	public ContratoCorretoraPreenchido obterModeloContrato(DadosContratoCorretora dadosContratoCorretora) {
 
-
 		String cdSusep = dadosContratoCorretora.getCodSusep();
-		///CONTRATOCORRETORA/{CDCORRETORA}/TIPO/{CDTIPO}?susep={cdSusep}
 
-		String url = "http://localhost:8090/contratocorretora/";
-
-
-		url += dadosContratoCorretora.getCdCorretora() + "/tipo";
-		url += cdSusep != "" ? "/1" : "/2";
-		url += cdSusep != "" ? "?cdSusep=" + cdSusep : "";
-
+		String url = requesBasetUrl + metodoContratoCorretora + "/";
+		url += dadosContratoCorretora.getCdCorretora() + Constantes.CONTRATO_TIPO;
+		url += cdSusep != "" ? Constantes.CONTRATO_CORRETAGEM_V1 : Constantes.CONTRATO_INTERMEDIACAO_V1;
+		url += cdSusep != "" ? queryCdSusep + cdSusep : "";
 
 		RestTemplate restTemplate = new RestTemplate();
 
@@ -68,11 +65,7 @@ public class ContratoCorretoraService {
 	public ContratoCorretora postContratoCorretora(DadosContratoCorretora dadosContratoCorretora) {
 
 		log.info("salvar contrato corretora - ini");
-		String cdSusep = dadosContratoCorretora.getCodSusep();
-		///CONTRATOCORRETORA/{CDCORRETORA}/TIPO/{CDTIPO}?susep={cdSusep}
-
-		String url = "http://localhost:8090/contratocorretora";
-
+		String url = requesBasetUrl + metodoContratoCorretora;
 
 		RestTemplate restTemplate = new RestTemplate();
 
