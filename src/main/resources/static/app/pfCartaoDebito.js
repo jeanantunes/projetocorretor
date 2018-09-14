@@ -1,49 +1,65 @@
+emRequisicao = false;
+
 $(document).ready(function () {
     $(".bancos").change(function () {
         if ($(this).val() == "341") {
             swal("Atenção!", "Lembre o seu cliente de que o Itaú exige liberação para o débito em conta.", "info");
         }
     });
-});
 
-$("#contaDebito").keyup(function () {
+    $("#contaDebito").keyup(function () {
 
-    $("#continuarPfDebito").addClass('disabled');
-    if ($(this).val() == "" || $("#agenciaDebito").val() == "") {
-        return;
-    }
+        $("#continuarPfDebito").prop('disabled', true);
+        if ($(this).val() == "" || $("#agenciaDebito").val() == "") {
+            return;
+        }
 
-    $("#continuarPfDebito").removeClass('disabled');
-});
-
-$(function () {
-    var regex = new RegExp('[^0-9]', 'g');
-    // repare a flag "g" de global, para substituir todas as ocorr�ncias
-    $('.agencia').bind('input', function () {
-        $(this).val($(this).val().replace(regex, ''));
+        $("#continuarPfDebito").prop('disabled', false);
     });
-    $('.conta').bind('input', function () {
-        $(this).val($(this).val().replace(regex, ''));
+
+    $("#agenciaDebito").keyup(function () {
+
+        $("#continuarPfDebito").prop('disabled', true);
+
+        if ($(this).val() == "" || $("#contaDebito").val() == "") {
+
+            return;
+        }
+
+        $("#continuarPfDebito").prop('disabled', false);
     });
-});
 
-$(function () {
-    var regex = new RegExp('[^a-zA-Z0-9]', 'g');
-    // repare a flag "g" de global, para substituir todas as ocorr�ncias
-    $('.conta-corrente').bind('input', function () {
-        $(this).val($(this).val().replace(regex, ''));
+    $("#continuarPfDebito").click(function () {
+
+        if (emRequisicao) return;
+
+        emRequisicao = true;
+
+        $("#continuarPfDebito").prop('disabled', true);
+
+        cadastrarConta();
+
     });
-});
 
-$("#agenciaDebito").keyup(function () {
+    $(function () {
+        var regex = new RegExp('[^0-9]', 'g');
+        // repare a flag "g" de global, para substituir todas as ocorr�ncias
+        $('.agencia').bind('input', function () {
+            $(this).val($(this).val().replace(regex, ''));
+        });
+        $('.conta').bind('input', function () {
+            $(this).val($(this).val().replace(regex, ''));
+        });
+    });
 
-    $("#continuarPfDebito").addClass('disabled');
-    if ($(this).val() == "" || $("#contaDebito").val() == "") {
+    $(function () {
+        var regex = new RegExp('[^a-zA-Z0-9]', 'g');
+        // repare a flag "g" de global, para substituir todas as ocorr�ncias
+        $('.conta-corrente').bind('input', function () {
+            $(this).val($(this).val().replace(regex, ''));
+        });
+    });
 
-        return;
-    }
-
-    $("#continuarPfDebito").removeClass('disabled');
 });
 
 function cadastrarConta() {
