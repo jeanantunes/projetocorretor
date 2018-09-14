@@ -140,6 +140,23 @@ $(document).ready(function () {
         }
     });
 
+    var dtAceite = new Object();
+
+        $.ajax({
+            url: "/usuario_session",
+            type: "get",
+            async: false,
+            xhrFields: {
+                withCredentials: true
+            },
+            success: function (result) {
+                dtAceite.data = eval(result).dtAceiteContrato;
+            },
+            error: function (result) {
+                $(".errorTxt").removeClass("hidden");
+            }
+        });
+
 });
 
 function putEmailCorretora(callback) {

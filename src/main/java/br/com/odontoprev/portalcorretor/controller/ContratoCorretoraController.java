@@ -123,15 +123,13 @@ public class ContratoCorretoraController {
     @RequestMapping(value = "/downloadContratoCorretora", method = RequestMethod.GET)
     @ResponseBody
     public ModelAndView downloadContratoCorretora(Model model, HttpServletResponse
-            response, @RequestParam("cdCorretora") Long cdCorretora) throws IOException, ApiTokenException {
+            response, @RequestParam("cdCorretora") Long cdCorretora, HttpSession session) throws IOException, ApiTokenException {
+
+        UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
 
         ResponseEntity<String> file = corretoraService.gerarContratoCorretora(cdCorretora);
 
-        if (file == null) {
-            //model.addAttribute("error", "O arquivo não foi encontrado em nosso sistema.");
-            String redirectUrl = "/corretora/editar/home";
-            return new ModelAndView("redirect:" + redirectUrl);
-        } else {
+        if (file.getStatusCode().equals(HttpStatus.OK)) {
             String fileName = file.getHeaders().get("Content-Disposition").get(0).split(";")[1].split("=")[1];
 
             response.setContentType(String.valueOf(MediaType.APPLICATION_PDF));
@@ -140,6 +138,11 @@ public class ContratoCorretoraController {
             response.setHeader(headerKey, headerValue);
             response.getWriter().write(file.toString());
             response.getWriter().flush();
+        } else {
+            log.error("O arquivo não foi encontrato em nosso sistema. Data Aceite " + ">>> " + usuario.getDtAceiteContrato());
+            //model.addAttribute(usuario.getDtAceiteContrato(), "O arquivo não foi encontrado em nosso sistema.");
+            String redirectUrl = "/corretora/editar/home";
+            return new ModelAndView("redirect:" + redirectUrl);
         }
 
         String redirectUrl = "/corretora/editar/home";
