@@ -99,8 +99,8 @@ public class CorretoraService {
     public ResponseEntity<String> gerarContratoCorretora(Long cdCorretora) throws ApiTokenException {
         log.info("GERAR ARQUIVO CONTRATO CORRETORA ->>> gerarArquivoContratoCorretora");
 
-        String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", "/corretorservicos/1.0/contratocorretora/" + cdCorretora + "/arquivo");
-        //String url = "http://localhost:8090/contratocorretora/" + cdCorretora + "/arquivo";
+        //String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", "/corretorservicos/1.0/contratocorretora/" + cdCorretora + "/arquivo");
+        String url = "http://localhost:8090/contratocorretora/" + cdCorretora + "/arquivo";
 
         RestTemplate restTemplate = new RestTemplate();
         MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
@@ -118,7 +118,7 @@ public class CorretoraService {
             return retorno;
         } else {
             log.error("GERAR ARQUIVO CONTRATO CORRETORA ->>> gerarArquivoContratoCorretora");
-            return null;
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }
     }
 }

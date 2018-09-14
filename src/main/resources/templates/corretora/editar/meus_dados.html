@@ -185,12 +185,10 @@
 			    </div>  
 		    </div>
 			<div class="col-sm-12 btnPadBtmTop">
-			<a th:href="@{/downloadContratoCorretora(cdCorretora=${corretora.cdCorretora})}" class="btn btn-lg btn-block btnOdont uppercase" id="" role="button" target="_parent">BAIXAR CÓPIA DO CONTRATO</a>
-			</div>
-			<div th:style="${error} == null ? 'display:none' : ''">
-				<label class="text-warning" th:text="${error}" />
-			</div>
-		</div>
+			<a th:href="@{/downloadContratoCorretora(cdCorretora=${corretora.cdCorretora})}" class="btn btn-lg btn-block btnOdont uppercase" id="downloadContrato" role="button" target="_parent">BAIXAR CÓPIA DO CONTRATO</a>
+            </div>
+            <label class="errorTxt hidden">O arquivo não foi encontrado em nosso sistema.</label>
+        </div>
 		
 		<div th:replace="fragments/footer :: footer">&nbsp;</div>
 	</div>
