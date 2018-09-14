@@ -1,3 +1,5 @@
+emRequisicao = false;
+
 $(document).ready(function () {
 
     carregarDadosProposta();
@@ -5,6 +7,18 @@ $(document).ready(function () {
     carregarLista();
     setTotalProposta();
     isEffectiveDate();
+
+    $("#enviarPropostaPme").click(function () {
+
+        if (emRequisicao) return;
+
+        $("#enviarPropostaPme").prop('disabled', true);
+        emRequisicao = true;
+
+        enviarPropostaPme();
+
+    });
+
     resizeIframe('frame_pf');
 });
 
@@ -310,21 +324,27 @@ function enviarPropostaPme() {
         return;
     }
 
-    swal({
-        title: "Aguarde",
-        text: 'Estamos enviando a sua proposta',
-        content: "input",
-        imageUrl: "img/icon-aguarde.gif",
-        showCancelButton: false,
-        showConfirmButton: false,
-        allowEscapeKey: false,
-        allowOutsideClick: false,
-        icon: "info",
-        button: {
-            text: "...",
-            closeModal: false,
-        },
-    });
+    setTimeout(function () {
+
+        swal({
+            title: "Aguarde",
+            text: 'Estamos enviando a sua proposta',
+            content: "input",
+            imageUrl: "img/icon-aguarde.gif",
+            showCancelButton: false,
+            showConfirmButton: false,
+            allowEscapeKey: false,
+            allowOutsideClick: false,
+            icon: "info",
+            button: {
+                text: "...",
+                closeModal: false,
+            }
+            ,
+        });
+
+
+    }, 250);
 
     var proposta = get("proposta");
     var empresas = get("empresas");
@@ -349,15 +369,18 @@ function enviarPropostaPme() {
     consultarSerasa(function (dataProposta) {
 
 
-
         if (dataProposta == "error") {
 
             proposta.status = "PRONTA";
             atualizarEmpresas(proposta);
-            swal("Ops!", "Erro na consulta do CNPJ, mas sua proposta está salva.\n\nTente envia-la mais tarde.", "error");
-            put("proposta", JSON.stringify(proposta));
+            setTimeout(function () {
+                swal("Ops!", "Erro na consulta do CNPJ, mas sua proposta está salva.\n\nTente envia-la mais tarde.", "error");
+                put("proposta", JSON.stringify(proposta));
+                emRequisicao = false;
+                $("#enviarPropostaPme").prop('disabled', false);
+                return;
+            }, 250);
 
-            return;
         };
 
         proposta = dataProposta;
@@ -374,7 +397,8 @@ function enviarPropostaPme() {
 
                     proposta.status = "CRITICADA";
                     atualizarEmpresas(proposta);
-
+                    emRequisicao = false;
+                    $("#enviarPropostaPme").prop('disabled', false);
                 }
                 else {
 
@@ -396,11 +420,19 @@ function enviarPropostaPme() {
 
             } else {
 
-                let atualizarProposta = get("proposta");
+                var atualizarProposta = get("proposta");
                 atualizarProposta.status = "PRONTA";
                 put("proposta", JSON.stringify(atualizarProposta));
                 atualizarEmpresas(atualizarProposta);
-                swal("Ops!", "Algo deu errado. Por favor, tente enviar outra vez a proposta.", "error");
+
+                setTimeout(function () {
+
+                    swal("Ops!", "Algo deu errado. Por favor, tente enviar outra vez a proposta.", "error");
+                    emRequisicao = false;
+                    $("#enviarPropostaPme").prop('disabled', false);
+
+                }, 250);
+
             }
 
         }, parametroEmpresa, beneficiarios);

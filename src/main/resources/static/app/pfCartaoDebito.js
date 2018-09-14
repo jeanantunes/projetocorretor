@@ -67,18 +67,21 @@ function cadastrarConta() {
     if ($(".bancos").val() == " ") {
         swal("Ops!", "Selecione o banco", "error");
         $(".bancos").focus();
+        emRequisicao = false;
         return;
     }
 
     if ($(".agencia").val() == "") {
         swal("Ops!", "Preencha a agencia", "error");
         $(".agencia").focus();
+        emRequisicao = false;
         return;
     }
 
     if ($("#conta-corrente").val() == "") {
         swal("Ops!", "Preencha a conta corrente", "error");
         $("#conta-corrente").focus();
+        emRequisicao = false;
         return;
     }
 
