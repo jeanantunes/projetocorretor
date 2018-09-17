@@ -32,6 +32,7 @@ $(document).ready(function () {
         $("#modalCorretoraContrato").removeClass("modal");
         $("#modalCorretoraContrato").removeClass("fade");
         $("#modalCorretoraContrato").removeClass("wrapper");
+        $("#modalCorretoraContrato").addClass("hidden");
     }
 
 
