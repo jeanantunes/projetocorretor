@@ -321,6 +321,8 @@ function enviarPropostaPme() {
 
     if (!navigator.onLine) {
         swal("Você está sem Internet", "Não se preocupe, você pode acessar a tela inicial e enviar esta proposta depois.", "info");
+        emRequisicao = false;
+        $("#enviarPropostaPme").prop('disabled', false);
         return;
     }
 
