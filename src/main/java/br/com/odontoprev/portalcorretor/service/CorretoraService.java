@@ -2,6 +2,7 @@ package br.com.odontoprev.portalcorretor.service;
 
 import br.com.odontoprev.api.manager.client.token.util.ConfigurationUtils;
 import br.com.odontoprev.portalcorretor.exceptions.ApiTokenException;
+import br.com.odontoprev.portalcorretor.service.dto.ContratoCorretoraPreenchido;
 import br.com.odontoprev.portalcorretor.service.dto.Corretora;
 import br.com.odontoprev.portalcorretor.service.dto.CorretoraResponse;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -30,6 +31,9 @@ public class CorretoraService {
 
     @Value("${odontoprev.corretoras.salvarEmailCorretora}")
     private String salvarEmailCorretora;
+
+    @Value("${odontoprev.corretora.downloadcontratocorretora}")
+    private String metodoGetContratoCorretora;
 
     @Autowired
     private ApiManagerTokenService apiManagerTokenService;
@@ -96,11 +100,11 @@ public class CorretoraService {
         }
     }
 
-    public ResponseEntity<String> gerarContratoCorretora(Long cdCorretora) throws ApiTokenException {
+    public ResponseEntity<ContratoCorretoraPreenchido> gerarContratoCorretora(Long cdCorretora) throws ApiTokenException {
+
         log.info("GERAR ARQUIVO CONTRATO CORRETORA ->>> gerarArquivoContratoCorretora");
 
-        //String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", "/corretorservicos/1.0/contratocorretora/" + cdCorretora + "/arquivo");
-        String url = "http://localhost:8090/contratocorretora/" + cdCorretora + "/arquivo";
+        String url = requesBasetUrl + metodoGetContratoCorretora.replace("{cdCorretora}", cdCorretora.toString());
 
         RestTemplate restTemplate = new RestTemplate();
         MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
@@ -112,13 +116,8 @@ public class CorretoraService {
         headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
 
         HttpEntity<Long> entity = new HttpEntity<>(cdCorretora, headers);
-        ResponseEntity<String> retorno = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
+        ResponseEntity<ContratoCorretoraPreenchido> retorno = restTemplate.exchange(url, HttpMethod.GET, entity, ContratoCorretoraPreenchido.class);
 
-        if (retorno.getStatusCode() == HttpStatus.OK) {
-            return retorno;
-        } else {
-            log.error("GERAR ARQUIVO CONTRATO CORRETORA ->>> gerarArquivoContratoCorretora");
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-        }
+        return retorno;
     }
 }

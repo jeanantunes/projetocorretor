@@ -1,5 +1,6 @@
 var memoriaInputEmail = "";
 var metodoSalvarEmailCorretora = "";
+var metodoDownloadContratoCorretora = "";
 var cdCorretora;
 
 $(document).ready(function () {
@@ -128,6 +129,64 @@ $(document).ready(function () {
 
     });
 
+    getPropertie("odontoprev.web.download.contratocorretora", function (dataPropertie) {
+
+        if(dataPropertie != undefined){
+
+            if(dataPropertie.status == undefined){
+
+                metodoDownloadContratoCorretora = dataPropertie;
+
+            }
+        }
+    });
+
+    $("#downloadContrato").click(function () {
+
+        swal({
+            title: "Aguarde",
+            text: 'Estamos baixando o contrato',
+            content: "input",
+            showCancelButton: false,
+            showConfirmButton: false,
+            imageUrl: "../../img/icon-aguarde.gif",
+            allowEscapeKey: false,
+            allowOutsideClick: false,
+            icon: "info",
+            button: {
+                text: "...",
+                closeModal: false,
+            },
+        });
+
+        donwloadContratoCorretora(
+
+            function (dataSucessDownloadCorretora) {
+
+                if(dataSucessDownloadCorretora == undefined){
+
+                    swal("Ops!", "Você ainda não deu aceite do contrato", "info");
+                    return;
+                }
+
+                var link = document.createElement('a');
+
+                link.href = 'data:application/pdf;base64,' + dataSucessDownloadCorretora.contratoPreenchido;
+                link.download = dataSucessDownloadCorretora.nomeArquivo;
+                link.dispatchEvent(new MouseEvent('click'));
+                swal("Nice", "Download concluido com sucesso", "success");
+
+            },
+
+            function (dataErrorDownloadCorretora) {
+
+                swal("Ops!", "Erro no download do arquivo", "error");
+
+            }
+        )
+        
+    });
+
     getPropertie("odontoprev.web.salvaremail", function (dataPropertie) {
 
         if(dataPropertie != undefined){
@@ -140,24 +199,27 @@ $(document).ready(function () {
         }
     });
 
-    var dtAceite = new Object();
-
-        $.ajax({
-            url: "/usuario_session",
-            type: "get",
-            async: false,
-            xhrFields: {
-                withCredentials: true
-            },
-            success: function (result) {
-                dtAceite.data = eval(result).dtAceiteContrato;
-            },
-            error: function (result) {
-                $(".errorTxt").removeClass("hidden");
-            }
-        });
-
 });
+
+function donwloadContratoCorretora(callbackSucess, callbackError) {
+
+
+    $.ajax({
+        async: true,
+        url: metodoDownloadContratoCorretora + "?cdCorretora=" + cdCorretora,
+        method: "GET",
+        headers:{
+            "Content-Type": "application/json"
+        },
+        success: function (resp) {
+            callbackSucess(resp);
+        },
+        error: function (xhr) {
+            callbackError(xhr);
+        }
+    });
+
+}
 
 function putEmailCorretora(callback) {
     var emailCorretora = $("#inputEmail").val();

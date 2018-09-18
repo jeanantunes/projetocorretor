@@ -6,8 +6,11 @@ import br.com.odontoprev.portalcorretor.model.DadosContratoCorretora;
 import br.com.odontoprev.portalcorretor.model.UsuarioSession;
 import br.com.odontoprev.portalcorretor.service.ContratoCorretoraService;
 import br.com.odontoprev.portalcorretor.service.CorretoraService;
+import br.com.odontoprev.portalcorretor.service.dto.ArquivoContratoCorretora;
 import br.com.odontoprev.portalcorretor.service.dto.ContratoCorretora;
 import br.com.odontoprev.portalcorretor.service.dto.ContratoCorretoraPreenchido;
+import javassist.bytecode.ByteArray;
+import java.util.Base64;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 
@@ -39,37 +43,48 @@ public class ContratoCorretoraController {
     @RequestMapping(value = "/corretora/contrato", method = RequestMethod.GET)
     public ModelAndView home(HttpSession session) {
 
-        Object acessoValido = session.getAttribute("acessouModalContrato");
+        try{
 
-        if (acessoValido == null) {
-            String redirectUrl = "/corretora/home";
-            return new ModelAndView("redirect:" + redirectUrl);
-        }
+            Object acessoValido = session.getAttribute("acessouModalContrato");
 
-        session.removeAttribute("acessouModalContrato");
+            if (acessoValido == null) {
+                String redirectUrl = "/corretora/home";
+                return new ModelAndView("redirect:" + redirectUrl);
+            }
 
-        UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
-        String codSusep = (String) session.getAttribute("codSusep");
-        Boolean contratoAceito;
+            session.removeAttribute("acessouModalContrato");
 
-        DadosContratoCorretora dadosContratoCorretora = new DadosContratoCorretora();
-        dadosContratoCorretora.setCodSusep(codSusep);
-        dadosContratoCorretora.setCdCorretora((long) usuario.getCodigoCorretora());
+            UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
+            String codSusep = (String) session.getAttribute("codSusep");
+            Boolean contratoAceito;
 
-        if (usuario.getDtAceiteContrato() != null) {
+            DadosContratoCorretora dadosContratoCorretora = new DadosContratoCorretora();
+            dadosContratoCorretora.setCodSusep(codSusep);
+            dadosContratoCorretora.setCdCorretora((long) usuario.getCodigoCorretora());
 
-            contratoAceito = true;
+            if (usuario.getDtAceiteContrato() != null) {
+
+                contratoAceito = true;
+                dadosContratoCorretora.setContratoAceito(contratoAceito);
+                return new ModelAndView("/corretora/contrato", "contratoAceito", dadosContratoCorretora);
+
+            }
+
+            ContratoCorretoraPreenchido contratoCorretoraPreenchido = contratoCorretoraService.obterModeloContrato(dadosContratoCorretora);
+
+            contratoAceito = false;
             dadosContratoCorretora.setContratoAceito(contratoAceito);
+            dadosContratoCorretora.setTextoContrato(contratoCorretoraPreenchido.getContratoPreenchido());
+
             return new ModelAndView("/corretora/contrato", "contratoAceito", dadosContratoCorretora);
 
+        }catch (Exception e){
+
+            log.info("Erro ao carregar contrato - erro");
+            log.error(e);
+            return new ModelAndView("/corretora/contrato");
+
         }
-
-        ContratoCorretoraPreenchido contratoCorretoraPreenchido = contratoCorretoraService.obterModeloContrato(dadosContratoCorretora);
-
-        contratoAceito = false;
-        dadosContratoCorretora.setContratoAceito(contratoAceito);
-        dadosContratoCorretora.setTextoContrato(contratoCorretoraPreenchido.getContratoPreenchido());
-        return new ModelAndView("/corretora/contrato", "contratoAceito", dadosContratoCorretora);
     }
 
     @RequestMapping(value = "/corretora/aceitarcontrato", method = RequestMethod.POST)
@@ -120,33 +135,24 @@ public class ContratoCorretoraController {
         return new ModelAndView("/corretora/contrato-aceito");
     }
 
-    @RequestMapping(value = "/downloadContratoCorretora", method = RequestMethod.GET)
+    @RequestMapping(value = "/downloadcontratocorretora", method = RequestMethod.GET)
     @ResponseBody
-    public ModelAndView downloadContratoCorretora(Model model, HttpServletResponse
-            response, @RequestParam("cdCorretora") Long cdCorretora, HttpSession session) throws IOException, ApiTokenException {
+    public ResponseEntity<ContratoCorretoraPreenchido> downloadContratoCorretora2(@RequestParam("cdCorretora") Long cdCorretora, HttpSession session){
 
-        UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
+        try
+        {
+            UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
 
-        ResponseEntity<String> file = corretoraService.gerarContratoCorretora(cdCorretora);
+            if (usuario.getDtAceiteContrato() == null){
+                return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+            }
 
-        if (file.getStatusCode().equals(HttpStatus.OK)) {
-            String fileName = file.getHeaders().get("Content-Disposition").get(0).split(";")[1].split("=")[1];
+            return corretoraService.gerarContratoCorretora(cdCorretora);
 
-            response.setContentType(String.valueOf(MediaType.APPLICATION_PDF));
-            String headerKey = "Content-Disposition";
-            String headerValue = String.format("attachment; filename=\"%s\"", fileName);
-            response.setHeader(headerKey, headerValue);
-            response.getWriter().write(file.toString());
-            response.getWriter().flush();
-        } else {
-            log.error("O arquivo não foi encontrato em nosso sistema. Data Aceite " + ">>> " + usuario.getDtAceiteContrato());
-            //model.addAttribute(usuario.getDtAceiteContrato(), "O arquivo não foi encontrado em nosso sistema.");
-            String redirectUrl = "/corretora/editar/home";
-            return new ModelAndView("redirect:" + redirectUrl);
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
-        String redirectUrl = "/corretora/editar/home";
-        return new ModelAndView("redirect:" + redirectUrl);
     }
 
 }
