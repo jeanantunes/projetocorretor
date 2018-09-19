@@ -48,7 +48,7 @@ public class ContratoCorretoraController {
             Object acessoValido = session.getAttribute("acessouModalContrato");
 
             if (acessoValido == null) {
-                String redirectUrl = "/corretora/home";
+                String redirectUrl = "corretora/home";
                 return new ModelAndView("redirect:" + redirectUrl);
             }
 
@@ -66,7 +66,7 @@ public class ContratoCorretoraController {
 
                 contratoAceito = true;
                 dadosContratoCorretora.setContratoAceito(contratoAceito);
-                return new ModelAndView("/corretora/contrato", "contratoAceito", dadosContratoCorretora);
+                return new ModelAndView("corretora/contrato", "contratoAceito", dadosContratoCorretora);
 
             }
 
@@ -76,13 +76,13 @@ public class ContratoCorretoraController {
             dadosContratoCorretora.setContratoAceito(contratoAceito);
             dadosContratoCorretora.setTextoContrato(contratoCorretoraPreenchido.getContratoPreenchido());
 
-            return new ModelAndView("/corretora/contrato", "contratoAceito", dadosContratoCorretora);
+            return new ModelAndView("corretora/contrato", "contratoAceito", dadosContratoCorretora);
 
         }catch (Exception e){
 
             log.info("Erro ao carregar contrato - erro");
             log.error(e);
-            return new ModelAndView("/corretora/contrato");
+            return new ModelAndView("corretora/contrato");
 
         }
     }
@@ -126,13 +126,13 @@ public class ContratoCorretoraController {
         Object acessoValido = session.getAttribute("acessouAceiteContrato");
 
         if (acessoValido == null) {
-            String redirectUrl = "/corretora/home";
+            String redirectUrl = "corretora/home";
             return new ModelAndView("redirect:" + redirectUrl);
         }
 
         session.removeAttribute("acessouAceiteContrato");
 
-        return new ModelAndView("/corretora/contrato-aceito");
+        return new ModelAndView("corretora/contrato-aceito");
     }
 
     @RequestMapping(value = "/downloadcontratocorretora", method = RequestMethod.GET)

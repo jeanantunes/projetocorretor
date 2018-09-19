@@ -220,7 +220,7 @@ public class CorretoraController {
         request.getSession().setAttribute("codigoCorretora", usuario.getCodigoCorretora());
         request.getSession().setAttribute("acessouModalContrato", true);
 
-        String redirectUrl = "/corretora/contrato";
+        String redirectUrl = "contrato";
         return new ModelAndView("redirect:" + redirectUrl);
         //return new ModelAndView("corretora/contrato");
     }
