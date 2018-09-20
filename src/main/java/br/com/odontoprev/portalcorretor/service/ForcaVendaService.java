@@ -1,10 +1,8 @@
 package br.com.odontoprev.portalcorretor.service;
 
-import br.com.odontoprev.portalcorretor.service.dto.AtivarResponse;
-import br.com.odontoprev.portalcorretor.service.dto.ExcluirResponse;
-import br.com.odontoprev.portalcorretor.service.dto.ForcaVenda;
-import br.com.odontoprev.portalcorretor.service.dto.ForcaVendaResponse;
-import br.com.odontoprev.portalcorretor.service.dto.ReprovarResponse;
+import br.com.odontoprev.api.manager.client.token.util.ConfigurationUtils;
+import br.com.odontoprev.portalcorretor.exceptions.ApiTokenException;
+import br.com.odontoprev.portalcorretor.service.dto.*;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,13 +11,11 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class ForcaVendaService {
@@ -232,5 +228,27 @@ public class ForcaVendaService {
             e.printStackTrace();
             return new ForcaVenda();
         }
+    }
+
+    public ResponseEntity<Login> verificaBloqueio(long cdForcaVenda) throws ApiTokenException {
+
+        log.info("VERIFICA FORCA VENDA BLOQUEIO ->>> verificaBloqueio()");
+
+        //String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", "/" + "forcavenda/bloqueio" + cdForcaVenda);
+        String url = "http://localhost:8090/forcavenda/bloqueio?cdForcaVenda=" + cdForcaVenda;
+
+        RestTemplate restTemplate = new RestTemplate();
+        MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
+        mappingJackson2HttpMessageConverter.setSupportedMediaTypes(Arrays.asList(
+                new MediaType("application", "json")));
+        restTemplate.getMessageConverters().add(mappingJackson2HttpMessageConverter);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
+
+        HttpEntity<Login> entity = new HttpEntity<>(headers);
+        ResponseEntity<Login> retorno = restTemplate.exchange(url, HttpMethod.GET, entity, Login.class);
+
+        return retorno;
     }
 }
