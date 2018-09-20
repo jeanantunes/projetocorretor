@@ -1,28 +1,26 @@
 package br.com.odontoprev.portalcorretor.controller;
 
-import java.util.List;
-import java.util.stream.Stream;
-
-import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
-
 import br.com.odontoprev.portalcorretor.model.ListaPropostas;
 import br.com.odontoprev.portalcorretor.model.UsuarioSession;
 import br.com.odontoprev.portalcorretor.service.DashService;
 import br.com.odontoprev.portalcorretor.service.ForcaVendaService;
 import br.com.odontoprev.portalcorretor.service.dto.DashboardPropostas;
 import br.com.odontoprev.portalcorretor.service.dto.ForcaVenda;
+import br.com.odontoprev.portalcorretor.service.dto.Login;
 import br.com.odontoprev.portalcorretor.service.dto.Proposta;
 import br.com.odontoprev.portalcorretor.service.entity.FiltroStatusProposta;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+import java.util.List;
+import java.util.stream.Stream;
 
 @Controller
 public class ForcaVendaController {
@@ -58,16 +56,16 @@ public class ForcaVendaController {
 
         corretora.setPropostaPF(propostasPME);
         corretora.setPropostaPME(propostasPF);
-        corretora.setTotalSucesso(aprovada.intValue() );
+        corretora.setTotalSucesso(aprovada.intValue());
         corretora.setTotalCriticadas(criticadas.intValue());
 
         double totalValorPF = propostaPF.getDashboardPropostasPF().stream().mapToDouble(Proposta::getValor).sum();
         double totalValorPME = propostaPME.getDashboardPropostasPME().stream().mapToDouble(Proposta::getValor).sum();
 
         corretora.setTotalValorPF(totalValorPF);
-        corretora.setPercenteValorPF( totalValorPF> totalValorPME ? 100:  totalValorPF == 0 ? 0 : 50 );
+        corretora.setPercenteValorPF(totalValorPF > totalValorPME ? 100 : totalValorPF == 0 ? 0 : 50);
         corretora.setTotalValorPME(totalValorPME);
-        corretora.setPercenteValorPME(  totalValorPME > totalValorPF ? 100:  totalValorPME  == 0 ? 0 : 50 );
+        corretora.setPercenteValorPME(totalValorPME > totalValorPF ? 100 : totalValorPME == 0 ? 0 : 50);
 
         return new ModelAndView("forcavenda/home", "corretor", corretora);
     }
@@ -75,7 +73,7 @@ public class ForcaVendaController {
     @RequestMapping("forcavenda/cadastro/editar")
     public ModelAndView index(HttpSession session) {
 
-    	UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
+        UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
 
         ForcaVenda forcaVenda = forcaVendaService.ObterPorDocumento(usuario.getDocumento());
 
@@ -85,16 +83,16 @@ public class ForcaVendaController {
     @RequestMapping(value = "forcavenda/cadastro/salvar", method = RequestMethod.POST)
     public ModelAndView salvar(HttpSession session, @Valid @ModelAttribute("forcaVenda") ForcaVenda forcaVendaParam, BindingResult result) {
 
-    	if (result.hasErrors()) {
-    		return new ModelAndView("forcavenda/cadastro/editar", "forcaVenda", forcaVendaParam);
+        if (result.hasErrors()) {
+            return new ModelAndView("forcavenda/cadastro/editar", "forcaVenda", forcaVendaParam);
 
-    	} else {
+        } else {
 
-    		if (!forcaVendaParam.getSenha().equals(forcaVendaParam.getConfirmaSenha())) {
-    			return new ModelAndView("forcavenda/cadastro/editar", "forcaVenda", forcaVendaParam);
-    		}
+            if (!forcaVendaParam.getSenha().equals(forcaVendaParam.getConfirmaSenha())) {
+                return new ModelAndView("forcavenda/cadastro/editar", "forcaVenda", forcaVendaParam);
+            }
 
-        	UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
+            UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
 
             ForcaVenda forcaVenda = forcaVendaService.ObterPorDocumento(usuario.getDocumento());
             forcaVenda.setCelular(forcaVendaParam.getCelular());
@@ -104,61 +102,61 @@ public class ForcaVendaController {
             forcaVendaService.Alterar(forcaVenda);
 
             return this.home(session);
-    	}
+        }
     }
-    
+
 
     @RequestMapping(value = "alertas/{statusProposta}", method = RequestMethod.GET)
     public ModelAndView Proposta(@PathVariable String statusProposta, HttpSession session) {
 
-    	 UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
+        UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
 
-         ListaPropostas listaPropostas = new ListaPropostas();
+        ListaPropostas listaPropostas = new ListaPropostas();
 
-         DashboardPropostas propostaPME = dashService.ObterListaPropostaPME(statusProposta.toUpperCase().equals("APROVADO") ? FiltroStatusProposta.APROVADO : FiltroStatusProposta.CRITICADO, usuario.getDocumento());
+        DashboardPropostas propostaPME = dashService.ObterListaPropostaPME(statusProposta.toUpperCase().equals("APROVADO") ? FiltroStatusProposta.APROVADO : FiltroStatusProposta.CRITICADO, usuario.getDocumento());
 
-         List<Proposta> dashboardPropostasPME = propostaPME.getDashboardPropostasPME();
-         listaPropostas.setPropostaPME(dashboardPropostasPME);
-         listaPropostas.setTotalPME(dashboardPropostasPME.size());
+        List<Proposta> dashboardPropostasPME = propostaPME.getDashboardPropostasPME();
+        listaPropostas.setPropostaPME(dashboardPropostasPME);
+        listaPropostas.setTotalPME(dashboardPropostasPME.size());
 
-         DashboardPropostas propostaPF = dashService.ObterListaPropostaPF(statusProposta.toUpperCase().equals("APROVADO") ? FiltroStatusProposta.APROVADO : FiltroStatusProposta.CRITICADO, usuario.getDocumento());
-         List<Proposta> dashboardPropostasPF = propostaPF.getDashboardPropostasPF();
-         listaPropostas.setPropostaPF(dashboardPropostasPF);
-         listaPropostas.setTotalPF(dashboardPropostasPF.size());
+        DashboardPropostas propostaPF = dashService.ObterListaPropostaPF(statusProposta.toUpperCase().equals("APROVADO") ? FiltroStatusProposta.APROVADO : FiltroStatusProposta.CRITICADO, usuario.getDocumento());
+        List<Proposta> dashboardPropostasPF = propostaPF.getDashboardPropostasPF();
+        listaPropostas.setPropostaPF(dashboardPropostasPF);
+        listaPropostas.setTotalPF(dashboardPropostasPF.size());
 
-         listaPropostas.setTotal(dashboardPropostasPF.size() + dashboardPropostasPME.size());
+        listaPropostas.setTotal(dashboardPropostasPF.size() + dashboardPropostasPME.size());
 
-         return new ModelAndView("lista-propostas", "listaPropostas", listaPropostas);
+        return new ModelAndView("lista-propostas", "listaPropostas", listaPropostas);
     }
-    
+
     //201808141702 - esert - COR-363 (Web - Model/View - Meus dados)
     @RequestMapping(value = "forcavenda/meus-dados", method = RequestMethod.GET)
     public ModelAndView meusDados(HttpSession session) {
-   	 	UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
+        UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
         ForcaVenda forcaVenda = forcaVendaService.ObterPorDocumento(usuario.getDocumento());
         //return new ModelAndView("forcavenda/editar/home", "forcaVenda", forcaVenda);
         return new ModelAndView("forcavenda/editar/meus_dados", "forcaVenda", forcaVenda);
     }
-    
+
     //201808141815 - esert - COR-363 (Web - Model/View - Meus dados)
     @RequestMapping(value = "forcavenda/meus-dados-editar", method = RequestMethod.POST)
     public ModelAndView meusDadosEditar(HttpSession session) {
-   	 	UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
+        UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
         ForcaVenda forcaVenda = forcaVendaService.ObterPorDocumento(usuario.getDocumento());
         //return new ModelAndView("forcavenda/editar/editar", "forcaVenda", forcaVenda);
         return new ModelAndView("forcavenda/editar/meus_dados_edicao", "forcaVenda", forcaVenda);
     }
-    
+
     //201808141820 - esert - COR-363 (Web - Model/View - Meus dados)
     @RequestMapping(value = "forcavenda/editar/salvar", method = RequestMethod.POST)
     public ModelAndView meusDadosSalvar(HttpSession session, @Valid @ModelAttribute("forcaVenda") ForcaVenda forcaVendaParam, BindingResult result) {
 
-    	if (result.hasErrors()) {
-    		//return new ModelAndView("forcavenda/editar/editar", "forcaVenda", forcaVendaParam);
-    		return new ModelAndView("forcavenda/editar/meus_dados_edicao", "forcaVenda", forcaVendaParam);
-    	} else {
+        if (result.hasErrors()) {
+            //return new ModelAndView("forcavenda/editar/editar", "forcaVenda", forcaVendaParam);
+            return new ModelAndView("forcavenda/editar/meus_dados_edicao", "forcaVenda", forcaVendaParam);
+        } else {
 
-        	UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
+            UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
 
             ForcaVenda forcaVenda = forcaVendaService.ObterPorDocumento(usuario.getDocumento());
 //            forcaVenda.setNome(forcaVendaParam.getNome());
@@ -178,7 +176,26 @@ public class ForcaVendaController {
             forcaVenda = forcaVendaService.ObterPorDocumento(usuario.getDocumento());
             //return new ModelAndView("forcavenda/editar/home", "forcaVenda", forcaVenda);
             return new ModelAndView("forcavenda/editar/meus_dados", "forcaVenda", forcaVenda);
-    	}
+        }
+    }
+
+    @RequestMapping(value = "forcavenda/bloqueio", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<Login> forcaVendaBloqueio(HttpSession session) {
+
+        try {
+            UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
+
+            if (usuario == null) {
+                return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+            }
+
+            return forcaVendaService.verificaBloqueio(usuario.getCodigoUsuario());
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+
     }
 
 }

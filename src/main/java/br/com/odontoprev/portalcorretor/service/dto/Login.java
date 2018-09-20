@@ -11,6 +11,9 @@ public class Login implements Serializable {
 	private String fotoPerfilB64;
 	private String senha;
 	private String usuario;
+	private boolean temBloqueio;
+	private Long codigoTipoBloqueio;
+	private String descricaoTipoBloqueio;
 
 	public String getSenha() {
 		return senha;
@@ -52,9 +55,41 @@ public class Login implements Serializable {
 		this.fotoPerfilB64 = fotoPerfilB64;
 	}
 
+	public boolean getTemBloqueio() {
+		return temBloqueio;
+	}
+
+	public void setTemBloqueio(boolean temBloqueio) {
+		this.temBloqueio = temBloqueio;
+	}
+
+	public Long getCodigoTipoBloqueio() {
+		return codigoTipoBloqueio;
+	}
+
+	public void setCodigoTipoBloqueio(Long codigoTipoBloqueio) {
+		this.codigoTipoBloqueio = codigoTipoBloqueio;
+	}
+
+	public String getDescricaoTipoBloqueio() {
+		return descricaoTipoBloqueio;
+	}
+
+	public void setDescricaoTipoBloqueio(String descricaoTipoBloqueio) {
+		this.descricaoTipoBloqueio = descricaoTipoBloqueio;
+	}
+
 	@Override
 	public String toString() {
-		return "Login [cdLogin=" + cdLogin + ", cdTipoLogin=" + cdTipoLogin + ", fotoPerfilB64=" + fotoPerfilB64
-				+ ", senha=" + senha + ", usuario=" + usuario + "]";
+		return "Login{" +
+				"cdLogin=" + cdLogin +
+				", cdTipoLogin=" + cdTipoLogin +
+				", fotoPerfilB64='" + fotoPerfilB64 + '\'' +
+				", senha='" + senha + '\'' +
+				", usuario='" + usuario + '\'' +
+				", temBloqueio=" + temBloqueio +
+				", codigoTipoBloqueio=" + codigoTipoBloqueio +
+				", descricaoTipoBloqueio='" + descricaoTipoBloqueio + '\'' +
+				'}';
 	}
 }
