@@ -15,7 +15,24 @@ $(document).ready(function () {
         $("#enviarPropostaPme").prop('disabled', true);
         emRequisicao = true;
 
-        enviarPropostaPme();
+        validarForcaVenda(function (retornoForcaVenda) {
+
+            if (retornoForcaVenda != 403) {
+
+                enviarPropostaPme();
+
+            } else {
+
+                var fraseCorretoraBloqueada = getRepository("fraseCorretoraBloqueada");
+
+                swal(fraseCorretoraBloqueada.title, fraseCorretoraBloqueada.descricao, fraseCorretoraBloqueada.tipo);
+                $("#enviarPropostaPme").prop('disabled', false);
+                emRequisicao = false;
+                return;
+            }
+
+
+        });
 
     });
 
@@ -366,7 +383,7 @@ function enviarPropostaPme() {
 
     put("empresas", JSON.stringify(todosExcetoExclusao));
 
-
+    var propostaConsultouSerasa = true;
 
     consultarSerasa(function (dataProposta) {
 
@@ -375,6 +392,7 @@ function enviarPropostaPme() {
 
             proposta.status = "PRONTA";
             atualizarEmpresas(proposta);
+            propostaConsultouSerasa = false;
             setTimeout(function () {
                 swal("Ops!", "Erro na consulta do CNPJ, mas sua proposta está salva.\n\nTente envia-la mais tarde.", "error");
                 put("proposta", JSON.stringify(proposta));
@@ -383,13 +401,16 @@ function enviarPropostaPme() {
                 return;
             }, 250);
 
+
+
         };
+
+        if (!propostaConsultouSerasa) return;
 
         proposta = dataProposta;
 
         var parametroEmpresa = [];
         parametroEmpresa.push(proposta);
-
 
         sincronizarPME(function (dataVendaPme) {
 
@@ -397,10 +418,28 @@ function enviarPropostaPme() {
 
                 if (dataVendaPme.id == 0) {
 
-                    proposta.status = "CRITICADA";
-                    atualizarEmpresas(proposta);
-                    emRequisicao = false;
-                    $("#enviarPropostaPme").prop('disabled', false);
+                    if (dataVendaPme.temBloqueio) {
+
+                        swal(fraseCorretoraBloqueada.title, fraseCorretoraBloqueada.descricao, fraseCorretoraBloqueada.tipo);
+                        proposta.status = "PRONTA";
+                        atualizarEmpresas(proposta);
+
+                        emRequisicao = false;
+                        $("#enviarPropostaPme").prop('disabled', false);
+
+                    } else {
+
+                        swal.close();
+                        proposta.status = "CRITICADA";
+                        atualizarEmpresas(proposta);
+
+                        emRequisicao = false;
+                        $("#enviarPropostaPme").prop('disabled', false);
+
+                    }
+
+
+
                 }
                 else {
 
