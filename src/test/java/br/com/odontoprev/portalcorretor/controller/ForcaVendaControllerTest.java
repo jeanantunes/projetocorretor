@@ -54,6 +54,7 @@ public class ForcaVendaControllerTest {
     @Ignore
     public void forcaVendaBloqueio() throws Exception {
 
+        //TODO: Débito Técnico - Não sabemos como passar a session via Mock - 21/09/2018 - Jean Antunes
         UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
         usuario.setCodigoUsuario(6);
 
