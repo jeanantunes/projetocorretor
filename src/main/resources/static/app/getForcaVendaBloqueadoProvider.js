@@ -4,10 +4,42 @@ $(document).ready(function () {
     getPropertie("odontoprev.web.forcavenda.bloqueado",
         function (dataPropertie) {
             metodoForcaVendaBloqueado = dataPropertie;
-            validarForcaIndex();
+
+            getPerfilUsuario(
+                function (dataPerfilUsuario) {
+
+                    var perfil = dataPerfilUsuario.perfil.toUpperCase();
+
+                    if (perfil == "CORRETOR"){
+                        validarForcaIndex();
+                    }
+
+                },
+                function (errorPerfil) {
+                    
+                })
         })
 });
 
+function getPerfilUsuario(callbackSucess, callbackError){
+
+    $.ajax({
+        url: "/usuario_session",
+        type: "get",
+        async: false,
+        xhrFields: {
+            withCredentials: true
+        },
+        success: function (result) {
+            callbackSucess(result);
+        },
+        error: function (result) {
+            callbackError(result)
+        }
+    });
+
+
+}
 
 function validarForcaVenda(callback) {
 
@@ -102,7 +134,7 @@ function validarForcaIndex() {
 
                             //var fraseCorretoraBloqueada = getRepository("fraseCorretoraBloqueada");
 
-                            swal("Corretora Bloqueada", "Sua corretora possui uma pendência de atualização contratual com a OdontoPrev.\n\n As vendas ficarão salvas na Lista de Propostas, por favor tente reenviar após resolução.", "info");
+                            swal("Corretora Bloqueada", "Sua corretora possui uma pendência de atualização contratual com a OdontoPrev, por favor tente refazer as vendas após resolução.", "info");
                             return;
                         }
 
