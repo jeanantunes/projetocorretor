@@ -1,4 +1,4 @@
-package controller;
+package br.com.odontoprev.portalcorretor.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
