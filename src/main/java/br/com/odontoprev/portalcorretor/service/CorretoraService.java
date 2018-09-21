@@ -62,6 +62,26 @@ public class CorretoraService {
         }
     }
 
+    public ResponseEntity<Corretora> verificarBloqueioCorretora(String cnpj) {
+
+        String url = requesBasetUrl + dadosCorretora + cnpj;
+        RestTemplate restTemplate = new RestTemplate();
+
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
+            HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
+            ResponseEntity<Corretora> retorno = restTemplate.exchange(url, HttpMethod.GET, entity, Corretora.class);
+
+            return retorno;
+
+        } catch (Exception e) {
+            // e.printStackTrace();
+            log.error(e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
     public CorretoraResponse salvarEmailCorretora(Corretora corretora) {
 
         log.info("salvarEmailCorretora - ini");
