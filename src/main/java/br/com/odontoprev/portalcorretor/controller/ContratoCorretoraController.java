@@ -96,7 +96,7 @@ public class ContratoCorretoraController {
             String codSusep = (String) session.getAttribute("codSusep");
 
             DadosContratoCorretora dadosContratoCorretora = new DadosContratoCorretora();
-            dadosContratoCorretora.setCodSusep(codSusep);
+            dadosContratoCorretora.setCodSusep(codSusep == "" ? null : codSusep);
             dadosContratoCorretora.setCdCorretora((long) usuario.getCodigoCorretora());
 
             ContratoCorretora contratoCorretora = contratoCorretoraService.postContratoCorretora(dadosContratoCorretora);
