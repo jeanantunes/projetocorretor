@@ -10,12 +10,16 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-theme.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/sweetalert.css}"/>
+
 
     <script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/jquery.mask.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/odonto-Valida.js}"></script>
     <script type="text/javascript" th:src="@{/js/menu.js}"></script>
+    <script type="text/javascript" th:src="@{/js/sweetalert.min.js}"></script>
+
     <script> resizeIframe('frame_pf');</script>
 
     <!--<script type="text/javascript" th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js}"></script>-->
@@ -26,6 +30,11 @@
         });
     </script>
 
+    <style>
+        .sweet-alert {
+            margin-top: 02% !important;
+        }
+    </style>
 </head>
 
 <body style="min-width: 100% !important;">
@@ -79,7 +88,9 @@
 
     <div th:replace="fragments/footer :: footer">&nbsp;</div>
 </div>
+<script type="text/javascript" th:src="@{/js/getPropertie.js}"></script>
 <script type="text/javascript" th:src="@{/js/setColorMenuCorretor.js}"></script>
+<script type="text/javascript" th:src="@{/app/getForcaVendaBloqueadoProvider.js}"></script>
 </body>
 <script>
     var iframeheigt = $(document).height();
