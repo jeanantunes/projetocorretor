@@ -394,7 +394,7 @@ function enviarPropostaPme() {
             atualizarEmpresas(proposta);
             propostaConsultouSerasa = false;
             setTimeout(function () {
-                swal("Ops!", "Erro na consulta do CNPJ, mas sua proposta está salva.\n\nTente envia-la mais tarde.", "error");
+                swal("Corretora Bloqueada", "Sua corretora possui uma pendência de atualização contratual com a OdontoPrev, por favor tente refazer as vendas após resolução.", "info");
                 put("proposta", JSON.stringify(proposta));
                 emRequisicao = false;
                 $("#enviarPropostaPme").prop('disabled', false);

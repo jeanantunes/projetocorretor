@@ -112,8 +112,7 @@ function cadastrarConta() {
 
         } else {
 
-            var fraseCorretoraBloqueada = getRepository("fraseCorretoraBloqueada");
-            swal(fraseCorretoraBloqueada.title, fraseCorretoraBloqueada.descricao, fraseCorretoraBloqueada.tipo);
+            swal("Corretora Bloqueada", "Sua corretora possui uma pendência de atualização contratual com a OdontoPrev, por favor tente refazer as vendas após resolução.", "info");
 
             $("#continuarPfDebito").prop('disabled', false);
             emRequisicao = false;

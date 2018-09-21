@@ -95,9 +95,9 @@ function pagarComBoleto()
 
         }else {
 
-            var fraseCorretoraBloqueada = getRepository("fraseCorretoraBloqueada");
+            //var fraseCorretoraBloqueada = getRepository("fraseCorretoraBloqueada");
 
-            swal(fraseCorretoraBloqueada.title, fraseCorretoraBloqueada.descricao, fraseCorretoraBloqueada.tipo);
+            swal("Corretora Bloqueada", "Sua corretora possui uma pendência de atualização contratual com a OdontoPrev, por favor tente refazer as vendas após resolução.", "info");
             $('#irParaDebito').prop('disabled', false);
             $('#pagarComBoleto').prop('disabled', false);
             emRequisicao = false;
