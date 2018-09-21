@@ -79,17 +79,34 @@ $(document).ready(function () {
                         return;
                     }
 
-                    if (dataDadosUsuario.cdForcaVenda != null && dataDadosUsuario.statusForcaVenda.toUpperCase() == "PRÉ-CADASTRO") {
+                    if (
+                    	dataDadosUsuario.cdForcaVenda != null 
+                    	&& 
+                    	dataDadosUsuario.statusForcaVenda.toUpperCase() == "PRÉ-CADASTRO"
+                    ) {
+                        console.log("callForcaVenda:PRE-CADASTRO");
+                        console.log("dataDadosUsuario:[" + JSON.stringify(dataDadosUsuario) + "]");
+                        
+                        //201809211722 - esert/yalm - COR-797 : WEB - Block Modal Pre-Cadastro Consulta CPF
+                        if (dataDadosUsuario.login.temBloqueio) {
+                            console.log("dataDadosUsuario.login.temBloqueio");
 
-                        swal.close();
-                        $("#celOdont").removeClass("hide");
-                        $("#cpfOdont").addClass("hide");
-                        $("#nomePreCadastrado").val(dataDadosUsuario.nome);
-                        $("#celularPreCadastrado").val(aplicarMascaraTelefone(dataDadosUsuario.celular));
-                        $("#emailPreCadastrado").val(dataDadosUsuario.email);
+                            var fraseCorretoraBloqueada = getRepository("fraseCorretoraBloqueada");
+                            swal(fraseCorretoraBloqueada.title, fraseCorretoraBloqueada.descricao + "!!!", fraseCorretoraBloqueada.tipo);
 
-                        localStorage.setItem("dadosUsuario", JSON.stringify(dataDadosUsuario));
+                            //return false;
+    
+                        } else {
 
+	                        swal.close();
+	                        $("#celOdont").removeClass("hide");
+	                        $("#cpfOdont").addClass("hide");
+	                        localStorage.setItem("dadosUsuario", JSON.stringify(dataDadosUsuario));
+	                        $("#nomePreCadastrado").val(dataDadosUsuario.nome);
+	                        $("#celularPreCadastrado").val(aplicarMascaraTelefone(dataDadosUsuario.celular));
+	                        $("#emailPreCadastrado").val(dataDadosUsuario.email);
+	                        
+                        }
                     }
 
                     else if (dataDadosUsuario.cdForcaVenda != null && (dataDadosUsuario.statusForcaVenda.toUpperCase() == "INATIVO" || dataDadosUsuario.statusForcaVenda.toUpperCase() == "REPROVADO")) {
@@ -130,6 +147,8 @@ $(document).ready(function () {
                     return;
                 }
 
+                //201809211730 - esert - COR-794 : WEB - Block Modal sem Pre-Cadastro ao Associar com Corretora
+                
                 var reCadastro = get("reCadastro");
 
                 if (!reCadastro) {
