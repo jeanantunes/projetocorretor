@@ -1161,7 +1161,6 @@ function sincronizar() {
     }
     else {
         swal("Você está sem Internet", "Não se preocupe, você pode acessar a tela inicial e enviar esta proposta depois.", "info");
-        0
     }
 }
 

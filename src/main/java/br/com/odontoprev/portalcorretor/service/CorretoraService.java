@@ -64,6 +64,7 @@ public class CorretoraService {
 
     public ResponseEntity<Corretora> verificarBloqueioCorretora(String cnpj) {
 
+        log.info("verificarBloqueioCorretora - ini");
         String url = requesBasetUrl + dadosCorretora + cnpj;
         RestTemplate restTemplate = new RestTemplate();
 
@@ -73,10 +74,12 @@ public class CorretoraService {
             HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
             ResponseEntity<Corretora> retorno = restTemplate.exchange(url, HttpMethod.GET, entity, Corretora.class);
 
+            log.info("verificarBloqueioCorretora - fim");
             return retorno;
 
         } catch (Exception e) {
             // e.printStackTrace();
+            log.info("verificarBloqueioCorretora - error");
             log.error(e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
