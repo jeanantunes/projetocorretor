@@ -147,7 +147,16 @@ $(document).ready(function () {
                     return;
                 }
 
-                //201809211730 - esert - COR-794 : WEB - Block Modal sem Pre-Cadastro ao Associar com Corretora
+                //201809241005 - esert - COR-794 : WEB - Block Modal sem Pre-Cadastro ao Associar com Corretora
+                if (dataCorretora.login.temBloqueio) {
+                    console.log("dataCorretora.login.temBloqueio");
+
+                    var fraseCorretoraBloqueada = getRepository("fraseCorretoraBloqueada");
+                    swal(fraseCorretoraBloqueada.title, fraseCorretoraBloqueada.descricao + " !!!", fraseCorretoraBloqueada.tipo);
+                    
+                    return;
+                }
+
                 
                 var reCadastro = get("reCadastro");
 
@@ -166,6 +175,8 @@ $(document).ready(function () {
                         $("#infoCorretora").addClass('hide');
                         $("#cadastroSucessoCorretora").removeClass("hide");
 
+                        swal.close(); //201809241005 - esert - incluido close aqui - COR-794 : WEB - Block Modal sem Pre-Cadastro ao Associar com Corretora
+                        
                     }, dataToken.token, cpfTratado, celularTratado, email, codCorretora, nome, senha, dataNascimento);
 
                 } else {
@@ -184,6 +195,8 @@ $(document).ready(function () {
 
                         $("#infoCorretora").addClass('hide');
                         $("#cadastroSucessoCorretora").removeClass("hide");
+
+                        swal.close(); //201809241005 - esert - incluido close aqui - COR-794 : WEB - Block Modal sem Pre-Cadastro ao Associar com Corretora
 
                     }, dataToken.token, dadosUsuario.cdForcaVenda, nome, celularTratado, email, senha, codCorretora);
 
@@ -846,7 +859,7 @@ function callCorretora(callback, token, cnpj) {
         },
         success: function (resp) {
             callback(resp);
-            swal.close();
+            //swal.close(); //201809241005 - esert - excluido close daqui - COR-794 : WEB - Block Modal sem Pre-Cadastro ao Associar com Corretora
 
         },
         error: function (xhr) {
