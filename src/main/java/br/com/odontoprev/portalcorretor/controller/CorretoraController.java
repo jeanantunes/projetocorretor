@@ -225,5 +225,17 @@ public class CorretoraController {
         //return new ModelAndView("corretora/contrato");
     }
 
+    @RequestMapping(value = "corretora/bloqueio", method = RequestMethod.GET)
+    public ResponseEntity getStatusBloqueioCorretora(HttpSession session) {
+
+        log.info("getStatusBloqueioCorretora - ini");
+
+        UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
+
+        log.info("chamando corretoraService.verificarBloqueioCorretora()...");
+        return corretoraService.verificarBloqueioCorretora(usuario.getDocumento());
+
+    }
+
 
 }
