@@ -80,7 +80,7 @@ function validarCorretora() {
 
                 if (dataCorretoraSucess.login.temBloqueio) {
 
-                    swal("Corretora Bloqueada", "Sua corretora possui uma pendência de atualização contratual com a OdontoPrev, por favor tente refazer as vendas após resolução.", "info");
+                    swal("Corretora Bloqueada", "A corretora possui uma pendência de atualização contratual com a OdontoPrev, vendas e alterações de equipe serão normalizadas após aceite do contrato.", "info");
                     return;
                 }
 

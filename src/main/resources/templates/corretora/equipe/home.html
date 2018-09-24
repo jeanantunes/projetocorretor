@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-theme.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/odontoprev.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/sweetalert.css}"/>
 
     <script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/jquery.mask.min.js}"></script>
@@ -26,6 +26,11 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
+
+            $(".temBloqueio").click(function () {
+                validarCorretora();
+            });
+
             $('.table-odonto .line-table:odd').css('background-color', '#fff');
 
             $('.table-odonto .line-table:even').css('background-color', '#EDEDED');
@@ -130,6 +135,10 @@
         a:hover, b:hover {
             color: #dc4680;
         }
+
+        .sweet-alert {
+            margin-top: 04% !important;
+        }
     </style>
 
 
@@ -174,9 +183,13 @@
                                   th:title="${forca.cpf} + '<br>' + ${forca.email} + '<br>' + ${forca.celular}"
                                   th:text="${forca.nome}"></span></td>
                         <td><span th:text="${forca.statusForcaVenda}"></span></td>
-                        <td align="right"><span>  <a class="text-silver"
-                                                     th:href="@{/corretora/equipe/excluir(cpf=${forca.cpf})}">
-                            <i style="font-size: 16px;" class="fa">&#xf014;</i> Excluir</a></span>
+                        <td align="right"><span>
+                            <div th:if="${session.usuario.temBloqueio} == true">
+                            <a class="text-silver temBloqueio" href="#">
+                                <i style="font-size: 16px;" class="fa">&#xf014;</i> Excluir</a></div>
+                            <div th:if="${session.usuario.temBloqueio} == false">
+                            <a class="text-silver" th:href="@{/corretora/equipe/excluir(cpf=${forca.cpf})}">
+                                <i style="font-size: 16px;" class="fa">&#xf014;</i> Excluir</a></div></span>
                             <!--<td><span>  <a th:href="@{/corretora/equipe/desativar(id=${forca.cdForcaVenda})}" > Desativar </a></span>-->
 
                     </tr>
@@ -189,8 +202,16 @@
 
         <div class="col-xs-12">
             <div class=" space-top-30 btn-header-web">
-                <a th:href="@{/corretora/equipe/adicionar}" type="button"
-                   class="btn uppercase btnBlue btn-width-custom space-top-10 navbar-right">ADICIONAR NOVO CORRETOR</a>
+                <div th:if="${session.usuario.temBloqueio} == true">
+                    <a href="#" type="button"
+                       class="btn uppercase btnBlue btn-width-custom space-top-10 navbar-right temBloqueio">ADICIONAR
+                        NOVO CORRETOR</a>
+                </div>
+                <div th:if="${session.usuario.temBloqueio} == false">
+                    <a th:href="@{/corretora/equipe/adicionar}" type="button"
+                       class="btn uppercase btnBlue btn-width-custom space-top-10 navbar-right">ADICIONAR NOVO
+                        CORRETOR</a>
+                </div>
                 <!-- TODO: Não entra na Sprint5 -->
                 <!-- a th:href="@{/corretora/equipe/adicionar}" type="button"
                 class="btn uppercase btnBlue btn-width-custom space-top-10 navbar-right">DADOS COMPLETOS DA EQUIPE</a-->
@@ -221,35 +242,34 @@
             <p class="text-odonto font-silver">Para fazer o upload da sua equipe de vendas, você precisa preencher
                 corretamente todos os campos do formulário.</p>
             <!-- span th:text="${file}">teste</span -->
-            <!-- div style="display: none" id="dvData">
-                <table>
-                    <thead>
-                    <tr>
-                        <th>NOME</th>
-                        <th>CPF</th>
-                        <th>DATANASCIMENTO</th>
-                        <th>CELULAR</th>
-                        <th>EMAIL</th>
-                        <th>DEPARTAMENTO</th>
-                        <th>CARGO</th>
-                    </tr>
-                    </thead>
-                </table>
-            </div -->
-            <!-- id="export" -->
-            <!--
-            <a href="/downloadXLS" style="color: #dc4680;"><b>Clique aqui e faça o download da
-                planilha em excel</b></a>
-            <div class="space-top-10 btn-header-web">
-                <a href="#" type="button" data-toggle="modal" data-target="#uploadModal"
-                   class="btn uppercase btnBlue btn-width-custom space-top-10 navbar-left">FAZER UPLOAD DA EQUIPE
-                </a>
-                <!--a th:href="@{/fileupload}" type="button"
-                   class="btn uppercase btnBlue btn-width-custom space-top-10 navbar-right">FAZER UPLOAD DA EQUIPE</a-->
+        <!-- div style="display: none" id="dvData">
+            <table>
+                <thead>
+                <tr>
+                    <th>NOME</th>
+                    <th>CPF</th>
+                    <th>DATANASCIMENTO</th>
+                    <th>CELULAR</th>
+                    <th>EMAIL</th>
+                    <th>DEPARTAMENTO</th>
+                    <th>CARGO</th>
+                </tr>
+                </thead>
+            </table>
+        </div -->
+        <!-- id="export" -->
+        <!--
+        <a href="/downloadXLS" style="color: #dc4680;"><b>Clique aqui e faça o download da
+            planilha em excel</b></a>
+        <div class="space-top-10 btn-header-web">
+            <a href="#" type="button" data-toggle="modal" data-target="#uploadModal"
+               class="btn uppercase btnBlue btn-width-custom space-top-10 navbar-left">FAZER UPLOAD DA EQUIPE
+            </a>
+            <!--a th:href="@{/fileupload}" type="button"
+               class="btn uppercase btnBlue btn-width-custom space-top-10 navbar-right">FAZER UPLOAD DA EQUIPE</a-->
 
 
-
-                <!-- INICIO - Modal -->
+        <!-- INICIO - Modal -->
         <!--
                 <div class="modal fade" id="uploadModal" role="dialog">
                     <div class="modal-dialog">
@@ -284,11 +304,11 @@
                 </div>
                 <!-- FIM -->
 
-                <!--form action="uploadSuccess.html" th:action="@{/fileupload}" method="post" enctype="multipart/form-data">
-                      <label for="file">FAZER UPLOAD DA EQUIPE</label>
-                      <input type="file" name="file" id="file"/>
-                      <input type="submit" value="Upload" />
-                </form-->
+        <!--form action="uploadSuccess.html" th:action="@{/fileupload}" method="post" enctype="multipart/form-data">
+              <label for="file">FAZER UPLOAD DA EQUIPE</label>
+              <input type="file" name="file" id="file"/>
+              <input type="submit" value="Upload" />
+        </form-->
         <!--
             </div>
             <p>&nbsp;</p>
@@ -341,11 +361,18 @@
                         <td><span th:text="${forca.nome}">Lopes</span></td>
                         <td><span th:text="${forca.statusForcaVenda}">PME</span></td>
 
-                        <td><span>  <a class="text-silver"
-                                       th:href="@{/corretora/equipe/ativar(id=${forca.cpf})}">
-                            <i style="font-size: 16px" class="fa">&#xf087;</i> Ativar</a></span>
-                        <td><span>  <a class="text-silver"
-                                       th:href="@{/corretora/equipe/reprovar(cpf=${forca.cpf})}">X Reprovar</a></span>
+                        <td><span>
+                            <div th:if="${session.usuario.temBloqueio} == true">
+                                <a class="text-silver temBloqueio" href="#">
+                                <i style="font-size: 16px" class="fa">&#xf087;</i> Ativar</a></div>
+                            <div th:if="${session.usuario.temBloqueio} == false">
+                                <a class="text-silver" th:href="@{/corretora/equipe/ativar(id=${forca.cpf})}">
+                                <i style="font-size: 16px" class="fa">&#xf087;</i> Ativar</a></div></span>
+                        <td><span>
+                        <div th:if="${session.usuario.temBloqueio} == true">
+                                <a class="text-silver temBloqueio" href="#">X Reprovar</a></div>
+                        <div th:if="${session.usuario.temBloqueio} == false">
+                                <a class="text-silver" th:href="@{/corretora/equipe/reprovar(cpf=${forca.cpf})}">X Reprovar</a></div></span>
 
                             <!--<td><span>  <a th:href="@{/corretora/equipe/desativar(id=${forca.cpf})}" > Desativar </a></span>-->
                         </td>
@@ -360,5 +387,10 @@
     <div th:replace="fragments/footer :: footer">&nbsp;</div>
 </div>
 <script type="text/javascript" th:src="@{/js/setColorMenuCorretor.js}"></script>
+<script type="text/javascript" th:src="@{/app/getPropertie.js}"></script>
+<script type="text/javascript" th:src="@{/js/sweetalert.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/setColorMenuCorretor.js}"></script>
+<script type="text/javascript" th:src="@{/app/getUsuarioBloqueadoProvider.js}"></script>
+<script type="text/javascript" th:src="@{/app/homeForcaVendaController.js}"></script>
 </body>
 </html>

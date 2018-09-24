@@ -65,7 +65,9 @@ public class CorretoraService {
     public ResponseEntity<Corretora> verificarBloqueioCorretora(String cnpj) {
 
         log.info("verificarBloqueioCorretora - ini");
-        String url = requesBasetUrl + dadosCorretora + cnpj;
+        //String url = requesBasetUrl + dadosCorretora + cnpj;
+        //TODO: Retirar rota local
+        String url = "http://localhost:8090/corretora/" + cnpj;
         RestTemplate restTemplate = new RestTemplate();
 
         try {

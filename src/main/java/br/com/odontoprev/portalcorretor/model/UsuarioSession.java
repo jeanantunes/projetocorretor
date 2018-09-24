@@ -20,6 +20,7 @@ public class UsuarioSession implements Serializable {
 	private String nomeCorretora;
 	private String perfil;
 	private String dtAceiteContrato;
+	private boolean temBloqueio;
 
 	public UsuarioSession setDados(LoginResponse response) {
 		this.setNomeUsuario(response.getNomeUsuario());
@@ -30,6 +31,7 @@ public class UsuarioSession implements Serializable {
 		this.setNomeCorretora(response.getNomeCorretora());
 		this.setPerfil(response.getPerfil());
 		this.setDtAceiteContrato(response.getDtAceiteContrato());
+		this.setTemBloqueio(response.getTemBloqueio());
 
 		return this;
 	}
@@ -101,5 +103,13 @@ public class UsuarioSession implements Serializable {
 
 	public void setDtAceiteContrato(String dtAceiteContrato) {
 		this.dtAceiteContrato = dtAceiteContrato;
+	}
+
+	public boolean getTemBloqueio() {
+		return temBloqueio;
+	}
+
+	public void setTemBloqueio(boolean temBloqueio) {
+		this.temBloqueio = temBloqueio;
 	}
 }

@@ -10,6 +10,7 @@ public class LoginResponse {
     String nomeCorretora;
     String perfil;
     private String dtAceiteContrato;
+    private boolean temBloqueio;
 
     public long getCodigoDcss() {
         return codigoDcss;
@@ -73,5 +74,13 @@ public class LoginResponse {
 
     public void setDtAceiteContrato(String dtAceiteContrato) {
         this.dtAceiteContrato = dtAceiteContrato;
+    }
+
+    public boolean getTemBloqueio() {
+        return temBloqueio;
+    }
+
+    public void setTemBloqueio(boolean temBloqueio) {
+        this.temBloqueio = temBloqueio;
     }
 }
