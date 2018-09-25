@@ -6,6 +6,8 @@ import br.com.odontoprev.portalcorretor.service.dto.EmpresaDcms;
 import br.com.odontoprev.portalcorretor.service.dto.EmpresaResponse;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
@@ -14,6 +16,8 @@ import org.springframework.web.client.RestTemplate;
 
 @Service
 public class EmpresaService {
+
+    private static final Log log = LogFactory.getLog(EmpresaService.class);
 
     @Value("${odontoprec.service.base}")
     private String requesBasetUrl;
@@ -150,6 +154,31 @@ public class EmpresaService {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public ResponseEntity<EmpresaDcms> updateEmpresa(EmpresaDcms empresaDcms) {
+
+        log.info("updateEmpresa - ini");
+        //String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", "/" + "empresa" + empresaDcms);
+        //TODO: Alterar tora para API/API-IT3
+        String url = "http://localhost:8090/empresa" + empresaDcms;
+        RestTemplate restTemplate = new RestTemplate();
+
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
+            HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
+            ResponseEntity<EmpresaDcms> retorno = restTemplate.exchange(url, HttpMethod.PUT, entity, EmpresaDcms.class);
+
+            log.info("updateEmpresa - fim");
+            return retorno;
+
+        } catch (Exception e) {
+            // e.printStackTrace();
+            log.info("updateEmpresa - error");
+            log.error(e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 
