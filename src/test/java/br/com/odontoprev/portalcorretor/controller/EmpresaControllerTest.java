@@ -1,11 +1,10 @@
 package br.com.odontoprev.portalcorretor.controller;
 
-import br.com.odontoprev.portalcorretor.service.ApiManagerTokenService;
-import br.com.odontoprev.portalcorretor.service.EmpresaService;
-import br.com.odontoprev.portalcorretor.service.dto.Empresa;
-import br.com.odontoprev.portalcorretor.service.dto.EmpresaResponse;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -14,6 +13,9 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+//import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -21,10 +23,13 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import javax.ws.rs.core.MediaType;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import br.com.odontoprev.portalcorretor.service.ApiManagerTokenService;
+import br.com.odontoprev.portalcorretor.service.EmpresaService;
+import br.com.odontoprev.portalcorretor.service.dto.Empresa;
+import br.com.odontoprev.portalcorretor.service.dto.EmpresaResponse;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = {
@@ -49,7 +54,7 @@ public class EmpresaControllerTest {
     }
 
     @Test
-    @Ignore
+    @Ignore 
     public void testOk200PutUpdateEmpresa() throws Exception {
         Empresa empresa = new Empresa();
         empresa.setCdEmpresa(581L);
@@ -72,4 +77,28 @@ public class EmpresaControllerTest {
                 .andExpect(status().isOk());
     }
 
+	//201809261041 - esert - COR-826 : WEB - Criar Controller POST /empresa-emailaceite
+	@Test
+	@Ignore //201809261300 - esert - apos varios testes ainda nao se sabe motivo do erro 415 Unsupported Media Type
+	public void testOk200PostEmpresaEmailAceite() throws Exception {
+		Long cdEmpresa = 2566L;
+	
+		Empresa empresa = new Empresa();
+		empresa.setCdEmpresa(cdEmpresa);
+	
+		EmpresaResponse empresaResponse = new EmpresaResponse(HttpStatus.OK.value(), HttpStatus.OK.name());
+	
+		Mockito.when(empresaService.envioEmpresaEmailAceite(empresa)).thenReturn(empresaResponse);
+	
+		//String jsonInString = (new ObjectMapper()).writeValueAsString(empresa);
+		String jsonInString = (new Gson()).toJson(empresa);
+	
+		this.mockMvc
+				.perform(
+						post("/empresa-emailaceite")
+						.contentType(APPLICATION_JSON_VALUE)
+						.content(jsonInString)
+				)
+				.andExpect(status().isOk());
+	}
 }
