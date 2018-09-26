@@ -1,5 +1,6 @@
 package br.com.odontoprev.portalcorretor.controller;
 
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class EmpresaController {
 
 
     @RequestMapping(value = "/empresa", method = RequestMethod.PUT)
-    public ResponseEntity<EmpresaResponse> updateEmpresa(@RequestBody Empresa empresa) {
+    public ResponseEntity updateEmpresa(@RequestBody Empresa empresa) {
         log.info("updateEmpresa - ini");
         log.info(empresa);
 

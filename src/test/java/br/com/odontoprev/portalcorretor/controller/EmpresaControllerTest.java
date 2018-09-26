@@ -29,6 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = {
         EmpresaController.class,
+        Empresa.class,
         EmpresaService.class,
         ApiManagerTokenService.class})
 
@@ -49,7 +50,7 @@ public class EmpresaControllerTest {
 
     @Test
     @Ignore
-    public void testOk200PutupdateEmpresa() throws Exception {
+    public void testOk200PutUpdateEmpresa() throws Exception {
         Empresa empresa = new Empresa();
         empresa.setCdEmpresa(581L);
         //empresa.setCnpj("29.260.862/0001-35");
