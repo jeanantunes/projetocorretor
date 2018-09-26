@@ -194,6 +194,7 @@ public class EmpresaService {
 
     //201809260950 - esert - COR-827 : WEB - Criar Service POST /empresa-emailaceite
 	public EmpresaResponse envioEmpresaEmailAceite(Empresa empresa) {
+        log.info("envioEmpresaEmailAceite - ini");
 	    EmpresaResponse empresaResponse = null;
 	
 	    //201809260950 - esert - ATENCAO = A ROTA E A MESMA MAS O VERBO E (((POST)))
@@ -215,13 +216,15 @@ public class EmpresaService {
 	
 	        if (retorno.getStatusCode() == HttpStatus.OK) {
 	            empresaResponse = retorno.getBody();
+	            log.info("envioEmpresaEmailAceite - fim ok");
 	            return empresaResponse;
 	        } else {
+	            log.info("envioEmpresaEmailAceite - fim Nao OK");
 	            return null;
 	        }
 	
 	    } catch (Exception e) {
-	        e.printStackTrace();
+            log.error("envioEmpresaEmailAceite - erro", e);
 	        return null;
 	    }
 	}
