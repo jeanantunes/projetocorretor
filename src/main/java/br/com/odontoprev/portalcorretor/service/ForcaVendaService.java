@@ -240,7 +240,7 @@ public class ForcaVendaService {
 
         log.info("VERIFICA FORCA VENDA BLOQUEIO ->>> verificaBloqueio()");
 
-        String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", "/" + contextoApiManager + metodoForcaVendaBloqueio + "?cdForcaVenda=" + cdForcaVenda);
+        String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", "" + contextoApiManager + metodoForcaVendaBloqueio + "?cdForcaVenda=" + cdForcaVenda);
         //String url = "http://localhost:8090/forcavenda/bloqueio?cdForcaVenda=" + cdForcaVenda;
 
         RestTemplate restTemplate = new RestTemplate();
