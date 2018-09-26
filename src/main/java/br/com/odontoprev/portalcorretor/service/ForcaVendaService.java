@@ -37,6 +37,12 @@ public class ForcaVendaService {
     @Value("${odontoprev.forcavenda.ListaPorCorretora}")
     private String metodoListaPorCorretora;
 
+    @Value("{odontoprev.corretor.api.contexto.api.url}")
+    private String contextoApiManager;
+
+    @Value("{odontoprev.web.forcavenda.bloqueado}")
+    private String metodoForcaVendaBloqueio;
+
     @Autowired
     private ApiManagerTokenService apiManagerTokenService;
 
@@ -234,7 +240,7 @@ public class ForcaVendaService {
 
         log.info("VERIFICA FORCA VENDA BLOQUEIO ->>> verificaBloqueio()");
 
-        String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", "/" + "forcavenda/bloqueio" + cdForcaVenda);
+        String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", "/" + contextoApiManager + metodoForcaVendaBloqueio + "?cdForcaVenda=" + cdForcaVenda);
         //String url = "http://localhost:8090/forcavenda/bloqueio?cdForcaVenda=" + cdForcaVenda;
 
         RestTemplate restTemplate = new RestTemplate();
