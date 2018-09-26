@@ -258,8 +258,11 @@
         </div>
 
         <div class="row">
-            <div class="col-sm-12 btnPadBtmTop">
+            <div class="col-xs-12" style="display: flex;">
                 <a th:href="@{downloadContratacao(cdEmpresa=${cdEmpresa})}" class="btn btn-lg btn-block btnOdont uppercase" id="" role="button" target="_parent">BAIXAR DETALHES DA CONTRATAçÃO</a>
+                <div th:style="${cdStatusVenda == 1 || cdStatusVenda == 4} ? 'position:absolute;margin-left:65%;' : 'display:none;'">
+                    <button class="btn btn-lg btn-block btnOdont uppercase" id="btnEnviarEmail" role="button" target="_parent">REENVIAR E-MAIL ACEITE PME</button>
+                </div>
             </div>
             <div class="col-xs-12 row" th:style="${error != null} ? 'display:inline-block' : 'display:none'">
                 <label style="font-size: 14pt; color: #FF4141; margin-left: 15px" th:text="${error}" />
