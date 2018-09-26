@@ -1,27 +1,35 @@
 package br.com.odontoprev.portalcorretor.service;
 
-import br.com.odontoprev.portalcorretor.model.CnpjDadosAceiteResponse;
-import br.com.odontoprev.portalcorretor.service.dto.CnpjDadosDCMSResponse;
-import br.com.odontoprev.portalcorretor.service.dto.EmailAceite;
-import br.com.odontoprev.portalcorretor.service.dto.Empresa;
-import br.com.odontoprev.portalcorretor.service.dto.EmpresaDcms;
-import br.com.odontoprev.portalcorretor.service.dto.EmpresaResponse;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.*;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import br.com.odontoprev.portalcorretor.model.CnpjDadosAceiteResponse;
+import br.com.odontoprev.portalcorretor.service.dto.CnpjDadosDCMSResponse;
+import br.com.odontoprev.portalcorretor.service.dto.Empresa;
+import br.com.odontoprev.portalcorretor.service.dto.EmpresaDcms;
+import br.com.odontoprev.portalcorretor.service.dto.EmpresaResponse;
 
 @Service
 public class EmpresaService {
 
     private static final Log log = LogFactory.getLog(EmpresaService.class);
 
-    @Value("${odontoprec.service.base}")
+    //201809261534 - esert - COR-827 - alterado para uma prop que ja contenha o caminho do apiGateway /corretorservicos/1.0
+    //201809261534 - esert - COR-827 - demais properties foram alteradas para nao conter o caminho do apiGateway /corretorservicos/1.0 em duplicidade
+    @Value("${odontoprev.servicebase.url}") 
     private String requesBasetUrl;
 
     @Value("${odontoprev.corretoras.empresa}")
