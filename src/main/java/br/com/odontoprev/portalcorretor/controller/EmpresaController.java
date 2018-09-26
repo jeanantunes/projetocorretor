@@ -2,7 +2,6 @@ package br.com.odontoprev.portalcorretor.controller;
 
 import br.com.odontoprev.portalcorretor.service.EmpresaService;
 import br.com.odontoprev.portalcorretor.service.dto.Empresa;
-import br.com.odontoprev.portalcorretor.service.dto.EmpresaDcms;
 import br.com.odontoprev.portalcorretor.service.dto.EmpresaResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -25,7 +24,7 @@ public class EmpresaController {
 
 
     @RequestMapping(value = "/empresa", method = RequestMethod.PUT)
-    public ResponseEntity<EmpresaResponse> updateEmpresa(@RequestBody Empresa empresa) {
+    public ResponseEntity updateEmpresa(@RequestBody Empresa empresa) {
         log.info("updateEmpresa - ini");
         log.info(empresa);
 

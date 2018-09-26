@@ -24,6 +24,9 @@ public class Empresa {
     private List<Dependente> dependentes;
     private Long cdEmpresa;
 
+    public Empresa() {
+    }
+
     public String getStatus() {
         return status;
     }
