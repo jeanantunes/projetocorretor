@@ -2,6 +2,7 @@ package br.com.odontoprev.portalcorretor.service;
 
 import br.com.odontoprev.portalcorretor.model.CnpjDadosAceiteResponse;
 import br.com.odontoprev.portalcorretor.service.dto.CnpjDadosDCMSResponse;
+import br.com.odontoprev.portalcorretor.service.dto.EmailAceite;
 import br.com.odontoprev.portalcorretor.service.dto.Empresa;
 import br.com.odontoprev.portalcorretor.service.dto.EmpresaDcms;
 import br.com.odontoprev.portalcorretor.service.dto.EmpresaResponse;
@@ -32,8 +33,8 @@ public class EmpresaService {
     @Value("${odontoprev.corretoras.reenvio.aceite}")
     private String dadosEmpresaAceite;
 
-    @Value("${odontoprev.corretoras.email.aceite}")
-    private String reenvioEmailAceite;
+    @Value("${odontoprev.empresa.email.aceite}")
+    private String reenvioEmpresaEmailAceite;
 
     @Autowired
     private ApiManagerTokenService apiManagerTokenService;
@@ -68,7 +69,7 @@ public class EmpresaService {
     public EmpresaResponse reenvioEmailAceite(CnpjDadosAceiteResponse cnpjDadosAceiteResponse) {
         EmpresaResponse empresaResponse = null;
 
-        String url = requesBasetUrl + reenvioEmailAceite;
+        String url = requesBasetUrl + reenvioEmpresaEmailAceite;
         //String url = "http://localhost:8090/empresa-emailaceite";
         RestTemplate restTemplate = new RestTemplate();
 
@@ -192,11 +193,11 @@ public class EmpresaService {
     }
 
     //201809260950 - esert - COR-827 : WEB - Criar Service POST /empresa-emailaceite
-	public EmpresaResponse envioEmailAceite(EmpresaDcms empresaDcms) {
+	public EmpresaResponse envioEmpresaEmailAceite(Empresa empresa) {
 	    EmpresaResponse empresaResponse = null;
 	
 	    //201809260950 - esert - ATENCAO = A ROTA E A MESMA MAS O VERBO E (((POST)))
-	    String url = requesBasetUrl + reenvioEmailAceite;
+	    String url = requesBasetUrl + reenvioEmpresaEmailAceite;
 	    //String url = "http://localhost:8090/empresa-emailaceite";
 	    RestTemplate restTemplate = new RestTemplate();
 	
@@ -207,13 +208,12 @@ public class EmpresaService {
 	
 	        ObjectMapper mapper = new ObjectMapper();
 	        mapper.setSerializationInclusion(JsonInclude.Include.USE_DEFAULTS);
-	        String strObject = mapper.writeValueAsString(empresaDcms);
+	        String strObject = mapper.writeValueAsString(empresa);  //201809261238 - esert - desta empresa sera usado apenas atributo cdEmpresa (Long) 
 	
 	        HttpEntity<String> entity = new HttpEntity<>(strObject, headers);
 	        ResponseEntity<EmpresaResponse> retorno = restTemplate.exchange(url, HttpMethod.POST, entity, EmpresaResponse.class);
 	
 	        if (retorno.getStatusCode() == HttpStatus.OK) {
-	
 	            empresaResponse = retorno.getBody();
 	            return empresaResponse;
 	        } else {
