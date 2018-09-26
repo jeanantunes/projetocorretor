@@ -2,6 +2,7 @@ package br.com.odontoprev.portalcorretor.service;
 
 import br.com.odontoprev.portalcorretor.model.CnpjDadosAceiteResponse;
 import br.com.odontoprev.portalcorretor.service.dto.CnpjDadosDCMSResponse;
+import br.com.odontoprev.portalcorretor.service.dto.Empresa;
 import br.com.odontoprev.portalcorretor.service.dto.EmpresaDcms;
 import br.com.odontoprev.portalcorretor.service.dto.EmpresaResponse;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -181,5 +182,40 @@ public class EmpresaService {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
+    //201809260950 - esert - COR-827 : WEB - Criar Service POST /empresa-emailaceite
+	public EmpresaResponse envioEmailAceite(EmpresaDcms empresaDcms) {
+	    EmpresaResponse empresaResponse = null;
+	
+	    //201809260950 - esert - ATENCAO = A ROTA E A MESMA MAS O VERBO E (((POST)))
+	    String url = requesBasetUrl + reenvioEmailAceite;
+	    //String url = "http://localhost:8090/empresa-emailaceite";
+	    RestTemplate restTemplate = new RestTemplate();
+	
+	    try {
+	        HttpHeaders headers = new HttpHeaders();
+	        headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
+	        headers.setContentType(MediaType.APPLICATION_JSON);
+	
+	        ObjectMapper mapper = new ObjectMapper();
+	        mapper.setSerializationInclusion(JsonInclude.Include.USE_DEFAULTS);
+	        String strObject = mapper.writeValueAsString(empresaDcms);
+	
+	        HttpEntity<String> entity = new HttpEntity<>(strObject, headers);
+	        ResponseEntity<EmpresaResponse> retorno = restTemplate.exchange(url, HttpMethod.POST, entity, EmpresaResponse.class);
+	
+	        if (retorno.getStatusCode() == HttpStatus.OK) {
+	
+	            empresaResponse = retorno.getBody();
+	            return empresaResponse;
+	        } else {
+	            return null;
+	        }
+	
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return null;
+	    }
+	}
 
 }
