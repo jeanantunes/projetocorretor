@@ -23,7 +23,7 @@ public class ForcaVendaService {
     private static final Log log = LogFactory.getLog(ForcaVendaService.class);
 
     @Value("${odontoprev.servicebase.url}")
-    private String requesBasetUrl;
+    private String requesBaseUrl;
 
     @Value("${odontoprev.forcavenda.metodo}")
     private String metodoGetPorDocuemnto_Post_Put;
@@ -37,12 +37,18 @@ public class ForcaVendaService {
     @Value("${odontoprev.forcavenda.ListaPorCorretora}")
     private String metodoListaPorCorretora;
 
+    @Value("{odontoprev.corretor.api.contexto.api.url}")
+    private String contextoApiManager;
+
+    @Value("{odontoprev.web.forcavenda.bloqueado}")
+    private String metodoForcaVendaBloqueio;
+
     @Autowired
     private ApiManagerTokenService apiManagerTokenService;
 
     @SuppressWarnings("null")
 	public long Criar(ForcaVenda forcaVenda) {
-        String url = requesBasetUrl + "/" + metodoGetPorDocuemnto_Post_Put;
+        String url = requesBaseUrl + "/" + metodoGetPorDocuemnto_Post_Put;
         RestTemplate restTemplate = new RestTemplate();
         ForcaVendaResponse result = null;
         try {
@@ -76,7 +82,7 @@ public class ForcaVendaService {
     }
 
     public AtivarResponse ativar(String cpf) {
-        String url = requesBasetUrl + "/" + ativar;
+        String url = requesBaseUrl + "/" + ativar;
         RestTemplate restTemplate = new RestTemplate();
         //ForcaVendaResponse result = null;
         try {
@@ -104,7 +110,7 @@ public class ForcaVendaService {
     }
     
     public ExcluirResponse excluir(String cpf) {
-        String url = requesBasetUrl + "/" + excluir;
+        String url = requesBaseUrl + "/" + excluir;
         RestTemplate restTemplate = new RestTemplate();
        
         try {
@@ -131,7 +137,7 @@ public class ForcaVendaService {
     }
 
     public ReprovarResponse reprovar(String cpf) {
-        String url = requesBasetUrl + "/" + reprovar;
+        String url = requesBaseUrl + "/" + reprovar;
         RestTemplate restTemplate = new RestTemplate();
        
         try {
@@ -158,7 +164,7 @@ public class ForcaVendaService {
     }
     
     public boolean Alterar(ForcaVenda forcaVenda) {
-        String url = requesBasetUrl + metodoGetPorDocuemnto_Post_Put;
+        String url = requesBaseUrl + metodoGetPorDocuemnto_Post_Put;
         RestTemplate restTemplate = new RestTemplate();
         //ForcaVendaResponse result = null;
         try {
@@ -188,7 +194,7 @@ public class ForcaVendaService {
 
 
     public List<ForcaVenda> ObterListaPorCorretora(Integer codigoCorretora) {
-        String url = requesBasetUrl + metodoListaPorCorretora + codigoCorretora;
+        String url = requesBaseUrl + metodoListaPorCorretora + codigoCorretora;
         RestTemplate restTemplate = new RestTemplate();
         try {
             HttpHeaders headers = new HttpHeaders();
@@ -209,7 +215,7 @@ public class ForcaVendaService {
     }
 
     public ForcaVenda ObterPorDocumento(String documento) {
-        String url = requesBasetUrl + "/"+ metodoGetPorDocuemnto_Post_Put + documento;
+        String url = requesBaseUrl + "/"+ metodoGetPorDocuemnto_Post_Put + documento;
         RestTemplate restTemplate = new RestTemplate();
         //ForcaVendaResponse result = null;
         try {
@@ -234,8 +240,8 @@ public class ForcaVendaService {
 
         log.info("VERIFICA FORCA VENDA BLOQUEIO ->>> verificaBloqueio()");
 
-        String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", "/" + "forcavenda/bloqueio" + cdForcaVenda);
-        //String url = "http://localhost:8090/forcavenda/bloqueio?cdForcaVenda=" + cdForcaVenda;
+        //String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", "" + contextoApiManager + metodoForcaVendaBloqueio + "?cdForcaVenda=" + cdForcaVenda);
+        String url = requesBaseUrl + metodoForcaVendaBloqueio + "?cdForcaVenda=" + cdForcaVenda;
 
         RestTemplate restTemplate = new RestTemplate();
         MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
