@@ -2,6 +2,7 @@ package br.com.odontoprev.portalcorretor.service;
 
 import br.com.odontoprev.portalcorretor.model.CnpjDadosAceiteResponse;
 import br.com.odontoprev.portalcorretor.service.dto.CnpjDadosDCMSResponse;
+import br.com.odontoprev.portalcorretor.service.dto.Empresa;
 import br.com.odontoprev.portalcorretor.service.dto.EmpresaDcms;
 import br.com.odontoprev.portalcorretor.service.dto.EmpresaResponse;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -157,28 +158,36 @@ public class EmpresaService {
         }
     }
 
-    public ResponseEntity<EmpresaDcms> updateEmpresa(EmpresaDcms empresaDcms) {
+    public EmpresaResponse updateEmpresa(Empresa empresa) {
 
         log.info("updateEmpresa - ini");
         //String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", "/" + "empresa" + empresaDcms);
         //TODO: Alterar tora para API/API-IT3
-        String url = "http://localhost:8090/empresa" + empresaDcms;
+        String url = "http://localhost:8090/empresa";
         RestTemplate restTemplate = new RestTemplate();
 
         try {
             HttpHeaders headers = new HttpHeaders();
             headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
-            HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
-            ResponseEntity<EmpresaDcms> retorno = restTemplate.exchange(url, HttpMethod.PUT, entity, EmpresaDcms.class);
+            headers.setContentType(MediaType.APPLICATION_JSON);
+
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.setSerializationInclusion(JsonInclude.Include.USE_DEFAULTS);
+            String stringJson = mapper.writeValueAsString(empresa);
+
+            HttpEntity<String> entity = new HttpEntity<String>(stringJson, headers);
+
+            ResponseEntity<EmpresaResponse> retorno = restTemplate.exchange(url, HttpMethod.PUT, entity, EmpresaResponse.class);
+
 
             log.info("updateEmpresa - fim");
-            return retorno;
+            return retorno.getBody();
 
         } catch (Exception e) {
             // e.printStackTrace();
             log.info("updateEmpresa - error");
             log.error(e);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            return null;
         }
     }
 
