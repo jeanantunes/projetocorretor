@@ -34,4 +34,6 @@ function setColorMenu() {
         $("a[href='/material-divulgacao']").addClass('nav-active');
     else if (url.indexOf("/forcavenda/meus-dados") !== -1)
         $("a[href='/forcavenda/meus-dados']").addClass('nav-active');
+    else if (url.indexOf("/detalhesPropostaPME" !== -1) || url.indexOf("/detalhesPropostaPF") !== -1)
+        $("a[href='/lista-propostas']").addClass('nav-active');
 }

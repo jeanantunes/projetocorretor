@@ -288,8 +288,6 @@ public class DetalhesPropostaController {
         model.addAttribute("cdEmpresa", detalhesPropostaPME.getCdEmpresa());
         model.addAttribute("empDcms", detalhesPropostaPME.getEmpDcms());
         model.addAttribute("cpfRepresentante", detalhesPropostaPME.getCpfRepresentante());
-        model.addAttribute("cdEmpresa", detalhesPropostaPME.getCdEmpresa());
-
 
         List<BeneficiariosPropostaResponsePagination> beneficiarios = propostaService.detalhesBeneficiarioPropostaPME(detalhesPropostaPME.getCdEmpresa(), numpag, tampag);
         for (BeneficiariosPropostaResponsePagination p : beneficiarios) {
