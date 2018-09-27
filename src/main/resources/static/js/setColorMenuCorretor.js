@@ -6,9 +6,9 @@ function setColorMenu() {
     console.log(window.location.href);
     var url = window.location.href;
 
-    if (url.indexOf("pme") !== -1)
-        $("a[href='/venda_pme']").addClass('nav-active')
-    if (url.indexOf("pf") !== -1)
+    if (url.indexOf("/venda_pme") !== -1)
+        $("a[href='/venda_pme']").addClass('nav-active');
+    else if (url.indexOf("pf") !== -1)
         $("a[href='/venda_pf']").addClass('nav-active');
     else if (url.indexOf("/forcavenda/home") !== -1)
         $("a[href='/forcavenda/home']").addClass('nav-active');
@@ -34,6 +34,8 @@ function setColorMenu() {
         $("a[href='/material-divulgacao']").addClass('nav-active');
     else if (url.indexOf("/forcavenda/meus-dados") !== -1)
         $("a[href='/forcavenda/meus-dados']").addClass('nav-active');
-    else if (url.indexOf("/detalhesPropostaPME" !== -1) || url.indexOf("/detalhesPropostaPF") !== -1)
+    else if (url.indexOf("/detalhesPropostaPME") !== -1)
+        $("a[href='/lista-propostas']").addClass('nav-active');
+    else if (url.indexOf("/detalhesPropostaPF") !== -1)
         $("a[href='/lista-propostas']").addClass('nav-active');
 }
