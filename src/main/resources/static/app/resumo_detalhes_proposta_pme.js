@@ -14,7 +14,6 @@ $(document).ready(function () {
             withCredentials: true
         },
         success: function (result) {
-            console.log(result);
             usuario.email = eval(result).email;
         },
         error: function (result) {
