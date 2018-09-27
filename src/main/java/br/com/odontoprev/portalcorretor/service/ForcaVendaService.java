@@ -37,10 +37,10 @@ public class ForcaVendaService {
     @Value("${odontoprev.forcavenda.ListaPorCorretora}")
     private String metodoListaPorCorretora;
 
-    @Value("{odontoprev.corretor.api.contexto.api.url}")
+    @Value("${odontoprev.corretor.api.contexto.api.url}")
     private String contextoApiManager;
 
-    @Value("{odontoprev.web.forcavenda.bloqueado}")
+    @Value("${odontoprev.web.forcavenda.bloqueado}")
     private String metodoForcaVendaBloqueio;
 
     @Autowired
