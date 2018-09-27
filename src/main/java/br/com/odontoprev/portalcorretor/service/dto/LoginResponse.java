@@ -11,6 +11,7 @@ public class LoginResponse {
     String perfil;
     private String dtAceiteContrato;
     private boolean temBloqueio;
+    private String email;
 
     public long getCodigoDcss() {
         return codigoDcss;
@@ -82,5 +83,13 @@ public class LoginResponse {
 
     public void setTemBloqueio(boolean temBloqueio) {
         this.temBloqueio = temBloqueio;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

@@ -2,8 +2,25 @@ var memoriaInputEmail = "";
 var metodoSalvarEmailVenda = "";
 var metodoEnviarEmailVenda = "";
 var cdEmpresa;
+var usuario = new Object();
 
 $(document).ready(function () {
+
+    $.ajax({
+        url: "/usuario_session",
+        type: "get",
+        async: false,
+        xhrFields: {
+            withCredentials: true
+        },
+        success: function (result) {
+            console.log(result);
+            usuario.email = eval(result).email;
+        },
+        error: function (result) {
+            console.log(result);
+        }
+    });
 
     cdEmpresa = parseInt($("#hiddenCdEmpresa").val());
 
@@ -22,7 +39,19 @@ $(document).ready(function () {
     });
 
     $("#inputEmail").blur(function () {
-        
+
+        if ($(this).val() == usuario.email){
+            $("#inputEmail").removeAttr('disabled');
+            $("#inputEmail").removeClass("input-email-gray");
+            $("#inputEmail").removeClass("input-email-red");
+            $("#inputEmail").addClass("input-email-blue");
+            $("#btnConfirmarVerde").hide();
+            $("#btnConfirmarCinza").show();
+            $("#btnCancelar").show();
+            $("#divErroEmail").hide();
+            return;
+        }
+
         if ($(this).val() == memoriaInputEmail){
             $("#inputEmail").removeAttr('disabled');
             $("#inputEmail").removeClass("input-email-gray");
@@ -56,6 +85,18 @@ $(document).ready(function () {
     });
 
     $("#inputEmail").keyup(function () {
+
+        if ($(this).val() == usuario.email){
+            $("#inputEmail").removeAttr('disabled');
+            $("#inputEmail").removeClass("input-email-gray");
+            $("#inputEmail").removeClass("input-email-red");
+            $("#inputEmail").addClass("input-email-blue");
+            $("#btnConfirmarVerde").hide();
+            $("#btnConfirmarCinza").show();
+            $("#btnCancelar").show();
+            $("#divErroEmail").hide();
+            return;
+        }
 
         if ($(this).val() == memoriaInputEmail){
             $("#inputEmail").removeAttr('disabled');
