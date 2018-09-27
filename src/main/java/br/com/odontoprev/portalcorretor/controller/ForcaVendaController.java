@@ -175,6 +175,10 @@ public class ForcaVendaController {
             //return this.home(session);
             forcaVenda = forcaVendaService.ObterPorDocumento(usuario.getDocumento());
             //return new ModelAndView("forcavenda/editar/home", "forcaVenda", forcaVenda);
+
+            usuario.setEmail(forcaVenda.getEmail());
+            session.setAttribute("usuario", usuario);
+
             return new ModelAndView("forcavenda/editar/meus_dados", "forcaVenda", forcaVenda);
         }
     }

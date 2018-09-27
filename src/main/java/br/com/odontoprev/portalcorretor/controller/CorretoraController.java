@@ -192,11 +192,11 @@ public class CorretoraController {
 
     //201809051800 - esert - COR-695 nova controller para ver dados corretora
     @RequestMapping(value = "corretora/salvaremail", method = RequestMethod.PUT)
-	public ResponseEntity salvarEmail(@RequestBody Corretora corretora) {
+	public ResponseEntity salvarEmail(@RequestBody Corretora corretora, HttpSession session) {
 	    log.info("salvarEmail - ini");
 	    log.info(corretora);
 	
-	    //UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
+	    UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
 	
 	    log.info("chamando corretoraService.salvarEmailCorretora()...");
 	    CorretoraResponse corretoraResponse = corretoraService.salvarEmailCorretora(corretora);
@@ -207,6 +207,8 @@ public class CorretoraController {
             return ResponseEntity.noContent().build();
         }
 
+        usuario.setEmail(corretora.getEmail());
+        session.setAttribute("usuario", usuario);
         log.info("salvarEmail - fim");
         return ResponseEntity.ok(corretoraResponse);
 	}
