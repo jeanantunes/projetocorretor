@@ -239,7 +239,36 @@ $(document).ready(function () {
         }
     });
 
+    $("#btnEnviarEmail").click(function () {
+        swal({
+            title: "Aguarde",
+            text: 'Estamos enviando o email da venda',
+            content: "input",
+            showCancelButton: false,
+            showConfirmButton: false,
+            imageUrl: "../../img/icon-aguarde.gif",
+            allowEscapeKey: false,
+            allowOutsideClick: false,
+            icon: "info",
+            button: {
+                text: "...",
+                closeModal: false,
+            },
+        });
+
+        postEnviarEmailVenda(function (dataSucess) {
+            if (dataSucess == undefined){
+                swal("Ops!", "Erro ao enviar e-mail, tente novamente.", "error");
+            } else {
+                swal("Sucesso!", "E-mail reenviado com sucesso.", "success");
+            }
+        }, function (dataError) {
+            swal("Ops!", "Erro ao enviar e-mail, tente novamente.", "error");
+        });
+    });
+
 });
+
 
 function putEmailEmpresaVenda(callbackSuccess, callbackError) {
     var emailEmpresa = $("#inputEmail").val();

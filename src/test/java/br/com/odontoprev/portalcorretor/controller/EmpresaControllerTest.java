@@ -1,7 +1,7 @@
 package br.com.odontoprev.portalcorretor.controller;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 //import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -26,18 +25,14 @@ import org.springframework.web.context.WebApplicationContext;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 
-import br.com.odontoprev.portalcorretor.service.ApiManagerTokenService;
 import br.com.odontoprev.portalcorretor.service.EmpresaService;
 import br.com.odontoprev.portalcorretor.service.dto.Empresa;
 import br.com.odontoprev.portalcorretor.service.dto.EmpresaResponse;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = {
-        EmpresaController.class,
-        Empresa.class,
-        EmpresaService.class,
-        ApiManagerTokenService.class})
-
+		br.com.odontoprev.portalcorretor.controller.EmpresaControllerConfigTest.class      
+		})
 @WebAppConfiguration
 public class EmpresaControllerTest {
     private MockMvc mockMvc;
@@ -79,7 +74,7 @@ public class EmpresaControllerTest {
 
 	//201809261041 - esert - COR-826 : WEB - Criar Controller POST /empresa-emailaceite
 	@Test
-	@Ignore //201809261300 - esert - apos varios testes ainda nao se sabe motivo do erro 415 Unsupported Media Type
+	//@Ignore //201809261300 - esert - apos varios testes ainda nao se sabe motivo do erro 415 Unsupported Media Type
 	public void testOk200PostEmpresaEmailAceite() throws Exception {
 		Long cdEmpresa = 2566L;
 	
@@ -90,9 +85,9 @@ public class EmpresaControllerTest {
 	
 		Mockito.when(empresaService.envioEmpresaEmailAceite(empresa)).thenReturn(empresaResponse);
 	
-		//String jsonInString = (new ObjectMapper()).writeValueAsString(empresa);
+		        
 		String jsonInString = (new Gson()).toJson(empresa);
-	
+	    System.out.println(jsonInString);
 		this.mockMvc
 				.perform(
 						post("/empresa-emailaceite")

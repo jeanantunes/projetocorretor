@@ -1,26 +1,20 @@
 package br.com.odontoprev.portalcorretor.service;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
+import br.com.odontoprev.api.manager.client.token.util.ConfigurationUtils;
 import br.com.odontoprev.portalcorretor.model.CnpjDadosAceiteResponse;
 import br.com.odontoprev.portalcorretor.service.dto.CnpjDadosDCMSResponse;
 import br.com.odontoprev.portalcorretor.service.dto.Empresa;
 import br.com.odontoprev.portalcorretor.service.dto.EmpresaDcms;
 import br.com.odontoprev.portalcorretor.service.dto.EmpresaResponse;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.*;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 @Service
 public class EmpresaService {
@@ -29,7 +23,7 @@ public class EmpresaService {
 
     //201809261534 - esert - COR-827 - alterado para uma prop que ja contenha o caminho do apiGateway /corretorservicos/1.0
     //201809261534 - esert - COR-827 - demais properties foram alteradas para nao conter o caminho do apiGateway /corretorservicos/1.0 em duplicidade
-    @Value("${odontoprev.servicebase.url}") 
+    @Value("${odontoprev.servicebase.url}")
     private String requesBasetUrl;
 
     @Value("${odontoprev.corretoras.empresa}")
@@ -173,7 +167,7 @@ public class EmpresaService {
     public EmpresaResponse updateEmpresa(Empresa empresa) {
 
         log.info("updateEmpresa - ini");
-        //String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", "/" + "empresa" + empresaDcms);
+        //String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", "/" + "empresa");
         //TODO: Alterar tora para API/API-IT3
         //String url = "http://localhost:8090/empresa";
         String url = requesBasetUrl + metodoPutEmpresa;
@@ -205,40 +199,40 @@ public class EmpresaService {
     }
 
     //201809260950 - esert - COR-827 : WEB - Criar Service POST /empresa-emailaceite
-	public EmpresaResponse envioEmpresaEmailAceite(Empresa empresa) {
+    public EmpresaResponse envioEmpresaEmailAceite(Empresa empresa) {
         log.info("envioEmpresaEmailAceite - ini");
-	    EmpresaResponse empresaResponse = null;
-	
-	    //201809260950 - esert - ATENCAO = A ROTA E A MESMA MAS O VERBO E (((POST)))
-	    String url = requesBasetUrl + reenvioEmpresaEmailAceite;
-	    //String url = "http://localhost:8090/empresa-emailaceite";
-	    RestTemplate restTemplate = new RestTemplate();
-	
-	    try {
-	        HttpHeaders headers = new HttpHeaders();
-	        headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
-	        headers.setContentType(MediaType.APPLICATION_JSON);
-	
-	        ObjectMapper mapper = new ObjectMapper();
-	        mapper.setSerializationInclusion(JsonInclude.Include.USE_DEFAULTS);
-	        String strObject = mapper.writeValueAsString(empresa);  //201809261238 - esert - desta empresa sera usado apenas atributo cdEmpresa (Long) 
-	
-	        HttpEntity<String> entity = new HttpEntity<>(strObject, headers);
-	        ResponseEntity<EmpresaResponse> retorno = restTemplate.exchange(url, HttpMethod.POST, entity, EmpresaResponse.class);
-	
-	        if (retorno.getStatusCode() == HttpStatus.OK) {
-	            empresaResponse = retorno.getBody();
-	            log.info("envioEmpresaEmailAceite - fim ok");
-	            return empresaResponse;
-	        } else {
-	            log.info("envioEmpresaEmailAceite - fim Nao OK");
-	            return null;
-	        }
-	
-	    } catch (Exception e) {
+        EmpresaResponse empresaResponse = null;
+
+        //201809260950 - esert - ATENCAO = A ROTA E A MESMA MAS O VERBO E (((POST)))
+        String url = requesBasetUrl + reenvioEmpresaEmailAceite;
+        //String url = "http://localhost:8090/empresa-emailaceite";
+        RestTemplate restTemplate = new RestTemplate();
+
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
+            headers.setContentType(MediaType.APPLICATION_JSON);
+
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.setSerializationInclusion(JsonInclude.Include.USE_DEFAULTS);
+            String strObject = mapper.writeValueAsString(empresa);  //201809261238 - esert - desta empresa sera usado apenas atributo cdEmpresa (Long)
+
+            HttpEntity<String> entity = new HttpEntity<>(strObject, headers);
+            ResponseEntity<EmpresaResponse> retorno = restTemplate.exchange(url, HttpMethod.POST, entity, EmpresaResponse.class);
+
+            if (retorno.getStatusCode() == HttpStatus.OK) {
+                empresaResponse = retorno.getBody();
+                log.info("envioEmpresaEmailAceite - fim ok");
+                return empresaResponse;
+            } else {
+                log.info("envioEmpresaEmailAceite - fim Nao OK");
+                return null;
+            }
+
+        } catch (Exception e) {
             log.error("envioEmpresaEmailAceite - erro", e);
-	        return null;
-	    }
-	}
+            return null;
+        }
+    }
 
 }
