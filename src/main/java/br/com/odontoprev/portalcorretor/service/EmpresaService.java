@@ -44,6 +44,9 @@ public class EmpresaService {
     @Value("${odontoprev.empresa.email.aceite}")
     private String reenvioEmpresaEmailAceite;
 
+    @Value("${odontoprev.web.empresa.alterar}")
+    private String metodoPutEmpresa;
+
     @Autowired
     private ApiManagerTokenService apiManagerTokenService;
 
@@ -172,7 +175,8 @@ public class EmpresaService {
         log.info("updateEmpresa - ini");
         //String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", "/" + "empresa" + empresaDcms);
         //TODO: Alterar tora para API/API-IT3
-        String url = "http://localhost:8090/empresa";
+        //String url = "http://localhost:8090/empresa";
+        String url = requesBasetUrl + metodoPutEmpresa;
         RestTemplate restTemplate = new RestTemplate();
 
         try {
