@@ -174,7 +174,7 @@ $(document).ready(function () {
                 link.href = 'data:application/pdf;base64,' + dataSucessDownloadCorretora.contratoPreenchido;
                 link.download = dataSucessDownloadCorretora.nomeArquivo;
                 link.dispatchEvent(new MouseEvent('click'));
-                swal("Nice", "Download concluido com sucesso", "success");
+                swal("Download concluido com sucesso", "", "success");
 
             },
 
