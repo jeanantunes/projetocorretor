@@ -1,4 +1,4 @@
-package br.com.odontoprev.portalcorretor.controller.arquivocontratacao;
+package br.com.odontoprev.portalcorretor.controller.detalhesProposta;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -21,14 +21,16 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import br.com.odontoprev.portalcorretor.controller.DetalhesPropostaController;
 import br.com.odontoprev.portalcorretor.model.ArquivoContratacao;
 import br.com.odontoprev.portalcorretor.service.PropostaService;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = {DetalhesPropostaController.class})
+@ContextConfiguration(classes = {
+		DetalhesPropostaControllerConfigTest.class      
+		})
+
 @WebAppConfiguration
-public class ArquivoContratacaoTest {
+public class DetalhesPropostaControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
@@ -43,7 +45,7 @@ public class ArquivoContratacaoTest {
     }
 
     @Test
-    public void test200ArqContratacao() throws Exception {
+    public void testOk200GetDownloadContratacao() throws Exception {
         ArquivoContratacao arqContratacao = new ArquivoContratacao();
         Long codigoEmpresa = 2547L;
         String dataCriacao = "2018-07-01 12:00:00";
