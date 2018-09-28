@@ -84,6 +84,13 @@ function pagarComBoleto()
 {
     var atualizarPropostaParaPronta = get("propostaPf");
     atualizarPropostaParaPronta.status = "PRONTA";
+    
+    //201809281715 - esert/yalm - COR-768 : Venda PF Enviando proposta com dados bancários
+    atualizarPropostaParaPronta.dadosBancarios.agencia = "";
+    atualizarPropostaParaPronta.dadosBancarios.codigoBanco = "";
+    atualizarPropostaParaPronta.dadosBancarios.conta = "";
+    atualizarPropostaParaPronta.dadosBancarios.tipoConta = "";
+    
     atualizarPessoas(atualizarPropostaParaPronta);
     put("propostaPf", JSON.stringify(atualizarPropostaParaPronta));
 
