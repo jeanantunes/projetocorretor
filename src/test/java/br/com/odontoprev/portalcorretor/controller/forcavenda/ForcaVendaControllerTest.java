@@ -21,15 +21,15 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import br.com.odontoprev.portalcorretor.controller.ForcaVendaController;
-import br.com.odontoprev.portalcorretor.model.UsuarioSession;
+import br.com.odontoprev.portalcorretor.service.DashService;
 import br.com.odontoprev.portalcorretor.service.ForcaVendaService;
 import br.com.odontoprev.portalcorretor.service.dto.Login;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = {ForcaVendaController.class})
+@ContextConfiguration(classes = {
+        ForcaVendaControllerConfigTest.class
+})
+
 @WebAppConfiguration
 public class ForcaVendaControllerTest {
 
@@ -37,6 +37,9 @@ public class ForcaVendaControllerTest {
 
     @MockBean
     private ForcaVendaService forcaVendaService;
+    
+    @MockBean
+    private DashService dashService;
 
     @MockBean
     private HttpSession session;
@@ -51,12 +54,13 @@ public class ForcaVendaControllerTest {
 
 
     @Test
-    @Ignore
-    public void forcaVendaBloqueio() throws Exception {
+    @Ignore //TODO: Débito Técnico - Não sabemos como passar a session via Mock - 21/09/2018 - Jean Antunes
+    public void testOk200GetForcaVendaBloqueio() throws Exception {
 
         //TODO: Débito Técnico - Não sabemos como passar a session via Mock - 21/09/2018 - Jean Antunes
-        UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
-        usuario.setCodigoUsuario(6);
+//        UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
+//        usuario.setCodigoUsuario(6);
+    	long cdForcaVenda = 6L;
 
         ResponseEntity<Login> loginResponse = ResponseEntity
                 .ok()
@@ -64,12 +68,11 @@ public class ForcaVendaControllerTest {
                 .header("Authorization", "Bearer 6a6dffd0-00c8-342d-b8a2-3546861dfb77")
                 .body(null);
 
-        Mockito.when(forcaVendaService.verificaBloqueio(usuario.getCodigoUsuario())).thenReturn(loginResponse);
-        ObjectMapper mapper = new ObjectMapper();
-        String jsonInString = mapper.writeValueAsString(usuario);
-        this.mockMvc.perform(get("forcavenda/bloqueio?cdForcaVenda=" + usuario.getCodigoUsuario())
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(jsonInString))
+        Mockito.when(forcaVendaService.verificaBloqueio(cdForcaVenda)).thenReturn(loginResponse);
+        
+        //this.mockMvc.perform(get("forcavenda/bloqueio?cdForcaVenda=" + cdForcaVenda)
+        this.mockMvc.perform(get("/forcavenda/bloqueio")
+                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 }
