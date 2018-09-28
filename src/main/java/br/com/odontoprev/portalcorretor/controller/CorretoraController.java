@@ -1,15 +1,13 @@
 package br.com.odontoprev.portalcorretor.controller;
 
-import java.math.BigDecimal;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
+import br.com.odontoprev.portalcorretor.model.ListaPropostas;
+import br.com.odontoprev.portalcorretor.model.UsuarioSession;
+import br.com.odontoprev.portalcorretor.service.CorretoraService;
+import br.com.odontoprev.portalcorretor.service.DashService;
+import br.com.odontoprev.portalcorretor.service.EnderecoService;
+import br.com.odontoprev.portalcorretor.service.ForcaVendaService;
+import br.com.odontoprev.portalcorretor.service.dto.*;
+import br.com.odontoprev.portalcorretor.service.entity.FiltroStatusProposta;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,19 +16,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.odontoprev.portalcorretor.model.ListaPropostas;
-import br.com.odontoprev.portalcorretor.model.UsuarioSession;
-import br.com.odontoprev.portalcorretor.service.CorretoraService;
-import br.com.odontoprev.portalcorretor.service.DashService;
-import br.com.odontoprev.portalcorretor.service.EnderecoService;
-import br.com.odontoprev.portalcorretor.service.ForcaVendaService;
-import br.com.odontoprev.portalcorretor.service.dto.Corretora;
-import br.com.odontoprev.portalcorretor.service.dto.CorretoraResponse;
-import br.com.odontoprev.portalcorretor.service.dto.DashResponse;
-import br.com.odontoprev.portalcorretor.service.dto.DashboardPropostas;
-import br.com.odontoprev.portalcorretor.service.dto.ForcaVenda;
-import br.com.odontoprev.portalcorretor.service.dto.Proposta;
-import br.com.odontoprev.portalcorretor.service.entity.FiltroStatusProposta;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Controller
 @RestController
@@ -150,71 +143,73 @@ public class CorretoraController {
 
     }
 
-	//201809042005 - esert - COR-692 nova controller para ver dados corretora
-	@RequestMapping(value = "corretora/editar/home", method = RequestMethod.GET)
-	public ModelAndView editarHome(HttpSession session) {
-	
-	    UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
-	
-	    Corretora corretora = corretoraService.obterDadosCorretora(usuario.getDocumento());
-	    
-	    //201809051258 - esert - de/para simples nacional
-	    switch (corretora.getSimplesNacional()) {
-		    case "S":
-		    	corretora.setSimplesNacional("Sim");
-		    	break;
-		    case "N":
-		    	corretora.setSimplesNacional("Não");
-		    	break;
-		    default:
-		    	//deixa como está =]
-		    	break;
-	    }
-	    
-	    //201809051005 - esert - de/para letras/palavras vide fernando@odpv
-	    switch (corretora.getStatusCnpj()) {
-			case "A":
-			case "S":
-				corretora.setStatusCnpj("Ativo");
-				break;
-			case "I":
-			case "N":
-				corretora.setStatusCnpj("Inativo");
-				break;
-			default:
-				//deixa como está =]
-				break;
-		}
-	    
-	    return new ModelAndView("corretora/editar/meus_dados", "corretora", corretora);
-	}
+    //201809042005 - esert - COR-692 nova controller para ver dados corretora
+    @RequestMapping(value = "corretora/editar/home", method = RequestMethod.GET)
+    public ModelAndView editarHome(HttpSession session) {
+
+        UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
+
+        Corretora corretora = corretoraService.obterDadosCorretora(usuario.getDocumento());
+
+        //201809051258 - esert - de/para simples nacional
+        switch (corretora.getSimplesNacional()) {
+            case "S":
+                corretora.setSimplesNacional("Sim");
+                break;
+            case "N":
+                corretora.setSimplesNacional("Não");
+                break;
+            default:
+                //deixa como está =]
+                break;
+        }
+
+        //201809051005 - esert - de/para letras/palavras vide fernando@odpv
+        switch (corretora.getStatusCnpj()) {
+            case "A":
+            case "S":
+                corretora.setStatusCnpj("Ativo");
+                break;
+            case "I":
+            case "N":
+                corretora.setStatusCnpj("Inativo");
+                break;
+            default:
+                //deixa como está =]
+                break;
+        }
+
+        return new ModelAndView("corretora/editar/meus_dados", "corretora", corretora);
+    }
 
 
     //201809051800 - esert - COR-695 nova controller para ver dados corretora
     @RequestMapping(value = "corretora/salvaremail", method = RequestMethod.PUT)
-	public ResponseEntity salvarEmail(@RequestBody Corretora corretora, HttpSession session) {
-	    log.info("salvarEmail - ini");
-	    log.info(corretora);
-	
-	    UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
-	
-	    log.info("chamando corretoraService.salvarEmailCorretora()...");
-	    CorretoraResponse corretoraResponse = corretoraService.salvarEmailCorretora(corretora);
-	    log.info("retornou corretoraService.salvarEmailCorretora()...");
-	    log.info(corretoraResponse);
+    public ResponseEntity salvarEmail(@RequestBody Corretora corretora, HttpSession session) {
+        log.info("salvarEmail - ini");
+        log.info(corretora);
 
-        if(corretoraResponse == null) {
+        UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
+
+        log.info("chamando corretoraService.salvarEmailCorretora()...");
+        CorretoraResponse corretoraResponse = corretoraService.salvarEmailCorretora(corretora);
+        log.info("retornou corretoraService.salvarEmailCorretora()...");
+        log.info(corretoraResponse);
+
+        if (corretoraResponse == null) {
             return ResponseEntity.noContent().build();
         }
 
-        usuario.setEmail(corretora.getEmail());
-        session.setAttribute("usuario", usuario);
+        if (usuario != null) {
+            usuario.setEmail(corretora.getEmail());
+            session.setAttribute("usuario", usuario);
+        }
         log.info("salvarEmail - fim");
         return ResponseEntity.ok(corretoraResponse);
-	}
+    }
 
-	@RequestMapping(value = "/corretora/redirecionarcontrato", method = RequestMethod.GET)
-    public ModelAndView enviaSusep(@RequestParam("codSusep") String codSusep, HttpServletRequest request, HttpSession session){
+    @RequestMapping(value = "/corretora/redirecionarcontrato", method = RequestMethod.GET)
+    public ModelAndView enviaSusep(@RequestParam("codSusep") String codSusep, HttpServletRequest request, HttpSession session) {
 
         UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
 
