@@ -3,6 +3,9 @@ package br.com.odontoprev.portalcorretor.controller.detalhesProposta;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ws.rs.core.MediaType;
 
 import org.junit.Before;
@@ -19,10 +22,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import br.com.odontoprev.portalcorretor.model.ArquivoContratacao;
 import br.com.odontoprev.portalcorretor.service.PropostaService;
+import br.com.odontoprev.portalcorretor.service.dto.BeneficiariosPropostaResponsePagination;
+import br.com.odontoprev.portalcorretor.service.dto.EmpresaPropostaResponse;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = {
@@ -44,42 +46,37 @@ public class DetalhesPropostaControllerTest {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
     }
 
+    //201809281757 - esert - COR-847 : WEB - ConfigTest para DetalhesPropostaControllerTest.java
     @Test
     public void testOk200GetDownloadContratacao() throws Exception {
-        ArquivoContratacao arqContratacao = new ArquivoContratacao();
-        Long codigoEmpresa = 2547L;
-        String dataCriacao = "2018-07-01 12:00:00";
-        String nomeArquivo = "arquivoContratacao";
-        Long tamanhoArquivo = 123L;
-        String tipoConteudo = "text/pdf";
-        String arquivoBase64 = "";
-        String caminhoCarga = "~/Documento/jotait";
 
-        arqContratacao.setArquivoBase64(String.valueOf(codigoEmpresa));
-        arqContratacao.setDataCriacao(dataCriacao);
-        arqContratacao.setNomeArquivo(nomeArquivo);
-        arqContratacao.setTamanhoArquivo(tamanhoArquivo);
-        arqContratacao.setTipoConteudo(tipoConteudo);
-        arqContratacao.setArquivoBase64(arquivoBase64);
-        arqContratacao.setCaminhoCarga(caminhoCarga);
-        arqContratacao.setCodigoEmpresa(2547L);
+        Long codigoEmpresa = 2547L;
+        String nomeArquivo = "arquivoContratacao";
+        String arquivoBase64 = "arquivoBase64";
 
         ResponseEntity<String> arquivo = ResponseEntity
                 .ok()
                 .contentType(org.springframework.http.MediaType.valueOf(MediaType.APPLICATION_JSON))
                 .header(
                         "Content-Disposition",
-                        String.format("attachment; filename=%s", arqContratacao.getNomeArquivo())
+                        String.format("attachment; filename=%s", nomeArquivo)
                 )
                 .body(arquivoBase64);
 
-
         Mockito.when(propostaService.gerarArquivoContratacao(codigoEmpresa)).thenReturn(arquivo);
-        ObjectMapper mapper = new ObjectMapper();
-        String jsonInString = mapper.writeValueAsString(arqContratacao);
+        
+        //EmpresaPropostaResponse detalhesPropostaPME = propostaService.detalhesPropostaPME(cdEmpresa);
+        EmpresaPropostaResponse empresaPropostaResponse = new EmpresaPropostaResponse();
+        Mockito.when(propostaService.detalhesPropostaPME(String.valueOf(codigoEmpresa))).thenReturn(empresaPropostaResponse);
+
+        //List<BeneficiariosPropostaResponsePagination> beneficiarios = propostaService.detalhesBeneficiarioPropostaPME(detalhesPropostaPME.getCdEmpresa(), numpag, tampag);
+        List<BeneficiariosPropostaResponsePagination> beneficiarios = new ArrayList<BeneficiariosPropostaResponsePagination>();
+        Long numPag = 1L;
+        Long tamPag = 8L;
+        Mockito.when(propostaService.detalhesBeneficiarioPropostaPME(codigoEmpresa, numPag, tamPag)).thenReturn(beneficiarios);
+
         this.mockMvc.perform(get("/downloadContratacao?cdEmpresa=" + codigoEmpresa)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(jsonInString))
+                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 }
