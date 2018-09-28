@@ -1,9 +1,10 @@
-package br.com.odontoprev.portalcorretor.controller;
+package br.com.odontoprev.portalcorretor.controller.forcavenda;
 
-import br.com.odontoprev.portalcorretor.model.UsuarioSession;
-import br.com.odontoprev.portalcorretor.service.ForcaVendaService;
-import br.com.odontoprev.portalcorretor.service.dto.Login;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import javax.servlet.http.HttpSession;
+
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -11,8 +12,6 @@ import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ContextConfiguration;
@@ -22,11 +21,12 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import javax.servlet.http.HttpSession;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-import static org.junit.Assert.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import br.com.odontoprev.portalcorretor.controller.ForcaVendaController;
+import br.com.odontoprev.portalcorretor.model.UsuarioSession;
+import br.com.odontoprev.portalcorretor.service.ForcaVendaService;
+import br.com.odontoprev.portalcorretor.service.dto.Login;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = {ForcaVendaController.class})

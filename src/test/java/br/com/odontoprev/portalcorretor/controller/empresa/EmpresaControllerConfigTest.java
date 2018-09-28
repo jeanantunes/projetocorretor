@@ -1,9 +1,11 @@
-package br.com.odontoprev.portalcorretor.controller;
+package br.com.odontoprev.portalcorretor.controller.empresa;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+
+import br.com.odontoprev.portalcorretor.controller.EmpresaController;
 
 @Configuration
 @ComponentScan(

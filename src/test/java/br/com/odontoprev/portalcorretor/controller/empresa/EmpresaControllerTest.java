@@ -1,4 +1,4 @@
-package br.com.odontoprev.portalcorretor.controller;
+package br.com.odontoprev.portalcorretor.controller.empresa;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -31,7 +31,7 @@ import br.com.odontoprev.portalcorretor.service.dto.EmpresaResponse;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = {
-		br.com.odontoprev.portalcorretor.controller.EmpresaControllerConfigTest.class      
+		EmpresaControllerConfigTest.class      
 		})
 @WebAppConfiguration
 public class EmpresaControllerTest {
