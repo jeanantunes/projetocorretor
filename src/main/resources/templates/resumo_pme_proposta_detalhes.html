@@ -139,9 +139,9 @@
                     </td>
                     <td style="padding-bottom: 0px !important;">
                         <label class="label-odont">E-mail</label><br/>
-                        <div class="p-odont" th:name="${email}" th:text="${email}" th:style="${cdStatusVenda == 1 || cdStatusVenda == 4} ? 'display:none' : ''"></div>
+                        <div class="p-odont" th:name="${email}" th:text="${email}" th:style="${cdStatusVenda == 5} ? 'display:none' : ''"></div>
 
-                        <div th:style="${cdStatusVenda == 1 || cdStatusVenda == 4} ? '' : 'display:none'">
+                        <div th:style="${cdStatusVenda == 5} ? '' : 'display:none'">
                             <div style="margin-right: 25px; text-align: right; display: none;" id="btnConfirmarCinza"> <!-- icon btn confirmar cinza -->
                                 <img th:src="@{/img/Path -1.png}" class="img-align-right" align="right" style="" />
                             </div>
@@ -260,7 +260,7 @@
         <div class="row">
             <div class="col-xs-12" style="display: flex;">
                 <a th:href="@{downloadContratacao(cdEmpresa=${cdEmpresa})}" class="btn btn-lg btn-block btnOdont uppercase" id="" role="button" target="_parent">BAIXAR DETALHES DA CONTRATAçÃO</a>
-                <div class="col-xs-6" th:style="${cdStatusVenda == 1 || cdStatusVenda == 4} ? 'margin-left: 30%;' : 'display:none;'">
+                <div class="col-xs-6" th:style="${cdStatusVenda == 5} ? 'margin-left: 30%;' : 'display:none;'">
                     <button class="btn btn-lg btn-block btnOdont uppercase" id="btnEnviarEmail" role="button" target="_parent">REENVIAR E-MAIL ACEITE PME</button>
                 </div>
             </div>
