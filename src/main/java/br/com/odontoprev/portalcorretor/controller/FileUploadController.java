@@ -93,7 +93,7 @@ public class FileUploadController {
     //201810041500 - esert - COR-862:Controller WEB POST + TDD
     //201810051612 - esert - COR-862:Controller WEB POST + TDD - refactor
     @RequestMapping(value = "/fileupload/lotedcms", method = RequestMethod.POST)
-    public ResponseEntity<FileUploadLoteDCMSResponse> fileuploadLoteDCMS(HttpSession session, @RequestBody FileUploadLoteDCMS fileUploadLoteDCMS) throws IOException {
+    public ResponseEntity<FileUploadLoteDCMSResponse> fileuploadLoteDCMS(@RequestBody FileUploadLoteDCMS fileUploadLoteDCMS) throws IOException {
 		
     	log.info("fileuploadLoteDCMS - ini");
     	
@@ -104,9 +104,6 @@ public class FileUploadController {
 			}
 
 	    	log.info(fileUploadLoteDCMS.toString());
-
-			@SuppressWarnings("unused")
-			UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
 
 			ResponseEntity<FileUploadLoteDCMSResponse> response = fileUploadService.fileUploadLoteDCMS(fileUploadLoteDCMS);
 
