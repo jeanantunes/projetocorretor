@@ -11,12 +11,16 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-theme.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/sweetalert.css}"/>
 
     <script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/jquery.mask.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/odonto-Valida.js}"></script>
     <script type="text/javascript" th:src="@{/js/menu.js}"></script>
+    <script type="text/javascript" th:src="@{/js/sweetalert.min.js}"></script>
+    <script type="text/javascript" th:src="@{/app/getPropertie.js}"></script>
+    <script type="text/javascript" th:src="@{/app/upload_dcmsController.js}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script>
@@ -85,6 +89,11 @@
                                    class="btn btnBlue btn-width-custom space-top-10 uppercase"
                                    value="BUSCAR"/>
                         </div>
+
+                        <input type="file" name="file" id="file"
+                               style="width: 0.1px;height: 0.1px;opacity: 0; overflow: hidden; position: absolute; z-index: -1;"
+                               accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                        <label for="file" class="btn uppercase btnBlue btn-width-custom space-top-20">UPLOAD ARQUIVO EMPRESAS</label>
                     </div>
 
                     <div class="form-group width-form1 space-top-60 display:none">
@@ -110,6 +119,9 @@
                          -->
                     </div>
                 </form>
+
+
+
                 <div class="row">
                     <div class="col-xs-12 ">
                         <div class="form-group width-form1">
@@ -129,6 +141,7 @@
                                 <input type="submit" id="btnSalvar"
                                        class="btn btnBlue btn-width-custom space-top-10 uppercase hide"
                                        value="SALVAR"/>
+
                             </form>
                         </div>
                     </div>
@@ -141,6 +154,7 @@
         </div>
 
         <div th:replace="fragments/footer :: footer">&nbsp;</div>
+
 
     </div>
 </div>

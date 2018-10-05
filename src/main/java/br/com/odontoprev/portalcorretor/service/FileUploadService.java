@@ -91,7 +91,7 @@ public class FileUploadService {
     //201810051612 - esert - COR-860:Service WEB POST - refactor
     public ResponseEntity<FileUploadLoteDCMSResponse> fileUploadLoteDCMS(FileUploadLoteDCMS fileUploadLoteDCMS) {
 
-    	String url = requestBaseUrl + contextoApi + metodoFileUploadLoteDCMS;
+    	String url = requestBaseUrl + metodoFileUploadLoteDCMS;
     	
     	RestTemplate restTemplate = new RestTemplate();
     	restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
@@ -99,7 +99,7 @@ public class FileUploadService {
     	try {
     		HttpHeaders headers = new HttpHeaders();
     		headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
-    		
+    		headers.set("Content-Type", "application/json");
     		String stringJson = new Gson().toJson(fileUploadLoteDCMS);
     		
     		HttpEntity<String> entity = new HttpEntity<>(stringJson, headers);
