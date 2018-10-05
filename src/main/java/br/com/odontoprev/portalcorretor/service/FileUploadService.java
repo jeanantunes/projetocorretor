@@ -21,6 +21,9 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.google.gson.Gson;
+
+import br.com.odontoprev.portalcorretor.service.dto.FileUploadLoteDCMS;
 import br.com.odontoprev.portalcorretor.service.dto.FileUploadLoteDCMSResponse;
 import br.com.odontoprev.portalcorretor.service.dto.FileUploadResponse;
 
@@ -85,45 +88,29 @@ public class FileUploadService {
     }
     
     //201810041500 - esert - COR-860:Service WEB POST
-    public FileUploadLoteDCMSResponse fileUploadLoteDCMS(MultipartFile file, Integer codigoCorretora) {
+    //201810051612 - esert - COR-860:Service WEB POST - refactor
+    public ResponseEntity<FileUploadLoteDCMSResponse> fileUploadLoteDCMS(FileUploadLoteDCMS fileUploadLoteDCMS) {
 
-    	String url = requestBaseUrl + contextoApi + metodoFileUploadLoteDCMS + "/" + codigoCorretora;
+    	String url = requestBaseUrl + contextoApi + metodoFileUploadLoteDCMS;
     	
     	RestTemplate restTemplate = new RestTemplate();
     	restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
     	
     	try {
-    		MultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
-    		map.add("file", new FileSystemResource(file.getOriginalFilename()));
-    		
-    		List<MediaType> acceptableMediaTypes = new ArrayList<>();
-    		acceptableMediaTypes.add(MediaType.MULTIPART_FORM_DATA);
-    		
     		HttpHeaders headers = new HttpHeaders();
     		headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
-    		headers.setAccept(acceptableMediaTypes);
     		
-    		HttpEntity<MultiValueMap<String, Object>> entity = new HttpEntity<>(map, headers);
+    		String stringJson = new Gson().toJson(fileUploadLoteDCMS);
     		
-    		ResponseEntity<String> retorno = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
+    		HttpEntity<String> entity = new HttpEntity<>(stringJson, headers);
     		
-    		if (retorno.getStatusCode() == HttpStatus.OK) {
-    			log.info("Upload Lote DCMS realizado com sucesso:" + retorno.getStatusCode().name());
-    			return new FileUploadLoteDCMSResponse(retorno.getStatusCode().value(), "Upload realizado com sucesso!");
-    		} else if (retorno.getStatusCode() == HttpStatus.BAD_REQUEST) {
-    			log.info("Erro ao realizar upload Lote DCMS:" + retorno.getStatusCode().name());
-    			return new FileUploadLoteDCMSResponse(retorno.getStatusCode().value(), "Falha ao realizar Upload, porfavor verifique seu arquivo.");
-    		} else if (retorno.getStatusCode() == HttpStatus.NO_CONTENT) {
-    			log.info("Erro ao realizar upload Lote DCMS:" + retorno.getStatusCode().name());
-    			return new FileUploadLoteDCMSResponse(retorno.getStatusCode().value(), "Falha ao realizar Upload, porfavor verifique seu arquivo.");
-    		} else { //ERRO INESPERADO
-    			log.info("Erro ao realizar upload Lote DCMS:" + retorno.getStatusCode().name());
-    			return new FileUploadLoteDCMSResponse(retorno.getStatusCode().value(), "Falha ao realizar Upload, porfavor verifique seu arquivo.");
-    		}
+    		ResponseEntity<FileUploadLoteDCMSResponse> retorno = restTemplate.exchange(url, HttpMethod.POST, entity, FileUploadLoteDCMSResponse.class);
+    		
+    		return retorno;
     		
     	} catch (Exception e) {
     		log.error("Erro ao realizar upload Lote DCMS", e);
-    		return new FileUploadLoteDCMSResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Erro ao realizar Upload Lote DCMS -> " + e);
+    		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     	}
     	
     }
