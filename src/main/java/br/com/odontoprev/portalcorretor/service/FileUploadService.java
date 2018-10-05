@@ -91,7 +91,7 @@ public class FileUploadService {
     //201810051612 - esert - COR-860:Service WEB POST - refactor
     public ResponseEntity<FileUploadLoteDCMSResponse> fileUploadLoteDCMS(FileUploadLoteDCMS fileUploadLoteDCMS) {
 
-    	String url = requestBaseUrl + metodoFileUploadLoteDCMS;
+    	String url = requestBaseUrl + contextoApi + metodoFileUploadLoteDCMS;
     	
     	RestTemplate restTemplate = new RestTemplate();
     	restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
