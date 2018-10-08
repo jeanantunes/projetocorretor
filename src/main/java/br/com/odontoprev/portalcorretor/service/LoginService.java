@@ -6,6 +6,8 @@ import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -31,7 +33,8 @@ import br.com.odontoprev.portalcorretor.service.dto.Perfil;
 @Service
 public class LoginService {
 
-	private static final Log log = LogFactory.getLog(LoginService.class);
+	//private static final Log log = LogFactory.getLog(LoginService.class);
+    private static Logger log = LogManager.getLogger();
 
 	@Value("${odontoprev.servicebase.url}")
 	private String requesBasetUrl;

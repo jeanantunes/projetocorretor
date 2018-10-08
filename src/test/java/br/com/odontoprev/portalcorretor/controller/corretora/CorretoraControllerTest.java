@@ -29,7 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         DashService.class,
         ForcaVendaService.class,
         EnderecoService.class,
-        ApiManagerTokenService.class,
+        ApiManagerTokenService.class
 })
 @WebAppConfiguration
 public class CorretoraControllerTest {
