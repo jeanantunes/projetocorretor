@@ -4,10 +4,7 @@ import br.com.odontoprev.portalcorretor.model.ListaPropostas;
 import br.com.odontoprev.portalcorretor.model.UsuarioSession;
 import br.com.odontoprev.portalcorretor.service.DashService;
 import br.com.odontoprev.portalcorretor.service.ForcaVendaService;
-import br.com.odontoprev.portalcorretor.service.dto.DashboardPropostas;
-import br.com.odontoprev.portalcorretor.service.dto.ForcaVenda;
-import br.com.odontoprev.portalcorretor.service.dto.Login;
-import br.com.odontoprev.portalcorretor.service.dto.Proposta;
+import br.com.odontoprev.portalcorretor.service.dto.*;
 import br.com.odontoprev.portalcorretor.service.entity.FiltroStatusProposta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -195,6 +192,21 @@ public class ForcaVendaController {
             }
 
             return forcaVendaService.verificaBloqueio(usuario.getCodigoUsuario());
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+
+    }
+
+    @RequestMapping(value = "/forcavenda/{cdForcaVenda}/email", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<EmailForcaVendaCorretora> forcaVendaBloqueio(HttpSession session, @PathVariable Long cdForcaVenda) {
+
+        try {
+
+            UsuarioSession usuario = (UsuarioSession) session.getAttribute("usuario");
+            return forcaVendaService.getEmailForcaCorretora(cdForcaVenda);
 
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

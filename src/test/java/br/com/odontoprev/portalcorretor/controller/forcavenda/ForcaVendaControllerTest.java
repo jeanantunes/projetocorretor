@@ -5,6 +5,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import javax.servlet.http.HttpSession;
 
+import br.com.odontoprev.portalcorretor.service.dto.EmailForcaVendaCorretora;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -18,6 +19,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -75,4 +77,54 @@ public class ForcaVendaControllerTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
+
+    @Test
+    public void testOk200GetEmailForcaCorretora() throws Exception {
+
+        // Given
+        Long cdCorretora = 21L;
+        Long cdForcaVenda = 6L;
+        String emailForcaVenda = "fernando.mota@odontoprev.com.br";
+        String emailCorretora = "fernando.mota@odontoprev.com.br";
+
+        EmailForcaVendaCorretora emailForcaVendaCorretora = new EmailForcaVendaCorretora();
+        emailForcaVendaCorretora.setCdCorretora(cdCorretora);
+        emailForcaVendaCorretora.setEmailForcaVenda(emailForcaVenda);
+        emailForcaVendaCorretora.setCdForcaVenda(cdForcaVenda);
+        emailForcaVendaCorretora.setEmailCorretora(emailCorretora);
+
+        ResponseEntity<EmailForcaVendaCorretora> emailForcaVendaCorretoraResponseEntity = ResponseEntity
+                .ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(emailForcaVendaCorretora);
+
+        Mockito.when(forcaVendaService.getEmailForcaCorretora(cdForcaVenda)).thenReturn(emailForcaVendaCorretoraResponseEntity);
+
+        this.mockMvc.perform(get("/forcavenda/" + cdForcaVenda + "/email")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.emailForcaVenda").value(emailForcaVenda))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.emailCorretora").value(emailCorretora))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.cdForcaVenda").value(cdForcaVenda))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.cdCorretora").value(cdCorretora));
+    }
+
+    @Test
+    public void testOk204NoContentGetEmailForcaCorretora() throws Exception {
+
+        // Given
+        Long cdCorretora = 21L;
+        Long cdForcaVenda = 6L;
+
+
+        ResponseEntity<EmailForcaVendaCorretora> emailForcaVendaCorretoraResponseEntity = ResponseEntity
+                .noContent().build();
+
+        Mockito.when(forcaVendaService.getEmailForcaCorretora(cdForcaVenda)).thenReturn(emailForcaVendaCorretoraResponseEntity);
+
+        this.mockMvc.perform(get("/forcavenda/" + cdForcaVenda + "/email")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNoContent());
+    }
+
 }
