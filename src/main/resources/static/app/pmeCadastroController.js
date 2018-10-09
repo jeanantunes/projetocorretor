@@ -20,10 +20,150 @@ $(document).ready(function () {
         //buscarEmpresa();
     });
 
+    $("#email").blur(function () {
+
+        var emailDigitado = $(this).val();
+
+        if (!validateEmail(emailDigitado)){
+
+            return;
+
+        }
+
+        if (navigator.onLine){
+
+            var arrayEmails = [];
+            arrayEmails.push(emailDigitado);
+
+            validarEmailForcaCorretora(arrayEmails,
+                function () {
+
+                    swal.close();
+                    $(".label-email").css("color", "#1974CE");
+                    $(".email").css("color", "#1974CE");
+                    $(".email").css("border-color", "#1974CE");
+
+                },
+                function (error) {
+
+                    if (error != 500) {
+                        $(".label-email").css("color", "#FF4141");
+                        $(".email").css("color", "#FF4141");
+                        $(".email").css("border-color", "#FF4141");
+                    } else {
+                        swal.close();
+                    }
+                }
+            )
+        }
+
+    });
+
+    $("#emailSegundoContato").blur(function () {
+
+        var emailDigitado = $(this).val();
+
+        if (!validateEmail(emailDigitado)){
+
+            return;
+
+        }
+
+        if (navigator.onLine){
+
+            var arrayEmails = [];
+            arrayEmails.push(emailDigitado);
+
+            validarEmailForcaCorretora(arrayEmails,
+                function () {
+
+                    swal.close();
+                    $(".label-email-segundo-contato").css("color", "#1974CE");
+                    $(".email-segundo-contato").css("color", "#1974CE");
+                    $(".email-segundo-contato").css("border-color", "#1974CE");
+
+                },
+                function (error) {
+
+                    if (error != 500) {
+                        $(".label-email-segundo-contato").css("color", "#FF4141");
+                        $(".email-segundo-contato").css("color", "#FF4141");
+                        $(".email-segundo-contato").css("border-color", "#FF4141");
+                    }else {
+                        swal.close();
+                    }
+                }
+            )
+        }
+
+    });
+
     resizeIframe('frame_pf');
 
 });
 
+function validarEmailForcaCorretora(arrayEmail, callbackSuccess, callbackError) {
+
+    swal({
+        title: "Aguarde",
+        text: '',
+        content: "input",
+        imageUrl: "img/icon-aguarde.gif",
+        showCancelButton: false,
+        showConfirmButton: false,
+        allowEscapeKey: false,
+        allowOutsideClick: false,
+        icon: "info",
+        button: {
+            text: "...",
+            closeModal: false
+        }
+    });
+
+    var dadosUsuario = get("dadosUsuario");
+    var codigoUsuario = dadosUsuario.codigo;
+
+    getEmailForcaCorretora(codigoUsuario,
+        function (dataEmailForcaCorretora) {
+
+            if (dataEmailForcaCorretora != undefined){
+
+                var emailCorretora = dataEmailForcaCorretora.emailCorretora;
+                var emailForcaVenda = dataEmailForcaCorretora.emailForcaVenda;
+                var possuiErros = false;
+
+                $.each(arrayEmail, function( index, value ) {
+
+                    if (value == emailCorretora || value == emailForcaVenda){
+
+                        swal(
+                            "E-mail inválido",
+                            "Não é permitido colocar o e-mail do vendedor" +
+                            " ou da corretora na venda. Por favor, informe o e-mail do cliente.",
+                            "error"
+                        );
+
+                        possuiErros = true;
+                    }
+                    
+                });
+
+                if (possuiErros){
+                    callbackError(403);
+                    return;
+                }
+
+                callbackSuccess();
+                return;
+            }
+        },
+        function (dataError) {
+            callbackError(500);
+            return;
+        }
+    )
+
+}
 
 
 function addBenef() {
@@ -675,6 +815,70 @@ function carregarProposta() {
     $("#cnae").val(proposta.cnae);
 
     resizeIframe('frame_pf');
+
+}
+
+function continuarProposta() {
+
+    if (navigator.onLine){
+
+        var emailPrincipal = $("#email").val();
+        var emailSegundoContato = $("#emailSegundoContato").val();
+        var arrayEmails = [];
+
+        if (emailPrincipal == "") {
+            swal("Ops!", "Preencha o email", "error");
+            $("#cnpjEmpresa").focus();
+            return;
+        }
+
+        if (!validateEmail(emailPrincipal)) {
+            swal("Ops!", "Preencha um e-mail válido", "error");
+            $("#cnpjEmpresa").focus();
+            return;
+        }
+
+        arrayEmails.push(emailPrincipal);
+
+        if (!$("#squaredOne").is(':checked')) {
+
+            if (emailSegundoContato == "") {
+                swal("Ops!", "Preencha o email do segundo contato da empresa", "error");
+                $("#cnpjEmpresa").focus();
+                return;
+            }
+
+            if (!validateEmail(emailSegundoContato)) {
+                swal("Ops!", "Preencha um e-mail válido para o segundo contato da empresa", "error");
+                $("#cnpjEmpresa").focus();
+                return;
+            }
+
+            arrayEmails.push(emailSegundoContato);
+        }
+
+        validarEmailForcaCorretora(arrayEmails,
+            function () {
+
+                validarProposta();
+
+            },
+            function (error) {
+
+                if (error != 500) {
+
+                } else {
+                    validarProposta();
+                }
+            }
+        )
+
+    } else {
+
+        validarProposta()
+
+    }
+
 
 }
 

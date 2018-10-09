@@ -269,6 +269,7 @@ public class ForcaVendaService {
             return null;
         }
 
+        // TODO: adicionar contexto do api gateway na url
         String url = requesBaseUrl + metodoGetEmailForcaCorretora.replace("{cdForcaVenda}", cdForcaVenda.toString());
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
