@@ -43,6 +43,10 @@ function carregarForm() {
     resizeIframe('frame_pf');
 }
 
+function returnVendaPme() {
+    window.location.href = "venda_pme_dados_proposta.html";
+}
+
 function SalvarDependentes() {
     var stop = false;
     $(".boxDependente").each(function () {
