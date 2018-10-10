@@ -2,15 +2,24 @@ emRequisicao = false;
 
 $(document).ready(function () {
     $(".bancos").change(function () {
+        if ($(this).val() == " ") {
+            $("#continuarPfDebito").prop('disabled', true);
+            return;
+        }
         if ($(this).val() == "341") {
             swal("Atenção!", "Lembre o seu cliente de que o Itaú exige liberação para o débito em conta.", "info");
         }
+        if ($("#agenciaDebito").val() == "" || $("#contaDebito").val() == "" || ($(".bancos").val() == " ")) {
+            $("#continuarPfDebito").prop('disabled', true);
+            return;
+        }
+        $("#continuarPfDebito").prop('disabled', false);
     });
 
     $("#contaDebito").keyup(function () {
 
         $("#continuarPfDebito").prop('disabled', true);
-        if ($(this).val() == "" || $("#agenciaDebito").val() == "") {
+        if ($(this).val() == "" || $("#agenciaDebito").val() == "" || ($(".bancos").val() == " ")) {
             return;
         }
 
@@ -21,7 +30,7 @@ $(document).ready(function () {
 
         $("#continuarPfDebito").prop('disabled', true);
 
-        if ($(this).val() == "" || $("#contaDebito").val() == "") {
+        if ($(this).val() == "" || $("#contaDebito").val() == "" || ($(".bancos").val() == " ")) {
 
             return;
         }
