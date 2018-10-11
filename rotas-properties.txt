@@ -1,0 +1,53 @@
+________________________________________________________________________
+                  _        .-.     ,-..----.
+                 :_;      .' `.  .'  :: .--'
+ .--. .---. .--. .-.,-.,-.`. .'   `: :`. `. 
+`._-.': .; `: ..': :: ,. : : :     : :.-`, :
+`.__.': ._.':_;  :_;:_;:_; :_;     :_;`.__.'
+      : :                                   
+      :_;     
+
+API PROPERTIES:
+
+WEB PROPERTIES:
+odontoprev.web.forcavenda.bloqueado=/forcavenda/bloqueio
+odontoprev.web.corretora.bloqueada=/corretora/bloqueio
+odontoprev.fileupload.lotedcms.metodo=/upload/lotedcms
+odontoprev.forcavendacorretora.email=/forcavenda/{cdForcaVenda}/email
+
+ROTAS:
+GET /contratocorretora/{cdCorretora}/json
+GET /forcavenda/bloqueio?cdForcaVenda={cdForcaVenda}
+GET /forcavenda/{cdForcaVenda}/email
+________________________________________________________________________
+
+                  _        .-.     ,-.  .-. 
+                 :_;      .' `.  .'  : .'.' 
+ .--. .---. .--. .-.,-.,-.`. .'   `: :.' '. 
+`._-.': .; `: ..': :: ,. : : :     : :: .; :
+`.__.': ._.':_;  :_;:_;:_; :_;     :_;`.__.'
+      : :                                   
+      :_;
+
+API PROPERTIES:
+
+WEB PROPERTIES:
+
+Rotas:
+________________________________________________________________________
+
+                  _        .-.     ,-..----.
+                 :_;      .' `.  .'  :`--  ;
+ .--. .---. .--. .-.,-.,-.`. .'   `: : ,',' 
+`._-.': .; `: ..': :: ,. : : :     : : : :  
+`.__.': ._.':_;  :_;:_;:_; :_;     :_; :_:  
+      : :                                   
+      :_; 
+
+API PROPERTIES:
+
+WEB PROPERTIES:
+
+Rotas:
+
+________________________________________________________________________
