@@ -19,6 +19,7 @@ ROTAS:
 GET /contratocorretora/{cdCorretora}/json
 GET /forcavenda/bloqueio?cdForcaVenda={cdForcaVenda}
 GET /forcavenda/{cdForcaVenda}/email
+POST /fileupload/lotedcms
 ________________________________________________________________________
 
                   _        .-.     ,-.  .-. 
