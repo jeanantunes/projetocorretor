@@ -32,7 +32,7 @@ function setColorMenu() {
         $("a[href='/corretora/home']").addClass('nav-active');
     else if (url.indexOf("/material-divulgacao") !== -1)
         $("a[href='/material-divulgacao']").addClass('nav-active');
-    else if (url.indexOf("/forcavenda/meus-dados") !== -1)
+    else if (url.indexOf("/forcavenda/meus-dados") !== -1  || url.indexOf("/forcavenda/meus-dados-editar") !== -1)
         $("a[href='/forcavenda/meus-dados']").addClass('nav-active');
     else if (url.indexOf("/detalhesPropostaPME") !== -1)
         $("a[href='/lista-propostas']").addClass('nav-active');

@@ -43,6 +43,9 @@ public class ForcaVendaService {
     @Value("${odontoprev.web.forcavenda.bloqueado}")
     private String metodoForcaVendaBloqueio;
 
+    @Value("${odontoprev.forcavendacorretora.email}")
+    private String metodoGetEmailForcaCorretora;
+
     @Autowired
     private ApiManagerTokenService apiManagerTokenService;
 
@@ -256,5 +259,27 @@ public class ForcaVendaService {
         ResponseEntity<Login> retorno = restTemplate.exchange(url, HttpMethod.GET, entity, Login.class);
 
         return retorno;
+    }
+
+    public ResponseEntity<EmailForcaVendaCorretora> getEmailForcaCorretora(Long cdForcaVenda) throws ApiTokenException {
+
+        log.info("getForcaVendaBloqueio - ini");
+
+        if (cdForcaVenda == null){
+            return null;
+        }
+
+        // TODO: adicionar contexto do api gateway na url
+        String url = requesBaseUrl + metodoGetEmailForcaCorretora.replace("{cdForcaVenda}", cdForcaVenda.toString());
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<String> entity = new HttpEntity<>(headers);
+
+        ResponseEntity<EmailForcaVendaCorretora> retorno = restTemplate.exchange(url, HttpMethod.GET, entity, EmailForcaVendaCorretora.class);
+
+        return retorno;
+
     }
 }

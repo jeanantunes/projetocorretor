@@ -44,6 +44,7 @@ $(document).ready(function () {
                 }
             });
 
+            $('input[type=file]').val("");
             $.ajax({
                 async: true,
                 url: metodoUpload,

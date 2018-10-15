@@ -48,7 +48,7 @@ public class ContratoCorretoraController {
             Object acessoValido = session.getAttribute("acessouModalContrato");
 
             if (acessoValido == null) {
-                String redirectUrl = "corretora/home";
+                String redirectUrl = "/corretora/home";
                 return new ModelAndView("redirect:" + redirectUrl);
             }
 
