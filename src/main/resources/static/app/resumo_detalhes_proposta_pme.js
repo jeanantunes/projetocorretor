@@ -39,7 +39,7 @@ $(document).ready(function () {
 
     $("#inputEmail").blur(function () {
 
-        if ($(this).val() == usuario.email){
+        if ($(this).val() == usuario.email) {
             $("#inputEmail").removeAttr('disabled');
             $("#inputEmail").removeClass("input-email-gray");
             $("#inputEmail").removeClass("input-email-red");
@@ -51,7 +51,7 @@ $(document).ready(function () {
             return;
         }
 
-        if ($(this).val() == memoriaInputEmail){
+        if ($(this).val() == memoriaInputEmail) {
             $("#inputEmail").removeAttr('disabled');
             $("#inputEmail").removeClass("input-email-gray");
             $("#inputEmail").removeClass("input-email-red");
@@ -63,7 +63,7 @@ $(document).ready(function () {
             return;
         }
 
-        if( validateEmail( $(this).val() )
+        if (validateEmail($(this).val())
         ) {
             $(this).removeClass("input-email-red");
             $(this).removeClass("input-email-gray");
@@ -85,7 +85,7 @@ $(document).ready(function () {
 
     $("#inputEmail").keyup(function () {
 
-        if ($(this).val() == usuario.email){
+        if ($(this).val() == usuario.email) {
             $("#inputEmail").removeAttr('disabled');
             $("#inputEmail").removeClass("input-email-gray");
             $("#inputEmail").removeClass("input-email-red");
@@ -97,7 +97,7 @@ $(document).ready(function () {
             return;
         }
 
-        if ($(this).val() == memoriaInputEmail){
+        if ($(this).val() == memoriaInputEmail) {
             $("#inputEmail").removeAttr('disabled');
             $("#inputEmail").removeClass("input-email-gray");
             $("#inputEmail").removeClass("input-email-red");
@@ -109,7 +109,7 @@ $(document).ready(function () {
             return;
         }
 
-        if(validateEmail( $(this).val() )) {
+        if (validateEmail($(this).val())) {
 
             $(this).removeClass("input-email-red");
             $(this).removeClass("input-email-gray");
@@ -143,7 +143,7 @@ $(document).ready(function () {
         $("#btnConfirmarCinza").hide();
         $(this).hide();
         $("#btnEditarEmail").show();
-        $("#inputEmail").attr('disabled','disabled');
+        $("#inputEmail").attr('disabled', 'disabled');
         $("#divErroEmail").hide();
     });
 
@@ -166,85 +166,89 @@ $(document).ready(function () {
         });
 
         putEmailEmpresaVenda(
-
             function (dataEmailSuccess) {
 
-                swal({
-                        title: "Email alterado com sucesso",
-                        text: "Deseja reenviar o email de aceite?",
-                        type: "success",
-                        confirmButtonClass: "btn-danger",
-                        confirmButtonColor: "#1974CE",
-                        confirmButtonText: "Sim",
-                        cancelButtonText: "Não",
-                        allowEscapeKey: false,
-                        allowOutsideClick: false,
-                        showCancelButton: true,
-                        closeOnConfirm: false,
-                        closeOnCancel: false
-                    },
-                    function (isConfirm) {
+                if (dataEmailSuccess.id === 400) {
+                    swal("E-mail inválido", "Não é permitido colocar o e-mail do vendedor ou da corretora na venda. Por favor, informe o e-mail do cliente.", "info");
+                } else {
 
-                        if (isConfirm){
+                    swal({
+                            title: "Email alterado com sucesso",
+                            text: "Deseja reenviar o email de aceite?",
+                            type: "success",
+                            confirmButtonClass: "btn-danger",
+                            confirmButtonColor: "#1974CE",
+                            confirmButtonText: "Sim",
+                            cancelButtonText: "Não",
+                            allowEscapeKey: false,
+                            allowOutsideClick: false,
+                            showCancelButton: true,
+                            closeOnConfirm: false,
+                            closeOnCancel: false
+                        },
+                        function (isConfirm) {
 
-                            swal({
-                                title: "Aguarde",
-                                text: 'Estamos enviando o email da venda',
-                                content: "input",
-                                showCancelButton: false,
-                                showConfirmButton: false,
-                                imageUrl: "../../img/icon-aguarde.gif",
-                                allowEscapeKey: false,
-                                allowOutsideClick: false,
-                                icon: "info",
-                                button: {
-                                    text: "...",
-                                    closeModal: false,
-                                },
-                            });
+                            if (isConfirm) {
 
-                            postEnviarEmailVenda(
-                                function (dataEmailEnviadoSucess) {
+                                swal({
+                                    title: "Aguarde",
+                                    text: 'Estamos enviando o email da venda',
+                                    content: "input",
+                                    showCancelButton: false,
+                                    showConfirmButton: false,
+                                    imageUrl: "../../img/icon-aguarde.gif",
+                                    allowEscapeKey: false,
+                                    allowOutsideClick: false,
+                                    icon: "info",
+                                    button: {
+                                        text: "...",
+                                        closeModal: false,
+                                    },
+                                });
 
-                                    if (dataEmailEnviadoSucess == undefined) return;
+                                postEnviarEmailVenda(
+                                    function (dataEmailEnviadoSucess) {
 
-                                    swal("Email enviado com sucesso", "", "success");
+                                        if (dataEmailEnviadoSucess == undefined) return;
 
-                                    memoriaInputEmail = $("#inputEmail").val();
-                                    $("#inputEmail").val(memoriaInputEmail);
-                                    $("#inputEmail").removeClass("input-email-blue");
-                                    $("#inputEmail").removeClass("input-email-red");
-                                    $("#inputEmail").addClass("input-email-gray");
-                                    $("#btnConfirmarVerde").hide();
-                                    $("#btnConfirmarCinza").hide();
-                                    $("#btnCancelar").hide();
-                                    $("#btnEditarEmail").show();
-                                    $("#inputEmail").attr('disabled','disabled');
-                                    $("#divErroEmail").hide();
+                                        swal("Email enviado com sucesso", "", "success");
 
-                                },
-                                function (dataError) {
-                                    swal("Ops!", "Erro no envio do email", "error");
-                                }
-                            )
+                                        memoriaInputEmail = $("#inputEmail").val();
+                                        $("#inputEmail").val(memoriaInputEmail);
+                                        $("#inputEmail").removeClass("input-email-blue");
+                                        $("#inputEmail").removeClass("input-email-red");
+                                        $("#inputEmail").addClass("input-email-gray");
+                                        $("#btnConfirmarVerde").hide();
+                                        $("#btnConfirmarCinza").hide();
+                                        $("#btnCancelar").hide();
+                                        $("#btnEditarEmail").show();
+                                        $("#inputEmail").attr('disabled', 'disabled');
+                                        $("#divErroEmail").hide();
 
-                        } else {
+                                    },
+                                    function (dataError) {
+                                        swal("Ops!", "Erro no envio do email", "error");
+                                    }
+                                )
 
-                            memoriaInputEmail = $("#inputEmail").val();
-                            $("#inputEmail").val(memoriaInputEmail);
-                            $("#inputEmail").removeClass("input-email-blue");
-                            $("#inputEmail").removeClass("input-email-red");
-                            $("#inputEmail").addClass("input-email-gray");
-                            $("#btnConfirmarVerde").hide();
-                            $("#btnConfirmarCinza").hide();
-                            $("#btnCancelar").hide();
-                            $("#btnEditarEmail").show();
-                            $("#inputEmail").attr('disabled','disabled');
-                            $("#divErroEmail").hide();
-                            swal.close();
-                        }
+                            } else {
 
-                    });
+                                memoriaInputEmail = $("#inputEmail").val();
+                                $("#inputEmail").val(memoriaInputEmail);
+                                $("#inputEmail").removeClass("input-email-blue");
+                                $("#inputEmail").removeClass("input-email-red");
+                                $("#inputEmail").addClass("input-email-gray");
+                                $("#btnConfirmarVerde").hide();
+                                $("#btnConfirmarCinza").hide();
+                                $("#btnCancelar").hide();
+                                $("#btnEditarEmail").show();
+                                $("#inputEmail").attr('disabled', 'disabled');
+                                $("#divErroEmail").hide();
+                                swal.close();
+                            }
+
+                        });
+                }
 
             },
             function (dataEmailError) {
@@ -257,9 +261,9 @@ $(document).ready(function () {
 
     getPropertie("odontoprev.web.empresa.alterar", function (dataPropertie) {
 
-        if(dataPropertie != undefined){
+        if (dataPropertie != undefined) {
 
-            if(dataPropertie.status == undefined){
+            if (dataPropertie.status == undefined) {
 
                 metodoSalvarEmailVenda = dataPropertie;
 
@@ -269,9 +273,9 @@ $(document).ready(function () {
 
     getPropertie("odontoprev.web.empresa.enviaremailaceite", function (dataPropertie) {
 
-        if(dataPropertie != undefined){
+        if (dataPropertie != undefined) {
 
-            if(dataPropertie.status == undefined){
+            if (dataPropertie.status == undefined) {
 
                 metodoEnviarEmailVenda = dataPropertie;
 
@@ -297,7 +301,7 @@ $(document).ready(function () {
         });
 
         postEnviarEmailVenda(function (dataSucess) {
-            if (dataSucess == undefined){
+            if (dataSucess == undefined) {
                 swal("Ops!", "Erro ao enviar e-mail, tente novamente.", "error");
             } else {
                 swal("Sucesso!", "E-mail reenviado com sucesso.", "success");
@@ -312,13 +316,13 @@ $(document).ready(function () {
 
 function putEmailEmpresaVenda(callbackSuccess, callbackError) {
     var emailEmpresa = $("#inputEmail").val();
-    var jsonEmpresa = { cdEmpresa: cdEmpresa, email: emailEmpresa};
+    var jsonEmpresa = {cdEmpresa: cdEmpresa, email: emailEmpresa};
 
     $.ajax({
         async: true,
         url: metodoSalvarEmailVenda,
         method: "PUT",
-        headers:{
+        headers: {
             "Content-Type": "application/json"
         },
         data: JSON.stringify(jsonEmpresa),
@@ -334,13 +338,13 @@ function putEmailEmpresaVenda(callbackSuccess, callbackError) {
 
 function postEnviarEmailVenda(callbackSuccess, callbackError) {
 
-    var jsonEmpresa = { cdEmpresa: cdEmpresa};
+    var jsonEmpresa = {cdEmpresa: cdEmpresa};
 
     $.ajax({
         async: true,
         url: metodoEnviarEmailVenda,
         method: "POST",
-        headers:{
+        headers: {
             "Content-Type": "application/json"
         },
         data: JSON.stringify(jsonEmpresa),
