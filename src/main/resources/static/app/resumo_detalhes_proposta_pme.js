@@ -169,7 +169,7 @@ $(document).ready(function () {
             function (dataEmailSuccess) {
 
                 if (dataEmailSuccess.id === 400) {
-                    swal("E-mail inválido", "Não é permitido colocar o e-mail do vendedor ou da corretora na venda. Por favor, informe o e-mail do cliente.", "info");
+                    swal("E-mail inválido", "Não é permitido colocar o e-mail do vendedor ou da corretora na venda. Por favor, informe o e-mail do cliente.", "error");
                 } else {
 
                     swal({
