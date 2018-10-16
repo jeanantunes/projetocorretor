@@ -13,7 +13,6 @@
     <link rel="stylesheet" type="text/css" th:href="@{css/style.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{css/odontoprev.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{css/sweetalert.css}"/>
-
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-124802458-1"></script>
     <script>
@@ -65,7 +64,7 @@
                 <label class="label-email labelOdontBlur">E-mail</label>
             </div>
             <div>
-                <input type="email" class="email inputLabelBlur" id="email" maxlength="50">
+                <input type="email" class="email inputLabelBlur text-lowercase" id="email" maxlength="50">
             </div>
             <div>
                 <label class="label-celular labelOdontBlur">Celular</label>
@@ -121,10 +120,10 @@
                            maxlength="250">
                 </div>
                 <div>
-                    <label class="email-representante-legal labelOdontBlur">E-mail</label>
+                    <label class="email-representante-legal labelOdontBlur label-email-representante">E-mail</label>
                 </div>
                 <div>
-                    <input type="email" class="email-representante-legal inputLabelBlur text-lowercase"
+                    <input type="email" class="email-representante-legal inputLabelBlur text-lowercase input-email-representante-legal"
                            id="emailRepresentanteLegal" maxlength="50">
                 </div>
                 <div>
@@ -269,6 +268,8 @@
 <script src="app/coordenador.js"></script>
 <script src="app/pfCadastroController.js"></script>
 <script src="js/moment.js"></script>
+<script type="text/javascript" src="app/getPropertie.js"></script>
+<script type="text/javascript" src="app/getEmailForcaCorretora.js"></script>
 <script> resizeIframe('frame_pf');</script>
 </body>
 </html>
