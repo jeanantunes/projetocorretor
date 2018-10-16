@@ -1,4 +1,5 @@
 ﻿var preenchidos = false;
+emRequisicao = false;
 
 $(document).ready(function () {
 
@@ -943,6 +944,8 @@ function excluirPlano(obj) {
 
 function salvarRascunho() {
 
+    if (emRequisicao) return;
+
     if ($("#nome").val() == "") {
         swal("Ops!", "Preencha o Nome", "error");
         $("#nome").focus();
@@ -1047,7 +1050,7 @@ function salvarRascunho() {
 			return;
         }
 
-        if (!TestaCPF($("#cpf-representante").val().replace().replace(/\D/g, '')))
+        if (!TestaCPF($("#cpf-representante").val().replace(/\D/g, '')))
         {
             swal("Ops!", "CPF do representante legal está inválido", "error");
             $("#nomeResponsavel").focus();
@@ -1117,18 +1120,57 @@ function salvarRascunho() {
         return;
     }
 
+    var emailPrincipal = $("#email").val();
+    var emailSegundoContato = $("#emailRepresentanteLegal").val();
+    var arrayEmails = [];
+    arrayEmails.push(emailPrincipal);
 
-    //var currentYear = (new Date).getFullYear();
-    //var idade = $(".nascimento").val().split("/");
-    //var menor = currentYear - idade[2];
-    //
-    //if (menor < 18) {
-    //    swal("Ops!", "O Titular não pode ser menor de idade", "error");
-    //    return;
-    //}
+    var dateNascimentoTitular = toDate($("#dataNascimentoTitular").val());
 
-    salvarRascunhoMemoria();
-    window.location.href = "resumo_pf_proposta.html";
+    if (!isMaiorDeIdade(dateNascimentoTitular)) {
+
+        arrayEmails.push(emailSegundoContato);
+
+    }
+
+    if (navigator.onLine) {
+
+        emRequisicao = true;
+        $("#continuarPropostaPf").prop('disabled', true);
+
+        validarEmailForcaCorretora(arrayEmails,
+            function () {
+
+                emRequisicao = false;
+                $("#continuarPropostaPf").prop('disabled', emRequisicao);
+                salvarRascunhoMemoria();
+                window.location.href = "resumo_pf_proposta.html";
+
+            },
+            function (error) {
+
+                if (error != 500) {
+
+                    emRequisicao = false;
+                    $("#continuarPropostaPf").prop('disabled', emRequisicao);
+
+                } else {
+
+                    emRequisicao = false;
+                    $("#continuarPropostaPf").prop('disabled', emRequisicao);
+                    salvarRascunhoMemoria();
+                    window.location.href = "resumo_pf_proposta.html";
+                }
+            }
+        )
+    } else {
+
+        emRequisicao = false;
+        $("#continuarPropostaPf").prop('disabled', emRequisicao);
+        salvarRascunhoMemoria();
+        window.location.href = "resumo_pf_proposta.html";
+    }
+
 }
 
 function salvarRascunhoMemoria() {
