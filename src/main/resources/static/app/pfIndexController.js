@@ -18,11 +18,9 @@ function setIdPlano() {
             withCredentials: true
         },
         success: function (result) {
-            console.log(result);
             forca.codigo = eval(result).codigoUsuario;
         },
         error: function (result) {
-            console.log(result);
         }
     });
 
