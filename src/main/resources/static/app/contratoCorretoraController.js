@@ -50,7 +50,7 @@ $(document).ready(function () {
 
     $("#termoCadastrado").scroll(function () {
 
-        if ($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight) {
+        if (($(this).scrollTop() + $(this).innerHeight()) + 100 >= this.scrollHeight) {
 
             if(contratoLido) return;
 
