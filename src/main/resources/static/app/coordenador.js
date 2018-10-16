@@ -1186,9 +1186,9 @@ function removerAcentos(newStringComAcento) {
 
 function listCpfPropostaPf() {
 
-    let propostaPf = get("propostaPf");
+    var propostaPf = get("propostaPf");
 
-    let cpfs = [];
+    var cpfs = [];
 
     cpfs.push({ "cpf": propostaPf.cpf, "nome": propostaPf.nome, "dataNascimento": propostaPf.dataNascimento, "tipo" : "titular" });
 
@@ -1303,9 +1303,27 @@ function enviarPropostaPf() {
                             $('#continuarPfDebito').prop('disabled', false);
                             emRequisicao = false;
 
-                        } else {
+                        } else if (dataProposta.temErro){
 
-                            proposta.status = "CRITICADA";
+                            setTimeout(function () {
+                                swal("E-mail inválido",
+                                    "Não é permitido colocar o e-mail do vendedor ou da corretora na venda. Por favor, informe o e-mail do cliente.",
+                                    "error"
+                                );
+                            }, 250);
+
+                            proposta.status = "PRONTA";
+                            atualizarPessoas(proposta);
+                            $('#irParaDebito').prop('disabled', false);
+                            $('#pagarComBoleto').prop('disabled', false);
+                            $('#continuarPfDebito').prop('disabled', false);
+                            emRequisicao = false;
+
+                        }
+                        else {
+
+                            swal.close();
+                            proposta.status = "DIGITANDO";
                             atualizarPessoas(proposta);
                             $('#irParaDebito').prop('disabled', false);
                             $('#pagarComBoleto').prop('disabled', false);
