@@ -10,14 +10,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-theme.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{css/style.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{css/odontoprev.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{css/sweetalert.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-124802458-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
         gtag('js', new Date());
 
         gtag('config', 'UA-124802458-1');
@@ -62,6 +68,15 @@
             </div>
             <div>
                 <label class="label-email labelOdontBlur">E-mail</label>
+                <div style="z-index: 1; margin-top: -45px; margin-left: 64px; position: absolute;">
+                    <label class="tooltiptext hide">
+                        Obrigatório preencher com e-mail do cliente, não é permitido seu e-mail nem da corretora</label>
+                </div>
+                <a href="#">
+                    <img class="infoIcon" src="img/info_icon1.png" onmouseover="this.src='img/info_icon2.png'"
+                         onmouseout="this.src='img/info_icon1.png'"
+                         style="margin-top: -10px; position: relative;"/>
+                </a>
             </div>
             <div>
                 <input type="email" class="email inputLabelBlur text-lowercase" id="email" maxlength="50">
@@ -121,9 +136,20 @@
                 </div>
                 <div>
                     <label class="email-representante-legal labelOdontBlur label-email-representante">E-mail</label>
+                    <div style="z-index: 1; margin-top: -45px; margin-left: 64px; position: absolute;">
+                        <label class="tooltiptext word-wrap-normal hide">
+                            Obrigatório preencher com e-mail do cliente, não é permitido seu e-mail nem da
+                            corretora</label>
+                    </div>
+                    <a href="#">
+                        <img class="infoIcon" src="img/info_icon1.png" onmouseover="this.src='img/info_icon2.png'"
+                             onmouseout="this.src='img/info_icon1.png'"
+                             style="margin-top: -10px; position: relative;"/>
+                    </a>
                 </div>
                 <div>
-                    <input type="email" class="email-representante-legal inputLabelBlur text-lowercase input-email-representante-legal"
+                    <input type="email"
+                           class="email-representante-legal inputLabelBlur text-lowercase input-email-representante-legal"
                            id="emailRepresentanteLegal" maxlength="50">
                 </div>
                 <div>
@@ -240,9 +266,6 @@
 
         <div id="listaDep"></div>
 
-        <br/>
-        <br/>
-
         <div class="row">
             <div class="col-sm-12 btnPadBtm">
                 <div href="venda_index_pf.html" class="btn btn-lg btn-block btnOdont" id="" onclick="addDependente()"
@@ -250,20 +273,22 @@
                 </div>
             </div>
             <div class="col-sm-12 btnPadBtm">
-                <button class="btn btn-lg btn-block btnOdont" id="continuarPropostaPf" role="button" onclick="salvarRascunho()">CONTINUAR
+                <button class="btn btn-lg btn-block btnOdont" id="continuarPropostaPf" role="button"
+                        onclick="salvarRascunho()">CONTINUAR
                 </button>
             </div>
         </div>
     </div>
 </div>
 <!-- End Bloco 1 -->
+<script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.mask.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/menu.js}"></script>
+<script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script src="js/scripts.js"></script>
 <script src="js/odontoprev.js"></script>
-<script src="js/jquery.3.2.1.js"></script>
-<script src="js/jquery.mask.min.js"></script>
-<script src="js/odonto-Valida.js"></script>
 <script src="js/sweetalert.min.js"></script>
 <script src="app/coordenador.js"></script>
 <script src="app/pfCadastroController.js"></script>

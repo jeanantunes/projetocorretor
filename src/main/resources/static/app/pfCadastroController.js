@@ -3,6 +3,27 @@ emRequisicao = false;
 
 $(document).ready(function () {
 
+    $(".infoIcon").mouseover(function () {
+        $(".tooltiptext").removeClass('hide');
+        $(".tooltiptext").show();
+        $(".tooltiptext").css("background-color", "#da497f");
+        $(".tooltiptext").css("color", "#FFFFFF");
+        $(".tooltiptext").css("padding", "18px");
+        $(".tooltiptext").css("font-size", "12px");
+        $(".tooltiptext").css("border-bottom", "0px solid #da497f");
+        $(".tooltiptext").css("border-left", "10px solid #da497f");
+        $(".tooltiptext").css("max-width", "287px");
+        $(".tooltiptext").css("margin-top", "-32px");
+        $(".tooltiptext").css("margin-left", "-5px");
+        $(".infoIcon").css("margin-top", "-10px");
+        $(".infoIcon").css("z-index", "9999");
+    });
+
+    $(".infoIcon").mouseout(function () {
+        $(".tooltiptext").addClass('hide');
+        $(".infoIcon").css("margin-top", "-10px");
+    });
+
     buscarPlanosSelecionados();
     carregarProposta();
     localStorage.removeItem("dependentePfEmEdicao");
@@ -51,9 +72,28 @@ $(document).ready(function () {
         }
 
     });
-    
-    $(".email").blur(function () {
 
+    $(".email").click(function () {
+        $(".tooltiptext").show();
+        $(".tooltiptext").removeClass('hide');
+        $(".tooltiptext").css("background-color", "#da497f");
+        $(".tooltiptext").css("color", "#FFFFFF");
+        $(".tooltiptext").css("padding", "18px");
+        $(".tooltiptext").css("font-size", "12px");
+        $(".tooltiptext").css("border-bottom", "0px solid #da497f");
+        $(".tooltiptext").css("border-left", "10px solid #da497f");
+        $(".tooltiptext").css("max-width", "287px");
+        $(".tooltiptext").css("margin-top", "-32px");
+        $(".tooltiptext").css("margin-left", "-5px");
+        $(".infoIcon").css("margin-top", "-10px");
+        $(".infoIcon").css("z-index", "9999");
+        $(".infoIcon").prop("src", "img/info_icon2.png").show();
+    });
+
+    $(".email").blur(function () {
+        $(".tooltiptext").hide();
+        $(".infoIcon").prop("src", "img/info_icon2.png").hide();
+        $(".infoIcon").prop("src", "img/info_icon1.png").show();
         $(".email").val($(".email").val().trim());
 
         if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
@@ -168,8 +208,27 @@ $(document).ready(function () {
 
     });
 
-    $("#emailRepresentanteLegal").blur(function () {
+    $("#emailRepresentanteLegal").click(function () {
+        $(".tooltiptext").show();
+        $(".tooltiptext").removeClass('hide');
+        $(".tooltiptext").css("background-color", "#da497f");
+        $(".tooltiptext").css("color", "#FFFFFF");
+        $(".tooltiptext").css("padding", "18px");
+        $(".tooltiptext").css("font-size", "12px");
+        $(".tooltiptext").css("border-bottom", "0px solid #da497f");
+        $(".tooltiptext").css("border-left", "10px solid #da497f");
+        $(".tooltiptext").css("max-width", "287px");
+        $(".tooltiptext").css("margin-top", "-32px");
+        $(".tooltiptext").css("margin-left", "-5px");
+        $(".infoIcon").css("margin-top", "-10px");
+        $(".infoIcon").css("z-index", "9999");
+        $(".infoIcon").prop("src", "img/info_icon2.png").show();
+    });
 
+    $("#emailRepresentanteLegal").blur(function () {
+        $(".tooltiptext").hide();
+        $(".infoIcon").prop("src", "img/info_icon2.png").hide();
+        $(".infoIcon").prop("src", "img/info_icon1.png").show();
         if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
 
             var propostaPf = get('propostaPf');
