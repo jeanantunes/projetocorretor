@@ -32,6 +32,7 @@ public class Corretora implements Serializable {
     }
 
     public Corretora(Integer codigoCorretora) {
+        this.cdCorretora = codigoCorretora;
     }
 
     public Integer getCdCorretora() {
