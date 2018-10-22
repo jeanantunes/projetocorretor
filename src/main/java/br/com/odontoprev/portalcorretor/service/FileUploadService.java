@@ -52,8 +52,8 @@ public class FileUploadService {
     public FileUploadResponse fileUpload(MultipartFile file, Integer codigoCorretora) {
         //String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", metodo + codigoCorretora);
         //TODO: Alterar rota para requestBase
-        //String url = requestBase + metodo + codigoCorretora;
-        String url = "http://localhost:9090/upload/" + codigoCorretora;
+        String url = requestBase + metodo + codigoCorretora;
+        //String url = "http://localhost:9090/upload/" + codigoCorretora;
 
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
