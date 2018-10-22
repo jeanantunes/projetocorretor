@@ -1651,6 +1651,5 @@ function verificarInputs() {
 
     // Habilite, ou não, o <button>, dependendo da variável:
     $("#continuarVendaPf").removeClass('disabled'); //,
-    resizeIframe('frame_pf');
     return true;
 }

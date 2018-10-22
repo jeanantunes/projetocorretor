@@ -1,6 +1,8 @@
 ﻿$(document).ready(function () {
-    localStorage.removeItem('propostaPf')
+    configurarPropostasPf();
+    localStorage.removeItem('propostaPf');
     setIdPlano();
+    limparPropostasVazias();
     resizeIframe('frame_pf');
 });
 
@@ -129,5 +131,58 @@ function iniciarProposta(cdPlano) {
     }
 
     window.location.href = "venda_pf_dados_proposta.html";
+
+}
+
+function configurarPropostasPf() {
+
+    // funcao para configurar propostas que nao possuiam id
+    var propostasPf = get("pessoas");
+
+    // verificando se possui o forca possui alguma proposta
+    if (propostasPf == undefined) return;
+
+    // filtrando todas as propostas que nao possuem id e que possuem id
+    var propostasNaoConfiguradas = propostasPf.filter(function (x) { return x.idProposta == undefined });
+
+    if (propostasNaoConfiguradas.length > 0) {
+
+        // Buscando todas as propostas configuradas
+        var propostasConfiguradas = propostasPf.filter(function (x) { return x.idProposta != undefined });
+        var propostasQueSeraoSalvas = [];
+
+        $.each(propostasNaoConfiguradas, function (i, item) {
+
+            // Gerando ID unico para propostas nao configuradas e salvando
+            item.idProposta = generateUUID();
+            propostasQueSeraoSalvas.push(item);
+
+        });
+
+        $.each(propostasConfiguradas, function (i, item) {
+
+            propostasQueSeraoSalvas.push(item);
+
+        });
+
+        put("pessoas", JSON.stringify(propostasQueSeraoSalvas));
+
+    }
+}
+
+// funcao para limpar propostas que estao vazias
+function limparPropostasVazias() {
+
+    var propostasPf = get("pessoas");
+
+    // verificando se possui o forca possui alguma proposta
+    if (propostasPf == undefined) return;
+
+    // filtrando todas as propostas que possuem nome e cpf
+    var propostasValidas = propostasPf.filter(function (x) {
+        return x.nome != "" || x.cpf != ""
+    });
+
+    put("pessoas", JSON.stringify(propostasValidas));
 
 }

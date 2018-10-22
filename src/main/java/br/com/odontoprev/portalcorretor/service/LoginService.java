@@ -64,8 +64,8 @@ public class LoginService {
     private UsuarioSession autenticarPortalCorretor(String usuario, String senha) {
         try {
 
-            String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", corretorApiURL + metodo);
-            //String url = "http://localhost:8090/login";
+            //String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", corretorApiURL + metodo);
+            String url = "http://localhost:8090/login";
             RestTemplate restTemplate = new RestTemplate();
             Map<String, String> loginMap = new HashMap<>();
             loginMap.put("usuario", usuario);
