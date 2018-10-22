@@ -1,6 +1,5 @@
 ﻿$(document).ready(function () {
     configurarPropostasPf();
-    localStorage.removeItem('propostaPf');
     setIdPlano();
     limparPropostasVazias();
     resizeIframe('frame_pf');
