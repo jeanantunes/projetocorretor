@@ -63,13 +63,11 @@ $(document).ready(function () {
 
         $(".nome").val($(".nome").val().trim());
 
-        if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
+        var propostaPf = get("propostaPf");
+        propostaPf.nome = $(".nome").val().trim();
+        propostaPf.status = "DIGITANDO";
+        atualizarPropostasPfById(propostaPf);
 
-            var propostaPf = get("propostaPf");
-            propostaPf.nome = $(".nome").val().trim();
-            atualizarPessoas(propostaPf);
-
-        }
 
     });
 
@@ -91,18 +89,16 @@ $(document).ready(function () {
     });
 
     $(".email").blur(function () {
+
         $(".tooltiptext").hide();
         $(".infoIcon").prop("src", "img/info_icon2.png").hide();
         $(".infoIcon").prop("src", "img/info_icon1.png").show();
         $(".email").val($(".email").val().trim());
 
-        if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
-
-            var propostaPf = get("propostaPf");
-            propostaPf.email = $(".email").val().trim();
-            atualizarPessoas(propostaPf);
-
-        }
+        var propostaPf = get("propostaPf");
+        propostaPf.email = $(".email").val().trim();
+        propostaPf.status = "DIGITANDO";
+        atualizarPropostasPfById(propostaPf);
 
     });
 
@@ -110,13 +106,10 @@ $(document).ready(function () {
 
         $(".celular").val($(".celular").val().trim());
 
-        if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
-
-            var propostaPf = get("propostaPf");
-            propostaPf.celular = $(".celular").val().trim();
-            atualizarPessoas(propostaPf);
-
-        }
+        var propostaPf = get("propostaPf");
+        propostaPf.celular = $(".celular").val().trim();
+        propostaPf.status = "DIGITANDO";
+        atualizarPropostasPfById(propostaPf);
 
     });
 
@@ -129,82 +122,64 @@ $(document).ready(function () {
         if (isMaiorDeIdade(date)) {
 
             $(".representanteContratual").addClass('hide');
-            if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
 
-                var propostaPf = get("propostaPf");
-                propostaPf.responsavelContratual.nome = "";
-                propostaPf.responsavelContratual.cpf = "";
-                propostaPf.responsavelContratual.nomeMae = "";
-                propostaPf.responsavelContratual.celular = "";
-                propostaPf.responsavelContratual.sexo = "";
-                propostaPf.responsavelContratual.email = "";
-                propostaPf.dataNascimento = $("#dataNascimentoTitular").val().trim();
-                limparCamposResponsavelLegal();
-                atualizarPessoas(propostaPf);
-
-            }
-
+            var propostaPf = get("propostaPf");
+            propostaPf.responsavelContratual.nome = "";
+            propostaPf.responsavelContratual.cpf = "";
+            propostaPf.responsavelContratual.nomeMae = "";
+            propostaPf.responsavelContratual.celular = "";
+            propostaPf.responsavelContratual.sexo = "";
+            propostaPf.responsavelContratual.email = "";
+            propostaPf.dataNascimento = $("#dataNascimentoTitular").val().trim();
+            limparCamposResponsavelLegal();
+            propostaPf.status = "DIGITANDO";
+            atualizarPropostasPfById(propostaPf);
             return false;
         }
 
         $(".representanteContratual").removeClass('hide');
 
-        if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
-
-            var propostaPf = get("propostaPf");
-            propostaPf.dataNascimento = $("#dataNascimentoTitular").val().trim();
-            atualizarPessoas(propostaPf);
-
-        }
+        var propostaPf = get("propostaPf");
+        propostaPf.dataNascimento = $("#dataNascimentoTitular").val().trim();
+        propostaPf.status = "DIGITANDO";
+        atualizarPropostasPfById(propostaPf);
 
     });
 
 
     $("#radio-1").click(function () {
 
-        if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
-
-            var propostaPf = get('propostaPf');
-            propostaPf.sexo = $("#radio-1").val();
-            atualizarPessoas(propostaPf);
-
-        }
+        var propostaPf = get('propostaPf');
+        propostaPf.sexo = $("#radio-1").val();
+        propostaPf.status = "DIGITANDO";
+        atualizarPropostasPfById(propostaPf);
 
     });
 
     $("#radio-2").click(function () {
 
-        if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
-
-            var propostaPf = get('propostaPf');
-            propostaPf.sexo = $("#radio-2").val();
-            atualizarPessoas(propostaPf);
-
-        }
+        var propostaPf = get('propostaPf');
+        propostaPf.sexo = $("#radio-2").val();
+        propostaPf.status = "DIGITANDO";
+        atualizarPropostasPfById(propostaPf);
 
     });
 
     $("#nomeMae").blur(function () {
 
-        if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
-
-            var propostaPf = get('propostaPf');
-            propostaPf.nomeMae = $('#nomeMae').val();
-            atualizarPessoas(propostaPf);
-
-        }
+        var propostaPf = get('propostaPf');
+        propostaPf.nomeMae = $('#nomeMae').val();
+        propostaPf.status = "DIGITANDO";
+        atualizarPropostasPfById(propostaPf);
 
     });
 
     $("#nomeResponsavel").blur(function () {
 
-        if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
-
-            var propostaPf = get('propostaPf');
-            propostaPf.responsavelContratual.nome = $('#nomeResponsavel').val();
-            atualizarPessoas(propostaPf);
-
-        }
+        var propostaPf = get('propostaPf');
+        propostaPf.responsavelContratual.nome = $('#nomeResponsavel').val();
+        propostaPf.status = "DIGITANDO";
+        atualizarPropostasPfById(propostaPf);
 
     });
 
@@ -229,157 +204,119 @@ $(document).ready(function () {
         $(".tooltiptext").hide();
         $(".infoIcon").prop("src", "img/info_icon2.png").hide();
         $(".infoIcon").prop("src", "img/info_icon1.png").show();
-        if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
 
-            var propostaPf = get('propostaPf');
-            propostaPf.responsavelContratual.email = $('#emailRepresentanteLegal').val();
-            atualizarPessoas(propostaPf);
-
-        }
+        var propostaPf = get('propostaPf');
+        propostaPf.responsavelContratual.email = $('#emailRepresentanteLegal').val();
+        propostaPf.status = "DIGITANDO";
+        atualizarPropostasPfById(propostaPf);
 
     });
 
     $(".celular-representante-legal").blur(function () {
 
-        if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
-
-            var propostaPf = get('propostaPf');
-            propostaPf.responsavelContratual.celular = $('.celular-representante-legal').val();
-            atualizarPessoas(propostaPf);
-
-        }
+        var propostaPf = get('propostaPf');
+        propostaPf.responsavelContratual.celular = $('.celular-representante-legal').val();
+        propostaPf.status = "DIGITANDO";
+        atualizarPropostasPfById(propostaPf);
 
     });
 
     $("#cpf-representante").blur(function () {
 
-        if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
-
-            var propostaPf = get('propostaPf');
-            propostaPf.responsavelContratual.cpf = $('#cpf-representante').val();
-            atualizarPessoas(propostaPf);
-
-        }
+        var propostaPf = get('propostaPf');
+        propostaPf.responsavelContratual.cpf = $('#cpf-representante').val();
+        propostaPf.status = "DIGITANDO";
+        atualizarPropostasPfById(propostaPf);
 
     });
 
     $("#dataNascimentoResponsavel").blur(function () {
 
-        if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
-
-            var propostaPf = get('propostaPf');
-            propostaPf.responsavelContratual.dataNascimento = $('#dataNascimentoResponsavel').val();
-            atualizarPessoas(propostaPf);
-
-        }
+        var propostaPf = get('propostaPf');
+        propostaPf.responsavelContratual.dataNascimento = $('#dataNascimentoResponsavel').val();
+        propostaPf.status = "DIGITANDO";
+        atualizarPropostasPfById(propostaPf);
 
     });
 
     $("#radio-3").click(function () {
 
-        if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
-
-            var propostaPf = get('propostaPf');
-            propostaPf.responsavelContratual.sexo = $("#radio-3").val();
-            atualizarPessoas(propostaPf);
-
-        }
+        var propostaPf = get('propostaPf');
+        propostaPf.responsavelContratual.sexo = $("#radio-3").val();
+        propostaPf.status = "DIGITANDO";
+        atualizarPropostasPfById(propostaPf);
 
     });
 
     $("#radio-4").click(function () {
 
-        if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
-
-            var propostaPf = get('propostaPf');
-            propostaPf.responsavelContratual.sexo = $("#radio-4").val();
-            atualizarPessoas(propostaPf);
-
-        }
+        var propostaPf = get('propostaPf');
+        propostaPf.responsavelContratual.sexo = $("#radio-4").val();
+        propostaPf.status = "DIGITANDO";
+        atualizarPropostasPfById(propostaPf);
 
     });
 
     $("#cep-proposta-pf").blur(function () {
 
-        if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
-
-            var propostaPf = get('propostaPf');
-            propostaPf.endereco.cep = $("#cep-proposta-pf").val();
-            atualizarPessoas(propostaPf);
-
-        }
+        var propostaPf = get('propostaPf');
+        propostaPf.endereco.cep = $("#cep-proposta-pf").val();
+        propostaPf.status = "DIGITANDO";
+        atualizarPropostasPfById(propostaPf);
 
     });
 
     $("#rua").blur(function () {
 
-        if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
-
-            var propostaPf = get('propostaPf');
-            propostaPf.endereco.logradouro = $("#rua").val();
-            atualizarPessoas(propostaPf);
-
-        }
+        var propostaPf = get('propostaPf');
+        propostaPf.endereco.logradouro = $("#rua").val();
+        propostaPf.status = "DIGITANDO";
+        atualizarPropostasPfById(propostaPf);
 
     });
 
     $(".numero").blur(function () {
 
-        if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
-
-            var propostaPf = get('propostaPf');
-            propostaPf.endereco.numero = $(".numero").val();
-            atualizarPessoas(propostaPf);
-
-        }
+        var propostaPf = get('propostaPf');
+        propostaPf.endereco.numero = $(".numero").val();
+        propostaPf.status = "DIGITANDO";
+        atualizarPropostasPfById(propostaPf);
 
     });
 
     $(".complemento").blur(function () {
 
-        if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
-
-            var propostaPf = get('propostaPf');
-            propostaPf.endereco.complemento = $(".complemento").val();
-            atualizarPessoas(propostaPf);
-
-        }
+        var propostaPf = get('propostaPf');
+        propostaPf.endereco.complemento = $(".complemento").val();
+        propostaPf.status = "DIGITANDO";
+        atualizarPropostasPfById(propostaPf);
 
     });
 
     $("#bairro").blur(function () {
 
-        if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
-
-            var propostaPf = get('propostaPf');
-            propostaPf.endereco.bairro = $("#bairro").val();
-            atualizarPessoas(propostaPf);
-
-        }
+        var propostaPf = get('propostaPf');
+        propostaPf.endereco.bairro = $("#bairro").val();
+        propostaPf.status = "DIGITANDO";
+        atualizarPropostasPfById(propostaPf);
 
     });
 
     $("#uf").blur(function () {
 
-        if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
-
-            var propostaPf = get('propostaPf');
-            propostaPf.endereco.estado = $("#uf").val();
-            atualizarPessoas(propostaPf);
-
-        }
+        var propostaPf = get('propostaPf');
+        propostaPf.endereco.estado = $("#uf").val();
+        propostaPf.status = "DIGITANDO";
+        atualizarPropostasPfById(propostaPf);
 
     });
 
     $("#cidade").blur(function () {
 
-        if ($("#cpf").val() != "" && TestaCPF($("#cpf").val())) {
-
-            var propostaPf = get('propostaPf');
-            propostaPf.endereco.cidade = $("#cidade").val();
-            atualizarPessoas(propostaPf);
-
-        }
+        var propostaPf = get('propostaPf');
+        propostaPf.endereco.cidade = $("#cidade").val();
+        propostaPf.status = "DIGITANDO";
+        atualizarPropostasPfById(propostaPf);
 
     });
 
@@ -455,7 +392,8 @@ $(document).ready(function () {
                             propostaPf.endereco.bairro = $("#bairro").val();
                             propostaPf.endereco.cidade = $("#cidade").val();
                             propostaPf.endereco.complemento = $(".complemento").val();
-                            atualizarPessoas(propostaPf);
+                            propostaPf.status = "DIGITANDO";
+                            atualizarPropostasPfById(propostaPf);
 
                             swal.close();
 
@@ -474,7 +412,8 @@ $(document).ready(function () {
                 propostaPf.endereco.bairro = $("#bairro").val();
                 propostaPf.endereco.cidade = $("#cidade").val();
                 propostaPf.endereco.complemento = $(".complemento").val();
-                atualizarPessoas(propostaPf);
+                propostaPf.status = "DIGITANDO";
+                atualizarPropostasPfById(propostaPf);
 
             }
 
@@ -488,7 +427,8 @@ $(document).ready(function () {
             propostaPf.endereco.bairro = $("#bairro").val();
             propostaPf.endereco.cidade = $("#cidade").val();
             propostaPf.endereco.complemento = $(".complemento").val();
-            atualizarPessoas(propostaPf);
+            propostaPf.status = "DIGITANDO";
+            atualizarPropostasPfById(propostaPf);
 
         }
     });
@@ -695,14 +635,6 @@ function callApiCep(callback, token, cep) {
 
 function addDependente() {
 
-    if ($(".cpf").val() == "" || !TestaCPF($("#cpf").val().replace().replace(/\D/g, ''))) {
-
-        $("#cpf").focus();
-        swal("Ops!", "Preencha o Cpf", "error");
-        $("#cpf").focus();
-        return;
-    }
-
     if (!ValidaNome($("#nome").val())) {
         swal("Ops!", "Preencha nome completo", "error");
         $("#nome").focus();
@@ -735,6 +667,8 @@ function addDependente() {
     }
 
     var date = toDate($("#dataNascimentoTitular").val());
+
+    if (!validarNascimentoBeneficiario()) return false;
 
     if ($("#radio-1").is(":checked") == false && $("#radio-2").is(":checked") == false) {
         swal("Ops!", "Selecione o Sexo", "error");
@@ -860,6 +794,12 @@ function buscarPlanosSelecionados() {
 
     if (proposta == null) {
         window.location.href = "venda_index_pf.html";
+    }
+
+    if (proposta.planos.length > 0) {
+
+        $("#adicionarPlano").addClass('hide');
+
     }
 
     $.each(proposta.planos, function (i, item) {
@@ -1037,14 +977,6 @@ function salvarRascunho() {
         return;
     }
 
-    if ($(".cpf").val() == "" || !TestaCPF($("#cpf").val().replace().replace(/\D/g, ''))) {
-
-        $("#cpf").focus();
-        swal("Ops!", "Preencha o CPF", "error");
-		$("#cpf").focus();
-        return;
-    }
-
     if (!validarData($(".nascimento").val())) {
         swal("Ops!", "Preencha uma data de nascimento correta", "error");
 		$("#nascimento").focus();
@@ -1057,6 +989,8 @@ function salvarRascunho() {
 		$("#nascimento").focus();
         return;
     }
+
+    if (!validarNascimentoBeneficiario()) return false;
 
     if ($("#radio-1").is(":checked") == false && $("#radio-2").is(":checked") == false) {
         swal("Ops!", "Selecione o Sexo", "error");
@@ -1289,38 +1223,13 @@ function salvarRascunhoMemoria() {
         proposta.sexo = $("#radio-2").val();
     }
 
-    var pessoas = get("pessoas");
-
-    if (pessoas == null) {
-        pessoas = [];
-        pessoas.push(proposta);
-    }
-    else {
-        var propostas = pessoas.filter(function (x) { return x.cpf != proposta.cpf });
-        pessoas = []; //limpar
-
-        $.each(propostas, function (i, item) {
-            pessoas.push(item);
-        });
-
-        pessoas.push(proposta);
-    }
-
-    put("pessoas", JSON.stringify(pessoas));
-    put("propostaPf", JSON.stringify(proposta));
+    atualizarPropostasPfById(proposta);
 }
 
 function carregarProposta() {
     var proposta = get("propostaPf");
     $("#nome").val(proposta.nome);
     $(".cpf").val(proposta.cpf);
-
-    //if (proposta.contatoEmpresa) {
-    //    $("#squaredOne").attr("checked", true);
-    //}
-    //else {
-    //    $("#squaredOne").attr("checked", false);
-    //}
 
     if (proposta.sexo == "m") {
         $("#radio-2").attr("checked", true);
@@ -1422,13 +1331,6 @@ function validarCampos() {
         return false;
     }
 
-    if ($(".cpf").val() == "" || !TestaCPF($("#cpf").val().replace().replace(/\D/g, ''))) {
-
-        $("#cpf").focus();
-        swal("Ops!", "Preencha o CPF", "error");
-        return false;
-    }
-
     if ($(".nascimento").val() == "") {
         swal("Ops!", "Preencha a Data de Nascimento", "error");
         return false;
@@ -1438,6 +1340,8 @@ function validarCampos() {
         swal("Ops!", "Preencha uma data de nascimento correta", "error");
         return false;
     }
+
+    if (!validarNascimentoBeneficiario()) return false;
 
     if ($("#radio-1").is(":checked") == false && $("#radio-2").is(":checked") == false) {
         swal("Ops!", "Selecione o Sexo", "error");
@@ -1597,10 +1501,6 @@ function excluirDep(obj) {
 
     var container = $(".div-excluir[data-id='" + $(obj).attr("data-id") + "'][data-nascimento='" + $(obj).attr("data-nascimento") + "']");
 
-    //if (container.length == 0) {
-    //
-    //    var container = $(".div-excluir[data-id='" + $(obj).attr("data-nome") + "']");
-    //}
     var proposta = get("propostaPf");
 
     var propostaExcetoExcluido = proposta.dependentes.filter(function (x) {
@@ -1620,6 +1520,139 @@ function excluirDep(obj) {
     container.remove();
     resizeIframe('frame_pf');
     atualizarPessoas(proposta);
+}
+
+
+function validarNascimentoBeneficiario() {
+
+    if ($("#dataNascimentoTitular").val() == "") return false;
+
+    var date = toDate($("#dataNascimentoTitular").val());
+
+    var planosInfantisJson = getRepository("planosInfantis"); // variaveis utilizada para verificar se nascimento do beneficiario
+    var planosInfantis = [];                                  // estah de acordo com as regras do plano
+
+    $.each(planosInfantisJson, function (indicePlano, itemPlano) {
+
+        planosInfantis.push(itemPlano);
+
+    });
+
+    var possuiErros = false;
+    var propostaPf = get("propostaPf");
+
+    if (isMaiorDeIdade(date)) {
+
+        $.each(propostaPf.planos, function (i, item) {
+
+            var planoInfantil = planosInfantis.filter(function (x) { return x == item.cdPlano });
+
+            if (planoInfantil.length > 0) {
+
+                if (planoInfantil[0] == planosInfantisJson.dentalJuriorMensal || planoInfantil[0] == planosInfantisJson.dentalJuriorAnual) {
+
+                    if ($(".cpf").val() != "" && !TestaCPF($("#cpf").val().replace(/\D/g, ''))) {
+
+                        $("#cpf").focus();
+                        exibirSwalCpfInvalidoInfantil();
+                        possuiErros = true;
+                        return;
+
+                    }
+
+                    var fraseSwal = getRepository("fraseMaiorDeIdadePlanoJunior");
+                    swal(fraseSwal.title, fraseSwal.descricao, fraseSwal.tipo);
+                    possuiErros = true;
+                    return;
+
+                } else if (planoInfantil[0] == planosInfantisJson.dentalDenteDeLeiteMensal || planoInfantil[0] == planosInfantisJson.dentalDenteDeLeiteAnual) {
+
+                    if ($(".cpf").val() != "" && !TestaCPF($("#cpf").val().replace(/\D/g, ''))) {
+
+                        $("#cpf").focus();
+                        exibirSwalCpfInvalidoInfantil();
+                        possuiErros = true;
+                        return;
+
+                    }
+
+                    var fraseSwal = getRepository("fraseMaiorDeIdadePlanoDenteLeite");
+                    swal(fraseSwal.title, fraseSwal.descricao, fraseSwal.tipo);
+                    possuiErros = true;
+                    return;
+
+                }
+
+            } else if ($(".cpf").val() == "" || !TestaCPF($("#cpf").val().replace().replace(/\D/g, ''))) {
+
+                $("#cpf").focus();
+                swal("Ops!", "Preencha o CPF", "error");
+                possuiErros = true;
+                return;
+            }
+
+        })
+
+        if (possuiErros) return false;
+
+    } else {
+
+        $.each(propostaPf.planos, function (i, item) {
+
+            if (item.cdPlano == planosInfantisJson.dentalDenteDeLeiteMensal || item.cdPlano == planosInfantisJson.dentalDenteDeLeiteAnual) {
+
+                if ($(".cpf").val() != "" && !TestaCPF($("#cpf").val().replace(/\D/g, ''))) {
+
+                    $("#cpf").focus();
+                    exibirSwalCpfInvalidoInfantil();
+                    possuiErros = true;
+                    return;
+                }
+
+                if (!menorQueOitoAnos(date)) {
+
+                    var fraseSwal = getRepository("fraseMaiorDeIdadePlanoDenteLeite");
+                    swal(fraseSwal.title, fraseSwal.descricao, fraseSwal.tipo);
+                    possuiErros = true;
+                    return;
+
+                }
+
+            } else if (item.cdPlano == planosInfantisJson.dentalJuriorMensal || item.cdPlano == planosInfantisJson.dentalJuriorAnual) {
+
+                if ($(".cpf").val() != "" && !TestaCPF($("#cpf").val().replace(/\D/g, ''))) {
+
+                    $("#cpf").focus();
+                    exibirSwalCpfInvalidoInfantil();
+                    possuiErros = true;
+                    return;
+                }
+
+                if (menorQueOitoAnos(date) || isMaiorDeIdade(date)) {
+
+                    var fraseSwal = getRepository("fraseMaiorDeIdadePlanoJunior");
+                    swal(fraseSwal.title, fraseSwal.descricao, fraseSwal.tipo);
+                    possuiErros = true;
+                    return;
+
+                }
+
+            } else if ($(".cpf").val() == "" || !TestaCPF($("#cpf").val().replace().replace(/\D/g, ''))) {
+
+                $("#cpf").focus();
+                swal("Ops!", "Preencha o CPF", "error");
+                possuiErros = true;
+                return;
+            }
+
+        })
+
+        if (possuiErros) return false;
+
+    }
+
+    return true;
+
 }
 
 

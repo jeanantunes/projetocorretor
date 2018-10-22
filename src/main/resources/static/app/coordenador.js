@@ -206,9 +206,9 @@ function validarData(data) {
     return !(/\D/.test(String(d))) && d > 0 && d <= daysInMonth[--m];
 }
 
-function menorQueSeteAnos(date) {
+function menorQueOitoAnos(date) {
 
-    var eightYearsAgo = moment().subtract(7, "years");
+    var eightYearsAgo = moment().subtract(8, "years");
     var birthday = moment(date);
 
     if (!birthday.isValid()) {
@@ -1037,6 +1037,24 @@ function aplicarMascaraTelefone(telefone) {
 
     return telefoneReplace;
 
+}
+
+function atualizarPropostasPfById(proposta) {
+
+    var pessoas = get("pessoas"); // lista de propostas pf
+
+    var propostas = [];
+
+    if (pessoas != undefined) {
+
+        propostas = pessoas.filter(function (x) { return x.idProposta != proposta.idProposta });
+
+    }
+
+    propostas.push(proposta);
+
+    put("pessoas", JSON.stringify(propostas));
+    put("propostaPf", JSON.stringify(proposta));
 }
 
 function atualizarPessoas(proposta) {
