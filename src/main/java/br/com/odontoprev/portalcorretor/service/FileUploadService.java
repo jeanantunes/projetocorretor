@@ -1,19 +1,16 @@
 package br.com.odontoprev.portalcorretor.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import br.com.odontoprev.api.manager.client.token.util.ConfigurationUtils;
+import br.com.odontoprev.portalcorretor.service.dto.FileUploadLoteDCMS;
+import br.com.odontoprev.portalcorretor.service.dto.FileUploadLoteDCMSResponse;
+import br.com.odontoprev.portalcorretor.service.dto.FileUploadResponse;
+import com.google.gson.Gson;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
@@ -21,11 +18,8 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.google.gson.Gson;
-
-import br.com.odontoprev.portalcorretor.service.dto.FileUploadLoteDCMS;
-import br.com.odontoprev.portalcorretor.service.dto.FileUploadLoteDCMSResponse;
-import br.com.odontoprev.portalcorretor.service.dto.FileUploadResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class FileUploadService {
@@ -36,13 +30,13 @@ public class FileUploadService {
 
     @Value("${odontoprec.service.base}")
     private String requestBase;
-    
+
     @Value("${odontoprev.corretor.api.contexto.api.url}") //201810041500 - esert - COR-860:Service WEB POST
     private String contextoApi; //201810041500 - esert - COR-860:Service WEB POST
 
     @Value("${odontoprev.fileupload.metodo}")
     private String metodo;
-    
+
     @Value("${odontoprev.fileupload.lotedcms.metodo}") //201810041500 - esert - COR-860:Service WEB POST
     private String metodoFileUploadLoteDCMS; //201810041500 - esert - COR-860:Service WEB POST
 
@@ -50,9 +44,7 @@ public class FileUploadService {
     private ApiManagerTokenService apiManagerTokenService;
 
     public FileUploadResponse fileUpload(MultipartFile file, Integer codigoCorretora) {
-        //String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", metodo + codigoCorretora);
-        //TODO: Alterar rota para requestBase
-        String url = requestBase + metodo + codigoCorretora;
+        String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", metodo + codigoCorretora);
         //String url = "http://localhost:9090/upload/" + codigoCorretora;
 
         RestTemplate restTemplate = new RestTemplate();
@@ -86,33 +78,33 @@ public class FileUploadService {
         }
 
     }
-    
+
     //201810041500 - esert - COR-860:Service WEB POST
     //201810051612 - esert - COR-860:Service WEB POST - refactor
     public ResponseEntity<FileUploadLoteDCMSResponse> fileUploadLoteDCMS(FileUploadLoteDCMS fileUploadLoteDCMS) {
 
-    	String url = requestBaseUrl + contextoApi + metodoFileUploadLoteDCMS;
-    	
-    	RestTemplate restTemplate = new RestTemplate();
-    	restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-    	
-    	try {
-    		HttpHeaders headers = new HttpHeaders();
-    		headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
-    		headers.set("Content-Type", "application/json");
-    		String stringJson = new Gson().toJson(fileUploadLoteDCMS);
-    		
-    		HttpEntity<String> entity = new HttpEntity<>(stringJson, headers);
-    		
-    		ResponseEntity<FileUploadLoteDCMSResponse> retorno = restTemplate.exchange(url, HttpMethod.POST, entity, FileUploadLoteDCMSResponse.class);
-    		
-    		return retorno;
-    		
-    	} catch (Exception e) {
-    		log.error("Erro ao realizar upload Lote DCMS", e);
-    		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-    	}
-    	
+        String url = requestBaseUrl + contextoApi + metodoFileUploadLoteDCMS;
+
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
+            headers.set("Content-Type", "application/json");
+            String stringJson = new Gson().toJson(fileUploadLoteDCMS);
+
+            HttpEntity<String> entity = new HttpEntity<>(stringJson, headers);
+
+            ResponseEntity<FileUploadLoteDCMSResponse> retorno = restTemplate.exchange(url, HttpMethod.POST, entity, FileUploadLoteDCMSResponse.class);
+
+            return retorno;
+
+        } catch (Exception e) {
+            log.error("Erro ao realizar upload Lote DCMS", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+
     }
 
 }
