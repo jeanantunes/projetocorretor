@@ -57,6 +57,7 @@ public class CorretorWebConfig extends WebMvcConfigurerAdapter implements Applic
                  "/config/**", 
                  "/repositorio/**",
                  "/slick/**",
+                "/utils/**",
                 "/componente/**")
                 .addResourceLocations(
                         "classpath:/META-INF/resources/webjars/",
@@ -69,7 +70,8 @@ public class CorretorWebConfig extends WebMvcConfigurerAdapter implements Applic
                         "classpath:/static/config/", 
                         "classpath:/static/repositorio/",
                         "classpath:/static/slick/",
-                        "classpath:/static/componente/");
+                        "classpath:/static/componente/",
+                        "classpath:/static/utils/");
     }
         
     private TemplateEngine templateEngine(ITemplateResolver templateResolver) {
