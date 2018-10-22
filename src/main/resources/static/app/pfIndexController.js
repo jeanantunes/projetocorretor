@@ -64,6 +64,22 @@ function setIdPlano() {
     var plano = planos.filter(function (x) { if (x.nome == "DENTAL ESTETICA ANUAL") { return x.nome; } });
     $("#esteticaAnual").attr("data-id", plano[0].cdPlano);
 
+    /////////////////////// DENTE DE LEITE //////////////////
+
+    var plano = planos.filter(function (x) { if (x.nome == "DENTE DE LEITE MENSAL") { return x.nome; } });
+    $("#denteDeLeiteMensal").attr("data-id", plano[0].cdPlano);
+
+    var plano = planos.filter(function (x) { if (x.nome == "DENTE DE LEITE ANUAL") { return x.nome; } });
+    $("#denteDeLeiteAnual").attr("data-id", plano[0].cdPlano);
+
+    /////////////////////// PLANO JUNIOR //////////////////
+
+    var plano = planos.filter(function (x) { if (x.nome == "JUNIOR MENSAL") { return x.nome; } });
+    $("#planoJuniorMensal").attr("data-id", plano[0].cdPlano);
+
+    var plano = planos.filter(function (x) { if (x.nome == "JUNIOR ANUAL") { return x.nome; } });
+    $("#planoJuniorAnual").attr("data-id", plano[0].cdPlano);
+
     ///////////////////////// DENTAL ORTO ////////////////////////
 
     var plano = planos.filter(function (x) { if (x.nome == "DENTAL ORTO MENSAL") { return x.nome; } });
@@ -74,7 +90,7 @@ function setIdPlano() {
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        var plano = planos.filter(function (x) { if (x.nome == "DENTAL ORTO ANUAL") { return x.nome; } });
+        var plano = planos.filter(function (x) { if (x.nome == "DENTAL ORTO ANUAL S/CARENCIA") { return x.nome; } });
         $("#ortoAnualSCarencia").attr("data-id", plano[0].cdPlano);
     
         var plano = planos.filter(function (x) { if (x.nome == "DENTAL ESTETICA ANUAL S/CARENCIA") { return x.nome; } });
@@ -93,17 +109,25 @@ function setIdPlano() {
 function iniciarProposta(cdPlano) {
 
     var proposta = get("propostaPf");
-
-    if (proposta == null)
-        proposta = getRepository("propostaPf");
-
     plano = getRepository("plano");
     plano.cdPlano = cdPlano;
 
-    proposta.planos = [];
-    proposta.planos.push(plano);
+    if (proposta == null) { // Caso seja um proposta iniciada, sera gerado um id e salvo apenas no localstorage propostaPf
 
-    put("propostaPf", JSON.stringify(proposta));
+        proposta = getRepository("propostaPf");
+        proposta.idProposta = generateUUID();
+        proposta.planos = [];
+        proposta.planos.push(plano);
+        put("propostaPf", JSON.stringify(proposta));
+
+    } else { // se nao, o id ira ser reaproveitado e a proposta sera atualizada
+
+        proposta.planos = [];
+        proposta.planos.push(plano);
+        atualizarPropostasPfById(proposta);
+
+    }
 
     window.location.href = "venda_pf_dados_proposta.html";
+
 }

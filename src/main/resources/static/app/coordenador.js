@@ -52,6 +52,24 @@ $(document).ready(function () {
     resizeIframe('frame_pf');
 });
 
+function atualizarPropostasPfById(proposta) {
+
+    var pessoas = get("pessoas"); // lista de propostas pf
+
+    var propostas = [];
+
+    if (pessoas != undefined) {
+
+        propostas = pessoas.filter(function (x) { return x.idProposta != proposta.idProposta });
+
+    }
+
+    propostas.push(proposta);
+
+    put("pessoas", JSON.stringify(propostas));
+    put("propostaPf", JSON.stringify(proposta));
+}
+
 function defineConexao() {
 
     $.ajax({
@@ -438,7 +456,6 @@ function setPlanosProd() {
     plano.valorFloat = 2203.50;
     plano.desc = "Anual";
     plano.css = "colorSlick5";
-
     planos.push(plano);
 
     plano = getRepository("plano");
@@ -449,8 +466,45 @@ function setPlanosProd() {
     plano.valorFloat = 2644.00;
     plano.desc = "Anual";
     plano.css = "colorSlick5";
-
     planos.push(plano);
+
+    plano = getRepository("plano");
+    plano.cdPlano = 63;
+    plano.nome = "DENTE DE LEITE DE 0 A 7 ANOS";
+    plano.valor = "14";
+    plano.centavo = "98";
+    plano.desc = "Mensal";
+    plano.css = "colorSlick2";
+    planos.push(plano);
+
+    plano = getRepository("plano");
+    plano.cdPlano = 64;
+    plano.nome = "DENTE DE LEITE DE 0 A 7 ANOS";
+    plano.valor = "149";
+    plano.centavo = "80";
+    plano.desc = "Anual";
+    plano.css = "colorSlick2";
+    planos.push(plano);
+    // PLANOS JUNIOR
+
+    plano = getRepository("plano");
+    plano.cdPlano = 86;
+    plano.nome = "JÚNIOR DE 8 A 17 ANOS";
+    plano.valor = "27";
+    plano.centavo = "99";
+    plano.desc = "Mensal";
+    plano.css = "colorSlick8Junior";
+    planos.push(plano);
+
+    plano = getRepository("plano");
+    plano.cdPlano = 87;
+    plano.nome = "JÚNIOR DE 8 A 17 ANOS";
+    plano.valor = "149";
+    plano.centavo = "80";
+    plano.desc = "Anual";
+    plano.css = "colorSlick8Junior";
+    planos.push(plano);
+    // END PLANOS JUNIOR
 
     put("planos", JSON.stringify(planos));
     setPlanosProdCod()
@@ -521,6 +575,30 @@ function setPlanosProdCod() {
     var plano = new Object();
     plano.cdPlano = 78;
     plano.nome = "DENTAL ORTO ANUAL S/CARENCIA";
+    planos.push(plano);
+
+    // PLANOS DENTE DE LEITE
+
+    var plano = new Object();
+    plano.cdPlano = 63;
+    plano.nome = "DENTE DE LEITE MENSAL";
+    planos.push(plano);
+
+    var plano = new Object();
+    plano.cdPlano = 64;
+    plano.nome = "DENTE DE LEITE ANUAL";
+    planos.push(plano);
+
+    // PLANOS JUNIOR
+
+    var plano = new Object();
+    plano.cdPlano = 86;
+    plano.nome = "JUNIOR MENSAL";
+    planos.push(plano);
+
+    var plano = new Object();
+    plano.cdPlano = 87;
+    plano.nome = "JUNIOR ANUAL";
     planos.push(plano);
 
     ///////// CODIGO PLANOS DENTAL VIP //////////
