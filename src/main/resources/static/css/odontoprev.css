@@ -582,6 +582,19 @@ input:-webkit-autofill {
     color: #1974CE;
 }
 
+.titleSlick8Junior {
+    color: #94EA31;
+}
+
+.btnSlick8Junior {
+    background-color: #94EA31;
+}
+
+.colorSlick8Junior {
+    color: #94EA31;
+}
+
+
 /*********************************** End Cor Planos ****************************************/
 
 /**
@@ -1606,6 +1619,12 @@ h5, .subListBox {
     font-family: Roboto-Medium;
     color: #52A4E3;
     font-size: 80%;
+}
+
+.pInfoPlanoSlick8Junior {
+    font-family: Roboto-Medium;
+    color: #94EA31;
+    font-size: 10pt;
 }
 
 /*********************************** End Color p Plano ****************************************/
