@@ -7,6 +7,13 @@
         $(".button-collapse").sideNav();
     });
 
+    $(document).ready(function () {
+
+        $(".nav-cel").click(function () {
+            localStorage.removeItem("propostaPf");
+        })
+
+    })
 </script>
 
 <div th:fragment="menu-corretor">

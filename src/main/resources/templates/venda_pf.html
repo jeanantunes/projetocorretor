@@ -50,6 +50,8 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
+        localStorage.removeItem("propostaPf");
+
         $('.barras').each(function () {
             var dataWidth = $(this).data('value');
             $(this).css("width", dataWidth + "%");

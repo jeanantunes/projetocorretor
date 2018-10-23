@@ -1368,20 +1368,9 @@ function enviarPropostaPf() {
 
         if (proposta.status == "PRONTA") {
 
-            //var o = pessoas.filter(function (x) { return x.cpf == item.cpf });
-            var propostasDiferentes = propostas.filter(function (x) { return x.cpf != proposta.cpf });
-
-            propostas = []; //limpar
-
-            $.each(propostasDiferentes, function (i, item) {
-                propostas.push(item);
-            });
-
             proposta.status = "SYNC";
             proposta.horaSync = new Date();
-            propostas.push(proposta);
-
-            put("pessoas", JSON.stringify(propostas));
+            atualizarPropostasPfById(proposta);
 
             sincronizarPf(function (dataProposta) {
 
@@ -1393,7 +1382,7 @@ function enviarPropostaPf() {
 
                             swal("Corretora Bloqueada", "Sua corretora possui uma pendência de atualização contratual com a OdontoPrev, por favor tente refazer as vendas após resolução.", "info");
                             proposta.status = "PRONTA";
-                            atualizarPessoas(proposta);
+                            atualizarPropostasPfById(proposta);
                             $('#irParaDebito').prop('disabled', false);
                             $('#pagarComBoleto').prop('disabled', false);
                             $('#continuarPfDebito').prop('disabled', false);
@@ -1409,7 +1398,7 @@ function enviarPropostaPf() {
                             }, 250);
 
                             proposta.status = "PRONTA";
-                            atualizarPessoas(proposta);
+                            atualizarPropostasPfById(proposta);
                             $('#irParaDebito').prop('disabled', false);
                             $('#pagarComBoleto').prop('disabled', false);
                             $('#continuarPfDebito').prop('disabled', false);
@@ -1420,7 +1409,7 @@ function enviarPropostaPf() {
 
                             swal.close();
                             proposta.status = "DIGITANDO";
-                            atualizarPessoas(proposta);
+                            atualizarPropostasPfById(proposta);
                             $('#irParaDebito').prop('disabled', false);
                             $('#pagarComBoleto').prop('disabled', false);
                             $('#continuarPfDebito').prop('disabled', false);
@@ -1432,7 +1421,6 @@ function enviarPropostaPf() {
 
                         var pessoas = get("pessoas");
                         var todosExcetoExclusao = pessoas.filter(function (x) { return x.cpf != proposta.cpf });
-                        //todosExcetoExclusao.push(proposta);
                         emRequisicao = false;
                         console.log(todosExcetoExclusao);
                         put("pessoas", JSON.stringify(todosExcetoExclusao));
@@ -1449,7 +1437,7 @@ function enviarPropostaPf() {
                     var atualizarProposta = get("propostaPf");
                     atualizarProposta.status = "PRONTA";
                     put("propostaPf", JSON.stringify(atualizarProposta));
-                    atualizarPessoas(atualizarProposta);
+                    atualizarPropostasPfById(atualizarProposta);
 
 
                     setTimeout(function () {
@@ -1656,7 +1644,7 @@ function sincronizarPessoa(callback, pessoa, reSync) { // caso a proposta esteja
                 if (result.id == 0) {
 
                     pessoa[0].status = "CRITICADA";
-                    atualizarPessoas(pessoa[0]);
+                    atualizarPropostasPfById(pessoa[0]);
                     console.log("Erro");
                 }
                 else {
@@ -1664,14 +1652,7 @@ function sincronizarPessoa(callback, pessoa, reSync) { // caso a proposta esteja
                     var pessoas = get("pessoas");
                     pessoa[0].status = "ENVIADA";
                     pessoa[0].dataAtualizacao = new Date();
-
-                    var todosExcetoExclusao = pessoas.filter(function (x) {
-                        return x.cpf != pessoa[0].cpf
-                    });
-                    todosExcetoExclusao.push(pessoa[0]);
-
-                    console.log(todosExcetoExclusao);
-                    put("pessoas", JSON.stringify(todosExcetoExclusao));
+                    atualizarPropostasPfById(pessoa[0])
 
                 }
 

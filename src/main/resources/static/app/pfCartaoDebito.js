@@ -107,11 +107,8 @@ function cadastrarConta() {
     proposta.dadosBancarios.agencia = agencia;
     proposta.dadosBancarios.conta = conta;
     proposta.dadosBancarios.tipoConta = "CC";
-
     proposta.status = "PRONTA";
-
-    atualizarPessoas(proposta);
-    put("propostaPf", JSON.stringify(proposta));
+    atualizarPropostasPfById(proposta);
 
     validarForcaVenda(function (retornoForcaVenda) {
 
