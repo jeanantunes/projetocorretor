@@ -25,7 +25,8 @@
     <style>
         .box-plano {
             background: #ffffff;
-            width: 330px;
+            min-width: 330px;
+            min-height: 596px;
             margin: auto;
             padding: 0px;
             text-align: center;
@@ -68,6 +69,19 @@
             font-size: 20px !important;
         }
 
+        .linkGreen {
+            color: #1974CE;
+            font-family: Roboto-Regular;
+            font-size: 16px;
+            text-decoration: none;
+            cursor: pointer;
+            outline: none;
+        }
+
+         tr td {
+             padding: 9px !important;
+             color: #6A6A6A;
+         }
     </style>
 
 </head>
@@ -134,7 +148,7 @@
 
         <div class="row">
             <div class="col-xs-12">
-                <h4 class="text-silver title-section-odonto">Confira a cobertura e informações dos planos que temos para
+                <h4 class="text-silver">Confira a cobertura e informações dos planos que temos para
                     você.</h4>
             </div>
         </div>
@@ -149,28 +163,37 @@
             <div class="scrolly space-bottom-30 margin-top-30">
                 <div style="margin-left: 12px; margin-right:12px; margin-bottom:15px; display: inline-block;"
                      class="box-plano" th:each="plano : ${planoInfosModel.pf}">
-                    <table>
+                    <table border="0" width="100%" height="100%">
                         <tr>
                             <td>
                                 <!-- <div th:text="${plano.codigoPlanoInfo}"/> -->
-                                <div class="titulo-plano margin-top-10 margin-bottom-10"
+                                <div class="titulo-plano margin-top-0 margin-bottom-0"
                                      th:text="${plano.nomePlanoInfo}"/>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <div class="img-center">
-                                    <img class="img-responsive margin-top-10 margin-bottom-10"
+                                    <img class="img-responsive margin-top-0 margin-bottom-0"
                                          th:src="@{'data:' + ${plano.arquivoIcone.tipoConteudo} + ';base64,' +
                          *{plano.arquivoIcone.arquivoBase64}}"/>
                                 </div>
                             </td>
                         </tr>
-                        <tr>
+                        <tr width="100%;" height="100%">
                             <td>
                                 <div th:each="desc : ${plano.descricaoList}">
                                     <label th:text="${desc}"/>
                                 </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a th:href="@{/download/infoplano(cdArquivo=${plano.codigoArquivoCarencia})}">
+                                    <label class="linkGreen">Confira as carências por tratamento</label></a>
+                                <br/>
+                                <a th:href="@{/download/infoplano(cdArquivo=${plano.codigoArquivoGeral})}">
+                                    <label class="linkGreen">Confira as Condições Gerais do plano</label></a>
                             </td>
                         </tr>
                     </table>
@@ -194,28 +217,35 @@
             <div class="scrolly space-bottom-30 margin-top-30">
                 <div style="margin-left: 12px; margin-right:12px; margin-bottom:15px; display: inline-block;"
                      class="box-plano" th:each="plano : ${planoInfosModel.pme}">
-                    <table>
+                    <table border="0" width="100%" height="100%">
                         <tr>
                             <td>
                                 <!-- <div th:text="${plano.codigoPlanoInfo}"/> -->
-                                <div class="titulo-plano margin-top-10 margin-bottom-10"
+                                <div class="titulo-plano margin-top-0 margin-bottom-0"
                                      th:text="${plano.nomePlanoInfo}"/>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <div class="img-center">
-                                    <img class="img-responsive margin-top-10 margin-bottom-10"
+                                    <img class="img-responsive margin-top-0 margin-bottom-0"
                                          th:src="@{'data:' + ${plano.arquivoIcone.tipoConteudo} + ';base64,' +
                          *{plano.arquivoIcone.arquivoBase64}}"/>
                                 </div>
                             </td>
                         </tr>
-                        <tr>
+                        <tr width="100%;" height="100%">
                             <td>
                                 <div th:each="desc : ${plano.descricaoList}">
                                     <label th:text="${desc}"/>
                                 </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a th:href="@{/download/infoplano(cdArquivo=${plano.codigoArquivoGeral})}">
+                                    <label class="linkGreen">Confira aqui as Condições Gerais <br/>e o Contrato
+                                        PME</label></a>
                             </td>
                         </tr>
                     </table>
@@ -229,10 +259,29 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="col-xs-12">
+                <h4 class="font-blue title-section-odonto">Compare e veja as diferenças</h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <h4 class="text-silver">
+                    Compare os planos e veja qual o melhor plano para você e sua família.
+                </h4>
+            </div>
+        </div>
+
+        <div class="row col-xs-12" style="display: contents; margin-left: auto; margin-right: auto;">
+            <img th:src="@{/img/tabela_planos.jpg}" style="height: 780px;"/>
+        </div>
 
     </div>
 
-    <div th:replace="fragments/footer :: footer">&nbsp;</div>
+    <div class="row col-xs-12">
+        <div th:replace="fragments/footer :: footer">&nbsp;</div>
+    </div>
 
 </div>
 <script type="text/javascript" th:src="@{/js/setColorMenuCorretor.js}"></script>

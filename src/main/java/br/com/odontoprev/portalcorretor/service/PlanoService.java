@@ -1,5 +1,6 @@
 package br.com.odontoprev.portalcorretor.service;
 
+import br.com.odontoprev.api.manager.client.token.util.ConfigurationUtils;
 import br.com.odontoprev.portalcorretor.model.PlanoInfos;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -34,8 +35,8 @@ public class PlanoService {
 
         log.info("getPlanoInfos ->>> Lista");
 
-        //String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", metodo + planoinfo);
-        String url = "http://localhost:8090" + planoinfo;
+        String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", metodo + planoinfo);
+        //String url = "http://localhost:8090" + planoinfo;
 
         RestTemplate restTemplate = new RestTemplate();
         MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
