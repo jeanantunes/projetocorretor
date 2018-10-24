@@ -1,19 +1,22 @@
 package br.com.odontoprev.portalcorretor.model;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 public class PlanoInfo implements Serializable {
 
-    Long codigoPlanoInfo;
+	private static final long serialVersionUID = 1336338726489381946L;
+	
+	Long codigoPlanoInfo;
     String nomePlanoInfo;
+    List<String> descricaoList;
     String descricao;
     Long codigoArquivoGeral;
     Long codigoArquivoCarencia;
-    Long cdArquivoIcone;
+    Long codigoArquivoIcone;
     String tipoSegmento;
     String ativo;
-    Long codigoArquivoIcone;
     Arquivo arquivoIcone;
 
 
@@ -31,6 +34,14 @@ public class PlanoInfo implements Serializable {
 
     public void setNomePlanoInfo(String nomePlanoInfo) {
         this.nomePlanoInfo = nomePlanoInfo;
+    }
+
+    public List<String> getDescricaoList() {
+        return descricaoList;
+    }
+
+    public void setDescricaoList(List<String> descricaoList) {
+        this.descricaoList = descricaoList;
     }
 
     public String getDescricao() {
@@ -55,14 +66,6 @@ public class PlanoInfo implements Serializable {
 
     public void setCodigoArquivoCarencia(Long codigoArquivoCarencia) {
         this.codigoArquivoCarencia = codigoArquivoCarencia;
-    }
-
-    public Long getCdArquivoIcone() {
-        return cdArquivoIcone;
-    }
-
-    public void setCdArquivoIcone(Long cdArquivoIcone) {
-        this.cdArquivoIcone = cdArquivoIcone;
     }
 
     public String getTipoSegmento() {
@@ -104,19 +107,19 @@ public class PlanoInfo implements Serializable {
         PlanoInfo planoInfo = (PlanoInfo) o;
         return Objects.equals(codigoPlanoInfo, planoInfo.codigoPlanoInfo) &&
                 Objects.equals(nomePlanoInfo, planoInfo.nomePlanoInfo) &&
+                Objects.equals(descricaoList, planoInfo.descricaoList) &&
                 Objects.equals(descricao, planoInfo.descricao) &&
                 Objects.equals(codigoArquivoGeral, planoInfo.codigoArquivoGeral) &&
                 Objects.equals(codigoArquivoCarencia, planoInfo.codigoArquivoCarencia) &&
-                Objects.equals(cdArquivoIcone, planoInfo.cdArquivoIcone) &&
+                Objects.equals(codigoArquivoIcone, planoInfo.codigoArquivoIcone) &&
                 Objects.equals(tipoSegmento, planoInfo.tipoSegmento) &&
                 Objects.equals(ativo, planoInfo.ativo) &&
-                Objects.equals(codigoArquivoIcone, planoInfo.codigoArquivoIcone) &&
                 Objects.equals(arquivoIcone, planoInfo.arquivoIcone);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(codigoPlanoInfo, nomePlanoInfo, descricao, codigoArquivoGeral, codigoArquivoCarencia, cdArquivoIcone, tipoSegmento, ativo, codigoArquivoIcone, arquivoIcone);
+        return Objects.hash(codigoPlanoInfo, nomePlanoInfo, descricaoList, descricao, codigoArquivoGeral, codigoArquivoCarencia, codigoArquivoIcone, tipoSegmento, ativo, arquivoIcone);
     }
 
     @Override
@@ -124,13 +127,13 @@ public class PlanoInfo implements Serializable {
         return "PlanoInfo{" +
                 "codigoPlanoInfo=" + codigoPlanoInfo +
                 ", nomePlanoInfo='" + nomePlanoInfo + '\'' +
+                ", descricaoList=" + descricaoList +
                 ", descricao='" + descricao + '\'' +
                 ", codigoArquivoGeral=" + codigoArquivoGeral +
                 ", codigoArquivoCarencia=" + codigoArquivoCarencia +
-                ", cdArquivoIcone=" + cdArquivoIcone +
+                ", codigoArquivoIcone=" + codigoArquivoIcone +
                 ", tipoSegmento='" + tipoSegmento + '\'' +
                 ", ativo='" + ativo + '\'' +
-                ", codigoArquivoIcone=" + codigoArquivoIcone +
                 ", arquivoIcone=" + arquivoIcone +
                 '}';
     }
