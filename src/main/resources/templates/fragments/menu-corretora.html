@@ -1,133 +1,168 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>OdontoPrev</title>
-<meta charset="UTF-8">
+    <title>OdontoPrev</title>
+    <meta charset="UTF-8">
 </head>
 <body>
 
-	<script>
-		$(function() {
-			$(".button-collapse").sideNav();
-		});
+<script>
+    $(function () {
+        $(".button-collapse").sideNav();
+    });
 
-        $(document).ready(function () {
+    $(document).ready(function () {
 
-            $(".nav-cel").click(function () {
-                localStorage.removeItem("propostaPf");
-            })
-
+        $(".nav-cel").click(function () {
+            localStorage.removeItem("propostaPf");
         })
-	</script>
 
-	<div th:fragment="menu-corretora">
+    })
+</script>
 
-		<nav class="nav-odonto">
-			<div class="nav-wrapper">
-				<a href="#" class="brand-logo" style="color: silver; padding: 35px">
-					<img th:src="@{/img/logo.png}">
-				</a>
-				<ul class="hide-on-med-and-down">
-					<li class="nav-cel"><a th:href="@{/corretora/home}"> <img
-							th:src="@{/img/menu-home.png}"> <span>home</span>
-					</a></li>
+<div th:fragment="menu-corretora">
 
-					<!-- <li class="nav-cel">
-                    		<a th:href="@{/corretora/cadastro/editar}">
-                        	<img img th:src="@{/img/menu-meus-dados.png}" >
-                        	<span>dados da corretora*</span>
-                    		</a>
-                		</li> -->
+    <nav class="nav-odonto">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo" style="color: silver; padding: 35px">
+                <img th:src="@{/img/logo.png}">
+            </a>
+            <ul class="hide-on-med-and-down">
+                <li class="nav-cel">
+                    <a th:href="@{/corretora/home}">
+                        <img th:src="@{/img/house-black-silhouette-without-door.png}" style="width:21px; margin-left:4px; margin-right: 4px;">
+                        <span>tela inicial</span>
+                    </a>
+                </li>
 
-					<li class="nav-cel"><a th:href="@{/corretora/editar/home}">
-							<img img th:src="@{/img/businesscase.png}"
-							style="width: 18px; height: 18px; margin: 7px;"> <span>dados da corretora</span>
-					</a></li>
+                <li class="nav-cel">
+                    <a th:href="@{/corretora/equipe/home}">
+                        <img th:src="@{/img/Equipe_Corretora.png}" style="width:21px; margin-left:4px; margin-right: 4px;">
+                        <span>equipe</span>
+                    </a>
+                </li>
 
-					<li class="nav-cel"><a th:href="@{/corretora/equipe/home}">
-							<img th:src="@{/img/menu-listas.png}"> <span>equipe</span>
-					</a></li>
+                <li class="nav-cel">
+                    <a th:href="@{/lista-propostas}">
+                        <img th:src="@{/img/Lista_de_Proposta_Ambos.png}" style="width:21px; margin-left:4px; margin-right: 4px;">
+                        <span>lista de propostas</span>
+                    </a>
+                </li>
 
-					<li class="nav-cel"><a th:href="@{/lista-propostas}"> 
-						<img th:src="@{/img/menu-listas.png}"> <span>lista de propostas</span>
-					</a></li>
+                <li class="nav-cel">
+                    <a th:href="@{/info-planos}">
+                        <img th:src="@{/img/Informacao_de_Produtos.png}" style="width:21px; margin-left:4px; margin-right: 4px;">
+                        <span>informações dos planos</span>
+                    </a>
+                </li>
 
-					<!--                <li class="nav-cel">
+                <li class="nav-cel">
+                    <a th:href="@{/material-divulgacao}">
+                        <img th:src="@{/img/menu-material-divulgacao.png}" style="width:21px; margin-left:4px; margin-right: 4px;">
+                        <span>materiais de divulgação</span>
+                    </a>
+                </li>
+
+                <li class="nav-cel">
                     <a th:href="@{/rede-credenciada}">
-                        <img th:src="@{/img/menu-rede-credenciada.png}">
+                        <img th:src="@{/img/dentist.png}" style="width:21px; margin-left:4px; margin-right: 4px;">
                         <span>rede credenciada</span>
                     </a>
-                </li> -->
+                </li>
 
+                <li class="nav-cel">
+                    <a th:href="@{/corretora/editar/home}">
+                        <img img th:src="@{/img/Meus_Dados_Corretora.png}" style="width:21px; margin-left:4px; margin-right: 4px;">
+                        <span>dados da corretora</span>
+                    </a>
+                </li>
 
-					<li class="nav-cel"><a th:href="@{/info-planos}"> <img
-							th:src="@{/img/menu-listas.png}"> <span>informações dos planos</span>
-					</a></li>
+                <li class="nav-cel">
+                    <a th:href="@{/fale-conosco}">
+                        <img th:src="@{/img/new-email-envelope.png}" style="width:21px; margin-left:4px; margin-right: 4px;">
+                        <span>fale conosco</span>
+                    </a>
+                </li>
 
-					<li class="nav-cel"><a th:href="@{/fale-conosco}"> <img
-							th:src="@{/img/menu-contato.png}"> <span>fale conosco</span>
-					</a></li>
+            </ul>
+        </div>
+    </nav>
 
-				</ul>
-			</div>
-		</nav>
+    <div class="nav-mobile">
+        <ul class="side-nav" id="menu-mobile">
+            <li class="" style="background-color: #fff; padding: 30px">
+                <div class="perfil-mobile">
+                    <div class="circle-perfil">
 
-		<div class="nav-mobile">
-			<ul class="side-nav" id="menu-mobile">
-				<li class="" style="background-color: #fff; padding: 30px">
-					<div class="perfil-mobile">
-						<div class="circle-perfil">
+                        <div class="data-perfil">
+                            <p class="font-gray name-mobile">
+                                <strong th:text="${session.usuario.getNomeCorretora()}"></strong>
+                            </p>
+                            <a th:href="@{/logout}" class="link-odonto">Sair</a>
+                        </div>
 
-							<div class="data-perfil">
-								<p class="font-gray name-mobile">
-									<strong th:text="${session.usuario.getNomeCorretora()}"></strong>
-								</p>
-								<a th:href="@{/logout}" class="link-odonto">Sair</a>
-							</div>
+                    </div>
+                </div>
+            </li>
 
-						</div>
-					</div>
-				</li>
-
-				<li class="nav-cel"><a th:href="@{/corretora/home}"> <img
-						th:src="@{/img/menu-home.png}"> <span>home</span>
-				</a></li>
-
-				<!-- <li class="nav-cel">
-                <a th:href="@{/corretora/cadastro/editar}">
-                    <img th:src="@{/img/menu-meus-dados.png}">
-                    <span>dados da corretora</span>
+            <li class="nav-cel">
+                <a th:href="@{/corretora/home}">
+                    <img th:src="@{/img/house-black-silhouette-without-door.png}" style="width:21px; margin-left:4px; margin-right: 4px;">
+                    <span>tela inicial</span>
                 </a>
-            </li> -->
+            </li>
 
-				<li class="nav-cel"><a th:href="@{/corretora/editar/home}">
-						<img img th:src="@{/img/businesscase.png}"
-						style="width: 18px; height: 18px; margin: 7px;"> <span>dados da corretora</span>
-				</a></li>
+            <li class="nav-cel">
+                <a th:href="@{/corretora/equipe/home}">
+                    <img th:src="@{/img/Equipe_Corretora.png}" style="width:21px; margin-left:4px; margin-right: 4px;">
+                    <span>equipe</span>
+                </a>
+            </li>
 
-				<li class="nav-cel"><a th:href="@{/corretora/equipe/home}">
-						<img th:src="@{/img/menu-listas.png}"> <span>equipe</span>
-				</a></li>
+            <li class="nav-cel">
+                <a th:href="@{/lista-propostas}">
+                    <img th:src="@{/img/Lista_de_Proposta_Ambos.png}" style="width:21px; margin-left:4px; margin-right: 4px;">
+                    <span>lista de propostas</span>
+                </a>
+            </li>
 
-				<li class="nav-cel"><a th:href="@{/lista-propostas}"> <img
-						th:src="@{/img/menu-listas.png}"> <span>lista de propostas</span>
-				</a></li>
-				<!--<li class="nav-cel">
-                <a th:href="@{/rede-credenciadas}">
-                    <img th:src="@{/img/menu-rede-credenciada.png}">
+            <li class="nav-cel">
+                <a th:href="@{/info-planos}">
+                    <img th:src="@{/img/Informacao_de_Produtos.png}" style="width:21px; margin-left:4px; margin-right: 4px;">
+                    <span>informações dos planos</span>
+                </a>
+            </li>
+
+            <li class="nav-cel">
+                <a th:href="@{/material-divulgacao}">
+                    <img th:src="@{/img/menu-material-divulgacao.png}" style="width:21px; margin-left:4px; margin-right: 4px;">
+                    <span>materiais de divulgação</span>
+                </a>
+            </li>
+
+            <li class="nav-cel">
+                <a th:href="@{/rede-credenciada}">
+                    <img th:src="@{/img/dentist.png}" style="width:21px; margin-left:4px; margin-right: 4px;">
                     <span>rede credenciada</span>
                 </a>
-            </li>-->
-				<li class="nav-cel"><a th:href="@{/info-planos}"> <img
-						th:src="@{/img/menu-listas.png}"> <span>informações dos planos</span>
-				</a></li>
+            </li>
 
-				<li class="nav-cel"><a th:href="@{/fale-conosco}"> <img
-						th:src="@{/img/menu-contato.png}"> <span>fale conosco</span>
-				</a></li>
-			</ul>
-		</div>
+            <li class="nav-cel">
+                <a th:href="@{/corretora/editar/home}">
+                    <img img th:src="@{/img/Meus_Dados_Corretora.png}" style="width:21px; margin-left:4px; margin-right: 4px;">
+                    <span>dados da corretora</span>
+                </a>
+            </li>
 
-	</div>
+            <li class="nav-cel">
+                <a th:href="@{/fale-conosco}">
+                    <img th:src="@{/img/new-email-envelope.png}" style="width:21px; margin-left:4px; margin-right: 4px;">
+                    <span>fale conosco</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+</div>
 </body>
 </html>
