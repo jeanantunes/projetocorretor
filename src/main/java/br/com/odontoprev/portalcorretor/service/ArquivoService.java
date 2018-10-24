@@ -1,7 +1,6 @@
 package br.com.odontoprev.portalcorretor.service;
 
 import br.com.odontoprev.api.manager.client.token.util.ConfigurationUtils;
-import br.com.odontoprev.portalcorretor.model.PlanoInfos;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,7 @@ public class ArquivoService {
     @Value("${odontoprec.service.base}")
     private String requestBase;
 
-    @Value("${odontoprev.detalhes.proposta}")
+    @Value("${odontoprev.corretor.api.contexto.api.url}")
     private String metodo;
 
     @Value("${odontoprev.plano.info}")
@@ -33,7 +32,7 @@ public class ArquivoService {
     public ResponseEntity<String> getArquivo(Long cdArquivo) {
         log.info("GET ARQUIVO ->>> getArquivo");
 
-        String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", "/corretorservicos/1.0/arquivo/" + cdArquivo);
+        String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", metodo + cdArquivo);
 
         RestTemplate restTemplate = new RestTemplate();
         MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
@@ -57,37 +56,6 @@ public class ArquivoService {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
-        }
-    }
-
-    public PlanoInfos getPlanoInfos() {
-
-        log.info("getPlanoInfos ->>> Lista");
-
-        String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", "/corretorservicos/1.0/" + planoinfo);
-
-        RestTemplate restTemplate = new RestTemplate();
-        MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
-        mappingJackson2HttpMessageConverter.setSupportedMediaTypes(Arrays.asList(
-                new MediaType("text", "plain"),
-                new MediaType("text", "html")));
-        restTemplate.getMessageConverters().add(mappingJackson2HttpMessageConverter);
-
-        try {
-            HttpHeaders headers = new HttpHeaders();
-            headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
-            HttpEntity<String> entity = new HttpEntity<>(planoinfo, headers);
-            ResponseEntity<PlanoInfos> retorno = restTemplate.exchange(url, HttpMethod.GET, entity, PlanoInfos.class);
-
-            if (retorno.getStatusCode() == HttpStatus.OK) {
-                return retorno.getBody();
-            } else {
-                return new PlanoInfos();
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new PlanoInfos();
         }
     }
 }
