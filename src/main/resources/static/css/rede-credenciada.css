@@ -75,13 +75,19 @@ select::-webkit-scrollbar-track {
 
 select::-webkit-scrollbar-thumb {
     border-radius: 0px;
-    background: #1974CE;
+    background: #4ED6FF;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
 }
 
 select::-webkit-scrollbar-thumb:hover {
     border-radius: 8px;
-    border: 1px solid #1974CE;
+    border: 1px solid #4ED6FF;
     background: #EAEAEA;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
 }
 
 @media screen and (max-width: 993px) {

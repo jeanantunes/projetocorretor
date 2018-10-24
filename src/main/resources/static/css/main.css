@@ -31,7 +31,10 @@ a:hover {
 ::-webkit-scrollbar-thumb {
     border-radius: 10px;
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
-    background: #2D6FCE;
+    background: #4ED6FF;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
 }
 
 .title-odonto {
@@ -3652,13 +3655,13 @@ a:active {
 
 ::-webkit-scrollbar-thumb {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.4);
-    background: #2B6DC9;
+    background: #4ED6FF;
 }
 
 ::-webkit-scrollbar-thumb:hover {
     /* border-radius: 8px;  ARREDONDA*/
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
-    border: 1px solid #2B6DC9;
+    border: 1px solid #4ED6FF;
     background: #F5FFFF;
     /*====================================================*/
 
