@@ -12,15 +12,12 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/odontoprev.css}"/>
 
-    <!-- 		<link href="css/estiloOdontoPrev.css" rel="stylesheet"> -->
     <script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/jquery.mask.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/odonto-Valida.js}"></script>
 
     <script type="text/javascript" th:src="@{/js/menu.js}"></script>
-    <!--<script type="text/javascript"-->
-    <!--th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js}"></script>-->
 
     <style>
         .box-plano {
@@ -78,52 +75,69 @@
             outline: none;
         }
 
-         tr td {
-             padding: 9px !important;
-             color: #6A6A6A;
-         }
+        tr td {
+            padding: 9px !important;
+            color: #6A6A6A;
+        }
+
+        button {
+            border: 0;
+            text-decoration: none;
+            cursor: pointer;
+            outline: none;
+        }
     </style>
+
+    <script>
+        $(function () {
+            $(".button-collapse").sideNav();
+        });
+
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.table-odonto tr:odd').css('background-color', '#EDEDED');
+
+            $('.table-odonto tr:even').css('background-color', '#fff');
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('.barras').each(function () {
+                var dataWidth = $(this).data('value');
+                $(this).css("width", dataWidth + "%");
+                $(this).css("max-width", "100%");
+                if (dataWidth <= 25) {
+                    $(this).css("border-color", "transparent");
+                }
+                else if (dataWidth > 25 && dataWidth <= 50) {
+                    $(this).css("border-color", "transparent");
+                }
+                else if (dataWidth > 50 && dataWidth <= 75) {
+                    $(this).css("border-color", "transparent");
+                }
+                else if (dataWidth > 75 && dataWidth <= 100) {
+                    $(this).css("border-color", "transparent");
+                }
+            });
+        });
+    </script>
+
+    <script>
+        function scrollAnt() {
+            document.getElementById("divPF").scrollBy(-358, 0);
+        }
+
+        function scrollPos() {
+            document.getElementById("divPF").scrollBy(358, 0);
+        }
+    </script>
 
 </head>
 <body style="min-width: 100% !important;">
-
-<script>
-    $(function () {
-        $(".button-collapse").sideNav();
-    });
-
-</script>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.table-odonto tr:odd').css('background-color', '#EDEDED');
-
-        $('.table-odonto tr:even').css('background-color', '#fff');
-    });
-</script>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-
-        $('.barras').each(function () {
-            var dataWidth = $(this).data('value');
-            $(this).css("width", dataWidth + "%");
-            $(this).css("max-width", "100%");
-            if (dataWidth <= 25) {
-                $(this).css("border-color", "transparent");
-            }
-            else if (dataWidth > 25 && dataWidth <= 50) {
-                $(this).css("border-color", "transparent");
-            }
-            else if (dataWidth > 50 && dataWidth <= 75) {
-                $(this).css("border-color", "transparent");
-            }
-            else if (dataWidth > 75 && dataWidth <= 100) {
-                $(this).css("border-color", "transparent");
-            }
-        });
-    });
-</script>
 
 <div class="container-fluid nopadding">
 
@@ -159,14 +173,17 @@
             </div>
         </div>
 
+        <div th:style="${planoInfosModel.pf.size() > 3 ? 'position: absolute; z-index: 9999; margin-top: 150px; margin-left: -20px;' : 'display:none;'}">
+            <button onclick="scrollAnt()"><img th:src="@{/img/seta_ant.png}"/></button>
+        </div>
+
         <div class="row col-xs-12">
-            <div class="scrolly space-bottom-30 margin-top-30">
+            <div class="scrolly space-bottom-30 margin-top-30" id="divPF">
                 <div style="margin-left: 12px; margin-right:12px; margin-bottom:15px; display: inline-block;"
                      class="box-plano" th:each="plano : ${planoInfosModel.pf}">
                     <table border="0" width="100%" height="100%">
                         <tr>
                             <td>
-                                <!-- <div th:text="${plano.codigoPlanoInfo}"/> -->
                                 <div class="titulo-plano margin-top-0 margin-bottom-0"
                                      th:text="${plano.nomePlanoInfo}"/>
                             </td>
@@ -197,14 +214,12 @@
                             </td>
                         </tr>
                     </table>
-                    <!-- <div th:text="${plano.codigoArquivoGeral}"/> -->
-                    <!-- <div th:text="${plano.codigoArquivoCarencia}"/> -->
-                    <!-- <div th:text="${plano.codigoArquivoIcone}"/> -->
-                    <!-- <div th:text="${plano.tipoSegmento}"/> -->
-                    <!-- <div th:text="${plano.ativo}"/> -->
-                    <!-- <div th:text="${plano.arquivoIcone}"/> -->
                 </div>
             </div>
+        </div>
+
+        <div th:style="${planoInfosModel.pf.size() > 3 ? 'position: absolute; z-index: 9999; margin-top: 150px; margin-left: 1020px;' : 'display:none;'}">
+            <button onclick="scrollPos()"><img th:src="@{/img/seta_pos.png}"/></button>
         </div>
 
         <div class="row">
@@ -220,7 +235,6 @@
                     <table border="0" width="100%" height="100%">
                         <tr>
                             <td>
-                                <!-- <div th:text="${plano.codigoPlanoInfo}"/> -->
                                 <div class="titulo-plano margin-top-0 margin-bottom-0"
                                      th:text="${plano.nomePlanoInfo}"/>
                             </td>
@@ -249,12 +263,6 @@
                             </td>
                         </tr>
                     </table>
-                    <!-- <div th:text="${plano.codigoArquivoGeral}"/> -->
-                    <!-- <div th:text="${plano.codigoArquivoCarencia}"/> -->
-                    <!-- <div th:text="${plano.codigoArquivoIcone}"/> -->
-                    <!-- <div th:text="${plano.tipoSegmento}"/> -->
-                    <!-- <div th:text="${plano.ativo}"/> -->
-                    <!-- <div th:text="${plano.arquivoIcone}"/> -->
                 </div>
             </div>
         </div>

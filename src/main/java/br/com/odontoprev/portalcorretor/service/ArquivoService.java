@@ -19,10 +19,10 @@ public class ArquivoService {
     private String requestBase;
 
     @Value("${odontoprev.corretor.api.contexto.api.url}")
-    private String metodo;
+    private String contexto;
 
-    @Value("${odontoprev.plano.info}")
-    private String planoinfo;
+    @Value("${odontoprev.plano.info.arquivo}")
+    private String arquivoPlanoInfo;
 
     @Autowired
     private ApiManagerTokenService apiManagerTokenService;
@@ -30,8 +30,7 @@ public class ArquivoService {
     public Arquivo getArquivo(Long cdArquivo) {
         log.info("GET ARQUIVO ->>> getArquivo");
 
-        String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", metodo + "/arquivo/" + cdArquivo + "/arquivo");
-        //String url = "http://localhost:8090/arquivo/" + cdArquivo + "/json";
+        String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", contexto + arquivoPlanoInfo);
 
         RestTemplate restTemplate = new RestTemplate();
         try {
@@ -39,33 +38,6 @@ public class ArquivoService {
             headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
             headers.setContentType(MediaType.APPLICATION_JSON);
             HttpEntity<String> entity = new HttpEntity<>("", headers);
-            ResponseEntity<Arquivo> retorno = restTemplate.exchange(url, HttpMethod.GET, entity, Arquivo.class);
-
-            if (retorno.getStatusCode() == HttpStatus.OK) {
-                return retorno.getBody();
-            } else {
-                return new Arquivo();
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new Arquivo();
-        }
-    }
-
-    public Arquivo arquivoDownload(Long cdArquivo) {
-
-        log.info("Info Planos ->>> Download");
-
-        String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", metodo + "/arquivo/" + cdArquivo + "/arquivo");
-        //String url = "http://localhost:8090/arquivo/" + cdArquivo + "/arquivo";
-
-        RestTemplate restTemplate = new RestTemplate();
-        try {
-            HttpHeaders headers = new HttpHeaders();
-            headers.set("Authorization", "Bearer " + apiManagerTokenService.getToken());
-            headers.setContentType(MediaType.APPLICATION_JSON);
-            HttpEntity<String> entity = new HttpEntity<>(headers);
             ResponseEntity<Arquivo> retorno = restTemplate.exchange(url, HttpMethod.GET, entity, Arquivo.class);
 
             if (retorno.getStatusCode() == HttpStatus.OK) {

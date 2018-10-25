@@ -23,7 +23,7 @@ public class PlanoService {
     private String requestBase;
 
     @Value("${odontoprev.corretor.api.contexto.api.url}")
-    private String metodo;
+    private String contexto;
 
     @Value("${odontoprev.plano.info}")
     private String planoinfo;
@@ -35,8 +35,7 @@ public class PlanoService {
 
         log.info("getPlanoInfos ->>> Lista");
 
-        String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", metodo + planoinfo);
-        //String url = "http://localhost:8090" + planoinfo;
+        String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", contexto + planoinfo);
 
         RestTemplate restTemplate = new RestTemplate();
         MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
