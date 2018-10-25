@@ -3,7 +3,7 @@ var cnae;
 
 $(document).ready(function () {
     buscarPlanosSelecionados();
-   carregarProposta();
+    carregarProposta();
 
     $("#squaredOne").change(function () {
 
@@ -24,13 +24,13 @@ $(document).ready(function () {
 
         var emailDigitado = $(this).val();
 
-        if (!validateEmail(emailDigitado)){
+        if (!validateEmail(emailDigitado)) {
 
             return;
 
         }
 
-        if (navigator.onLine){
+        if (navigator.onLine) {
 
             var arrayEmails = [];
             arrayEmails.push(emailDigitado);
@@ -63,13 +63,13 @@ $(document).ready(function () {
 
         var emailDigitado = $(this).val();
 
-        if (!validateEmail(emailDigitado)){
+        if (!validateEmail(emailDigitado)) {
 
             return;
 
         }
 
-        if (navigator.onLine){
+        if (navigator.onLine) {
 
             var arrayEmails = [];
             arrayEmails.push(emailDigitado);
@@ -89,7 +89,7 @@ $(document).ready(function () {
                         $(".label-email-segundo-contato").css("color", "#FF4141");
                         $(".email-segundo-contato").css("color", "#FF4141");
                         $(".email-segundo-contato").css("border-color", "#FF4141");
-                    }else {
+                    } else {
                         swal.close();
                     }
                 }
@@ -194,15 +194,15 @@ function validarEmailForcaCorretora(arrayEmail, callbackSuccess, callbackError) 
     getEmailForcaCorretora(codigoUsuario,
         function (dataEmailForcaCorretora) {
 
-            if (dataEmailForcaCorretora != undefined){
+            if (dataEmailForcaCorretora != undefined) {
 
                 var emailCorretora = dataEmailForcaCorretora.emailCorretora;
                 var emailForcaVenda = dataEmailForcaCorretora.emailForcaVenda;
                 var possuiErros = false;
 
-                $.each(arrayEmail, function( index, value ) {
+                $.each(arrayEmail, function (index, value) {
 
-                    if (value == emailCorretora || value == emailForcaVenda){
+                    if (value == emailCorretora || value == emailForcaVenda) {
 
                         swal(
                             "E-mail inválido",
@@ -213,10 +213,10 @@ function validarEmailForcaCorretora(arrayEmail, callbackSuccess, callbackError) 
 
                         possuiErros = true;
                     }
-                    
+
                 });
 
-                if (possuiErros){
+                if (possuiErros) {
                     callbackError(403);
                     return;
                 }
@@ -235,11 +235,19 @@ function validarEmailForcaCorretora(arrayEmail, callbackSuccess, callbackError) 
 
 
 function addBenef() {
-    if ($(".cnpj").val() == "")
-    {
-        swal("Ops!", "Preencha o cnpj", "error");
+
+    if ($(".cnpj").val() == "") {
+        swal("Ops!", "Preencha o CNPJ", "error");
+        $("#cnpjEmpresa").focus();
         return;
     }
+
+    if (!validaCnpj($(".cnpj").val())) {
+        swal("Ops!", "Preencha um CNPJ válido", "error");
+        $("#cnpjEmpresa").focus();
+        return;
+    }
+
     salvarRascunhoMemoria();
     window.location = "venda_pme_beneficiarios_lista.html";
 }
@@ -250,7 +258,9 @@ function buscarPlanosSelecionados() {
     var planos = get("planos");
 
     $.each(proposta.planos, function (i, item) {
-        var o = planos.filter(function (x) { return x.cdPlano == item.cdPlano });
+        var o = planos.filter(function (x) {
+            return x.cdPlano == item.cdPlano
+        });
         var plano = getComponent("plano");
 
         plano = plano.replace("{CDPLANO}", o[0].cdPlano);
@@ -265,7 +275,7 @@ function buscarPlanosSelecionados() {
         $("#planos").append(plano);
 
         if (proposta.planos.length == 1) {
-            
+
             $("#btnExcluirPlano").addClass('hide');
         }
 
@@ -283,10 +293,18 @@ function excluirPlano(obj) {
         proposta = getRepository("proposta");
     }
 
-    var beneficiariosDaProposta = beneficiarios.filter(function (x) { return x.cnpj == proposta.cnpj });
-    var beneficiariosQueNSaoDaProposta = beneficiarios.filter(function (x) { return x.cnpj != proposta.cnpj });
-    var planoExcluido = proposta.planos.filter(function (x) { return x.cdPlano == container.attr("data-id") });
-    var planosExcetoExcluido = proposta.planos.filter(function (x) { return x.cdPlano != container.attr("data-id") });
+    var beneficiariosDaProposta = beneficiarios.filter(function (x) {
+        return x.cnpj == proposta.cnpj
+    });
+    var beneficiariosQueNSaoDaProposta = beneficiarios.filter(function (x) {
+        return x.cnpj != proposta.cnpj
+    });
+    var planoExcluido = proposta.planos.filter(function (x) {
+        return x.cdPlano == container.attr("data-id")
+    });
+    var planosExcetoExcluido = proposta.planos.filter(function (x) {
+        return x.cdPlano != container.attr("data-id")
+    });
 
     var beneficiariosDessePlano = beneficiariosDaProposta.filter(function (x) {
         return x.cdPlano == planoExcluido[0].cdPlano;
@@ -304,19 +322,21 @@ function excluirPlano(obj) {
     if (quantidadeBeneficiarios > 0) {
 
         var planos = get("planos");
-        var planoNaoExcluido = planos.filter(function (x) { return x.cdPlano == planosExcetoExcluido[0].cdPlano });
+        var planoNaoExcluido = planos.filter(function (x) {
+            return x.cdPlano == planosExcetoExcluido[0].cdPlano
+        });
 
         swal({
-            title: "Ops!",
-            text: "Tem certeza de que deseja excluir os beneficiários deste plano e transferi-lo para o plano " + planoNaoExcluido[0].nome + "?",
-            type: "warning",
-            confirmButtonClass: "btn-danger",
-            confirmButtonText: "Confirmar",
-            cancelButtonText: "Cancelar",
-            showCancelButton: true,
-            closeOnConfirm: false,
-            closeOnCancel: false
-        },
+                title: "Ops!",
+                text: "Tem certeza de que deseja excluir os beneficiários deste plano e transferi-lo para o plano " + planoNaoExcluido[0].nome + "?",
+                type: "warning",
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Confirmar",
+                cancelButtonText: "Cancelar",
+                showCancelButton: true,
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
             function (isConfirm) {
                 if (isConfirm) {
 
@@ -416,18 +436,20 @@ function callSerasaPme(callback, tokenSerasa, cnpj) {
         return;
 
     if ($("#cnpjEmpresa").val() != "") {
-        var empresas = get("empresas");
-        
-        if (empresas != null) {
-            var existe = empresas.filter(function (x) { return x.cnpj == $("#cnpjEmpresa").val() });
-            var proposta = get("proposta");
+            var empresas = get("empresas");
 
-            if (existe.length > 0 && $("#cnpjEmpresa").val() != proposta.cnpj) {
-                swal("Ops!", "CNPJ já cadastrado, por favor verifique.", "error");
-                $("#cnpjEmpresa").val("");
-                return;
+            if (empresas != null) {
+                var existe = empresas.filter(function (x) {
+                    return x.cnpj == $("#cnpjEmpresa").val()
+                });
+                var proposta = get("proposta");
+
+                if (existe.length > 0 && $("#cnpjEmpresa").val() != proposta.cnpj) {
+                    swal("Ops!", "CNPJ já cadastrado, por favor verifique.", "error");
+                    $("#cnpjEmpresa").val("");
+                    return;
+                }
             }
-        }
     }
 
     if (!navigator.onLine) {
@@ -468,7 +490,6 @@ function callSerasaPme(callback, tokenSerasa, cnpj) {
 }
 
 
-
 function verificarSePropostaExiste() {
 
     var empresas = get("empresas");
@@ -478,10 +499,11 @@ function verificarSePropostaExiste() {
         return;
     }
 
-    var editado = empresas.filter(function (x) { return x.cnpj == $('#cnpjEmpresa').val() });
+    var editado = empresas.filter(function (x) {
+        return x.cnpj == $('#cnpjEmpresa').val()
+    });
 
-    if (editado.length == 0)
-    {
+    if (editado.length == 0) {
         buscarEmpresa();
         return;
     }
@@ -495,17 +517,17 @@ function verificarSePropostaExiste() {
     if (editado.length == 1 && editado[0].status != "ENVIADA") {
 
         swal({
-            title: "Ops!",
-            text: "Você já tem uma proposta com esse CNPJ, selecione uma opção:",
-            type: "warning",
-            confirmButtonClass: "btn-danger",
-            confirmButtonColor: "#1974CE",
-            confirmButtonText: "Editar proposta existente",
-            cancelButtonText: "Excluir proposta",
-            showCancelButton: true,
-            closeOnConfirm: false,
-            closeOnCancel: false
-        },
+                title: "Ops!",
+                text: "Você já tem uma proposta com esse CNPJ, selecione uma opção:",
+                type: "warning",
+                confirmButtonClass: "btn-danger",
+                confirmButtonColor: "#1974CE",
+                confirmButtonText: "Editar proposta existente",
+                cancelButtonText: "Excluir proposta",
+                showCancelButton: true,
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
             function (isConfirm) {
                 if (isConfirm) {
 
@@ -515,26 +537,30 @@ function verificarSePropostaExiste() {
                 } else {
 
                     swal({
-                        title: "Ops!",
-                        text: "Tem certeza que deseja excluir a proposta?",
-                        type: "warning",
-                        confirmButtonClass: "btn-danger",
-                        confirmButtonColor: "#1974CE",
-                        confirmButtonText: "Sim",
-                        cancelButtonText: "Não",
-                        showCancelButton: true,
-                        closeOnConfirm: false,
-                        closeOnCancel: false
-                    },
+                            title: "Ops!",
+                            text: "Tem certeza que deseja excluir a proposta?",
+                            type: "warning",
+                            confirmButtonClass: "btn-danger",
+                            confirmButtonColor: "#1974CE",
+                            confirmButtonText: "Sim",
+                            cancelButtonText: "Não",
+                            showCancelButton: true,
+                            closeOnConfirm: false,
+                            closeOnCancel: false
+                        },
                         function (isConfirm) {
                             if (isConfirm) {
-                                var empresasExcetoExcluidas = empresas.filter(function (x) { return x.cnpj != $('#cnpjEmpresa').val() });
-								var beneficiarios = get("beneficiarios");
-								var beneficiariosExcetoExcluidos = beneficiarios.filter(function (x) { return x.cnpj != $('#cnpjEmpresa').val() });
+                                var empresasExcetoExcluidas = empresas.filter(function (x) {
+                                    return x.cnpj != $('#cnpjEmpresa').val()
+                                });
+                                var beneficiarios = get("beneficiarios");
+                                var beneficiariosExcetoExcluidos = beneficiarios.filter(function (x) {
+                                    return x.cnpj != $('#cnpjEmpresa').val()
+                                });
 
-								put("empresas", JSON.stringify(empresasExcetoExcluidas));
-								put("beneficiarios", JSON.stringify(beneficiariosExcetoExcluidos));
-								window.location.href = "venda_pme_dados_proposta.html"
+                                put("empresas", JSON.stringify(empresasExcetoExcluidas));
+                                put("beneficiarios", JSON.stringify(beneficiariosExcetoExcluidos));
+                                window.location.href = "venda_pme_dados_proposta.html"
                             } else {
                                 verificarSePropostaExiste();
                             }
@@ -545,7 +571,19 @@ function verificarSePropostaExiste() {
 }
 
 function buscarEmpresa() {
-    
+
+    if ($(".cnpj").val() == "") {
+        swal("Ops!", "Preencha o CNPJ", "error");
+        $("#cnpjEmpresa").focus();
+        return;
+    }
+
+    if (!validaCnpj($(".cnpj").val())) {
+        swal("Ops!", "Preencha um CNPJ válido", "error");
+        $("#cnpjEmpresa").focus();
+        return;
+    }
+
     var cnpjValidado = $('#cnpjEmpresa').val().replace(/\D/g, '');
     //var cnpj = get("dadosUsuario");
     var cnpjDaProposta = get("proposta");
@@ -569,7 +607,7 @@ function buscarEmpresa() {
 
     //put('cpnjValido', "");
     callTokenProd(function (dataToken) {
-        
+
         callSerasaPme(function (dataConsulta) {
 
             if (dataConsulta.status != undefined) {
@@ -578,84 +616,132 @@ function buscarEmpresa() {
                 return;
             }
 
+            try {
                 try {
-                    try {
-                        var situacaoEmpresa = dataConsulta.getElementsByTagName("situacao")[0].textContent;
-                        var situacao = situacaoEmpresa.indexOf("ATIVA");
-                    } catch (Exception) { }
-                    
-                    try {
-                        var naturezaJuridica = dataConsulta.getElementsByTagName("codigo")[0].textContent;
-                        var dataAbertura = dataConsulta.getElementsByTagName("dataAbertura")[0].textContent;
+                    var situacaoEmpresa = dataConsulta.getElementsByTagName("situacao")[0].textContent;
+                    var situacao = situacaoEmpresa.indexOf("ATIVA");
+                } catch (Exception) {
+                }
 
-                        if (naturezaJuridica == "2135")
-                        {
-                            var date = toDateSplitHifenSerasa(dataAbertura);
+                try {
+                    var naturezaJuridica = dataConsulta.getElementsByTagName("codigo")[0].textContent;
+                    var dataAbertura = dataConsulta.getElementsByTagName("dataAbertura")[0].textContent;
 
-                            if (!validateDataMei(date)) {
+                    if (naturezaJuridica == "2135") {
+                        var date = toDateSplitHifenSerasa(dataAbertura);
 
-                                swal("Ops", "Venda não autorizada para Empresa MEI com menos de 6 meses", "info");
-                                return;
-                            }
+                        if (!validateDataMei(date)) {
+
+                            swal("Ops", "Venda não autorizada para Empresa MEI com menos de 6 meses", "info");
+                            return;
                         }
-
-                    } catch (Exception) { }
-                    
-                    console.log(situacao);
-
-                    if (situacao == undefined)
-                    {
-                        $("#razao-social").prop('disabled', false);
-                        $("#ramo-atividade").prop('disabled', false);
-                        $("#representante-legal").prop('disabled', false);
-                        $("#cpf-representante").prop('disabled', false);
-                        $("#nome-fantasia").prop('disabled', false);
-                        $("#cnae").prop('disabled', false);
-                        swal.close();
-                        return;
                     }
 
-                    if (!situacao == 0) {
+                } catch (Exception) {
+                }
 
-                        swal("Ops", "Não é possível seguir com a contratação para esta empresa. Consulte o CNPJ e tente novamente.", "info");
+                console.log(situacao);
 
-                        $("#cnpjEmpresa").val("");
-                        $("#razao-social").val("");
-                        $("#ramo-atividade").val("");
-                        $("#representante-legal").val("");
-                        $("#cpf-representante").val("");
-                        $("#nome-fantasia").val("");
-                        $("#cnae").val("");
-                        //$("#razao-social").removeProp("disabled", true);
-                        return;
-                    }
-                } catch (Exception) { }
-
-                try {
-                    //put('cpnjValido', dataConsulta.getElementsByTagName("situacao")[0].textContent);
-                    
-                    //console.log(empresaAtiva);
-                    try { $("#rua").val(dataConsulta.getElementsByTagName("Nome")[0].textContent); } catch (Exception) { }
-                    try { $("#razao-social").val(dataConsulta.getElementsByTagName("razaoSocial")[0].textContent); } catch (Exception) { $("#razao-social").prop('disabled', false); }
-                    try { $("#ramo-atividade").val(dataConsulta.getElementsByTagName("descricao")[0].textContent); } catch (Exception) { $("#ramo-atividade").prop('disabled', false); }
-                    try { $("#representante-legal").val(dataConsulta.getElementsByTagName("nome")[0].textContent); } catch (Exception) { $("#representante-legal").prop('disabled', false); }
-                    try { $("#cpf-representante").val(dataConsulta.getElementsByTagName("documento")[0].textContent); } catch (Exception) { $("#cpf-representante").prop('disabled', false); }
-                    try { $("#nome-fantasia").val(dataConsulta.getElementsByTagName("nomeFantasia")[0].textContent); } catch (Exception) { $("#nome-fantasia").prop('disabled', false); }
-                    try { $("#cnae").val(dataConsulta.getElementsByTagName("codigo")[1].textContent.trim()); } catch (Exception) { $("#cnae").prop('disabled', false);  }
-                    try { $("#cep").val(dataConsulta.getElementsByTagName("cep")[0].textContent); } catch (Exception) { }
-                    try { $("#uf").val(dataConsulta.getElementsByTagName("uf")[0].textContent); } catch (Exception) { }
-                    try { $("#cidade").val(dataConsulta.getElementsByTagName("cidade")[0].textContent); } catch (Exception) { }
-                    try { $("#bairro").val(dataConsulta.getElementsByTagName("bairro")[0].textContent); } catch (Exception) { }
-                    try { $("#numeroEndereco").val(dataConsulta.getElementsByTagName("Numero")[0].textContent); } catch (Exception) { }
-                    try { $("#complemento").val(dataConsulta.getElementsByTagName("Complemento")[0].textContent); } catch (Exception) { }
-
-                    var adicionarValidacaoSerasa = get("proposta");
-                    adicionarValidacaoSerasa.consultadaSerasa = true;
-                    put("proposta", JSON.stringify(adicionarValidacaoSerasa));
-
+                if (situacao == undefined) {
+                    $("#razao-social").prop('disabled', false);
+                    $("#ramo-atividade").prop('disabled', false);
+                    $("#representante-legal").prop('disabled', false);
+                    $("#cpf-representante").prop('disabled', false);
+                    $("#nome-fantasia").prop('disabled', false);
+                    $("#cnae").prop('disabled', false);
                     swal.close();
+                    return;
+                }
 
-                } catch (Exception) { swal.close();}
+                if (!situacao == 0) {
+
+                    swal("Ops", "Não é possível seguir com a contratação para esta empresa. Consulte o CNPJ e tente novamente.", "info");
+
+                    $("#cnpjEmpresa").val("");
+                    $("#razao-social").val("");
+                    $("#ramo-atividade").val("");
+                    $("#representante-legal").val("");
+                    $("#cpf-representante").val("");
+                    $("#nome-fantasia").val("");
+                    $("#cnae").val("");
+                    //$("#razao-social").removeProp("disabled", true);
+                    return;
+                }
+            } catch (Exception) {
+            }
+
+            try {
+                //put('cpnjValido', dataConsulta.getElementsByTagName("situacao")[0].textContent);
+
+                //console.log(empresaAtiva);
+                try {
+                    $("#rua").val(dataConsulta.getElementsByTagName("Nome")[0].textContent);
+                } catch (Exception) {
+                }
+                try {
+                    $("#razao-social").val(dataConsulta.getElementsByTagName("razaoSocial")[0].textContent);
+                } catch (Exception) {
+                    $("#razao-social").prop('disabled', false);
+                }
+                try {
+                    $("#ramo-atividade").val(dataConsulta.getElementsByTagName("descricao")[0].textContent);
+                } catch (Exception) {
+                    $("#ramo-atividade").prop('disabled', false);
+                }
+                try {
+                    $("#representante-legal").val(dataConsulta.getElementsByTagName("nome")[0].textContent);
+                } catch (Exception) {
+                    $("#representante-legal").prop('disabled', false);
+                }
+                try {
+                    $("#cpf-representante").val(dataConsulta.getElementsByTagName("documento")[0].textContent);
+                } catch (Exception) {
+                    $("#cpf-representante").prop('disabled', false);
+                }
+                try {
+                    $("#nome-fantasia").val(dataConsulta.getElementsByTagName("nomeFantasia")[0].textContent);
+                } catch (Exception) {
+                    $("#nome-fantasia").prop('disabled', false);
+                }
+                try {
+                    $("#cnae").val(dataConsulta.getElementsByTagName("codigo")[1].textContent.trim());
+                } catch (Exception) {
+                    $("#cnae").prop('disabled', false);
+                }
+                try {
+                    $("#cep").val(dataConsulta.getElementsByTagName("cep")[0].textContent);
+                } catch (Exception) {
+                }
+                try {
+                    $("#uf").val(dataConsulta.getElementsByTagName("uf")[0].textContent);
+                } catch (Exception) {
+                }
+                try {
+                    $("#cidade").val(dataConsulta.getElementsByTagName("cidade")[0].textContent);
+                } catch (Exception) {
+                }
+                try {
+                    $("#bairro").val(dataConsulta.getElementsByTagName("bairro")[0].textContent);
+                } catch (Exception) {
+                }
+                try {
+                    $("#numeroEndereco").val(dataConsulta.getElementsByTagName("Numero")[0].textContent);
+                } catch (Exception) {
+                }
+                try {
+                    $("#complemento").val(dataConsulta.getElementsByTagName("Complemento")[0].textContent);
+                } catch (Exception) {
+                }
+
+                var adicionarValidacaoSerasa = get("proposta");
+                adicionarValidacaoSerasa.consultadaSerasa = true;
+                put("proposta", JSON.stringify(adicionarValidacaoSerasa));
+
+                swal.close();
+
+            } catch (Exception) {
+                swal.close();
+            }
 
         }, dataToken.access_token, cnpjValidado);
     });
@@ -686,9 +772,15 @@ function desbloqCampos() {
 
 function salvarRascunho() {
 
-    if ($("#cnpjEmpresa").val() == "") {
+    if ($(".cnpj").val() == "") {
         swal("Ops!", "Preencha o CNPJ", "error");
+        $("#cnpjEmpresa").focus();
+        return;
+    }
 
+    if (!validaCnpj($(".cnpj").val())) {
+        swal("Ops!", "Preencha um CNPJ válido", "error");
+        $("#cnpjEmpresa").focus();
         return;
     }
 
@@ -696,7 +788,7 @@ function salvarRascunho() {
         swal("Ops!", "O CNAE deve conter 7 dígitos", "error");
         return;
     }
-    
+
     if ($("#telefone").val() == "") {
         swal("Ops!", "Preencha o telefone", "error");
 
@@ -754,7 +846,7 @@ function salvarRascunho() {
 
     salvarRascunhoMemoria();
 
-    swal("Feito","Proposta salva com sucesso", "success")
+    swal("Feito", "Proposta salva com sucesso", "success")
 }
 
 function salvarEContinuar() {
@@ -824,8 +916,7 @@ function salvarRascunhoMemoria() {
     put("proposta", JSON.stringify(proposta));
 }
 
-function cnpjValido()
-{
+function cnpjValido() {
 
 
 }
@@ -860,7 +951,7 @@ function carregarProposta() {
         $("#squaredOne").attr("checked", true);
         $("#divSegundoContato").addClass('hide');
     }
-    else if(!proposta.contatoEmpresa) {
+    else if (!proposta.contatoEmpresa) {
         $("#squaredOne").attr("checked", false);
         $("#divSegundoContato").removeClass('hide');
         $("#nomeSegundoContato").val(proposta.contactEmpresa.nome);
@@ -888,7 +979,19 @@ function carregarProposta() {
 
 function continuarProposta() {
 
-    if (navigator.onLine){
+    if ($(".cnpj").val() == "") {
+        swal("Ops!", "Preencha o CNPJ", "error");
+        $("#cnpjEmpresa").focus();
+        return;
+    }
+
+    if (!validaCnpj($(".cnpj").val())) {
+        swal("Ops!", "Preencha um CNPJ válido", "error");
+        $("#cnpjEmpresa").focus();
+        return;
+    }
+
+    if (navigator.onLine) {
 
         var emailPrincipal = $("#email").val();
         var emailSegundoContato = $("#emailSegundoContato").val();
@@ -959,7 +1062,9 @@ function validarProposta() {
         return;
     }
 
-    beneficiarios = beneficiarios.filter(function (x) { return x.cnpj == proposta.cnpj });
+    beneficiarios = beneficiarios.filter(function (x) {
+        return x.cnpj == proposta.cnpj
+    });
     var qtdBenef = beneficiarios.length;
     var qtdDependente = 0;
 
@@ -974,7 +1079,13 @@ function validarProposta() {
     }
 
     if ($(".cnpj").val() == "") {
-        swal("Ops!", "Preencha o cnpj", "error");
+        swal("Ops!", "Preencha o CNPJ", "error");
+        $("#cnpjEmpresa").focus();
+        return;
+    }
+
+    if (!validaCnpj($(".cnpj").val())) {
+        swal("Ops!", "Preencha um CNPJ válido", "error");
         $("#cnpjEmpresa").focus();
         return;
     }
@@ -1021,7 +1132,7 @@ function validarProposta() {
     }
 
     if (!TestaCPF($("#cpf-representante").val().replace(/\D/g, ''))) {
-       
+
         swal("Ops!", "CPF do representante legal inválido", "error");
         $("#cnpjEmpresa").focus();
         return;
