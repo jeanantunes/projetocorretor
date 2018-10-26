@@ -19,77 +19,6 @@
 
     <script type="text/javascript" th:src="@{/js/menu.js}"></script>
 
-    <style>
-        .box-plano {
-            background: #ffffff;
-            min-width: 330px;
-            min-height: 596px;
-            margin: auto;
-            padding: 0;
-            text-align: center;
-            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
-
-            -moz-border-radius: 7px;
-            -webkit-border-radius: 7px;
-            border-radius: 7px;
-        }
-
-        .titulo-plano {
-            font-family: Roboto-Medium;
-            font-size: 20px;
-            color: #D9487F;
-        }
-
-        .img-center {
-            min-width: 100%;
-            display: -webkit-flex;
-            display: flex;
-            -webkit-align-items: center;
-            align-items: center;
-            -webkit-justify-content: center;
-            justify-content: center;
-        }
-
-        .scrolly {
-            width: 99%;
-            height: auto;
-            overflow: auto;
-            overflow-y: hidden;
-            white-space: nowrap;
-            display: -webkit-box;
-        }
-
-        .titulo-blue {
-            color: #1974CE;
-            width: 100% !important;
-            margin-top: 40px !important;
-            font-size: 20px !important;
-        }
-
-        .linkGreen {
-            color: #83BC00;
-            font-family: Roboto-Regular;
-            font-size: 16px;
-            text-decoration: none;
-            cursor: pointer;
-            outline: none;
-        }
-
-        tr td {
-            padding: 9px !important;
-            color: #6A6A6A;
-        }
-
-        button {
-            border: 0;
-            text-decoration: none;
-            cursor: pointer;
-            outline: none;
-            padding: 0;
-            border-radius: 30px;
-        }
-    </style>
-
     <script>
         $(function () {
             $(".button-collapse").sideNav();
@@ -295,5 +224,6 @@
 
 </div>
 <script type="text/javascript" th:src="@{/js/setColorMenuCorretor.js}"></script>
+<link rel="stylesheet" type="text/css" th:href="@{/css/info-planos.css}"/>
 </body>
 </html>
