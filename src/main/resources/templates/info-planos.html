@@ -25,7 +25,7 @@
             min-width: 330px;
             min-height: 596px;
             margin: auto;
-            padding: 0px;
+            padding: 0;
             text-align: center;
             box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
 
@@ -85,6 +85,8 @@
             text-decoration: none;
             cursor: pointer;
             outline: none;
+            padding: 0;
+            border-radius: 30px;
         }
     </style>
 
@@ -218,7 +220,7 @@
             </div>
         </div>
 
-        <div th:style="${planoInfosModel.pf.size() > 3 ? 'position: absolute; z-index: 9999; margin-top: 150px; margin-left: 73%;' : 'display:none;'}">
+        <div class="col-xs-0" th:style="${planoInfosModel.pf.size() > 3 ? 'position: inherit; z-index: 9999; margin-right:10px; margin-top: -546px; float:right;' : 'display:none;'}">
             <button onclick="scrollPos()"><img th:src="@{/img/seta_pos.png}"/></button>
         </div>
 
