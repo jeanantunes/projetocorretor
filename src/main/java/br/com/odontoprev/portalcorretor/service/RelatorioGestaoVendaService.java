@@ -32,8 +32,7 @@ public class RelatorioGestaoVendaService {
 
         log.info("Relatorio Gestao de Venda PME - gerarCSV ");
 
-        //String url = requesBasetUrl + relatorioCsvPME + dataInicio + "/" + dataFim + "/" + cnpj;
-        String url = "http://localhost:8090/downloadxls/corretoratotalvidaspme/" + dataInicio + "/" + dataFim + "/" + cnpj;
+        String url = requesBasetUrl + relatorioCsvPME + dataInicio + "/" + dataFim + "/" + cnpj;
 
         RestTemplate restTemplate = new RestTemplate();
         MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
