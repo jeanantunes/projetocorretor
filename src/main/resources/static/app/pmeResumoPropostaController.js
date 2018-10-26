@@ -400,7 +400,7 @@ function enviarPropostaPme() {
                 $("#enviarPropostaPme").prop('disabled', false);
                 return;
             }, 250);
-            
+
         };
 
         if (!propostaConsultouSerasa) return;

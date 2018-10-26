@@ -846,7 +846,7 @@ function validarDependentes() {
 
                 var date = toDate(item.dataNascimento);
 
-                if (planoInfantil[0] == planosInfantisJson.dentalJuriorMensal || planoInfantil[0] == planosInfantisJson.dentalJuriorAnual) {
+                if (planoInfantil[0] == planosInfantisJson.dentalJuniorMensal || planoInfantil[0] == planosInfantisJson.dentalJuniorAnual) {
 
                     if (menorQueOitoAnos(date) || isMaiorDeIdade(date)) {
 
@@ -1612,7 +1612,7 @@ function validarNascimentoBeneficiario() {
 
             if (planoInfantil.length > 0) {
 
-                if (planoInfantil[0] == planosInfantisJson.dentalJuriorMensal || planoInfantil[0] == planosInfantisJson.dentalJuriorAnual) {
+                if (planoInfantil[0] == planosInfantisJson.dentalJuniorMensal || planoInfantil[0] == planosInfantisJson.dentalJuniorAnual) {
 
                     if ($(".cpf").val() != "" && !TestaCPF($("#cpf").val().replace(/\D/g, ''))) {
 
@@ -1681,7 +1681,7 @@ function validarNascimentoBeneficiario() {
 
                 }
 
-            } else if (item.cdPlano == planosInfantisJson.dentalJuriorMensal || item.cdPlano == planosInfantisJson.dentalJuriorAnual) {
+            } else if (item.cdPlano == planosInfantisJson.dentalJuniorMensal || item.cdPlano == planosInfantisJson.dentalJuniorAnual) {
 
                 if ($(".cpf").val() != "" && !TestaCPF($("#cpf").val().replace(/\D/g, ''))) {
 
