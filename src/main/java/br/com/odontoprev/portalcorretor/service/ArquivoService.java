@@ -30,7 +30,7 @@ public class ArquivoService {
     public Arquivo getArquivo(Long cdArquivo) {
         log.info("GET ARQUIVO ->>> getArquivo");
 
-        String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", contexto + arquivoPlanoInfo);
+        String url = ConfigurationUtils.getURLGetToken().replaceAll("/token", contexto + arquivoPlanoInfo.replace("{cdArquivo}", cdArquivo.toString()));
 
         RestTemplate restTemplate = new RestTemplate();
         try {
