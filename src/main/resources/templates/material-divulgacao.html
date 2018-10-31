@@ -54,10 +54,9 @@
 
                 let codMat = $(this).data("id");
                 console.log("metodo - callfilefull");
-                //201810241452 - esert/yalm - COR-721:API - Novo POST/ARQUIVO Fazer Carga - especializar a rota para evitar duplicidade com novas rotas do ArquivoController.
                 $.ajax({
                     async: true,
-                    url: "/materialdivulgacao/arquivo/?id=" + codMat,
+                    url: "/arquivo/?id=" + codMat,
                     method: "GET",
                     headers: {
                         "Cache-Control": "no-cache",
